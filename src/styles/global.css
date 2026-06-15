@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/*
+  Hopewell Health Solutions — brand tokens (confirmed 2026-06-15)
+  -------------------------------------------------------------
+  Single source of truth. Swap a value here and every component re-skins.
+  Palette: Crema (cream) + Azul (blue) + Navy text. Calm, clinical, premium.
+*/
+@theme {
+  /* Brand colors */
+  --color-azul: #265489;        /* primary — buttons, pills, links */
+  --color-azul-dark: #1b3e63;   /* hover / pressed */
+  --color-azul-light: #e7eef5;  /* soft tint — pill bg, section accents */
+  --color-crema: #f5f2eb;       /* light section background */
+  --color-ink: #001d37;         /* body + heading text (párrafos) */
+  --color-muted: #5a6b7a;       /* secondary text */
+  --color-line: #e4ddd0;        /* hairline borders on cream */
+
+  /* Type — Baskervville (serif, headings) + Urbanist (sans, body) */
+  --font-sans: "Urbanist", system-ui, sans-serif;
+  --font-display: "Baskervville", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #ffffff;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  line-height: 1.15;
+  font-weight: 400; /* Baskervville ships a single weight */
+}
