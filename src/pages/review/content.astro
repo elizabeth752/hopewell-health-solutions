@@ -2,6 +2,13 @@
 import Review from "../../layouts/Review.astro";
 import SeoCard from "../../components/SeoCard.astro";
 import ContentDoc from "../../components/ContentDoc.astro";
+import { providers } from "../../data/providers.js";
+const provCats = [
+  { key: "leadership", label: "Leadership" },
+  { key: "medical", label: "Medical & Psychiatric" },
+  { key: "psychology", label: "Psychologists & Neuropsychology" },
+  { key: "clinical", label: "Clinical — Therapists & Counselors" },
+];
 
 // Left-rail "documents". status: ready | draft | empty
 const docs = [
@@ -49,6 +56,7 @@ const docs = [
   { id: "aboutus", label: "About Us (hub)", status: "ready" },
   { id: "team", label: "About · Our Team (hub)", status: "ready" },
   { id: "providerbio", label: "About · Provider Bio (template)", status: "ready" },
+  { id: "providerbios", label: "About · All Provider Bios", status: "ready" },
 ];
 
 // USP entries
@@ -3379,9 +3387,52 @@ const providerbioSections = [
     <ContentDoc label="About Us · Provider Bio — TEMPLATE (~47 bios)" title="Provider Bio" intro="The template for every clinician bio (Person schema), populated from the existing live /provider/ content — no placeholders. Rollout = pull each clinician's live page." meta={providerbioMeta} seo={providerbioSeo} decisions={providerbioDecisions} sections={providerbioSections} />
   </article>
 
+  <!-- All Provider Bios (data-driven from src/data/providers.js) -->
+  <article data-panel="providerbios" class="doc-panel hidden">
+    <div class="rounded-xl bg-white shadow-lg border border-line">
+      <div class="border-b border-line px-14 py-4 flex items-center justify-between">
+        <span class="text-sm text-muted">About Us · Provider Bios — migrated from live /provider/ pages</span>
+        <span class="rounded-full bg-azul-light text-azul text-xs font-semibold px-2.5 py-0.5">Draft v1</span>
+      </div>
+      <div class="px-14 py-12">
+        <h2 class="font-display text-4xl text-ink">Provider Bios</h2>
+        <p class="mt-3 text-lg text-muted max-w-4xl">All bios are migrated from the existing live <code class="text-sm">/provider/</code> pages — no invented content. Each becomes a <code class="text-sm">/about-us/team/[slug]/</code> page with Person schema (301 from the old URL). <strong>{providers.length} of 47 done</strong> so far — populating the rest in batches.</p>
+        <div class="mt-8 space-y-6">
+          {provCats.map((cat) => {
+            const list = providers.filter((p) => p.category === cat.key);
+            return list.length === 0 ? null : (
+              <section>
+                <h3 class="font-display text-2xl text-ink border-b border-line pb-2">{cat.label} <span class="text-muted text-base">· {list.length}</span></h3>
+                <div class="mt-4 space-y-5">
+                  {list.map((p) => (
+                    <div class="rounded-xl border border-line bg-crema/40 p-6 max-w-4xl">
+                      <div class="flex flex-wrap items-baseline gap-x-3">
+                        <h4 class="font-display text-xl text-ink">{p.name}</h4>
+                        <span class="text-sm text-azul font-semibold">{p.role}</span>
+                        {p.prescribes && <span class="rounded-full bg-azul-light text-azul text-[10px] font-bold uppercase px-2 py-0.5">Prescriber</span>}
+                      </div>
+                      <p class="text-xs text-muted mt-0.5 font-mono">/about-us/team/{p.slug}/</p>
+                      {p.bio ? <p class="mt-3 text-ink leading-relaxed">{p.bio}</p> : <p class="mt-3 text-amber-700 italic">⚠️ Live bio thin/missing — request copy from client.</p>}
+                      {p.focus && p.focus.length > 0 && (
+                        <div class="mt-3 flex flex-wrap gap-1.5">
+                          {p.focus.map((f) => <span class="rounded-full bg-azul-light text-azul text-xs px-2.5 py-1">{f}</span>)}
+                        </div>
+                      )}
+                      {p.education && <p class="mt-2 text-sm text-muted"><strong class="text-ink">Education:</strong> {p.education}</p>}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas", "locsouth", "locpratt", "locwh", "loceh", "locwb", "aboutus", "team", "providerbio"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas", "locsouth", "locpratt", "locwh", "loceh", "locwb", "aboutus", "team", "providerbio", "providerbios"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
