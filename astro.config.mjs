@@ -9,7 +9,10 @@ export default defineConfig({
   site: 'https://hopewellhealthsolutions.com',
   trailingSlash: 'always',      // clean, consistent URLs e.g. /programs/medical-detox/
   build: { format: 'directory' },
-  integrations: [sitemap()],
+  integrations: [
+    // Exclude internal /review/ pages from the public sitemap
+    sitemap({ filter: (page) => !page.includes('/review') }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

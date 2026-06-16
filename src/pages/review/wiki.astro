@@ -1,0 +1,129 @@
+---
+import Review from "../../layouts/Review.astro";
+
+const facts = [
+  { k: "Legal name", v: "Hopewell Health Solutions and Psychiatry, Inc." },
+  { k: "Founded", v: "2013" },
+  { k: "Founder / CEO", v: "Kristine A. Schlichting, Ph.D. (“Dr. K”)" },
+  { k: "Tagline", v: "There is HOPE to HEAL!" },
+  { k: "Phone", v: "(860) 946-0447" },
+  { k: "Domain", v: "hopewellhealthsolutions.com" },
+  { k: "Reputation", v: "368 reviews · 4.8★ (flagship GBP)" },
+  { k: "Scale", v: "~100 active patients · ~80 IOP/day · 60–70 calls/day" },
+];
+
+const locations = [
+  { name: "The Center for IOP & Psychiatry", addr: "300 Hebron Ave, Glastonbury", svc: "FLAGSHIP — Adult IOP · PHP · Med Mgmt · Women's Wellness", focus: true },
+  { name: "Hopewell at the Shore", addr: "70 Essex Rd, Westbrook", svc: "NEW — IOP · PHP · Med Mgmt · Therapy (beach access)", focus: true },
+  { name: "The Mansion on Main", addr: "1420 Main St, South Glastonbury", svc: "Teen & Tween IOP · Med Mgmt", focus: false },
+  { name: "The House", addr: "33 Pratt St, Glastonbury", svc: "Therapy only", focus: false },
+  { name: "West Hartford", addr: "1216 Farmington Ave", svc: "Therapy · Med Mgmt", focus: false },
+  { name: "The Lakeside Sanctuary", addr: "151 E. High St, East Hampton", svc: "Therapy · Med Mgmt", focus: false },
+];
+
+const programs = ["Adult Mental Health IOP", "Women's Wellness / Trauma IOP", "Teen & Tween IOP (8–12)", "First Responder IOP", "Substance Use IOP", "PHP", "Medication Management", "Outpatient Therapy", "TMS", "Spravato (de-emphasized)", "MAT", "Neuropsych / ADHD Testing"];
+
+const usps = [
+  "Clinical excellence & strong reputation (368 reviews, 4.8★)",
+  "Integrated continuum of care under one roof",
+  "Programs hospitals don't offer: nighttime, tween, women's trauma IOP",
+  "Lived-experience leadership (TJ Aitken, CPSRP — former IOP client)",
+  "High local authority across 6 CT locations",
+];
+
+const payersIn = ["Aetna", "Anthem", "BCBS", "Cigna", "UnitedHealthcare", "Magellan", "Optum", "UMR", "Harvard Pilgrim", "ConnectiCare", "VA Community Care", "Oscar"];
+const payersNo = ["Medicaid (avoid)", "Carelon", "TriCare East = certified, not in-network"];
+
+const compliance = [
+  "SUD / addiction copy IS allowed (ads on separate LPs + LegitScript in progress).",
+  "De-emphasize Spravato — pivot to TMS.",
+  "Do NOT display accreditation (JCAHO seal) unless verified.",
+  "Standard BH / HIPAA guardrails; BAA before touching Written EHR.",
+];
+---
+
+<Review
+  title="Client Wiki"
+  subtitle="Synthesized from 7 elev8 call docs and verified against the loaded assets. The full source lives in memory; this is the working summary."
+>
+  <!-- Snapshot -->
+  <section class="rounded-2xl border border-line bg-white p-7">
+    <h2 class="font-display text-2xl text-ink mb-4">Snapshot</h2>
+    <dl class="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+      {facts.map((f) => (
+        <div class="flex justify-between gap-4 border-b border-line pb-2">
+          <dt class="text-muted text-sm">{f.k}</dt>
+          <dd class="text-ink text-sm font-semibold text-right">{f.v}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Locations -->
+  <section class="mt-8">
+    <h2 class="font-display text-2xl text-ink mb-4">Locations <span class="text-muted text-base">· 6 in Connecticut</span></h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {locations.map((l) => (
+        <div class={`rounded-xl border p-5 ${l.focus ? "border-azul bg-azul-light" : "border-line bg-white"}`}>
+          <div class="flex items-center gap-2">
+            <h3 class="font-display text-lg text-ink">{l.name}</h3>
+            {l.focus && <span class="rounded-full bg-azul text-white text-[10px] font-bold uppercase px-2 py-0.5">Marketing focus</span>}
+          </div>
+          <p class="text-sm text-muted mt-0.5">{l.addr}</p>
+          <p class="text-sm text-ink mt-2">{l.svc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Programs + USPs -->
+  <div class="grid gap-8 lg:grid-cols-2 mt-8">
+    <section class="rounded-2xl border border-line bg-white p-7">
+      <h2 class="font-display text-2xl text-ink mb-4">Services & Programs</h2>
+      <div class="flex flex-wrap gap-2">
+        {programs.map((p) => (
+          <span class="rounded-full bg-azul-light text-azul text-sm font-semibold px-3 py-1.5">{p}</span>
+        ))}
+      </div>
+      <p class="text-sm text-muted mt-4">~75% mental health · ~25% addiction/SUD (co-occurring). IOP licensed CT only; Med Mgmt in CT, MA, FL.</p>
+    </section>
+
+    <section class="rounded-2xl border border-line bg-white p-7">
+      <h2 class="font-display text-2xl text-ink mb-4">Differentiators</h2>
+      <ul class="space-y-2.5">
+        {usps.map((u) => (
+          <li class="flex gap-2.5 text-ink"><span class="text-azul font-bold">›</span><span>{u}</span></li>
+        ))}
+      </ul>
+    </section>
+  </div>
+
+  <!-- Payers -->
+  <section class="mt-8 rounded-2xl border border-line bg-white p-7">
+    <h2 class="font-display text-2xl text-ink mb-4">Insurance</h2>
+    <p class="text-xs uppercase tracking-wide text-azul font-semibold mb-2">In-network (PPO)</p>
+    <div class="flex flex-wrap gap-2 mb-4">
+      {payersIn.map((p) => <span class="rounded-md border border-line bg-crema text-ink text-sm px-3 py-1">{p}</span>)}
+    </div>
+    <p class="text-xs uppercase tracking-wide text-muted font-semibold mb-2">Not accepted / notes</p>
+    <div class="flex flex-wrap gap-2">
+      {payersNo.map((p) => <span class="rounded-md border border-line text-muted text-sm px-3 py-1">{p}</span>)}
+    </div>
+  </section>
+
+  <!-- Competitors + Compliance -->
+  <div class="grid gap-8 lg:grid-cols-2 mt-8">
+    <section class="rounded-2xl border border-line bg-white p-7">
+      <h2 class="font-display text-2xl text-ink mb-4">Competitive landscape</h2>
+      <p class="text-ink">Effectively one rival: <strong>Hartford HealthCare</strong> (the “Goliath”). Yale New Haven + Connecticut Children's secondary. None offer Hopewell's nighttime / tween / women's-trauma IOPs.</p>
+      <p class="text-muted text-sm mt-3">Strategy: David-vs-Goliath — double down on the niche specialized programs.</p>
+    </section>
+
+    <section class="rounded-2xl border border-azul bg-azul-light p-7">
+      <h2 class="font-display text-2xl text-ink mb-4">Compliance flags</h2>
+      <ul class="space-y-2">
+        {compliance.map((c) => <li class="text-sm text-ink flex gap-2"><span class="text-azul font-bold">•</span><span>{c}</span></li>)}
+      </ul>
+    </section>
+  </div>
+</Review>

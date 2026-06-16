@@ -1,0 +1,134 @@
+---
+import Review from "../../layouts/Review.astro";
+
+const groups = [
+  {
+    title: "Hubs & homepage",
+    rows: [
+      ["/index", "/"],
+      ["/services", "/programs/"],
+      ["/contents", "/programs/"],
+      ["/about", "/about-us/"],
+      ["/providers", "/about-us/team/"],
+    ],
+  },
+  {
+    title: "Programs & levels of care",
+    rows: [
+      ["/adult-mental-health-iop", "/programs/adult-mental-health-iop/"],
+      ["/content/adult-intensive-outpatient-program", "/programs/adult-mental-health-iop/"],
+      ["/service/intensive-outpatient-program", "/programs/intensive-outpatient-program/"],
+      ["/content/intensive-outpatient", "/programs/intensive-outpatient-program/"],
+      ["/tweenteen-iop", "/programs/teen-iop/ (Tween net-new, cross-linked)"],
+      ["/first-responder-iop", "/programs/first-responder-iop/"],
+      ["/womens-trauma", "/programs/womens-wellness-iop/"],
+      ["/womens-wellness-iop", "/programs/womens-wellness-iop/"],
+      ["/content/womens-trauma-intensive-outpatient-program", "/programs/womens-wellness-iop/"],
+      ["/partial-hospitalization-program", "/programs/partial-hospitalization-program/"],
+      ["/medication-management", "/programs/medication-management/"],
+      ["/medication-management-service", "/programs/medication-management/"],
+      ["/service/medication-management", "/programs/medication-management/"],
+      ["/content/psychiatric-care--medication-management", "/programs/medication-management/"],
+      ["/service/counseling", "/programs/outpatient-therapy/"],
+    ],
+  },
+  {
+    title: "Substance use — pillar + 3 distinct-intent spokes",
+    rows: [
+      ["/service/s-u-d-treatment", "/programs/substance-use-iop/"],
+      ["/content/addiction-intensive-outpatient-program", "/programs/substance-use-iop/"],
+      ["/service/alcohol-dependence-treatment", "/what-we-treat/alcohol-addiction/"],
+      ["/service/drug-dependence-treatment", "/what-we-treat/drug-addiction/"],
+      ["/service/prescription-drug-dependence-treatment", "/what-we-treat/prescription-drug-addiction/"],
+    ],
+  },
+  {
+    title: "Treatment methods / therapies",
+    rows: [
+      ["/spravato", "/treatment-methods/spravato/"],
+      ["/service/spravato", "/treatment-methods/spravato/"],
+      ["/content/spravato", "/treatment-methods/spravato/"],
+      ["/service/tms", "/treatment-methods/tms/"],
+      ["/content/what-is-emdr-therapy", "/treatment-methods/emdr/"],
+      ["/neuropsychological-psychological-testing", "/treatment-methods/neuropsychological-testing/"],
+      ["/service/neuropsychological-testing", "/treatment-methods/neuropsychological-testing/"],
+      ["/content/neuropsychologicalpsychological-testing", "/treatment-methods/neuropsychological-testing/"],
+      ["/service/adhd-testing", "/treatment-methods/adhd-testing/"],
+      ["/hhs-therapeutic-treatments", "/treatment-methods/"],
+      ["/service/hhs-therapeutic-treatments", "/treatment-methods/"],
+      ["/content/hhs-therapeutic-treatments", "/treatment-methods/"],
+    ],
+  },
+  {
+    title: "Locations (kill duplicates + root orphans)",
+    rows: [
+      ["/location/glastonbury-ct", "/locations/glastonbury-ct/ ⚠️"],
+      ["/location/glastonbury-ct-2", "/locations/south-glastonbury-ct/ ⚠️"],
+      ["/location/glastonbury-ct-3", "/locations/glastonbury-pratt-ct/ ⚠️"],
+      ["/glastonbury", "/locations/glastonbury-ct/"],
+      ["/location/west-hartford-ct", "/locations/west-hartford-ct/"],
+      ["/west-hartford", "/locations/west-hartford-ct/"],
+      ["/location/east-hampton-ct", "/locations/east-hampton-ct/"],
+      ["/east-hampton", "/locations/east-hampton-ct/"],
+      ["/location/westbrook-ct", "/locations/westbrook-ct/"],
+    ],
+  },
+  {
+    title: "Admissions, utility & legal",
+    rows: [
+      ["/rates-and-insurance-coverage", "/admissions/rates-and-insurance/"],
+      ["/content/rates-and-insurance-coverage", "/admissions/rates-and-insurance/"],
+      ["/schedule", "/admissions/"],
+      ["/contact-us", "/contact/"],
+      ["/handouts", "/resources/"],
+      ["/social-media", "/contact/"],
+      ["/accessibility-statement", "/accessibility/"],
+      ["/our-terms", "/terms/"],
+      ["/your-privacy", "/privacy-policy/"],
+    ],
+  },
+];
+
+const totalRows = groups.reduce((a, g) => a + g.rows.length, 0);
+---
+
+<Review
+  title="Redirect Map"
+  subtitle="Every old Tebra URL → its new home, all 301. Providers follow a rule (below). Blog is Phase 2."
+>
+  <!-- Callout -->
+  <div class="rounded-2xl border border-azul bg-azul-light p-6 mb-8">
+    <h2 class="font-display text-xl text-ink">The problem we're fixing</h2>
+    <p class="text-ink mt-2">Tebra auto-generated <strong>three parallel URLs for every service</strong> (<code class="text-azul">/spravato</code> + <code class="text-azul">/service/spravato</code> + <code class="text-azul">/content/spravato</code>) plus duplicate location pages. That's textbook keyword cannibalization. This map collapses all of it into one clean taxonomy.</p>
+    <div class="flex gap-6 mt-4">
+      <div><span class="font-display text-3xl text-azul">{totalRows}</span><span class="text-sm text-muted ml-2">service/page 301s</span></div>
+      <div><span class="font-display text-3xl text-azul">~50</span><span class="text-sm text-muted ml-2">provider 301s (by rule)</span></div>
+    </div>
+  </div>
+
+  <!-- Provider rule -->
+  <div class="rounded-xl border border-line bg-white p-6 mb-8">
+    <p class="text-xs uppercase tracking-wide text-azul font-semibold mb-1">Provider rule</p>
+    <p class="text-ink"><code class="text-sm">/provider/[slug]</code> → <code class="text-sm">/about-us/team/[slug]</code>, normalizing <code class="text-sm">psy-d→psyd</code>, <code class="text-sm">ph-d→phd</code> to match the approved photo filenames. Root orphan <code class="text-sm">/eric-schwartz-psyd-abpp</code> folds into the same target.</p>
+  </div>
+
+  <!-- Groups -->
+  <div class="space-y-8">
+    {groups.map((g) => (
+      <section>
+        <h2 class="font-display text-xl text-ink mb-3">{g.title} <span class="text-muted text-sm">· {g.rows.length}</span></h2>
+        <div class="rounded-xl border border-line bg-white overflow-hidden">
+          {g.rows.map((r, i) => (
+            <div class={`grid grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-2.5 ${i % 2 ? "bg-crema/50" : ""}`}>
+              <code class="text-sm text-muted line-through truncate">{r[0]}</code>
+              <span class="text-azul font-bold">→</span>
+              <code class="text-sm text-ink font-semibold truncate">{r[1]}</code>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <p class="mt-8 text-sm text-muted">⚠️ = needs confirmation (which Glastonbury address). Validate all 301s against Semrush Organic Positions + Backlinks before firing — never redirect a top-5 slug or heavily-linked page without sign-off.</p>
+</Review>

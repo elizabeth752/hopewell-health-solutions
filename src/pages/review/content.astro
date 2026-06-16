@@ -1,0 +1,1751 @@
+---
+import Review from "../../layouts/Review.astro";
+import SeoCard from "../../components/SeoCard.astro";
+import ContentDoc from "../../components/ContentDoc.astro";
+
+// Left-rail "documents". status: ready | draft | empty
+const docs = [
+  { id: "usps", label: "USPs & Positioning", status: "ready" },
+  { id: "homepage", label: "Homepage", status: "ready" },
+  { id: "iopov", label: "Program · IOP Overview", status: "ready" },
+  { id: "iop", label: "Program · Adult IOP", status: "ready" },
+  { id: "mens", label: "Program · Men's IOP", status: "ready" },
+  { id: "womens", label: "Program · Women's Wellness IOP", status: "ready" },
+  { id: "teen", label: "Program · Teen IOP", status: "ready" },
+  { id: "tween", label: "Program · Tween IOP", status: "ready" },
+  { id: "fr", label: "Program · First Responder IOP", status: "ready" },
+  { id: "sud", label: "Program · Substance Use IOP", status: "ready" },
+  { id: "php", label: "Program · PHP", status: "ready" },
+  { id: "depression", label: "Condition · Depression", status: "empty" },
+];
+
+// USP entries
+const usps = [
+  {
+    n: 1,
+    name: "TMS for Treatment-Resistant Depression",
+    status: "Confirmed",
+    angle:
+      "“When medication hasn’t worked, there’s still hope.” In-house TMS — FDA-cleared for treatment-resistant depression. Drug-free, non-invasive, no downtime.",
+    why: "Out-classes hospitals (access + personalization) AND telehealth (you can’t do TMS through an app). Captures high-intent “treatment-resistant depression” searches.",
+    where: "/treatment-methods/tms/ · /what-we-treat/depression/ · homepage differentiators · med-management page",
+  },
+  {
+    n: 2,
+    name: "GeneSight Pharmacogenomic Testing",
+    status: "Confirmed",
+    angle:
+      "“Stop the trial-and-error.” A simple cheek swab shows which medications fit your genetics — so we get it right faster.",
+    why: "Precision-medicine signal almost no outpatient practice offers. Pairs perfectly with medication management (their biggest lead feeder).",
+    where: "/treatment-methods/genesight-testing/ · /programs/medication-management/ · homepage",
+  },
+  {
+    n: 3,
+    name: "A Deeply Credentialed Clinical Team",
+    status: "Confirmed",
+    angle:
+      "“47 licensed clinicians — PhDs, PsyDs, psychiatric nurse practitioners, trauma specialists.” Real names, real credentials, matched to you.",
+    why: "E-E-A-T rocket fuel for SEO + AI citations, and pure trust for patients. The old site HID its top clinicians — leaning in is genuinely differentiating.",
+    where: "/about-us/team/ · author bylines + “medically reviewed by” on every condition/therapy page · homepage team strip",
+  },
+  {
+    n: 4,
+    name: "Specialized IOP Tracks Hospitals Don’t Offer",
+    status: "Confirmed",
+    angle:
+      "“Care built for who you are.” Women’s Trauma, Teen & Tween (8–12), First Responder, and Evening IOP — not one-size-fits-all.",
+    why: "The structural differentiator vs. Hartford HealthCare & Yale. Each track is its own keyword page with its own audience.",
+    where: "/programs/* track pages · homepage programs grid · condition pages",
+  },
+  {
+    n: 5,
+    name: "368 Reviews · 4.8★ — A Decade of CT Trust",
+    status: "Confirmed",
+    angle:
+      "“Connecticut families have trusted Hopewell for over a decade.” 368 reviews, 4.8 stars.",
+    why: "Social proof + local authority + conversion lift. Hard for any competitor to fake.",
+    where: "Hero trust bar · every location page · testimonials",
+  },
+  {
+    n: 6,
+    name: "In-Person, Local Care",
+    status: "Confirmed",
+    angle:
+      "“The power of presence.” Real rooms, real people, six Connecticut locations — not an app.",
+    why: "Clean differentiator vs. national telehealth (Headway, etc.). They already have a blog making this case.",
+    where: "Homepage · locations · about",
+  },
+];
+
+// ---------- HOMEPAGE DOCUMENT ----------
+const homeSeo =
+  "The homepage ranks #1 for the brand term “hopewell health solutions” (1,900/mo) — 89% of its traffic. Its only strong non-brand ranking is “therapy glastonbury ct” (#4, commercial, KD 14). Strategy: protect brand signals, convert hard, reinforce Glastonbury/CT service language, and funnel money keywords (IOP, conditions) to the dedicated inner pages this page links to. Don't try to rank the homepage for everything.";
+
+const homeFlags = [
+  "✓ <strong>Joint Commission Gold Seal — CONFIRMED by client.</strong> Now featured as a trust signal (badge in the hero/trust bar + footer).",
+  "✓ Dropped the unverifiable “50,000+ happier clients” stat — replaced with defensible numbers (368 reviews, 47 clinicians, 13+ years).",
+  "↻ Branded email coming from client — the <code>hhs4help@gmail.com</code> placeholder is removed for now.",
+  "⚠️ <strong>Verify NY licensing</strong> — copy currently claims CT / MA / FL only (IOP is CT-only). Add NY once confirmed.",
+  "↻ Using “since 2013” rather than “14 years” to stay accurate.",
+];
+
+const homeMeta = {
+  title: "Hopewell Health Solutions | Mental Health & Psychiatry CT",
+  desc: "Outpatient mental health & psychiatry across Connecticut — IOP, PHP, TMS & medication management. 4.8★, Joint Commission accredited. Verify your insurance.",
+  h1: "There is hope to heal.",
+  canonical: "https://www.hopewellhealthsolutions.com/",
+  headings: "H1 = hero (one only) · H2 = each section · H3 = sub-cards / FAQ questions",
+  schema: ["Organization + MedicalBusiness (sitewide shell)", "WebSite (Sitelinks search box)", "AggregateRating (4.8 · 368)", "BreadcrumbList"],
+  reviewer: null,
+  social: "Open Graph + Twitter card: title, description, brand image",
+  interlinks: ["/programs/* (IOP · PHP · Med Mgmt · Therapy)", "/what-we-treat/* (8 conditions)", "/treatment-methods/* (TMS · GeneSight…)", "/locations/* (6)", "/about-us/team/", "/admissions/"],
+};
+
+// Rich content: copy[] = prose · body[] = list · copyAfter[] = paragraphs after list · faq[] = {q,a}
+const homeSections = [
+  {
+    eyebrow: "Empower · Change · Live Well — Mental Health & Psychiatry in Glastonbury & across Connecticut",
+    headline: "There is hope to heal.",
+    copy: [
+      "Compassionate, expert mental health care — close to home. Since 2013, Hopewell Health Solutions has helped Connecticut families heal with intensive programs, psychiatry, medication management, and TMS, delivered in person by clinicians who actually know your name.",
+      "Wherever you’re starting from, there’s a path forward — and people ready to walk it with you. People get better here.",
+    ],
+    body: ["4.8★ · 368 reviews", "Joint Commission accredited", "Serving Central CT since 2013", "In-network with most major PPO plans"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "Hero CTM form: First name · Phone · Email · “What do you need help with?” · Insurance · TCPA consent → “Get a Confidential Callback.” No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "A decade of care, and the trust that comes with it",
+    copy: ["The numbers behind the work speak for themselves:"],
+    body: ["4.8★ across 368 Google reviews", "Joint Commission accredited (Gold Seal)", "47 licensed clinicians", "6 Connecticut locations", "13+ years serving Central CT", "Featured on Eyewitness News 3"],
+  },
+  {
+    headline: "Where would you like to begin?",
+    copy: ["One in five U.S. adults lives with a mental health condition. You are not alone — and you don’t have to navigate this alone. Wherever you’re coming from, we’ll help you find the right next step."],
+    body: [
+      "For myself — Taking the first step takes courage; we’ll make the next ones simple.",
+      "For someone I love — A child, partner, or parent who’s struggling? We’ll help you help them.",
+    ],
+  },
+  {
+    headline: "Care you can’t get just anywhere",
+    copy: ["There are plenty of places to get therapy. Here’s what you can only get at Hopewell:"],
+    body: [
+      "TMS for treatment-resistant depression — FDA-cleared, drug-free, no downtime, for when medication hasn’t been enough.",
+      "GeneSight® genetic testing — a simple cheek swab that shows which medications fit your DNA, so we skip the trial-and-error.",
+      "47 specialists you’ll actually meet — matched to you by name, not assigned by an algorithm.",
+      "Programs built for who you are — Women’s, Men’s, Teen, Tween, and First Responder tracks the hospitals down the road don’t offer.",
+    ],
+  },
+  {
+    headline: "Our mission is to help you live your best life",
+    copy: [
+      "Therapy first. Medication second. Transformation third. Our board-certified, multidisciplinary team takes an innovative approach to mental-health care for clients aged 4 and older — meeting each person as a whole human being, not a diagnosis.",
+      "We use proven, evidence-based methods — CBT, DBT, EMDR, Accelerated Resolution Therapy (ART), the Gottman Method, plus play, solution-focused, and trauma therapies — tailored to you, never a template. We also offer neuropsychological testing and Spravato® for treatment-resistant depression, serving Hartford and Middlesex Counties in person and across New England virtually.",
+    ],
+  },
+  {
+    headline: "Find the right level of care",
+    copy: ["Whatever level of support you need, there’s a program to match — and a clear way to step up or down as you heal:"],
+    body: [
+      "Intensive Outpatient (IOP) — structured therapy several days a week, while you live at home.",
+      "Partial Hospitalization (PHP) — day treatment for when weekly therapy isn’t enough.",
+      "Medication Management — expert psychiatric prescribing, ages 4 and up.",
+      "Outpatient Therapy — individual (including children & teens), couples, and family counseling with a therapist who fits.",
+    ],
+  },
+  {
+    headline: "Specialized help for what you’re facing",
+    copy: ["We provide dedicated, in-depth care for the conditions that most often bring people through our doors — each with its own page so you can dig into exactly what you’re dealing with:"],
+    body: ["Depression · Anxiety · Trauma & PTSD · ADHD · Bipolar · OCD · Substance Use · Co-occurring disorders"],
+    copyAfter: ["We also offer TMS, Spravato®, neuropsychological & ADHD testing, and HHS therapeutic treatments."],
+  },
+  {
+    headline: "Why families choose Hopewell",
+    copy: ["A diverse, curated team of mental-health specialists, all working together to give you five-star care — that’s what Hopewell is known for. The result is exceptional outcomes, and the clarity, confidence, and conviction to move forward. It’s why we’ve become one of the top-rated and fastest-growing mental-health practices in Connecticut."],
+  },
+  {
+    headline: "Meet the people who’ll walk beside you",
+    copy: ["The person you work with matters more than almost anything else in treatment — so we lead with ours. Forty-seven licensed clinicians: psychologists, psychiatric nurse practitioners, trauma specialists, and counselors across Connecticut. Real credentials. Real names. Real relationships."],
+    ctas: ["Meet our team →"],
+  },
+  {
+    headline: "Not sure what your child needs?",
+    copy: ["Answer a few quick, confidential questions to see whether your child could benefit from an intensive outpatient program — no obligation, just clarity on the next step."],
+    ctas: ["Take the assessment →"],
+  },
+  {
+    headline: "Hear from the people we’ve helped",
+    copy: ["Families across Connecticut share their experience:"],
+    body: [
+      "“Her light is starting to shine brightly again.” — Parent",
+      "“You’re not just a number.” — Client",
+      "“This program was a game changer for my client.” — Referring therapist",
+    ],
+    copyAfter: ["4.8★ across 368 Google reviews. As featured on Eyewitness News 3 — Teen Mental Health Crisis and Women & Trauma."],
+  },
+  {
+    headline: "Comprehensive coverage options for our patients",
+    copy: ["We’re in-network with Aetna, Anthem, Blue Cross Blue Shield, Cigna, UnitedHealthcare, Optum, and more. Not sure about your plan? We’ll check it for you — free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Six locations across Connecticut",
+    copy: ["Care that’s close to home — Glastonbury (300 Hebron), South Glastonbury, Glastonbury (Pratt St), West Hartford, East Hampton, and Westbrook. Each with its full address and an embedded map."],
+  },
+  {
+    headline: "Getting started is simple",
+    copy: ["Reaching out is the hardest part. From there, we keep it simple:"],
+    body: ["Call us, or request a callback.", "We verify your insurance — free.", "You complete a clinical assessment.", "You start your program."],
+  },
+  {
+    headline: "Ready to discover your path to healing?",
+    copy: ["You don’t have to do this alone. Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. Licensed in CT, MA & FL."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- ADULT IOP DOCUMENT ----------
+const iopSeo =
+  "This page already ranks for 26 keywords (mostly pages 3–10). The migration preserves all of it: 301 /adult-mental-health-iop → /programs/adult-mental-health-iop/ AND target the same terms on the new page, then push the low-difficulty ones to page 1. Generic IOP terms route to the /programs/intensive-outpatient-program/ overview; THIS page owns the adult + co-occurring intent. “Near me” terms are served by the Glastonbury location + CT signals; “evening iop” by the evening track; informational terms by the “What is an IOP” section. Interlinks to conditions, therapies, location, and admissions.";
+
+// Real ranking keywords to preserve/target (from Semrush export) — [keyword, position, volume]
+const iopKeywords = [
+  ["iop programs near me", 38, "5,400"],
+  ["iops mental health", 30, "1,000"],
+  ["mental health iop", 72, "880"],
+  ["best iop programs near me", 18, "590"],
+  ["adult intensive outpatient", 97, "590"],
+  ["iop for mental health", 55, "210"],
+  ["evening iop programs near me", 32, "210"],
+  ["what is iop mental health", 28, "170"],
+  ["iop programs in ct", 44, "170"],
+  ["intensive outpatient program ct", 26, "140"],
+  ["adult intensive outpatient near me", 53, "260"],
+  ["intensive outpatient program connecticut", 41, "50"],
+];
+
+const iopDecisions = [
+  "✓ <strong>Phone 860-946-0447 used sitewide</strong> — the second number (860-246-9250) is dropped.",
+  "✓ <strong>Evening IOP track (Mon–Thu 5–8 pm) CONFIRMED</strong> — featured as a USP (and it’s a real ranking term: “evening iop programs near me”).",
+  "✓ Co-occurring / SUD + MAT copy retained (ads on separate LPs + LegitScript in progress).",
+  "↻ Preserves the live H1, DBT curriculum, schedule, modalities, outcomes, MAT copy + all 26 ranking keywords (301 + same-intent targeting).",
+  "↻ Branded email pending; Gmail placeholder removed.",
+];
+
+// ---------- IOP OVERVIEW (HUB) DOCUMENT ----------
+const iopovMeta = {
+  title: "Intensive Outpatient Programs (IOP) in Connecticut | Hopewell",
+  desc: "Joint Commission–accredited IOPs in Glastonbury, CT for tweens, teens, women & adults — DBT-based, day & evening, 4× a week. Most insurance accepted.",
+  h1: "Intensive Outpatient Programs (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/intensive-outpatient-program/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = program cards & FAQ questions",
+  schema: ["MedicalWebPage", "ItemList (IOP programs)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, IOP image",
+  interlinks: ["/programs/ adult-mental-health-iop · mens-iop · womens-wellness-iop · teen-iop · tween-iop · first-responder-iop · substance-use-iop", "/programs/ partial-hospitalization-program", "/what-we-treat/ depression · anxiety · trauma-ptsd", "/treatment-methods/ dbt · cbt", "/locations/glastonbury-ct/ · /locations/south-glastonbury-ct/", "/admissions/"],
+};
+
+const iopovSeo =
+  "The strongest IOP ranker on the site — already #1–6 for the high-value CT commercial terms (“intensive outpatient program ct/connecticut,” “iop programs in ct,” KD 15–16) across 42 keywords. Preserve at all costs: 301 /service/intensive-outpatient-program → /programs/intensive-outpatient-program/ and keep targeting these. This page is the IOP HUB — it owns generic IOP + “what is an IOP” + adolescent IOP and links to every track; the /programs/adult-mental-health-iop/ page owns adult + co-occurring intent (this split resolves the cannibalization between the two).";
+
+const iopovKeywords = [
+  ["what is an iop program", 66, "720"],
+  ["adolescent iop programs", 59, "590"],
+  ["adolescent iop program", 55, "320"],
+  ["iop for children", 29, "170"],
+  ["iop outpatient program", 94, "170"],
+  ["iop programs in ct", 5, "170"],
+  ["intensive therapy program", 77, "140"],
+  ["intensive outpatient program ct", 6, "140"],
+  ["adolescent iop near me", 11, "110"],
+  ["iops near me", 19, "110"],
+  ["online intensive outpatient programs", 46, "90"],
+  ["intensive outpatient program connecticut", 4, "50"],
+];
+
+const iopovDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "✓ <strong>Removed the “only IOP in CT” claim</strong> (not accurate) — using “Joint Commission accredited” (confirmed) instead.",
+  "✓ <strong>Two separate adolescent pages:</strong> Teen IOP (13–17) + Tween IOP (8–12).",
+  "✓ <strong>Men’s IOP confirmed</strong> — added as a track.",
+  "✓ <strong>All online-booking / Kareo references removed</strong> — lead capture is CTM forms + call tracking only.",
+  "🔀 <strong>Cannibalization fix:</strong> this HUB owns generic / CT / adolescent IOP + “what is an IOP”; the Adult IOP page owns adult + co-occurring. Don’t double-target.",
+  "ℹ️ Out-of-area rankings (Greenwich, Darien, Winnetka IL, Long Island) are incidental — don’t build for them; they’re outside the Glastonbury/Hartford service area.",
+];
+
+const iopovSections = [
+  {
+    eyebrow: "Intensive Outpatient Programs · Glastonbury, CT · In person & virtual",
+    headline: "Intensive Outpatient Programs (IOP) in Connecticut",
+    copy: [
+      "Structured, in-person mental-health treatment for tweens, teens, women, and adults — without an overnight stay. Our intensive outpatient programs give you real support and structure while you keep living your life: working, parenting, going to school.",
+      "Mental health conditions are common, affecting nearly 23% of adults and 17% of children aged 6–17. Wherever you are, there’s a program that fits.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Day & evening tracks", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · who it’s for · insurance · TCPA consent) → “Request a Consultation.” No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is an Intensive Outpatient Program?",
+    copy: [
+      "An Intensive Outpatient Program (IOP) is structured mental-health treatment — individual and group counseling, skills-based psychotherapy, psychiatric medication management, and experiential therapies — that delivers comprehensive care without requiring an overnight stay.",
+      "At Hopewell, programs meet four times a week and typically run 8 to 12 weeks, with day and evening options so treatment fits around your life.",
+    ],
+  },
+  {
+    headline: "Find the right IOP for you",
+    copy: ["Care is never one-size-fits-all, so we run a dedicated track for each population we serve. Choose the one that fits:"],
+    body: [
+      "Adult Co-Occurring IOP (18+) — mental health and substance use, treated together.",
+      "Men’s IOP (18+) — a men-only group for anxiety, depression, trauma, and substance use.",
+      "Women’s Wellness IOP (18+) — trauma-informed care in a women-only space.",
+      "Teen IOP (13–17) — structured support for high-schoolers, with family involvement.",
+      "Tween IOP (8–12) — age-appropriate care for younger kids, with family involvement.",
+      "First Responder IOP — for police, fire, EMS, and dispatch.",
+    ],
+    copyAfter: ["Each links to its own page so you can read exactly what to expect."],
+  },
+  {
+    headline: "Not sure which program fits?",
+    copy: ["A quick self-guide — for myself, for my child, or for a loved one — points you to the right track. Or just call: our intake team will help you figure it out, with no pressure."],
+  },
+  {
+    headline: "How our IOP works",
+    copy: [
+      "Every track shares the same proven structure: four sessions a week, about three hours each, for most clients 8 to 12 weeks. You can choose a daytime (9 am–12 pm) or evening (5–8 pm) schedule so you can keep work and school.",
+      "Adult and Women’s Wellness IOP run at 300 Hebron Ave; Teen and Tween IOP run at 1420 Main St in Glastonbury.",
+    ],
+  },
+  {
+    headline: "What our IOPs help with",
+    copy: ["Our programs are built for the conditions that most often need more than weekly therapy:"],
+    body: ["Depression & mood disorders", "Anxiety & panic", "Trauma & PTSD", "Self-harm or suicidal thoughts", "Emotional dysregulation & life transitions", "Co-occurring substance use"],
+  },
+  {
+    headline: "Evidence-based, and deeply human",
+    copy: ["Treatment is multimodal — clinical methods paired with experiential, hands-on healing:"],
+    body: ["DBT & CBT", "Interpersonal therapy", "Mindfulness", "Expressive therapies — art, music, yoga", "Family involvement (teen & tween tracks)"],
+  },
+  {
+    headline: "Why families choose our IOP",
+    copy: ["There are real choices for outpatient care in Connecticut. Here’s what sets ours apart:"],
+    body: [
+      "Joint Commission accredited — a quality standard most outpatient programs never meet.",
+      "A multidisciplinary team with 10–30 years of experience — specialists you’ll actually meet.",
+      "Inclusive and affirming — all genders, identities, backgrounds, and diagnoses are welcome.",
+      "GeneSight® genetic testing and expert medication management, plus experiential therapies beyond talk.",
+    ],
+  },
+  {
+    headline: "What clients gain",
+    copy: ["By the time clients finish, most leave with more than symptom relief — they leave with skills:"],
+    body: ["Emotional regulation", "Healthier coping skills", "Self-awareness and empowerment", "Social and relational growth", "Reduced symptoms"],
+    copyAfter: ["From there, most step down to a lower level of care or back into daily life — with confidence."],
+  },
+  {
+    headline: "Where our IOPs run",
+    copy: ["Our programs run at our Glastonbury locations: Adult and Women’s Wellness IOP at 300 Hebron Ave, and Teen and Tween IOP at 1420 Main St."],
+  },
+  {
+    headline: "Hear from our IOP families",
+    copy: ["Families tell the story better than we can:"],
+    body: ["“This program was a game changer.”", "“The best IOP in the area.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Comprehensive coverage options",
+    copy: ["We’re in-network with Aetna, Anthem, BCBS, Cigna, UnitedHealthcare, Optum, and more — and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "IOP — common questions",
+    copy: ["A few of the questions we hear most:"],
+    faq: [
+      { q: "What is an IOP, and what does it include?", a: "An intensive outpatient program combines group counseling, individual therapy, skills work, medication management, and experiential therapies — about three hours a day, four days a week." },
+      { q: "Who benefits from an IOP?", a: "People who need more support than weekly therapy but don’t require an overnight stay — including teens, adults, and women navigating anxiety, depression, trauma, or co-occurring substance use." },
+      { q: "What makes Hopewell’s IOP unique?", a: "Joint Commission accreditation, a multidisciplinary team with 10–30 years of experience, dedicated tracks by population, and experiential care that goes beyond talk therapy." },
+      { q: "What should I expect on day one?", a: "A warm welcome, a clinical check-in, and an introduction to your group and schedule — nothing you need to prepare for." },
+      { q: "Is IOP covered by insurance?", a: "Most major PPO plans cover IOP. We’ll verify your specific benefits for free before you start." },
+      { q: "Do you offer a virtual / online IOP?", a: "Yes — programs are available in person in Glastonbury and virtually." },
+    ],
+  },
+  {
+    headline: "Ready to learn more?",
+    copy: ["Whether it’s for you, your child, or someone you love, we’ll help you find the right program — confidentially, with no pressure."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+const iopMeta = {
+  title: "Adult Intensive Outpatient Program (IOP) in CT | Hopewell",
+  desc: "Adult IOP in Glastonbury, CT — DBT-based care for anxiety, depression, trauma & co-occurring substance use. Day & evening tracks. Most insurance accepted.",
+  h1: "Adult Intensive Outpatient Program (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/adult-mental-health-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions & schedule items",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, IOP image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd · substance-use-disorder", "/treatment-methods/ dbt · cbt · emdr · mat", "/programs/ php · medication-management · outpatient-therapy", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const iopSections = [
+  {
+    eyebrow: "Adult Co-Occurring IOP · Glastonbury, CT · In person & virtual",
+    headline: "Adult Intensive Outpatient Program (IOP) in Connecticut",
+    copy: [
+      "Healing from anxiety, depression, trauma, and unhealthy coping — including substance use — takes more than just talk therapy. Our adult IOP gives you real structure and a DBT-based curriculum while you keep living your life.",
+      "You don’t have to put everything on hold to get better. Day and evening tracks make it possible to keep working and caring for your family while you do the work.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Day & evening tracks", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback; keep the IOP screening as a secondary CTM form. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is an Intensive Outpatient Program?",
+    copy: [
+      "An Intensive Outpatient Program (IOP) is structured mental-health treatment — group, individual, and experiential therapy several days a week — that gives you more support than weekly therapy while you continue to live at home, work, and care for your family.",
+      "At Hopewell, our adult IOP runs on a DBT-based curriculum, blending clinical therapy with creative, somatic, and relational approaches.",
+    ],
+  },
+  {
+    headline: "Is this program right for you?",
+    copy: [
+      "This program is for adults 18 and over experiencing moderate-to-severe anxiety, depression, trauma or PTSD, emotional dysregulation, mood instability, or co-occurring substance use.",
+      "If daily life has become hard to manage and weekly therapy isn’t enough, IOP may be the right next step. Caring for your mental health is an act of strength, not weakness.",
+    ],
+  },
+  {
+    headline: "More than just talk therapy",
+    copy: [
+      "Life doesn’t pause for treatment, so we built the schedule around it. Sessions run three hours a day, four days a week (Monday–Thursday), and most participants stay 8 to 12 weeks.",
+      "Choose mornings (9 am–12 pm) or evenings (5 pm–8 pm) so you can keep your job and your routine. Each week blends evidence-based group therapy, experiential therapies, individual sessions, and optional medication management and family work.",
+    ],
+  },
+  {
+    headline: "What makes our IOP different",
+    copy: ["Plenty of programs offer group therapy. Here’s what makes ours different:"],
+    body: [
+      "A true co-occurring program — mental health and substance use treated together, not referred out.",
+      "GeneSight® genetic testing and expert medication management, to get prescribing right faster.",
+      "Experiential healing beyond talk — art, movement, mindfulness, and animal-assisted work.",
+      "A deeply credentialed team you’ll actually meet, including Katherine Salvador, APRN (addiction medicine, trauma-informed).",
+    ],
+  },
+  {
+    headline: "Evidence-based, multimodal care",
+    copy: ["Our care draws on proven clinical methods and experiential therapies — each linked to its own page so you can learn more:"],
+    body: ["DBT · CBT · EMDR", "Art Therapy · Yoga Therapy", "Mindfulness · Somatic Therapy", "Trauma-Informed Care"],
+  },
+  {
+    headline: "What this program helps with",
+    copy: ["The adult IOP helps with the conditions that most often bring people to this level of care:"],
+    body: ["Anxiety", "Depression", "Trauma & PTSD", "Emotional dysregulation & mood instability", "Co-occurring substance use"],
+  },
+  {
+    headline: "By the end of the program, most clients experience…",
+    copy: ["The goal isn’t just to feel better for a few weeks — it’s to leave with real, lasting change:"],
+    body: [
+      "Reduced anxiety, depression, and emotional overwhelm",
+      "Stronger coping and resilience",
+      "Healthier communication and boundaries",
+      "Greater self-awareness and confidence",
+      "Decreased reliance on substances or harmful behaviors",
+    ],
+  },
+  {
+    headline: "Supporting both mental health and substance-use recovery",
+    copy: ["For dual diagnosis, we integrate Medication-Assisted Treatment (MAT) — FDA-approved medications plus counseling and behavioral therapy that reduce cravings and withdrawal and help stabilize recovery — alongside relapse prevention. It’s led by clinicians like Katherine Salvador, APRN, who brings deep expertise in addiction medicine and a trauma-informed, judgment-free approach."],
+  },
+  {
+    headline: "Part of a full continuum of care",
+    copy: ["IOP doesn’t stand alone. Stepping down from PHP, or up from weekly therapy? IOP bridges the two. Afterward, most clients continue with outpatient therapy and medication management to maintain their progress."],
+  },
+  {
+    headline: "Where it runs",
+    copy: ["Our adult IOP runs at 300 Hebron Ave in Glastonbury, with day and evening tracks and a virtual option."],
+  },
+  {
+    headline: "Hear from people in our IOP",
+    copy: ["The people in our program say it best:"],
+    body: ["“This program was a game changer.”", "“The best IOP in the area.”", "“They truly listened — I finally felt heard and valued.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Comprehensive coverage options",
+    copy: ["We’re in-network with Aetna, Anthem, BCBS, Cigna, UnitedHealthcare, Optum, and more. We’ll verify your benefits free, in minutes, and walk you through getting started."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Adult IOP — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "How long is IOP?", a: "Typically 8–12 weeks — four days a week, three hours a day." },
+      { q: "What’s the difference between IOP and PHP?", a: "PHP involves more hours per day; IOP is part-time, so you can keep working or going to school." },
+      { q: "Can I work or go to school during IOP?", a: "Yes — that’s exactly why we offer evening tracks." },
+      { q: "Will my insurance cover it?", a: "Most major PPO plans do. We’ll verify your benefits for free." },
+      { q: "What is MAT?", a: "Medication-Assisted Treatment combines FDA-approved medication with therapy to support substance-use recovery." },
+    ],
+  },
+  {
+    headline: "Start your healing journey today",
+    copy: ["You’ve carried a lot. You don’t have to carry it alone. Reach out — confidentially, with no pressure — and we’ll help you take the next step toward healing."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- WOMEN'S WELLNESS IOP DOCUMENT ----------
+const womensMeta = {
+  title: "Women's Intensive Outpatient Program (IOP) in CT | Hopewell",
+  desc: "Women's Wellness IOP in Glastonbury, CT — a trauma-informed, women-only program for anxiety, depression, burnout & trauma. DBT-based, day & evening, virtual options.",
+  h1: "Women's Wellness Intensive Outpatient Program (IOP)",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/womens-wellness-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions & schedule items",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, women's program image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd", "/treatment-methods/ dbt · emdr · tf-cbt · somatic", "/programs/ intensive-outpatient-program · medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const womensSeo =
+  "A top performer — already #1 for “female iop” (390/mo, KD 2), “womens iop,” and “women's iop,” plus #2/#5 for more (10 keywords). Preserve at all costs: 301 /womens-wellness-iop → /programs/womens-wellness-iop/ and keep targeting the women-specific terms. CONSOLIDATES the separate /womens-trauma (+ /content/womens-trauma-intensive-outpatient-program) page in as a trauma-focus section. Cannibalization note: let the IOP overview own generic “iop programs in ct” (#5); this page stays women-focused. Slug resolved = /programs/womens-wellness-iop/.";
+
+const womensKeywords = [
+  ["female iop", 1, "390"],
+  ["iop female", 5, "390"],
+  ["women's iop", 1, "170"],
+  ["womens iop", 1, "140"],
+  ["women intensive outpatient program", 18, "140"],
+  ["women's outpatient program", 22, "110"],
+  ["virtual iop programs near me", 65, "720"],
+  ["iop programs in ct", 17, "170"],
+  ["women outpatient wellness", 2, "40"],
+  ["women's wellness & mental health program", 13, "40"],
+];
+
+const womensDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "✓ <strong>Consolidates /womens-wellness-iop + /womens-trauma</strong> (+ /content/womens-trauma-intensive-outpatient-program) → one page; trauma folds in as a focus section.",
+  "✓ <strong>Slug resolved:</strong> /programs/womens-wellness-iop/ (it ranks #1 for the women’s terms).",
+  "🛡️ Ranks <strong>#1 for “female iop” (KD 2), “womens iop,” “women's iop”</strong> — protect with 301 + same-term targeting.",
+  "🔀 “iop programs in ct” → let the IOP overview own it; this page stays women-focused.",
+  "✓ CTM forms + call tracking only; no online booking. Inclusive wording: “individuals who identify as women.”",
+  "ℹ️ Live women’s-trauma page excludes Husky (Medicaid) — consistent with no-Medicaid; keep insurance copy generic.",
+];
+
+// Rich content: copy[] = prose paragraphs · body[] = bullet list · copyAfter[] = paragraphs after list · faq[] = {q,a}
+const womensSections = [
+  {
+    name: "1 · Hero",
+    tags: ["Emotion", "CRO", "Lead capture"],
+    kept: true,
+    eyebrow: "Women's Wellness IOP · Glastonbury, CT · In person & virtual",
+    headline: "Women's Wellness Intensive Outpatient Program (IOP)",
+    copy: [
+      "A program for women, designed by women. Between work, parenting, caregiving, and the weight of everyone else’s needs, it’s easy to put yourself last — until the stress, anxiety, or exhaustion becomes too much to carry alone.",
+      "The Women’s Wellness IOP is a structured, compassionate space where you can finally pause, process, and begin to heal — without stepping away from the life you’ve built.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Day & evening tracks", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (First name · Phone · Email · Insurance · TCPA consent) → “Request a Confidential Callback.” No online booking — CTM forms + call tracking only.",
+    note: "Keeps the standout live tagline “A program for women, designed by women.” Targets women’s-IOP intent in the H1.",
+  },
+  {
+    name: "2 · What is the Women's Wellness IOP?",
+    tags: ["SEO", "AEO"],
+    kept: true,
+    headline: "What is the Women's Wellness IOP?",
+    copy: [
+      "The Women’s Wellness IOP is a women-only intensive outpatient program — a step up from weekly therapy for women who need more consistent, structured support without an overnight stay.",
+      "Over 8 to 12 weeks, you’ll take part in a DBT-based curriculum that blends evidence-based clinical therapy with experiential healing — art, movement, mindfulness, and animal-assisted work — with optional medication management and on-call support along the way.",
+      "It’s offered in person at our Glastonbury location and virtually, and it’s open to anyone who identifies as a woman, from every background and stage of life.",
+    ],
+    note: "Direct-answer paragraphs for AI Overviews — targets our #1 terms “women's iop / female iop / women intensive outpatient program.”",
+  },
+  {
+    name: "3 · Who it's for",
+    tags: ["CRO", "Emotion"],
+    kept: true,
+    headline: "Is this program right for me?",
+    copy: [
+      "This program is for women navigating emotional burnout, anxiety, chronic stress, major life transitions, relationship strain, low self-esteem — or the lingering effects of trauma. You don’t need to be in crisis to belong here.",
+      "If you’ve been quietly telling yourself you’ll deal with it “later,” consider this your sign that later is now. Caring for your mental health is an act of strength, not weakness.",
+    ],
+    note: "Self-identification + the live emotional refrain — reduces stigma and helps women see themselves in the program.",
+  },
+  {
+    name: "4 · Why women's mental health matters",
+    tags: ["Emotion", "AEO"],
+    kept: true,
+    headline: "Why women's mental health matters",
+    copy: [
+      "For so many women, struggling silently has been normalized — but the data tells a different story, one that says you deserve support, not shame. Nearly 1 in 5 women in the U.S. experiences a mental health condition each year. Women are twice as likely as men to be diagnosed with anxiety or depression. And around 1 in 3 women experiences some form of trauma in her lifetime.",
+      "You are not alone — and you don’t have to navigate it alone.",
+    ],
+    note: "Preserves the live statistics — emotional resonance + citable facts for AI Overviews.",
+  },
+  {
+    name: "5 · A trauma-informed program",
+    tags: ["SEO", "Emotion"],
+    kept: true,
+    headline: "Healing from trauma, at your pace",
+    copy: [
+      "Many of the women who come to us are carrying trauma — sometimes from years ago, sometimes still unfolding. Our trauma-informed track meets you there. It’s a proactive approach designed to help you heal before things escalate to the point of hospitalization or a higher level of care.",
+      "We treat the whole picture: the fatigue and broken sleep, the anxiety and emotional numbness, the urge to avoid and withdraw, and the quiet strain trauma puts on your closest relationships. Using trauma-focused CBT (TF-CBT), EMDR, somatic therapy, and expressive arts, we help you process what happened at a pace that feels safe. Choosing to do this work is, in itself, a profound act of self-care.",
+    ],
+    note: "ABSORBS the consolidated /womens-trauma page — keeps its trauma framing, symptom clusters, and “profound act of self-care” line in one place.",
+  },
+  {
+    name: "6 · A schedule built around real life",
+    tags: ["CRO", "SEO"],
+    kept: true,
+    headline: "Flexible day & evening tracks",
+    copy: [
+      "Life doesn’t pause for treatment, so we built the schedule around it. Sessions run Monday through Thursday, and you can choose mornings (9 am–12 pm) or evenings (5 pm–8 pm). Most women stay in the program for 8 to 12 weeks.",
+      "The program is held at 300 Hebron Ave, Suite 212 in Glastonbury, with virtual options for the days getting here in person isn’t possible.",
+    ],
+    note: "Preserves the real schedule + Suite 212 location. Flexibility is a key CRO point for working mothers and caregivers.",
+  },
+  {
+    name: "7 · Therapies & modalities",
+    tags: ["SEO", "Interlinking"],
+    kept: true,
+    headline: "Evidence-based, and deeply human",
+    copy: ["Every woman’s path is different, so our care is multimodal — combining proven clinical methods with experiential, body-based healing:"],
+    body: [
+      "DBT, CBT, EMDR & TF-CBT — evidence-based talk and skills work",
+      "Somatic therapy & mindfulness — calming an overstretched nervous system",
+      "Art and yoga-inspired movement — expression beyond words",
+      "Guided journaling, time in nature & animal-assisted support — gentle, grounding practices",
+    ],
+    note: "Preserves the live modality list; each links to its /treatment-methods/ page (varied anchor text).",
+  },
+  {
+    name: "8 · You deserve help",
+    tags: ["Emotion", "CRO"],
+    kept: true,
+    headline: "You deserve help — even if you're telling yourself it's not that bad",
+    copy: ["So many women wait far too long to reach out, usually because of the stories we tell ourselves. If any of these sound familiar, you’re exactly who this program is for:"],
+    body: ["“Others have it worse than me.”", "“I should be able to handle this on my own.”", "“I don’t have the time.”"],
+    copyAfter: ["You don’t have to wait until things get worse. Here, you’re never just a number — you’re a person, and your healing matters."],
+    note: "Keeps the live barriers-to-care section — powerful objection handling specific to women.",
+  },
+  {
+    name: "9 · Why women choose Hopewell",
+    tags: ["USP", "Differentiation"],
+    headline: "Why women choose Hopewell",
+    copy: ["Women have real choices for care in Connecticut. Here’s what sets our program apart:"],
+    body: [
+      "A dedicated women-only space — designed by women, led by trauma specialists.",
+      "Joint Commission accredited, with a credentialed team you’ll actually meet.",
+      "GeneSight® genetic testing and expert medication management, when it’s helpful.",
+      "Experiential healing that goes beyond talk — art, movement, somatic, and animal-assisted therapies.",
+    ],
+    note: "Threads the hero USPs into a women-specific frame.",
+  },
+  {
+    name: "10 · What this program helps with",
+    tags: ["SEO", "Interlinking"],
+    kept: true,
+    headline: "Conditions we treat",
+    copy: ["The Women’s Wellness IOP helps with the challenges women most often carry into our doors:"],
+    body: ["Anxiety", "Depression", "Trauma & PTSD", "Burnout & chronic stress", "Low self-esteem & life transitions"],
+    note: "Interlinks the conditions cluster — each to its /what-we-treat/ page.",
+  },
+  {
+    name: "11 · Reviews",
+    tags: ["CRO", "Trust"],
+    kept: true,
+    headline: "Hear from women in our program",
+    copy: ["You don’t have to take our word for it:"],
+    body: [
+      "“The best IOP in the area.”",
+      "“The team is incredibly supportive and compassionate.”",
+      "“Even after moving away, I’m grateful to still have access to their support.”",
+    ],
+    copyAfter: ["4.8 stars across 368 Google reviews."],
+    note: "Program-specific testimonials from the live page.",
+  },
+  {
+    name: "12 · Location & insurance",
+    tags: ["Local SEO", "CRO", "Lead capture"],
+    kept: true,
+    headline: "Where it runs, and what's covered",
+    copy: [
+      "The Women’s Wellness IOP is held at our flagship Glastonbury location — 300 Hebron Ave, Suite 212. We’re in-network with most major PPO plans, and if you’re not sure what yours covers, we’ll check it for you — free, in just a few minutes.",
+    ],
+    ctas: ["Verify my benefits →"],
+    note: "Location + insurance/admissions → links to the Glastonbury location page + /admissions/.",
+  },
+  {
+    name: "13 · FAQ",
+    tags: ["AEO", "SEO"],
+    headline: "Women's IOP — common questions",
+    copy: ["A few of the questions women ask us most:"],
+    faq: [
+      { q: "Who can join the Women's Wellness IOP?", a: "Adults who identify as women, from all backgrounds, who need more support than weekly therapy provides." },
+      { q: "Is it trauma-focused?", a: "Yes — the program is trauma-informed, with a dedicated track using TF-CBT, EMDR, and somatic therapy." },
+      { q: "How long is it, and what's the schedule?", a: "Most women attend for 8–12 weeks, Monday–Thursday, choosing morning (9 am–12 pm) or evening (5 pm–8 pm) sessions." },
+      { q: "Do you offer a virtual option?", a: "Yes — you can attend in person in Glastonbury or virtually." },
+      { q: "Will my insurance cover it?", a: "Most major PPO plans are accepted. We’ll verify your benefits for free before you start." },
+    ],
+    note: "FAQPage schema — targets “virtual iop,” “women's iop,” and AI Overviews.",
+  },
+  {
+    name: "14 · Final CTA",
+    tags: ["Emotion", "Lead capture"],
+    kept: true,
+    headline: "Ready to take the first step?",
+    copy: [
+      "You’ve carried a lot. You don’t have to carry it alone. Choosing to prioritize your mental health is one of the most powerful, loving things you can do — for yourself, and for everyone who depends on you. Reach out today, confidentially and with no pressure.",
+    ],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+    note: "Keeps the live “Ready to take the first step?” + “you don’t have to carry it alone” close.",
+  },
+];
+
+// ---------- MEN'S IOP DOCUMENT (net-new) ----------
+const mensMeta = {
+  title: "Men's Intensive Outpatient Program (IOP) in CT | Hopewell",
+  desc: "Men's IOP in Glastonbury, CT — a men-only program for anxiety, depression, trauma, anger & co-occurring substance use. DBT-based, day & evening, virtual options.",
+  h1: "Men's Intensive Outpatient Program (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/mens-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, men's program image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd · substance-use-disorder", "/treatment-methods/ dbt · cbt · emdr · mat", "/programs/ intensive-outpatient-program · medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const mensSeo =
+  "Net-new page — no existing URL, nothing to 301. Targets men-specific intent: “men's intensive outpatient program,” “men's mental health treatment CT,” “men's IOP near me” — terms the IOP overview only brushes against. Owns the men's audience, links up to the IOP overview hub, and across to conditions/therapies. Build it strong from day one.";
+
+const mensDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "ℹ️ <strong>Net-new page</strong> — no live content or rankings to preserve; built from the IOP template + a men’s-specific angle.",
+  "✓ Same proven structure as our other IOP tracks (DBT-based · day & evening · 8–12 weeks · 300 Hebron) · CTM forms + call tracking, no online booking.",
+  "⚠️ Confirm the men’s-specific schedule and group days if they differ from the shared adult schedule.",
+];
+
+const mensSections = [
+  {
+    eyebrow: "Men's IOP · Glastonbury, CT · In person & virtual",
+    headline: "Men's Intensive Outpatient Program (IOP)",
+    copy: [
+      "Strength isn’t pretending you’re fine. Our Men’s IOP is a men-only space to deal with the anxiety, depression, anger, stress, trauma, or substance use you’ve been carrying — with structure and support that fit around work and family.",
+      "You don’t have to white-knuckle it alone. This is a place to do the real work, with men who get it and clinicians who won’t judge.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Day & evening tracks", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is the Men's IOP?",
+    copy: [
+      "A Men’s Intensive Outpatient Program is structured mental-health treatment — group, individual, and experiential therapy several days a week — that gives you more support than weekly therapy while you keep living your life. It runs on a DBT-based curriculum in a men-only group, so the conversation goes where it actually needs to.",
+      "Most men attend for 8 to 12 weeks, in person in Glastonbury or virtually.",
+    ],
+  },
+  {
+    headline: "Is this program right for you?",
+    copy: [
+      "This program is for men 18 and older dealing with moderate-to-severe anxiety, depression, trauma or PTSD, anger and irritability, burnout, or co-occurring substance use.",
+      "If you’ve been telling yourself to just push through — and it isn’t working — that’s exactly why this exists.",
+    ],
+  },
+  {
+    headline: "Why men wait too long to get help",
+    copy: [
+      "Men are far less likely to ask for help, and far more likely to mask what they’re feeling as anger, overwork, or a few too many drinks. The cost is real: men account for the majority of deaths by suicide, often without ever telling anyone they were struggling.",
+      "Reaching out isn’t weakness — it’s the strongest, smartest move you can make. Here, you won’t be judged for it.",
+    ],
+  },
+  {
+    headline: "A schedule that fits a working life",
+    copy: [
+      "Sessions run three hours a day, four days a week (Monday–Thursday), for most men 8 to 12 weeks, with morning (9 am–12 pm) and evening (5–8 pm) options.",
+      "The program runs at 300 Hebron Ave in Glastonbury, with a virtual option for the days getting there isn’t possible.",
+    ],
+  },
+  {
+    headline: "Practical, evidence-based care",
+    copy: ["Treatment is built for results, not just talk:"],
+    body: ["DBT & CBT — skills for managing anxiety, anger, and stress", "EMDR & trauma-informed care", "Mindfulness & somatic work", "Group therapy with other men", "Optional medication management"],
+  },
+  {
+    headline: "Why men choose Hopewell",
+    copy: ["There are real choices for care in Connecticut. Here’s what sets ours apart:"],
+    body: [
+      "A dedicated men-only group — real talk, no posturing.",
+      "Joint Commission accredited, with a credentialed team you’ll actually meet.",
+      "GeneSight® genetic testing and expert medication management, when it helps.",
+      "A true co-occurring program — mental health and substance use handled together.",
+    ],
+  },
+  {
+    headline: "Mental health and substance use, together",
+    copy: ["For many men, anxiety or depression shows up alongside drinking or substance use. We treat both at once — integrating Medication-Assisted Treatment (MAT) and relapse prevention with the rest of your care, so nothing gets handed off or missed."],
+  },
+  {
+    headline: "What this program helps with",
+    copy: ["The Men’s IOP helps with the challenges men most often carry in:"],
+    body: ["Anxiety", "Depression", "Trauma & PTSD", "Anger & irritability", "Co-occurring substance use"],
+  },
+  {
+    headline: "Hear from the people we’ve helped",
+    copy: ["The work speaks for itself:"],
+    body: ["“This program was a game changer.”", "“The best IOP in the area.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Held at 300 Hebron Ave, Glastonbury. We’re in-network with most major PPO plans — we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Men's IOP — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "Is it really men-only?", a: "Yes — the group is all men, which makes it easier to talk openly about what’s really going on." },
+      { q: "How long is it, and what’s the schedule?", a: "Most men attend 8–12 weeks, Monday–Thursday, choosing morning or evening sessions." },
+      { q: "Can I keep working?", a: "Yes — the evening track is built for exactly that." },
+      { q: "Do you treat substance use too?", a: "Yes — it’s a co-occurring program, so mental health and substance use are treated together." },
+      { q: "Will insurance cover it?", a: "Most major PPO plans do. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "Take the first step",
+    copy: ["You’ve handled a lot on your own. This is the one you don’t have to. Reach out today — confidentially, with no pressure — and take the first step."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- TEEN IOP DOCUMENT ----------
+const teenMeta = {
+  title: "Teen Intensive Outpatient Program (IOP) in CT | Hopewell",
+  desc: "Teen IOP (ages 13–18) in Glastonbury, CT for anxiety, depression, self-harm & school refusal. DBT-based, evenings, with parent involvement. Most insurance accepted.",
+  h1: "Teen Intensive Outpatient Program (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/teen-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, teen program image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd", "/treatment-methods/ dbt · cbt", "/programs/ intensive-outpatient-program · tween-iop", "/locations/south-glastonbury-ct/", "/admissions/for-families"],
+};
+
+const teenSeo =
+  "Inherits the /tweenteen-iop rankings via 301 → /programs/teen-iop/. The old combined page is split: Teen (13–18) owns “adolescent / teen / youth IOP,” Tween (8–12) owns “iop for kids / children / tween.” Preserve “adolescent iop programs near me” (320/mo) at all costs, and cross-link the two pages. Out-of-area rankings (Westchester NY, San Angelo TX) are incidental — don’t target them.";
+
+const teenKeywords = [
+  ["adolescent iop programs near me", 32, "320"],
+  ["intensive outpatient therapy for adolescent near me", 28, "70"],
+  ["youth iop programs near me", 67, "70"],
+  ["iop for kids near me", 89, "40"],
+];
+
+const teenDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "✓ <strong>Split from /tweenteen-iop:</strong> this is Teen (13–18); Tween (8–12) is its own page. /tweenteen-iop 301s here; the two cross-link.",
+  "✓ Schedule preserved: Teens Mon–Thu 5–8 PM at 1420 Main St, Suite 124 (South Glastonbury). CTM forms + call tracking, no online booking.",
+  "ℹ️ Strong parent-facing features kept: parents attend 1–2×/week, Parent Support Group (Tues), Parent Night (Thurs), FMLA / CT Paid Leave help, weekly clinician emails, on-call.",
+];
+
+const teenSections = [
+  {
+    eyebrow: "Teen IOP (ages 13–18) · South Glastonbury, CT · In person & virtual",
+    headline: "Teen Intensive Outpatient Program (IOP)",
+    copy: [
+      "When your teenager is struggling — anxiety, depression, self-harm, or pulling away from school and friends — it can feel like you’re watching from the outside, unsure how to help. Our Teen IOP gives them real, structured support, and gives you a way back in.",
+      "Built for adolescents 13–18, it’s evidence-based treatment for lifelong mental health, delivered after school so it fits family life. All are welcome here.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Evenings, after school", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (parent/teen name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is a Teen IOP?",
+    copy: [
+      "A Teen Intensive Outpatient Program is structured mental-health treatment — group, individual, and experiential therapy several afternoons a week — that gives your teen far more support than weekly therapy, without an overnight stay. Ours runs on a DBT-based curriculum and meets in the evenings, so school and routine stay intact.",
+      "Most teens attend for 8 to 12 weeks, in person in Glastonbury or virtually.",
+    ],
+  },
+  {
+    headline: "Is this program right for your teen?",
+    copy: [
+      "This program is for teens 13–18 facing anxiety, depression, self-harm, suicidal thoughts, school refusal, social withdrawal, or mood and anxiety disorders. It’s fully inclusive of all genders and the LGBTQ+ community.",
+      "If your teen has been slipping — grades, friendships, sleep, mood — and weekly therapy isn’t moving the needle, IOP may be the right next step.",
+    ],
+  },
+  {
+    headline: "Why teens need more support right now",
+    copy: ["Adolescent mental health has been in crisis since the pandemic, and the old playbook — a weekly session and hope — often isn’t enough. Teens need consistency, real skills, and a peer group that gets it. That’s exactly what an IOP provides: structure several days a week, in a community of other teens working on the same things."],
+  },
+  {
+    headline: "A schedule that works around school",
+    copy: [
+      "Sessions run Monday–Thursday, 5:00–8:00 PM, for most teens 8 to 12 weeks — timed after school so they don’t fall behind. The program is held at 1420 Main St, Suite 124 in South Glastonbury, with a virtual option.",
+      "Younger children, ages 8–12, attend our Tween IOP instead.",
+    ],
+  },
+  {
+    headline: "Family support is built in",
+    copy: [
+      "Teens don’t heal in a vacuum — families do the work together. Parents attend once or twice a week to learn the same DBT skills their teen is learning, so the progress carries home.",
+      "You’re supported, too: a weekly Parent Support Group (Tuesdays), Parent Night (Thursdays), weekly clinician check-in emails, on-call support, and help navigating FMLA and Connecticut Paid Leave.",
+    ],
+  },
+  {
+    headline: "Engaging, evidence-based care",
+    copy: ["Care is built to actually hold a teenager’s attention:"],
+    body: ["DBT & CBT — core skills for managing big emotions", "Art, music & yoga therapy", "EMDR, somatic & trauma-informed care", "Mindfulness & interpersonal therapy", "Hands-on, experiential activities"],
+  },
+  {
+    headline: "Why families trust us with their teens",
+    copy: ["What sets our Teen IOP apart:"],
+    body: [
+      "A multidisciplinary team with 10–30 years of experience — psychologists, psychiatrists, and licensed therapists.",
+      "Joint Commission accredited and Connecticut state-licensed.",
+      "Real family integration — not a drop-off program.",
+      "Inclusive and affirming: all genders and the LGBTQ+ community are welcome.",
+    ],
+  },
+  {
+    headline: "What this program helps with",
+    copy: ["The Teen IOP helps with the challenges we see most in adolescents:"],
+    body: ["Anxiety & panic", "Depression & mood disorders", "Self-harm & suicidal thoughts", "School refusal & social withdrawal", "Trauma & PTSD"],
+  },
+  {
+    headline: "Hear from parents and teens",
+    copy: ["The change shows up at home and at school:"],
+    body: ["“Her light is starting to shine brightly again.” — Parent", "“Amazing improvements at home and in school.” — Parent", "“IOP has helped me learn how to deal with my anxiety.” — Teen"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Held at 1420 Main St, Suite 124, South Glastonbury. We accept most major insurance — Blue Cross Blue Shield, Cigna, Aetna, UnitedHealthcare, and more — and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Teen IOP — questions parents ask most",
+    copy: ["The questions we hear most from families:"],
+    faq: [
+      { q: "What ages is the Teen IOP for?", a: "Teens ages 13–18. Younger children (8–12) attend our Tween IOP." },
+      { q: "When does it meet — will my teen miss school?", a: "Sessions run Monday–Thursday, 5–8 PM, after school, for 8–12 weeks." },
+      { q: "Do parents have to participate?", a: "Yes — parents attend once or twice a week to learn the DBT skills, plus an optional Parent Support Group and Parent Night." },
+      { q: "Can my teen attend virtually?", a: "Yes — in person in South Glastonbury or virtually." },
+      { q: "Does insurance cover it, and can we use FMLA / CT Paid Leave?", a: "Most major plans are accepted, and we help families navigate FMLA and Connecticut Paid Leave." },
+    ],
+  },
+  {
+    headline: "Help your teen take the first step",
+    copy: ["You don’t have to watch from the sidelines any longer. Reach out today — confidentially, with no pressure — and we’ll help your teen take the first step."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- TWEEN IOP DOCUMENT ----------
+const tweenMeta = {
+  title: "Tween IOP for Kids (Ages 8–12) in CT | Hopewell",
+  desc: "Tween IOP (ages 8–12) in Glastonbury, CT — age-appropriate, DBT-based help for anxiety, depression & big emotions, with deep parent involvement. Most insurance accepted.",
+  h1: "Tween IOP (Ages 8–12) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/tween-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, tween program image",
+  interlinks: ["/what-we-treat/ anxiety · depression", "/treatment-methods/ dbt · cbt", "/programs/ intensive-outpatient-program · teen-iop", "/locations/south-glastonbury-ct/", "/admissions/for-families"],
+};
+
+const tweenSeo =
+  "Net-new page (sibling to Teen IOP). The /tweenteen-iop 301 goes to the Teen page; this Tween page targets the younger-kid intent the old combined page also ranked for — “iop for children” (170/mo), “iop for kids near me,” “tween iop.” Cross-links with Teen IOP so Google understands the age split.";
+
+const tweenKeywords = [
+  ["iop for children", 29, "170"],
+  ["iop for kids near me", 89, "40"],
+];
+
+const tweenDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "ℹ️ <strong>Net-new</strong> (8–12 split from the combined page). Teen IOP holds the /tweenteen-iop 301; Tween targets the kids / children / tween terms. The two cross-link.",
+  "✓ Schedule preserved: Tweens Mon–Thu 4:30–7:30 PM at 1420 Main St, Suite 124. CTM forms + call tracking, no online booking.",
+  "ℹ️ Heavy parent involvement kept (parents attend, Parent Support Group, Parent Night, FMLA / CT Paid Leave help).",
+];
+
+const tweenSections = [
+  {
+    eyebrow: "Tween IOP (ages 8–12) · South Glastonbury, CT · In person & virtual",
+    headline: "Tween Intensive Outpatient Program (IOP)",
+    copy: [
+      "When your child is anxious, withdrawn, melting down, or refusing to go to school, it’s frightening — and a weekly therapy hour can feel like too little, too slow. Our Tween IOP wraps your 8-to-12-year-old in structured, age-appropriate support several afternoons a week, with you involved every step of the way.",
+      "It’s evidence-based care designed for younger kids and the families who love them. All are welcome here.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Evenings, after school", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (parent name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is a Tween IOP?",
+    copy: [
+      "A Tween Intensive Outpatient Program is structured mental-health treatment built specifically for children ages 8–12 — group, individual, and experiential therapy several afternoons a week, without an overnight stay. It gives your child far more support than weekly therapy, using a DBT-based, age-appropriate approach that meets kids where they are.",
+      "Most tweens attend for 8 to 12 weeks, in person in Glastonbury or virtually.",
+    ],
+  },
+  {
+    headline: "Is this program right for your child?",
+    copy: [
+      "This program is for children 8–12 facing anxiety, depression, big emotions they can’t yet manage, self-harm, school refusal, or social withdrawal. It’s fully inclusive of all kids and families.",
+      "If your child is struggling at home or at school and weekly sessions aren’t enough, a tween IOP can give them the consistency and skills to turn things around.",
+    ],
+  },
+  {
+    headline: "Why younger kids need this kind of help",
+    copy: ["Mental-health struggles are showing up earlier than ever, and young children don’t yet have the words — or the tools — to handle them alone. The sooner they learn real coping skills, the better their odds long-term. A tween IOP delivers that intensively, in a warm setting alongside other kids their age, before challenges harden into something bigger."],
+  },
+  {
+    headline: "A schedule that works around school",
+    copy: [
+      "Sessions run Monday–Thursday, 4:30–7:30 PM, for most tweens 8 to 12 weeks — after school, so learning and routine stay intact. The program is held at 1420 Main St, Suite 124 in South Glastonbury, with a virtual option.",
+      "Teens ages 13–18 attend our Teen IOP instead.",
+    ],
+  },
+  {
+    headline: "Family at the center",
+    copy: [
+      "With younger kids, parents aren’t on the sidelines — you’re part of the treatment. You’ll attend once or twice a week to learn the same DBT skills your child is learning, so the progress sticks at home.",
+      "And you’re supported throughout: a weekly Parent Support Group (Tuesdays), Parent Night (Thursdays), weekly clinician emails, on-call help, and guidance navigating FMLA and Connecticut Paid Leave.",
+    ],
+  },
+  {
+    headline: "Gentle, engaging, right-sized care",
+    copy: ["Treatment is warm and age-appropriate:"],
+    body: ["DBT & CBT — skills taught in kid-friendly ways", "Art, music & yoga therapy", "Play-based and experiential activities", "EMDR, somatic & trauma-informed care", "Mindfulness & social-skills work"],
+  },
+  {
+    headline: "Why families trust us with their kids",
+    copy: ["What sets our Tween IOP apart:"],
+    body: [
+      "A multidisciplinary team with 10–30 years of experience.",
+      "Joint Commission accredited and Connecticut state-licensed.",
+      "Deep family integration — built around parents, not around drop-off.",
+      "A warm, inclusive space where every child belongs.",
+    ],
+  },
+  {
+    headline: "What this program helps with",
+    copy: ["The Tween IOP helps with the challenges we see most in younger kids:"],
+    body: ["Anxiety & panic", "Depression & mood changes", "Big emotions & emotional dysregulation", "School refusal & social withdrawal", "Self-harm or safety concerns"],
+  },
+  {
+    headline: "Hear from parents",
+    copy: ["The difference shows up at home and at school:"],
+    body: ["“Her light is starting to shine brightly again.” — Parent", "“Amazing improvements at home and in school.” — Parent"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Held at 1420 Main St, Suite 124, South Glastonbury. We accept most major insurance — Blue Cross Blue Shield, Cigna, Aetna, UnitedHealthcare, and more — and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Tween IOP — questions parents ask most",
+    copy: ["The questions we hear most from families:"],
+    faq: [
+      { q: "What ages is the Tween IOP for?", a: "Children ages 8–12. Teens 13–18 attend our Teen IOP." },
+      { q: "When does it meet?", a: "Monday–Thursday, 4:30–7:30 PM, after school, for 8–12 weeks." },
+      { q: "How involved do I need to be as a parent?", a: "Very — you’ll attend once or twice a week to learn the skills, plus an optional Parent Support Group and Parent Night." },
+      { q: "Can my child attend virtually?", a: "Yes — in person in South Glastonbury or virtually." },
+      { q: "Is it covered by insurance?", a: "Most major plans are accepted, and we help families with FMLA and Connecticut Paid Leave." },
+    ],
+  },
+  {
+    headline: "Catching it early changes everything",
+    copy: ["The sooner a child gets real support, the bigger the difference it makes. Reach out today — confidentially, with no pressure — and we’ll help your child take the first step."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- FIRST RESPONDER IOP DOCUMENT ----------
+const frMeta = {
+  title: "First Responder IOP in Connecticut | Hopewell Health",
+  desc: "First Responder IOP in Glastonbury, CT — by first responders, for first responders. Confidential care for PTSI, burnout & substance use. TRICARE & VA accepted.",
+  h1: "First Responder Intensive Outpatient Program (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/first-responder-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, first-responder program image",
+  interlinks: ["/what-we-treat/ trauma-ptsd · depression · anxiety · substance-use-disorder", "/treatment-methods/ dbt · cbt", "/programs/ intensive-outpatient-program", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const frSeo =
+  "Existing page (301 /first-responder-iop → /programs/first-responder-iop/). The first-responder blog post already ranks for the audience terms — “first responder mental health services” (140), “responder support services” (140), “first responder support groups near me” (90), “first responder therapy near me” (70) — so this page should own “first responder IOP / treatment CT” and interlink with that blog. Standout E-E-A-T: the program is literally built and staffed by former first responders.";
+
+const frKeywords = [
+  ["first responder mental health services", 30, "140"],
+  ["responder support services", 31, "140"],
+  ["first responder support groups near me", 64, "90"],
+  ["first responder therapy near me", 36, "70"],
+];
+
+const frDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "✓ 301 /first-responder-iop → /programs/first-responder-iop/. Keep targeting first-responder terms; interlink with the first-responder blog post that currently ranks for them.",
+  "✓ Schedule preserved: Mon–Thu 9 AM–12 PM, ~8 weeks, 300 Hebron Ave, Suite 203. CTM forms + call tracking, no online booking.",
+  "⭐ Standout E-E-A-T: program designed by first responders, for first responders — staff include retired police officers and a veteran. Team featured prominently.",
+  "ℹ️ First-responder specifics kept: PTSI framing, peer support, “Healing Beyond Words” experiential, state compensation during day treatment, FMLA / CT Paid Leave + documentation help, TRICARE & VA Community Care.",
+];
+
+const frSections = [
+  {
+    eyebrow: "First Responder IOP · Glastonbury, CT · By first responders, for first responders",
+    headline: "First Responder Intensive Outpatient Program (IOP)",
+    copy: [
+      "You show up for everyone else. This is where someone shows up for you. Our First Responder IOP is designed by first responders, for first responders — a safe, confidential space to process what the job leaves behind and come back stronger, on and off duty.",
+      "For current and retired police, firefighters, EMS, corrections officers, and 9-1-1 dispatchers. Seeking support is a mark of strength, not weakness.",
+    ],
+    body: ["Confidential & judgment-free", "Joint Commission accredited", "TRICARE & VA Community Care accepted", "By first responders, for first responders"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is the First Responder IOP?",
+    copy: [
+      "The First Responder IOP is structured mental-health treatment built for the realities of the job — evidence-based group therapy grounded in DBT and CBT, individual sessions, optional psychiatric care, and peer support, several days a week without an overnight stay.",
+      "It runs about 8 weeks, with ongoing progress check-ins, at our Glastonbury location.",
+    ],
+  },
+  {
+    headline: "Who it's for",
+    copy: ["This program is for current or retired first responders, 18 and older — police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers — carrying the weight of what they’ve seen and done."],
+  },
+  {
+    headline: "Built by people who've been there",
+    copy: ["This isn’t a generic program with a first-responder label slapped on. It was built by first responders, and it’s staffed by clinicians who’ve worn the uniform:"],
+    body: [
+      "Tim Hall, LPC-A — retired Bristol police officer (10 years), peer-support background.",
+      "Victor J.R. Duphily III, LPC — former police officer and U.S. Army veteran, specializing in service-related trauma.",
+      "Christopher Patenaude, PA — board-certified, outpatient psychiatry.",
+      "Katherine Salvador, PA-C — nine years in community mental health and addiction treatment.",
+    ],
+    copyAfter: ["When the person across from you actually gets it, the work goes deeper, faster."],
+  },
+  {
+    headline: "What it treats",
+    copy: ["We address the injuries the job can cause — and we call them what they are: injuries, not weaknesses."],
+    body: [
+      "Post-Traumatic Stress Injury (PTSI) — nightmares, flashbacks, hypervigilance, irritability, physical symptoms",
+      "Burnout — emotional exhaustion, detachment, going through the motions",
+      "Acute stress reactions — anger, numbness, intrusive thoughts",
+      "Anxiety, depression & emotional overwhelm",
+      "Substance use",
+    ],
+  },
+  {
+    headline: "How it works",
+    copy: [
+      "Sessions run Monday–Thursday, 9:00 AM–12:00 PM, for about 8 weeks, with ongoing progress evaluations. The program is held at 300 Hebron Ave, Suite 203, Glastonbury, with additional offices in West Hartford, East Hampton, and Westbrook.",
+      "Many participants are eligible for state compensation during day treatment, and we help with FMLA and Connecticut Paid Leave documentation.",
+    ],
+  },
+  {
+    headline: "The approach",
+    copy: ["Treatment blends proven clinical skills with first-responder-specific support:"],
+    body: [
+      "Skills that work under pressure — mindfulness, emotion regulation, distress tolerance, interpersonal effectiveness, cognitive restructuring",
+      "Peer support — shared stories, mutual understanding",
+      "Trauma processing specific to occupational incidents",
+      "Work-life balance and stress-management strategies",
+      "“Healing Beyond Words” experiential therapy — movement, creative expression, animal-assisted",
+      "Optional family involvement and psychoeducation",
+    ],
+  },
+  {
+    headline: "What you can expect",
+    copy: ["By the end of the program, participants often describe getting themselves back:"],
+    body: [
+      "A greater appreciation of life",
+      "Improved relationships",
+      "Renewed strength and purpose",
+      "Reduced anxiety, depression, and emotional overwhelm",
+      "Less hypervigilance and fewer distressing memories",
+      "Decreased reliance on substances or harmful behaviors",
+    ],
+  },
+  {
+    headline: "Why first responders choose Hopewell",
+    copy: ["What sets our program apart:"],
+    body: [
+      "Designed by first responders, for first responders — with clinicians who’ve served.",
+      "Confidential and judgment-free — what’s said here stays here.",
+      "Joint Commission accredited, with TRICARE and VA Community Care accepted.",
+      "A day program, with help navigating leave and state compensation so treatment is actually doable.",
+    ],
+  },
+  {
+    headline: "Hear from those who've been through it",
+    copy: ["From a fellow first responder:"],
+    body: ["“I learned coping strategies on the first day of IOP — it exceeded my expectations.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Held at 300 Hebron Ave, Suite 203, Glastonbury. We accept most major insurance — including TRICARE and VA Community Care — and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "First Responder IOP — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "Who qualifies for the First Responder IOP?", a: "Current or retired police, firefighters, EMS, corrections officers, and 9-1-1 dispatchers, ages 18+." },
+      { q: "Is it confidential?", a: "Yes — it’s a confidential, judgment-free space, with clinicians who understand the job." },
+      { q: "What’s the schedule?", a: "Monday–Thursday, 9 AM–12 PM, for about 8 weeks." },
+      { q: "Do you take TRICARE or VA benefits?", a: "Yes — we accept TRICARE and VA Community Care, plus most major PPO plans." },
+      { q: "Can I get paid leave or compensation while I attend?", a: "Many participants qualify for state compensation during day treatment, and we help with FMLA and Connecticut Paid Leave paperwork." },
+    ],
+  },
+  {
+    headline: "Let someone show up for you",
+    copy: ["You’ve carried enough. Reach out today — confidentially, with no pressure — and let someone show up for you, for a change."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- SUBSTANCE USE IOP DOCUMENT ----------
+const sudMeta = {
+  title: "Addiction & Substance Use IOP in CT | Hopewell Health",
+  desc: "Substance use IOP in Glastonbury, CT — drug & alcohol addiction treated alongside anxiety, depression & trauma. MAT, DBT, relapse prevention. Most insurance accepted.",
+  h1: "Substance Use Intensive Outpatient Program (IOP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/substance-use-iop/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (IOP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, recovery program image",
+  interlinks: ["/what-we-treat/ substance-use-disorder · alcohol-addiction · drug-addiction · prescription-drug-addiction", "/treatment-methods/ medication-assisted-treatment · dbt", "/programs/ intensive-outpatient-program · medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const sudSeo =
+  "Consolidates /service/s-u-d-treatment + /content/addiction-intensive-outpatient-program → /programs/substance-use-iop/. Now that SUD copy is allowed (Google Ads run on separate LPs + LegitScript in progress), this page targets addiction-IOP intent (“substance abuse IOP,” “drug & alcohol treatment CT”) and links to the alcohol / drug / prescription condition pages plus the SUD condition pillar. Preserves the live “what is SUD / signs” content for AEO. No Semrush export yet — pull positions before migrating.";
+
+const sudDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC.",
+  "✓ Consolidates /service/s-u-d-treatment + /content/addiction-intensive-outpatient-program → /programs/substance-use-iop/. Removed the live “Book Online”; CTM forms + call tracking only.",
+  "✓ SUD copy now allowed (Google Ads on separate LPs + LegitScript in progress).",
+  "🔀 <strong>Differentiate from Adult Co-Occurring IOP:</strong> this page = substance-use-primary / addiction IOP; Adult IOP = mental-health-primary co-occurring. Don’t double-target.",
+  "⚠️ <strong>Confirm a separate substance-use IOP cohort actually runs</strong>, or if SUD is treated within the Adult Co-Occurring IOP (wiki says SUD is ~25%, treated co-occurring). If there’s no separate cohort, position this as the addiction-treatment page and adjust the schedule claim.",
+];
+
+const sudSections = [
+  {
+    eyebrow: "Substance Use IOP · Glastonbury, CT · In person & virtual",
+    headline: "Substance Use Intensive Outpatient Program (IOP)",
+    copy: [
+      "Addiction doesn’t mean you’re broken — and you don’t have to white-knuckle recovery alone. Our Substance Use IOP treats drug and alcohol dependence alongside the anxiety, depression, or trauma that so often drive it, with real structure and support while you live at home.",
+      "Recovery is possible. With the right care, people break free from dependency and get their lives back.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Day & evening tracks", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is a Substance Use IOP?",
+    copy: [
+      "A Substance Use Intensive Outpatient Program is structured addiction treatment — group and individual therapy, skills work, and optional medication-assisted treatment — several days a week, without an overnight stay. It’s built for people who need more than weekly counseling but don’t require detox or residential care.",
+      "Treatment is tailored to each person, with a focus on both short-term recovery and long-term relapse prevention.",
+    ],
+  },
+  {
+    headline: "What is substance use disorder?",
+    copy: ["Substance use disorder (SUD) is a chronic condition that affects the brain and behavior, making it hard to control drug or alcohol use despite harmful consequences. It’s a treatable medical condition — not a moral failing. Common signs include:"],
+    body: [
+      "Cravings or strong urges to use",
+      "Needing more to get the same effect (tolerance)",
+      "Failed attempts to cut back",
+      "Lots of time spent obtaining, using, or recovering",
+      "Neglected responsibilities at work, school, or home",
+      "Continued use despite knowing the harm",
+      "Withdrawal symptoms when you stop",
+    ],
+    copyAfter: ["If several of these sound familiar, early help makes a real difference."],
+  },
+  {
+    headline: "Who it's for",
+    copy: ["This program is for adults whose drug or alcohol use is affecting work, relationships, health, or peace of mind — especially when it’s tangled up with anxiety, depression, or trauma. You don’t have to hit ‘rock bottom’ to deserve help; early intervention significantly improves long-term recovery."],
+  },
+  {
+    headline: "We treat the whole person",
+    copy: ["Most people we treat aren’t struggling with substances alone — there’s usually anxiety, depression, or trauma underneath. We treat both at once, in one place, instead of sending you to chase separate providers. That integrated, dual-diagnosis approach is what makes recovery stick."],
+  },
+  {
+    headline: "Medication-assisted treatment, when it helps",
+    copy: ["When it’s the right fit, we integrate Medication-Assisted Treatment (MAT) — FDA-approved medications that reduce cravings and ease withdrawal — with counseling, behavioral therapy, and relapse-prevention skills. It’s medical care and human support together, led by clinicians experienced in addiction medicine."],
+  },
+  {
+    headline: "How it works",
+    copy: ["Sessions run several times a week for about 8 to 12 weeks, with day and evening options so you can keep working. The program runs at our Glastonbury location, with additional offices in West Hartford, East Hampton, and Westbrook, and a virtual option."],
+  },
+  {
+    headline: "Substances & conditions we treat",
+    copy: ["We help with the full range of substance use — each with its own dedicated page:"],
+    body: ["Alcohol dependence", "Drug dependence", "Prescription drug dependence", "Co-occurring anxiety, depression & trauma"],
+  },
+  {
+    headline: "Evidence-based, practical care",
+    copy: ["Treatment is built for real recovery, not just talk:"],
+    body: ["DBT & CBT", "Relapse-prevention skills", "Individual & group therapy", "Medication-assisted treatment (MAT)", "Experiential & trauma-informed therapies"],
+  },
+  {
+    headline: "Why people choose Hopewell for recovery",
+    copy: ["What sets our program apart:"],
+    body: [
+      "True co-occurring care — substance use and mental health, treated together.",
+      "Joint Commission accredited, with a judgment-free, compassionate team.",
+      "MAT plus GeneSight® genetic testing to personalize medication.",
+      "Flexible scheduling so treatment fits real life.",
+    ],
+  },
+  {
+    headline: "What recovery can look like",
+    copy: ["SUD is treatable, and with the right care, lasting recovery is within reach:"],
+    body: ["Reduced cravings and substance use", "Healthier coping with stress, anxiety, and trauma", "Stronger relationships and renewed purpose", "Skills and a plan to prevent relapse"],
+  },
+  {
+    headline: "Hear from people in recovery here",
+    copy: ["From those who’ve done the work:"],
+    body: ["“This program was a game changer.”", "“The best IOP in the area.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Care across Connecticut — Glastonbury, West Hartford, East Hampton, and Westbrook. We accept most major insurance, and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Substance Use IOP — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "Do I need detox first?", a: "IOP is for people who don’t require medical detox or residential care. If detox is needed, we’ll help you find the right level of care first." },
+      { q: "Do you treat mental health and addiction together?", a: "Yes — it’s a co-occurring program, so anxiety, depression, or trauma are treated alongside substance use." },
+      { q: "What is MAT?", a: "Medication-Assisted Treatment combines FDA-approved medication with therapy to reduce cravings and support recovery." },
+      { q: "How long is the program?", a: "Most people attend about 8–12 weeks, with day and evening options." },
+      { q: "Will insurance cover it?", a: "Most major PPO plans do. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "The hardest step is the first one",
+    copy: ["Reach out today — confidentially, with no pressure — and take it. Recovery is possible, and you don’t have to do it alone."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- PHP DOCUMENT ----------
+const phpMeta = {
+  title: "Partial Hospitalization (PHP) in CT | Hopewell Health Solutions",
+  desc: "Partial hospitalization (PHP) at Hopewell Health Solutions, Glastonbury CT — 6 structured hours a day for depression, anxiety & trauma. Most insurance accepted.",
+  h1: "Partial Hospitalization Program (PHP) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/partial-hospitalization-program/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (PHP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, PHP program image",
+  interlinks: ["/programs/ intensive-outpatient-program · medication-management", "/what-we-treat/ depression · anxiety · trauma-ptsd · ocd", "/treatment-methods/ dbt · emdr", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const phpSeo =
+  "Newly launched PHP. Existing page 301 /partial-hospitalization-program → /programs/partial-hospitalization-program/. This program page targets COMMERCIAL/local intent: “partial hospitalization program CT,” “PHP Connecticut,” “PHP near me,” plus the step-up/step-down intent (PHP vs IOP). Keep its definition brief and link out to the blog explainer — because the blog owns the informational cluster (below).";
+
+const phpDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC. Full name “Hopewell Health Solutions” used in metas + content (NAP+W).",
+  "✓ 301 /partial-hospitalization-program → /programs/partial-hospitalization-program/. Removed “Book Online”; CTM forms + call tracking only.",
+  "🛡️ <strong>Protect the PHP blog’s 26 informational rankings</strong> — “php meaning” (3,600/mo), “php therapy” (1,300), “php meaning mental health” (1,000), “what is php in mental health” (1,000). The phase-2 blog migration must preserve them. <strong>Avoid cannibalization:</strong> the blog (/post/what-is-a-partial-hospitalization-program-php) owns the “what is PHP / php meaning” informational cluster; THIS page owns commercial “partial hospitalization program CT.” Interlink, don’t compete — keep this page’s definition short and link to the blog.",
+  "✓ PHP positioned as the higher level of care (6 hrs/day, Mon–Fri) vs IOP (3 hrs, 4 days) — clearly differentiated and cross-linked.",
+  "ℹ️ Concierge/customizable angle + full holistic menu (sound healing, Reiki, hiking, weight training, needlework) preserved as a differentiator. IOP overview ranks “php programs in ct” (KD 1) — interlink.",
+];
+
+const phpSections = [
+  {
+    eyebrow: "Partial Hospitalization Program · Glastonbury, CT · A higher level of care",
+    headline: "Partial Hospitalization Program (PHP) in Connecticut",
+    copy: [
+      "Recovery within reach — a higher level of care, without an overnight stay. When weekly therapy or even IOP isn’t enough, Hopewell Health Solutions’ PHP gives you intensive, structured support for several hours a day, while you go home each night.",
+      "It’s a safe place to heal and rebuild — concierge care, customized to you.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "6 structured hours a day, Mon–Fri", "In person", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is a Partial Hospitalization Program?",
+    copy: [
+      "A Partial Hospitalization Program (PHP) is the most intensive level of outpatient care — structured treatment about six hours a day, five days a week, without staying overnight. At Hopewell Health Solutions, you live at home while taking part in intensive group therapy, individual therapy, medication management, skill-building, and experiential wellness activities.",
+      "It’s built for people who need more than outpatient therapy, but not inpatient hospitalization.",
+    ],
+    copyAfter: ["Want the full breakdown? Read our guide: “What is a Partial Hospitalization Program (PHP)?” → links to the blog (which owns the in-depth “what is PHP” explainer)."],
+  },
+  {
+    headline: "PHP vs. IOP — what's the difference?",
+    copy: [
+      "The difference comes down to intensity. PHP runs about six hours a day, Monday through Friday — the highest level of outpatient support. Our Intensive Outpatient Program (IOP) is lighter, around three hours a day, four days a week, so you can keep working or in school.",
+      "Many clients step down from PHP into IOP as they stabilize. Hopewell Health Solutions will help you find the right starting point.",
+    ],
+  },
+  {
+    headline: "Who PHP is for",
+    copy: ["PHP at Hopewell Health Solutions is designed for adults who need to stabilize and rebuild:"],
+    body: [
+      "Stabilizing after a crisis",
+      "Transitioning from inpatient hospitalization or residential treatment",
+      "Struggling with depression, anxiety, trauma, or mood disorders",
+      "At risk of relapse",
+      "Needing far more support than weekly therapy",
+    ],
+  },
+  {
+    headline: "A day in PHP",
+    copy: ["The structure is the medicine. A typical day runs 9:00 AM to 3:30 PM, Monday through Friday:"],
+    body: [
+      "9:00 — Check-in & psychoeducation",
+      "10:00 — Psychoeducation",
+      "11:00 — Process group",
+      "12:00 — Lunch",
+      "12:30 — Psychoeducation / process group",
+      "1:30 — Creative, holistic & skills groups",
+      "2:30 — Creative, holistic & skills groups",
+    ],
+    copyAfter: ["Held at our Glastonbury location, with additional offices in West Hartford, East Hampton, and Westbrook."],
+  },
+  {
+    headline: "Concierge care, customized to you",
+    copy: ["Hopewell Health Solutions’ PHP is a concierge wellness service, built around you. Rather than a fixed track, you choose the groups that best fit the goals you set — so the program propels you toward health on your terms, not a template’s."],
+  },
+  {
+    headline: "What's included",
+    copy: ["Every part of your day is designed to move you forward:"],
+    body: [
+      "Group therapy — choose the groups aligned with your goals",
+      "Individual therapy — one-on-one with a licensed clinician",
+      "Medication management & psychiatric care",
+      "Peer recovery coaching — in person and by text",
+      "On-call clinical support — phone, text, or in person",
+      "Family involvement — rebuild communication and trust",
+    ],
+  },
+  {
+    headline: "Therapies & holistic care",
+    copy: ["Care blends proven clinical methods with whole-person, holistic practices:"],
+    body: [
+      "DBT, CBT & EMDR",
+      "Distress tolerance, emotion regulation & grounding",
+      "Motivational interviewing & somatic therapy",
+      "Holistic & creative: yoga, art therapy, sound healing, meditation, Reiki, hiking, weight training, needlework",
+    ],
+  },
+  {
+    headline: "What this program helps with",
+    copy: ["PHP at Hopewell Health Solutions helps with:"],
+    body: ["Depression & mood disorders", "Anxiety", "Trauma & PTSD", "OCD", "Co-occurring substance use", "Grief & life stress"],
+  },
+  {
+    headline: "Why people choose Hopewell Health Solutions for PHP",
+    copy: ["What sets our program apart:"],
+    body: [
+      "Concierge, customizable care — built around your goals.",
+      "Joint Commission accredited, with a multidisciplinary team.",
+      "A true step-down / step-up partner — a seamless move between PHP and IOP.",
+      "GeneSight® genetic testing and expert medication management.",
+    ],
+  },
+  {
+    headline: "What you can expect",
+    copy: ["PHP is about regaining stability and getting back to your life:"],
+    body: ["Stabilization and safety", "Stronger coping and emotional regulation", "Healthier relationships and communication", "A clear plan to step down and stay well"],
+  },
+  {
+    headline: "Hear from our clients",
+    copy: ["Clients tell it best:"],
+    body: ["“I have found the people are extremely kind and supportive.”", "“I look forward to my sessions — I feel as if my voice is valued.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Location & insurance",
+    copy: ["Care across Connecticut — Glastonbury, West Hartford, East Hampton, and Westbrook. Hopewell Health Solutions accepts most major insurance, and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "PHP — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "What’s the difference between PHP and IOP?", a: "PHP is more intensive — about six hours a day, five days a week. IOP is lighter (around three hours, four days), so you can keep working or in school." },
+      { q: "Do I stay overnight?", a: "No — PHP is a day program. You receive intensive care during the day and go home each night." },
+      { q: "How many hours a day is PHP?", a: "About six structured hours, Monday through Friday (9 AM–3:30 PM)." },
+      { q: "Can I customize my schedule?", a: "Yes — you choose the groups that best fit your goals. It’s a concierge, customized program." },
+      { q: "Will insurance cover it?", a: "Most major PPO plans cover PHP. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "A safe place to heal and rebuild",
+    copy: ["A higher level of care is closer than you think. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and take the first step."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+---
+
+<Review
+  title="Content Studio"
+  subtitle="Where we draft and visualize every page’s copy. Switch documents with the tabs below. First up: the USPs we double down on everywhere."
+  wide={true}
+>
+  <!-- Horizontal document tabs -->
+  <div class="border-b border-line mb-6">
+    <p class="text-xs font-semibold uppercase tracking-wide text-muted mb-2">Documents</p>
+    <nav id="doc-tabs" class="flex gap-1 overflow-x-auto -mb-px">
+      {
+        docs.map((d, i) => (
+          <button
+            data-doc={d.id}
+            class={`doc-tab whitespace-nowrap rounded-t-lg px-4 py-2.5 text-sm font-semibold border-b-2 transition flex items-center gap-2 ${i === 0 ? "border-azul text-azul bg-azul-light" : "border-transparent text-muted hover:text-ink"}`}
+          >
+            <span>{d.label}</span>
+            {d.status === "ready" && <span class="h-2 w-2 rounded-full bg-green-400" />}
+            {d.status === "empty" && <span class="text-[10px] uppercase opacity-60">empty</span>}
+          </button>
+        ))
+      }
+    </nav>
+  </div>
+  <p class="text-[11px] text-muted mb-6">
+    Visualization only — edits here aren’t saved yet. Tell me changes and I’ll update the source.
+  </p>
+
+  <!-- USPs doc (full width) -->
+  <article data-panel="usps" class="doc-panel">
+    <div class="rounded-xl bg-white shadow-lg border border-line">
+      <div class="border-b border-line px-14 py-4 flex items-center justify-between">
+        <span class="text-sm text-muted">USPs & Brand Positioning</span>
+        <span class="rounded-full bg-azul-light text-azul text-xs font-semibold px-2.5 py-0.5">Draft v1</span>
+      </div>
+      <div class="px-14 py-12">
+        <h2 class="font-display text-4xl text-ink">Unique Selling Points</h2>
+        <p class="mt-4 text-lg text-muted max-w-4xl">
+          The handful of true differentiators we weave through <em>every</em> page — hero, programs, conditions, locations, blog. If a page doesn’t reinforce at least one of these, it’s not pulling its weight.
+        </p>
+
+        <div class="mt-6 rounded-lg bg-crema border border-line p-6 max-w-4xl">
+          <p class="text-sm font-semibold text-ink">The one-line positioning</p>
+          <p class="mt-1 text-ink text-lg">
+            <strong>Connecticut’s most clinically sophisticated outpatient mental-health team</strong> — advanced tools (TMS, GeneSight), specialized programs, and 47 credentialed experts you’ll actually meet, in person.
+          </p>
+        </div>
+
+        <!-- USP grid uses the full width -->
+        <div class="mt-9 grid gap-5 lg:grid-cols-2">
+          {
+            usps.map((u) => (
+              <section class="rounded-xl border border-line bg-crema/40 p-6">
+                <div class="flex items-center gap-3">
+                  <span class="grid h-7 w-7 place-items-center rounded-full bg-azul text-white text-sm font-semibold shrink-0">{u.n}</span>
+                  <h3 class="font-display text-xl text-ink leading-tight">{u.name}</h3>
+                  <span class={`ml-auto shrink-0 rounded-full text-[10px] font-bold uppercase px-2 py-0.5 ${u.status === "Confirmed" ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800"}`}>{u.status}</span>
+                </div>
+                <p class="mt-3 text-ink text-base italic">{u.angle}</p>
+                <p class="mt-3 text-sm text-muted"><strong class="text-ink not-italic">Why it wins:</strong> {u.why}</p>
+                <p class="mt-1.5 text-sm text-muted"><strong class="text-ink">Use it on:</strong> <span class="font-mono text-xs">{u.where}</span></p>
+              </section>
+            ))
+          }
+        </div>
+
+        <!-- Verify callout -->
+        <section class="mt-9">
+          <div class="rounded-lg border border-amber-300 bg-amber-50 p-6 max-w-4xl">
+            <p class="font-semibold text-amber-900">⚠️ Needs client confirmation — Psychiatric / Psychological Evaluation</p>
+            <p class="mt-2 text-sm text-amber-900">
+              Records show psychiatric assessment as an <em>“optional add”</em> at the flagship plus a required <em>risk</em> screening at intake — not a universal full psych eval. <strong>Do not claim “we always do a psych evaluation”</strong> until the client confirms. If they DO run one for every patient, it becomes a strong 7th USP (“every client starts with a real clinical evaluation, not a 10-minute intake”).
+            </p>
+          </div>
+        </section>
+
+        <!-- My recommendation -->
+        <section class="mt-9 border-t border-line pt-7">
+          <h3 class="font-display text-2xl text-ink">My read on your four</h3>
+          <ul class="mt-3 space-y-2 text-ink max-w-4xl">
+            <li>✅ <strong>TMS, GeneSight, Credentialed Team</strong> — keep all three. They’re confirmed and they’re a coherent “clinical sophistication” story that beats hospitals <em>and</em> telehealth.</li>
+            <li>⚠️ <strong>Psych eval</strong> — hold until confirmed (above).</li>
+            <li>➕ <strong>I’d add Specialized IOP Tracks</strong> as a top-tier USP — it’s the structural reason a patient picks Hopewell over Hartford HealthCare, and it maps 1:1 to our money pages.</li>
+            <li>➕ <strong>Reputation (368/4.8★)</strong> and <strong>In-person/local</strong> are strong supporting USPs — use them as trust signals rather than headline differentiators.</li>
+          </ul>
+          <p class="mt-4 text-sm text-muted">Suggested tiering: <strong>Hero USPs</strong> (repeat everywhere) = TMS · GeneSight · Credentialed Team · Specialized Tracks. <strong>Supporting</strong> = Reputation · In-person.</p>
+        </section>
+      </div>
+    </div>
+  </article>
+
+  <!-- Homepage doc (full width) -->
+  <article data-panel="homepage" class="doc-panel hidden">
+    <ContentDoc
+      label="Homepage · improved copy + structure"
+      title="Homepage"
+      intro="The rebuilt homepage — keeps the live site's indexed copy, layered with CRO, emotion, the USPs, and real lead capture."
+      meta={homeMeta}
+      seo={homeSeo}
+      decisions={homeFlags}
+      sections={homeSections}
+    />
+  </article>
+
+  <!-- IOP Overview doc (full width) -->
+  <article data-panel="iopov" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · IOP Overview (hub) — improved copy + structure"
+      title="IOP Overview (Hub)"
+      intro="The IOP hub — defines IOP, links to every track, and owns the high-value generic CT IOP keywords."
+      meta={iopovMeta}
+      seo={iopovSeo}
+      keywords={iopovKeywords}
+      decisions={iopovDecisions}
+      sections={iopovSections}
+    />
+  </article>
+
+  <!-- Adult IOP doc (full width) -->
+  <article data-panel="iop" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Adult IOP — improved copy + structure"
+      title="Adult Intensive Outpatient Program"
+      intro="The flagship money page. Hits all 12 BH program-page elements, keeps the live page's clinical copy, and adds CRO, emotion, USPs, and lead capture."
+      meta={iopMeta}
+      seo={iopSeo}
+      keywords={iopKeywords}
+      decisions={iopDecisions}
+      sections={iopSections}
+    />
+  </article>
+
+  <!-- Men's IOP doc -->
+  <article data-panel="mens" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Men's IOP — net-new page"
+      title="Men's IOP"
+      intro="Net-new page built from the IOP template + a men's-specific angle — men-only group, same proven structure as our other tracks."
+      meta={mensMeta}
+      seo={mensSeo}
+      decisions={mensDecisions}
+      sections={mensSections}
+    />
+  </article>
+
+  <!-- Women's Wellness IOP doc (full width) -->
+  <article data-panel="womens" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Women's Wellness IOP — improved copy + structure"
+      title="Women's Wellness IOP"
+      intro="Consolidates the women's-wellness + women's-trauma pages into one — preserves the #1 women's-IOP rankings and keeps the strong emotional copy."
+      meta={womensMeta}
+      seo={womensSeo}
+      keywords={womensKeywords}
+      decisions={womensDecisions}
+      sections={womensSections}
+    />
+  </article>
+
+  <!-- Teen IOP doc -->
+  <article data-panel="teen" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Teen IOP — improved copy + structure"
+      title="Teen IOP"
+      intro="Split from the live tween/teen page — Teen (13–18), parent-facing, preserves the adolescent-IOP rankings via 301."
+      meta={teenMeta}
+      seo={teenSeo}
+      keywords={teenKeywords}
+      decisions={teenDecisions}
+      sections={teenSections}
+    />
+  </article>
+
+  <!-- Tween IOP doc -->
+  <article data-panel="tween" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Tween IOP — net-new (8–12)"
+      title="Tween IOP"
+      intro="The 8–12 sibling to Teen IOP — parent-driven, age-appropriate, targeting the kids/children/tween keyword intent."
+      meta={tweenMeta}
+      seo={tweenSeo}
+      keywords={tweenKeywords}
+      decisions={tweenDecisions}
+      sections={tweenSections}
+    />
+  </article>
+
+  <!-- First Responder IOP doc -->
+  <article data-panel="fr" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · First Responder IOP — improved copy + structure"
+      title="First Responder IOP"
+      intro="By first responders, for first responders — confidential, trauma-focused care with clinicians who've served. 301s from the live page."
+      meta={frMeta}
+      seo={frSeo}
+      keywords={frKeywords}
+      decisions={frDecisions}
+      sections={frSections}
+    />
+  </article>
+
+  <!-- Substance Use IOP doc -->
+  <article data-panel="sud" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Substance Use IOP — improved copy + structure"
+      title="Substance Use IOP"
+      intro="The addiction IOP — drug & alcohol use treated alongside the anxiety, depression, or trauma underneath. Consolidates the live SUD pages."
+      meta={sudMeta}
+      seo={sudSeo}
+      decisions={sudDecisions}
+      sections={sudSections}
+    />
+  </article>
+
+  <!-- PHP doc -->
+  <article data-panel="php" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · PHP — improved copy + structure"
+      title="Partial Hospitalization Program (PHP)"
+      intro="The highest level of outpatient care — 6 structured hours a day. Concierge, customizable, and clearly differentiated from IOP. 301s from the live page."
+      meta={phpMeta}
+      seo={phpSeo}
+      decisions={phpDecisions}
+      sections={phpSections}
+    />
+  </article>
+
+  <!-- Stub panels (full width) -->
+  {
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php"].includes(d.id)).map((d) => (
+      <article data-panel={d.id} class="doc-panel hidden">
+        <div class="rounded-xl bg-white shadow-lg border border-line">
+          <div class="px-14 py-24 text-center">
+            <p class="font-display text-3xl text-ink">{d.label}</p>
+            <p class="mt-3 text-muted max-w-xl mx-auto">Not started yet. Once we lock the USPs, this is where the {d.label.toLowerCase()} copy gets drafted — using the USPs above as the backbone.</p>
+            <span class="inline-block mt-5 rounded-full bg-crema border border-line text-muted text-xs font-semibold px-3 py-1">Empty document</span>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+
+  <script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".doc-tab");
+    const panels = document.querySelectorAll<HTMLElement>(".doc-panel");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const id = tab.dataset.doc;
+        tabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle("border-azul", active);
+          t.classList.toggle("text-azul", active);
+          t.classList.toggle("bg-azul-light", active);
+          t.classList.toggle("border-transparent", !active);
+          t.classList.toggle("text-muted", !active);
+        });
+        panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== id));
+      });
+    });
+  </script>
+</Review>
