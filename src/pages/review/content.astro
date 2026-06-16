@@ -27,7 +27,18 @@ const docs = [
   { id: "neuro", label: "Treatment · Neuropsych Testing", status: "ready" },
   { id: "adhdtest", label: "Treatment · ADHD Testing", status: "ready" },
   { id: "genesight", label: "Treatment · GeneSight", status: "ready" },
-  { id: "depression", label: "Condition · Depression", status: "empty" },
+  { id: "wwt", label: "What We Treat (hub)", status: "ready" },
+  { id: "depression", label: "Condition · Depression (template)", status: "ready" },
+  { id: "anxiety", label: "Condition · Anxiety", status: "ready" },
+  { id: "trauma", label: "Condition · Trauma & PTSD", status: "ready" },
+  { id: "bipolar", label: "Condition · Bipolar", status: "ready" },
+  { id: "ocd", label: "Condition · OCD", status: "ready" },
+  { id: "adhd", label: "Condition · ADHD", status: "ready" },
+  { id: "sudcond", label: "Condition · Substance Use (pillar)", status: "ready" },
+  { id: "alcohol", label: "Condition · Alcohol Addiction", status: "ready" },
+  { id: "drug", label: "Condition · Drug Addiction", status: "ready" },
+  { id: "rx", label: "Condition · Prescription Drug", status: "ready" },
+  { id: "cooccur", label: "Condition · Co-occurring", status: "ready" },
 ];
 
 // USP entries
@@ -2162,6 +2173,444 @@ const genesightSections = [
     { q: "Will insurance cover it?", a: "Coverage varies — we’ll check your benefits and explain any cost before testing." } ] },
   { headline: "Stop the trial-and-error", copy: ["Let your biology help guide the way. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to ask whether GeneSight is right for you."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
 ];
+
+// ---------- WHAT WE TREAT (HUB) ----------
+const wwtMeta = {
+  title: "Conditions We Treat in Connecticut | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions treats the full range of mental health & co-occurring conditions in CT — depression, anxiety, trauma, ADHD, OCD, bipolar & substance use.",
+  h1: "Conditions We Treat in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "ItemList (conditions)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, brand image",
+  interlinks: ["/what-we-treat/ depression · anxiety · trauma-ptsd · bipolar · ocd · adhd · substance-use-disorder · co-occurring", "/programs/ intensive-outpatient-program · partial-hospitalization-program · medication-management", "/admissions/"],
+};
+const wwtSeo =
+  "Net-new hub — the biggest SEO gap on the current site (almost no condition pages exist). Owns the broad “mental health treatment CT” intent and funnels each “[condition] treatment Connecticut” query to its dedicated spoke. Hub links to every condition page; each spoke links back. Pull positions before migrating any condition-adjacent old URLs.";
+const wwtDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "ℹ️ Net-new hub. Conditions are the biggest net-new opportunity — this hub + its spokes are P2 priority after locations.",
+  "✓ Splits mental health vs. substance use and bridges them with a dual-diagnosis callout (per the BH hub checklist).",
+];
+const wwtSections = [
+  { eyebrow: "What We Treat · Children, Teens & Adults · Connecticut", headline: "Conditions We Treat in Connecticut",
+    copy: ["Whatever you’re facing, you don’t have to face it alone. Hopewell Health Solutions treats the full spectrum of mental health and co-occurring conditions — for children, teens, and adults — across Connecticut.","From the first overwhelming weeks to long-term stability, we meet you at the right level of care, with a team that treats the whole person, not just a diagnosis."],
+    body: ["Joint Commission accredited", "47 clinicians", "Full continuum of care", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "The conditions we treat", copy: ["We provide specialized, evidence-based care for a wide range of conditions — each with its own page covering symptoms, treatment, and what to expect:"],
+    body: ["Depression", "Anxiety", "Trauma & PTSD", "Bipolar disorder", "OCD", "ADHD", "Substance use disorder", "Co-occurring (dual diagnosis)"] },
+  { headline: "Mental health and substance use, together", copy: ["Many people come to us with more than one thing going on — depression alongside drinking, anxiety tangled up with trauma. That’s the rule, not the exception. We treat mental health and substance use together (dual diagnosis), because treating one without the other rarely holds."] },
+  { headline: "Finding the right level of care", copy: ["The same condition can call for very different support depending on severity. We offer a full continuum, so you can step up or down as you heal:"],
+    body: ["Outpatient therapy & medication management — for ongoing, manageable symptoms", "Intensive Outpatient (IOP) — structured support several days a week", "Partial Hospitalization (PHP) — the highest level of outpatient care"],
+    copyAfter: ["Not sure where you fit? Call us — our team will help you figure it out. (Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions", copy: ["What sets us apart: advanced options like TMS and GeneSight for when standard treatment hasn’t worked, 47 credentialed clinicians, a full continuum under one roof, and Joint Commission accreditation — so you’re never bounced between providers as your needs change."] },
+  { headline: "Insurance & getting started", copy: ["We’re in-network with most major PPO plans. Not sure what yours covers? We’ll check it for you — free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "Common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do you treat dual diagnosis?", a: "Yes — treating mental health and substance use together is core to how we work." },
+    { q: "What’s the difference between mental health and addiction treatment?", a: "They overlap constantly; we integrate both rather than treating them separately." },
+    { q: "Do you treat children and teens?", a: "Yes — we care for children (ages 4+), teens, and adults." },
+    { q: "How do I know which level of care I need?", a: "Call us — a quick conversation helps match you to outpatient therapy, IOP, or PHP." },
+    { q: "Will insurance cover treatment?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Start with a conversation", copy: ["The first step is the hardest — and the most important. Reach out to Hopewell Health Solutions today, confidentially and with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- DEPRESSION (TEMPLATE for condition pages) ----------
+const depMeta = {
+  title: "Depression Treatment in Connecticut | Hopewell Health Solutions",
+  desc: "Depression treatment at Hopewell Health Solutions, CT — therapy, medication, TMS & Spravato, including for treatment-resistant depression. Most insurance accepted.",
+  h1: "Depression Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/depression/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalCondition (Depression)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, depression-care image",
+  interlinks: ["/treatment-methods/ tms · spravato · dbt · emdr", "/programs/ medication-management · intensive-outpatient-program · partial-hospitalization-program · outpatient-therapy", "/what-we-treat/ anxiety · trauma-ptsd · substance-use-disorder", "/admissions/"],
+};
+const depSeo =
+  "TEMPLATE for all condition pages (definition → symptoms → how we treat → severity/LOC → co-occurring → why-us → what to expect → FAQ). Net-new — big opportunity. Targets “depression treatment CT,” “depression therapy near me,” “treatment-resistant depression Connecticut.” Ties directly to the TMS + Spravato USPs. Differentiate from program pages (which own “IOP/PHP”) — this owns the condition intent. Pull positions before migrating.";
+const depDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "⭐ <strong>TEMPLATE for all condition pages</strong> — approve this structure before I roll it to Anxiety, Trauma/PTSD, Bipolar, OCD, ADHD, SUD (pillar + 3 spokes), and Co-occurring.",
+  "✓ Net-new; the condition cluster is the biggest SEO gap. Owns “depression treatment CT”; interlinks to TMS/Spravato (treatment-resistant) and the programs.",
+  "✓ Includes a treatment-resistant-depression section — the natural bridge to the TMS & Spravato USPs.",
+];
+const depSections = [
+  { eyebrow: "Depression Treatment · Children, Teens & Adults · Glastonbury, CT", headline: "Depression Treatment in Connecticut",
+    copy: ["Depression isn’t weakness, and it isn’t something you can just push through. It’s a real, treatable medical condition — and at Hopewell Health Solutions, we treat it with everything from therapy and medication to advanced options like TMS and Spravato® for depression that hasn’t responded to anything else.","Wherever you are on the spectrum, there’s a path back to feeling like yourself."],
+    body: ["Therapy · medication · TMS · Spravato", "Joint Commission accredited", "Ages 4 & up", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is depression?", copy: ["Depression (major depressive disorder) is a common but serious mood condition that affects how you feel, think, and handle daily life. It’s more than a rough patch — it’s a persistent low mood or loss of interest that lasts at least two weeks and gets in the way of work, relationships, and the things you used to enjoy.","Depression is highly treatable. The vast majority of people improve with the right care — the key is finding the approach that works for you."] },
+  { headline: "Signs & symptoms", copy: ["Depression looks different from person to person, but common signs include:"],
+    body: ["Persistent sadness, emptiness, or hopelessness", "Loss of interest in activities you used to enjoy", "Changes in sleep — too much or too little", "Fatigue or low energy", "Changes in appetite or weight", "Trouble concentrating or making decisions", "Feelings of worthlessness or guilt", "Thoughts of death or suicide"],
+    copyAfter: ["If you’re having thoughts of harming yourself, call or text 988 (the Suicide & Crisis Lifeline) right away — and know that help is available here, too."] },
+  { headline: "How we treat depression", copy: ["There’s no one-size-fits-all for depression, so we tailor treatment to its severity and to you:"],
+    body: ["Therapy — CBT, DBT, and EMDR to address thoughts, emotions, and underlying trauma", "Medication management — expert prescribing, with GeneSight® testing to find the right fit faster", "TMS & Spravato® — for depression that hasn’t responded to medication or therapy", "IOP & PHP — structured, intensive support when symptoms are severe"] },
+  { headline: "When depression doesn't respond to treatment", copy: ["Nearly half of people with clinical depression are considered “non-responsive” to medication at some point — and that can feel hopeless. It isn’t. For treatment-resistant depression, Hopewell Health Solutions offers TMS (a drug-free, FDA-cleared brain stimulation therapy) and Spravato® (an FDA-approved esketamine nasal spray that can work in as little as 24 hours). When the usual options haven’t worked, these often do."] },
+  { headline: "Which level of care is right?", copy: ["Depression exists on a spectrum, and so does treatment:"],
+    body: ["Mild–moderate — weekly outpatient therapy and/or medication management", "Moderate–severe, or not improving — Intensive Outpatient (IOP)", "Severe, or stepping down from a hospital stay — Partial Hospitalization (PHP)"],
+    copyAfter: ["We’ll help you start at the right level and adjust as you improve. (Links to /programs/.)"] },
+  { headline: "Conditions that often come with depression", copy: ["Depression rarely travels alone. It frequently appears alongside anxiety, trauma or PTSD, and substance use — and treating those together is what makes recovery stick. We address the whole picture, not just one symptom. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for depression", copy: ["What sets our depression care apart:"],
+    body: ["The full toolkit — therapy, medication, TMS, and Spravato under one roof", "GeneSight® testing to personalize medication and skip the trial-and-error", "47 credentialed clinicians and a true continuum of care", "Joint Commission accredited, compassionate, and judgment-free"] },
+  { headline: "What to expect", copy: ["It starts with a conversation and an honest assessment of where you are. From there, your team builds a plan — and adjusts it as you go. You won’t be handed a prescription and sent on your way; you’ll have people checking in, coordinating your care, and changing course if something isn’t working."] },
+  { headline: "Insurance & admissions", copy: ["We’re in-network with most major PPO plans. We’ll verify your benefits for free and walk you through getting started."], ctas: ["Verify my benefits →"] },
+  { headline: "Depression — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is depression curable?", a: "Depression is highly treatable — most people improve significantly with the right care, and many reach full remission." },
+    { q: "What therapy is best for depression?", a: "CBT and DBT are first-line; we tailor the approach to you, and add EMDR when trauma is involved." },
+    { q: "What if medication hasn’t worked?", a: "For treatment-resistant depression we offer TMS and Spravato®, which often help when standard options haven’t." },
+    { q: "How long does treatment take?", a: "It varies — some feel better in weeks, others need longer. We adjust the level of care to your progress." },
+    { q: "Will insurance cover it?", a: "Most major plans cover depression treatment. We’ll verify your benefits for free." } ] },
+  { headline: "There is a way forward", copy: ["You don’t have to keep white-knuckling through it. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and let’s find what works for you."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ===== condition-page helper meta builder kept inline per page =====
+
+// ---------- ANXIETY ----------
+const anxietyMeta = {
+  title: "Anxiety Treatment in Connecticut | Hopewell Health Solutions",
+  desc: "Anxiety treatment at Hopewell Health Solutions, CT — therapy (CBT, DBT, EMDR), medication & IOP for generalized anxiety, panic & social anxiety. Most insurance accepted.",
+  h1: "Anxiety Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/anxiety/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Anxiety)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, anxiety-care image",
+  interlinks: ["/treatment-methods/ cbt · dbt · emdr", "/programs/ outpatient-therapy · intensive-outpatient-program · medication-management", "/what-we-treat/ depression · trauma-ptsd", "/admissions/"],
+};
+const anxietySeo = "Net-new condition page. Targets “anxiety treatment CT,” “anxiety therapy near me,” “panic attack treatment Connecticut,” “social anxiety help.” Owns the condition intent; interlinks to therapy methods + programs. Pull positions before migrating.";
+const anxietyDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; uses the approved condition template. Interlinks to CBT/DBT/EMDR + the IOP/outpatient continuum.", "ℹ️ Covers GAD, panic, and social anxiety in one page — split later only if keyword volume justifies separate pages."];
+const anxietySections = [
+  { eyebrow: "Anxiety Treatment · Children, Teens & Adults · Glastonbury, CT", headline: "Anxiety Treatment in Connecticut",
+    copy: ["A racing mind, a pounding heart, the sense that something’s about to go wrong — anxiety can take over your days and steal your sleep. The good news: it’s one of the most treatable conditions there is.","At Hopewell Health Solutions, we help children, teens, and adults across Connecticut quiet anxiety and get their lives back — with proven therapy, medication when it helps, and intensive support when you need more."],
+    body: ["Therapy · medication · IOP", "Joint Commission accredited", "Ages 4 & up", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is anxiety?", copy: ["Anxiety is your body’s natural alarm system — useful in real danger, exhausting when it won’t switch off. An anxiety disorder is when that alarm fires too often or too intensely, interfering with work, relationships, and daily life. It includes generalized anxiety, panic disorder, social anxiety, and phobias.","Anxiety is highly treatable: most people see real relief with the right combination of therapy and, sometimes, medication."] },
+  { headline: "Signs & symptoms", copy: ["Anxiety shows up in the mind and the body:"], body: ["Excessive, hard-to-control worry", "Restlessness or feeling on edge", "Racing heart, shortness of breath, or panic attacks", "Trouble sleeping or concentrating", "Irritability and muscle tension", "Avoiding people, places, or situations"] },
+  { headline: "How we treat anxiety", copy: ["We match treatment to how much anxiety is affecting your life:"], body: ["CBT — to challenge and reframe anxious thought patterns", "DBT — skills for tolerating distress and calming the nervous system", "EMDR — when trauma is fueling the anxiety", "Medication management — when symptoms need extra support, with GeneSight® to personalize it"] },
+  { headline: "When anxiety takes over", copy: ["Sometimes weekly therapy isn’t enough — panic attacks, avoidance, or constant dread make daily life unmanageable. That’s when our Intensive Outpatient Program (IOP) helps: structured, several-days-a-week support to break the cycle, then a step back down as you stabilize."] },
+  { headline: "Which level of care is right?", copy: ["Anxiety treatment scales to your needs:"], body: ["Mild–moderate — weekly therapy and/or medication management", "Moderate–severe — Intensive Outpatient (IOP)", "Severe, or stepping down from a higher level — PHP"], copyAfter: ["We’ll help you start in the right place. (Links to /programs/.)"] },
+  { headline: "Conditions that often come with anxiety", copy: ["Anxiety rarely travels alone — it commonly overlaps with depression, trauma or PTSD, and substance use. We treat them together, so you’re not patching one leak while another floods. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for anxiety", copy: ["What sets our anxiety care apart:"], body: ["The full continuum — therapy, medication, and IOP under one roof", "GeneSight® testing to find the right medication faster", "47 credentialed clinicians, judgment-free", "Joint Commission accredited"] },
+  { headline: "Anxiety — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Can anxiety be cured?", a: "Anxiety is highly manageable — most people achieve major, lasting relief with therapy and, when needed, medication." },
+    { q: "What therapy works best for anxiety?", a: "CBT is first-line; we add DBT skills and EMDR when trauma is involved." },
+    { q: "Do I need medication?", a: "Not always — many improve with therapy alone. When medication helps, GeneSight testing personalizes it." },
+    { q: "What if I’m having panic attacks?", a: "We can help right away — and our IOP offers intensive support if attacks are frequent or disabling." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Quiet the noise", copy: ["You don’t have to live on high alert. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- TRAUMA & PTSD ----------
+const traumaMeta = {
+  title: "Trauma & PTSD Treatment in CT | Hopewell Health Solutions",
+  desc: "Trauma & PTSD treatment at Hopewell Health Solutions, CT — EMDR, trauma-informed therapy, and women's & first-responder IOP tracks. Most insurance accepted.",
+  h1: "Trauma & PTSD Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/trauma-ptsd/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (PTSD)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, trauma-care image",
+  interlinks: ["/treatment-methods/ emdr · dbt", "/programs/ womens-wellness-iop · first-responder-iop · intensive-outpatient-program", "/what-we-treat/ anxiety · depression · substance-use-disorder", "/admissions/"],
+};
+const traumaSeo = "Net-new condition page. Targets “ptsd treatment CT,” “trauma therapy near me,” “emdr for ptsd Connecticut.” Strong differentiator: EMDR + the Women’s Wellness and First Responder IOP tracks. Interlinks to those. Pull positions before migrating.";
+const traumaDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; condition template. Bridges to the EMDR page + the Women’s Wellness and First Responder IOP tracks (real differentiators).", "ℹ️ Uses PTSI-friendly framing where relevant (first responders) without diluting the clinical PTSD terms."];
+const traumaSections = [
+  { eyebrow: "Trauma & PTSD Treatment · Glastonbury, CT", headline: "Trauma & PTSD Treatment in Connecticut",
+    copy: ["Trauma doesn’t always stay in the past. It can show up as flashbacks, sleepless nights, a body that won’t relax, or a constant sense of danger long after you’re safe. You don’t have to live like that.","At Hopewell Health Solutions, we help people heal from trauma and PTSD with EMDR and trauma-informed care — including specialized groups for women and first responders."],
+    body: ["EMDR & trauma-informed care", "Women's & First Responder tracks", "Joint Commission accredited", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is trauma and PTSD?", copy: ["Trauma is the lasting emotional response to a deeply distressing event — or series of events — that the mind and body perceive as overwhelming or life-threatening. When those responses persist and disrupt daily life, it may be post-traumatic stress disorder (PTSD).","Trauma is highly personal: two people can experience the same event and respond completely differently. There’s no “right” way to react — and there is a way to heal."] },
+  { headline: "Signs & symptoms", copy: ["Trauma can affect every part of life:"], body: ["Flashbacks, nightmares, or intrusive memories", "Hypervigilance — always on guard", "Avoiding reminders, places, or people", "Emotional numbness or feeling disconnected", "Trouble sleeping and concentrating", "Irritability, anxiety, or sudden mood shifts"] },
+  { headline: "How we treat trauma", copy: ["Healing trauma takes more than talking about it — it takes processing it safely:"], body: ["EMDR — our primary trauma therapy, helping the brain reprocess stuck memories", "Trauma-informed care — safety and choice built into everything we do", "DBT & somatic skills — to calm the nervous system and stay grounded", "Medication management — when symptoms like sleeplessness or anxiety need support"] },
+  { headline: "Specialized trauma programs", copy: ["Some trauma is best healed alongside people who understand it. Our Women’s Wellness IOP offers a women-only, trauma-informed space, and our First Responder IOP is built by and for police, fire, EMS, and dispatch. Both bring shared experience that makes the work go deeper. (Links to those program pages.)"] },
+  { headline: "Which level of care is right?", copy: ["Trauma care scales to your needs:"], body: ["Manageable symptoms — weekly EMDR / trauma therapy", "Disrupting daily life — Intensive Outpatient (IOP)", "Severe or destabilizing — PHP"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Conditions that often come with trauma", copy: ["Trauma rarely stands alone — it frequently drives anxiety, depression, and substance use. We treat the trauma and what grew from it, together. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for trauma", copy: ["What sets our trauma care apart:"], body: ["EMDR delivered by trained clinicians", "Dedicated women’s and first-responder trauma tracks", "A full continuum, so care scales with you", "Joint Commission accredited, safe, and judgment-free"] },
+  { headline: "Trauma & PTSD — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do I have to relive the trauma to heal?", a: "No — therapies like EMDR rely on processing, not on recounting every painful detail." },
+    { q: "What therapy is best for PTSD?", a: "EMDR is a leading, evidence-based trauma therapy; we also use trauma-informed CBT/DBT and somatic skills." },
+    { q: "How long does trauma treatment take?", a: "It varies — EMDR can bring relief in relatively few sessions for single-incident trauma; complex trauma takes longer." },
+    { q: "Do you have programs for women or first responders?", a: "Yes — a women-only Wellness IOP and a First Responder IOP built for the job." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Healing is possible", copy: ["You survived it — now you can heal from it. Reach out to Hopewell Health Solutions today, confidentially and with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- BIPOLAR ----------
+const bipolarMeta = {
+  title: "Bipolar Disorder Treatment in CT | Hopewell Health Solutions",
+  desc: "Bipolar disorder treatment at Hopewell Health Solutions, CT — psychiatric medication management, therapy & IOP/PHP for mood stabilization. Most insurance accepted.",
+  h1: "Bipolar Disorder Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/bipolar-disorder/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Bipolar Disorder)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, bipolar-care image",
+  interlinks: ["/programs/ medication-management · intensive-outpatient-program · partial-hospitalization-program", "/treatment-methods/ dbt · genesight-testing", "/what-we-treat/ depression · anxiety · substance-use-disorder", "/admissions/"],
+};
+const bipolarSeo = "Net-new condition page. Targets “bipolar treatment CT,” “bipolar disorder therapy near me,” “mood disorder treatment Connecticut.” Medication-management-forward (mood stabilization) — interlinks to med management + IOP/PHP. Pull positions before migrating.";
+const bipolarDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; condition template. Leads with psychiatric medication management (mood stabilization) + GeneSight; IOP/PHP for stabilization.", "ℹ️ Covers Bipolar I & II generally — keep clinically careful (no overpromising)."];
+const bipolarSections = [
+  { eyebrow: "Bipolar Disorder Treatment · Glastonbury, CT", headline: "Bipolar Disorder Treatment in Connecticut",
+    copy: ["The highs and lows of bipolar disorder can be exhausting and disorienting — for you and the people who love you. With the right care, those swings become far more manageable, and stability becomes the norm rather than the exception.","At Hopewell Health Solutions, we treat bipolar disorder with expert psychiatric medication management, therapy, and intensive support when you need to stabilize."],
+    body: ["Psychiatric medication management", "Therapy & IOP/PHP", "Joint Commission accredited", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is bipolar disorder?", copy: ["Bipolar disorder is a mood condition marked by shifts between emotional highs (mania or hypomania) and lows (depression). In Bipolar I, manic episodes are more pronounced; in Bipolar II, hypomania alternates with significant depression. Between episodes, many people feel stable.","It’s a lifelong condition — but a highly manageable one. With consistent treatment, most people live full, stable lives."] },
+  { headline: "Signs & symptoms", copy: ["Bipolar disorder shows up at both ends of the mood spectrum:"], body: ["Manic/hypomanic: high energy, racing thoughts, less need for sleep, impulsivity, grandiosity", "Depressive: low mood, fatigue, hopelessness, loss of interest, changes in sleep and appetite", "Difficulty functioning during episodes", "Strain on relationships, work, and finances"] },
+  { headline: "How we treat bipolar disorder", copy: ["Stability is the goal, and it usually takes a combination:"], body: ["Medication management — mood stabilizers and careful psychiatric prescribing are the foundation", "GeneSight® testing — to personalize medication and reduce trial-and-error", "Therapy — DBT and CBT for coping, routine, and early-warning awareness", "IOP / PHP — intensive support during or after an episode to re-stabilize"] },
+  { headline: "Stabilizing after an episode", copy: ["A manic or depressive episode can be destabilizing and even dangerous. Our IOP and PHP programs provide structured, several-days-a-week support to help you regain footing — whether you’re stepping down from a hospital stay or trying to avoid one."] },
+  { headline: "Which level of care is right?", copy: ["Care scales to where you are:"], body: ["Stable, maintaining — medication management + therapy", "Symptoms escalating — Intensive Outpatient (IOP)", "Acute or post-hospital — Partial Hospitalization (PHP)"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Conditions that often come with bipolar disorder", copy: ["Bipolar disorder commonly co-occurs with anxiety and substance use, and depressive episodes overlap with major depression. We treat the whole picture, not one slice. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for bipolar disorder", copy: ["What sets our care apart:"], body: ["Expert psychiatric medication management with GeneSight personalization", "IOP/PHP for fast re-stabilization", "A full continuum, so you’re supported between episodes too", "Joint Commission accredited, with a multidisciplinary team"] },
+  { headline: "Bipolar disorder — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is bipolar disorder treatable?", a: "Yes — with consistent medication and therapy, most people achieve real, lasting stability." },
+    { q: "Is medication always required?", a: "Mood stabilizers are usually central to treatment, paired with therapy and skills." },
+    { q: "What helps during an episode?", a: "Our IOP and PHP provide intensive support to re-stabilize quickly and safely." },
+    { q: "Can therapy help with bipolar?", a: "Yes — DBT and CBT build routine, coping skills, and early-warning awareness alongside medication." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Find stability", copy: ["The swings don’t have to run your life. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- OCD ----------
+const ocdMeta = {
+  title: "OCD Treatment in Connecticut | Hopewell Health Solutions",
+  desc: "OCD treatment at Hopewell Health Solutions, CT — ERP & CBT therapy, medication, and NeuroStar TMS (FDA-cleared for OCD). Most insurance accepted.",
+  h1: "OCD Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/ocd/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (OCD)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, OCD-care image",
+  interlinks: ["/treatment-methods/ tms · cbt · dbt", "/programs/ medication-management · intensive-outpatient-program", "/what-we-treat/ anxiety · depression", "/admissions/"],
+};
+const ocdSeo = "Net-new condition page. Targets “ocd treatment CT,” “ocd therapy near me,” “erp therapy Connecticut.” Differentiator: NeuroStar TMS is FDA-cleared for OCD — strong bridge to the TMS page. Interlink to TMS + CBT. Pull positions before migrating.";
+const ocdDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; condition template. Highlights ERP (gold-standard) + TMS for OCD (FDA-cleared) — strong differentiator, links to the TMS page.", "ℹ️ Be precise: ERP is the first-line therapy; TMS is for cases that need more."];
+const ocdSections = [
+  { eyebrow: "OCD Treatment · Glastonbury, CT", headline: "OCD Treatment in Connecticut",
+    copy: ["OCD isn’t about being tidy — it’s a relentless loop of intrusive thoughts and the compulsions you use to quiet them. It can eat hours of your day and leave you exhausted. Effective treatment can break that loop.","At Hopewell Health Solutions, we treat OCD with proven therapy, medication, and — for cases that need more — NeuroStar TMS, which is FDA-cleared specifically for OCD."],
+    body: ["ERP & CBT", "TMS (FDA-cleared for OCD)", "Joint Commission accredited", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is OCD?", copy: ["Obsessive-compulsive disorder (OCD) is a condition defined by obsessions — unwanted, intrusive thoughts, images, or urges — and compulsions, the repetitive behaviors or mental acts people use to relieve the anxiety those obsessions cause. The relief is temporary, so the cycle repeats.","OCD is very treatable. With the right approach, most people dramatically reduce how much it controls their lives."] },
+  { headline: "Signs & symptoms", copy: ["OCD takes many forms, but common patterns include:"], body: ["Intrusive, distressing thoughts or fears", "Compulsions — checking, washing, counting, ordering, reassurance-seeking", "Significant time lost to rituals", "Intense anxiety when rituals are resisted", "Avoiding triggers", "Shame or secrecy about the symptoms"] },
+  { headline: "How we treat OCD", copy: ["Treatment targets the cycle itself:"], body: ["ERP (Exposure and Response Prevention) — the gold-standard OCD therapy, a specialized form of CBT", "CBT & DBT skills — to manage the anxiety that fuels compulsions", "Medication management — often part of effective OCD care", "TMS — NeuroStar TMS is FDA-cleared for OCD when other treatments haven’t been enough"] },
+  { headline: "When OCD doesn't respond to treatment", copy: ["For OCD that hasn’t improved with therapy and medication, NeuroStar TMS offers a drug-free, FDA-cleared option with high success rates and few side effects. It’s a real next step when the standard tools haven’t broken the cycle. (Links to the TMS page.)"] },
+  { headline: "Which level of care is right?", copy: ["OCD care scales to severity:"], body: ["Manageable — weekly ERP / therapy and/or medication", "Significantly disrupting life — Intensive Outpatient (IOP)", "Severe or treatment-resistant — add TMS"], copyAfter: ["(Links to /programs/ and /treatment-methods/tms/.)"] },
+  { headline: "Conditions that often come with OCD", copy: ["OCD frequently overlaps with anxiety and depression. We treat them together so progress on one doesn’t stall on another. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for OCD", copy: ["What sets our OCD care apart:"], body: ["Specialized, evidence-based therapy (ERP/CBT)", "NeuroStar TMS — FDA-cleared for OCD — under the same roof", "Expert medication management with GeneSight personalization", "Joint Commission accredited, judgment-free care"] },
+  { headline: "OCD — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What is the best therapy for OCD?", a: "ERP (Exposure and Response Prevention), a specialized form of CBT, is the gold standard." },
+    { q: "Can OCD be cured?", a: "OCD is highly treatable — most people greatly reduce symptoms, even if some management continues long-term." },
+    { q: "Does TMS work for OCD?", a: "Yes — NeuroStar TMS is FDA-cleared for OCD and can help when therapy and medication haven’t been enough." },
+    { q: "Is medication necessary?", a: "Medication is often part of effective OCD care, paired with ERP therapy." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Break the cycle", copy: ["You don’t have to keep feeding the loop. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- ADHD ----------
+const adhdMeta = {
+  title: "ADHD Treatment in Connecticut | Hopewell Health Solutions",
+  desc: "ADHD treatment at Hopewell Health Solutions, CT — testing & evaluation, medication management & therapy for children, teens & adults. Most insurance accepted.",
+  h1: "ADHD Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/adhd/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (ADHD)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, ADHD-care image",
+  interlinks: ["/treatment-methods/ adhd-testing · neuropsychological-testing", "/programs/ medication-management · outpatient-therapy", "/what-we-treat/ anxiety · depression", "/admissions/"],
+};
+const adhdSeo = "Net-new condition page. Targets “adhd treatment CT,” “adhd help near me,” “adhd treatment for adults Connecticut.” Bridges to the ADHD Testing + Neuropsych Testing methods and to medication management (ages 4+). Pull positions before migrating.";
+const adhdDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; condition template. Bridges to ADHD Testing + Neuropsych Testing (evaluation) and medication management (ages 4+).", "ℹ️ Distinct from the ADHD Testing method page: this is the condition; testing is the service. Cross-link, don’t duplicate."];
+const adhdSections = [
+  { eyebrow: "ADHD Treatment · Children, Teens & Adults · Glastonbury, CT", headline: "ADHD Treatment in Connecticut",
+    copy: ["When focus, follow-through, and impulse control feel like a daily uphill battle, it can affect everything — school, work, relationships, self-esteem. ADHD is real, common, and very treatable.","At Hopewell Health Solutions, we evaluate and treat ADHD in children, teens, and adults — from clear diagnosis through medication, therapy, and ongoing support."],
+    body: ["Testing · medication · therapy", "Ages 4 & up", "Joint Commission accredited", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is ADHD?", copy: ["Attention-deficit/hyperactivity disorder (ADHD) is a neurodevelopmental condition that affects attention, impulse control, and activity level. It’s not a matter of laziness or willpower — it’s a difference in how the brain regulates focus and self-control.","ADHD doesn’t go away at adulthood, and it’s highly manageable at every age with the right combination of support."] },
+  { headline: "Signs & symptoms", copy: ["ADHD looks different across ages, but common signs include:"], body: ["Trouble sustaining attention or finishing tasks", "Easily distracted, forgetful, disorganized", "Restlessness, fidgeting, or hyperactivity", "Impulsivity — interrupting, acting without thinking", "Difficulty with time management and follow-through", "Underperformance at school or work despite ability"] },
+  { headline: "Start with a real evaluation", copy: ["Good treatment starts with an accurate diagnosis — and ADHD is often confused with anxiety, depression, or learning differences. Our ADHD Testing combines a clinical interview, rating scales, and a computerized assessment, and our Neuropsychological Testing goes deeper when needed. (Links to those pages.)"] },
+  { headline: "How we treat ADHD", copy: ["Once we understand the full picture, treatment is tailored to you or your child:"], body: ["Medication management — expert prescribing for ages 4+, with GeneSight® to personalize it", "Therapy & skills — for organization, time management, and emotional regulation", "Coaching & accommodations — practical support for school and work", "Coordinated care — treating co-occurring anxiety or depression alongside ADHD"] },
+  { headline: "Which level of care is right?", copy: ["Most ADHD care is outpatient:"], body: ["Diagnosis & maintenance — testing + medication management", "Co-occurring anxiety/depression that’s disruptive — add therapy or IOP", "Complex picture — neuropsychological testing for a deeper look"], copyAfter: ["(Links to /programs/ and /treatment-methods/.)"] },
+  { headline: "Conditions that often come with ADHD", copy: ["ADHD frequently travels with anxiety, depression, and learning differences. Treating ADHD without addressing those rarely works — so we look at the whole person. (Links to those condition pages.)"] },
+  { headline: "Why Hopewell Health Solutions for ADHD", copy: ["What sets our ADHD care apart:"], body: ["Accurate evaluation — ADHD testing and neuropsychological testing in-house", "Medication management for ages 4 and up, personalized with GeneSight", "Care for co-occurring anxiety and depression under one roof", "Joint Commission accredited"] },
+  { headline: "ADHD — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Can adults have ADHD?", a: "Absolutely — ADHD persists into adulthood, and we evaluate and treat adults, teens, and children." },
+    { q: "How is ADHD diagnosed?", a: "Through a structured evaluation: clinical interview, rating scales, and a computerized assessment." },
+    { q: "Is medication the only treatment?", a: "No — medication is effective for many, but therapy, coaching, and accommodations matter too." },
+    { q: "Could it be something else?", a: "Possibly — anxiety, depression, and learning differences can mimic ADHD, which is why evaluation matters." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Get clarity and support", copy: ["Focus and follow-through can get easier with the right help. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- SUBSTANCE USE DISORDER (PILLAR) ----------
+const sudcondMeta = {
+  title: "Substance Use Disorder Treatment in CT | Hopewell Health Solutions",
+  desc: "Substance use disorder treatment at Hopewell Health Solutions, CT — co-occurring care, MAT & IOP for drug & alcohol addiction. Confidential. Most insurance accepted.",
+  h1: "Substance Use Disorder Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/substance-use-disorder/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Substance Use Disorder)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, recovery image",
+  interlinks: ["/what-we-treat/ alcohol-addiction · drug-addiction · prescription-drug-addiction · co-occurring", "/treatment-methods/ medication-assisted-treatment", "/programs/ substance-use-iop · medication-management", "/admissions/"],
+};
+const sudcondSeo = "Net-new PILLAR page. Targets “substance use disorder treatment CT,” “addiction treatment Connecticut,” “drug & alcohol rehab near me (outpatient).” Pillar links to 3 spokes (alcohol / drug / prescription) + the SUD IOP program + MAT. SUD copy allowed (ads on separate LPs + LegitScript). Differentiate from the Substance Use IOP program page (this owns the condition; that owns the program).";
+const sudcondDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new pillar; links to alcohol/drug/prescription spokes + the SUD IOP program + MAT.", "🔀 Differentiate from /programs/substance-use-iop/ (program) — this page owns the condition intent.", "✓ SUD copy allowed; CTM forms only."];
+const sudcondSections = [
+  { eyebrow: "Substance Use Disorder · Glastonbury, CT", headline: "Substance Use Disorder Treatment in Connecticut",
+    copy: ["Addiction is a medical condition, not a character flaw — and recovery is absolutely possible. At Hopewell Health Solutions, we treat substance use disorder alongside the anxiety, depression, or trauma that so often drive it, with outpatient care that lets you heal while living your life.","Wherever you are — questioning your use or ready to stop — there’s a way forward, and a team that won’t judge you for needing it."],
+    body: ["Co-occurring care", "MAT + therapy", "Confidential & judgment-free", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is substance use disorder?", copy: ["Substance use disorder (SUD) is a chronic, treatable condition in which a person can’t control their use of drugs or alcohol despite harmful consequences. It changes the brain’s reward, motivation, and self-control systems — which is why “just stopping” is so much harder than it sounds.","It exists on a spectrum from mild to severe, and at every point, treatment helps."] },
+  { headline: "Signs of a substance use disorder", copy: ["Common signs include:"], body: ["Cravings or strong urges to use", "Needing more for the same effect (tolerance)", "Failed attempts to cut back", "Time lost to obtaining, using, or recovering", "Neglected responsibilities at work, school, or home", "Continuing despite knowing the harm", "Withdrawal symptoms when you stop"] },
+  { headline: "Substances we treat", copy: ["We provide dedicated care across the most common substances — each with its own page:"], body: ["Alcohol addiction", "Drug addiction", "Prescription drug addiction", "Co-occurring substance use with mental health conditions"] },
+  { headline: "How we treat substance use", copy: ["Recovery works best when it’s comprehensive:"], body: ["Substance Use IOP — structured group and individual therapy several days a week", "Medication-Assisted Treatment (MAT) — FDA-approved medication to ease cravings and withdrawal", "Therapy & relapse prevention — DBT, CBT, and the skills to stay well", "Co-occurring care — treating mental health and substance use together"] },
+  { headline: "We treat the whole person", copy: ["Substance use rarely stands alone — there’s usually anxiety, depression, or trauma underneath. Treating one without the other is why so many relapse. At Hopewell Health Solutions, dual-diagnosis care is the standard, not the exception. (Links to the co-occurring page.)"] },
+  { headline: "Which level of care is right?", copy: ["Outpatient care fits many people — and we’ll point you elsewhere if you need detox first:"], body: ["Mild–moderate — outpatient therapy + MAT", "Moderate–severe — Substance Use IOP", "Needs detox/residential first — we’ll help you find it, then continue care here"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions for recovery", copy: ["What sets our care apart:"], body: ["True co-occurring treatment — mental health and substance use together", "MAT + GeneSight® to personalize medication", "Confidential, judgment-free, Joint Commission accredited", "A team that treats addiction as the medical condition it is"] },
+  { headline: "Substance use — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is addiction really a disease?", a: "Yes — it’s a chronic, treatable medical condition that changes brain function, not a failure of willpower." },
+    { q: "Do I need detox first?", a: "Sometimes — our outpatient programs don’t provide medical detox, but we’ll help you find it if you need it." },
+    { q: "Do you treat mental health too?", a: "Yes — co-occurring care is core to how we work." },
+    { q: "What is MAT?", a: "Medication-Assisted Treatment combines FDA-approved medication with therapy to support recovery." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Recovery starts with one call", copy: ["You don’t have to figure this out alone. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- ALCOHOL ADDICTION ----------
+const alcoholMeta = {
+  title: "Alcohol Addiction Treatment in CT | Hopewell Health Solutions",
+  desc: "Alcohol addiction treatment at Hopewell Health Solutions, CT — outpatient therapy, MAT (naltrexone/Vivitrol) & IOP, with co-occurring mental health care. Most insurance accepted.",
+  h1: "Alcohol Addiction Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/alcohol-addiction/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Alcohol Use Disorder)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, recovery image",
+  interlinks: ["/what-we-treat/ substance-use-disorder · co-occurring", "/treatment-methods/ medication-assisted-treatment", "/programs/ substance-use-iop · medication-management", "/admissions/"],
+};
+const alcoholSeo = "Net-new spoke (under the SUD pillar). Targets “alcohol addiction treatment CT,” “alcohol rehab near me (outpatient),” “high-functioning alcoholic help.” Links up to the SUD pillar + MAT + SUD IOP. Hopewell’s “high-functioning alcoholic” blog ranks — interlink.";
+const alcoholDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~900 words.", "✓ Net-new spoke; links up to the SUD pillar + MAT + SUD IOP. SUD copy allowed; CTM forms only.", "ℹ️ Interlink the existing 'high-functioning alcoholic' / AUD blog posts (protect in phase 2)."];
+const alcoholSections = [
+  { eyebrow: "Alcohol Addiction Treatment · Glastonbury, CT", headline: "Alcohol Addiction Treatment in Connecticut",
+    copy: ["Alcohol is everywhere, which makes a problem with it easy to minimize — until it isn’t. Whether it’s daily drinking, blackouts, or just a quiet worry that you can’t stop, help is here and recovery is real.","At Hopewell Health Solutions, we treat alcohol use disorder with outpatient therapy, medication, and care for whatever’s underneath it."],
+    body: ["MAT (naltrexone/Vivitrol)", "IOP + therapy", "Confidential", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is alcohol use disorder?", copy: ["Alcohol use disorder (AUD) is a medical condition in which a person can’t control their drinking despite negative consequences to health, work, or relationships. It ranges from mild to severe — and you don’t have to be at “rock bottom” to qualify for help. Many people with AUD are high-functioning, holding down jobs and families while privately struggling."] },
+  { headline: "Signs of a drinking problem", copy: ["Common signs include:"], body: ["Drinking more or longer than you intended", "Wanting to cut down but not being able to", "Cravings between drinks", "Needing more to feel the effect", "Drinking despite problems it causes", "Withdrawal — shakiness, sweating, anxiety — when you stop"] },
+  { headline: "How we treat alcohol addiction", copy: ["Recovery is most durable when it’s comprehensive:"], body: ["Medication-Assisted Treatment — FDA-approved options like naltrexone (Vivitrol) reduce cravings", "Substance Use IOP — structured therapy several days a week", "Therapy & relapse prevention — DBT/CBT and real coping skills", "Co-occurring care — treating the anxiety, depression, or trauma underneath"] },
+  { headline: "We treat the whole person", copy: ["For many people, drinking is a way to cope with something else — anxiety, depression, trauma, stress. We treat both together, because removing the alcohol without addressing the why rarely lasts. (Links to the co-occurring page.)"] },
+  { headline: "Which level of care is right?", copy: ["Outpatient care fits many people:"], body: ["Mild–moderate — outpatient therapy + MAT", "Moderate–severe — Substance Use IOP", "Heavy daily drinking — may need medical detox first; we’ll help you arrange it"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions", copy: ["What sets our care apart:"], body: ["MAT to make early recovery survivable", "True co-occurring treatment", "Confidential, judgment-free, Joint Commission accredited", "A full continuum, all under one roof"] },
+  { headline: "Alcohol addiction — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do I have to quit completely?", a: "Goals are individualized — for most, abstinence is safest; we’ll set a plan that fits your health and situation." },
+    { q: "Do I need detox?", a: "Heavy daily drinking can require medical detox first — we’ll assess and help you arrange it, then continue care." },
+    { q: "Can medication help me stop drinking?", a: "Yes — MAT options like naltrexone reduce cravings and support recovery." },
+    { q: "What if I’m high-functioning?", a: "You still deserve help — many of our clients are managing jobs and families while struggling privately." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "You can change your relationship with alcohol", copy: ["The first call is the hardest part. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- DRUG ADDICTION ----------
+const drugMeta = {
+  title: "Drug Addiction Treatment in CT | Hopewell Health Solutions",
+  desc: "Drug addiction treatment at Hopewell Health Solutions, CT — outpatient IOP, MAT & co-occurring care for opioids, stimulants & more. Confidential. Most insurance accepted.",
+  h1: "Drug Addiction Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/drug-addiction/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Drug Addiction)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, recovery image",
+  interlinks: ["/what-we-treat/ substance-use-disorder · prescription-drug-addiction · co-occurring", "/treatment-methods/ medication-assisted-treatment", "/programs/ substance-use-iop", "/admissions/"],
+};
+const drugSeo = "Net-new spoke (under the SUD pillar). Targets “drug addiction treatment CT,” “drug rehab near me (outpatient),” “opioid treatment Connecticut.” Links up to the SUD pillar + MAT + SUD IOP; cross-links to prescription-drug addiction.";
+const drugDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~900 words.", "✓ Net-new spoke; SUD copy allowed; CTM forms only. Links up to SUD pillar + MAT.", "ℹ️ Covers illicit drugs broadly (opioids, stimulants, etc.); prescription misuse has its own spoke."];
+const drugSections = [
+  { eyebrow: "Drug Addiction Treatment · Glastonbury, CT", headline: "Drug Addiction Treatment in Connecticut",
+    copy: ["Drug addiction can take hold fast and quietly, reshaping your brain and your life before you realize what’s happening. It’s a medical condition — and it’s treatable, with the right support.","At Hopewell Health Solutions, we help people recover from drug addiction through outpatient programs, medication, and care for the mental health struggles so often underneath it."],
+    body: ["IOP + therapy", "MAT", "Confidential & judgment-free", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is drug addiction?", copy: ["Drug addiction — a form of substance use disorder — is a chronic condition marked by compulsive drug use despite harmful consequences. It affects the brain’s reward and self-control systems, which is why willpower alone usually isn’t enough. It can involve opioids, stimulants, cannabis, sedatives, and other substances, and it ranges from mild to severe."] },
+  { headline: "Signs of drug addiction", copy: ["Common signs include:"], body: ["Strong cravings or urges to use", "Tolerance — needing more for the same effect", "Failed attempts to cut back or stop", "Neglecting responsibilities and relationships", "Continuing use despite clear harm", "Withdrawal symptoms when not using"] },
+  { headline: "How we treat drug addiction", copy: ["Effective recovery is comprehensive:"], body: ["Medication-Assisted Treatment — FDA-approved medication to ease cravings and withdrawal (esp. for opioids)", "Substance Use IOP — structured therapy several days a week", "Relapse-prevention skills — DBT/CBT and a real plan", "Co-occurring care — treating mental health alongside addiction"] },
+  { headline: "We treat the whole person", copy: ["Drug use is often a way of coping with pain — trauma, anxiety, depression. We treat both at once, because lasting recovery means healing what drove the use in the first place. (Links to the co-occurring page.)"] },
+  { headline: "Which level of care is right?", copy: ["We’ll help you find the right starting point:"], body: ["Outpatient therapy + MAT — for milder use or step-down", "Substance Use IOP — for structured, intensive support", "Detox/residential first if needed — then continue care with us"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions", copy: ["What sets our care apart:"], body: ["MAT for opioid and other use disorders", "True co-occurring (dual diagnosis) treatment", "Confidential, judgment-free, Joint Commission accredited", "A full continuum under one roof"] },
+  { headline: "Drug addiction — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do you treat opioid addiction?", a: "Yes — including with MAT (e.g., buprenorphine/Suboxone) alongside therapy." },
+    { q: "Do I need detox first?", a: "Sometimes — we’ll assess and, if detox is needed, help you arrange it before continuing outpatient care." },
+    { q: "Is it confidential?", a: "Yes — your care is private and judgment-free." },
+    { q: "Do you treat mental health too?", a: "Yes — co-occurring care is central to how we work." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Recovery is possible", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and take the first step toward getting your life back."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- PRESCRIPTION DRUG ADDICTION ----------
+const rxMeta = {
+  title: "Prescription Drug Addiction Treatment in CT | Hopewell Health Solutions",
+  desc: "Prescription drug addiction treatment at Hopewell Health Solutions, CT — outpatient IOP, MAT & co-occurring care for opioid, benzo & stimulant misuse. Most insurance accepted.",
+  h1: "Prescription Drug Addiction Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/prescription-drug-addiction/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Prescription Drug Addiction)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, recovery image",
+  interlinks: ["/what-we-treat/ substance-use-disorder · drug-addiction · co-occurring", "/treatment-methods/ medication-assisted-treatment", "/programs/ substance-use-iop", "/admissions/"],
+};
+const rxSeo = "Net-new spoke (under the SUD pillar). Targets “prescription drug addiction treatment CT,” “painkiller addiction help,” “benzo dependence Connecticut.” Links up to the SUD pillar + MAT + SUD IOP; cross-links to drug addiction.";
+const rxDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~900 words.", "✓ Net-new spoke; SUD copy allowed; CTM forms only. Links up to SUD pillar + MAT.", "ℹ️ Covers opioids, benzodiazepines, and prescription stimulants — the empathy angle: it often starts with a legitimate prescription."];
+const rxSections = [
+  { eyebrow: "Prescription Drug Addiction · Glastonbury, CT", headline: "Prescription Drug Addiction Treatment in Connecticut",
+    copy: ["Prescription drug addiction often starts in the most ordinary way — a legitimate prescription for pain, anxiety, or focus. Over time, the body adapts, and what was meant to help becomes something you can’t stop. There’s no shame in that, and there is a way out.","At Hopewell Health Solutions, we treat prescription drug dependence with medical care, therapy, and support for whatever’s underneath it."],
+    body: ["MAT", "IOP + therapy", "Confidential & judgment-free", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What is prescription drug addiction?", copy: ["Prescription drug addiction is a substance use disorder involving medications — most often opioid painkillers, benzodiazepines (for anxiety or sleep), or stimulants (for ADHD). Because these drugs are legal and prescribed, dependence can develop quietly, even when you’re taking them as directed at first. It’s a medical condition, and it’s treatable."] },
+  { headline: "Signs of prescription drug dependence", copy: ["Common signs include:"], body: ["Taking more than prescribed, or for longer", "Needing higher doses for the same effect", "Running out early or “doctor shopping”", "Anxiety about having enough", "Using for reasons beyond the original prescription", "Withdrawal symptoms when you stop"] },
+  { headline: "How we treat prescription drug addiction", copy: ["Recovery is comprehensive and medically informed:"], body: ["Medication-Assisted Treatment — especially important for opioid dependence", "Substance Use IOP — structured therapy several days a week", "Relapse-prevention & therapy — DBT/CBT and coping skills", "Co-occurring care — treating the pain, anxiety, or ADHD that may be involved"] },
+  { headline: "We treat the whole person", copy: ["Prescription dependence is often tangled up with the very thing the medication was treating — chronic pain, anxiety, ADHD. We help you address both safely, so you’re not left worse off than where you started. (Links to the co-occurring page.)"] },
+  { headline: "Which level of care is right?", copy: ["We’ll match care to your needs:"], body: ["Outpatient therapy + MAT — for milder dependence or step-down", "Substance Use IOP — for structured, intensive support", "Medical detox first if needed (esp. benzodiazepines/opioids) — we’ll help arrange it"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions", copy: ["What sets our care apart:"], body: ["Medically informed care for opioid, benzo, and stimulant dependence", "MAT to ease cravings and withdrawal", "True co-occurring treatment", "Confidential, judgment-free, Joint Commission accredited"] },
+  { headline: "Prescription drug addiction — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "I only took what was prescribed — can I still be addicted?", a: "Yes — dependence can develop even with as-directed use; it’s a medical issue, not a moral one." },
+    { q: "Is it safe to stop on my own?", a: "Not always — stopping benzodiazepines or opioids abruptly can be dangerous. Let us guide a safe plan." },
+    { q: "Can medication help?", a: "Yes — MAT is especially effective for opioid dependence, alongside therapy." },
+    { q: "Do you treat the original condition too?", a: "Yes — we address the pain, anxiety, or ADHD involved as part of co-occurring care." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "There's a safe way forward", copy: ["You don’t have to taper alone or white-knuckle withdrawal. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- CO-OCCURRING / DUAL DIAGNOSIS ----------
+const cooccurMeta = {
+  title: "Co-Occurring Disorders (Dual Diagnosis) in CT | Hopewell Health Solutions",
+  desc: "Co-occurring disorder treatment at Hopewell Health Solutions, CT — integrated dual-diagnosis care for mental health and substance use, together. Most insurance accepted.",
+  h1: "Co-Occurring Disorders & Dual Diagnosis Treatment in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/what-we-treat/co-occurring-disorders/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "MedicalCondition (Co-occurring Disorders)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, dual-diagnosis image",
+  interlinks: ["/what-we-treat/ depression · anxiety · trauma-ptsd · substance-use-disorder", "/programs/ intensive-outpatient-program · substance-use-iop · medication-management", "/treatment-methods/ medication-assisted-treatment · dbt", "/admissions/"],
+};
+const cooccurSeo = "Net-new page. Targets “dual diagnosis treatment CT,” “co-occurring disorders Connecticut,” “mental health and substance use treatment.” This is Hopewell’s CORE model — link it from the SUD pillar and all condition + program pages. High differentiator.";
+const cooccurDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.", "✓ Net-new; expresses Hopewell’s core model (integrated MH + SUD). Hub-links across conditions + programs.", "✓ SUD copy allowed; CTM forms only."];
+const cooccurSections = [
+  { eyebrow: "Co-Occurring Disorders · Dual Diagnosis · Glastonbury, CT", headline: "Co-Occurring Disorders & Dual Diagnosis Treatment in Connecticut",
+    copy: ["For most people, mental health and substance use aren’t two separate problems — they’re tangled together. Depression fuels the drinking; the drinking deepens the depression. Treating one and ignoring the other is why so many people cycle in and out of care.","At Hopewell Health Solutions, integrated dual-diagnosis treatment is the standard. We treat both, at the same time, with one team and one plan."],
+    body: ["Integrated care", "MAT + therapy + psychiatry", "Joint Commission accredited", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "What are co-occurring disorders?", copy: ["Co-occurring disorders — also called dual diagnosis — means having a mental health condition and a substance use disorder at the same time, such as depression and alcohol use, or anxiety/PTSD and opioid use. They interact and reinforce each other, which makes integrated treatment essential.","It’s extremely common: most people with a substance use disorder also have a mental health condition, and vice versa."] },
+  { headline: "Why treating both together matters", copy: ["When mental health and substance use are treated separately — or one is ignored — relapse and setbacks are far more likely. The untreated condition keeps pulling the other back down. Integrated care breaks that loop by addressing the whole person at once: the symptoms, the substance use, and the root causes connecting them."] },
+  { headline: "Signs you may need dual-diagnosis care", copy: ["Consider integrated care if you:"], body: ["Use alcohol or drugs to cope with anxiety, depression, or trauma", "Notice your mental health worsens with use — and vice versa", "Have relapsed after treatment that addressed only one side", "Feel like you’re fighting two battles at once"] },
+  { headline: "How we treat co-occurring disorders", copy: ["One coordinated plan, all under one roof:"], body: ["Psychiatry & medication management — for the mental health condition", "MAT — for substance use, when appropriate", "Therapy — DBT, CBT, EMDR for the underlying issues", "IOP / PHP — structured support that addresses both together"] },
+  { headline: "Which level of care is right?", copy: ["Dual-diagnosis care scales with you:"], body: ["Outpatient therapy + medication management + MAT", "Intensive Outpatient (IOP) — for structured, several-days-a-week care", "Partial Hospitalization (PHP) — the highest level of outpatient support"], copyAfter: ["(Links to /programs/.)"] },
+  { headline: "Why Hopewell Health Solutions for dual diagnosis", copy: ["This is what we do best:"], body: ["Integrated MH + SUD treatment as the standard, not an add-on", "Psychiatry, MAT, therapy, and IOP/PHP coordinated by one team", "GeneSight® to personalize medication", "Joint Commission accredited, confidential, and judgment-free"] },
+  { headline: "Co-occurring disorders — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What is dual diagnosis?", a: "Having a mental health condition and a substance use disorder at the same time — treated together here." },
+    { q: "Why can’t I just treat one at a time?", a: "Because they reinforce each other — treating only one usually leads to relapse or setbacks." },
+    { q: "Is this common?", a: "Very — most people with a substance use disorder also have a mental health condition." },
+    { q: "Do you handle both the psychiatry and the addiction side?", a: "Yes — psychiatry, MAT, therapy, and IOP/PHP are all coordinated by one team." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Treat the whole picture", copy: ["You deserve care that sees all of you. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
 ---
 
 <Review
@@ -2457,9 +2906,48 @@ const genesightSections = [
     <ContentDoc label="Treatment Methods · GeneSight — net-new" title="GeneSight® Genetic Testing" intro="Pharmacogenomic cheek swab that guides medication choices. Net-new; pairs with Medication Management (USP)." meta={genesightMeta} seo={genesightSeo} decisions={genesightDecisions} sections={genesightSections} />
   </article>
 
+  <article data-panel="wwt" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Hub" title="What We Treat (Hub)" intro="The conditions hub — the biggest net-new SEO gap. Owns 'mental health treatment CT' and funnels each condition query to its spoke." meta={wwtMeta} seo={wwtSeo} decisions={wwtDecisions} sections={wwtSections} />
+  </article>
+  <article data-panel="depression" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Depression — TEMPLATE for condition pages" title="Depression" intro="The template for all condition pages. Net-new; ties to the TMS/Spravato USPs. Approve the structure and I'll roll it to the other conditions." meta={depMeta} seo={depSeo} decisions={depDecisions} sections={depSections} />
+  </article>
+
+  <article data-panel="anxiety" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Anxiety" title="Anxiety" intro="GAD, panic & social anxiety. Net-new condition page on the approved template." meta={anxietyMeta} seo={anxietySeo} decisions={anxietyDecisions} sections={anxietySections} />
+  </article>
+  <article data-panel="trauma" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Trauma & PTSD" title="Trauma & PTSD" intro="EMDR-forward, bridges to the Women's & First Responder IOP tracks. Net-new." meta={traumaMeta} seo={traumaSeo} decisions={traumaDecisions} sections={traumaSections} />
+  </article>
+  <article data-panel="bipolar" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Bipolar Disorder" title="Bipolar Disorder" intro="Mood stabilization via psychiatric med management + IOP/PHP. Net-new." meta={bipolarMeta} seo={bipolarSeo} decisions={bipolarDecisions} sections={bipolarSections} />
+  </article>
+  <article data-panel="ocd" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · OCD" title="OCD" intro="ERP gold-standard + NeuroStar TMS (FDA-cleared for OCD). Net-new." meta={ocdMeta} seo={ocdSeo} decisions={ocdDecisions} sections={ocdSections} />
+  </article>
+  <article data-panel="adhd" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · ADHD" title="ADHD" intro="Evaluation → medication & therapy, ages 4+. Bridges to the testing pages. Net-new." meta={adhdMeta} seo={adhdSeo} decisions={adhdDecisions} sections={adhdSections} />
+  </article>
+
+  <article data-panel="sudcond" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Substance Use Disorder (pillar)" title="Substance Use Disorder" intro="The SUD pillar — links to alcohol/drug/prescription spokes + the SUD IOP program + MAT. Net-new." meta={sudcondMeta} seo={sudcondSeo} decisions={sudcondDecisions} sections={sudcondSections} />
+  </article>
+  <article data-panel="alcohol" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Alcohol Addiction" title="Alcohol Addiction" intro="Spoke under the SUD pillar — MAT, IOP, co-occurring. Net-new." meta={alcoholMeta} seo={alcoholSeo} decisions={alcoholDecisions} sections={alcoholSections} />
+  </article>
+  <article data-panel="drug" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Drug Addiction" title="Drug Addiction" intro="Spoke under the SUD pillar — opioids/stimulants/etc., MAT + IOP. Net-new." meta={drugMeta} seo={drugSeo} decisions={drugDecisions} sections={drugSections} />
+  </article>
+  <article data-panel="rx" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Prescription Drug Addiction" title="Prescription Drug Addiction" intro="Spoke under the SUD pillar — opioids/benzos/stimulants; empathy angle. Net-new." meta={rxMeta} seo={rxSeo} decisions={rxDecisions} sections={rxSections} />
+  </article>
+  <article data-panel="cooccur" class="doc-panel hidden">
+    <ContentDoc label="What We Treat · Co-occurring (Dual Diagnosis)" title="Co-Occurring Disorders" intro="Hopewell's core model — integrated MH + SUD care. Hub-links across conditions + programs. Net-new." meta={cooccurMeta} seo={cooccurSeo} decisions={cooccurDecisions} sections={cooccurSections} />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
