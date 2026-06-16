@@ -18,6 +18,15 @@ const docs = [
   { id: "php", label: "Program · PHP", status: "ready" },
   { id: "mm", label: "Program · Medication Management", status: "ready" },
   { id: "ot", label: "Program · Outpatient Therapy", status: "ready" },
+  { id: "tms", label: "Treatment · TMS (template)", status: "ready" },
+  { id: "spravato", label: "Treatment · Spravato", status: "ready" },
+  { id: "mat", label: "Treatment · MAT", status: "ready" },
+  { id: "emdr", label: "Treatment · EMDR", status: "ready" },
+  { id: "dbt", label: "Treatment · DBT", status: "ready" },
+  { id: "group", label: "Treatment · Group Therapy", status: "ready" },
+  { id: "neuro", label: "Treatment · Neuropsych Testing", status: "ready" },
+  { id: "adhdtest", label: "Treatment · ADHD Testing", status: "ready" },
+  { id: "genesight", label: "Treatment · GeneSight", status: "ready" },
   { id: "depression", label: "Condition · Depression", status: "empty" },
 ];
 
@@ -1705,6 +1714,454 @@ const otSections = [
     ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
   },
 ];
+
+// ---------- TMS DOCUMENT (TEMPLATE for /treatment-methods/ pages) ----------
+const tmsMeta = {
+  title: "TMS Therapy for Depression in CT | Hopewell Health Solutions",
+  desc: "NeuroStar TMS at Hopewell Health Solutions, CT — FDA-cleared, drug-free relief for treatment-resistant depression & OCD. No downtime. Most insurance accepted.",
+  h1: "TMS Therapy for Depression & OCD in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/tms/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (TMS)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, TMS / NeuroStar image",
+  interlinks: ["/what-we-treat/ depression · ocd", "/treatment-methods/ spravato", "/programs/ medication-management · intensive-outpatient-program", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const tmsSeo =
+  "TEMPLATE for all /treatment-methods/ pages (~1,000 words: definition → how it works → what to expect → conditions → candidacy → vs-alternatives → outcomes → side effects → fits-into-care → FAQ). 301 /service/tms → /treatment-methods/tms/. Strong existing ranking: “tms ct” (#6) — preserve. Target “tms therapy for depression near me” (320), “tms ct,” “tms in my area,” “etms treatment.” Ignore noise/out-of-area (lifequality tms, newtown tms, connecticare jobs, solution tms). Keeps NeuroStar branding + the 83%/62% outcome stats.";
+
+const tmsKeywords = [
+  ["tms therapy for depression near me", 92, "320"],
+  ["etms treatment", 74, "90"],
+  ["tms ct", 6, "50"],
+  ["tms in my area", 99, "30"],
+];
+
+const tmsDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC. Full name (NAP+W). ~1,000 words — rich, not thin.",
+  "⭐ <strong>TEMPLATE for all treatment-method pages</strong> — approve this structure before I apply it to Spravato, MAT, EMDR, DBT, Group Therapy, Neuropsych / ADHD / GeneSight testing.",
+  "✓ 301 /service/tms → /treatment-methods/tms/. Keeps NeuroStar® branding, the 3-step process, and the outcome stats. CTM forms only; no online booking.",
+  "✓ Preserves “tms ct” (#6) + targets “tms therapy for depression near me” (320). Out-of-area / competitor terms ignored.",
+  "⚠️ The 83% response / 62% remission figures are NeuroStar’s published clinical data — confirm we cite them as NeuroStar’s (not Hopewell’s own outcomes).",
+];
+
+const tmsSections = [
+  {
+    eyebrow: "TMS Therapy · NeuroStar® Advanced TMS · Glastonbury, CT",
+    headline: "TMS Therapy for Depression & OCD in Connecticut",
+    copy: [
+      "When medication and talk therapy haven’t been enough, there’s another path. Transcranial Magnetic Stimulation (TMS) is a safe, non-invasive, FDA-cleared treatment that gently stimulates the areas of the brain involved in mood — drug-free, with no downtime.",
+      "At Hopewell Health Solutions, we offer NeuroStar® Advanced TMS for treatment-resistant depression and OCD, right here in Connecticut.",
+    ],
+    body: ["FDA-cleared", "Drug-free & non-invasive", "No downtime", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is TMS?",
+    copy: [
+      "Transcranial Magnetic Stimulation (TMS) is an outpatient treatment that uses targeted magnetic pulses — similar to those used in an MRI — to stimulate the nerve cells in the regions of the brain that regulate mood. In depression, those areas are often underactive; TMS gently “wakes up” those connections to help restore the brain’s natural function.",
+      "It’s done in our office while you’re fully awake and alert — no anesthesia, no sedation — and you drive yourself home afterward.",
+    ],
+  },
+  {
+    headline: "How TMS works",
+    copy: ["Your treatment is mapped to you, then delivered in short, comfortable sessions:"],
+    body: [
+      "Mapping — at your first visit, a gentle pulse pinpoints the exact spot to target (you’ll see a small movement in your thumb), so treatment is tailored to your brain.",
+      "Treatment — each session runs about 18–45 minutes; most people describe it as light tapping on the scalp. You sit back and relax.",
+      "After — there’s no downtime. You return to work, driving, and your day immediately.",
+    ],
+    copyAfter: ["A full course is typically daily sessions, Monday through Friday, over several weeks, with improvement building gradually."],
+  },
+  {
+    headline: "What TMS treats",
+    copy: ["TMS at Hopewell Health Solutions is FDA-cleared for:"],
+    body: [
+      "Treatment-resistant major depression — when medication and therapy haven’t brought relief",
+      "Obsessive-compulsive disorder (OCD) — NeuroStar OCD, with high success rates and few side effects",
+    ],
+    copyAfter: ["Nearly half of people with clinical depression are considered “non-responsive” to medication at some point — TMS gives them another, effective option. (Links to our depression and OCD pages.)"],
+  },
+  {
+    headline: "Is TMS right for you?",
+    copy: ["TMS may be a strong fit if you:"],
+    body: [
+      "Have depression or OCD that hasn’t responded to medication or therapy",
+      "Want a non-medication treatment",
+      "Want to avoid or reduce medication side effects",
+      "Are comfortable with a multi-session course of care",
+      "Prefer a personalized treatment with no downtime",
+    ],
+  },
+  {
+    headline: "What to expect",
+    copy: ["You’ll sit in a comfortable chair, fully awake, while the NeuroStar device delivers pulses to the mapped area. There’s no IV, no sedation, and no memory effects. Many people read, listen to music, or simply relax. Afterward, you carry on with your day as normal — the whole appeal of TMS is that it fits into real life."],
+  },
+  {
+    headline: "How TMS compares to medication and ECT",
+    copy: ["Unlike medication, TMS doesn’t circulate through your whole body, so it avoids systemic side effects like weight gain or sexual dysfunction. And unlike ECT, it requires no anesthesia and causes no memory loss — making it a gentler, lower-risk alternative for many people seeking real relief."],
+  },
+  {
+    headline: "Does TMS work?",
+    copy: ["TMS has strong, published results for treatment-resistant depression:"],
+    body: ["83% of patients who completed TMS therapy experienced relief from their depression.", "62% reached full remission — complete relief from their symptoms."],
+    copyAfter: ["(NeuroStar clinical data.)"],
+  },
+  {
+    headline: "Side effects & safety",
+    copy: ["TMS is well-tolerated. The most common side effect is mild scalp discomfort or a light headache during or right after the first few sessions, which usually fades as you adjust. Because it’s non-systemic and non-sedating, it avoids the side effects people so often struggle with on medication."],
+  },
+  {
+    headline: "How TMS fits into your care",
+    copy: ["TMS rarely works in isolation — it’s most powerful as part of a coordinated plan. At Hopewell Health Solutions, your TMS care is connected to your medication management and, if you need it, our IOP or PHP programs and ongoing therapy. One team, one plan, all under one roof."],
+  },
+  {
+    headline: "Insurance & getting started",
+    copy: ["Most major insurance plans now cover TMS for treatment-resistant depression. We’ll verify your benefits for free and walk you through eligibility, at our Connecticut locations."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "TMS — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "Is TMS safe?", a: "Yes — it’s FDA-cleared and non-invasive, performed while you’re awake with no anesthesia or sedation." },
+      { q: "Does TMS hurt?", a: "Most people feel a light tapping on the scalp. Any mild discomfort usually fades after the first few sessions." },
+      { q: "How long is each session, and how many will I need?", a: "Sessions run about 18–45 minutes. A typical course is daily sessions over several weeks." },
+      { q: "Will I be able to drive afterward?", a: "Yes — there’s no downtime. You can drive and return to normal activities right away." },
+      { q: "Does insurance cover TMS?", a: "Most major plans cover TMS for treatment-resistant depression. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "If medication hasn't worked, TMS might",
+    copy: ["You don’t have to keep waiting to feel like yourself. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to find out if TMS is right for you."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- SPRAVATO ----------
+const spravatoMeta = {
+  title: "Spravato® for Depression in CT | Hopewell Health Solutions",
+  desc: "Spravato® (esketamine) at Hopewell Health Solutions, CT — FDA-approved for treatment-resistant depression. Relief in as little as 24 hours. Most insurance accepted.",
+  h1: "Spravato® (Esketamine) for Treatment-Resistant Depression",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/spravato/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (Spravato / esketamine)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, Spravato image",
+  interlinks: ["/what-we-treat/ depression", "/treatment-methods/ tms", "/programs/ medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const spravatoSeo =
+  "301 /spravato + /service/spravato + /content/spravato → /treatment-methods/spravato/. Targets “spravato CT / esketamine depression / spravato near me.” Per the client, TMS is the priority over Spravato — position Spravato as an option and cross-link treatment-resistant-depression visitors to TMS. No Semrush export yet — pull positions before migrating.";
+const spravatoDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "⚠️ <strong>CONFIRM Spravato is actively administered</strong> at Hopewell — records conflict (one early call said “not actually offered, keep for SEO”; the live page describes in-office administration). Never claim a service not provided. Resolve before publishing.",
+  "✓ 301 consolidates 3 URLs → /treatment-methods/spravato/. Removed “Book Online”; CTM forms only.",
+  "✓ De-emphasized vs TMS per the client — cross-links TRD visitors to the TMS page too.",
+];
+const spravatoSections = [
+  { eyebrow: "Spravato® · Esketamine Nasal Spray · Glastonbury, CT", headline: "Spravato® (Esketamine) for Treatment-Resistant Depression",
+    copy: ["When depression hasn’t lifted despite trying antidepressants, Spravato® offers a different mechanism — and, for many, faster relief. It’s an FDA-approved esketamine nasal spray for treatment-resistant depression and depression with suicidal thoughts.","At Hopewell Health Solutions, Spravato is given in our office under medical supervision, so you’re cared for every step of the way."],
+    body: ["FDA-approved", "Relief in as little as 24 hours", "In-office, supervised", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is Spravato?", copy: ["Spravato® is a prescription nasal spray containing esketamine, used for treatment-resistant depression — depression that hasn’t responded to traditional medications — and for depressive symptoms with suicidal ideation. Treatment-resistant depression affects roughly 30% of people with major depressive disorder, and Spravato gives that group a genuinely different option.","Unlike a daily pill that circulates through your whole body, Spravato works on a different brain pathway and is dosed in a controlled, supervised setting."] },
+  { headline: "How Spravato works", copy: ["Esketamine acts on the brain’s glutamate system, helping to rapidly restore connections involved in mood — which is why some people feel improvement far sooner than with standard antidepressants. For many, symptom relief can appear in as little as 24 hours, with continued benefit over a course of treatment."] },
+  { headline: "What a Spravato visit is like", copy: ["You self-administer the nasal spray at our office under medical supervision, then we monitor you for about two hours to make sure you’re safe and comfortable. Because of short-term effects, you’ll need someone to drive you home — but by the next morning, you can typically resume everyday activities without restrictions."] },
+  { headline: "Who Spravato is for", copy: ["Spravato may be a fit if you:"], body: ["Have major depression that hasn’t responded to two or more antidepressants", "Are experiencing depression with suicidal thoughts", "Want a treatment with a different mechanism than daily pills", "Can attend supervised in-office sessions with a ride home"] },
+  { headline: "Spravato vs. TMS and traditional antidepressants", copy: ["Spravato can work faster than oral antidepressants and avoids some of their systemic side effects. Compared with TMS — our other treatment for treatment-resistant depression — Spravato is medication-based and supervised in-office, while TMS is drug-free with no downtime. Many people consider both; we’ll help you weigh which fits your situation, and you can read more on our TMS page."] },
+  { headline: "Side effects & safety", copy: ["Because esketamine can cause short-term effects like dizziness, dissociation, or increased blood pressure, Spravato is only given in a certified, monitored setting (a federal safety requirement). That supervision is exactly why it’s safe — you’re watched closely throughout each session and cleared before you leave."] },
+  { headline: "How Spravato fits into your care", copy: ["Spravato isn’t a stand-alone fix — it works best alongside therapy and medication management. At Hopewell Health Solutions, your Spravato treatment is coordinated with the rest of your care, including our IOP/PHP programs if you need more support."] },
+  { headline: "Insurance & getting started", copy: ["Many insurance plans now cover Spravato for treatment-resistant depression. We’ll verify your benefits for free and walk you through eligibility and scheduling."], ctas: ["Verify my benefits →"] },
+  { headline: "Spravato — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is Spravato the same as ketamine?", a: "Spravato is esketamine, a component of ketamine, FDA-approved as a nasal spray specifically for treatment-resistant depression." },
+    { q: "How fast does it work?", a: "Some people notice improvement in as little as 24 hours, with continued benefit over a treatment course." },
+    { q: "Do I need a ride home?", a: "Yes — because of short-term effects, you can’t drive after a session, but you can resume normal activities the next day." },
+    { q: "Is it supervised?", a: "Always — Spravato is administered in-office and you’re monitored for about two hours afterward." },
+    { q: "Will insurance cover it?", a: "Most major plans cover Spravato for treatment-resistant depression. We’ll verify for free." } ] },
+  { headline: "Ask us if Spravato is right for you", copy: ["If antidepressants haven’t worked, you have more options than you might think. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- MAT ----------
+const matMeta = {
+  title: "MAT for Addiction in Connecticut | Hopewell Health Solutions",
+  desc: "Medication-Assisted Treatment (MAT) at Hopewell Health Solutions, CT — FDA-approved medication + therapy for opioid & alcohol recovery. Most insurance accepted.",
+  h1: "Medication-Assisted Treatment (MAT) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/medication-assisted-treatment/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (MAT)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, MAT image",
+  interlinks: ["/what-we-treat/ substance-use-disorder · alcohol-addiction · drug-addiction", "/programs/ substance-use-iop · medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const matSeo =
+  "Net-new page. Targets “MAT CT,” “suboxone doctor near me,” “vivitrol CT,” “medication assisted treatment Connecticut.” Hopewell’s blog posts on Suboxone, Vivitrol, and “understanding MAT” already rank for these — interlink and protect them in the phase-2 blog migration. Differentiate from the Substance Use IOP page (program) — this is the modality.";
+const matDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "ℹ️ Net-new modality page; interlinks to the Substance Use IOP program + the Suboxone/Vivitrol/MAT blog posts (protect those rankings in phase 2).",
+  "✓ SUD copy allowed (ads on separate LPs + LegitScript). CTM forms only.",
+  "⚠️ Confirm which MAT medications are actually prescribed (Suboxone/buprenorphine, Vivitrol/naltrexone, etc.) before listing specifics.",
+];
+const matSections = [
+  { eyebrow: "Medication-Assisted Treatment · Glastonbury, CT", headline: "Medication-Assisted Treatment (MAT) in Connecticut",
+    copy: ["Recovery isn’t about willpower alone. Medication-Assisted Treatment (MAT) combines FDA-approved medications with counseling and behavioral therapy to treat opioid and alcohol use disorders — easing cravings and withdrawal so you can focus on healing.","At Hopewell Health Solutions, MAT is delivered as part of whole-person care, not handed out in isolation."],
+    body: ["FDA-approved medications", "Paired with therapy", "Judgment-free", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is Medication-Assisted Treatment?", copy: ["Medication-Assisted Treatment (MAT) is an evidence-based approach to treating substance use disorders that combines FDA-approved medications with counseling and behavioral therapies. The medications reduce cravings and withdrawal symptoms and help stabilize brain chemistry, while therapy addresses the thoughts, habits, and underlying issues that drive use.","Together, they treat the whole person — which is why MAT consistently outperforms medication or therapy alone."] },
+  { headline: "How MAT works", copy: ["When you stop using opioids or alcohol, the brain’s chemistry is thrown off balance — driving intense cravings and withdrawal that make early recovery brutally hard. MAT medications work on those same systems to calm the storm: blunting cravings, easing withdrawal, and (for some medications) blocking the effects of opioids or alcohol. That stability frees you to do the real work in therapy."] },
+  { headline: "Who MAT is for", copy: ["MAT can help adults working to recover from:"], body: ["Opioid use disorder (prescription painkillers, heroin, fentanyl)", "Alcohol use disorder", "Co-occurring substance use alongside anxiety, depression, or trauma"] },
+  { headline: "The medications", copy: ["Depending on your situation and clinical guidance, MAT may involve FDA-approved medications such as buprenorphine (Suboxone) or naltrexone (Vivitrol), among others. Your provider will recommend the right option and dose for you, and adjust it over time."], copyAfter: ["(We’ll confirm exactly which medications are available during your evaluation.)"] },
+  { headline: "“Isn’t MAT just trading one drug for another?”", copy: ["No — and it’s a myth worth retiring. MAT medications, taken as prescribed under medical supervision, don’t produce a high; they restore balance so you can function and engage in recovery. Decades of research show MAT reduces overdose deaths and improves the odds of lasting recovery. Choosing it is a sign of strength, not weakness."] },
+  { headline: "MAT + therapy, together", copy: ["At Hopewell Health Solutions, medication is always paired with counseling, relapse-prevention skills, and (when helpful) our Substance Use IOP. Medication quiets the cravings; therapy builds the life that makes staying well possible."] },
+  { headline: "Insurance & getting started", copy: ["Most major insurance plans cover MAT. We’ll verify your benefits for free and walk you through getting started, confidentially."], ctas: ["Verify my benefits →"] },
+  { headline: "MAT — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is MAT only for opioids?", a: "No — MAT also treats alcohol use disorder, and supports co-occurring mental health conditions." },
+    { q: "Will I be on medication forever?", a: "Not necessarily — your plan is personalized and adjusted over time with your provider." },
+    { q: "Does MAT get me high?", a: "No. Taken as prescribed, MAT medications restore balance without producing a high." },
+    { q: "Do I have to do therapy too?", a: "MAT works best with counseling — we integrate both, including our Substance Use IOP when helpful." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Recovery is possible — let's start", copy: ["You don’t have to fight cravings on willpower alone. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- EMDR ----------
+const emdrMeta = {
+  title: "EMDR Therapy for Trauma & PTSD in CT | Hopewell Health Solutions",
+  desc: "EMDR therapy at Hopewell Health Solutions, CT — an evidence-based, 8-phase treatment that helps you heal from trauma & PTSD faster than talk therapy alone.",
+  h1: "EMDR Therapy for Trauma & PTSD in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/emdr/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (EMDR)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, EMDR image",
+  interlinks: ["/what-we-treat/ trauma-ptsd · anxiety", "/treatment-methods/ dbt", "/programs/ womens-wellness-iop · intensive-outpatient-program", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const emdrSeo =
+  "301 /content/what-is-emdr-therapy → /treatment-methods/emdr/. Targets “emdr therapy CT,” “emdr near me,” “emdr for ptsd,” “what is emdr therapy.” Keeps the 84–90% outcome stat, the 8-phase model, and the ‘wound’ analogy. No Semrush export yet — pull positions before migrating.";
+const emdrDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "✓ 301 /content/what-is-emdr-therapy → /treatment-methods/emdr/. Keeps the live explainer copy + APA/WHO recognition.",
+  "✓ Talk-therapy modality — adapted the template’s ‘side effects/comparison’ sections to fit (vs talk therapy; what to expect).",
+];
+const emdrSections = [
+  { eyebrow: "EMDR Therapy · Trauma & PTSD · Glastonbury, CT", headline: "EMDR Therapy for Trauma & PTSD in Connecticut",
+    copy: ["Some experiences don’t just fade with time — they stay stuck, resurfacing as anxiety, flashbacks, or a sense of being on edge. EMDR (Eye Movement Desensitization and Reprocessing) is an evidence-based therapy that helps your brain finally process and heal from those experiences.","At Hopewell Health Solutions, our trained clinicians use EMDR to help people move through trauma — often faster than talk therapy alone."],
+    body: ["Evidence-based (APA & WHO recognized)", "8-phase protocol", "Often faster than talk therapy", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is EMDR therapy?", copy: ["EMDR is a psychotherapy that enables people to heal from the symptoms and emotional distress that result from disturbing life experiences. Think of it like the body healing a wound: when something keeps irritating the wound, it festers and causes pain — but once the block is removed, healing resumes naturally. EMDR helps remove the block so your mind can heal.","Therapeutic benefits that once took years can now happen far more quickly."] },
+  { headline: "How EMDR works", copy: ["EMDR is an eight-phase treatment. During sessions, your therapist guides you through bilateral stimulation — most often by moving their hand back and forth while you follow it with your eyes — as you briefly hold a difficult memory in mind. This activates the brain’s natural information-processing system, allowing the memory to be stored in a less distressing way.","Unlike talk therapy, the insights come not from the clinician’s interpretation but from your own accelerated emotional and intellectual processing."] },
+  { headline: "What EMDR treats", copy: ["EMDR is best known for trauma, but helps with more:"], body: ["PTSD and trauma (its primary use)", "Anxiety and disturbing memories", "Low self-esteem and feelings of powerlessness", "Grief and distressing life events"] },
+  { headline: "What a session is like", copy: ["You stay fully present and in control throughout. Your therapist helps you target a specific memory, guides the bilateral stimulation, and checks in frequently. Many people are surprised by how much lighter a once-charged memory feels by the end of a session — and the change tends to hold."] },
+  { headline: "Does EMDR work?", copy: ["The evidence is strong:"], body: ["Studies show 84–90% of single-trauma survivors no longer have PTSD after just three 90-minute sessions.", "EMDR is recognized as an effective trauma treatment by the American Psychiatric Association and the World Health Organization."] },
+  { headline: "Who EMDR is for", copy: ["EMDR may be a good fit if you’re carrying trauma — recent or long past — or if talk therapy hasn’t fully resolved distressing memories, anxiety, or a stuck sense of powerlessness. It’s often part of our Women’s Wellness IOP and other programs, where trauma is a common thread."] },
+  { headline: "How EMDR fits into your care", copy: ["EMDR can be a stand-alone therapy or woven into a broader plan. At Hopewell Health Solutions, your EMDR work is coordinated with the rest of your care — individual therapy, our IOP/PHP programs, and medication management when helpful."] },
+  { headline: "EMDR — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Will I have to talk about the trauma in detail?", a: "Less than you might fear — EMDR relies on processing, not on recounting every detail aloud." },
+    { q: "How many sessions will I need?", a: "It varies, but research shows meaningful relief for single-trauma survivors in as few as three sessions." },
+    { q: "Is EMDR safe?", a: "Yes — it’s a well-researched therapy recognized by the APA and WHO, delivered by trained clinicians." },
+    { q: "Does it work for things other than PTSD?", a: "Yes — including anxiety, disturbing memories, grief, and low self-esteem." },
+    { q: "Will insurance cover it?", a: "Most major plans cover therapy including EMDR. We’ll verify for free." } ] },
+  { headline: "Start healing from what's holding you back", copy: ["You don’t have to stay stuck in the past. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to see if EMDR is right for you."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- DBT ----------
+const dbtMeta = {
+  title: "DBT Therapy in Connecticut | Hopewell Health Solutions",
+  desc: "DBT at Hopewell Health Solutions, CT — evidence-based skills for emotion regulation, distress tolerance & relationships. The backbone of our IOP programs.",
+  h1: "Dialectical Behavior Therapy (DBT) in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/dbt/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (DBT)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, DBT image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd", "/treatment-methods/ cbt", "/programs/ intensive-outpatient-program · adult-mental-health-iop · womens-wellness-iop", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const dbtSeo =
+  "Net-new page. Targets “dbt therapy CT,” “dbt near me,” “dialectical behavior therapy Connecticut,” “dbt skills.” DBT is the core curriculum across Hopewell’s IOP tracks — interlink heavily to the IOP pages. Differentiate from CBT page. No Semrush export yet.";
+const dbtDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "ℹ️ Net-new modality page; DBT is the backbone of every Hopewell IOP — interlinks to the IOP tracks heavily.",
+  "✓ Talk-therapy modality — adapted template (4 skill modules instead of device/side-effects sections).",
+];
+const dbtSections = [
+  { eyebrow: "Dialectical Behavior Therapy · Glastonbury, CT", headline: "Dialectical Behavior Therapy (DBT) in Connecticut",
+    copy: ["If your emotions often feel too big, too fast, or impossible to manage, DBT can help. Dialectical Behavior Therapy is a practical, skills-based approach that teaches you how to ride out intense feelings, steady your relationships, and respond instead of react.","DBT is the backbone of every intensive program at Hopewell Health Solutions — because the skills work."],
+    body: ["Evidence-based", "Practical, teachable skills", "Backbone of our IOPs", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is DBT?", copy: ["Dialectical Behavior Therapy (DBT) is an evidence-based form of therapy that balances two things that sound opposite but work together: accepting yourself as you are, and building the skills to change. Originally developed for intense emotional struggles, it’s now proven for a wide range of conditions.","Where some therapy focuses mainly on insight, DBT focuses on concrete, learnable skills you practice in real life."] },
+  { headline: "The four DBT skills", copy: ["DBT teaches four core skill sets:"], body: ["Mindfulness — staying present instead of spiraling into the past or future", "Distress tolerance — getting through crises without making them worse", "Emotion regulation — understanding and shifting overwhelming feelings", "Interpersonal effectiveness — asking for what you need and setting boundaries"] },
+  { headline: "Who DBT helps", copy: ["DBT is especially powerful for:"], body: ["Intense emotions and emotional dysregulation", "Anxiety and depression", "Trauma and PTSD", "Self-harm and suicidal thoughts", "Relationship and impulse-control struggles"] },
+  { headline: "What DBT looks like at Hopewell Health Solutions", copy: ["At Hopewell Health Solutions, DBT typically combines skills groups — where you learn and practice the four modules with others — and individual therapy, where you apply them to your own life. It’s the foundation of our adult, women’s, teen, and tween IOPs, so the skills are reinforced day after day, not just once a week."] },
+  { headline: "DBT vs. CBT", copy: ["CBT focuses on changing unhelpful thoughts; DBT builds on that but adds acceptance and a heavy emphasis on emotional and interpersonal skills. Many people benefit from both — and our clinicians draw on each depending on what you need."] },
+  { headline: "Does DBT work?", copy: ["DBT is one of the most well-researched therapies available, with strong evidence for reducing self-harm, stabilizing emotions, and improving relationships and quality of life. Its strength is that the skills stay with you long after treatment ends."] },
+  { headline: "How DBT fits into your care", copy: ["Whether you start with weekly therapy or step into one of our IOPs, DBT is woven throughout — and coordinated with medication management and other therapies as needed. One team, one plan."] },
+  { headline: "DBT — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What does DBT actually teach?", a: "Four skill sets: mindfulness, distress tolerance, emotion regulation, and interpersonal effectiveness." },
+    { q: "Is DBT only for borderline personality disorder?", a: "No — it was developed there but is now used for anxiety, depression, trauma, self-harm, and more." },
+    { q: "Is it group or individual?", a: "Often both — skills groups plus individual therapy, especially within our IOPs." },
+    { q: "How is DBT different from CBT?", a: "DBT adds acceptance and a strong focus on emotional and interpersonal skills to CBT’s thought-focused approach." },
+    { q: "Will insurance cover it?", a: "Most major plans cover therapy including DBT. We’ll verify for free." } ] },
+  { headline: "Build skills that last", copy: ["Big emotions don’t have to run your life. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to get started with DBT."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- GROUP THERAPY ----------
+const groupMeta = {
+  title: "Group Therapy in Connecticut | Hopewell Health Solutions",
+  desc: "Group therapy at Hopewell Health Solutions, CT — connection-based healing for anxiety, depression & trauma. A core part of our IOP & PHP programs.",
+  h1: "Group Therapy in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/group-therapy/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy (group therapy)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, group therapy image",
+  interlinks: ["/what-we-treat/ anxiety · depression · trauma-ptsd", "/treatment-methods/ dbt", "/programs/ intensive-outpatient-program · partial-hospitalization-program", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const groupSeo =
+  "Net-new page. Targets “group therapy CT,” “group therapy near me,” “mental health support groups CT.” Group therapy is central to our IOP and PHP — interlink heavily. Hopewell’s blog on the role of group therapy in IOP ranks — interlink and protect in phase 2.";
+const groupDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "ℹ️ Net-new modality page; core of the IOP/PHP experience — interlinks to those programs.",
+  "✓ Talk-therapy modality — adapted the template (types of groups; vs individual therapy).",
+];
+const groupSections = [
+  { eyebrow: "Group Therapy · Glastonbury, CT", headline: "Group Therapy in Connecticut",
+    copy: ["Healing happens in connection. Group therapy brings together a small circle of people facing similar struggles — guided by a licensed clinician — to learn, practice, and realize you are not alone.","At Hopewell Health Solutions, group therapy is at the heart of our IOP and PHP programs, and it’s often the part people end up valuing most."],
+    body: ["Clinician-led", "Confidential", "Core of our IOP & PHP", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is group therapy?", copy: ["Group therapy is a form of treatment where a small group meets regularly with one or more trained clinicians to work on shared challenges — anxiety, depression, trauma, substance use, and more. Sessions are structured and confidential, blending teaching, discussion, and skills practice.","It’s not just talking in a circle: it’s guided, evidence-based work, with the added power of peers who truly understand."] },
+  { headline: "Why group therapy works", copy: ["There’s something uniquely healing about realizing you’re not the only one. Group therapy reduces isolation and shame, lets you learn from others’ insights, and gives you a safe place to practice new skills in real time. Hearing your own struggle reflected back — and watching others grow — builds hope in a way individual therapy alone often can’t."] },
+  { headline: "The kinds of groups we offer", copy: ["At Hopewell Health Solutions, you’ll find a range of clinician-led groups, and you can choose the ones aligned with your goals:"], body: ["Process groups — open, supportive discussion of what you’re facing", "DBT and CBT skills groups — learning concrete coping tools", "Holistic & creative groups — art, movement, mindfulness", "Topic groups — trauma, grief, stress, family dynamics, substance use, and more"] },
+  { headline: "Who group therapy is for", copy: ["Group therapy helps people working through anxiety, depression, trauma, emotional dysregulation, substance use, and major life stress. It’s especially powerful for anyone who feels isolated in what they’re going through — which is to say, most of us at some point."] },
+  { headline: "Group vs. individual therapy", copy: ["They’re not either/or. Individual therapy gives you one-on-one focus; group therapy adds connection, perspective, and practice with others. Most people in our programs do both — and the two reinforce each other."] },
+  { headline: "What to expect", copy: ["Groups are confidential and led by a licensed clinician who keeps the space safe and on track. You’re never forced to share before you’re ready. Over time, most people find the group becomes a source of accountability, encouragement, and genuine connection."] },
+  { headline: "How group therapy fits into your care", copy: ["Group therapy is woven throughout our IOP and PHP programs, and coordinated with individual therapy and medication management. It’s one team, one plan — with the added strength of community."] },
+  { headline: "Group therapy — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do I have to share in group?", a: "No — you participate at your own pace. Many people listen at first and open up over time." },
+    { q: "Is it confidential?", a: "Yes — confidentiality is a core ground rule, set and protected by the clinician." },
+    { q: "How big are the groups?", a: "Small and clinician-led, so everyone has space and support." },
+    { q: "Can I do group and individual therapy?", a: "Yes — most people in our programs do both, and they reinforce each other." },
+    { q: "Will insurance cover it?", a: "Most major plans cover therapy including group therapy. We’ll verify for free." } ] },
+  { headline: "You don't have to do this alone", copy: ["Connection is part of the cure. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to learn about our groups."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- NEUROPSYCHOLOGICAL TESTING ----------
+const neuroMeta = {
+  title: "Neuropsychological Testing in CT | Hopewell Health Solutions",
+  desc: "Neuropsychological testing at Hopewell Health Solutions, CT — comprehensive evaluation (ages 4+) for learning, ADHD, memory & more, with a clear treatment plan.",
+  h1: "Neuropsychological Testing in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/neuropsychological-testing/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTest (neuropsychological evaluation)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, testing image",
+  interlinks: ["/what-we-treat/ adhd · anxiety · depression", "/treatment-methods/ adhd-testing", "/programs/ medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const neuroSeo =
+  "301 /neuropsychological-psychological-testing + /service/neuropsychological-testing + /content/neuropsychologicalpsychological-testing → /treatment-methods/neuropsychological-testing/. Targets “neuropsychological testing CT,” “neuropsych evaluation near me,” “psychological testing Connecticut.” Keeps the 9 assessment domains + 4-phase process. No Semrush export yet.";
+const neuroDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "✓ 301 consolidates 3 URLs → /treatment-methods/neuropsychological-testing/. Removed “Book Online”; CTM forms only.",
+  "✓ Testing page — adapted template (process phases + what it assesses instead of side-effects/comparison).",
+];
+const neuroSections = [
+  { eyebrow: "Neuropsychological Testing · Ages 4+ · Glastonbury, CT", headline: "Neuropsychological Testing in Connecticut",
+    copy: ["When you’re not sure why learning, focus, memory, or mood feels harder than it should, testing brings answers. Neuropsychological testing is a thorough evaluation that maps how the brain and behavior connect — turning confusion into a clear, personalized plan.","At Hopewell Health Solutions, testing is done by a licensed psychologist with advanced neuropsychology training, for people aged 4 and older."],
+    body: ["Licensed psychologist", "Ages 4 & up", "Clear written recommendations", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is neuropsychological testing?", copy: ["Neuropsychological testing is a structured evaluation that helps us understand brain–behavior relationships — your (or your child’s) cognitive strengths and weaknesses — so we can personalize a treatment plan that helps you regain balance and quality of life.","It’s more than a single quiz: it’s a comprehensive picture used to guide care at home, work, and school."] },
+  { headline: "What it assesses", copy: ["A full evaluation looks across nine domains:"], body: ["Attention", "Cognition", "Executive functioning", "Learning", "Memory", "Social skills", "Academic achievement", "Emotional functioning", "Visual-motor skills"] },
+  { headline: "What it helps diagnose", copy: ["Testing can clarify and distinguish conditions that often look alike, including:"], body: ["Learning disabilities, including dyslexia", "ADHD", "Autism spectrum disorder", "Anxiety and depression", "Behavioral and personality concerns"] },
+  { headline: "What the process looks like", copy: ["The evaluation unfolds in four phases:"], body: ["Initial consultation — we discuss your concerns and take a thorough history", "Testing sessions — 4–6 hours of activities and rating scales over 1–2 days", "Feedback — about a 60-minute session walking through the results", "Report — a comprehensive written document with findings and recommendations"] },
+  { headline: "Who it's for", copy: ["Testing helps children, teens, and adults (ages 4+) when there are questions about learning, attention, memory, development, or emotional functioning — or when a clear diagnosis is needed to guide school accommodations, treatment, or medication."] },
+  { headline: "What you walk away with", copy: ["You don’t just get a label — you get a roadmap. The final report includes targeted, practical recommendations for the community, home, work, and school, so everyone supporting you is working from the same clear plan."] },
+  { headline: "How testing fits into your care", copy: ["Results connect directly to next steps at Hopewell Health Solutions — therapy, medication management, ADHD support, or one of our programs — so the evaluation leads to action, not just answers."] },
+  { headline: "Neuropsychological testing — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "How long does testing take?", a: "Typically 4–6 hours of testing across 1–2 days, plus a consultation, a feedback session, and a written report." },
+    { q: "What ages do you test?", a: "Ages 4 and up — children, teens, and adults." },
+    { q: "What will I get at the end?", a: "A comprehensive report with findings and practical recommendations for home, school, and work." },
+    { q: "Can it diagnose ADHD or a learning disability?", a: "Yes — and it can distinguish them from conditions with similar signs." },
+    { q: "Will insurance cover it?", a: "Many plans cover neuropsychological testing. We’ll verify your benefits for free." } ] },
+  { headline: "Get the answers you've been looking for", copy: ["Clarity changes everything. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to schedule an evaluation."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- ADHD TESTING ----------
+const adhdtestMeta = {
+  title: "ADHD Testing & Evaluation in CT | Hopewell Health Solutions",
+  desc: "ADHD testing at Hopewell Health Solutions, CT — evaluation for children, teens & adults with a clear, personalized treatment plan. Most insurance accepted.",
+  h1: "ADHD Testing & Evaluation in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/adhd-testing/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTest (ADHD evaluation)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, ADHD testing image",
+  interlinks: ["/what-we-treat/ adhd", "/treatment-methods/ neuropsychological-testing", "/programs/ medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const adhdtestSeo =
+  "301 /service/adhd-testing → /treatment-methods/adhd-testing/. Targets “adhd testing CT,” “adhd evaluation near me,” “adhd test Connecticut,” “adhd testing for adults.” Keeps the 3-component evaluation. No Semrush export yet.";
+const adhdtestDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "✓ 301 /service/adhd-testing → /treatment-methods/adhd-testing/. Removed “Book Online”; CTM forms only.",
+  "⚠️ Live page lists a $99 patient cost for the home computerized assessment — confirm that’s current before publishing.",
+];
+const adhdtestSections = [
+  { eyebrow: "ADHD Testing · Children, Teens & Adults · Glastonbury, CT", headline: "ADHD Testing & Evaluation in Connecticut",
+    copy: ["Is it ADHD — or something else? A real evaluation gives you the clarity to stop guessing. Our ADHD testing is a personalized assessment for children, teens, and adults that goes beyond a quick checklist to deliver a clear path forward.","At Hopewell Health Solutions, the goal is simple: understand how symptoms actually affect daily life, and what to do about it."],
+    body: ["Children, teens & adults", "Comprehensive, not superficial", "Clear treatment plan", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is an ADHD evaluation?", copy: ["An ADHD evaluation is a structured assessment that determines whether attention, focus, and impulsivity difficulties are due to ADHD — and rules out other conditions that can look similar, like anxiety, depression, or learning differences. The aim isn’t just a label; it’s an accurate diagnosis that leads to the right support.","We evaluate children, teens, and adults, because ADHD doesn’t disappear at 18."] },
+  { headline: "How our ADHD testing works", copy: ["Our evaluation combines three components for a complete picture:"], body: ["A detailed interview with a licensed PA or NP", "Validated rating scales", "A remote, computerized assessment you complete at home"] },
+  { headline: "What to expect", copy: ["You’ll start with an in-office appointment with a provider. Then you’ll receive a secure email link to complete the computerized assessment from home, followed by a call to schedule your results review. Your provider walks you through what the findings mean — in plain language — and what comes next."] },
+  { headline: "Who it's for", copy: ["ADHD testing helps anyone struggling with focus, attention, organization, or daily follow-through that may point to ADHD — whether that’s a child having a hard time at school, a teen who’s falling behind, or an adult who’s wondered for years why everything feels harder than it should."] },
+  { headline: "What happens after diagnosis", copy: ["A diagnosis is a starting line, not a finish line. You’ll leave with clear, personalized treatment recommendations — which may include medication management, therapy, coaching, or school/work accommodations — and at Hopewell Health Solutions, we can deliver those next steps under one roof."] },
+  { headline: "ADHD vs. look-alikes", copy: ["Plenty of conditions mimic ADHD — anxiety, depression, sleep problems, trauma, even certain learning differences. A proper evaluation distinguishes ADHD from these so you’re treating the right thing, not just the most obvious symptom."] },
+  { headline: "How testing fits into your care", copy: ["Because we’re a full mental-health practice, your evaluation connects straight to treatment — medication management, therapy, or further neuropsychological testing if a deeper look is warranted. No starting over with a new provider."] },
+  { headline: "ADHD testing — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Do you test adults, or only kids?", a: "Both — children, teens, and adults." },
+    { q: "What does the evaluation involve?", a: "A clinical interview, rating scales, and a remote computerized assessment you do at home." },
+    { q: "Can it tell ADHD apart from anxiety or depression?", a: "Yes — distinguishing ADHD from look-alike conditions is a core goal of the evaluation." },
+    { q: "What happens if I’m diagnosed?", a: "You’ll get a personalized plan — which may include medication management, therapy, or accommodations — all available here." },
+    { q: "Will insurance cover it?", a: "Many plans cover ADHD evaluation. We’ll verify your benefits for free." } ] },
+  { headline: "Get clarity and a clear path forward", copy: ["If focus and follow-through have felt like a daily battle, testing can finally explain why. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- GENESIGHT ----------
+const genesightMeta = {
+  title: "GeneSight Testing in Connecticut | Hopewell Health Solutions",
+  desc: "GeneSight® testing at Hopewell Health Solutions, CT — a cheek swab that helps match psychiatric medications to your DNA. Stop the trial-and-error. Most insurance accepted.",
+  h1: "GeneSight® Genetic Testing for Medication in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/treatment-methods/genesight-testing/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTest (pharmacogenomic / GeneSight)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, GeneSight image",
+  interlinks: ["/what-we-treat/ depression · anxiety", "/programs/ medication-management", "/treatment-methods/ tms", "/locations/glastonbury-ct/", "/admissions/"],
+};
+const genesightSeo =
+  "Net-new page. Targets “genesight testing CT,” “pharmacogenomic testing,” “genetic testing for antidepressants,” “genesight near me.” Pairs with medication management (a hero USP). Hopewell’s blog on GeneSight ranks — interlink and protect in phase 2.";
+const genesightDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "ℹ️ Net-new modality page; pairs tightly with Medication Management (USP) — interlink.",
+  "✓ Frame as a guide for prescribing, not a diagnostic test or a guarantee. CTM forms only.",
+];
+const genesightSections = [
+  { eyebrow: "GeneSight® Pharmacogenomic Testing · Glastonbury, CT", headline: "GeneSight® Genetic Testing for Medication in Connecticut",
+    copy: ["Finding the right psychiatric medication can feel like endless trial-and-error — months of “let’s try this and see.” GeneSight® changes that. A simple cheek swab analyzes how your genes may affect your response to medications, so your provider can choose with science on their side.","At Hopewell Health Solutions, GeneSight is part of how we make medication management more precise — and less frustrating."],
+    body: ["Simple cheek swab", "Personalized to your DNA", "Pairs with medication management", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only." },
+  { headline: "What is GeneSight?", copy: ["GeneSight® is a pharmacogenomic test — it looks at specific genes that influence how your body processes and responds to psychiatric medications used for depression, anxiety, ADHD, and other conditions. The result is a report that helps your provider understand which medications may work well for you, which may require dose adjustments, and which may cause more side effects.","It’s not a diagnosis and not a crystal ball — it’s a powerful extra data point that takes some of the guesswork out of prescribing."] },
+  { headline: "How it works", copy: ["The process is refreshingly simple:"], body: ["A quick cheek swab in our office (no blood draw)", "The sample is analyzed for relevant genes", "Your provider receives a personalized report in a matter of days", "You and your provider use it to guide medication decisions together"] },
+  { headline: "Why it matters", copy: ["For too many people, finding a medication that helps means cycling through several that don’t — each requiring weeks to take effect and weeks to taper off. That’s demoralizing when you’re already struggling. GeneSight helps shorten that road by pointing toward options your biology is more likely to tolerate and respond to."] },
+  { headline: "Who it's for", copy: ["GeneSight can be especially helpful if you:"], body: ["Have tried medications that didn’t work or caused tough side effects", "Are starting a psychiatric medication for the first time", "Want a more personalized, informed approach to prescribing", "Are managing depression, anxiety, ADHD, or related conditions"] },
+  { headline: "What to expect", copy: ["The swab itself takes seconds. Once results are in, your provider reviews the report with you and folds it into your overall plan — alongside your history, symptoms, and goals. GeneSight informs the decision; your provider, and you, still make it."] },
+  { headline: "Important: a guide, not a guarantee", copy: ["GeneSight is one tool among many. It doesn’t diagnose conditions or promise that a given medication will work — genetics are just part of the picture. Used well, though, it helps your provider make smarter, faster, more personalized choices."] },
+  { headline: "How GeneSight fits into your care", copy: ["GeneSight is most valuable as part of medication management at Hopewell Health Solutions — and it complements treatments like TMS for people with treatment-resistant depression. One coordinated team, using every tool to get you to relief faster."] },
+  { headline: "GeneSight — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is GeneSight a blood test?", a: "No — it’s a simple, painless cheek swab done in our office." },
+    { q: "Does it tell me exactly which medication to take?", a: "No — it guides your provider’s decision; it doesn’t replace clinical judgment or guarantee results." },
+    { q: "What conditions can it help with?", a: "Medications for depression, anxiety, ADHD, and other psychiatric conditions." },
+    { q: "How long do results take?", a: "Typically a few days, after which your provider reviews them with you." },
+    { q: "Will insurance cover it?", a: "Coverage varies — we’ll check your benefits and explain any cost before testing." } ] },
+  { headline: "Stop the trial-and-error", copy: ["Let your biology help guide the way. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — to ask whether GeneSight is right for you."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
 ---
 
 <Review
@@ -1960,9 +2417,49 @@ const otSections = [
     />
   </article>
 
+  <!-- TMS doc (treatment-method template) -->
+  <article data-panel="tms" class="doc-panel hidden">
+    <ContentDoc
+      label="Treatment Methods · TMS — TEMPLATE for therapy pages (~1,000 words)"
+      title="TMS Therapy"
+      intro="The template for all /treatment-methods/ pages — ~1,000 words so it's never thin. Approve this structure and I'll apply it to Spravato, MAT, EMDR, DBT, Group Therapy, and the testing pages."
+      meta={tmsMeta}
+      seo={tmsSeo}
+      keywords={tmsKeywords}
+      decisions={tmsDecisions}
+      sections={tmsSections}
+    />
+  </article>
+
+  <article data-panel="spravato" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · Spravato" title="Spravato®" intro="Esketamine nasal spray for treatment-resistant depression — FDA-approved, in-office, supervised. Consolidates 3 live URLs." meta={spravatoMeta} seo={spravatoSeo} decisions={spravatoDecisions} sections={spravatoSections} />
+  </article>
+  <article data-panel="mat" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · MAT — net-new" title="Medication-Assisted Treatment" intro="FDA-approved medication + therapy for opioid & alcohol recovery. Net-new; interlinks to the Substance Use IOP + the Suboxone/Vivitrol blogs." meta={matMeta} seo={matSeo} decisions={matDecisions} sections={matSections} />
+  </article>
+  <article data-panel="emdr" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · EMDR" title="EMDR Therapy" intro="Evidence-based 8-phase trauma treatment. 301s from the live explainer; keeps the 84–90% stat + APA/WHO recognition." meta={emdrMeta} seo={emdrSeo} decisions={emdrDecisions} sections={emdrSections} />
+  </article>
+  <article data-panel="dbt" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · DBT — net-new" title="Dialectical Behavior Therapy" intro="The backbone of every Hopewell IOP — the four DBT skill modules. Net-new; interlinks heavily to the IOP tracks." meta={dbtMeta} seo={dbtSeo} decisions={dbtDecisions} sections={dbtSections} />
+  </article>
+
+  <article data-panel="group" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · Group Therapy — net-new" title="Group Therapy" intro="Connection-based healing — the heart of our IOP & PHP. Net-new; interlinks to the programs + DBT skills groups." meta={groupMeta} seo={groupSeo} decisions={groupDecisions} sections={groupSections} />
+  </article>
+  <article data-panel="neuro" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · Neuropsychological Testing" title="Neuropsychological Testing" intro="Comprehensive evaluation (ages 4+) across 9 domains. Consolidates 3 live URLs; keeps the 4-phase process." meta={neuroMeta} seo={neuroSeo} decisions={neuroDecisions} sections={neuroSections} />
+  </article>
+  <article data-panel="adhdtest" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · ADHD Testing" title="ADHD Testing & Evaluation" intro="Evaluation for kids, teens & adults — interview + rating scales + computerized assessment. 301s from the live page." meta={adhdtestMeta} seo={adhdtestSeo} decisions={adhdtestDecisions} sections={adhdtestSections} />
+  </article>
+  <article data-panel="genesight" class="doc-panel hidden">
+    <ContentDoc label="Treatment Methods · GeneSight — net-new" title="GeneSight® Genetic Testing" intro="Pharmacogenomic cheek swab that guides medication choices. Net-new; pairs with Medication Management (USP)." meta={genesightMeta} seo={genesightSeo} decisions={genesightDecisions} sections={genesightSections} />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
