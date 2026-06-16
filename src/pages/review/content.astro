@@ -41,6 +41,11 @@ const docs = [
   { id: "cooccur", label: "Condition · Co-occurring", status: "ready" },
   { id: "locations", label: "Locations (hub)", status: "ready" },
   { id: "locglas", label: "Location · Glastonbury (template)", status: "ready" },
+  { id: "locsouth", label: "Location · South Glastonbury", status: "ready" },
+  { id: "locpratt", label: "Location · Glastonbury (Pratt St)", status: "ready" },
+  { id: "locwh", label: "Location · West Hartford", status: "ready" },
+  { id: "loceh", label: "Location · East Hampton", status: "ready" },
+  { id: "locwb", label: "Location · Westbrook", status: "ready" },
 ];
 
 // USP entries
@@ -2711,6 +2716,187 @@ const locglasSections = [
     { q: "Will insurance cover treatment?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
   { headline: "Start your care in Glastonbury", copy: ["Help is right around the corner. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
 ];
+
+// ---------- SOUTH GLASTONBURY ----------
+const locsouthMeta = {
+  title: "South Glastonbury, CT Teen & Tween IOP | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions in South Glastonbury, CT (1420 Main St) — Teen & Tween IOP and medication management for kids and adolescents. Most insurance accepted.",
+  h1: "Teen & Tween IOP in South Glastonbury, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/south-glastonbury-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ. Sticky TOC in the build.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP)", "AggregateRating (4.8 · 368)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, facility photo",
+  interlinks: ["/programs/ teen-iop · tween-iop · medication-management", "/what-we-treat/ anxiety · depression · adhd", "/about-us/team", "/admissions/"],
+};
+const locsouthSeo = "16-point location page. 1420 Main St — our adolescent hub (Teen & Tween IOP). Targets “teen iop south glastonbury / adolescent iop glastonbury ct” + address strings. LocalBusiness schema + NAP matches the GBP exactly; GBP links here. ⚠️ Confirm which legacy Glastonbury GBP = 1420 Main.";
+const locsouthDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~900 words.", "✓ 16-point checklist. LocalBusiness + NAP matching GBP (1420 Main St, Suite 124).", "🧩 Build: sticky TOC · facility photos · GBP review widget · map embed.", "⚠️ Confirm suite + which legacy Glastonbury GBP maps here, and exact teen/tween hours."];
+const locsouthSections = [
+  { eyebrow: "South Glastonbury, CT · 1420 Main St · Teen & Tween", headline: "Teen & Tween IOP in South Glastonbury, CT",
+    copy: ["Our South Glastonbury location is built for young people. At 1420 Main St, Hopewell Health Solutions runs dedicated Teen and Tween intensive outpatient programs — structured, after-school support for kids and adolescents who need more than weekly therapy.","It’s a warm, age-appropriate space where families heal together."],
+    body: ["★ 4.8 · 368 reviews", "Joint Commission accredited", "1420 Main St, South Glastonbury", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (parent name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Set apart from our adult programs, our South Glastonbury site gives teens and tweens their own space, their own clinicians, and a schedule timed around the school day. Parents are part of the work here, with built-in family involvement."] },
+  { headline: "Programs here", copy: ["At our South Glastonbury location:"], body: ["Teen IOP (ages 13–18) — Monday–Thursday, evenings", "Tween IOP (ages 8–12) — Monday–Thursday, after school", "Medication management for children and adolescents"], copyAfter: ["Each links to its full program page." ] },
+  { headline: "What we treat here", copy: ["Our adolescent team helps with anxiety, depression, self-harm, school refusal, ADHD, trauma, and big emotions. (Links to the condition pages.)"] },
+  { headline: "Family support is built in", copy: ["Parents attend once or twice a week to learn the same DBT skills their child is learning, plus a Parent Support Group, Parent Night, and help navigating FMLA and Connecticut Paid Leave."] },
+  { headline: "Getting started", copy: ["Four simple steps:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. A clinical assessment", "4. Your child starts at the right level"] },
+  { headline: "Reviews", copy: ["From parents:"], body: ["“Her light is starting to shine brightly again.”", "“Amazing improvements at home and in school.”"], copyAfter: ["★ 4.8 across 368 Google reviews. (GBP widget in the build.)"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 1420 Main St, Suite 124, South Glastonbury, CT 06073. Phone: (860) 946-0447. Teen IOP evenings (5–8 PM) and Tween IOP after school (4:30–7:30 PM), Monday–Thursday. (Map embed in the build; address matches the GBP.)"] },
+  { headline: "Insurance", copy: ["In-network with most major PPO plans. We’ll verify your benefits free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "South Glastonbury — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What ages do you serve here?", a: "Teens (13–18) and tweens (8–12). Adults are seen at our 300 Hebron Ave location." },
+    { q: "When do programs meet?", a: "Monday–Thursday — teens 5–8 PM, tweens 4:30–7:30 PM, after school." },
+    { q: "Do parents participate?", a: "Yes — parents attend weekly to learn the skills, plus optional Parent Support Group and Night." },
+    { q: "Where are you located?", a: "1420 Main St, Suite 124, South Glastonbury, CT 06073." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Help your child take the first step", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- GLASTONBURY (PRATT ST) ----------
+const locprattMeta = {
+  title: "Therapy in Glastonbury, CT (Pratt St) | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions at 33 Pratt St, Glastonbury, CT — individual, couples & family outpatient therapy. In person & virtual. Most insurance accepted.",
+  h1: "Outpatient Therapy in Glastonbury, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/glastonbury-pratt-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, facility photo",
+  interlinks: ["/programs/ outpatient-therapy", "/what-we-treat/ depression · anxiety · trauma-ptsd", "/about-us/team", "/admissions/"],
+};
+const locprattSeo = "16-point location page (therapy-only site). 33 Pratt St. Targets “therapy glastonbury ct” (shared with the flagship — differentiate by service/address) + address strings. ⚠️ Confirm this is a public-facing location with its own GBP vs. an internal/overflow office; if it shares the Glastonbury GBP, consider folding into the flagship to avoid a thin duplicate.";
+const locprattDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~800 words.", "✓ 16-point checklist (therapy-only — adapted).", "⚠️ <strong>Decision needed:</strong> is 33 Pratt a distinct public location with its own GBP? If not, fold into the flagship Glastonbury page rather than publish a thin near-duplicate.", "🔀 Shares “therapy glastonbury ct” intent with the flagship — keep the flagship as primary for that term."];
+const locprattSections = [
+  { eyebrow: "Glastonbury, CT · 33 Pratt St · Outpatient therapy", headline: "Outpatient Therapy in Glastonbury, CT",
+    copy: ["Our Pratt Street location offers a quiet, welcoming space for outpatient therapy in Glastonbury. It’s where individuals, couples, and families come for weekly counseling with a clinician who fits.","Same trusted Hopewell Health Solutions care, in a calm setting close to home."],
+    body: ["Joint Commission accredited", "Individual · couples · family", "33 Pratt St, Glastonbury", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Our Pratt Street office focuses on outpatient therapy — the right starting point for many people. If you ever need more structure, our nearby 300 Hebron Ave location offers IOP and PHP, and your care moves with you."] },
+  { headline: "Therapy here", copy: ["At our Pratt Street location:"], body: ["Individual therapy — adults, teens & kids (ages 4+)", "Couples therapy", "Family therapy"], copyAfter: ["See our outpatient therapy page for approaches (CBT, DBT, EMDR, and more)."] },
+  { headline: "What we help with", copy: ["Depression, anxiety, trauma, grief, relationship struggles, life transitions, and more. (Links to the condition pages.)"] },
+  { headline: "Getting started", copy: ["Four simple steps:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. We match you with the right therapist", "4. You begin"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 33 Pratt St, Glastonbury, CT 06033. Phone: (860) 946-0447. Therapy by appointment, in person and virtual. (Map embed in the build; address matches the GBP.)"] },
+  { headline: "Insurance", copy: ["In-network with most major PPO plans. We’ll verify your benefits free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "Glastonbury (Pratt St) — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What’s offered at the Pratt Street location?", a: "Outpatient therapy — individual, couples, and family. IOP/PHP run at our 300 Hebron Ave location." },
+    { q: "Do you offer virtual therapy?", a: "Yes — in person at Pratt Street or by secure video." },
+    { q: "Where are you located?", a: "33 Pratt St, Glastonbury, CT 06033." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Find your therapist in Glastonbury", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- WEST HARTFORD ----------
+const locwhMeta = {
+  title: "West Hartford, CT Therapy & Psychiatry | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions in West Hartford, CT (1216 Farmington Ave) — outpatient therapy & psychiatric medication management. In person & virtual. Most insurance accepted.",
+  h1: "Therapy & Psychiatry in West Hartford, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/west-hartford-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ. Sticky TOC in build.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP)", "AggregateRating (4.8 · 368)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, facility photo",
+  interlinks: ["/programs/ outpatient-therapy · medication-management", "/what-we-treat/ depression · anxiety", "/about-us/team", "/admissions/"],
+};
+const locwhSeo = "16-point location page. 1216 Farmington Ave. Mostly brand + address-string rankings to preserve (via 301 + exact NAP). Target “therapy west hartford ct / psychiatrist west hartford ct.” Two legacy URLs (/west-hartford + /location/west-hartford-ct) 301 here. ⚠️ Confirm the correct address/suite (export shows stray “970 Farmington” queries — confirm 1216 is right).";
+const locwhKeywords = [
+  ["hopewell health solutions reviews", 44, "110"],
+  ["hopewell psychological", 69, "90"],
+  ["hopewell therapy", 96, "40"],
+];
+const locwhDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~850 words.", "✓ 16-point checklist. Two legacy URLs (/west-hartford + /location/west-hartford-ct) 301 here.", "✓ Mostly brand/address rankings — preserve via 301 + exact NAP. CTM forms only.", "⚠️ Confirm exact address/suite — export shows stray “970 Farmington Ave” queries; the location of record is 1216 Farmington Ave, Suite 301."];
+const locwhSections = [
+  { eyebrow: "West Hartford, CT · 1216 Farmington Ave · Therapy & Psychiatry", headline: "Therapy & Psychiatry in West Hartford, CT",
+    copy: ["Our West Hartford location brings Hopewell Health Solutions’ care to the Farmington Avenue corridor — outpatient therapy and psychiatric medication management for adults, teens, and children.","Whether you’re looking for a therapist, a prescriber, or both, you’ll find a team that listens and a plan built around you."],
+    body: ["★ 4.8 · 368 reviews", "Joint Commission accredited", "1216 Farmington Ave, West Hartford", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Our West Hartford office focuses on outpatient therapy and medication management. If you ever need a higher level of care, our Glastonbury and Westbrook locations offer IOP and PHP, with care coordinated across all our sites."] },
+  { headline: "Services here", copy: ["At our West Hartford location:"], body: ["Outpatient therapy — individual, couples & family (ages 4+)", "Psychiatric medication management", "GeneSight® testing to personalize medication"], copyAfter: ["Links to the full program pages."] },
+  { headline: "What we treat here", copy: ["Depression, anxiety, trauma, ADHD, mood concerns, and more. (Links to the condition pages.)"] },
+  { headline: "Your care team", copy: ["Licensed therapists and psychiatric providers who take the time to listen. (Links to the team page; staff photos in the build.)"] },
+  { headline: "Getting started", copy: ["Four simple steps:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. We match you with the right provider", "4. You begin"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 1216 Farmington Ave, Suite 301, West Hartford, CT 06107. Phone: (860) 946-0447. Hours: Monday–Friday, 9 AM–6 PM (by appointment). (Map embed in the build; address matches the GBP.)"] },
+  { headline: "Insurance", copy: ["In-network with most major PPO plans. We’ll verify your benefits free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "West Hartford — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What’s offered in West Hartford?", a: "Outpatient therapy and psychiatric medication management. IOP/PHP run in Glastonbury and Westbrook." },
+    { q: "Do you offer virtual visits?", a: "Yes — in person in West Hartford or by secure video." },
+    { q: "Where are you located?", a: "1216 Farmington Ave, Suite 301, West Hartford, CT 06107." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Start your care in West Hartford", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- EAST HAMPTON ----------
+const locehMeta = {
+  title: "East Hampton, CT Therapy & Psychiatry | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions in East Hampton, CT (151 E. High St) — outpatient therapy and medication management. In person & virtual. Most insurance accepted.",
+  h1: "Therapy & Psychiatry in East Hampton, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/east-hampton-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ. Sticky TOC in build.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP)", "AggregateRating (4.8 · 368)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, facility photo",
+  interlinks: ["/programs/ outpatient-therapy · medication-management", "/what-we-treat/ depression · anxiety", "/about-us/team", "/admissions/"],
+};
+const locehSeo = "16-point location page. 151 E. High St. Preserve brand + address rankings via 301 + exact NAP; target “therapy east hampton ct / mental health east hampton ct.” ⚠️ Ignore NY-Hamptons noise (‘sollis hamptons’, ‘east hampton family practice ct’ may be NY/competitor confusion). Two legacy URLs (/east-hampton + /location/east-hampton-ct) 301 here.";
+const locehKeywords = [
+  ["hopewell health solutions reviews", 33, "110"],
+  ["hopewell psychological", 22, "90"],
+  ["hopewell therapy", 36, "40"],
+];
+const locehDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~850 words.", "✓ 16-point checklist. Two legacy URLs (/east-hampton + /location/east-hampton-ct) 301 here.", "⚠️ Out-of-area noise: ‘hampton mental health’, ‘sollis hamptons’ likely reflect NY-Hamptons confusion — don’t target. Anchor firmly on East Hampton, CT.", "✓ Brand/address rankings preserved via 301 + exact NAP."];
+const locehSections = [
+  { eyebrow: "East Hampton, CT · 151 E. High St · Therapy & Psychiatry", headline: "Therapy & Psychiatry in East Hampton, CT",
+    copy: ["Our East Hampton location — The Lakeside Sanctuary — brings Hopewell Health Solutions’ care to the quieter side of central Connecticut. Here you’ll find outpatient therapy and psychiatric medication management in a calm, welcoming setting.","Personalized care, close to home, for adults, teens, and children."],
+    body: ["★ 4.8 · 368 reviews", "Joint Commission accredited", "151 E. High St, East Hampton", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Our East Hampton office focuses on outpatient therapy and medication management. For more structured support, our Glastonbury and Westbrook locations offer IOP and PHP, with care coordinated across all sites."] },
+  { headline: "Services here", copy: ["At our East Hampton location:"], body: ["Outpatient therapy — individual, couples & family (ages 4+)", "Psychiatric medication management", "GeneSight® testing to personalize medication"] },
+  { headline: "What we treat here", copy: ["Depression, anxiety, trauma, ADHD, mood concerns, and more. (Links to the condition pages.)"] },
+  { headline: "Getting started", copy: ["Four simple steps:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. We match you with the right provider", "4. You begin"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 151 E. High St, East Hampton, CT 06424. Phone: (860) 946-0447. Hours: Monday–Friday, 9 AM–6 PM (by appointment). (Map embed in the build; address matches the GBP.)"] },
+  { headline: "Insurance", copy: ["In-network with most major PPO plans. We’ll verify your benefits free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "East Hampton — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What’s offered in East Hampton?", a: "Outpatient therapy and psychiatric medication management. IOP/PHP run in Glastonbury and Westbrook." },
+    { q: "Do you offer virtual visits?", a: "Yes — in person in East Hampton, CT or by secure video." },
+    { q: "Where are you located?", a: "151 E. High St, East Hampton, CT 06424." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Start your care in East Hampton", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- WESTBROOK ----------
+const locwbMeta = {
+  title: "IOP & Mental Health in Westbrook, CT | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions in Westbrook, CT (70 Essex Rd) — our new shoreline location offering IOP, PHP, psychiatry & therapy. Most insurance accepted.",
+  h1: "Mental Health Treatment in Westbrook, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/westbrook-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ. Sticky TOC in build.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, shoreline facility photo",
+  interlinks: ["/programs/ intensive-outpatient-program · partial-hospitalization-program · medication-management · outpatient-therapy", "/what-we-treat/ depression · anxiety · trauma-ptsd", "/admissions/"],
+};
+const locwbSeo = "16-point location page. NEW shoreline location (70 Essex Rd). Net-new — big opportunity in a lower-competition shoreline market. Targets “iop westbrook ct / mental health westbrook ct / therapy shoreline ct.” New GBP (recently created) links here. ⚠️ Confirm open date + which programs are live at launch.";
+const locwbDecisions = ["✓ Medically reviewed by both. Full name (NAP+W). ~900 words.", "✓ 16-point checklist. NEW location — new GBP (just created) links here; build out photos as the space opens.", "⚠️ Confirm the open date and exactly which programs (IOP/PHP/etc.) are running at launch before publishing as live.", "ℹ️ Shoreline market = lower competition; strong local-SEO opportunity."];
+const locwbSections = [
+  { eyebrow: "Westbrook, CT · 70 Essex Rd · New shoreline location", headline: "Mental Health Treatment in Westbrook, CT",
+    copy: ["Hopewell Health Solutions has come to the Connecticut shoreline. Our new Westbrook location at 70 Essex Rd brings full-service mental health care — IOP, PHP, psychiatry, and therapy — to families who’ve had to drive far for it.","Same trusted care, now closer to home on the shoreline."],
+    body: ["New shoreline location", "IOP · PHP · psychiatry · therapy", "70 Essex Rd, Westbrook", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Our Westbrook center offers the full continuum of care in a calm shoreline setting — so people in Middlesex County and along the coast can get intensive support without a long drive inland. It’s a fresh space designed around comfort and healing."] },
+  { headline: "Programs & services here", copy: ["At our Westbrook location:"], body: ["Intensive Outpatient Program (IOP)", "Partial Hospitalization Program (PHP)", "Psychiatric medication management", "Outpatient therapy"], copyAfter: ["Each links to its full program page."] },
+  { headline: "What we treat here", copy: ["Depression, anxiety, trauma & PTSD, bipolar disorder, OCD, and co-occurring substance use. (Links to the condition pages.)"] },
+  { headline: "Why the shoreline finally has this", copy: ["Until now, shoreline families needing IOP or PHP often had to travel toward Hartford. Our Westbrook location closes that gap — bringing Joint Commission–accredited, evidence-based care right to the coast."] },
+  { headline: "Getting started", copy: ["Four simple steps:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. A clinical assessment", "4. You start at the right level of care"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 70 Essex Rd, Westbrook, CT 06498. Phone: (860) 946-0447. (Hours and map in the build; address matches the new GBP.)"] },
+  { headline: "Insurance", copy: ["In-network with most major PPO plans. We’ll verify your benefits free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "Westbrook — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What programs are at the Westbrook location?", a: "IOP, PHP, psychiatric medication management, and outpatient therapy." },
+    { q: "Is this a new location?", a: "Yes — it’s our newest center, bringing full-service care to the Connecticut shoreline." },
+    { q: "Where are you located?", a: "70 Essex Rd, Westbrook, CT 06498." },
+    { q: "Do you offer virtual visits?", a: "Yes — in person in Westbrook or by secure video." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Care has come to the shoreline", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
 ---
 
 <Review
@@ -3052,9 +3238,25 @@ const locglasSections = [
     <ContentDoc label="Locations · Glastonbury — TEMPLATE (16-point checklist)" title="Glastonbury (300 Hebron)" intro="The template for all 6 location pages — 16-point checklist, LocalBusiness schema, NAP matching the GBP. Approve before I build the other 5." meta={locglasMeta} seo={locglasSeo} keywords={glasKeywords} decisions={locglasDecisions} sections={locglasSections} />
   </article>
 
+  <article data-panel="locsouth" class="doc-panel hidden">
+    <ContentDoc label="Locations · South Glastonbury" title="South Glastonbury (1420 Main)" intro="Adolescent hub — Teen & Tween IOP + med management. 16-point checklist." meta={locsouthMeta} seo={locsouthSeo} decisions={locsouthDecisions} sections={locsouthSections} />
+  </article>
+  <article data-panel="locpratt" class="doc-panel hidden">
+    <ContentDoc label="Locations · Glastonbury (Pratt St)" title="Glastonbury — Pratt St (33 Pratt)" intro="Therapy-only site. ⚠️ Confirm it's a distinct public GBP location, or fold into the flagship." meta={locprattMeta} seo={locprattSeo} decisions={locprattDecisions} sections={locprattSections} />
+  </article>
+  <article data-panel="locwh" class="doc-panel hidden">
+    <ContentDoc label="Locations · West Hartford" title="West Hartford (1216 Farmington)" intro="Therapy + psychiatry. Two legacy URLs 301 here; mostly brand/address rankings to preserve." meta={locwhMeta} seo={locwhSeo} keywords={locwhKeywords} decisions={locwhDecisions} sections={locwhSections} />
+  </article>
+  <article data-panel="loceh" class="doc-panel hidden">
+    <ContentDoc label="Locations · East Hampton" title="East Hampton (151 E. High St)" intro="Therapy + psychiatry (The Lakeside Sanctuary). Anchor on East Hampton, CT — ignore NY-Hamptons noise." meta={locehMeta} seo={locehSeo} keywords={locehKeywords} decisions={locehDecisions} sections={locehSections} />
+  </article>
+  <article data-panel="locwb" class="doc-panel hidden">
+    <ContentDoc label="Locations · Westbrook — NEW" title="Westbrook (70 Essex Rd)" intro="New shoreline location — full continuum (IOP/PHP/psychiatry/therapy). Big low-competition local opportunity." meta={locwbMeta} seo={locwbSeo} decisions={locwbDecisions} sections={locwbSections} />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas", "locsouth", "locpratt", "locwh", "loceh", "locwb"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
