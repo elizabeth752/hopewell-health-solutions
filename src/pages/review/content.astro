@@ -39,6 +39,8 @@ const docs = [
   { id: "drug", label: "Condition · Drug Addiction", status: "ready" },
   { id: "rx", label: "Condition · Prescription Drug", status: "ready" },
   { id: "cooccur", label: "Condition · Co-occurring", status: "ready" },
+  { id: "locations", label: "Locations (hub)", status: "ready" },
+  { id: "locglas", label: "Location · Glastonbury (template)", status: "ready" },
 ];
 
 // USP entries
@@ -2611,6 +2613,104 @@ const cooccurSections = [
     { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
   { headline: "Treat the whole picture", copy: ["You deserve care that sees all of you. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
 ];
+
+// ---------- LOCATIONS HUB ----------
+const locationsMeta = {
+  title: "Our Locations in Connecticut | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions has 6 mental health & psychiatry locations across Connecticut — Glastonbury, South Glastonbury, West Hartford, East Hampton & Westbrook.",
+  h1: "Our Locations in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "ItemList (locations)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: null,
+  social: "Open Graph + Twitter card: title, description, locations map image",
+  interlinks: ["/locations/ glastonbury-ct · south-glastonbury-ct · glastonbury-pratt-ct · west-hartford-ct · east-hampton-ct · westbrook-ct", "/programs/", "/admissions/"],
+};
+const locationsSeo = "Locations hub. AEO answer for “where is Hopewell Health Solutions located.” Links to all 6 location pages; each location page links back and is the direct target of its Google Business Profile (1 GBP : 1 page). Reinforces local intent (e.g., “therapy glastonbury ct”). ⚠️ Confirm which legacy GBP/URL maps to each address before wiring redirects.";
+const locationsDecisions = [
+  "✓ Full name (NAP+W). Hub (non-clinical) — no medical-reviewer byline needed.",
+  "✓ One page per mailable address; each GBP links directly to its exact location page (GBP rule).",
+  "⚠️ NAP (name/address/phone) on every location page must match the GBP EXACTLY — confirm addresses/suites + which of the 3 legacy Glastonbury GBPs maps to which page.",
+  "ℹ️ Build elements: single map showing all 6 + a programs-by-location matrix.",
+];
+const locationsSections = [
+  { eyebrow: "Locations · Connecticut", headline: "Our Locations in Connecticut",
+    copy: ["Care that’s close to home. Hopewell Health Solutions has six locations across central Connecticut and the shoreline — so whether you need intensive programs, psychiatry, or weekly therapy, there’s a Hopewell near you.","Every location shares the same standard of care: Joint Commission accredited, evidence-based, and delivered by a team that treats the whole person."],
+    body: ["6 Connecticut locations", "Joint Commission accredited", "In person & virtual", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · preferred location · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "Find a location near you", copy: ["Each location links to its own page with hours, team, and directions:"],
+    body: [
+      "Glastonbury — 300 Hebron Ave (flagship): Adult IOP, PHP, Women’s Wellness IOP & psychiatry",
+      "South Glastonbury — 1420 Main St: Teen & Tween IOP, medication management",
+      "Glastonbury — 33 Pratt St: outpatient therapy",
+      "West Hartford — 1216 Farmington Ave: therapy & medication management",
+      "East Hampton — 151 E. High St: therapy & medication management",
+      "Westbrook — 70 Essex Rd (new, shoreline): IOP, PHP, medication management & therapy",
+    ] },
+  { headline: "What's offered where", copy: ["Not every program runs at every site. A quick guide:"],
+    body: ["Adult IOP & PHP — Glastonbury (300 Hebron) and Westbrook", "Teen & Tween IOP — South Glastonbury (1420 Main)", "Women’s Wellness IOP — Glastonbury (300 Hebron)", "Medication management — most locations", "Outpatient therapy — all locations"],
+    copyAfter: ["(A visual programs-by-location matrix goes here in the build.)"] },
+  { headline: "Areas we serve", copy: ["From our Glastonbury hub we serve Hartford and Middlesex Counties, and our Westbrook location serves the Connecticut shoreline. Medication management is also available virtually across Connecticut (and, for some providers, MA and FL)."] },
+  { headline: "Insurance", copy: ["We’re in-network with most major PPO plans at every location. Not sure about yours? We’ll verify your benefits for free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "Locations — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Which location should I go to?", a: "It depends on the program — call us and we’ll point you to the right one. IOP/PHP run in Glastonbury and Westbrook; teen/tween in South Glastonbury." },
+    { q: "Do all locations offer the same programs?", a: "No — services vary by site (see the guide above). Therapy and medication management are the most widely available." },
+    { q: "Can I transfer between locations?", a: "Yes — your care is coordinated across all of our Connecticut locations." },
+    { q: "Do you offer virtual visits?", a: "Yes — including medication management and many therapy and IOP services." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Find your Hopewell", copy: ["Wherever you are in Connecticut, help is close by. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- GLASTONBURY LOCATION (TEMPLATE for location pages) ----------
+const locglasMeta = {
+  title: "Glastonbury, CT Mental Health & IOP | Hopewell Health Solutions",
+  desc: "Hopewell Health Solutions in Glastonbury, CT — adult IOP, PHP, Women's Wellness IOP & psychiatry at 300 Hebron Ave. 4.8★, Joint Commission accredited. Most insurance accepted.",
+  h1: "Mental Health Treatment in Glastonbury, CT",
+  canonical: "https://www.hopewellhealthsolutions.com/locations/glastonbury-ct/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ. Sticky TOC (~6 items) in the build.",
+  schema: ["MedicalWebPage", "LocalBusiness (NAP must match GBP exactly)", "AggregateRating (4.8 · 368)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, Glastonbury facility photo",
+  interlinks: ["/programs/ adult-mental-health-iop · partial-hospitalization-program · womens-wellness-iop · medication-management", "/what-we-treat/ depression · anxiety · trauma-ptsd", "/about-us/team", "/admissions/"],
+};
+const locglasSeo = "TEMPLATE for all 6 location pages (16-point checklist). Flagship — 300 Hebron Ave. Location pages mainly rank for ADDRESS strings (“300 hebron ave glastonbury ct”) + brand terms (“hopewell psychological / therapy / reviews”) — preserve via 301 + EXACT NAP. The real local prize here is “therapy glastonbury ct” (#44, KD14). THREE legacy URLs all 301 into this page: /glastonbury, /location/glastonbury-ct, and /location/glastonbury-ct-3. LocalBusiness schema; the GBP links directly here. ⚠️ Confirm which legacy GBP = 300 Hebron.";
+const glasKeywords = [
+  ["therapy glastonbury ct", 44, "90"],
+  ["300 hebron ave glastonbury ct", 9, "90"],
+  ["300 hebron ave glastonbury", 6, "40"],
+  ["hopewell health solutions reviews", 37, "110"],
+  ["hopewell psychological", 22, "90"],
+  ["hopewell therapy", 36, "40"],
+];
+const locglasDecisions = [
+  "✓ Medically reviewed by both. Full name (NAP+W). ~1,000 words.",
+  "⭐ <strong>TEMPLATE for all 6 location pages</strong> (16-point checklist) — approve before I build South Glastonbury, Pratt St, West Hartford, East Hampton, Westbrook.",
+  "✓ LocalBusiness + AggregateRating schema. <strong>NAP must match the GBP exactly</strong> (name, 300 Hebron Ave + suite, 860-946-0447, hours). GBP links directly to this page.",
+  "🧩 Build elements (16-pt): sticky TOC · facility photos (staff/models, never clients) · embedded GBP review widget · map embed · video testimonials (models). Copy below covers the rest.",
+  "⚠️ Confirm the exact suite(s) shown publicly (201/203/212) and which of the 3 legacy Glastonbury GBPs maps here.",
+];
+const locglasSections = [
+  { eyebrow: "Glastonbury, CT · 300 Hebron Ave · Flagship location", headline: "Mental Health Treatment in Glastonbury, CT",
+    copy: ["Our Glastonbury location is the heart of Hopewell Health Solutions — a full-service mental health and psychiatry center offering our most intensive programs alongside expert outpatient care.","Right here in Glastonbury, you’ll find adult IOP, PHP, our Women’s Wellness IOP, and psychiatric medication management, all under one roof and one coordinated team."],
+    body: ["★ 4.8 · 368 reviews", "Joint Commission accredited", "300 Hebron Ave, Glastonbury", "Most insurance accepted"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About this location", copy: ["Our flagship sits at 300 Hebron Ave in Glastonbury, where admissions and leadership are based. It’s where most of our intensive programming runs — and where many clients begin their journey. The space is calm, private, and built for healing, with day and evening options to fit real life."] },
+  { headline: "How we're different", copy: ["What sets our Glastonbury center apart:"], body: ["The full continuum — IOP, PHP, Women’s Wellness IOP & psychiatry in one place", "Advanced options like TMS, Spravato & GeneSight", "A multidisciplinary team with 10–30 years of experience", "Joint Commission accredited, with a 4.8★ reputation across 368 reviews"] },
+  { headline: "Programs & services here", copy: ["At our Glastonbury location you’ll find:"], body: ["Adult Co-Occurring IOP", "Partial Hospitalization Program (PHP)", "Women’s Wellness IOP", "Medication management & psychiatry"], copyAfter: ["Each links to its full program page. Teen & Tween IOP run at our nearby South Glastonbury location."] },
+  { headline: "What we treat here", copy: ["Our Glastonbury team treats depression, anxiety, trauma & PTSD, bipolar disorder, OCD, and co-occurring substance use — for adults. (Links to the condition pages.)"] },
+  { headline: "Your care team", copy: ["You’ll work with licensed psychologists, psychiatric nurse practitioners, and therapists — including our founder, Kristine Schlichting, PhD, and clinicians like Katrin Moskowitz, DNP, PMHNP-BC. Real names, real credentials, matched to you. (Links to the team page; staff photos in the build.)"] },
+  { headline: "Getting started is simple", copy: ["Four steps, and we handle the hard parts:"], body: ["1. Call us, or request a callback", "2. We verify your insurance — free", "3. You complete a clinical assessment", "4. You start at the right level of care"] },
+  { headline: "Reviews", copy: ["Glastonbury families have trusted us for over a decade:"], body: ["“You’re not just a number.”", "“The best IOP in the area.”", "“The team is incredibly supportive and compassionate.”"], copyAfter: ["★ 4.8 across 368 Google reviews. (Embedded GBP review widget in the build.)"] },
+  { headline: "Insurance", copy: ["We’re in-network with most major PPO plans. We’ll verify your benefits for free, in minutes."], ctas: ["Verify my benefits →"] },
+  { headline: "Address, hours & getting here", copy: ["Hopewell Health Solutions — 300 Hebron Ave, Glastonbury, CT 06033. Phone: (860) 946-0447.", "Hours: Monday–Thursday 9 AM–8 PM, Friday 9 AM–5 PM (IOP/PHP). Free parking on site. (Google Map embed in the build; address matches our Google Business Profile exactly.)"] },
+  { headline: "Glastonbury — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "What programs run at the Glastonbury location?", a: "Adult IOP, PHP, Women’s Wellness IOP, and psychiatric medication management. Teen & Tween IOP are at our South Glastonbury site." },
+    { q: "Where exactly are you located?", a: "300 Hebron Ave, Glastonbury, CT 06033, with free on-site parking." },
+    { q: "What are your hours?", a: "Monday–Thursday 9 AM–8 PM and Friday 9 AM–5 PM for IOP/PHP." },
+    { q: "Do you offer evening programs?", a: "Yes — our IOP runs day (9 AM–12 PM) and evening (5–8 PM) tracks." },
+    { q: "Will insurance cover treatment?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Start your care in Glastonbury", copy: ["Help is right around the corner. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
 ---
 
 <Review
@@ -2945,9 +3045,16 @@ const cooccurSections = [
     <ContentDoc label="What We Treat · Co-occurring (Dual Diagnosis)" title="Co-Occurring Disorders" intro="Hopewell's core model — integrated MH + SUD care. Hub-links across conditions + programs. Net-new." meta={cooccurMeta} seo={cooccurSeo} decisions={cooccurDecisions} sections={cooccurSections} />
   </article>
 
+  <article data-panel="locations" class="doc-panel hidden">
+    <ContentDoc label="Locations · Hub" title="Locations (Hub)" intro="The locations hub — 6 CT sites, programs-by-location guide, links to each location page (1 GBP : 1 page)." meta={locationsMeta} seo={locationsSeo} decisions={locationsDecisions} sections={locationsSections} />
+  </article>
+  <article data-panel="locglas" class="doc-panel hidden">
+    <ContentDoc label="Locations · Glastonbury — TEMPLATE (16-point checklist)" title="Glastonbury (300 Hebron)" intro="The template for all 6 location pages — 16-point checklist, LocalBusiness schema, NAP matching the GBP. Approve before I build the other 5." meta={locglasMeta} seo={locglasSeo} keywords={glasKeywords} decisions={locglasDecisions} sections={locglasSections} />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
