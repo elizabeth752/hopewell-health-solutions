@@ -46,6 +46,9 @@ const docs = [
   { id: "locwh", label: "Location · West Hartford", status: "ready" },
   { id: "loceh", label: "Location · East Hampton", status: "ready" },
   { id: "locwb", label: "Location · Westbrook", status: "ready" },
+  { id: "aboutus", label: "About Us (hub)", status: "ready" },
+  { id: "team", label: "About · Our Team (hub)", status: "ready" },
+  { id: "providerbio", label: "About · Provider Bio (template)", status: "ready" },
 ];
 
 // USP entries
@@ -2897,6 +2900,117 @@ const locwbSections = [
     { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
   { headline: "Care has come to the shoreline", copy: ["Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
 ];
+
+// ---------- ABOUT US (HUB) ----------
+const aboutusMeta = {
+  title: "About Hopewell Health Solutions | Mental Health in CT",
+  desc: "About Hopewell Health Solutions — a Connecticut mental health & psychiatry practice since 2013. Joint Commission accredited, 47 clinicians, 6 locations, ages 4+.",
+  h1: "About Hopewell Health Solutions",
+  canonical: "https://www.hopewellhealthsolutions.com/about-us/",
+  headings: "H1 = page title · H2 = sections · H3 = FAQ",
+  schema: ["MedicalWebPage", "AboutPage", "Organization", "FAQPage", "BreadcrumbList"],
+  reviewer: null,
+  social: "Open Graph + Twitter card: title, description, team photo",
+  interlinks: ["/about-us/team", "/programs/", "/what-we-treat/", "/locations/", "/admissions/"],
+};
+const aboutusSeo = "301 /about → /about-us/. E-E-A-T infrastructure, not a big traffic driver — but the /providers team page ranks for 54 keywords, so the About → Team link is valuable. Owns brand/“about hopewell” intent. Full name in title/content (NAP+W).";
+const aboutusDecisions = [
+  "✓ Full name (NAP+W). Hub (non-clinical) — no medical-reviewer byline.",
+  "✓ 301 /about → /about-us/. Keeps live mission + “therapy first, medication second, transformation third.”",
+  "✓ Joint Commission (Gold Seal) featured (confirmed). “By the numbers” uses defensible stats only.",
+  "ℹ️ Remaining About subpages to build: /about-us/accreditations/, /about-us/for-professionals/, /about-us/careers/.",
+];
+const aboutusSections = [
+  { eyebrow: "About Us · Connecticut · Since 2013", headline: "About Hopewell Health Solutions",
+    copy: ["Hopewell Health Solutions is a Connecticut mental health and psychiatry practice built on a simple belief: people get better when care treats the whole person. Since 2013, we’ve grown from a single office into six locations and a team of 47 clinicians — without losing the personal, human approach we started with.","We serve children, teens, and adults across Connecticut, in person and virtually."],
+    body: ["Since 2013", "Joint Commission accredited", "47 clinicians · 6 CT locations", "4.8★ · 368 reviews"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "Our mission", copy: ["Our mission is to help clients become the best version of themselves through exceptional, effective, and innovative care. Our guiding principle says it best: therapy first, medication second, transformation third — delivered by a diverse, collaborative team that treats the whole person, not just a diagnosis."] },
+  { headline: "What makes us different", copy: ["We bring a multidisciplinary approach and a full continuum of care under one roof:"], body: ["Evidence-based therapy — CBT, DBT, EMDR, ART, the Gottman Method, and more", "Advanced options — TMS, Spravato®, and GeneSight® genetic testing", "A full continuum — outpatient therapy, IOP, PHP, and psychiatry", "Specialized programs hospitals don’t offer — women’s, teen, tween & first-responder IOP"] },
+  { headline: "Joint Commission accredited", copy: ["Hopewell Health Solutions is accredited by The Joint Commission — the Gold Seal of Approval® — meaning an independent body has verified that our care meets rigorous national standards for quality and safety. (Accreditation details on our accreditations page.)"] },
+  { headline: "By the numbers", copy: ["A decade of care, by the numbers:"], body: ["13+ years serving Central Connecticut (since 2013)", "47 licensed clinicians across leadership, medical & clinical teams", "6 locations + virtual care", "4.8★ across 368 Google reviews", "Care for ages 4 and up"] },
+  { headline: "Meet our team", copy: ["Our clinicians bring 10–30 years of experience and a genuinely human approach. Meet the psychologists, psychiatric nurse practitioners, and therapists who make Hopewell Health Solutions what it is. (Links to the team page.)"], ctas: ["Meet our team →"] },
+  { headline: "About — common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is Hopewell Health Solutions accredited?", a: "Yes — we’re accredited by The Joint Commission (the Gold Seal of Approval®)." },
+    { q: "How long have you been in operation?", a: "Since 2013 — more than a decade serving Connecticut." },
+    { q: "Who do you treat?", a: "Children (ages 4+), teens, and adults, across mental health and co-occurring conditions." },
+    { q: "What makes you different?", a: "A full continuum of care plus advanced options (TMS, Spravato, GeneSight) and specialized IOP tracks — all under one roof." },
+    { q: "Where are you located?", a: "Six locations across Connecticut, plus virtual care." } ] },
+  { headline: "Get to know us", copy: ["The best way to understand our care is to experience it. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- OUR TEAM (HUB) ----------
+const teamMeta = {
+  title: "Our Clinical Team | Hopewell Health Solutions, Connecticut",
+  desc: "Meet the Hopewell Health Solutions clinical team — 47 licensed psychologists, psychiatric nurse practitioners & therapists across Connecticut, with 10–30 years of experience.",
+  h1: "Our Clinical Team",
+  canonical: "https://www.hopewellhealthsolutions.com/about-us/team/",
+  headings: "H1 = page title · H2 = team categories · H3 = credentials/FAQ",
+  schema: ["MedicalWebPage", "Organization (employee list)", "Person (per provider, on bio pages)", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: null,
+  social: "Open Graph + Twitter card: title, description, team photo",
+  interlinks: ["/about-us/team/[provider-slug] (47 bios)", "/about-us/careers", "/programs/", "/admissions/"],
+};
+const teamSeo = "301 /providers → /about-us/team/. IMPORTANT: /providers ranks for 54 keywords (~7.2k vol) — largely provider-NAME searches — so every clinician’s name + credentials must stay on this page, and each links to a Person-schema bio. Preserve all individual /provider/[slug] → /about-us/team/[slug] redirects (normalize psy-d→psyd, ph-d→phd). Keeps the live Leadership / Medical / Clinical structure.";
+const teamDecisions = [
+  "✓ Full name (NAP+W). Hub — Person schema lives on individual bios.",
+  "🛡️ <strong>Preserve the /providers rankings (54 kws)</strong> — keep every name + credential here; 301 all ~50 /provider/[slug] → /about-us/team/[slug] (normalize credentials in slugs).",
+  "ℹ️ Roster below from the 47 approved photos + live categories. The 5 photo-less live providers (melissa-holznagel, kelly-fluckiger, karmen-hayensworth, karla-dunkley, kate-henneberry) — confirm if still current; add the 5 waiting new hires.",
+  "🧩 Build: provider cards (photo · name · credentials · role · link) with filter tabs by category; credentials glossary.",
+];
+const teamSections = [
+  { eyebrow: "Our Team · 47 clinicians · Connecticut", headline: "Our Clinical Team",
+    copy: ["The person you work with matters more than almost anything else in treatment. That’s why we lead with ours. Hopewell Health Solutions is a comprehensive outpatient group of 47 licensed clinicians — psychologists, psychiatric nurse practitioners, and therapists — with 10 to 30 years of experience.","Innovative, holistic, effective care, all in one place. Real names. Real credentials. Real relationships."],
+    body: ["47 licensed clinicians", "10–30 years of experience", "Leadership · Medical · Clinical", "Across 6 CT locations"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "Leadership", copy: ["Our leadership team sets the standard of care:"], body: ["Kristine A. Schlichting, PhD — Founder & Director", "Colleen Callaway, MBA — Operations", "TJ Aitken, CPSRP — Admissions"] },
+  { headline: "Medical & psychiatric providers", copy: ["Our prescribers handle psychiatric evaluation and medication management:"], body: ["Katrin Moskowitz, DNP, PMHNP-BC, FNP", "Tracy Sibley, PMHNP-BC, APRN", "Rosa Kleinberg, APRN, PMHNP-BC", "Alizah Smith, PMHNP-BC", "Chris Patenaude, PA", "Katherine Salvador, PA-C"] },
+  { headline: "Psychologists & neuropsychology", copy: ["Our doctoral-level clinicians lead testing and specialized care:"], body: ["Laura Miller, PhD — Neuropsychology", "Chris Barclay, PhD, BCBA, NCSP", "Eric Schwarz, PsyD, ABPP", "Ashley Singh, PsyD", "Patricia Nogelo, PhD, LCSW", "Bido Aguessy, PsyD, LPC-A"] },
+  { headline: "Clinical team — therapists & counselors", copy: ["Our licensed therapists and counselors lead individual, group, and family work:"], body: [
+    "Amanda Michaud, LMSW · Amenah Thomas, LPC-A · Amina Huric, LMSW · Angela Pierce, LMSW · Anna Marchand, LPC-A · Cassie Gittens, LPC-A · Chesley Micciche, LPC · Christina Coelho, LMSW · Dori Bessette-Crail, LMFT · Eleni Fatsis, LMSW · Erica Schwartz, LCAT · Erin Kruse, LMSW",
+    "Jessenia Medina, LPC-NCC · Joanne Malinka, LCSW · Kayla Orozco, LCSW · Khentrell Graham, LMSW · Kimberly Devine, LCSW · Kris Feller, LMSW · Madison Anderson, LMSW · Mariah Thomas, LMSW · Michelle Munasami, LMFT · Natalia De Lonardo, LPCA · Nathan Truong, LMFT-A",
+    "Octavia Francis-Person, LPC-A · Savannah Henault, LMSW · Sherrie Gaudet, LCSW · Sheryll Waring, LPC-LADC · Stacy Piscottano, LMSW · Teesha Huertas, LCSW · Traci Schneider, MAATC, LPC-A, ATR-P · Viviana Alvarado, LPC-A · William Telemaque, LPCA",
+  ] },
+  { headline: "What the credentials mean", copy: ["A quick guide to the letters after our clinicians’ names:"], body: ["PhD / PsyD — doctoral-level psychologist", "DNP / APRN / PMHNP-BC — psychiatric nurse practitioner (can prescribe)", "PA / PA-C — physician assistant (can prescribe)", "LCSW / LMSW — clinical social worker", "LPC / LPC-A / LMFT — licensed counselor / marriage & family therapist", "LCAT — licensed creative arts therapist · BCBA — behavior analyst"] },
+  { headline: "We're growing", copy: ["We’re always looking for compassionate, skilled clinicians. (Links to careers.)"], ctas: ["See open roles →"] },
+  { headline: "Find the right provider for you", copy: ["Not sure who to start with? Call us — we’ll match you to the right clinician. Reach out to Hopewell Health Solutions today, confidentially and with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
+
+// ---------- PROVIDER BIO (TEMPLATE) ----------
+const providerbioMeta = {
+  title: "Kristine A. Schlichting, PhD — Founder | Hopewell Health Solutions",
+  desc: "Kristine A. Schlichting, PhD is the founder and director of Hopewell Health Solutions, a Connecticut mental health & psychiatry practice serving clients since 2013.",
+  h1: "Kristine A. Schlichting, PhD",
+  canonical: "https://www.hopewellhealthsolutions.com/about-us/team/kristine-a-schlichting-phd/",
+  headings: "H1 = provider name · H2 = sections · H3 = FAQ",
+  schema: ["ProfilePage", "Person (name, jobTitle, credentials, worksFor, image)", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: null,
+  social: "Open Graph + Twitter card: provider name, role, headshot",
+  interlinks: ["/about-us/team", "/programs/", "/what-we-treat/", "/admissions/"],
+};
+const providerbioSeo = "TEMPLATE for all ~47 provider bio pages. 301 /provider/[slug] → /about-us/team/[slug] (normalize psy-d→psyd, ph-d→phd to match photo filenames). Person schema per bio = E-E-A-T + supports provider-NAME searches (the /providers cluster ranks for 54 kws). Each bio links back to the team hub + relevant programs/conditions.";
+const providerbioDecisions = [
+  "✓ Full name (NAP+W). Person/ProfilePage schema. ~500–700 words per bio (bios run shorter than service pages — that's fine, they're E-E-A-T).",
+  "⭐ <strong>TEMPLATE for all ~47 provider bios</strong> — approve before I note the rollout pattern (one per clinician, same structure, client-supplied bio text).",
+  "🛡️ Each /provider/[slug] 301s to /about-us/team/[slug]; keep the name + credentials to preserve name-search rankings.",
+  "⚠️ Bio copy below is illustrative — real bios must come from each clinician / the client (don't invent credentials or specialties).",
+];
+const providerbioSections = [
+  { eyebrow: "Our Team · Founder & Director", headline: "Kristine A. Schlichting, PhD",
+    copy: ["Kristine A. Schlichting, PhD, is the founder and director of Hopewell Health Solutions. She built the practice in 2013 on a belief that has guided it ever since: that people heal best when care treats the whole person — therapy first, medication second, transformation third.","[Bio to be supplied/approved by the clinician — areas of focus, philosophy, and background.]"],
+    body: ["Founder & Director", "PhD — Psychologist", "Glastonbury, CT", "Accepting clients"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
+  { headline: "About", copy: ["[Client-supplied bio paragraph: Dr. Schlichting’s background, training, and the philosophy behind Hopewell Health Solutions. Keep it warm and human, and accurate to her credentials.]"] },
+  { headline: "Areas of focus", copy: ["[Specialties — e.g., the conditions and populations this clinician works with, linked to the relevant /what-we-treat/ pages.]"], body: ["Specialty 1 (link to condition)", "Specialty 2", "Specialty 3"] },
+  { headline: "Education & credentials", copy: ["[Degrees, licenses, and certifications — confirmed by the clinician. PhD in [field], licensed in Connecticut, etc.]"] },
+  { headline: "Where she sees clients", copy: ["Glastonbury (300 Hebron Ave) and virtually across Connecticut. (Links to the location + programs she’s part of.)"] },
+  { headline: "Common questions", copy: ["The questions we hear most:"], faq: [
+    { q: "Is Dr. Schlichting accepting new clients?", a: "[Confirm current availability.] Call us and we’ll help you get scheduled." },
+    { q: "What does she specialize in?", a: "[Specialties — supplied by the clinician.]" },
+    { q: "Does she offer virtual visits?", a: "Yes — in person in Glastonbury or by secure video." },
+    { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
+  { headline: "Book with our team", copy: ["Want to work with Dr. Schlichting or another of our clinicians? Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
+];
 ---
 
 <Review
@@ -3254,9 +3368,19 @@ const locwbSections = [
     <ContentDoc label="Locations · Westbrook — NEW" title="Westbrook (70 Essex Rd)" intro="New shoreline location — full continuum (IOP/PHP/psychiatry/therapy). Big low-competition local opportunity." meta={locwbMeta} seo={locwbSeo} decisions={locwbDecisions} sections={locwbSections} />
   </article>
 
+  <article data-panel="aboutus" class="doc-panel hidden">
+    <ContentDoc label="About Us · Hub" title="About Us (Hub)" intro="E-E-A-T hub. 301s from /about; mission, Joint Commission, by-the-numbers, links to the team." meta={aboutusMeta} seo={aboutusSeo} decisions={aboutusDecisions} sections={aboutusSections} />
+  </article>
+  <article data-panel="team" class="doc-panel hidden">
+    <ContentDoc label="About Us · Our Team (hub)" title="Our Clinical Team" intro="The 47-clinician roster (Leadership/Medical/Clinical). 301s from /providers — preserve its 54-keyword name-search rankings." meta={teamMeta} seo={teamSeo} decisions={teamDecisions} sections={teamSections} />
+  </article>
+  <article data-panel="providerbio" class="doc-panel hidden">
+    <ContentDoc label="About Us · Provider Bio — TEMPLATE (~47 bios)" title="Provider Bio" intro="The template for every clinician bio (Person schema). Real bio text comes from each clinician. Approve before the rollout pattern." meta={providerbioMeta} seo={providerbioSeo} decisions={providerbioDecisions} sections={providerbioSections} />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas", "locsouth", "locpratt", "locwh", "loceh", "locwb"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot", "tms", "spravato", "mat", "emdr", "dbt", "group", "neuro", "adhdtest", "genesight", "wwt", "depression", "anxiety", "trauma", "bipolar", "ocd", "adhd", "sudcond", "alcohol", "drug", "rx", "cooccur", "locations", "locglas", "locsouth", "locpratt", "locwh", "loceh", "locwb", "aboutus", "team", "providerbio"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
