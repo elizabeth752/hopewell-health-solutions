@@ -2988,26 +2988,27 @@ const providerbioMeta = {
   social: "Open Graph + Twitter card: provider name, role, headshot",
   interlinks: ["/about-us/team", "/programs/", "/what-we-treat/", "/admissions/"],
 };
-const providerbioSeo = "TEMPLATE for all ~47 provider bio pages. 301 /provider/[slug] → /about-us/team/[slug] (normalize psy-d→psyd, ph-d→phd to match photo filenames). Person schema per bio = E-E-A-T + supports provider-NAME searches (the /providers cluster ranks for 54 kws). Each bio links back to the team hub + relevant programs/conditions.";
+const providerbioSeo = "TEMPLATE for all ~47 provider bio pages — populated from the EXISTING live /provider/[slug] content (no invented copy). 301 /provider/[slug] → /about-us/team/[slug] (normalize psy-d→psyd, ph-d→phd to match photo filenames). Person schema per bio = E-E-A-T + supports provider-NAME searches (the /providers cluster ranks for 54 kws). Each bio links back to the team hub + relevant programs/conditions.";
 const providerbioDecisions = [
-  "✓ Full name (NAP+W). Person/ProfilePage schema. ~500–700 words per bio (bios run shorter than service pages — that's fine, they're E-E-A-T).",
-  "⭐ <strong>TEMPLATE for all ~47 provider bios</strong> — approve before I note the rollout pattern (one per clinician, same structure, client-supplied bio text).",
-  "🛡️ Each /provider/[slug] 301s to /about-us/team/[slug]; keep the name + credentials to preserve name-search rankings.",
-  "⚠️ Bio copy below is illustrative — real bios must come from each clinician / the client (don't invent credentials or specialties).",
+  "✓ Full name (NAP+W). Person/ProfilePage schema. Bios run ~400–600 words (shorter than service pages — that's correct for E-E-A-T).",
+  "✓ <strong>Built from existing live content</strong> — this Kristine Schlichting bio is pulled verbatim-ish from /provider/kristine-a-schlichting-ph-d. Rollout = pull each clinician’s live /provider/[slug] page; no placeholders, no invented credentials.",
+  "🛡️ Each /provider/[slug] 301s to /about-us/team/[slug]; keep name + credentials to preserve the name-search rankings.",
+  "ℹ️ Where a live bio is thin or missing (e.g., the 5 photo-less providers / 5 new hires), request copy from the client rather than inventing it.",
 ];
 const providerbioSections = [
-  { eyebrow: "Our Team · Founder & Director", headline: "Kristine A. Schlichting, PhD",
-    copy: ["Kristine A. Schlichting, PhD, is the founder and director of Hopewell Health Solutions. She built the practice in 2013 on a belief that has guided it ever since: that people heal best when care treats the whole person — therapy first, medication second, transformation third.","[Bio to be supplied/approved by the clinician — areas of focus, philosophy, and background.]"],
-    body: ["Founder & Director", "PhD — Psychologist", "Glastonbury, CT", "Accepting clients"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+  { eyebrow: "Our Team · Director & Founder", headline: "Kristine A. Schlichting, PhD",
+    copy: ["Kristine A. Schlichting, PhD, is the Director and Founder of Hopewell Health Solutions and a licensed psychologist. Her approach blends psychology, transformation, motivation, coaching, and wellness — guided by a simple philosophy: “Change is a practice, not a concept.”"],
+    body: ["Director & Founder", "PhD · Licensed Psychologist", "Glastonbury · West Hartford · East Hampton · Westbrook", "In person & telehealth"], ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
     form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms only." },
-  { headline: "About", copy: ["[Client-supplied bio paragraph: Dr. Schlichting’s background, training, and the philosophy behind Hopewell Health Solutions. Keep it warm and human, and accurate to her credentials.]"] },
-  { headline: "Areas of focus", copy: ["[Specialties — e.g., the conditions and populations this clinician works with, linked to the relevant /what-we-treat/ pages.]"], body: ["Specialty 1 (link to condition)", "Specialty 2", "Specialty 3"] },
-  { headline: "Education & credentials", copy: ["[Degrees, licenses, and certifications — confirmed by the clinician. PhD in [field], licensed in Connecticut, etc.]"] },
-  { headline: "Where she sees clients", copy: ["Glastonbury (300 Hebron Ave) and virtually across Connecticut. (Links to the location + programs she’s part of.)"] },
+  { headline: "About", copy: ["Dr. Schlichting earned her doctorate and master’s in psychology from the University of Connecticut, along with an additional master’s in counseling from the University of Wisconsin–Madison. Over more than ten years, she has developed an innovative, neuroscience-based therapy model that is active, dynamic, and collaborative — helping clients turn insight into real, lasting change."] },
+  { headline: "Areas of focus", copy: ["Dr. Schlichting works with a range of concerns, including:"], body: ["Anxiety disorders", "Mood disorders", "Divorce & blended families", "Women’s issues", "Sex & intimacy concerns", "Healthy relationship development", "Pet-assisted & walk-talk therapy", "Gottman Method couples counseling"], copyAfter: ["(Specialties link to the relevant condition pages — e.g., anxiety, mood/depression.)"] },
+  { headline: "Services offered", copy: ["She provides individual counseling and telehealth, group therapy (including Mindfulness for Adults and Children, and Women in Transition), testing and diagnosis, and school consultation."] },
+  { headline: "Education & credentials", copy: ["PhD and MA in Psychology, University of Connecticut · MA in Counseling, University of Wisconsin–Madison · Licensed Psychologist."] },
+  { headline: "Where she sees clients", copy: ["Glastonbury, West Hartford, East Hampton, and Westbrook, CT — and virtually via telehealth. (Links to those location pages.)"] },
   { headline: "Common questions", copy: ["The questions we hear most:"], faq: [
-    { q: "Is Dr. Schlichting accepting new clients?", a: "[Confirm current availability.] Call us and we’ll help you get scheduled." },
-    { q: "What does she specialize in?", a: "[Specialties — supplied by the clinician.]" },
-    { q: "Does she offer virtual visits?", a: "Yes — in person in Glastonbury or by secure video." },
+    { q: "What does Dr. Schlichting specialize in?", a: "Anxiety and mood disorders, women’s issues, relationships and couples (Gottman Method), and more." },
+    { q: "Does she offer telehealth?", a: "Yes — she sees clients in person across our CT locations and virtually." },
+    { q: "Does she do couples counseling?", a: "Yes — she’s trained in the Gottman Method for couples." },
     { q: "Will insurance cover it?", a: "Most major plans do. We’ll verify your benefits for free." } ] },
   { headline: "Book with our team", copy: ["Want to work with Dr. Schlichting or another of our clinicians? Reach out to Hopewell Health Solutions today — confidentially, with no pressure."], ctas: ["Verify Your Insurance", "Call (860) 946-0447"] },
 ];
@@ -3375,7 +3376,7 @@ const providerbioSections = [
     <ContentDoc label="About Us · Our Team (hub)" title="Our Clinical Team" intro="The 47-clinician roster (Leadership/Medical/Clinical). 301s from /providers — preserve its 54-keyword name-search rankings." meta={teamMeta} seo={teamSeo} decisions={teamDecisions} sections={teamSections} />
   </article>
   <article data-panel="providerbio" class="doc-panel hidden">
-    <ContentDoc label="About Us · Provider Bio — TEMPLATE (~47 bios)" title="Provider Bio" intro="The template for every clinician bio (Person schema). Real bio text comes from each clinician. Approve before the rollout pattern." meta={providerbioMeta} seo={providerbioSeo} decisions={providerbioDecisions} sections={providerbioSections} />
+    <ContentDoc label="About Us · Provider Bio — TEMPLATE (~47 bios)" title="Provider Bio" intro="The template for every clinician bio (Person schema), populated from the existing live /provider/ content — no placeholders. Rollout = pull each clinician's live page." meta={providerbioMeta} seo={providerbioSeo} decisions={providerbioDecisions} sections={providerbioSections} />
   </article>
 
   <!-- Stub panels (full width) -->
@@ -3396,19 +3397,27 @@ const providerbioSections = [
   <script>
     const tabs = document.querySelectorAll<HTMLButtonElement>(".doc-tab");
     const panels = document.querySelectorAll<HTMLElement>(".doc-panel");
+    function activate(id: string | undefined, scroll = false) {
+      if (!id || !document.querySelector(`[data-panel="${id}"]`)) return;
+      tabs.forEach((t) => {
+        const active = t.dataset.doc === id;
+        t.classList.toggle("border-azul", active);
+        t.classList.toggle("text-azul", active);
+        t.classList.toggle("bg-azul-light", active);
+        t.classList.toggle("border-transparent", !active);
+        t.classList.toggle("text-muted", !active);
+        if (active && scroll) t.scrollIntoView({ inline: "center", block: "nearest" });
+      });
+      panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== id));
+    }
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
-        const id = tab.dataset.doc;
-        tabs.forEach((t) => {
-          const active = t === tab;
-          t.classList.toggle("border-azul", active);
-          t.classList.toggle("text-azul", active);
-          t.classList.toggle("bg-azul-light", active);
-          t.classList.toggle("border-transparent", !active);
-          t.classList.toggle("text-muted", !active);
-        });
-        panels.forEach((p) => p.classList.toggle("hidden", p.dataset.panel !== id));
+        activate(tab.dataset.doc);
+        history.replaceState(null, "", "#" + tab.dataset.doc);
       });
     });
+    // Deep-link: open the tab named in the URL hash (e.g. /review/content/#team)
+    if (location.hash) activate(location.hash.slice(1), true);
+    window.addEventListener("hashchange", () => activate(location.hash.slice(1), true));
   </script>
 </Review>
