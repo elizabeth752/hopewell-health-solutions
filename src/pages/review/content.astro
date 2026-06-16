@@ -16,6 +16,8 @@ const docs = [
   { id: "fr", label: "Program · First Responder IOP", status: "ready" },
   { id: "sud", label: "Program · Substance Use IOP", status: "ready" },
   { id: "php", label: "Program · PHP", status: "ready" },
+  { id: "mm", label: "Program · Medication Management", status: "ready" },
+  { id: "ot", label: "Program · Outpatient Therapy", status: "ready" },
   { id: "depression", label: "Condition · Depression", status: "empty" },
 ];
 
@@ -1487,6 +1489,222 @@ const phpSections = [
     ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
   },
 ];
+
+// ---------- MEDICATION MANAGEMENT DOCUMENT ----------
+const mmMeta = {
+  title: "Medication Management in CT | Hopewell Health Solutions",
+  desc: "Psychiatric medication management at Hopewell Health Solutions in CT — assessment, therapy & meds in one visit. Ages 4+, GeneSight testing. Most insurance accepted.",
+  h1: "Medication Management & Psychiatric Care in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/medication-management/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (psychiatry)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, psychiatry image",
+  interlinks: ["/what-we-treat/ anxiety · depression · adhd · ocd · trauma-ptsd", "/treatment-methods/ genesight-testing · tms · spravato · medication-assisted-treatment", "/programs/ intensive-outpatient-program", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const mmSeo =
+  "Consolidates /medication-management + /medication-management-service + /service/medication-management + /content/psychiatric-care--medication-management → /programs/medication-management/. Med management is a HUGE lead feeder (per the client). The live page ranks for 11 terms — but most are OUT-OF-AREA noise (Logan UT, Orem, Brookline, Franklin MA — ignore). The keepers: local “…near me” prescriber terms + brand “hopewell health solutions reviews” — preserve via 301 + re-target. BIG OPPORTUNITY: it does NOT yet rank for “medication management CT / psychiatrist Glastonbury CT / ADHD medication management” — target those. Consider an adult vs. child/teen split later if volume supports it.";
+
+const mmKeywords = [
+  ["hopewell health solutions reviews", 18, "110"],
+  ["mental health med management near me", 35, "70"],
+  ["medicine management near me", 62, "70"],
+  ["prescribers near me", 43, "40"],
+];
+
+const mmDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC. Full name in metas + content (NAP+W).",
+  "✓ Consolidates 4 old URLs → /programs/medication-management/. Removed “Start Now / online scheduling”; CTM forms + call tracking only.",
+  "⭐ <strong>Lead-feeder page</strong> — the client says med-management volume is huge. P1; consider a future adult vs. child/teen split if keyword volume supports it.",
+  "ℹ️ Serves ages 4+ (kids, teens, adults), incl. ADHD. GeneSight + MAT + Spravato/TMS referenced and interlinked.",
+  "⚠️ No Semrush export yet — pull med-management positions before migrating.",
+];
+
+const mmSections = [
+  {
+    eyebrow: "Medication Management & Psychiatry · Glastonbury, CT · In person & virtual",
+    headline: "Medication Management & Psychiatric Care in Connecticut",
+    copy: [
+      "Getting the right medication shouldn’t feel like a guessing game. At Hopewell Health Solutions, psychiatric care is thoughtful, collaborative, and built around you — assessment, therapy, and medication, often in a single visit, for ages 4 and up.",
+      "We don’t put limits on your psychiatric care. Keep your current therapist, work with one of ours, or skip therapy altogether — it’s your call.",
+    ],
+    body: ["Joint Commission accredited", "Same-day appointments", "Ages 4 & up", "GeneSight® testing", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is medication management?",
+    copy: [
+      "Medication management is ongoing psychiatric care — a thorough evaluation, an accurate diagnosis, a personalized medication plan, and regular follow-ups to fine-tune it as you go. Our providers are specifically trained in psychiatric diagnoses, treatments, and medications.",
+      "It’s essential care for promoting mental health, preventing things from getting worse, and meeting each person where they are.",
+    ],
+  },
+  {
+    headline: "Assessment, therapy & meds in one visit",
+    copy: ["Most practices make you bounce between a prescriber and a therapist. At Hopewell Health Solutions, you can get assessment, talk therapy, and medication in a single visit — and often a same-day appointment. Less runaround, more progress."],
+  },
+  {
+    headline: "Who it's for",
+    copy: ["We provide psychiatric care for ages 4 and up — children, teens, and adults — including kids who need ADHD evaluation and support. Whether you’re starting medication for the first time or your longtime psychiatrist is retiring, we’ll build a plan you’re comfortable with."],
+  },
+  {
+    headline: "Precision prescribing with GeneSight®",
+    copy: ["When it helps, we use GeneSight® pharmacogenomic testing — a simple cheek swab that shows how your body is likely to respond to different medications. Instead of trial-and-error, we use your biology to find the right fit faster."],
+  },
+  {
+    headline: "What we treat",
+    copy: ["Our psychiatric providers treat a wide range of concerns:"],
+    body: ["Anxiety & anxiety-related disorders", "Depression", "OCD", "Trauma", "ADHD", "Sleep disturbance", "Life transitions & self-esteem", "Co-occurring substance use"],
+  },
+  {
+    headline: "More than medication",
+    copy: ["Medication is one tool, not the whole toolbox. When it’s the right fit, we connect your care to:"],
+    body: ["TMS — for treatment-resistant depression", "Spravato® — for treatment-resistant depression", "Medication-Assisted Treatment (MAT) — for substance use", "Our IOP and PHP programs — when more support is needed"],
+  },
+  {
+    headline: "Providers who actually listen",
+    copy: ["You’ll work with experienced, board-certified psychiatric providers. As our patients put it: clinicians who make sure you “leave with zero questions,” who “take the time to listen carefully,” and who explain things in clear, “digestible” terms. Every one of our medication-management providers holds a 5-star Google rating."],
+  },
+  {
+    headline: "Why people choose Hopewell Health Solutions for psychiatric care",
+    copy: ["What sets us apart:"],
+    body: [
+      "Assessment, therapy & meds in one visit — often same-day.",
+      "Your choice — keep your therapist, use ours, or go meds-only.",
+      "GeneSight® testing for precision prescribing.",
+      "Joint Commission accredited, with a full continuum of care if you ever need more.",
+    ],
+  },
+  {
+    headline: "Hear from our patients",
+    copy: ["Patients describe feeling seen and supported:"],
+    body: ["“She answered every question and provided neutral, digestible information about the medication.”", "“She always takes the time to listen carefully to my wants and needs.”"],
+    copyAfter: ["4.8★ across 368 Google reviews — and every med-management provider holds a 5-star rating."],
+  },
+  {
+    headline: "Locations & insurance",
+    copy: ["Care across Connecticut — Glastonbury, West Hartford, East Hampton, and Westbrook — plus virtual visits. Hopewell Health Solutions accepts most major insurance, and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Medication management — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "Do I have to do therapy to get medication here?", a: "No — you can keep your current therapist, work with one of ours, or do medication management only. It’s your choice." },
+      { q: "What ages do you treat?", a: "Ages 4 and up — children, teens, and adults, including ADHD evaluation and support." },
+      { q: "What is GeneSight testing?", a: "A simple cheek swab that shows how your genetics may affect your response to medications, so we can find the right fit faster." },
+      { q: "Can I get a same-day or virtual appointment?", a: "Often, yes — we offer same-day appointments and virtual visits across Connecticut." },
+      { q: "Will insurance cover it?", a: "Most major PPO plans do. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "Take control of your mental health",
+    copy: ["With a provider who listens and a plan that fits, psychiatric care can feel like a relief instead of a chore. Reach out to Hopewell Health Solutions today — confidentially, with no pressure."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
+
+// ---------- OUTPATIENT THERAPY DOCUMENT ----------
+const otMeta = {
+  title: "Outpatient Therapy & Counseling in CT | Hopewell Health Solutions",
+  desc: "Outpatient therapy & counseling at Hopewell Health Solutions in CT — individual, couples & family therapy for ages 4+. In person & virtual. Most insurance accepted.",
+  h1: "Outpatient Therapy & Counseling in Connecticut",
+  canonical: "https://www.hopewellhealthsolutions.com/programs/outpatient-therapy/",
+  headings: "H1 = page title (one only) · H2 = section headlines · H3 = FAQ questions",
+  schema: ["MedicalWebPage", "MedicalTherapy / Service (counseling)", "FAQPage", "BreadcrumbList", "Organization (sitewide)"],
+  reviewer: "Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC",
+  social: "Open Graph + Twitter card: title, description, counseling image",
+  interlinks: ["/what-we-treat/ depression · anxiety · trauma-ptsd", "/treatment-methods/ cbt · dbt · emdr", "/programs/ intensive-outpatient-program · medication-management", "/locations/glastonbury-ct/", "/admissions/"],
+};
+
+const otSeo =
+  "Consolidates /service/counseling → /programs/outpatient-therapy/. The base level of care below IOP. Targets “counseling / therapist Glastonbury CT,” “individual / couples / family therapy CT,” “therapy near me” — and reinforces the homepage’s one strong non-brand term “therapy glastonbury ct” (#4). Differentiate from IOP/PHP (intensive intent) and from condition pages. No Semrush export yet — pull positions before migrating.";
+
+const otDecisions = [
+  "✓ Medically reviewed by Kristine Schlichting, PhD & Katrin Moskowitz, DNP, PMHNP-BC. Full name in metas + content (NAP+W).",
+  "✓ Consolidates /service/counseling → /programs/outpatient-therapy/. Removed “Book Online”; CTM forms + call tracking only.",
+  "✓ Positioned as the base level of care (weekly individual / couples / family therapy) below IOP — clearly differentiated and cross-linked.",
+  "ℹ️ Serves ages 4+ (incl. play therapy for kids), couples, and families. Reinforces “therapy glastonbury ct.”",
+  "⚠️ No Semrush export yet — pull positions before migrating.",
+];
+
+const otSections = [
+  {
+    eyebrow: "Outpatient Therapy & Counseling · Glastonbury, CT · In person & virtual",
+    headline: "Outpatient Therapy & Counseling in Connecticut",
+    copy: [
+      "Sometimes you don’t need an intensive program — you just need a great therapist who gets you. Hopewell Health Solutions offers individual, couples, and family counseling with board-certified clinicians, in person across Connecticut or by telehealth.",
+      "One in five adults lives with a mental health condition. With the right support, life’s hardest stretches get more manageable — and you don’t have to face them alone.",
+    ],
+    body: ["Joint Commission accredited", "4.8★ · 368 reviews", "Individual · couples · family", "In person & virtual", "Most insurance accepted"],
+    ctas: ["Verify Your Insurance →", "Call (860) 946-0447"],
+    form: "CTM lead form (name · phone · insurance · TCPA consent) → confidential callback. No online booking — CTM forms + call tracking only.",
+  },
+  {
+    headline: "What is counseling?",
+    copy: [
+      "Counseling is talk therapy — a licensed clinician helps you work through difficult life situations and mental health conditions like depression and anxiety, and build coping strategies that actually stick. Sessions typically run about 60 minutes, once or twice a week depending on what you need.",
+      "It’s a highly effective, flexible way to feel better and function better — at your own pace.",
+    ],
+  },
+  {
+    headline: "Who it's for",
+    copy: ["We see individuals (including children and teenagers), couples, and families. Whatever you’re carrying — and whoever you’re carrying it with — there’s a place for you here."],
+    body: ["Individual therapy — adults, teens & kids (ages 4+)", "Couples therapy — rebuild connection and communication", "Family therapy — heal dynamics and restore trust"],
+  },
+  {
+    headline: "What we help with",
+    copy: ["Counseling helps with a wide range of life’s challenges:"],
+    body: ["Depression & anxiety", "Relationship conflict, divorce or breakup", "Trauma, loss & grief", "Behavioral problems in children & teens", "Job loss, work & financial stress", "Mood disorders & anger", "Autism spectrum support", "Addictions"],
+  },
+  {
+    headline: "How we work",
+    copy: ["Therapy is evidence-based and tailored to you. Depending on your goals, your clinician may draw on:"],
+    body: ["CBT & DBT — practical skills for thoughts and emotions", "EMDR & trauma-informed care", "Accelerated Resolution Therapy (ART)", "The Gottman Method — for couples", "Play therapy — for younger children"],
+  },
+  {
+    headline: "Counseling vs. IOP",
+    copy: ["Weekly counseling is the right starting point for many people. If you find you need more structure — several days a week of support — our Intensive Outpatient Programs (IOP) and Partial Hospitalization Program (PHP) step it up, and your therapist can help you move between levels seamlessly."],
+  },
+  {
+    headline: "Why people choose Hopewell Health Solutions for therapy",
+    copy: ["What sets us apart:"],
+    body: [
+      "A therapist who fits — matched to you, not assigned at random.",
+      "In person across Connecticut or by telehealth.",
+      "Part of a full continuum — easy to step up to IOP/PHP or add medication management if needed.",
+      "Joint Commission accredited, with a deeply credentialed team.",
+    ],
+  },
+  {
+    headline: "Hear from our clients",
+    copy: ["Clients describe feeling genuinely heard:"],
+    body: ["“You’re not just a number.”", "“I feel as if my voice is valued.”"],
+    copyAfter: ["4.8★ across 368 Google reviews."],
+  },
+  {
+    headline: "Locations & insurance",
+    copy: ["Care across Connecticut — Glastonbury, West Hartford, East Hampton, and Westbrook — plus virtual visits. Hopewell Health Solutions accepts most major insurance, and we’ll verify your benefits free, in minutes."],
+    ctas: ["Verify my benefits →"],
+  },
+  {
+    headline: "Counseling — common questions",
+    copy: ["The questions we hear most:"],
+    faq: [
+      { q: "How long are sessions, and how often?", a: "About 60 minutes, once or twice a week depending on what you need." },
+      { q: "Do you offer telehealth?", a: "Yes — in person across Connecticut or by secure video." },
+      { q: "Do you see children and couples?", a: "Yes — individuals (ages 4+), couples, and families." },
+      { q: "What if I need more than weekly therapy?", a: "We’ll help you step up to our IOP or PHP, or add medication management — all under one roof." },
+      { q: "Will insurance cover it?", a: "Most major PPO plans do. We’ll verify your benefits for free." },
+    ],
+  },
+  {
+    headline: "Find your therapist",
+    copy: ["The right therapist can change everything. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you find yours."],
+    ctas: ["Verify Your Insurance", "Call (860) 946-0447"],
+  },
+];
 ---
 
 <Review
@@ -1715,9 +1933,36 @@ const phpSections = [
     />
   </article>
 
+  <!-- Medication Management doc -->
+  <article data-panel="mm" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Medication Management — improved copy + structure"
+      title="Medication Management"
+      intro="A big lead-feeder. Psychiatric care for ages 4+, assessment + therapy + meds in one visit, GeneSight precision prescribing. Consolidates 4 live URLs."
+      meta={mmMeta}
+      seo={mmSeo}
+      keywords={mmKeywords}
+      decisions={mmDecisions}
+      sections={mmSections}
+    />
+  </article>
+
+  <!-- Outpatient Therapy doc -->
+  <article data-panel="ot" class="doc-panel hidden">
+    <ContentDoc
+      label="Program · Outpatient Therapy — improved copy + structure"
+      title="Outpatient Therapy & Counseling"
+      intro="The base level of care below IOP — individual, couples & family counseling for ages 4+. Consolidates the live counseling page; reinforces 'therapy glastonbury ct.'"
+      meta={otMeta}
+      seo={otSeo}
+      decisions={otDecisions}
+      sections={otSections}
+    />
+  </article>
+
   <!-- Stub panels (full width) -->
   {
-    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php"].includes(d.id)).map((d) => (
+    docs.filter((d) => !["usps", "homepage", "iopov", "iop", "mens", "womens", "teen", "tween", "fr", "sud", "php", "mm", "ot"].includes(d.id)).map((d) => (
       <article data-panel={d.id} class="doc-panel hidden">
         <div class="rounded-xl bg-white shadow-lg border border-line">
           <div class="px-14 py-24 text-center">
