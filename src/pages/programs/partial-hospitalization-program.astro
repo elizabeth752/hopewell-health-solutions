@@ -217,14 +217,20 @@ const faqs = [
         <p class="mt-3 text-muted max-w-2xl mx-auto">The difference comes down to intensity. Many clients step down from PHP into IOP as they stabilize — Hopewell Health Solutions helps you find the right level.</p>
       </div>
       <div class="mt-10 grid md:grid-cols-2 gap-5">
-        <div class="rounded-2xl bg-crema border-2 border-azul p-7">
-          <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="calendar" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">PHP</h3></div>
-          <p class="mt-4 text-ink leading-relaxed">About <strong>six hours a day, 5–6 days a week</strong> — the highest level of outpatient care. Best for stabilizing after a crisis or stepping down from inpatient.</p>
+        <div class="overflow-hidden rounded-2xl bg-white border-2 border-azul">
+          <img src="/Assets/full%20team%20happy.webp" alt="Partial hospitalization — the highest level of outpatient care" loading="lazy" class="h-44 w-full object-cover" />
+          <div class="p-7">
+            <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="calendar" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">PHP</h3></div>
+            <p class="mt-4 text-ink leading-relaxed">About <strong>six hours a day, 5–6 days a week</strong> — the highest level of outpatient care. Best for stabilizing after a crisis or stepping down from inpatient.</p>
+          </div>
         </div>
-        <div class="rounded-2xl bg-crema border border-line p-7">
-          <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-sage-light text-sage"><Icon name="refresh" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">IOP</h3></div>
-          <p class="mt-4 text-ink leading-relaxed">About <strong>three hours a day, four days a week</strong> — lighter structure so you can keep working, studying, or caring for family.</p>
-          <a href="/programs/adult-mental-health-iop/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Explore our Adult IOP <Icon name="arrow" class="h-4 w-4" /></a>
+        <div class="overflow-hidden rounded-2xl bg-white border border-azul/30">
+          <img src="/Assets/couple%20hugging.webp" alt="Intensive outpatient — care that fits around your life" loading="lazy" class="h-44 w-full object-cover" />
+          <div class="p-7">
+            <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-sage-light text-sage"><Icon name="refresh" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">IOP</h3></div>
+            <p class="mt-4 text-ink leading-relaxed">About <strong>three hours a day, four days a week</strong> — lighter structure so you can keep working, studying, or caring for family.</p>
+            <a href="/programs/adult-mental-health-iop/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Explore our Adult IOP <Icon name="arrow" class="h-4 w-4" /></a>
+          </div>
         </div>
       </div>
     </div>
@@ -421,7 +427,7 @@ const faqs = [
       <h2 class="font-display text-3xl text-ink text-center">PHP — common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
-          <details class="group rounded-xl bg-crema border border-line p-5">
+          <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
             <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
             <p class="mt-3 text-ink leading-relaxed">{a}</p>
           </details>
@@ -432,15 +438,17 @@ const faqs = [
 
   <!-- GET STARTED (screening + referral) -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-5xl px-5 pb-4 pt-16">
+    <div class="mx-auto max-w-5xl px-5 py-16">
       <div class="grid md:grid-cols-2 gap-5">
-        <div class="rounded-2xl bg-white border border-line p-7 flex flex-col">
-          <h3 class="font-display text-xl text-ink">What kind of treatment do I need?</h3>
+        <div class="rounded-2xl bg-white border border-azul/30 p-7 flex flex-col">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="clipboard" class="h-6 w-6" /></span>
+          <h3 class="mt-4 font-display text-xl text-ink">What kind of treatment do I need?</h3>
           <p class="mt-2 text-sm text-muted flex-1">Not sure which level of care fits? Take our quick, confidential screening and we’ll point you in the right direction.</p>
           <a href="/admissions/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Start the screening <Icon name="arrow" class="h-4 w-4" /></a>
         </div>
-        <div class="rounded-2xl bg-white border border-line p-7 flex flex-col">
-          <h3 class="font-display text-xl text-ink">Referring a client?</h3>
+        <div class="rounded-2xl bg-white border border-azul/30 p-7 flex flex-col">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="link" class="h-6 w-6" /></span>
+          <h3 class="mt-4 font-display text-xl text-ink">Referring a client?</h3>
           <p class="mt-2 text-sm text-muted flex-1">Clinicians and providers can refer to our PHP in minutes — download the referral form to get started.</p>
           <a href="/admissions/for-professionals/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Get the referral form <Icon name="arrow" class="h-4 w-4" /></a>
         </div>
