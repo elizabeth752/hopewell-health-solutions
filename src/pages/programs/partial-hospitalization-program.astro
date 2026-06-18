@@ -1,0 +1,466 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+
+const heroUsps = [
+  { icon: "calendar", t: "6 structured hours a day, 5–6 days a week — the highest level of outpatient care" },
+  { icon: "sparkles", t: "Concierge, customizable care — you build the group schedule around your goals" },
+  { icon: "dna", t: "GeneSight® genetic testing & expert medication management" },
+  { icon: "swap", t: "A seamless step-down to IOP as you stabilize" },
+];
+const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+const locations = [
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
+  ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
+  ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
+  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
+];
+const benefitsFor = [
+  "Anyone needing more therapeutic support than once-weekly therapy provides",
+  "People leaving residential treatment who want a structured, flexible next step in recovery",
+  "Those who need an alternative treatment approach while living in a sober-living home",
+];
+const whoFor = [
+  "Individuals needing stabilization after a crisis",
+  "Those transitioning from inpatient hospitalization or residential treatment",
+  "Adults struggling with depression, anxiety, trauma, or mood disorders",
+  "Individuals at risk of relapse",
+  "Those who need more support than weekly therapy can offer",
+  "People seeking a structured, therapeutic environment to regain stability",
+];
+const approach = [
+  { icon: "users", t: "Group Therapy", d: "Clinician-led sessions offer fresh perspectives, reduce isolation, and let you learn from others facing common obstacles in early recovery. Modules include DBT, CBT, Mindfulness & Grounding, Motivational Interviewing, Distress Tolerance, and Emotion Regulation — addressing anxiety, depression, family dynamics, grief, stress, trauma, substance use, OCD, and more. You choose the groups aligned with the goals you set with your clinician." },
+  { icon: "heart", t: "Individual Therapy", d: "One-on-one sessions with a licensed clinician assess your needs and address challenges in real time, working toward short- and long-term goals — plus peer recovery coaching (in person and by text) and on-call, non-emergency clinical support by phone, text, or in person." },
+  { icon: "clipboard", t: "Skills Training", d: "Our clinicians, psychiatric providers, and experiential therapists work collaboratively to develop a plan aligned with your values, goals, and needs." },
+  { icon: "sparkles", t: "Holistic & Creative Therapy", d: "Expressive, integrative practices — art, movement, mindfulness, and creative expression — engage the whole person (mind, body, and emotions) to encourage self-discovery, stress relief, and healing." },
+];
+const phpDay = [
+  ["9:00–10:00 AM", "Check-in / psychoeducation group"],
+  ["10:00–11:00 AM", "Psychoeducation group"],
+  ["11:00 AM–12:00 PM", "Process group"],
+  ["12:00–12:30 PM", "Lunch"],
+  ["12:30–1:30 PM", "Psychoeducation / process group"],
+  ["1:30–2:30 PM", "Creative / holistic / skills group"],
+  ["2:30–3:30 PM", "Creative / holistic / skills group"],
+];
+const services = [
+  { icon: "link", t: "Family Counseling", d: "Joint family therapy sessions help rebuild communication, strengthen relationships, and restore trust and healing within the family system." },
+  { icon: "pill", t: "Medication Management", d: "Our providers closely evaluate your needs, monitor progress, and adjust medications to ensure safe and effective treatment." },
+  { icon: "shield", t: "Medication-Assisted Treatment (MAT)", d: "Evidence-based medications reduce cravings and withdrawal symptoms to support recovery from opioid and alcohol dependence." },
+  { icon: "brain", t: "Psychiatric Services", d: "Comprehensive mental health evaluations and medication management help identify and treat co-occurring conditions." },
+  { icon: "users", t: "Support Groups", d: "Peer-to-peer groups connect you with others on a similar journey — a supportive space to share challenges, celebrate progress, and stay encouraged." },
+  { icon: "heart", t: "Healing Beyond Words", d: "Experiential therapies help you explore emotions and process trauma in non-verbal, embodied ways — through movement, creative expression, and connection with therapy animals." },
+  { icon: "refresh", t: "Optional Family Involvement", d: "Family sessions and psychoeducation foster understanding and support at home — because healing often means rebuilding relationships." },
+  { icon: "compass", t: "A Holistic Care Team", d: "Clinicians, psychiatric providers, and experiential therapists work collaboratively on a plan aligned with your values, goals, and needs." },
+];
+const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
+const unique = [
+  { icon: "sparkles", tone: "azul", t: "Concierge, customizable care", d: "A targeted program built around the goals you set — you choose the groups that move you forward, never a fixed template." },
+  { icon: "shield", tone: "gold", t: "Joint Commission accredited", d: "A multidisciplinary team held to the rigorous safety standards of national accreditation." },
+  { icon: "swap", tone: "sage", t: "A true step-down / step-up partner", d: "Move seamlessly between PHP and IOP as your needs change — one team, one continuous plan." },
+  { icon: "dna", tone: "azul", t: "GeneSight® & expert med management", d: "Genetic testing matches medications to your DNA, guided by experienced psychiatric providers." },
+];
+const outcomes = ["Rapid stabilization and a renewed sense of safety", "Stronger coping skills and emotional regulation", "Improved overall quality of life", "Successful community reintegration & long-term recovery"];
+const modalities = [
+  { t: "Dialectical Behavioral Therapy (DBT)", icon: "swap" },
+  { t: "Cognitive Behavioral Therapy (CBT)", icon: "brain" },
+  { t: "Art Therapy", icon: "sparkles" },
+  { t: "Yoga Therapy", icon: "sun" },
+  { t: "Mindfulness", icon: "cloud" },
+  { t: "EMDR", icon: "bolt" },
+  { t: "Somatic Therapy", icon: "heart" },
+  { t: "Trauma-Informed Care", icon: "shield" },
+];
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
+  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+];
+const reviews = [
+  { n: "Adult Mental Health IOP Patient", t: "Verified patient", q: "I learned coping strategies on the first day and it exceeded my expectations. I really love the staff and enjoy the groups — they’re all very caring and always there for me when I need more. I’m forever thankful to the Hopewell team!" },
+  { n: "Women’s Wellness IOP Patient", t: "Verified patient", q: "I have found the people are extremely kind and supportive. I would definitely recommend them if you need help." },
+  { n: "Women’s Wellness IOP Patient", t: "Verified patient", q: "I look forward to my sessions! They are so helpful, and I feel as if my voice is valued and heard." },
+  { n: "Women’s Wellness IOP Patient", t: "Verified patient", q: "Hopewell truly listens and considers my thoughts, emotions, and concerns when developing care and medication plans, making me feel heard and valued." },
+  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice!" },
+  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care, committed to finding the right balance for a healthy, quality life." },
+];
+const faqs = [
+  ["What’s the difference between PHP and IOP?", "PHP is more intensive — about six hours a day, five to six days a week. IOP is lighter (around three hours, four days), so you can keep working or going to school. Many clients step down from PHP into IOP as they stabilize."],
+  ["Do I stay overnight?", "No — PHP is a day program. You receive intensive care during the day and go home each night to sleep in your own bed."],
+  ["How many hours a day is PHP?", "About six structured hours, Monday through Friday (roughly 9 AM–3:30 PM)."],
+  ["Can I customize my schedule?", "Yes — one of the unique features of our PHP is a customizable approach that lets you build a tailored schedule for the group component, choosing the groups best aligned with your goals."],
+  ["Does PHP treat substance use and co-occurring disorders?", "Yes. PHP stabilizes symptoms of substance use and co-occurring disorders through evidence-based modalities, individualized plans, and specialized interventions — including MAT for opioid and alcohol dependence."],
+  ["Will my insurance cover it?", "Most major PPO plans cover PHP. We’ll verify your benefits for free, in minutes (we don’t accept Medicaid / HUSKY)."],
+];
+---
+
+<Base title="Partial Hospitalization (PHP) in CT | Hopewell Health Solutions" description="Partial hospitalization (PHP) at Hopewell Health Solutions, Glastonbury CT — 6 structured hours a day for depression, anxiety, trauma & co-occurring disorders. Most insurance accepted.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/#programs" class="hover:text-azul">Programs</a> / <span class="text-ink">PHP</span></nav>
+      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Recovery within reach · Partial Hospitalization Program · Glastonbury, CT</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Partial Hospitalization Program (PHP) in Connecticut</h1>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <div class="mt-5 flex items-center gap-2.5 text-sm">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <span class="font-semibold text-ink">4.8</span>
+            <span class="text-muted">· 368 Google reviews</span>
+          </div>
+          <ul class="mt-6 space-y-3">
+            {heroUsps.map((u) => (
+              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Katrin Moskowitz, DNP, PMHNP-BC</p>
+        </div>
+        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm /></div>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  <!-- WHAT IS (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/AdobeStock_403830351.webp" alt="Partial hospitalization day program in Glastonbury, CT" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A higher level of care, without an overnight stay</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is a Partial Hospitalization Program?</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Hopewell Health Solutions’ Partial Hospitalization Program (PHP) provides concierge, customized, comprehensive, structured treatment for several hours daily. It’s an ideal model for those needing more support than outpatient therapy, but not requiring inpatient hospitalization.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">PHP lets you live at home while receiving intensive group therapy, individual therapy, medication management, skill-building, and experiential wellness — including yoga, art therapy, sound healing, weight training, hiking, Reiki, needlework, and meditation.</p>
+        <p class="mt-4 text-sm text-muted">Want the full breakdown? Read our guide: <a href="/blog/what-is-a-partial-hospitalization-program-php/" class="text-azul font-semibold">What is a Partial Hospitalization Program (PHP)?</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS (text left / image right) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src="/Assets/AdobeStock_542909901.webp" alt="A supportive partial hospitalization group at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A comprehensive approach</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">The benefits of PHP</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">PHP is beneficial for:</p>
+        <ul class="mt-4 space-y-2.5">
+          {benefitsFor.map((b) => <li class="flex gap-3 text-ink"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="leading-snug">{b}</span></li>)}
+        </ul>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">This goal-oriented program focuses on <strong>rapid stabilization, enhancing coping skills, and improving overall quality of life.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALIZED TREATMENT + MULTIMODAL APPROACH -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Specialized treatment &amp; interventions</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">A multimodal treatment approach</h2>
+        <div class="mx-auto mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Hopewell Health Solutions’ PHP offers <strong>6 structured hours of treatment daily, 5–6 days a week.</strong> Through evidence-based modalities, individualized plans, and specialized interventions, our PHP stabilizes symptoms of substance use and co-occurring disorders — while promoting successful community reintegration and long-term recovery. A unique feature: a customizable approach that lets you build a tailored schedule for the group component of PHP.</p>
+      </div>
+      <div class="mt-12 grid sm:grid-cols-2 gap-5">
+        {approach.map((a) => (
+          <div class="rounded-2xl border border-line bg-crema p-7">
+            <div class="flex items-center gap-3"><span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={a.icon} class="h-6 w-6" /></span><h3 class="font-display text-xl text-ink leading-tight">{a.t}</h3></div>
+            <p class="mt-4 text-ink leading-relaxed text-[15px]">{a.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PHP SCHEDULE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The structure is the medicine</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">A day in PHP</h2>
+        <p class="mt-3 text-muted">Monday–Friday · held at our Glastonbury location, with offices in West Hartford, East Hampton &amp; Westbrook.</p>
+      </div>
+      <ul class="mt-10 overflow-hidden rounded-2xl border border-line bg-white divide-y divide-line">
+        {phpDay.map(([time, act]) => (
+          <li class="flex items-center gap-4 px-5 py-4">
+            <span class="shrink-0 w-36 text-sm font-semibold text-azul">{time}</span>
+            <span class="text-ink leading-snug">{act}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PHP vs IOP (comparison band) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Find the right starting point</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">PHP vs. IOP — what’s the difference?</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">The difference comes down to intensity. Many clients step down from PHP into IOP as they stabilize — Hopewell Health Solutions helps you find the right level.</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-5">
+        <div class="rounded-2xl bg-crema border-2 border-azul p-7">
+          <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="calendar" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">PHP</h3></div>
+          <p class="mt-4 text-ink leading-relaxed">About <strong>six hours a day, 5–6 days a week</strong> — the highest level of outpatient care. Best for stabilizing after a crisis or stepping down from inpatient.</p>
+        </div>
+        <div class="rounded-2xl bg-crema border border-line p-7">
+          <div class="flex items-center gap-3"><span class="grid h-11 w-11 place-items-center rounded-xl bg-sage-light text-sage"><Icon name="refresh" class="h-6 w-6" /></span><h3 class="font-display text-2xl text-ink">IOP</h3></div>
+          <p class="mt-4 text-ink leading-relaxed">About <strong>three hours a day, four days a week</strong> — lighter structure so you can keep working, studying, or caring for family.</p>
+          <a href="/programs/adult-mental-health-iop/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Explore our Adult IOP <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S DESIGNED FOR (text left / image right) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src="/Assets/Guy%20facing%20the%20horizon.webp" alt="Adult considering partial hospitalization in Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Support tailored to you</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Who our PHP is designed for</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <ul class="mt-5 space-y-2.5">
+          {whoFor.map((w) => <li class="flex gap-3 text-ink"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="leading-snug">{w}</span></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL WELLNESS & SUPPORT SERVICES -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Everything in one place</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Additional wellness &amp; support services</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {services.map((s) => (
+          <div class="rounded-2xl border border-line bg-crema p-6">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{s.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <section class="relative">
+    <img src="/Assets/team%20together%202.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-ink/80"></div>
+    <div class="relative mx-auto max-w-3xl px-5 py-20 text-center">
+      <p class="font-display text-2xl sm:text-3xl text-white leading-snug">“A safe place to heal and rebuild.”</p>
+      <p class="mt-4 text-white/85 text-lg">Our PHP is a concierge wellness service customized to you — a targeted program that propels you toward health, on your terms.</p>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE HOPEWELL -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Why families choose Hopewell</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Why people choose Hopewell for PHP</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {unique.map((u) => (
+          <div class="rounded-2xl border border-line bg-crema p-6">
+            <span class={`grid h-12 w-12 place-items-center rounded-xl ${toneMap[u.tone]}`}><Icon name={u.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{u.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU CAN EXPECT + MODALITIES -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-display text-3xl text-ink">What you can expect</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <ul class="mt-5 space-y-3">
+          {outcomes.map((o) => <li class="flex gap-3 text-ink text-[17px]"><span class="text-azul mt-0.5"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-display text-3xl text-ink">Modalities used in our PHP</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          {modalities.map((m) => (
+            <div class="flex items-center gap-3 rounded-xl bg-white border border-line p-3.5">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={m.icon} class="h-5 w-5" /></span>
+              <span class="text-sm font-semibold text-ink leading-tight">{m.t}</span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-5 text-sm text-muted">Plus Reiki, hiking, weight training, needlework &amp; other holistic options — and <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">In the room &amp; in the news</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">See Hopewell Health Solutions</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <video class="h-full w-full object-cover" controls preload="metadata" playsinline>
+            <source src="/Assets/videos/455396.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <iframe class="h-full w-full" src="https://www.youtube.com/embed/GJeVqHhooBA" title="Hopewell Health Solutions — adult mental health & outpatient care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <iframe class="h-full w-full" src="https://www.youtube.com/embed/uDy-K1dO0Fw" title="Inside Hopewell Health Solutions' approach to care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-3 rounded-full bg-white border border-line px-5 py-2.5 shadow-sm">
+          <span class="h-6 w-6 inline-block" set:html={googleG} />
+          <span class="font-display text-2xl text-ink leading-none">4.8</span>
+          <span class="text-yellow-400 text-lg leading-none">★★★★★</span>
+          <span class="text-sm text-muted">368 Google reviews</span>
+        </div>
+        <p class="mt-3 text-muted">Patients rate Hopewell Health Solutions “the best in the area” · As featured on Eyewitness News 3</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {reviews.map((r) => (
+          <figure class="rounded-2xl bg-white border border-line p-7 shadow-sm flex flex-col">
+            <div class="flex items-center justify-between">
+              <span class="text-yellow-400 text-lg">★★★★★</span>
+              <span class="h-5 w-5 inline-block opacity-90" set:html={googleG} />
+            </div>
+            <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
+              <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE (two-column: logos + coverage form) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Comprehensive coverage options</h2>
+        <p class="mt-3 text-muted max-w-xl">We accept most major PPO plans (we don’t accept Medicaid / HUSKY). If you have specific questions about your coverage, contact us — our team verifies your benefits at no cost, before you commit to anything.</p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {insurers.map(([name, img]) => (
+            <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-muted text-center sm:text-left">+ most major PPOs</p>
+      </div>
+      <div class="lg:sticky lg:top-28"><LeadForm heading="Check your coverage" sub="Free, confidential. Takes 2 minutes — we’ll call you back with a full benefits breakdown." /></div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our locations</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {locations.map(([city, addr, map]) => (
+          <div class="overflow-hidden rounded-2xl bg-white border border-line">
+            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="flex gap-3 p-5">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
+              <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Reach us at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> · Fax (860) 781-8588 · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-16">
+      <h2 class="font-display text-3xl text-ink text-center">PHP — common questions</h2>
+      <div class="mt-8 space-y-3">
+        {faqs.map(([q, a]) => (
+          <details class="group rounded-xl bg-crema border border-line p-5">
+            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-3 text-ink leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GET STARTED (screening + referral) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 pb-4 pt-16">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="rounded-2xl bg-white border border-line p-7 flex flex-col">
+          <h3 class="font-display text-xl text-ink">What kind of treatment do I need?</h3>
+          <p class="mt-2 text-sm text-muted flex-1">Not sure which level of care fits? Take our quick, confidential screening and we’ll point you in the right direction.</p>
+          <a href="/admissions/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Start the screening <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+        <div class="rounded-2xl bg-white border border-line p-7 flex flex-col">
+          <h3 class="font-display text-xl text-ink">Referring a client?</h3>
+          <p class="mt-2 text-sm text-muted flex-1">Clinicians and providers can refer to our PHP in minutes — download the referral form to get started.</p>
+          <a href="/admissions/for-professionals/" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Get the referral form <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Start your healing journey today</h2>
+      <p class="mt-4 text-white/85 text-lg">Healing is possible, and you don’t have to do it alone. At Hopewell Health Solutions, we’re committed to walking alongside you with evidence-based tools, compassionate support, and space for real transformation. Now accepting new clients — we accept most major insurance plans and offer flexible payment options.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
