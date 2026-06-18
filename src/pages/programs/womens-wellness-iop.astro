@@ -1,0 +1,373 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+
+const heroUsps = [
+  { icon: "heart", t: "A program for women, designed by women" },
+  { icon: "shield", t: "Trauma-informed — DBT, EMDR, somatic & TF-CBT" },
+  { icon: "calendar", t: "8–12 weeks · day (9 AM–12 PM) or evening (5–8 PM), Mon–Thu" },
+  { icon: "sparkles", t: "Woman-led practice · in-person & virtual · FMLA/CT Paid Leave help" },
+];
+const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+const stats = [
+  ["1 in 5", "women experience a mental health condition each year"],
+  ["2×", "more likely than men to be diagnosed with anxiety or depression"],
+  ["1 in 3", "women experience some form of trauma in their lifetime"],
+];
+const questions = [
+  "Do you feel emotionally drained, even after rest?",
+  "Have you lost interest in things that used to bring you joy?",
+  "Do you give to others but rarely feel emotionally supported yourself?",
+  "Are you tired of pretending everything is okay when it isn’t?",
+  "Has stress or anxiety started to affect your health, relationships, or work?",
+  "Do you want to feel more grounded and connected, but don’t know where to begin?",
+];
+const beliefs = [
+  "“I’m not struggling enough to need this.”",
+  "“Other people have it worse. I should just be grateful.”",
+  "“I don’t have time.”",
+  "“I should be able to handle this on my own.”",
+];
+const includes = [
+  "8–12 week DBT-based curriculum",
+  "Experiential therapies — art, movement-based & animal-assisted",
+  "Optional medication management",
+  "On-call clinical services",
+  "In-person & virtual options",
+  "FMLA / CT Paid Leave assistance",
+];
+const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
+const outcomes = ["Reconnect with your body", "Reduce stress & burnout", "Rebuild trust in yourself & others", "Sustainable emotional wellness"];
+const modalities = [
+  { t: "Dialectical Behavior Therapy (DBT)", icon: "swap" },
+  { t: "EMDR", icon: "bolt" },
+  { t: "Somatic Therapy", icon: "heart" },
+  { t: "Trauma-Focused CBT", icon: "brain" },
+  { t: "Art Therapy", icon: "sparkles" },
+  { t: "Yoga-Inspired Movement", icon: "sun" },
+  { t: "Mindfulness", icon: "cloud" },
+  { t: "Trauma-Informed Care", icon: "shield" },
+];
+const whyHopewell = [
+  { icon: "heart", t: "A woman-led practice", d: "Compassionate, evidence-based care in a welcoming environment — with a strong focus on connection, collaboration, and real results." },
+  { icon: "users", t: "Tailored to you", d: "Individual therapy, psychiatric care, or the Women’s Wellness IOP — we meet you where you are. You’re never just a number; your healing matters to us." },
+];
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
+  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+];
+const reviews = [
+  { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
+  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
+  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
+  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
+  { n: "stacey miller", t: "3 months ago", q: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
+  { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
+];
+const locations = [
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
+  ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
+  ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
+  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
+];
+const faqs = [
+  ["Who is the Women’s Wellness IOP for?", "Women experiencing emotional burnout, anxiety, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of trauma. The program is open to all who identify as women, from all backgrounds."],
+  ["What’s the schedule?", "8–12 weeks at 300 Hebron Ave, Suite 212, Glastonbury. Flexible options — Monday–Thursday 9 AM–12 PM or 5–8 PM — so you can get intensive support while keeping your daily responsibilities."],
+  ["What approaches does the program use?", "It’s trauma-informed and evidence-based: DBT, EMDR, somatic therapies, and Trauma-Focused CBT (TF-CBT), plus expressive arts, journaling, yoga-inspired movement, time in nature, and animal-assisted support."],
+  ["Do I need a referral, and is it covered?", "No referral needed. We accept most major insurances, including Tricare, and many participants qualify for Connecticut Paid Leave or FMLA. We’ll verify your benefits for free."],
+];
+---
+
+<Base title="Women's Wellness IOP in CT | Hopewell Health Solutions" description="A trauma-informed Women's Wellness Intensive Outpatient Program at Hopewell Health Solutions, Glastonbury CT — DBT, EMDR & somatic therapy. Day & evening, 8–12 weeks. A program for women, by women.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/programs/intensive-outpatient-program/" class="hover:text-azul">IOP</a> / <span class="text-ink">Women's Wellness</span></nav>
+      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Women's Wellness IOP · Glastonbury, CT · Day &amp; evening</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Women's Wellness Intensive Outpatient Program (IOP)</h1>
+          <p class="mt-3 font-display text-xl text-azul italic">A program for women, designed by women.</p>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <div class="mt-5 flex items-center gap-2.5 text-sm">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <span class="font-semibold text-ink">4.8</span>
+            <span class="text-muted">· 368 Google reviews · “best IOP in the area”</span>
+          </div>
+          <ul class="mt-6 space-y-3">
+            {heroUsps.map((u) => (
+              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Kristine Schlichting, PhD</p>
+        </div>
+        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Start your healing journey" sub="A program for women, by women. Free, confidential insurance check." /></div>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  <!-- DESIGNED BY WOMEN (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/Hands.webp" alt="Women supporting each other in Hopewell's Women's Wellness IOP" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A space to pause, process &amp; heal</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">We understand the load women carry</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Between work, parenting, caregiving, relationships, health concerns, and the constant pressure to “hold it all together,” it’s easy to lose your sense of self. That’s why we created the Women’s Wellness IOP — a supportive, structured space where women can pause, process, and begin to heal.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">This 8–12 week program is for women experiencing emotional burnout, anxiety, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of trauma. Whether you’re overwhelmed, disconnected, or simply ready to prioritize yourself — you don’t have to do it alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY WOMEN'S MH MATTERS (stats) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Why women’s mental health matters</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Seeking care is a vital form of self-care</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-3 gap-5">
+        {stats.map(([n, d]) => (
+          <div class="rounded-2xl bg-white border border-line p-7 text-center">
+            <p class="font-display text-4xl text-azul">{n}</p>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{d}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-center text-muted max-w-2xl mx-auto">Irritability, emotional numbness, disrupted sleep, chronic stress, or difficulty in relationships can be signs of unresolved trauma or accumulated stress. These are treatable — and you deserve a space where healing is supported.</p>
+    </div>
+  </section>
+
+  <!-- IS THIS RIGHT FOR ME (text left / image right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src="/Assets/girl%20thinking%20worried.webp" alt="A woman reflecting on whether the Women's Wellness IOP is right for her" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The space &amp; support you’ve been looking for</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Is this program right for me?</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">You may be so used to functioning on autopilot that you’ve stopped checking in with yourself. Consider:</p>
+        <ul class="mt-4 space-y-2.5">
+          {questions.map((q) => <li class="flex gap-3 text-ink"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="leading-snug">{q}</span></li>)}
+        </ul>
+        <p class="mt-5 text-ink leading-relaxed text-[16px]">If any of these resonate, this program may offer the space and support you’ve been looking for. <a href="/admissions/" class="text-azul font-semibold">Take our quick screening →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT OUR PROGRAM OFFERS (image left / text right) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+      <div class="lg:order-2"><img src="/Assets/women%20looking%20at%20me.webp" alt="Trauma-informed care in Hopewell's Women's Wellness IOP" loading="lazy" class="rounded-2xl w-full h-72 lg:h-full lg:min-h-[30rem] object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">More than just talk therapy</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What our program offers</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">A trauma-informed, immersive experience designed to help women heal from past and ongoing trauma. You’ll engage in process-based group therapy, individual support, psychoeducation, and wellness activities — expressive arts, guided journaling, yoga-inspired movement, time in nature, somatic therapy, and animal-assisted support — to reconnect with your body, reduce stress, and rebuild trust.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">It’s grounded in evidence-based treatment: DBT, EMDR, somatic therapies, and Trauma-Focused CBT, with optional medication management, on-call services, and family involvement when helpful.</p>
+        <div class="mt-6 rounded-xl bg-white border border-azul/30 p-5">
+          <h3 class="font-display text-xl text-ink">Flexible schedule</h3>
+          <p class="mt-2 text-sm text-ink">Monday–Thursday, <strong>9 AM–12 PM</strong> or <strong>5–8 PM</strong> · 300 Hebron Ave, Suite 212, Glastonbury.</p>
+          <div class="mt-3 grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+            {includes.map((i) => <p class="flex items-start gap-2 text-sm text-muted"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="leading-snug">{i}</span></p>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIMITING BELIEFS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">You deserve help</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Even if you’re telling yourself…</h2>
+      <div class="mt-8 grid sm:grid-cols-2 gap-4">
+        {beliefs.map((b) => (
+          <div class="rounded-2xl bg-crema border border-line p-6 text-ink font-display text-lg leading-snug">{b}</div>
+        ))}
+      </div>
+      <p class="mt-8 text-ink leading-relaxed text-[17px]">You don’t have to wait until things get worse. Wellness isn’t about comparison — it’s about taking care of yourself because you’re worth it. You’ve carried a lot. You don’t have to carry it alone.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED VIDEO (credibility variation) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">As seen on NBC Connecticut</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Trauma in women</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Connecticut’s news outlets turn to our clinicians to talk about women’s mental health and trauma. Watch our team on CT Live! discuss why so many women carry trauma — and how the right support changes everything.</p>
+        <a href="/media/" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink shadow-sm">
+        <iframe class="h-full w-full" src="https://www.youtube.com/embed/uDy-K1dO0Fw" title="CT Live!: Trauma in Women — Hopewell Health Solutions" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALITIES + OUTCOMES -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div>
+        <h2 class="font-display text-3xl text-ink">Modalities used in our IOP</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          {modalities.map((m) => (
+            <div class="flex items-center gap-3 rounded-xl bg-crema border border-line p-3.5">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={m.icon} class="h-5 w-5" /></span>
+              <span class="text-sm font-semibold text-ink leading-tight">{m.t}</span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-5 text-sm text-muted">Plus <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a> &amp; additional therapeutic treatments.</p>
+      </div>
+      <div>
+        <h2 class="font-display text-4xl sm:text-5xl text-ink leading-[1.1]">What you can expect</h2>
+        <div class="mt-5 h-px w-16 bg-gold"></div>
+        <ul class="mt-7 space-y-4">
+          {outcomes.map((o) => <li class="flex gap-3 text-ink text-lg"><span class="text-azul mt-1"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY HOPEWELL -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Why Hopewell Health Solutions</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Care that sees the whole you</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-5">
+        {whyHopewell.map((w) => (
+          <div class="rounded-2xl bg-white border border-line p-7">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={w.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-xl text-ink">{w.t}</h3>
+            <p class="mt-2 text-ink leading-relaxed text-[15px]">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-3 rounded-full bg-white border border-line px-5 py-2.5 shadow-sm">
+          <span class="h-6 w-6 inline-block" set:html={googleG} />
+          <span class="font-display text-2xl text-ink leading-none">4.8</span>
+          <span class="text-yellow-400 text-lg leading-none">★★★★★</span>
+          <span class="text-sm text-muted">368 Google reviews</span>
+        </div>
+        <p class="mt-3 text-muted">Our IOP patients rate Hopewell Health Solutions “the best in the area”</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {reviews.map((r) => (
+          <figure class="rounded-2xl bg-white border border-line p-7 shadow-sm flex flex-col">
+            <div class="flex items-center justify-between">
+              <span class="text-yellow-400 text-lg">★★★★★</span>
+              <span class="h-5 w-5 inline-block opacity-90" set:html={googleG} />
+            </div>
+            <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
+              <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Most major insurance — including Tricare</h2>
+        <p class="mt-3 text-muted max-w-xl">We accept most major insurances, including Tricare. Many participants also qualify for <strong>Connecticut Paid Leave or FMLA</strong>. Our team verifies your benefits at no cost — before you commit to anything.</p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {insurers.map(([name, img]) => (
+            <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-muted text-center sm:text-left">+ most major PPOs</p>
+      </div>
+      <div class="lg:sticky lg:top-28"><LeadForm heading="Check your coverage" sub="Free, confidential. Takes 2 minutes — we’ll call you back with a full benefits breakdown." /></div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our locations</h2>
+        <p class="mt-3 text-muted">The Women’s Wellness IOP is held at 300 Hebron Ave, Suite 212, Glastonbury · plus virtual visits statewide.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {locations.map(([city, addr, map]) => (
+          <div class="overflow-hidden rounded-2xl bg-white border border-line">
+            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="flex gap-3 p-5">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
+              <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Reach us at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16">
+      <h2 class="font-display text-3xl text-ink text-center">Women’s Wellness IOP — common questions</h2>
+      <div class="mt-8 space-y-3">
+        {faqs.map(([q, a]) => (
+          <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
+            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-3 text-ink leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready to take the first step?</h2>
+      <p class="mt-4 text-white/85 text-lg">Prioritizing your mental health is one of the most powerful, loving choices you can make for yourself. If you’re ready to stop surviving and start healing, we’re here to help.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

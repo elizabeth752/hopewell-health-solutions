@@ -60,6 +60,14 @@ const reviews = [
   { n: "A.Y.", t: "Teen IOP parent", q: "I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family." },
   { n: "J.L.", t: "Teen IOP student", q: "I just completed Teen IOP at Hopewell and I feel I received the tools I need to go to college with less worry and anxiety. I really liked the groups and the other kids and the therapists. At first I did not always like going — and then I started looking forward to it, because it was making me better." },
 ];
+const locations = [
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
+  ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
+  ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
+  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
+];
 const faqs = [
   ["What ages do the tween and teen programs serve?", "Our Tween IOP serves ages 8–12 and our Teen IOP serves ages 13–17. We work with all adolescents and are fully inclusive — we welcome all genders and the LGBTQA+ community."],
   ["What’s the schedule?", "Both run Monday–Thursday for 8–12 weeks at 1420 Main St, Glastonbury. Tweens meet 4:30–7:30 PM (Suite 114); teens meet 5:00–8:00 PM (Suite 124). The after-school timing keeps work and school routines intact."],
@@ -285,17 +293,24 @@ const faqs = [
 
   <!-- LOCATIONS -->
   <section class="bg-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Where it happens</p>
-      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our Teen &amp; Tween IOP location</h2>
-      <div class="mt-8 overflow-hidden rounded-2xl border border-line">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus" title="Map — Hopewell Health Solutions Teen & Tween IOP, 1420 Main St, Glastonbury" class="h-64 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        <div class="flex items-center gap-3 p-5 text-left">
-          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
-          <div><h3 class="font-display text-lg text-ink leading-tight">1420 Main St, Glastonbury</h3><p class="mt-1 text-sm text-muted">Tween · Suite 114 · Teen · Suite 124</p></div>
-        </div>
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our locations</h2>
+        <p class="mt-3 text-muted">The Teen &amp; Tween IOP is held at 1420 Main St, Glastonbury (Tween · Suite 114 · Teen · Suite 124).</p>
       </div>
-      <p class="mt-6 text-sm text-muted">Reach us at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {locations.map(([city, addr, map]) => (
+          <div class="overflow-hidden rounded-2xl bg-white border border-line">
+            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="flex gap-3 p-5">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
+              <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Reach us at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
     </div>
   </section>
 
