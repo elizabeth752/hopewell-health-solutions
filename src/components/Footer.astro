@@ -1,0 +1,50 @@
+---
+const locations = [
+  ["Glastonbury", "300 Hebron Ave"],
+  ["South Glastonbury", "1420 Main St"],
+  ["Glastonbury", "33 Pratt St"],
+  ["West Hartford", "1216 Farmington Ave"],
+  ["East Hampton", "151 E. High St"],
+  ["Westbrook", "70 Essex Rd"],
+];
+const cols = [
+  { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
+  { h: "What We Treat", links: ["Depression", "Anxiety", "Trauma & PTSD", "Substance Use", "ADHD"] },
+  { h: "Treatments", links: ["TMS", "Spravato®", "EMDR", "GeneSight®"] },
+];
+---
+<footer class="bg-ink text-white/80">
+  <div class="mx-auto max-w-6xl px-5 py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <div class="flex items-center gap-2.5 mb-3">
+          <span class="grid h-9 w-9 place-items-center rounded-lg bg-white text-azul font-display text-xl leading-none">H</span>
+          <span class="font-display text-lg text-white">Hopewell Health Solutions</span>
+        </div>
+        <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
+        <a href="tel:8609460447" class="mt-4 inline-block font-display text-2xl text-white">(860) 946-0447</a>
+        <p class="text-xs mt-3">Joint Commission accredited · 4.8★ · Since 2013</p>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">{c.h}</h4>
+          <ul class="space-y-2 text-sm">
+            {c.links.map((l) => <li><a href="#" class="hover:text-white transition">{l}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 border-t border-white/15 pt-8">
+      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Our Connecticut Locations</h4>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
+        {locations.map(([city, addr]) => (
+          <div class="flex gap-2"><span class="text-azul-light">●</span><span><span class="text-white">{city}</span> — {addr}</span></div>
+        ))}
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+      <span>© 2026 Hopewell Health Solutions and Psychiatry, Inc. All rights reserved.</span>
+      <span class="flex gap-4"><a href="#" class="hover:text-white">Privacy</a><a href="#" class="hover:text-white">Terms</a><a href="#" class="hover:text-white">Accessibility</a></span>
+    </div>
+  </div>
+</footer>

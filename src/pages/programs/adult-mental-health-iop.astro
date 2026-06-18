@@ -1,0 +1,201 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+
+const usps = [
+  { icon: "link", t: "A true co-occurring program", d: "Mental health and substance use treated together — not referred out." },
+  { icon: "dna", t: "GeneSight® + expert prescribing", d: "Genetic testing to get medication right faster." },
+  { icon: "sparkles", t: "Experiential healing beyond talk", d: "Art, movement, mindfulness, and animal-assisted therapy." },
+  { icon: "users", t: "A team you’ll actually meet", d: "Including Katherine Salvador, APRN — addiction medicine, trauma-informed." },
+];
+const therapies = ["DBT", "CBT", "EMDR", "Art Therapy", "Yoga Therapy", "Mindfulness", "Somatic Therapy", "Trauma-Informed Care"];
+const conditions = ["Anxiety", "Depression", "Trauma & PTSD", "Emotional dysregulation", "Co-occurring substance use"];
+const outcomes = ["Reduced anxiety, depression & emotional overwhelm", "Stronger coping and resilience", "Healthier communication & boundaries", "Greater self-awareness and confidence", "Decreased reliance on substances or harmful behaviors"];
+const faqs = [
+  ["How long is IOP?", "Typically 8–12 weeks — four days a week, three hours a day."],
+  ["What’s the difference between IOP and PHP?", "PHP involves more hours per day; IOP is part-time, so you can keep working or going to school."],
+  ["Can I work or go to school during IOP?", "Yes — that’s exactly why we offer evening tracks."],
+  ["Will my insurance cover it?", "Most major PPO plans do. We’ll verify your benefits for free."],
+  ["What is MAT?", "Medication-Assisted Treatment combines FDA-approved medication with therapy to support substance-use recovery."],
+];
+---
+
+<Base title="Adult IOP in Connecticut | Hopewell Health Solutions" description="Adult IOP in Glastonbury, CT — DBT-based care for anxiety, depression, trauma & co-occurring substance use. Day & evening tracks. Most insurance accepted.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16 lg:pb-20">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/#programs" class="hover:text-azul">Programs</a> / <span class="text-ink">Adult IOP</span></nav>
+      <div class="grid lg:grid-cols-[1fr_400px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Adult Co-Occurring IOP · Glastonbury, CT · In person &amp; virtual</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.07]">Adult Intensive Outpatient Program (IOP) in Connecticut</h1>
+          <p class="mt-5 text-lg text-muted max-w-xl leading-relaxed">Healing from anxiety, depression, trauma, and unhealthy coping — including substance use — takes more than just talk therapy. Our adult IOP gives you real structure and a DBT-based curriculum while you keep living your life.</p>
+          <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink">
+            <span><span class="text-yellow-400">★★★★★</span> 4.8 · 368 reviews</span>
+            <span class="text-line">|</span><span class="inline-flex items-center gap-1.5"><Icon name="shield" class="h-4 w-4 text-azul" />Joint Commission accredited</span>
+            <span class="text-line">|</span><span>Day &amp; evening tracks</span>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify Your Insurance →</a>
+            <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Kristine Schlichting, PhD &amp; Katrin Moskowitz, DNP, PMHNP-BC</p>
+        </div>
+        <div id="verify" class="rounded-2xl bg-white shadow-xl border border-line p-6 lg:sticky lg:top-28 scroll-mt-28">
+          <h2 class="font-display text-xl text-ink">Request a confidential callback</h2>
+          <p class="text-sm text-muted mt-1">Free insurance check. No pressure.</p>
+          <form class="mt-4 space-y-3" onsubmit="return false">
+            <input class="w-full rounded-lg border border-line px-4 py-2.5 text-sm" type="text" placeholder="First name" />
+            <input class="w-full rounded-lg border border-line px-4 py-2.5 text-sm" type="tel" placeholder="Phone" />
+            <input class="w-full rounded-lg border border-line px-4 py-2.5 text-sm" type="email" placeholder="Email" />
+            <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" class="mt-0.5" /> I agree to be contacted (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
+            <button class="w-full rounded-lg bg-azul py-3 font-semibold text-white hover:bg-azul-dark transition">Get My Callback</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK FACTS -->
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-6xl px-5 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+      <div><div class="font-display text-2xl">3 hrs/day</div><div class="text-white/60 text-xs">4 days a week</div></div>
+      <div><div class="font-display text-2xl">8–12 wks</div><div class="text-white/60 text-xs">typical length</div></div>
+      <div><div class="font-display text-2xl">Day &amp; eve</div><div class="text-white/60 text-xs">9–12 or 5–8</div></div>
+      <div><div class="font-display text-2xl">Ages 18+</div><div class="text-white/60 text-xs">adults</div></div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-3xl px-5">
+    <!-- WHAT IS -->
+    <section class="py-14">
+      <h2 class="font-display text-3xl text-ink">What is an Intensive Outpatient Program?</h2>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">An Intensive Outpatient Program (IOP) is structured mental-health treatment — group, individual, and experiential therapy several days a week — that gives you more support than weekly therapy while you continue to live at home, work, and care for your family.</p>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">At Hopewell Health Solutions, our adult IOP runs on a DBT-based curriculum, blending clinical therapy with creative, somatic, and relational approaches.</p>
+    </section>
+
+    <!-- WHO -->
+    <section class="py-6">
+      <h2 class="font-display text-3xl text-ink">Is this program right for you?</h2>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">This program is for adults 18 and over experiencing moderate-to-severe anxiety, depression, trauma or PTSD, emotional dysregulation, mood instability, or co-occurring substance use. If daily life has become hard to manage and weekly therapy isn’t enough, IOP may be the right next step.</p>
+      <p class="mt-4 font-display text-xl text-azul">Caring for your mental health is an act of strength, not weakness.</p>
+    </section>
+  </div>
+
+  <!-- SCHEDULE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-14">
+      <h2 class="font-display text-3xl text-ink">What a week looks like</h2>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">Sessions run three hours a day, four days a week (Monday–Thursday), for most participants 8 to 12 weeks. Choose a schedule that fits your life:</p>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4">
+        <div class="rounded-2xl bg-white border border-line p-6"><div class="flex items-center gap-2 text-azul"><Icon name="sun" class="h-5 w-5" /><span class="font-semibold">Morning track</span></div><p class="mt-2 font-display text-2xl text-ink">9 AM – 12 PM</p><p class="text-sm text-muted">Monday–Thursday</p></div>
+        <div class="rounded-2xl bg-white border border-line p-6"><div class="flex items-center gap-2 text-azul"><Icon name="calendar" class="h-5 w-5" /><span class="font-semibold">Evening track</span></div><p class="mt-2 font-display text-2xl text-ink">5 PM – 8 PM</p><p class="text-sm text-muted">Monday–Thursday — keep your job &amp; routine</p></div>
+      </div>
+      <p class="mt-5 text-ink leading-relaxed text-[17px]">Each week blends evidence-based group therapy, experiential therapies, individual sessions, and optional medication management and family work.</p>
+    </div>
+  </section>
+
+  <!-- USPs -->
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <h2 class="font-display text-3xl sm:text-4xl text-center">What makes our IOP different</h2>
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {usps.map((u) => (
+          <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+            <span class="grid h-13 w-13 place-items-center rounded-2xl bg-azul text-white p-3"><Icon name={u.icon} class="h-7 w-7" /></span>
+            <h3 class="mt-4 font-display text-lg leading-snug">{u.t}</h3>
+            <p class="mt-2 text-sm text-white/70">{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-3xl px-5">
+    <!-- THERAPIES -->
+    <section class="py-14">
+      <h2 class="font-display text-3xl text-ink">Evidence-based, multimodal care</h2>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">Our care draws on proven clinical methods and experiential therapies — each linked to its own page:</p>
+      <div class="mt-5 flex flex-wrap gap-2.5">
+        {therapies.map((t) => <a href="#" class="rounded-full bg-azul-light text-azul text-sm font-semibold px-4 py-2 hover:bg-azul hover:text-white transition">{t}</a>)}
+      </div>
+    </section>
+
+    <!-- CONDITIONS -->
+    <section class="pb-14">
+      <h2 class="font-display text-3xl text-ink">What this program helps with</h2>
+      <div class="mt-5 flex flex-wrap gap-2.5">
+        {conditions.map((c) => <a href="#" class="rounded-full border border-line text-ink text-sm font-semibold px-4 py-2 hover:border-azul hover:text-azul transition">{c}</a>)}
+      </div>
+    </section>
+  </div>
+
+  <!-- OUTCOMES -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-14">
+      <h2 class="font-display text-3xl text-ink">By the end of the program, most clients experience…</h2>
+      <ul class="mt-6 space-y-3">
+        {outcomes.map((o) => <li class="flex gap-3 text-ink text-[17px]"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-azul text-white"><Icon name="shield" class="h-4 w-4" /></span>{o}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CO-OCCURRING -->
+  <div class="mx-auto max-w-3xl px-5">
+    <section class="py-14">
+      <h2 class="font-display text-3xl text-ink">Supporting mental health and substance-use recovery</h2>
+      <p class="mt-4 text-ink leading-relaxed text-[17px]">For dual diagnosis, we integrate Medication-Assisted Treatment (MAT) — FDA-approved medications plus counseling and behavioral therapy that reduce cravings and withdrawal and help stabilize recovery — alongside relapse prevention. It’s led by clinicians like Katherine Salvador, APRN, who brings deep expertise in addiction medicine and a trauma-informed, judgment-free approach.</p>
+    </section>
+  </div>
+
+  <!-- REVIEWS strip -->
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-4xl px-5 py-14 text-center">
+      <div class="text-yellow-400 text-xl">★★★★★</div>
+      <blockquote class="mt-4 font-display text-2xl md:text-3xl leading-snug">“This program was a game changer. They truly listened — I finally felt heard and valued.”</blockquote>
+      <p class="mt-4 text-white/70 text-sm">4.8 across 368 Google reviews</p>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-14 text-center">
+      <h2 class="font-display text-3xl text-ink">Comprehensive coverage options</h2>
+      <p class="mt-3 text-muted">In-network with Aetna, Anthem, BCBS, Cigna, UnitedHealthcare, Optum, and more. We’ll verify your benefits free, in minutes.</p>
+      <a href="#verify" class="mt-6 inline-block rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify my benefits →</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-14">
+      <h2 class="font-display text-3xl text-ink text-center">Adult IOP — common questions</h2>
+      <div class="mt-8 space-y-3">
+        {faqs.map(([q, a]) => (
+          <details class="group rounded-xl bg-white border border-line p-5">
+            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-3 text-ink leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl">Start your healing journey today</h2>
+      <p class="mt-4 text-white/85 text-lg">You’ve carried a lot. You don’t have to carry it alone. Reach out — confidentially, with no pressure.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

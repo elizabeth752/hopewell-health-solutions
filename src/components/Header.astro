@@ -1,0 +1,34 @@
+---
+const nav = [
+  { label: "Programs", href: "#programs" },
+  { label: "What We Treat", href: "#what-we-treat" },
+  { label: "Treatments", href: "#why" },
+  { label: "Locations", href: "#locations" },
+  { label: "About", href: "#team" },
+];
+---
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
+  <!-- top bar -->
+  <div class="bg-ink text-white text-xs">
+    <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-between">
+      <span class="tracking-wide">Empower · Change · Live Well</span>
+      <a href="tel:8609460447" class="font-semibold hover:text-azul-light transition">Call (860) 946-0447</a>
+    </div>
+  </div>
+  <!-- main nav -->
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="flex items-center justify-between py-3.5">
+      <a href="/" class="flex items-center gap-2.5">
+        <span class="grid h-9 w-9 place-items-center rounded-lg bg-azul text-white font-display text-xl leading-none">H</span>
+        <span class="leading-tight">
+          <span class="block font-display text-lg text-ink">Hopewell Health Solutions</span>
+          <span class="block text-[11px] uppercase tracking-[0.12em] text-muted">Mental Health &amp; Psychiatry · CT</span>
+        </span>
+      </a>
+      <nav class="hidden lg:flex items-center gap-7">
+        {nav.map((n) => <a href={n.href} class="text-sm font-semibold text-ink hover:text-azul transition">{n.label}</a>)}
+      </nav>
+      <a href="#verify" class="hidden sm:inline-block rounded-lg bg-azul px-5 py-2.5 text-sm font-semibold text-white hover:bg-azul-dark transition">Verify Insurance</a>
+    </div>
+  </div>
+</header>
