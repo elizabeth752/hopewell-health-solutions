@@ -25,18 +25,25 @@ const locations = [
 const treats = [
   { t: "Anxiety & related disorders", icon: "cloud" },
   { t: "Depression", icon: "heart" },
-  { t: "OCD", icon: "refresh" },
-  { t: "Trauma", icon: "shield" },
+  { t: "Bipolar disorder", icon: "swap" },
   { t: "ADHD", icon: "bolt" },
+  { t: "OCD", icon: "refresh" },
+  { t: "Trauma & PTSD", icon: "shield" },
+  { t: "Substance use & addiction", icon: "pill" },
   { t: "Sleep disturbance", icon: "sun" },
   { t: "Life transitions & self-esteem", icon: "compass" },
-  { t: "Co-occurring substance use", icon: "swap" },
+  { t: "Sex & sexuality", icon: "users" },
 ];
 const moreThanMed = [
   { icon: "brain", t: "TMS", d: "Non-invasive, FDA-cleared therapy for treatment-resistant depression.", href: "/treatment-methods/tms/" },
   { icon: "sparkles", t: "Spravato®", d: "An option for treatment-resistant depression, given under clinical supervision.", href: "/treatment-methods/spravato/" },
   { icon: "shield", t: "Medication-Assisted Treatment", d: "Evidence-based medication support for opioid and alcohol use.", href: "/treatment-methods/medication-assisted-treatment/" },
   { icon: "users", t: "IOP & PHP", d: "Step up to structured day programs when more support is needed.", href: "/programs/adult-mental-health-iop/" },
+];
+const howItWorks = [
+  ["Prescribing", "We start by prescribing the right medication to relieve your symptoms, drawing on deep knowledge of what helps your condition."],
+  ["Monitoring", "Most psychiatric medications take time to work, so you’ll have routine check-ins to review your symptoms, overall health, and any side effects."],
+  ["Adjusting", "If needed, we adjust the dose or switch medications — different drugs work in different ways — until we reach the results you’re looking for."],
 ];
 const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
 const unique = [
@@ -52,12 +59,12 @@ const press = [
   { outlet: "NBC Connecticut", logo: L + "nbc-connecticut.png", date: "CT Live!", title: "CT Live!: Trauma in Women — with a Hopewell clinician", href: "/media/" },
 ];
 const reviews = [
-  { n: "Medication Management Patient", t: "Verified patient", q: "She answered every question and provided neutral, digestible information about the medication. I left with zero questions and a plan I actually understood." },
-  { n: "Medication Management Patient", t: "Verified patient", q: "She always takes the time to listen carefully to my wants and needs. I never feel rushed." },
-  { n: "stacey miller", t: "3 months ago", q: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
-  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care, committed to finding the right balance for a healthy, quality life." },
-  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood." },
-  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend!" },
+  { n: "Verified patient", t: "Google review", q: "London is a very genuine person. She makes sure you leave with zero questions and urges you to reach out if something comes up after a visit." },
+  { n: "Verified patient", t: "Google review", q: "Katherine Salvador makes me feel seen. I changed to a new medication and had many questions — she answered every one with neutral, digestible information. I walked out feeling appreciated and heard. It was like a warm hug." },
+  { n: "Verified patient", t: "Google review", q: "I’ve had a wonderful experience with Tracy at Hopewell. She’s incredibly helpful, knowledgeable, and always takes the time to listen carefully to my wants and needs. The entire team has been supportive — highly recommend!" },
+  { n: "Verified patient", t: "Google review", q: "Chris was very easy to talk to and willing to listen to my concerns about changing medication providers. I feel very comfortable having a plan in place with him for when my psychiatrist retires." },
+  { n: "Verified patient", t: "Google review", q: "London is always so good to talk to. She listens and understands the importance medication management has in recovery. I appreciate her time, knowledge, and interest in my wellbeing." },
+  { n: "Verified patient", t: "Google review", q: "Tracy is great — such a pleasure to work with. She takes the time to listen and thoroughly answer questions to ensure our son receives the best treatment plan." },
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -147,8 +154,27 @@ const faqs = [
     </div>
   </section>
 
-  <!-- GENESIGHT (highlight band) -->
+  <!-- HOW IT WORKS (3-step) -->
   <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">How it works</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What medication management includes</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-5">
+        {howItWorks.map(([t, d], i) => (
+          <div class="rounded-2xl border border-line bg-crema p-7">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-azul text-white font-display text-lg">{i + 1}</span>
+            <h3 class="mt-4 font-display text-xl text-ink">{t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GENESIGHT (highlight band) -->
+  <section class="bg-crema">
     <div class="mx-auto max-w-3xl px-5 py-16 text-center">
       <span class="inline-grid h-14 w-14 place-items-center rounded-2xl bg-azul-light text-azul"><Icon name="dna" class="h-7 w-7" /></span>
       <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-azul">Precision prescribing</p>
@@ -159,15 +185,15 @@ const faqs = [
   </section>
 
   <!-- WHAT WE TREAT -->
-  <section class="bg-crema">
+  <section class="bg-white">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What we treat</p>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Psychiatric care for a wide range of concerns</h2>
       </div>
-      <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {treats.map((c) => (
-          <div class="flex items-center gap-3 rounded-xl bg-white border border-line p-4">
+          <div class="flex items-center gap-3 rounded-xl bg-crema border border-line p-4">
             <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={c.icon} class="h-5 w-5" /></span>
             <span class="text-sm font-semibold text-ink leading-tight">{c.t}</span>
           </div>
@@ -178,7 +204,7 @@ const faqs = [
   </section>
 
   <!-- MORE THAN MEDICATION -->
-  <section class="bg-white">
+  <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center max-w-2xl mx-auto">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">More than medication</p>
@@ -187,7 +213,7 @@ const faqs = [
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {moreThanMed.map((m) => (
-          <a href={m.href} class="group rounded-2xl border border-line bg-crema p-6 hover:border-azul hover:shadow-lg transition flex flex-col">
+          <a href={m.href} class="group rounded-2xl border border-line bg-white p-6 hover:border-azul hover:shadow-lg transition flex flex-col">
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={m.icon} class="h-6 w-6" /></span>
             <h3 class="mt-4 font-display text-lg text-ink leading-snug group-hover:text-azul transition">{m.t}</h3>
             <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{m.d}</p>
@@ -273,7 +299,7 @@ const faqs = [
             </div>
             <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
             <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
-              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-white border border-line"><span class="h-5 w-5 inline-block" set:html={googleG} /></span>
               <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
             </figcaption>
           </figure>
