@@ -32,6 +32,11 @@ const unique = [
   { icon: "heart", tone: "sage", t: "Healing beyond words", d: "Experiential therapies let you process emotion and trauma through movement, creative expression, and therapy animals." },
   { icon: "users", tone: "azul", t: "A holistic care team", d: "Clinicians, psychiatric providers, and experiential therapists build a plan around your values and goals." },
 ];
+const interviews = [
+  { id: "aff5Xfy9CfE", t: "The Loneliness Crisis in Adults", outlet: "Hopewell Health Solutions" },
+  { id: "GJeVqHhooBA", t: "Mommy Monday: Helping Children", outlet: "WFSB Channel 3" },
+  { id: "uDy-K1dO0Fw", t: "CT Live!: Trauma in Women", outlet: "NBC Connecticut" },
+];
 const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
 const outcomes = ["Reduced symptoms of anxiety, depression & emotional overwhelm", "Stronger coping strategies and emotional resilience", "Healthier communication and boundaries in relationships", "Greater self-awareness and increased confidence", "Decreased reliance on substances or harmful behaviors"];
 const modalities = [
@@ -233,17 +238,14 @@ const faqs = [
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">See Hopewell Health Solutions</h2>
       </div>
       <div class="mt-10 grid md:grid-cols-3 gap-6">
-        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-          <video class="h-full w-full object-cover" controls preload="metadata" playsinline>
-            <source src="/Assets/videos/455396.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-          <iframe class="h-full w-full" src="https://www.youtube.com/embed/GJeVqHhooBA" title="Hopewell Health Solutions — adult mental health & outpatient care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-          <iframe class="h-full w-full" src="https://www.youtube.com/embed/uDy-K1dO0Fw" title="Inside Hopewell Health Solutions' approach to care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        {interviews.map((v) => (
+          <figure>
+            <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+              <iframe class="h-full w-full" src={`https://www.youtube.com/embed/${v.id}`} title={v.t} loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption class="mt-3"><span class="text-xs font-semibold uppercase tracking-wide text-azul">{v.outlet}</span><p class="font-display text-lg text-ink leading-tight">{v.t}</p></figcaption>
+          </figure>
+        ))}
       </div>
       <div class="mt-8 text-center">
         <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
