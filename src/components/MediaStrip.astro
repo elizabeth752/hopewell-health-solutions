@@ -1,7 +1,10 @@
 ---
 // Variation 1: "As featured in & on" press-logo strip. Drop on any page.
-// Props: bg ("white" | "crema"), heading override.
-const { bg = "white", heading = "As featured in & on" } = Astro.props;
+// Props:
+//   bg       — "white" | "crema"
+//   heading  — override the eyebrow label
+//   showLink — show the "See all press →" link (false on the Media page itself)
+const { bg = "white", heading = "As featured in & on", showLink = true } = Astro.props;
 const logos = [
   ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
   ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.png"],
@@ -14,11 +17,43 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 <section class={`${bgClass} border-y border-line`}>
   <div class="mx-auto max-w-6xl px-5 py-8">
     <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
-    <div class="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+
+    {/* Desktop / tablet: full-width single row */}
+    <div class="mt-6 hidden sm:flex items-center justify-between gap-x-8">
       {logos.map(([name, src]) => (
-        <img src={src} alt={name} loading="lazy" class="h-9 sm:h-11 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition" />
+        <img src={src} alt={name} loading="lazy" class="h-9 lg:h-11 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition" />
       ))}
-      <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press →</a>
     </div>
+
+    {/* Mobile: auto-scrolling marquee (logos duplicated for seamless loop) */}
+    <div class="mt-6 sm:hidden overflow-hidden ms-mask">
+      <div class="ms-track flex w-max items-center gap-x-12">
+        {[...logos, ...logos].map(([name, src]) => (
+          <img src={src} alt={name} loading="lazy" class="h-9 w-auto shrink-0 object-contain opacity-70 grayscale" />
+        ))}
+      </div>
+    </div>
+
+    {showLink && (
+      <div class="mt-6 text-center">
+        <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &rarr;</a>
+      </div>
+    )}
   </div>
 </section>
+
+<style>
+  .ms-track { animation: ms-scroll 20s linear infinite; }
+  @keyframes ms-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  /* Soft fade at both edges so logos scroll in/out gracefully */
+  .ms-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ms-track { animation: none; }
+  }
+</style>
