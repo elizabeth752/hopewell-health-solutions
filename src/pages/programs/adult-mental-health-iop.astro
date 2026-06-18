@@ -22,15 +22,7 @@ const locations = [
   ["East Hampton", "151 E. High St, East Hampton, CT 06424"],
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498"],
 ];
-// Credibility = trust signals (accreditations, reviews, press, tenure) — NOT USPs.
-const credibility = [
-  { icon: "star", t: "4.8 · 368 Google reviews", star: true },
-  { icon: "shield", t: "Joint Commission accredited" },
-  { icon: "compass", t: "Serving CT since 2013" },
-  { icon: "heart", t: "In-network with most plans" },
-  { icon: "sparkles", t: "Featured on Eyewitness News 3" },
-];
-const rightFit = ["Anxiety or depression", "Trauma or PTSD", "Emotional dysregulation or mood instability", "Co-occurring substance use concerns", "Difficulty functioning in daily life despite outpatient support"];
+const rightFit =["Anxiety or depression", "Trauma or PTSD", "Emotional dysregulation or mood instability", "Co-occurring substance use concerns", "Difficulty functioning in daily life despite outpatient support"];
 const weekIncludes = ["Evidence-based group therapy grounded in DBT & CBT", "Experiential therapies — art, movement-based & animal-assisted", "Individual therapy for personalized treatment", "Optional medication management & psychiatric support", "Optional family therapy & psychoeducation"];
 const sudSupport = ["Psychoeducation on addiction & the brain", "Relapse prevention & recovery planning", "DBT & CBT skill-building to replace maladaptive behaviors", "Dual-diagnosis support (co-occurring mental health & substance use)", "Medication-Assisted Treatment (MAT) services"];
 // Program-specific differentiators (preserved from the live page) — varied accent tones.
@@ -80,14 +72,18 @@ const faqs = [
           <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Mental Health &amp; Psychiatry · Glastonbury &amp; West Hartford, CT</p>
           <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Adult Co-Occurring Intensive Outpatient Program (IOP)</h1>
           <div class="mt-5 h-px w-16 bg-gold"></div>
+          <div class="mt-5 flex items-center gap-2.5 text-sm">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <span class="font-semibold text-ink">4.8</span>
+            <span class="text-muted">· 368 Google reviews</span>
+          </div>
           <ul class="mt-6 space-y-3">
             {heroUsps.map((u) => (
               <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
             ))}
           </ul>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify Your Insurance →</a>
-            <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+          <div class="mt-8">
+            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg bg-azul-bright px-8 py-4 text-lg font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
           </div>
           <p class="mt-6 text-xs text-muted">Medically reviewed by Katrin Moskowitz, DNP, PMHNP-BC</p>
         </div>
@@ -96,19 +92,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- CREDIBILITY STRIP -->
-  <section class="bg-white border-y border-line">
-    <div class="mx-auto max-w-6xl px-5 py-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-ink">
-      {credibility.map((c) => (
-        <span class="inline-flex items-center gap-2">
-          {c.star ? <span class="text-yellow-400">★★★★★</span> : <span class="text-azul"><Icon name={c.icon} class="h-4 w-4" /></span>}
-          {c.t}
-        </span>
-      ))}
-    </div>
-  </section>
-
-  <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
   <!-- WHAT IS (image left / text right) -->
   <section class="bg-white">

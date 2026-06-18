@@ -16,6 +16,10 @@
   --color-muted: #5a6b7a;       /* secondary text */
   --color-line: #e4ddd0;        /* hairline borders on cream */
 
+  /* Lighter, brighter blue — the primary CTA button color so it always
+     pops against the navy header/bands and crema sections on any page. */
+  --color-azul-bright: #2f76c4;
+
   /* Warm accents — used sparingly to vary the blue (ties to GBP gold + a calm sage) */
   --color-gold: #b6863c;        /* warm gold accent */
   --color-gold-light: #f3e8d2;  /* gold tint */
