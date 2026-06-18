@@ -1,97 +1,105 @@
 ---
 import Icon from "./Icon.astro";
 
-// Mega-menu data. Items with `href` are LIVE pages; `soon: true` renders a
-// muted "Soon" placeholder. Update as pages ship.
-const programsMenu = [
-  {
-    title: "Levels of care",
-    items: [
-      { label: "IOP Overview", href: "/programs/intensive-outpatient-program/", soon: true },
-      { label: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", desc: "Day & evening · co-occurring care" },
-      { label: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", desc: "The highest level of outpatient care" },
-      { label: "Teen IOP (13–17)", soon: true },
-      { label: "Tween IOP (9–12)", soon: true },
-      { label: "Women's Wellness IOP", soon: true },
-    ],
-  },
-  {
-    title: "Services",
-    items: [
-      { label: "Medication Management", href: "/programs/medication-management/", desc: "Psychiatry & meds · ages 4+" },
-      { label: "Outpatient Therapy", soon: true },
-    ],
-  },
+// Full ideal IA. Live pages resolve; unbuilt ones 404 until shipped (intentional
+// — lets us navigate/visualize the whole sitemap as we build it out).
+const menu = [
+  { label: "Programs", href: "/programs/", children: [
+    { label: "IOP Overview", href: "/programs/intensive-outpatient-program/" },
+    { label: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/" },
+    { label: "Teen IOP (13–17)", href: "/programs/teen-iop/" },
+    { label: "Tween IOP (9–12)", href: "/programs/tween-iop/" },
+    { label: "Women's Wellness IOP", href: "/programs/womens-wellness-iop/" },
+    { label: "First Responder IOP", href: "/programs/first-responder-iop/" },
+    { label: "Substance Use IOP", href: "/programs/substance-use-iop/" },
+    { label: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/" },
+    { label: "Medication Management", href: "/programs/medication-management/" },
+    { label: "Outpatient Therapy", href: "/programs/outpatient-therapy/" },
+  ]},
+  { label: "What We Treat", href: "/what-we-treat/", children: [
+    { label: "Depression", href: "/what-we-treat/depression/" },
+    { label: "Anxiety", href: "/what-we-treat/anxiety/" },
+    { label: "Trauma & PTSD", href: "/what-we-treat/trauma-ptsd/" },
+    { label: "ADHD", href: "/what-we-treat/adhd/" },
+    { label: "OCD", href: "/what-we-treat/ocd/" },
+    { label: "Bipolar Disorder", href: "/what-we-treat/bipolar/" },
+    { label: "Substance Use Disorder", href: "/what-we-treat/substance-use-disorder/" },
+    { label: "Co-Occurring Disorders", href: "/what-we-treat/co-occurring/" },
+  ]},
+  { label: "Treatments", href: "/treatment-methods/", children: [
+    { label: "TMS", href: "/treatment-methods/tms/" },
+    { label: "Spravato®", href: "/treatment-methods/spravato/" },
+    { label: "Medication-Assisted Treatment", href: "/treatment-methods/medication-assisted-treatment/" },
+    { label: "EMDR", href: "/treatment-methods/emdr/" },
+    { label: "DBT", href: "/treatment-methods/dbt/" },
+    { label: "Group Therapy", href: "/treatment-methods/group-therapy/" },
+    { label: "GeneSight® Testing", href: "/treatment-methods/genesight-testing/" },
+    { label: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/" },
+    { label: "ADHD Testing", href: "/treatment-methods/adhd-testing/" },
+  ]},
+  { label: "Locations", href: "/locations/", children: [
+    { label: "Glastonbury", href: "/locations/glastonbury-ct/" },
+    { label: "West Hartford", href: "/locations/west-hartford-ct/" },
+    { label: "East Hampton", href: "/locations/east-hampton-ct/" },
+    { label: "Westbrook", href: "/locations/westbrook-ct/" },
+  ]},
+  { label: "About", href: "/about-us/", align: "right", children: [
+    { label: "About Us", href: "/about-us/" },
+    { label: "Our Team", href: "/about-us/team/" },
+    { label: "Careers", href: "/about-us/careers/" },
+  ]},
+  { label: "Admissions", href: "/admissions/", align: "right", children: [
+    { label: "Verify Insurance", href: "/admissions/verify-insurance/" },
+    { label: "Rates & Insurance", href: "/admissions/rates-and-insurance/" },
+    { label: "What to Expect", href: "/admissions/what-to-expect/" },
+    { label: "For Families", href: "/admissions/for-families/" },
+  ]},
 ];
-
-// Simple top-level links (live pages only).
-const links = [
-  { label: "Media & Press", href: "/media/" },
-];
+const links = [{ label: "Media", href: "/media/" }];
 ---
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
   <!-- top bar -->
   <div class="bg-ink text-white text-xs">
     <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-between">
       <span class="tracking-wide">Empower · Change · Live Well</span>
-      <span class="hidden sm:inline tracking-wide text-white/80">In-network with most major plans</span>
+      <a href="tel:8609460447" class="font-semibold hover:text-azul-light transition">Call (860) 946-0447</a>
     </div>
   </div>
 
   <!-- main nav -->
   <div class="mx-auto max-w-6xl px-5">
-    <div class="flex items-center justify-between py-3.5">
-      <a href="/" class="flex items-center gap-2.5">
+    <div class="flex items-center justify-between py-3.5 gap-4">
+      <a href="/" class="flex items-center gap-2.5 shrink-0">
         <span class="grid h-9 w-9 place-items-center rounded-lg bg-azul text-white font-display text-xl leading-none">H</span>
         <span class="leading-tight">
-          <span class="block font-display text-lg text-ink">Hopewell Health Solutions</span>
-          <span class="block text-[11px] uppercase tracking-[0.12em] text-muted">Mental Health &amp; Psychiatry · CT</span>
+          <span class="block font-display text-base xl:text-lg text-ink">Hopewell Health Solutions</span>
+          <span class="hidden xl:block text-[11px] uppercase tracking-[0.12em] text-muted">Mental Health &amp; Psychiatry · CT</span>
         </span>
       </a>
 
       <!-- desktop nav -->
-      <nav class="hidden lg:flex items-center gap-7">
-        <div class="relative group">
-          <button class="flex items-center gap-1 text-sm font-semibold text-ink hover:text-azul transition" aria-haspopup="true">
-            Programs <Icon name="arrow" class="h-3.5 w-3.5 rotate-90 transition group-hover:translate-y-0.5" />
-          </button>
-          <!-- mega panel -->
-          <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-4 z-50">
-            <div class="w-[680px] rounded-2xl border border-line bg-white shadow-xl p-6 grid grid-cols-2 gap-x-8 gap-y-6">
-              {programsMenu.map((col) => (
-                <div>
-                  <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-3">{col.title}</p>
-                  <ul class="space-y-1">
-                    {col.items.map((it) => (
-                      it.href && !it.soon ? (
-                        <li>
-                          <a href={it.href} class="block rounded-lg px-3 py-2 hover:bg-crema transition">
-                            <span class="block text-sm font-semibold text-ink">{it.label}</span>
-                            {it.desc && <span class="block text-xs text-muted">{it.desc}</span>}
-                          </a>
-                        </li>
-                      ) : (
-                        <li class="flex items-center justify-between rounded-lg px-3 py-2">
-                          <span class="text-sm font-semibold text-muted/70">{it.label}</span>
-                          <span class="text-[10px] font-semibold uppercase tracking-wide text-muted bg-line/60 rounded-full px-2 py-0.5">Soon</span>
-                        </li>
-                      )
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <div class="col-span-2 mt-1 flex items-center justify-between rounded-xl bg-crema px-5 py-4">
-                <span class="text-sm text-ink">Not sure which program fits? <span class="text-muted">We’ll help you find out.</span></span>
-                <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-4 py-2 text-sm font-semibold text-white hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+      <nav class="hidden lg:flex items-center gap-x-5">
+        {menu.map((m) => (
+          <div class="relative group">
+            <a href={m.href} class="flex items-center gap-1 text-sm font-semibold text-ink hover:text-azul transition py-2">
+              {m.label}<Icon name="arrow" class="h-3 w-3 rotate-90 opacity-60 transition group-hover:translate-y-0.5" />
+            </a>
+            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
+              <div class="w-64 rounded-2xl border border-line bg-white shadow-xl p-2">
+                <ul>
+                  {m.children.map((c) => (
+                    <li><a href={c.href} class="block rounded-lg px-3 py-2 text-sm font-medium text-ink hover:bg-crema hover:text-azul transition">{c.label}</a></li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-        {links.map((l) => <a href={l.href} class="text-sm font-semibold text-ink hover:text-azul transition">{l.label}</a>)}
+        ))}
+        {links.map((l) => <a href={l.href} class="text-sm font-semibold text-ink hover:text-azul transition py-2">{l.label}</a>)}
       </nav>
 
-      <div class="flex items-center gap-2">
-        <a href="tel:8609460447" class="hidden sm:inline-flex items-center gap-2 rounded-lg bg-azul-bright px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:8609460447" class="hidden xl:inline-flex items-center gap-2 rounded-lg bg-azul-bright px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
         <!-- mobile toggle -->
         <button id="mobileToggle" class="lg:hidden grid h-10 w-10 place-items-center rounded-lg border border-line text-ink" aria-label="Open menu" aria-expanded="false">
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -101,24 +109,18 @@ const links = [
   </div>
 
   <!-- mobile panel -->
-  <div id="mobilePanel" class="hidden lg:hidden border-t border-line bg-white">
+  <div id="mobilePanel" class="hidden lg:hidden border-t border-line bg-white max-h-[80vh] overflow-y-auto">
     <div class="mx-auto max-w-6xl px-5 py-5 space-y-5">
-      {programsMenu.map((col) => (
+      {menu.map((m) => (
         <div>
-          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-2">{col.title}</p>
-          <ul class="space-y-1">
-            {col.items.map((it) => (
-              it.href && !it.soon ? (
-                <li><a href={it.href} class="block py-1.5 text-sm font-semibold text-ink">{it.label}</a></li>
-              ) : (
-                <li class="flex items-center justify-between py-1.5"><span class="text-sm font-semibold text-muted/70">{it.label}</span><span class="text-[10px] font-semibold uppercase tracking-wide text-muted bg-line/60 rounded-full px-2 py-0.5">Soon</span></li>
-              )
-            ))}
+          <a href={m.href} class="block text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-2">{m.label}</a>
+          <ul class="space-y-0.5">
+            {m.children.map((c) => <li><a href={c.href} class="block py-1.5 text-sm font-semibold text-ink">{c.label}</a></li>)}
           </ul>
         </div>
       ))}
-      <div class="pt-1">
-        {links.map((l) => <a href={l.href} class="block py-1.5 text-sm font-semibold text-ink">{l.label}</a>)}
+      <div class="pt-1 border-t border-line">
+        {links.map((l) => <a href={l.href} class="block py-2 text-sm font-semibold text-ink">{l.label}</a>)}
       </div>
       <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-5 py-3 text-sm font-semibold text-white"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
     </div>
