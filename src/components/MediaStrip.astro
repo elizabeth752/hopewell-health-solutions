@@ -1,0 +1,24 @@
+---
+// Variation 1: "As featured in & on" press-logo strip. Drop on any page.
+// Props: bg ("white" | "crema"), heading override.
+const { bg = "white", heading = "As featured in & on" } = Astro.props;
+const logos = [
+  ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
+  ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.png"],
+  ["NBC Connecticut", "/Assets/Media%20Appearances/nbc-connecticut.png"],
+  ["Eyewitness News", "/Assets/Media%20Appearances/eyewitness-news.webp"],
+  ["WOUB Public Media", "/Assets/Media%20Appearances/woub-public-media.jpg"],
+];
+const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
+---
+<section class={`${bgClass} border-y border-line`}>
+  <div class="mx-auto max-w-6xl px-5 py-8">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+      {logos.map(([name, src]) => (
+        <img src={src} alt={name} loading="lazy" class="h-9 sm:h-11 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition" />
+      ))}
+      <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press →</a>
+    </div>
+  </div>
+</section>

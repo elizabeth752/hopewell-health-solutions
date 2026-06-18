@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
 
 // The 4 agreed USPs — shown in the hero.
 const heroUsps = [
@@ -106,6 +107,8 @@ const faqs = [
       ))}
     </div>
   </section>
+
+  <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
 
   <!-- WHAT IS (image left / text right) -->
   <section class="bg-white">
@@ -231,15 +234,21 @@ const faqs = [
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">In the room &amp; in the news</p>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">See Hopewell Health Solutions</h2>
       </div>
-      <div class="mt-10 grid md:grid-cols-2 gap-6">
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
         <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
           <video class="h-full w-full object-cover" controls preload="metadata" playsinline>
             <source src="/Assets/videos/455396.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-          <iframe class="h-full w-full" src="https://www.youtube.com/embed/aff5Xfy9CfE" title="Hopewell Health Solutions on Eyewitness News 3" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe class="h-full w-full" src="https://www.youtube.com/embed/GJeVqHhooBA" title="Hopewell Health Solutions — adult mental health & outpatient care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <iframe class="h-full w-full" src="https://www.youtube.com/embed/uDy-K1dO0Fw" title="Inside Hopewell Health Solutions' approach to care" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
       </div>
     </div>
   </section>

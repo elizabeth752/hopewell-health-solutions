@@ -27,21 +27,27 @@
   --font-display: "Baskervville", Georgia, serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Base element defaults live in @layer base so Tailwind utility classes
+   (text-white, text-azul, etc.) can override them. Unlayered CSS would
+   otherwise win over layered utilities in Tailwind v4 — this was the
+   root cause of recurring dark-heading-on-dark-background bugs. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: #ffffff;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #ffffff;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  color: var(--color-ink);
-  line-height: 1.15;
-  font-weight: 400; /* Baskervville ships a single weight */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    line-height: 1.15;
+    font-weight: 400; /* Baskervville ships a single weight */
+  }
 }
