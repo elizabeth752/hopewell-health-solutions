@@ -47,7 +47,7 @@ const modalities = [
 const ptg = ["Greater appreciation of life", "Improved relationships", "Renewed strength & purpose", "New interests & outlooks", "Reduced anxiety, depression & emotional overwhelm", "Reduced hypervigilance & distressing memories", "Decreased reliance on substances or harmful behaviors"];
 const TM = "/Assets/Team%20Members/";
 const team = [
-  { n: "Tim Hall, LPC-A", role: "Program Lead · Retired Police Officer", photo: TM + "Tim%20Hall.webp", d: "A retired Bristol Police Officer with 10 years of service — Officer of the Year, Life Saving Awards, Silver Stars, and Distinguished Service. As a Peer Support Specialist he built programs to help fellow officers, then earned his M.S. in Clinical Mental Health Counseling. He now dedicates his career to helping police, fire, dispatch, corrections, and EMS professionals and their families heal." },
+  { n: "Tim Hall, LPC-A", role: "Program Lead · Retired Police Officer", photo: TM + "Tim%20Hall.webp", d: "A retired Bristol Police Officer (10 years of service, decorated with Life Saving Awards and Distinguished Service). As a Peer Support Specialist he built programs for fellow officers, then earned his M.S. in Clinical Mental Health Counseling — now helping police, fire, dispatch, corrections, and EMS professionals and their families heal." },
   { n: "Victor J.R. Duphily III, LPC", role: "Counselor · Former Officer & Army Veteran", photo: TM + "Victor%20JR.webp", d: "M.S. in Clinical Mental Health Counseling from Southern CT State University, with a career dedicated to veterans and first responders coping with service-related trauma — across the New Haven Vet Center, Wheeler Clinic, and CMHA's Veteran Support Program. As a former police officer and U.S. Army veteran, he brings firsthand understanding." },
   { n: "Christopher Patenaude, PA", role: "Medication Management", photo: TM + "chris-patenaude-pa.webp", d: "A board-certified physician assistant specializing in outpatient psychiatry. He provides compassionate, evidence-based care for adults with ADHD, bipolar disorder, and treatment-resistant depression — valuing open communication and collaboration." },
   { n: "Katherine Salvador, PA-C", role: "Medication Management", photo: TM + "katherine-salvador-pa-c.webp", d: "Over nine years of experience in community mental health and addiction treatment, providing evidence-based care for mood, anxiety, and substance use disorders. She integrates medication management with mindfulness and psychotherapy for holistic healing." },
@@ -255,11 +255,11 @@ const faqs = [
       </div>
       <div class="mt-10 grid md:grid-cols-2 gap-5">
         {team.map((m) => (
-          <div class="rounded-2xl bg-crema border border-line p-7 flex gap-5">
+          <div class="flex overflow-hidden rounded-2xl bg-crema border border-line">
             {m.photo
-              ? <img src={m.photo} alt={m.n} loading="lazy" class="h-28 w-28 sm:h-32 sm:w-32 shrink-0 rounded-2xl object-cover object-top shadow-sm" />
-              : <span class="grid h-28 w-28 sm:h-32 sm:w-32 shrink-0 place-items-center rounded-2xl bg-azul text-white font-display text-3xl">{m.n.charAt(0)}</span>}
-            <div>
+              ? <img src={m.photo} alt={m.n} loading="lazy" class="w-32 sm:w-40 shrink-0 object-cover object-top" />
+              : <span class="grid w-32 sm:w-40 shrink-0 place-items-center bg-azul text-white font-display text-3xl">{m.n.charAt(0)}</span>}
+            <div class="p-6 sm:p-7">
               <h3 class="font-display text-lg text-ink leading-tight">{m.n}</h3>
               <p class="text-xs font-semibold uppercase tracking-wide text-azul">{m.role}</p>
               <p class="mt-2 text-sm text-muted leading-relaxed">{m.d}</p>
