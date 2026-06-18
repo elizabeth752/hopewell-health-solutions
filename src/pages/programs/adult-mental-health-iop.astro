@@ -211,8 +211,28 @@ const faqs = [
     </div>
   </section>
 
-  <!-- REVIEWS -->
+  <!-- VIDEOS -->
   <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">In the room &amp; in the news</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">See Hopewell Health Solutions</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <video class="h-full w-full object-cover" controls preload="metadata" playsinline>
+            <source src="/Assets/videos/455396.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
+          <iframe class="h-full w-full" src="https://www.youtube.com/embed/aff5Xfy9CfE" title="Hopewell Health Solutions on Eyewitness News 3" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <div class="flex items-center justify-center gap-3"><img src="/Assets/Google-Review-Symbol.webp" alt="Google" class="h-7 w-7 object-contain" /><span class="font-display text-3xl text-ink">4.8</span><span class="text-yellow-400 text-xl">★★★★★</span></div>
@@ -220,7 +240,7 @@ const faqs = [
       </div>
       <div class="mt-10 grid md:grid-cols-3 gap-5">
         {reviews.map(([q, who]) => (
-          <figure class="rounded-2xl border border-line bg-crema p-6">
+          <figure class="rounded-2xl border border-line bg-white p-6">
             <div class="text-yellow-400">★★★★★</div>
             <blockquote class="mt-3 text-ink leading-relaxed text-[15px]">“{q}”</blockquote>
             <figcaption class="mt-4 text-sm text-muted border-t border-line pt-3">— {who}</figcaption>
@@ -231,7 +251,7 @@ const faqs = [
   </section>
 
   <!-- INSURANCE (with logos) -->
-  <section class="bg-crema">
+  <section class="bg-white">
     <div class="mx-auto max-w-6xl px-5 py-16 text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-ink">Comprehensive coverage options</h2>
       <p class="mt-3 text-muted max-w-2xl mx-auto">We accept most insurance providers. Not sure about your plan? We’ll verify your benefits — free, in minutes.</p>
@@ -245,12 +265,12 @@ const faqs = [
   </section>
 
   <!-- FAQ -->
-  <section class="bg-white">
+  <section class="bg-crema">
     <div class="mx-auto max-w-3xl px-5 py-16">
       <h2 class="font-display text-3xl text-ink text-center">Adult IOP — common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
-          <details class="group rounded-xl bg-crema border border-line p-5">
+          <details class="group rounded-xl bg-white border border-line p-5">
             <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
             <p class="mt-3 text-ink leading-relaxed">{a}</p>
           </details>
