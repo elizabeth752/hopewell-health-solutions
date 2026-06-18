@@ -45,11 +45,12 @@ const modalities = [
   { t: "Psychoeducation", icon: "clipboard" },
 ];
 const ptg = ["Greater appreciation of life", "Improved relationships", "Renewed strength & purpose", "New interests & outlooks", "Reduced anxiety, depression & emotional overwhelm", "Reduced hypervigilance & distressing memories", "Decreased reliance on substances or harmful behaviors"];
+const TM = "/Assets/Team%20Members/";
 const team = [
-  { n: "Tim Hall, LPC-A", role: "Program Lead · Retired Police Officer", d: "A retired Bristol Police Officer with 10 years of service — Officer of the Year, Life Saving Awards, Silver Stars, and Distinguished Service. As a Peer Support Specialist he built programs to help fellow officers, then earned his M.S. in Clinical Mental Health Counseling. He now dedicates his career to helping police, fire, dispatch, corrections, and EMS professionals and their families heal." },
-  { n: "Victor J.R. Duphily III, LPC", role: "Counselor · Former Officer & Army Veteran", d: "M.S. in Clinical Mental Health Counseling from Southern CT State University, with a career dedicated to veterans and first responders coping with service-related trauma — across the New Haven Vet Center, Wheeler Clinic, and CMHA's Veteran Support Program. As a former police officer and U.S. Army veteran, he brings firsthand understanding." },
-  { n: "Christopher Patenaude, PA", role: "Medication Management", d: "A board-certified physician assistant specializing in outpatient psychiatry. He provides compassionate, evidence-based care for adults with ADHD, bipolar disorder, and treatment-resistant depression — valuing open communication and collaboration." },
-  { n: "Katherine Salvador, PA-C", role: "Medication Management", d: "Over nine years of experience in community mental health and addiction treatment, providing evidence-based care for mood, anxiety, and substance use disorders. She integrates medication management with mindfulness and psychotherapy for holistic healing." },
+  { n: "Tim Hall, LPC-A", role: "Program Lead · Retired Police Officer", photo: null, d: "A retired Bristol Police Officer with 10 years of service — Officer of the Year, Life Saving Awards, Silver Stars, and Distinguished Service. As a Peer Support Specialist he built programs to help fellow officers, then earned his M.S. in Clinical Mental Health Counseling. He now dedicates his career to helping police, fire, dispatch, corrections, and EMS professionals and their families heal." },
+  { n: "Victor J.R. Duphily III, LPC", role: "Counselor · Former Officer & Army Veteran", photo: null, d: "M.S. in Clinical Mental Health Counseling from Southern CT State University, with a career dedicated to veterans and first responders coping with service-related trauma — across the New Haven Vet Center, Wheeler Clinic, and CMHA's Veteran Support Program. As a former police officer and U.S. Army veteran, he brings firsthand understanding." },
+  { n: "Christopher Patenaude, PA", role: "Medication Management", photo: TM + "chris-patenaude-pa.webp", d: "A board-certified physician assistant specializing in outpatient psychiatry. He provides compassionate, evidence-based care for adults with ADHD, bipolar disorder, and treatment-resistant depression — valuing open communication and collaboration." },
+  { n: "Katherine Salvador, PA-C", role: "Medication Management", photo: TM + "katherine-salvador-pa-c.webp", d: "Over nine years of experience in community mental health and addiction treatment, providing evidence-based care for mood, anxiety, and substance use disorders. She integrates medication management with mindfulness and psychotherapy for holistic healing." },
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -246,7 +247,9 @@ const faqs = [
       <div class="mt-10 grid md:grid-cols-2 gap-5">
         {team.map((m) => (
           <div class="rounded-2xl bg-crema border border-line p-7 flex gap-4">
-            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-azul text-white font-display text-lg">{m.n.charAt(0)}</span>
+            {m.photo
+              ? <img src={m.photo} alt={m.n} loading="lazy" class="h-14 w-14 shrink-0 rounded-full object-cover" />
+              : <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-azul text-white font-display text-lg">{m.n.charAt(0)}</span>}
             <div>
               <h3 class="font-display text-lg text-ink leading-tight">{m.n}</h3>
               <p class="text-xs font-semibold uppercase tracking-wide text-azul">{m.role}</p>
