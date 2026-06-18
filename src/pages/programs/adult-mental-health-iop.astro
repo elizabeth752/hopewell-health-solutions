@@ -17,7 +17,7 @@ const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><pa
 const locations = [
   ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
   ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
-  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!4v1781754388085!6m8!1m7!1s_3_stAsK6reGGYjxtQebGA!2m2!1d41.68429942600149!2d-72.60043998441421!3f88.2!4f0!5f0.7820865974627469"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
   ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
   ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
@@ -34,7 +34,16 @@ const unique = [
 ];
 const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
 const outcomes = ["Reduced symptoms of anxiety, depression & emotional overwhelm", "Stronger coping strategies and emotional resilience", "Healthier communication and boundaries in relationships", "Greater self-awareness and increased confidence", "Decreased reliance on substances or harmful behaviors"];
-const modalities = ["Dialectical Behavioral Therapy (DBT)", "Cognitive Behavioral Therapy (CBT)", "Art Therapy", "Yoga Therapy", "Mindfulness", "EMDR", "Somatic Therapy", "Trauma-Informed Care"];
+const modalities = [
+  { t: "Dialectical Behavioral Therapy (DBT)", icon: "swap" },
+  { t: "Cognitive Behavioral Therapy (CBT)", icon: "brain" },
+  { t: "Art Therapy", icon: "sparkles" },
+  { t: "Yoga Therapy", icon: "sun" },
+  { t: "Mindfulness", icon: "cloud" },
+  { t: "EMDR", icon: "bolt" },
+  { t: "Somatic Therapy", icon: "heart" },
+  { t: "Trauma-Informed Care", icon: "shield" },
+];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
   ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
@@ -83,7 +92,7 @@ const faqs = [
             ))}
           </ul>
           <div class="mt-8">
-            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg bg-azul-bright px-8 py-4 text-lg font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
           </div>
           <p class="mt-6 text-xs text-muted">Medically reviewed by Katrin Moskowitz, DNP, PMHNP-BC</p>
         </div>
@@ -144,8 +153,8 @@ const faqs = [
 
   <!-- SUBSTANCE USE + MAT (text left / image right) -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-      <div class="lg:order-2"><img src="/Assets/AdobeStock_542909901.webp" alt="Co-occurring mental health and substance use care" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+      <div class="lg:order-2"><img src="/Assets/AdobeStock_542909901.webp" alt="Co-occurring mental health and substance use care" loading="lazy" class="rounded-2xl w-full h-72 lg:h-full lg:min-h-[28rem] object-cover" /></div>
       <div class="lg:order-1">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Struggling with unhealthy coping?</p>
         <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Supporting both mental health &amp; substance-use recovery</h2>
@@ -203,8 +212,13 @@ const faqs = [
       <div>
         <h2 class="font-display text-3xl text-ink">Modalities used in our IOP</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <div class="mt-5 flex flex-wrap gap-2.5">
-          {modalities.map((m) => <a href="#" class="rounded-full bg-white border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-azul hover:text-azul transition">{m}</a>)}
+        <div class="mt-6 grid grid-cols-2 gap-3">
+          {modalities.map((m) => (
+            <div class="flex items-center gap-3 rounded-xl bg-white border border-line p-3.5">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={m.icon} class="h-5 w-5" /></span>
+              <span class="text-sm font-semibold text-ink leading-tight">{m.t}</span>
+            </div>
+          ))}
         </div>
         <p class="mt-5 text-sm text-muted">Plus <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a> and additional therapeutic treatments.</p>
       </div>
