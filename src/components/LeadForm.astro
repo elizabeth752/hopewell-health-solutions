@@ -1,0 +1,21 @@
+---
+// Reusable CTM lead form. Fields: name · phone · insurance carrier · member/policy ID.
+const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false } = Astro.props;
+const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCare","Evernorth","Harvard Pilgrim","Magellan","Meritain","Optum","TRICARE","UMR","UnitedHealthcare","VA Community Care","Other / Not sure"];
+const pad = compact ? "py-2.5" : "py-3";
+---
+<div class="rounded-2xl bg-white shadow-xl border border-line p-6">
+  <h2 class="font-display text-2xl text-ink">{heading}</h2>
+  <p class="text-sm text-muted mt-1">{sub}</p>
+  <form class="mt-4 space-y-3" onsubmit="return false">
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" placeholder="Full name" required />
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="tel" placeholder="Phone" required />
+    <select class={`w-full rounded-lg border border-line px-4 ${pad} text-sm text-muted`} required>
+      <option value="">Insurance carrier</option>
+      {carriers.map((c) => <option value={c}>{c}</option>)}
+    </select>
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" placeholder="Member / Policy ID" />
+    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
+    <button class="w-full rounded-lg bg-azul py-3 font-semibold text-white hover:bg-azul-dark transition">Verify My Insurance →</button>
+  </form>
+</div>

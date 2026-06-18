@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
+import LeadForm from "../components/LeadForm.astro";
 
 const credibility = [
   "★ 4.8 · 368 Google reviews", "Joint Commission accredited (Gold Seal)", "47 licensed clinicians",
@@ -86,20 +87,7 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
           <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
         </div>
       </div>
-      <div id="verify" class="rounded-2xl bg-white shadow-xl border border-line p-7 scroll-mt-28">
-        <h2 class="font-display text-2xl text-ink">Request a confidential callback</h2>
-        <p class="text-sm text-muted mt-1">We’ll verify your insurance and help you find the right care — free, no pressure.</p>
-        <form class="mt-5 space-y-3" onsubmit="return false">
-          <input class="w-full rounded-lg border border-line px-4 py-3 text-sm" type="text" placeholder="First name" />
-          <input class="w-full rounded-lg border border-line px-4 py-3 text-sm" type="tel" placeholder="Phone" />
-          <input class="w-full rounded-lg border border-line px-4 py-3 text-sm" type="email" placeholder="Email" />
-          <select class="w-full rounded-lg border border-line px-4 py-3 text-sm text-muted">
-            <option>What do you need help with?</option><option>Myself</option><option>My child</option><option>A loved one</option>
-          </select>
-          <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" class="mt-0.5" /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
-          <button class="w-full rounded-lg bg-azul py-3.5 font-semibold text-white hover:bg-azul-dark transition">Get My Confidential Callback</button>
-        </form>
-      </div>
+      <div id="verify" class="scroll-mt-28"><LeadForm /></div>
     </div>
   </section>
 
@@ -310,7 +298,7 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
   <!-- FINAL CTA -->
   <section class="bg-azul text-white">
     <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl">You don’t have to do this alone.</h2>
+      <h2 class="font-display text-3xl sm:text-4xl text-white">You don’t have to do this alone.</h2>
       <p class="mt-4 text-white/85 text-lg">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
