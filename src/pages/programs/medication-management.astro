@@ -23,8 +23,7 @@ const locations = [
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
 ];
 const treats = [
-  { t: "Anxiety & related disorders", icon: "cloud" },
-  { t: "Depression", icon: "heart" },
+  { t: "Anxiety & depression", icon: "cloud" },
   { t: "Bipolar disorder", icon: "swap" },
   { t: "ADHD", icon: "bolt" },
   { t: "OCD", icon: "refresh" },
@@ -58,13 +57,15 @@ const press = [
   { outlet: "FOX61", logo: L + "fox61.png", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
   { outlet: "NBC Connecticut", logo: L + "nbc-connecticut.png", date: "CT Live!", title: "CT Live!: Trauma in Women — with a Hopewell clinician", href: "/media/" },
 ];
+// Reviews are verbatim from Google Business Profile, with the real reviewer's
+// name — never anonymized or relabeled. See feedback-hopewell-reviews-gbp-exact.
 const reviews = [
-  { n: "Verified patient", t: "Google review", q: "London is a very genuine person. She makes sure you leave with zero questions and urges you to reach out if something comes up after a visit." },
-  { n: "Verified patient", t: "Google review", q: "Katherine Salvador makes me feel seen. I changed to a new medication and had many questions — she answered every one with neutral, digestible information. I walked out feeling appreciated and heard. It was like a warm hug." },
-  { n: "Verified patient", t: "Google review", q: "I’ve had a wonderful experience with Tracy at Hopewell. She’s incredibly helpful, knowledgeable, and always takes the time to listen carefully to my wants and needs. The entire team has been supportive — highly recommend!" },
-  { n: "Verified patient", t: "Google review", q: "Chris was very easy to talk to and willing to listen to my concerns about changing medication providers. I feel very comfortable having a plan in place with him for when my psychiatrist retires." },
-  { n: "Verified patient", t: "Google review", q: "London is always so good to talk to. She listens and understands the importance medication management has in recovery. I appreciate her time, knowledge, and interest in my wellbeing." },
-  { n: "Verified patient", t: "Google review", q: "Tracy is great — such a pleasure to work with. She takes the time to listen and thoroughly answer questions to ensure our son receives the best treatment plan." },
+  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
+  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
+  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
+  { n: "stacey miller", t: "3 months ago", q: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
+  { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. All the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
+  { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -191,7 +192,7 @@ const faqs = [
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What we treat</p>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Psychiatric care for a wide range of concerns</h2>
       </div>
-      <div class="mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4">
         {treats.map((c) => (
           <div class="flex items-center gap-3 rounded-xl bg-crema border border-line p-4">
             <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={c.icon} class="h-5 w-5" /></span>
@@ -299,7 +300,7 @@ const faqs = [
             </div>
             <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
             <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
-              <span class="grid h-10 w-10 place-items-center rounded-full bg-white border border-line"><span class="h-5 w-5 inline-block" set:html={googleG} /></span>
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
               <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
             </figcaption>
           </figure>
