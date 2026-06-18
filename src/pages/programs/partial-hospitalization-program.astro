@@ -35,10 +35,10 @@ const whoFor = [
   "People seeking a structured, therapeutic environment to regain stability",
 ];
 const approach = [
-  { icon: "users", t: "Group Therapy", d: "Clinician-led sessions offer fresh perspectives, reduce isolation, and let you learn from others facing common obstacles in early recovery. Modules include DBT, CBT, Mindfulness & Grounding, Motivational Interviewing, Distress Tolerance, and Emotion Regulation — addressing anxiety, depression, family dynamics, grief, stress, trauma, substance use, OCD, and more. You choose the groups aligned with the goals you set with your clinician." },
-  { icon: "heart", t: "Individual Therapy", d: "One-on-one sessions with a licensed clinician assess your needs and address challenges in real time, working toward short- and long-term goals — plus peer recovery coaching (in person and by text) and on-call, non-emergency clinical support by phone, text, or in person." },
-  { icon: "clipboard", t: "Skills Training", d: "Our clinicians, psychiatric providers, and experiential therapists work collaboratively to develop a plan aligned with your values, goals, and needs." },
-  { icon: "sparkles", t: "Holistic & Creative Therapy", d: "Expressive, integrative practices — art, movement, mindfulness, and creative expression — engage the whole person (mind, body, and emotions) to encourage self-discovery, stress relief, and healing." },
+  { icon: "users", t: "Group Therapy", d: "Clinician-led sessions offer fresh perspectives, reduce isolation, and help you learn from others in early recovery. Modules include DBT, CBT, mindfulness & grounding, motivational interviewing, distress tolerance, and emotion regulation. You choose the groups aligned with the goals you set with your clinician." },
+  { icon: "heart", t: "Individual Therapy", d: "One-on-one sessions with a licensed clinician assess your needs and address challenges in real time, working toward short- and long-term goals. They also include peer recovery coaching — in person and by text — and on-call, non-emergency clinical support by phone, text, or in person whenever you need it." },
+  { icon: "clipboard", t: "Skills Training", d: "Our clinicians, psychiatric providers, and experiential therapists collaborate on a plan built around your values, goals, and needs — teaching practical skills in distress tolerance, emotion regulation, communication, and relapse prevention that you can carry into everyday life." },
+  { icon: "sparkles", t: "Holistic & Creative Therapy", d: "Expressive, integrative practices — art, movement, mindfulness, and creative expression — engage the whole person: mind, body, and emotions. These groups encourage self-discovery, stress relief, and the kind of healing that words alone can’t always reach." },
 ];
 const phpDay = [
   ["9:00–10:00 AM", "Check-in / psychoeducation group"],
@@ -305,14 +305,7 @@ const faqs = [
 
   <!-- WHAT YOU CAN EXPECT + MODALITIES -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12">
-      <div>
-        <h2 class="font-display text-3xl text-ink">What you can expect</h2>
-        <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <ul class="mt-5 space-y-3">
-          {outcomes.map((o) => <li class="flex gap-3 text-ink text-[17px]"><span class="text-azul mt-0.5"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
-        </ul>
-      </div>
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div>
         <h2 class="font-display text-3xl text-ink">Modalities used in our PHP</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
@@ -325,6 +318,13 @@ const faqs = [
           ))}
         </div>
         <p class="mt-5 text-sm text-muted">Plus Reiki, hiking, weight training, needlework &amp; other holistic options — and <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a>.</p>
+      </div>
+      <div>
+        <h2 class="font-display text-4xl sm:text-5xl text-ink leading-[1.1]">What you can expect</h2>
+        <div class="mt-5 h-px w-16 bg-gold"></div>
+        <ul class="mt-7 space-y-4">
+          {outcomes.map((o) => <li class="flex gap-3 text-ink text-lg"><span class="text-azul mt-1"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
+        </ul>
       </div>
     </div>
   </section>

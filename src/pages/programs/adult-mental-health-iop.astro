@@ -206,14 +206,7 @@ const faqs = [
 
   <!-- WHAT YOU CAN EXPECT + MODALITIES -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12">
-      <div>
-        <h2 class="font-display text-3xl text-ink">What you can expect</h2>
-        <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <ul class="mt-5 space-y-3">
-          {outcomes.map((o) => <li class="flex gap-3 text-ink text-[17px]"><span class="text-azul mt-0.5"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
-        </ul>
-      </div>
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <div>
         <h2 class="font-display text-3xl text-ink">Modalities used in our IOP</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
@@ -226,6 +219,13 @@ const faqs = [
           ))}
         </div>
         <p class="mt-5 text-sm text-muted">Plus <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a> and additional therapeutic treatments.</p>
+      </div>
+      <div>
+        <h2 class="font-display text-4xl sm:text-5xl text-ink leading-[1.1]">What you can expect</h2>
+        <div class="mt-5 h-px w-16 bg-gold"></div>
+        <ul class="mt-7 space-y-4">
+          {outcomes.map((o) => <li class="flex gap-3 text-ink text-lg"><span class="text-azul mt-1"><Icon name="shield" class="h-5 w-5" /></span>{o}</li>)}
+        </ul>
       </div>
     </div>
   </section>
