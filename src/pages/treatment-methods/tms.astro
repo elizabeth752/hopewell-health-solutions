@@ -80,6 +80,7 @@ const faqs = [
           <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">TMS Therapy · NeuroStar® Advanced TMS · Glastonbury, CT</p>
           <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">TMS Therapy for Depression &amp; OCD in Connecticut</h1>
           <div class="mt-5 h-px w-16 bg-gold"></div>
+          <p class="mt-5 text-ink leading-relaxed text-[17px] max-w-xl">A safe, non-invasive, FDA-cleared treatment for people with depression and OCD who haven’t found relief with medication or talk therapy — a cutting-edge way to regain control of your mental health.</p>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
             <span class="text-yellow-400 text-base leading-none">★★★★★</span>
             <span class="font-semibold text-ink">4.8</span>
@@ -110,7 +111,7 @@ const faqs = [
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">When other treatments haven’t worked</p>
         <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is TMS?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">Transcranial Magnetic Stimulation (TMS) is a safe, painless, non-invasive outpatient treatment that uses magnetic pulses to stimulate the brain areas affected by depression and OCD. It begins with a psychiatric evaluation and brain mapping to target the right area precisely.</p>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">TMS is part of our suite of state-of-the-art treatments — a breakthrough technology for mental health conditions that don’t respond to conventional treatment. Transcranial Magnetic Stimulation is a safe, painless, non-invasive outpatient treatment that uses magnetic pulses to stimulate the brain areas affected by depression and OCD, reducing long-term symptoms. It begins with a psychiatric evaluation and brain mapping to target the right area precisely.</p>
         <p class="mt-4 text-ink leading-relaxed text-[17px]">Antidepressants work indirectly through the body. <strong>NeuroStar® Advanced TMS targets the root cause — your brain.</strong> When synapses in the mood-regulating regions become underactive, connections are disrupted and depression sets in. TMS stimulates those inactive synapses, “awakening” the brain to restore its natural function.</p>
       </div>
     </div>
@@ -172,23 +173,22 @@ const faqs = [
     </div>
   </section>
 
-  <!-- WHAT TO EXPECT (image right) -->
+  <!-- WHAT TO EXPECT (full-width image) -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-      <div class="lg:order-2"><img src="/Assets/TMS/neurostar-tms.webp" alt="NeuroStar Advanced TMS equipment at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full object-cover border border-line" /></div>
-      <div class="lg:order-1">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center max-w-2xl mx-auto">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What to expect</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Your TMS schedule</h2>
-        <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">A full course of NeuroStar® Advanced TMS is delivered in short, consistent sessions:</p>
-        <div class="mt-6 space-y-3">
-          {expect.map(([t, d]) => (
-            <div class="flex items-center gap-4 rounded-xl bg-white border border-line p-4">
-              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span>
-              <div><span class="block font-semibold text-ink leading-tight">{t}</span><span class="block text-sm text-muted">{d}</span></div>
-            </div>
-          ))}
-        </div>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Your TMS schedule</h2>
+        <p class="mt-3 text-muted">A full course of NeuroStar® Advanced TMS is delivered in short, consistent sessions — right here at our Glastonbury office.</p>
+      </div>
+      <img src="/Assets/TMS/neurostar-tms.webp" alt="NeuroStar Advanced TMS at Hopewell Health Solutions — treatment frequency, duration & session length" loading="lazy" class="mt-10 w-full rounded-2xl border border-line shadow-sm" />
+      <div class="mt-6 grid sm:grid-cols-3 gap-4">
+        {expect.map(([t, d]) => (
+          <div class="flex items-center gap-3 rounded-xl bg-white border border-line p-5">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span>
+            <div><span class="block font-semibold text-ink leading-tight">{t}</span><span class="block text-sm text-muted">{d}</span></div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
