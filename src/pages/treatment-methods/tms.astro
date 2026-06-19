@@ -34,6 +34,15 @@ const rightFor = [
   { t: "You’re ready for a treatment plan with multiple sessions", icon: "calendar" },
   { t: "You want a personalized approach with no downtime", icon: "sparkles" },
 ];
+const L = "/Assets/Media%20Appearances/";
+const press = [
+  { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
+  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.png", date: "Honoree", title: "Kristine Schlichting — recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
+  { outlet: "FOX61", logo: L + "fox61.png", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "Teen mental health crisis", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-teen-mental-health-crisis/" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
+  { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
+];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
   ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
@@ -178,17 +187,17 @@ const faqs = [
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-white">Real, measurable relief</h2>
       </div>
       <div class="mt-12 grid sm:grid-cols-2 gap-6">
-        <div class="rounded-2xl border border-white/15 bg-white/[0.06] p-10 text-center">
-          <span class="inline-grid h-12 w-12 place-items-center rounded-full bg-white/10 text-gold-light"><Icon name="heart" class="h-6 w-6" /></span>
-          <p class="mt-5 font-display text-6xl sm:text-7xl text-gold-light leading-none">83%</p>
+        <div class="rounded-2xl bg-white p-10 text-center shadow-sm">
+          <span class="inline-grid h-12 w-12 place-items-center rounded-full bg-azul-light text-azul"><Icon name="heart" class="h-6 w-6" /></span>
+          <p class="mt-5 font-display text-6xl sm:text-7xl text-azul leading-none">83%</p>
           <div class="mx-auto mt-4 h-px w-10 bg-gold"></div>
-          <p class="mt-4 text-white/85 leading-relaxed">of patients who completed TMS experienced relief from depression</p>
+          <p class="mt-4 text-muted leading-relaxed">of patients who completed TMS experienced relief from depression</p>
         </div>
-        <div class="rounded-2xl border border-white/15 bg-white/[0.06] p-10 text-center">
-          <span class="inline-grid h-12 w-12 place-items-center rounded-full bg-white/10 text-gold-light"><Icon name="sparkles" class="h-6 w-6" /></span>
-          <p class="mt-5 font-display text-6xl sm:text-7xl text-gold-light leading-none">62%</p>
+        <div class="rounded-2xl bg-white p-10 text-center shadow-sm">
+          <span class="inline-grid h-12 w-12 place-items-center rounded-full bg-azul-light text-azul"><Icon name="sparkles" class="h-6 w-6" /></span>
+          <p class="mt-5 font-display text-6xl sm:text-7xl text-azul leading-none">62%</p>
           <div class="mx-auto mt-4 h-px w-10 bg-gold"></div>
-          <p class="mt-4 text-white/85 leading-relaxed">achieved full remission — complete relief from depression</p>
+          <p class="mt-4 text-muted leading-relaxed">achieved full remission — complete relief from depression</p>
         </div>
       </div>
       <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -197,6 +206,31 @@ const faqs = [
         <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold"><Icon name="brain" class="h-4 w-4 text-gold-light" />Drug-free &amp; non-invasive</span>
       </div>
       <p class="mt-8 text-center text-xs text-white/55">Source: NeuroStar® published clinical data.</p>
+    </div>
+  </section>
+
+  <!-- PRESS & FEATURES -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Read</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Press &amp; features</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {press.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener" class="group flex flex-col rounded-2xl bg-white border border-line p-6 shadow-sm hover:border-azul hover:shadow-lg transition">
+            <div class="flex items-center justify-between gap-3 min-h-[2rem]">
+              <img src={p.logo} alt={p.outlet} loading="lazy" class="h-7 w-auto max-w-[60%] object-contain" />
+              <span class="text-xs text-muted shrink-0">{p.date}</span>
+            </div>
+            <p class="mt-4 font-display text-lg text-ink leading-snug flex-1 group-hover:text-azul transition">{p.title}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul">Read the feature <Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
     </div>
   </section>
 
