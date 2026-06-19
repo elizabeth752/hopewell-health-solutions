@@ -1,20 +1,4 @@
 ---
-import Icon from "./Icon.astro";
-// Sitewide "What We Offer" cross-link grid — appears on every page via the footer.
-const services = [
-  { t: "Intensive Outpatient Program", href: "/programs/intensive-outpatient-program/", icon: "users" },
-  { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", icon: "calendar" },
-  { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
-  { t: "Counseling", href: "/programs/counseling/", icon: "heart" },
-  { t: "TMS", href: "/treatment-methods/tms/", icon: "brain" },
-  { t: "Spravato®", href: "/treatment-methods/spravato/", icon: "sparkles" },
-  { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
-  { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
-  { t: "HHS Therapeutic Treatments", href: "/treatment-methods/", icon: "refresh" },
-  { t: "S.U.D. Treatment", href: "/programs/substance-use-iop/", icon: "swap" },
-  { t: "Alcohol Dependence Treatment", href: "/what-we-treat/alcohol/", icon: "shield" },
-  { t: "Drug Dependence Treatment", href: "/what-we-treat/drug/", icon: "shield" },
-];
 const locations = [
   ["Glastonbury", "300 Hebron Ave"],
   ["South Glastonbury", "1420 Main St"],
@@ -29,24 +13,6 @@ const cols = [
   { h: "Treatments", links: ["TMS", "Spravato®", "EMDR", "GeneSight®"] },
 ];
 ---
-<section class="bg-crema border-t border-line">
-  <div class="mx-auto max-w-6xl px-5 py-14">
-    <div class="text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What we offer</p>
-      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Conditions &amp; Treatments</h2>
-    </div>
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-      {services.map((s) => (
-        <a href={s.href} class="group flex items-center gap-3 rounded-xl bg-white border border-line px-4 py-3.5 hover:border-azul hover:shadow-sm transition">
-          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={s.icon} class="h-5 w-5" /></span>
-          <span class="text-sm font-semibold text-ink group-hover:text-azul transition">{s.t}</span>
-          <Icon name="arrow" class="h-4 w-4 ml-auto text-muted group-hover:text-azul transition" />
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
-
 <footer class="bg-ink text-white/80">
   <div class="mx-auto max-w-6xl px-5 py-14">
     <div class="grid gap-10 md:grid-cols-4">
