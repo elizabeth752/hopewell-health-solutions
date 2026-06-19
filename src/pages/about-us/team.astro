@@ -5,72 +5,18 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import { providers } from "../../data/providers.js";
 
 const TM = "/Assets/Team%20Members/";
-// p = headshot filename (without .webp) or null for an initials fallback.
-const leadership = [
-  { n: "Kristine A. Schlichting, PhD", r: "Director & Founder", p: "kristine-a-schlichting-phd" },
-  { n: "Tracy Sibley, PMHNP-BC, APRN", r: "Board-Certified Psychiatric Mental Health Nurse Practitioner", p: "tracy-sibley-pmhnp-bc-aprn" },
-  { n: "Teesha Huertas, LCSW", r: "Clinic Director & Licensed Clinical Social Worker", p: "teesha-huertas-lcsw" },
-  { n: "Colleen Callaway, MBA", r: "Office Manager", p: "colleen-callaway-mba" },
-  { n: "TJ Aitken, CPSRP", r: "Director of Business Development", p: "tj-aitken-cpsrp" },
-  { n: "Eric Schwartz, PsyD, ABPP", r: "Board-Certified Psychologist · Individual & Family Counseling", p: "eric-schwarz-psyd-abpp" },
-];
-const medical = [
-  { n: "Katrin Moskowitz, DNP, PMHNP-BC, FNP", r: "Board-Certified Psychiatric & Family Nurse Practitioner", p: "katrin-moskowitz-dnp-pmhnp-bc-fnp" },
-  { n: "Chris Patenaude, PA", r: "Board-Certified Physician Assistant", p: "chris-patenaude-pa" },
-  { n: "Alizah Smith, PMHNP-BC", r: "Board-Certified Psychiatric Nurse Practitioner", p: "alizah-smith-pmhnp-bc" },
-  { n: "Tracy Sibley, PMHNP-BC, APRN", r: "Board-Certified Psychiatric Mental Health Nurse Practitioner", p: "tracy-sibley-pmhnp-bc-aprn" },
-  { n: "Rosa Kleinberg, APRN, PMHNP-BC", r: "Board-Certified Psychiatric Nurse Practitioner", p: "rosa-kleinberg-aprn-pmhnp-bc" },
-  { n: "Katherine Salvador, PA-C", r: "Board-Certified Physician Assistant", p: "katherine-salvador-pa-c" },
-];
-const clinical = [
-  { n: "Cassie Gittens, LPC-A", r: "Licensed Professional Counselor – Associate", p: "cassie-gittens-lpc-a" },
-  { n: "Karmen Hayensworth, LMSW", r: "Licensed Master Social Worker", p: null },
-  { n: "Kelly Fluckiger, LMSW", r: "Licensed Master Social Worker", p: null },
-  { n: "Erin Kruse, LMSW", r: "Licensed Master Social Worker", p: "erin-kruse-lmsw" },
-  { n: "Amenah Thomas, LPC-A", r: "Licensed Professional Counselor Associate", p: "amenah-thomas-lpc-a" },
-  { n: "Viviana Alvarado, LPC-A", r: "Licensed Professional Counselor Associate", p: "viviana-alvarado-lpc-a" },
-  { n: "Traci Schneider, MAATC, LPC-A, ATR-P", r: "Licensed Professional Counselor Associate & Art Therapist", p: "traci-schneider-maatc-lpc-a-atr-p" },
-  { n: "Khentrell Graham, LMSW", r: "Outpatient Clinician", p: "khentrell-graham-lmsw" },
-  { n: "Sherrie Gaudet, LCSW", r: "Licensed Clinical Social Worker & Licensed Drug & Alcohol Counselor", p: "sherrie-gaudet-lcsw" },
-  { n: "Kayla Orozco, LCSW", r: "Licensed Clinical Social Worker", p: "kayla-orozco-lcsw" },
-  { n: "Natalia De Lonardo, LPCA", r: "Licensed Professional Counselor Associate", p: "natalia-de-lonardo-lpca" },
-  { n: "Dori Bessette-Crail, LMFT", r: "Licensed Marriage & Family Therapist", p: "dori-bessette-crail-lmft" },
-  { n: "Joanne Malinka, LCSW", r: "Licensed Clinical Social Worker", p: "joanne-malinka-lcsw" },
-  { n: "Octavia Francis-Person, LPC-A", r: "Licensed Professional Counselor Associate", p: "octavia-francis-person-lpc-a" },
-  { n: "Amina Huric, LMSW", r: "Licensed Master Social Worker", p: "amina-huric-lmsw" },
-  { n: "Angela Pierce, LMSW", r: "Licensed Master Social Worker", p: "angela-pierce-lmsw" },
-  { n: "Kate Henneberry, LMFTA", r: "Licensed Marriage & Family Therapist Associate", p: null },
-  { n: "Eleni Fatsis, LMSW", r: "Licensed Master Social Worker", p: "eleni-fatsis-lmsw" },
-  { n: "Nathan Truong, LMFT-A", r: "Licensed Marriage & Family Therapist Associate", p: "nathan-truong-lmft-a" },
-  { n: "Savannah Henault, LMSW", r: "Licensed Master Social Worker", p: "savannah-henault-lmsw" },
-  { n: "Ashley Singh, PsyD", r: "Mental Health Practitioner", p: "ashley-singh-psyd" },
-  { n: "Madison Anderson, LMSW", r: "Licensed Master Social Worker", p: "madison-anderson-lmsw" },
-  { n: "Chris Barclay, PhD, BCBA, NCSP", r: "Licensed Clinical Psychologist", p: "chris-barclay-phd-bcba-ncsp" },
-  { n: "Kris Feller, LMSW", r: "Licensed Master Social Worker", p: "kris-feller-lmsw" },
-  { n: "Mariah Thomas, LMSW", r: "Licensed Master Social Worker", p: "mariah-thomas-lmsw" },
-  { n: "Patricia Nogelo, PhD, LCSW", r: "Licensed Clinical Social Worker", p: "patricia-nogelo-phd-lcsw" },
-  { n: "William Telemaque, LPCA", r: "Licensed Professional Counselor – Associate", p: "william-telemaque-lpca" },
-  { n: "Kimberly Devine, LCSW", r: "Licensed Clinical Social Worker", p: "kimberly-devine-lcsw" },
-  { n: "Michelle Munasami, LMFT", r: "Licensed Marriage & Family Therapist", p: "michelle-munasami-lmft" },
-  { n: "Laura Miller, PhD", r: "Neuropsychology Leader & Neuropsychological Testing", p: "laura-miller-phd" },
-  { n: "Christina Coelho, LMSW", r: "Licensed Master Social Worker", p: "christina-coelho-lmsw" },
-  { n: "Chelsey Micciche, LPC", r: "Licensed Professional Counselor · Individual & Family Counseling", p: "chesley-micciche-lpc" },
-  { n: "Jessenia Medina, LPC, NCC", r: "Licensed Professional Counselor", p: "jessenia-medina-lpc-ncc" },
-  { n: "Stacy Piscottano, LMSW", r: "Licensed Master Social Worker", p: "stacy-piscottano-lmsw" },
-  { n: "Sheryll Waring, LPC, LDAC", r: "Licensed Professional Counselor", p: "sheryll-waring-lpc-ladc" },
-  { n: "Bido Aguessy, PsyD, LPC-A", r: "Licensed Professional Counselor Associate", p: "bido-aguessey-psyd-lpc-a" },
-  { n: "Erica Schwartz, LCAT", r: "Board-Certified Art Therapist", p: "erica-schwartz-lcat" },
-];
 const initials = (name) => {
   const w = name.split(",")[0].trim().split(" ").filter(Boolean);
   return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
 };
+// Single source of truth: providers.js. Each card links to /provider/[slug]/.
 const sections = [
-  { title: "Leadership", people: leadership, cols: "sm:grid-cols-2 lg:grid-cols-3" },
-  { title: "Medical Staff", people: medical, cols: "sm:grid-cols-2 lg:grid-cols-3" },
-  { title: "Clinical Staff", people: clinical, cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
+  { title: "Leadership", people: providers.filter((p) => p.category === "leadership"), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Medical Staff", people: providers.filter((p) => p.category === "medical"), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Clinical Staff", people: providers.filter((p) => p.category === "psychology" || p.category === "clinical"), cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
 ];
 const L = "/Assets/Media%20Appearances/";
 const press = [
@@ -123,15 +69,15 @@ const press = [
         </div>
         <div class={`mt-10 grid ${sec.cols} gap-5`}>
           {sec.people.map((m) => (
-            <div class="overflow-hidden rounded-2xl bg-white border border-line shadow-sm">
-              {m.p
-                ? <img src={`${TM}${m.p}.webp`} alt={m.n} loading="lazy" class="aspect-square w-full object-cover object-top" />
-                : <div class="grid aspect-square place-items-center bg-azul-light"><span class="font-display text-3xl text-azul">{initials(m.n)}</span></div>}
+            <a href={`/provider/${m.slug}/`} class="group overflow-hidden rounded-2xl bg-white border border-line shadow-sm hover:border-azul hover:shadow-lg transition">
+              {m.photo
+                ? <img src={`${TM}${m.photo}.webp`} alt={m.name} loading="lazy" class="aspect-square w-full object-cover object-top" />
+                : <div class="grid aspect-square place-items-center bg-azul-light"><span class="font-display text-3xl text-azul">{initials(m.name)}</span></div>}
               <div class="p-4">
-                <h3 class="font-display text-base text-ink leading-tight">{m.n}</h3>
-                <p class="mt-1 text-xs text-muted leading-snug">{m.r}</p>
+                <h3 class="font-display text-base text-ink leading-tight group-hover:text-azul transition">{m.name}</h3>
+                <p class="mt-1 text-xs text-muted leading-snug">{m.role}</p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

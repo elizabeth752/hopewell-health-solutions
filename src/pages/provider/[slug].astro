@@ -1,0 +1,92 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+import { providers } from "../../data/providers.js";
+
+export function getStaticPaths() {
+  return providers.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const TM = "/Assets/Team%20Members/";
+const photo = p.photo ? `${TM}${p.photo}.webp` : null;
+const initials = (() => {
+  const w = p.name.split(",")[0].trim().split(" ").filter(Boolean);
+  return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
+})();
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: p.name,
+  jobTitle: p.role,
+  worksFor: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
+  url: `https://www.hopewellhealthsolutions.com/provider/${p.slug}`,
+  ...(photo ? { image: `https://www.hopewellhealthsolutions.com${photo}` } : {}),
+};
+---
+
+<Base title={`${p.name} | Hopewell Health Solutions`} description={p.bio ? p.bio.slice(0, 155) : `${p.name} — ${p.role} at Hopewell Health Solutions, Glastonbury & West Hartford, CT.`}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/about-us/team/" class="hover:text-azul">Our Team</a> / <span class="text-ink">{p.name}</span></nav>
+      <div class="grid md:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start">
+        {photo
+          ? <img src={photo} alt={p.name} class="w-full max-w-[300px] mx-auto md:mx-0 aspect-square rounded-2xl object-cover object-top shadow-sm" />
+          : <div class="w-full max-w-[300px] mx-auto md:mx-0 aspect-square grid place-items-center rounded-2xl bg-azul-light"><span class="font-display text-6xl text-azul">{initials}</span></div>}
+        <div>
+          {p.prescribes && <span class="inline-flex items-center gap-1.5 rounded-full bg-azul-light px-3 py-1 text-xs font-semibold text-azul"><Icon name="pill" class="h-3.5 w-3.5" />Prescribing provider</span>}
+          <h1 class="mt-3 font-display text-3xl sm:text-4xl text-ink leading-tight">{p.name}</h1>
+          <p class="mt-2 text-sm font-semibold uppercase tracking-wide text-azul">{p.role}</p>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          {p.bio
+            ? <p class="mt-5 text-ink leading-relaxed text-[17px]">{p.bio}</p>
+            : <p class="mt-5 text-muted leading-relaxed text-[17px]">Full bio coming soon. Reach out and our team will be glad to tell you more about {p.name.split(",")[0]} and how they can help.</p>}
+          {p.education && <p class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">Education:</span> {p.education}</p>}
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+            <a href="/admissions/" class="inline-flex items-center gap-2 rounded-lg border border-azul px-6 py-3 text-sm font-semibold text-azul hover:bg-azul-light transition">Request an appointment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {p.focus && p.focus.length > 0 && (
+    <section class="bg-white">
+      <div class="mx-auto max-w-5xl px-5 py-16">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Areas of focus</p>
+        <h2 class="mt-2 font-display text-3xl text-ink">How {p.name.split(",")[0]} can help</h2>
+        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {p.focus.map((f) => (
+            <div class="flex items-start gap-3 rounded-xl bg-crema border border-line p-4">
+              <span class="text-azul mt-0.5 shrink-0"><Icon name="shield" class="h-5 w-5" /></span>
+              <span class="text-ink leading-snug font-semibold text-sm">{f}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <ServicesGrid bg={p.focus && p.focus.length > 0 ? "crema" : "white"} />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready to connect with {p.name.split(",")[0]}?</h2>
+      <p class="mt-4 text-white/85 text-lg">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you get started.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="/about-us/team/" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Meet the full team</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
