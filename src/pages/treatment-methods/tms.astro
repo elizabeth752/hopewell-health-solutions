@@ -28,11 +28,11 @@ const expect = [
   ["Session length", "18–45 minutes per session"],
 ];
 const rightFor = [
-  "You have depression and haven’t found relief with medication or therapy",
-  "You want a non-medicated, non-invasive treatment option",
-  "You want to avoid the common side effects of medications",
-  "You’re ready for a treatment plan with multiple sessions",
-  "You want a personalized approach with no downtime",
+  { t: "You have depression and haven’t found relief with medication or therapy", icon: "cloud" },
+  { t: "You want a non-medicated, non-invasive treatment option", icon: "shield" },
+  { t: "You want to avoid the common side effects of medications", icon: "swap" },
+  { t: "You’re ready for a treatment plan with multiple sessions", icon: "calendar" },
+  { t: "You want a personalized approach with no downtime", icon: "sparkles" },
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -136,6 +136,21 @@ const faqs = [
     </div>
   </section>
 
+  <!-- EMPATHY CTA BAND -->
+  <section class="relative">
+    <img src="/Assets/couple%20hugging.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-ink/80"></div>
+    <div class="relative mx-auto max-w-3xl px-5 py-20 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-white/70">There is another way</p>
+      <h2 class="mt-3 font-display text-3xl sm:text-4xl text-white leading-snug">Medication after medication — and still no relief?</h2>
+      <p class="mt-4 text-white/85 text-lg">Treatment-resistant depression is more common than you think — and it isn’t the end of the road. TMS offers a drug-free path forward, with no downtime.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">See if TMS is right for you</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+      </div>
+    </div>
+  </section>
+
   <!-- PROCESS -->
   <section class="bg-white">
     <div class="mx-auto max-w-5xl px-5 py-16">
@@ -195,19 +210,21 @@ const faqs = [
 
   <!-- IS TMS RIGHT FOR YOU -->
   <section class="bg-white">
-    <div class="mx-auto max-w-5xl px-5 py-16">
-      <div class="text-center">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/guy%20thinking%20worried.webp" alt="Someone considering whether TMS is right for them" loading="lazy" class="rounded-2xl w-full h-72 lg:h-[28rem] object-cover" />
+      <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Make the right choice</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Is TMS treatment right for you?</h2>
-        <p class="mt-3 text-muted max-w-2xl mx-auto">TMS may be a great fit if any of these resonate:</p>
-      </div>
-      <div class="mt-10 grid sm:grid-cols-2 gap-4">
-        {rightFor.map((r) => (
-          <div class="flex items-start gap-3 rounded-xl bg-crema border border-line p-5">
-            <span class="text-azul mt-0.5 shrink-0"><Icon name="shield" class="h-5 w-5" /></span>
-            <span class="text-ink leading-snug font-semibold">{r}</span>
-          </div>
-        ))}
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Is TMS treatment right for you?</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">TMS may be a great fit if any of these resonate:</p>
+        <ul class="mt-5 space-y-3">
+          {rightFor.map((r) => (
+            <li class="flex items-start gap-3">
+              <span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={r.icon} class="h-4 w-4" /></span>
+              <span class="text-ink leading-snug pt-1">{r.t}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
