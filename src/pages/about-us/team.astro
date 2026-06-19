@@ -72,6 +72,15 @@ const sections = [
   { title: "Medical Staff", people: medical, cols: "sm:grid-cols-2 lg:grid-cols-3" },
   { title: "Clinical Staff", people: clinical, cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
 ];
+const L = "/Assets/Media%20Appearances/";
+const press = [
+  { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
+  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.png", date: "Honoree", title: "Kristine Schlichting — recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
+  { outlet: "FOX61", logo: L + "fox61.png", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "Teen mental health crisis", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-teen-mental-health-crisis/" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
+  { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
+];
 ---
 
 <Base title="Our Clinical Team | Hopewell Health Solutions" description="Meet the clinical team at Hopewell Health Solutions — board-certified psychiatrists, nurse practitioners, psychologists, counselors & social workers across Glastonbury & West Hartford, CT.">
@@ -128,6 +137,31 @@ const sections = [
       </div>
     </section>
   ))}
+
+  <!-- PRESS & FEATURES -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">As featured in</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Press &amp; features</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {press.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener" class="group flex flex-col rounded-2xl bg-white border border-line p-6 shadow-sm hover:border-azul hover:shadow-lg transition">
+            <div class="flex items-center justify-between gap-3 min-h-[2rem]">
+              <img src={p.logo} alt={p.outlet} loading="lazy" class="h-7 w-auto max-w-[60%] object-contain" />
+              <span class="text-xs text-muted shrink-0">{p.date}</span>
+            </div>
+            <p class="mt-4 font-display text-lg text-ink leading-snug flex-1 group-hover:text-azul transition">{p.title}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul">Read the feature <Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
 
   <ServicesGrid bg="white" />
 
