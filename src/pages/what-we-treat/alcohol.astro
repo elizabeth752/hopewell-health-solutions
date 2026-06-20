@@ -22,6 +22,7 @@ const includes = [
   { t: "Family education & involvement", d: "Families learn communication tools and relapse-prevention strategies to support long-term recovery.", icon: "heart", href: null },
   { t: "Holistic & experiential approaches", d: "Mindfulness, stress management, expressive therapies, and wellness-based practices that address the whole person.", icon: "sun", href: null },
   { t: "Referral & care coordination", d: "If needed, we help coordinate higher or lower levels of care — Intensive Outpatient Program (IOP), detox, residential treatment, or ongoing outpatient therapy — for a continuous, supported recovery path.", icon: "refresh", href: "/programs/substance-use-iop/" },
+  { t: "Continuing care & aftercare", d: "Ongoing outpatient therapy and regular check-ins to help sustain progress and protect long-term recovery after the initial phase of treatment.", icon: "compass", href: null },
 ];
 const benefit = [
   { t: "Trouble controlling intake", icon: "swap" },
@@ -145,7 +146,7 @@ const faqSchema = {
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What alcohol dependence treatment includes</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">We create individualized treatment plans based on each client’s level of use, withdrawal risk, mental health history, and personal goals.</p>
       </div>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {includes.map((c) => (
           <div class="rounded-2xl bg-white border border-line p-6 flex flex-col">
             <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={c.icon} class="h-6 w-6" /></span>
@@ -214,11 +215,11 @@ const faqSchema = {
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What results can I expect?</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">Clients typically experience:</p>
       </div>
-      <div class="mt-10 grid sm:grid-cols-2 gap-3">
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
         {results.map((r) => (
-          <div class="flex items-start gap-3 rounded-xl bg-white border border-line p-4">
-            <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sage-light text-sage font-semibold text-sm mt-0.5">✓</span>
-            <span class="text-sm font-semibold text-ink leading-snug pt-0.5">{r}</span>
+          <div class="flex items-center gap-3 rounded-xl bg-white border border-line px-5 py-4">
+            <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sage-light text-sage font-semibold text-sm">✓</span>
+            <span class="text-sm font-semibold text-ink leading-snug">{r}</span>
           </div>
         ))}
       </div>
