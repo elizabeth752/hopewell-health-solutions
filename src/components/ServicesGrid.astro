@@ -6,17 +6,17 @@ import Icon from "./Icon.astro";
 const { bg = "crema", eyebrow = "What we offer", heading = "Conditions & Treatments" } = Astro.props;
 const services = [
   { t: "Intensive Outpatient Program", href: "/programs/intensive-outpatient-program/", icon: "users" },
-  { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", icon: "calendar" },
+  { t: "Spravato®", href: "/treatment-methods/spravato/", icon: "sparkles" },
   { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
   { t: "Counseling", href: "/programs/counseling/", icon: "heart" },
-  { t: "TMS", href: "/treatment-methods/tms/", icon: "brain" },
-  { t: "Spravato®", href: "/treatment-methods/spravato/", icon: "sparkles" },
-  { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
-  { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
   { t: "HHS Therapeutic Treatments", href: "/treatment-methods/therapeutic-treatments/", icon: "refresh" },
+  { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
   { t: "S.U.D. Treatment", href: "/what-we-treat/substance-use-disorder/", icon: "swap" },
+  { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
+  { t: "TMS", href: "/treatment-methods/tms/", icon: "brain" },
   { t: "Alcohol Dependence Treatment", href: "/what-we-treat/alcohol/", icon: "shield" },
-  { t: "Drug Dependence Treatment", href: "/what-we-treat/drug/", icon: "shield" },
+  { t: "Drug Dependence Treatment", href: "/what-we-treat/drug/", icon: "compass" },
+  { t: "Prescription Drug Dependence Treatment", href: "/what-we-treat/prescription-drugs/", icon: "alert" },
 ];
 const bgClass = bg === "white" ? "bg-white" : "bg-crema";
 ---
