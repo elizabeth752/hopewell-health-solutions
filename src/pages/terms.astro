@@ -1,0 +1,97 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/terms";
+const updated = "June 19, 2026";
+const reviewRules = [
+  "Personal or confidential information — including phone numbers, addresses, or health information about yourself or anyone else;",
+  "Vulgar, offensive, derogatory, obscene, profane, or inflammatory language or content;",
+  "Threats or personal attacks on others;",
+  "Discriminatory content or hate speech, including content targeting people based on race, ethnicity, religion, disability, gender, gender identity, sexual orientation, age, or veteran status;",
+  "Misrepresentations, including content submitted fraudulently or that misrepresents your identity or your connection with our practice;",
+  "Content that is not related to our practice;",
+  "Advertising or solicitations;",
+  "Illegal content; or",
+  "References to or information about ongoing legal matters or proceedings.",
+];
+---
+
+<Base title="Terms & Conditions | Hopewell Health Solutions" description="The terms and conditions governing your use of the Hopewell Health Solutions website, including disclaimers, acceptable use, and contact information." canonical={canonical}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 pt-8 pb-14">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Terms &amp; Conditions</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The fine print</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Terms &amp; Conditions</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-5 text-muted text-sm">Last updated: {updated}</p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 space-y-10 text-ink leading-relaxed text-[17px]">
+
+      <p>Hopewell Health Solutions (“we,” “us,” or “our”) provides this website (“Site”) to you conditioned on your acceptance, without modification, of the terms, conditions, and notices contained here. By using this Site, you agree to these terms, conditions, and notices.</p>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Not medical advice</h2>
+        <p>The information on this Site is provided for general educational and informational purposes only and is <strong>not a substitute for professional medical advice, diagnosis, or treatment</strong>. Using this Site, contacting us through it, or submitting a form does not create a provider–patient relationship. Always seek the advice of a qualified health provider with any questions about a medical or mental health condition, and never disregard professional advice or delay seeking it because of something you read here.</p>
+        <p class="rounded-2xl bg-azul-light/40 border border-azul/30 p-5 text-[16px]"><strong>In an emergency or crisis,</strong> do not rely on this website. Call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) or call <strong>911</strong>.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Changes to these terms</h2>
+        <p>We reserve the right to change the terms, conditions, and notices under which this Site is offered at any time. Your continued use of the Site after changes are posted constitutes your acceptance of the updated terms.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Links to third-party sites</h2>
+        <p>This Site may contain links to other websites (“Linked Sites”). The Linked Sites are not under our control, and we are not responsible for their contents, any links they contain, or any changes or updates to them. We provide these links only as a convenience, and their inclusion does not imply our endorsement of the site or any association with its operators.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Acceptable use</h2>
+        <p>As a condition of your use of this Site, you agree not to use it for any purpose that is unlawful or prohibited by these terms. You may not use this Site in any manner that could damage, disable, overburden, or impair it, or interfere with anyone else’s use of it. You may not attempt to gain access to any materials or information through any means not intentionally made available through this Site.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Reviews &amp; content you submit</h2>
+        <p>This Site may give you the opportunity to submit reviews or feedback about your experience with us. You agree to keep any content you submit proper, lawful, and related to our practice. In particular, you agree not to submit content that contains:</p>
+        <ul class="space-y-2 pl-1">
+          {reviewRules.map((r) => <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>{r}</span></li>)}
+        </ul>
+        <p>For your own privacy, please do not include protected health information in any review or message. We have no obligation to monitor submissions, but we reserve the right to review content and to remove anything that does not comply with these terms or that publicly discloses personal or confidential information. We may also suspend or terminate your ability to submit content at any time. If you would like your own review removed from this Site, please contact us.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Disclaimer of warranties &amp; limitation of liability</h2>
+        <p>The information and services on this Site may include inaccuracies or typographical errors, and changes are periodically made. Advice received via this Site should not be relied upon for personal, medical, legal, or financial decisions, and you should consult an appropriate professional for advice tailored to your situation.</p>
+        <p class="text-[15px] text-muted">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE INFORMATION AND SERVICES ON THIS SITE ARE PROVIDED “AS IS” WITHOUT WARRANTY OR CONDITION OF ANY KIND. WE DISCLAIM ALL WARRANTIES AND CONDITIONS, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
+        <p class="text-[15px] text-muted">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL WE BE LIABLE FOR ANY DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER ARISING OUT OF OR CONNECTED WITH THE USE OR PERFORMANCE OF THIS SITE. BECAUSE SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THIS SITE OR THESE TERMS, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USING THIS SITE.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Intellectual property</h2>
+        <p>All contents of this website are © 2026 Hopewell Health Solutions and Psychiatry, Inc. All rights reserved. All logos and marks used in this Site are the property of Hopewell Health Solutions or their respective owners. Any rights not expressly granted here are reserved.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Governing law</h2>
+        <p>These terms are governed by and construed in accordance with the laws of the State of Connecticut, without regard to its conflict-of-laws provisions.</p>
+      </div>
+
+      <div class="space-y-3 border-t border-line pt-8">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Contact us</h2>
+        <p>Questions about these terms? Contact us by phone at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> or by mail at 1216 Farmington Ave., Suite 301, West Hartford, CT 06107.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Base>
