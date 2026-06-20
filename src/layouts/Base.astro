@@ -4,11 +4,13 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = "Hopewell Health Solutions",
   description = "Hopewell Health Solutions",
+  canonical,
 } = Astro.props;
 ---
 
@@ -28,6 +30,7 @@ const {
     />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
   </head>
   <body>
     <slot />

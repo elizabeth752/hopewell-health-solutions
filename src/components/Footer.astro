@@ -1,11 +1,11 @@
 ---
 const locations = [
-  ["Glastonbury", "300 Hebron Ave"],
-  ["South Glastonbury", "1420 Main St"],
-  ["Glastonbury", "33 Pratt St"],
-  ["West Hartford", "1216 Farmington Ave"],
-  ["East Hampton", "151 E. High St"],
-  ["Westbrook", "70 Essex Rd"],
+  ["Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct/"],
+  ["South Glastonbury", "1420 Main St", "/location/glastonbury-ct-3/"],
+  ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct-2/"],
+  ["West Hartford", "1216 Farmington Ave", "/location/west-hartford-ct/"],
+  ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
+  ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
 ];
 const cols = [
   { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
@@ -36,8 +36,8 @@ const cols = [
     <div class="mt-12 border-t border-white/15 pt-8">
       <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Our Connecticut Locations</h4>
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
-        {locations.map(([city, addr]) => (
-          <div class="flex gap-2"><span class="text-azul-light">●</span><span><span class="text-white">{city}</span> — {addr}</span></div>
+        {locations.map(([city, addr, href]) => (
+          <a href={href} class="flex gap-2 hover:text-white transition"><span class="text-azul-light">●</span><span><span class="text-white">{city}</span> — {addr}</span></a>
         ))}
       </div>
     </div>
