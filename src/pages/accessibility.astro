@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/accessibility";
+const updated = "June 19, 2026";
+const measures = [
+  ["Semantic structure", "Pages use proper headings, landmarks, and HTML structure so screen readers can navigate content in a logical order."],
+  ["Keyboard navigation", "Menus, links, forms, and interactive elements can be operated with a keyboard, with visible focus styles."],
+  ["Text alternatives", "Images carry descriptive alt text, and decorative images are hidden from assistive technology."],
+  ["Readable color & contrast", "We use a color palette chosen for sufficient contrast between text and background."],
+  ["Labeled forms", "Form fields are clearly labeled, and we aim to make errors and required fields easy to understand."],
+  ["Responsive & scalable", "Layouts adapt to phones, tablets, and desktops, and remain usable when text is enlarged or zoomed."],
+];
+---
+
+<Base title="Accessibility Statement | Hopewell Health Solutions" description="Hopewell Health Solutions is committed to digital accessibility and aims to conform with WCAG 2.2 Level AA. Learn what we do and how to report an accessibility barrier." canonical={canonical}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 pt-8 pb-14">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Accessibility</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">We value digital inclusion</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Accessibility Statement</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-5 text-muted text-sm">Last reviewed: {updated}</p>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 space-y-12">
+
+      <div class="space-y-4 text-ink leading-relaxed text-[17px]">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Our commitment</h2>
+        <p>Hopewell Health Solutions is committed to making our website usable for as many people as possible, including individuals who use assistive technologies such as screen readers, screen magnifiers, voice recognition, and keyboard-only navigation. We believe access to mental health information and care should be available to everyone.</p>
+        <p>We use the <strong>Web Content Accessibility Guidelines (WCAG) 2.2, Level AA</strong> — the standard recommended by the World Wide Web Consortium (W3C) — as our reference for building and reviewing this site.</p>
+      </div>
+
+      <div class="space-y-5">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">What we do</h2>
+        <p class="text-ink leading-relaxed text-[17px]">We design and build this website with accessibility in mind from the start, rather than relying on an add-on overlay. Our ongoing measures include:</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {measures.map(([t, d]) => (
+            <div class="rounded-2xl bg-crema border border-line p-6">
+              <span class="grid h-11 w-11 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="shield" class="h-5 w-5" /></span>
+              <h3 class="mt-4 font-display text-lg text-ink leading-snug">{t}</h3>
+              <p class="mt-2 text-sm text-muted leading-relaxed">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="space-y-4 text-ink leading-relaxed text-[17px]">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Conformance status</h2>
+        <p>We are continually working to improve the accessibility of this website and to maintain conformance with WCAG 2.2 Level AA. Accessibility is an ongoing effort: as we add new pages and features, we test and refine them. Some content may not yet fully conform, and we welcome feedback that helps us find and fix issues.</p>
+      </div>
+
+      <div class="space-y-4 text-ink leading-relaxed text-[17px]">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Third-party content</h2>
+        <p>Some parts of this website rely on third-party services that we do not control — for example, embedded Google Maps, embedded videos, and links to social platforms such as Facebook, Instagram, LinkedIn, X, and YouTube. These services may present accessibility barriers that we are not able to remedy directly. Where third-party content is essential, we aim to provide an accessible alternative, such as the full address and phone number alongside an embedded map.</p>
+      </div>
+
+      <div class="rounded-2xl bg-azul-light/40 border border-azul/30 p-8">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Report a barrier or request help</h2>
+        <p class="mt-3 text-ink leading-relaxed text-[17px]">If you encounter an accessibility barrier on this website, or if you need any information on this site in a different format, please contact us — we want to hear from you and we’ll do our best to help promptly.</p>
+        <div class="mt-6 space-y-3">
+          <p class="flex items-center gap-3 text-ink"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-azul"><Icon name="phone" class="h-5 w-5" /></span><span><span class="font-semibold">Call:</span> <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a></span></p>
+          <p class="flex items-center gap-3 text-ink"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-azul"><Icon name="heart" class="h-5 w-5" /></span><span><span class="font-semibold">Email:</span> <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></span></p>
+        </div>
+        <p class="mt-5 text-sm text-muted">When reporting an issue, it helps to include the web address (URL) of the page, a description of the problem, and the browser or assistive technology you were using.</p>
+      </div>
+
+      <p class="text-sm text-muted leading-relaxed border-t border-line pt-8">This website is not a substitute for emergency care. If you are in crisis, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), or call <strong>911</strong>.</p>
+
+    </div>
+  </section>
+
+  <Footer />
+</Base>
