@@ -1,0 +1,338 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+
+const heroUsps = [
+  { icon: "shield", t: "Compassionate, evidence-based treatment for substance use disorders" },
+  { icon: "pill", t: "Medication-assisted treatment & evidence-based therapy" },
+  { icon: "link", t: "Integrated care — we treat co-occurring depression, anxiety, PTSD & trauma" },
+  { icon: "compass", t: "In person (Glastonbury & West Hartford) or telehealth" },
+];
+const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+const substances = ["Prescription medications", "Illicit drugs", "Cannabis", "MDMA or hallucinogens", "Synthetic or designer drugs"];
+const includes = [
+  { t: "Comprehensive diagnostic evaluation", d: "A full evaluation to understand your substance use, co-occurring conditions, medical needs, and readiness for change.", icon: "clipboard", href: null },
+  { t: "Medication-assisted treatment", d: "When appropriate, FDA-approved medications to reduce cravings, support abstinence, and ease withdrawal — overseen by our psychiatric team.", icon: "pill", href: "/programs/medication-management/" },
+  { t: "One-on-one psychotherapy", d: "Evidence-based individual therapy using CBT, DBT, MET (Motivational Enhancement Therapy), and trauma-sensitive methods.", icon: "brain", href: "/programs/counseling/" },
+  { t: "Therapeutic group support", d: "Supportive groups that build coping skills, accountability, and healthier behaviors alongside peers in recovery.", icon: "users", href: null },
+  { t: "Family guidance", d: "Families learn communication tools and relapse-prevention strategies to support long-term recovery.", icon: "heart", href: null },
+  { t: "Holistic wellness interventions", d: "Mindfulness, stress management, and wellness-based practices that support the whole person.", icon: "sun", href: null },
+  { t: "Coordinated care across support levels", d: "We coordinate care across levels — including IOP, detox, residential, or ongoing outpatient therapy — for a continuous, supported recovery path.", icon: "refresh", href: "/programs/substance-use-iop/" },
+  { t: "Continuing care & aftercare", d: "Ongoing outpatient therapy and regular check-ins to help sustain progress and protect long-term recovery.", icon: "compass", href: null },
+];
+const benefit = [
+  { t: "Loss of control over drug use", icon: "swap" },
+  { t: "Cravings", icon: "bolt" },
+  { t: "Withdrawal symptoms", icon: "compass" },
+  { t: "Escalating use or tolerance", icon: "refresh" },
+  { t: "Interference with responsibilities or relationships", icon: "cloud" },
+  { t: "Mood instability", icon: "alert" },
+  { t: "Repeated unsuccessful quit attempts", icon: "clipboard" },
+  { t: "Risky behaviors or health complications", icon: "shield" },
+];
+const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
+const unique = [
+  { icon: "users", tone: "azul", t: "Multidisciplinary care team", d: "Treatment delivered by psychiatrists, psychologists, licensed therapists, and addiction specialists with decades of clinical experience." },
+  { icon: "link", tone: "gold", t: "Integrated mental health treatment", d: "Because drug addiction often co-occurs with depression, anxiety, PTSD, or trauma, we treat both conditions simultaneously for better long-term outcomes." },
+  { icon: "sparkles", tone: "sage", t: "Holistic, evidence-based foundation", d: "Proven therapeutic interventions combined with wellness-focused practices to support emotional balance, resilience, and physical well-being." },
+  { icon: "calendar", tone: "azul", t: "Flexible scheduling", d: "Evening and daytime options let clients receive treatment while maintaining work, school, or family routines." },
+];
+const results = [
+  "Improved emotional stability",
+  "Reduced cravings and substance use",
+  "Stronger coping tools",
+  "Increased clarity and self-awareness",
+  "Healthier communication and boundaries",
+  "Better physical health",
+  "Greater confidence in maintaining recovery",
+];
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
+  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+];
+const reviews = [
+  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
+  { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. All the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
+  { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
+  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
+  { n: "stacey miller", t: "3 months ago", q: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
+  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
+];
+const locations = [
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
+  ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
+  ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
+  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
+];
+const faqs = [
+  ["What are substance use disorders?", "Drug dependence, or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability. Substances that may lead to addiction include prescription medications, illicit drugs, cannabis, MDMA or hallucinogens, and synthetic or designer drugs. SUD often occurs alongside depression, anxiety, PTSD, or trauma, making integrated mental health treatment essential for long-term recovery."],
+  ["Do you offer medication-assisted treatment?", "When appropriate, our psychiatric team may recommend FDA-approved medications to reduce cravings, support abstinence, or ease withdrawal — alongside therapy and other support."],
+  ["Do you provide detox or residential treatment?", "Hopewell Health Solutions is an outpatient practice. If a higher level of care such as detox or residential treatment is needed, our team helps coordinate that referral — and supports you when you step back down to outpatient care."],
+  ["Is treatment in person or virtual?", "Both — in person at our Connecticut offices or by secure telehealth, with evening and daytime scheduling options."],
+  ["Will my insurance cover it?", "Most major PPO plans do. We’ll verify your benefits for free (we don’t accept Medicaid / HUSKY)."],
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+};
+---
+
+<Base title="Drug Dependence Treatment in CT | Hopewell Health Solutions" description="Drug dependence / substance use disorder treatment at Hopewell Health Solutions in Glastonbury & West Hartford, CT — compassionate, evidence-based, integrated care. In person & telehealth.">
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Drug Dependence</span></nav>
+      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Drug Dependence Treatment · Glastonbury &amp; West Hartford, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Drug Dependence Treatment in Connecticut</h1>
+          <p class="mt-3 font-display text-xl text-azul italic">Recovery is possible — with the right support.</p>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <div class="mt-5 flex items-center gap-2.5 text-sm">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <span class="font-semibold text-ink">4.8</span>
+            <span class="text-muted">· 368 Google reviews</span>
+          </div>
+          <ul class="mt-6 space-y-3">
+            {heroUsps.map((u) => (
+              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Kristine Schlichting, PhD</p>
+        </div>
+        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Start your recovery" sub="Free, confidential. We’ll verify your benefits and help you take the first step." /></div>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  <!-- WHAT IS (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/guy%20thinking%20worried.webp" alt="Compassionate drug dependence treatment at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A path to lasting recovery</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What are substance use disorders?</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Drug dependence, or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">SUD often occurs alongside depression, anxiety, PTSD, or trauma — making integrated mental health treatment essential for long-term recovery. We provide compassionate, evidence-based treatment for individuals struggling with substance use disorders, with personalized care to help you regain stability and move toward lasting recovery.</p>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-muted">Substances that may lead to addiction</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          {substances.map((s) => <span class="rounded-full bg-azul-light px-3 py-1 text-sm font-semibold text-azul">{s}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TREATMENT INVOLVES -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Individualized & clinically guided</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What treatment for drug dependence involves</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Treatment plans are individualized and clinically guided — built around your substance use, withdrawal risk, mental health history, and personal goals.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {includes.map((c) => (
+          <div class="rounded-2xl bg-white border border-line p-6 flex flex-col">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={c.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{c.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{c.d}</p>
+            {c.href && <a href={c.href} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul hover:gap-2 transition-all">Learn more <Icon name="arrow" class="h-4 w-4" /></a>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <section class="relative">
+    <img src="/Assets/team%20together%202.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-ink/80"></div>
+    <div class="relative mx-auto max-w-3xl px-5 py-20 text-center">
+      <p class="font-display text-2xl sm:text-3xl text-white italic leading-snug">“Drug dependence can interfere with every part of life — but recovery is possible with the right support.”</p>
+    </div>
+  </section>
+
+  <!-- WHO CAN BENEFIT -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">It may be time for support</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Who may benefit from treatment</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Treatment can help individuals experiencing:</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {benefit.map((b) => (
+          <div class="flex items-start gap-3 rounded-xl bg-white border border-line p-5">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={b.icon} class="h-5 w-5" /></span>
+            <span class="text-sm font-semibold text-ink leading-snug pt-1.5">{b.t}</span>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-ink max-w-2xl mx-auto leading-relaxed">We provide <strong>affirming, stigma-free support for individuals of all backgrounds.</strong></p>
+    </div>
+  </section>
+
+  <!-- WHY UNIQUE -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Why Hopewell Health Solutions</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What makes our approach unique</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {unique.map((u) => (
+          <div class="rounded-2xl border border-line bg-crema p-6">
+            <span class={`grid h-12 w-12 place-items-center rounded-xl ${toneMap[u.tone]}`}><Icon name={u.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{u.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What recovery can look like</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What progress can clients expect?</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Most people experience:</p>
+      </div>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        {results.map((r) => (
+          <div class="flex items-center gap-3 rounded-xl bg-white border border-line px-5 py-4">
+            <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sage-light text-sage font-semibold text-sm">✓</span>
+            <span class="text-sm font-semibold text-ink leading-snug">{r}</span>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-ink max-w-2xl mx-auto leading-relaxed">Our goal is to help individuals build the tools, structure, and support needed for sustainable change.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-3 rounded-full bg-white border border-line px-5 py-2.5 shadow-sm">
+          <span class="h-6 w-6 inline-block" set:html={googleG} />
+          <span class="font-display text-2xl text-ink leading-none">4.8</span>
+          <span class="text-yellow-400 text-lg leading-none">★★★★★</span>
+          <span class="text-sm text-muted">368 Google reviews</span>
+        </div>
+        <p class="mt-3 text-muted">Clients describe feeling genuinely heard · As featured on Eyewitness News 3</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {reviews.map((r) => (
+          <figure class="rounded-2xl bg-white border border-line p-7 shadow-sm flex flex-col">
+            <div class="flex items-center justify-between">
+              <span class="text-yellow-400 text-lg">★★★★★</span>
+              <span class="h-5 w-5 inline-block opacity-90" set:html={googleG} />
+            </div>
+            <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
+              <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Most major PPO plans accepted</h2>
+        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — before you commit to anything.</p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {insurers.map(([name, img]) => (
+            <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-muted text-center sm:text-left">+ most major PPOs</p>
+      </div>
+      <div class="lg:sticky lg:top-28"><LeadForm heading="Check your coverage" sub="Free, confidential. Takes 2 minutes — we’ll call you back with a full benefits breakdown." /></div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our locations</h2>
+        <p class="mt-3 text-muted">In person at six Connecticut offices — plus virtual visits statewide.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {locations.map(([city, addr, map]) => (
+          <div class="overflow-hidden rounded-2xl bg-white border border-line">
+            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="flex gap-3 p-5">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
+              <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Reach us at <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16">
+      <h2 class="font-display text-3xl text-ink text-center">Drug dependence treatment — common questions</h2>
+      <div class="mt-8 space-y-3">
+        {faqs.map(([q, a]) => (
+          <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
+            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-3 text-ink leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid bg="white" />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Move toward lasting recovery</h2>
+      <p class="mt-4 text-white/85 text-lg">Whether you’re seeking help for yourself or a loved one, our team offers personalized care to help you regain stability. Reach out to Hopewell Health Solutions today — confidentially, with no pressure.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
