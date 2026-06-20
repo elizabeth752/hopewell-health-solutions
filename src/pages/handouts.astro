@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/handouts";
+const H = "/Assets/Handouts/";
+
+const handouts = [
+  {
+    title: "Understanding and Overcoming Self-Harm",
+    audience: "For kids & teens",
+    desc: "A compassionate, easy-to-read guide to what self-harm is, why it happens, and healthier ways to cope.",
+    cover: H + "understanding-overcoming-self-harm.webp",
+    pdf: H + "understanding-overcoming-self-harm.pdf",
+  },
+  {
+    title: "What Is Anxiety?",
+    audience: "For kids",
+    desc: "A simple, reassuring explanation of anxiety for children — what it feels like and gentle tools to feel calmer.",
+    cover: H + "what-is-anxiety.webp",
+    pdf: H + "what-is-anxiety.pdf",
+  },
+  {
+    title: "Understanding School Refusal",
+    audience: "For parents",
+    desc: "A guide for parents addressing school avoidance — how to recognize it, what drives it, and how to help your child get back to class.",
+    cover: H + "school-refusal-parents-guide.webp",
+    pdf: H + "school-refusal-parents-guide.pdf",
+  },
+  {
+    title: "A Parent’s Guide to Your Child’s Anxiety",
+    audience: "For parents",
+    desc: "How to recognize, understand, and manage anxiety in your child, with practical strategies you can use at home.",
+    cover: H + "parents-guide-child-anxiety.webp",
+    pdf: H + "parents-guide-child-anxiety.pdf",
+  },
+  {
+    title: "Supporting a Child Struggling with Self-Harm",
+    audience: "For parents",
+    desc: "Practical guidance for parents on how to respond with calm and care, support your child, and find the right help.",
+    cover: H + "parents-guide-child-self-harm.webp",
+    pdf: H + "parents-guide-child-self-harm.pdf",
+  },
+];
+---
+
+<Base title="Free Mental Health Handouts & Guides | Hopewell Health Solutions" description="Free, downloadable mental health handouts from Hopewell Health Solutions — parent guides and kid-friendly resources on anxiety, self-harm, and school refusal from our Connecticut clinicians." canonical={canonical}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <nav class="text-xs text-muted mb-5"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Handouts</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Free resources</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink">Handouts &amp; Guides</h1>
+      <div class="mx-auto mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-5 text-lg text-muted">Free, downloadable guides written by our Connecticut clinicians — to help families and kids understand anxiety, self-harm, and school refusal, and take the next step with confidence.</p>
+    </div>
+  </section>
+
+  <!-- HANDOUTS GRID -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {handouts.map((h) => (
+          <article class="group flex flex-col rounded-2xl border border-line bg-white overflow-hidden hover:border-azul hover:shadow-lg transition">
+            <a href={h.pdf} target="_blank" rel="noopener" class="block aspect-[4/5] overflow-hidden bg-crema">
+              <img src={h.cover} alt={`Cover of ${h.title}`} loading="lazy" class="h-full w-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300" />
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-xs font-semibold uppercase tracking-wide text-azul">{h.audience}</span>
+              <h2 class="mt-2 font-display text-xl text-ink leading-snug">{h.title}</h2>
+              <p class="mt-3 text-sm text-muted leading-relaxed flex-1">{h.desc}</p>
+              <a href={h.pdf} target="_blank" rel="noopener" download class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-azul px-5 py-3 text-sm font-semibold text-white hover:bg-azul/90 transition">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Not medical advice -->
+      <p class="mx-auto mt-12 max-w-3xl rounded-2xl bg-azul-light/40 border border-azul/30 p-5 text-center text-sm text-ink">
+        These guides are for general education and are <strong>not a substitute for professional care</strong>. If you or your child are in crisis, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline) or call <strong>911</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready to talk to someone?</h2>
+      <p class="mt-4 text-white/85 text-lg">Our Connecticut team is here to help you or your child take the next step toward feeling better.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="/#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
