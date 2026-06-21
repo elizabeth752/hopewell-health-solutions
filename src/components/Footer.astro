@@ -7,6 +7,12 @@ const locations = [
   ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
   ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
 ];
+const D = "/Assets/Favicons/";
+const directories = [
+  { label: "Psychology Today", href: "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", icon: D + "PT.png" },
+  { label: "Recovery.com", href: "https://recovery.com/outpatient/hopewell-health-solutions-south-glastonbury/", icon: D + "recovery.com.png" },
+  { label: "BBB", href: "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396", icon: D + "BBB.png" },
+];
 const cols = [
   { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
   { h: "What We Treat", links: ["Depression", "Anxiety", "Trauma & PTSD", "Substance Use", "ADHD"] },
@@ -38,6 +44,16 @@ const cols = [
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
         {locations.map(([city, addr, href]) => (
           <a href={href} class="flex gap-2 hover:text-white transition"><span class="text-azul-light">●</span><span><span class="text-white">{city}</span> — {addr}</span></a>
+        ))}
+      </div>
+    </div>
+    <div class="mt-10 border-t border-white/15 pt-8">
+      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Find &amp; Review Us</h4>
+      <div class="flex flex-wrap items-center gap-3">
+        {directories.map((d) => (
+          <a href={d.href} target="_blank" rel="noopener" aria-label={d.label} title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 hover:bg-white px-3 py-1.5 text-xs font-semibold text-ink transition">
+            <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
+          </a>
         ))}
       </div>
     </div>
