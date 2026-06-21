@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/contact-us", "destination": "/admissions/", "permanent": true },
+    { "source": "/schedule", "destination": "/", "permanent": true },
+    { "source": "/social-media", "destination": "/", "permanent": true },
+    { "source": "/content/what-is-emdr-therapy", "destination": "/treatment-methods/emdr/", "permanent": true }
+  ]
+}
