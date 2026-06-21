@@ -5,35 +5,58 @@ import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import LeadForm from "../components/LeadForm.astro";
 import MediaStrip from "../components/MediaStrip.astro";
+import { posts } from "../data/posts.js";
+import { providers } from "../data/providers.js";
 
-const credibility = [
-  "★ 4.8 · 368 Google reviews", "Joint Commission accredited (Gold Seal)", "47 licensed clinicians",
-  "6 Connecticut locations", "Serving CT since 2013", "Featured on Eyewitness News 3",
-  "In-network with most major plans", "Care for ages 4 & up",
+const C = "/Assets/credibility/";
+const trustMarks = [
+  ["The Joint Commission — Accredited", C + "joint-commission.webp"],
+  ["Better Business Bureau Accredited", C + "bbb.png"],
+  ["Psychology Today Verified", C + "psychology-today.png"],
+  ["Recovery.com Verified Provider", C + "recovery-verified.png"],
 ];
 const usps = [
   { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough." },
   { icon: "dna", t: "GeneSight® genetic testing", d: "A simple cheek swab shows which medications fit your DNA — so we skip the trial-and-error." },
-  { icon: "users", t: "47 specialists you’ll actually meet", d: "Psychologists, psychiatric NPs & trauma experts — matched to you by name, not an algorithm." },
-  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Women’s, Men’s, Teen, Tween & First Responder IOP — built for who you are." },
+  { icon: "users", t: "50+ specialists you’ll actually meet", d: "Psychologists, psychiatric NPs & trauma experts — matched to you by name, not an algorithm." },
+  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Women’s, Teen, Tween, Substance Use & First Responder IOP — built for who you are." },
 ];
 const programs = [
-  { t: "Adult IOP", d: "Structured therapy 3–5 days a week, while you live at home.", href: "/programs/adult-mental-health-iop/", icon: "users", img: "/Assets/AdobeStock_403830351.webp" },
-  { t: "Women’s Wellness IOP", d: "Trauma-informed care in a women-only group.", href: "/programs/womens-wellness-iop/", icon: "heart", img: "/Assets/women%20looking%20at%20me.webp" },
-  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with family involvement.", href: "/programs/teen-iop/", icon: "sparkles", img: "/Assets/teen%20smiling.webp" },
-  { t: "Partial Hospitalization (PHP)", d: "Day treatment when weekly therapy isn’t enough.", href: "/programs/partial-hospitalization-program/", icon: "shield", img: "/Assets/AdobeStock_542909901.webp" },
-  { t: "Medication Management", d: "Expert psychiatric prescribing, ages 4 and up.", href: "/programs/medication-management/", icon: "pill", img: "/Assets/AdobeStock_404268940.webp" },
-  { t: "Counseling", d: "Individual, couples & family counseling.", href: "/programs/counseling/", icon: "heart", img: "/Assets/couple%20hugging.webp" },
+  { t: "Adult IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", icon: "users", img: "/Assets/AdobeStock_403830351.webp" },
+  { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", icon: "heart", img: "/Assets/women%20looking%20at%20me.webp" },
+  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-tween-iop/", icon: "sparkles", img: "/Assets/teen%20smiling.webp" },
+  { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", href: "/programs/partial-hospitalization-program/", icon: "shield", img: "/Assets/AdobeStock_542909901.webp" },
+  { t: "Medication Management", d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", href: "/programs/medication-management/", icon: "pill", img: "/Assets/AdobeStock_404268940.webp" },
+  { t: "Counseling", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", icon: "heart", img: "/Assets/couple%20hugging.webp" },
+];
+const treatments = [
+  { t: "TMS Therapy", d: "FDA-cleared magnetic stimulation for treatment-resistant depression & OCD.", href: "/treatment-methods/tms/", icon: "brain" },
+  { t: "Spravato®", d: "Esketamine for treatment-resistant depression, monitored in our offices.", href: "/treatment-methods/spravato/", icon: "sparkles" },
+  { t: "EMDR", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", icon: "refresh" },
+  { t: "Therapeutic Treatments", d: "ART, the Gottman Method, mindfulness, yoga therapy & more.", href: "/treatment-methods/therapeutic-treatments/", icon: "heart" },
+  { t: "Neuropsychological Testing", d: "Comprehensive evaluation for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
+  { t: "ADHD Testing", d: "Thorough, compassionate assessment for children, teens & adults.", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
 ];
 const conditions = [
-  { t: "Depression", icon: "cloud" }, { t: "Anxiety", icon: "alert" }, { t: "Trauma & PTSD", icon: "heart" },
-  { t: "ADHD", icon: "bolt" }, { t: "Bipolar Disorder", icon: "swap" }, { t: "OCD", icon: "refresh" },
-  { t: "Substance Use", icon: "pill" }, { t: "Co-occurring Disorders", icon: "link" },
+  { t: "Depression", icon: "cloud", href: "/what-we-treat/depression/" },
+  { t: "Anxiety", icon: "alert", href: "/what-we-treat/anxiety/" },
+  { t: "Trauma & PTSD", icon: "heart", href: "/what-we-treat/trauma-ptsd/" },
+  { t: "ADHD", icon: "bolt", href: "/what-we-treat/adhd/" },
+  { t: "Bipolar Disorder", icon: "swap", href: "/what-we-treat/bipolar/" },
+  { t: "OCD", icon: "refresh", href: "/what-we-treat/ocd/" },
+  { t: "Substance Use", icon: "pill", href: "/what-we-treat/substance-use-disorder/" },
+  { t: "Co-occurring Disorders", icon: "link", href: "/what-we-treat/co-occurring/" },
 ];
 const continuum = [
   { t: "Outpatient Therapy", d: "Weekly individual, couples & family sessions", level: 1 },
   { t: "Intensive Outpatient (IOP)", d: "3 hrs/day · 4 days/week · day or evening", level: 2 },
-  { t: "Partial Hospitalization (PHP)", d: "6 hrs/day · 5 days/week — highest outpatient level", level: 3 },
+  { t: "Partial Hospitalization (PHP)", d: "Full-day care — highest outpatient level", level: 3 },
+];
+const stats = [
+  ["14", "Years serving Central Connecticut", "calendar"],
+  ["50+", "Clinicians on our team", "users"],
+  ["6", "Connecticut locations", "pin"],
+  ["50,000+", "Lives helped", "heart"],
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -43,15 +66,24 @@ const insurers = [
   ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
   ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
 ];
+// Doctoral-level clinicians (PhD / PsyD) — the practice's psychologists.
 const team = [
-  ["Kristine A. Schlichting, PhD","Founder & Director","/Assets/Team%20Members/kristine-a-schlichting-phd.webp"],
-  ["Katrin Moskowitz, DNP","Psychiatric NP","/Assets/Team%20Members/katrin-moskowitz-dnp-pmhnp-bc-fnp.webp"],
-  ["Tracy Sibley, PMHNP-BC","Psychiatric NP","/Assets/Team%20Members/tracy-sibley-pmhnp-bc-aprn.webp"],
-  ["Laura Miller, PhD","Neuropsychology","/Assets/Team%20Members/laura-miller-phd.webp"],
-  ["Eric Schwartz, PsyD","Psychologist","/Assets/Team%20Members/eric-schwarz-psyd-abpp.webp"],
-  ["TJ Aitken, CPSRP","Business Development","/Assets/Team%20Members/tj-aitken-cpsrp.webp"],
+  ["Kristine A. Schlichting, PhD","Founder & Director","/Assets/Team%20Members/kristine-a-schlichting-phd.webp","/provider/kristine-a-schlichting-ph-d/"],
+  ["Eric Schwartz, PsyD, ABPP","Psychologist","/Assets/Team%20Members/eric-schwarz-psyd-abpp.webp","/provider/eric-schwartz-psy-d-abpp/"],
+  ["Laura Miller, PhD","Neuropsychologist","/Assets/Team%20Members/laura-miller-phd.webp","/provider/laura-miller-ph-d/"],
+  ["Ashley Singh, PsyD","Psychologist","/Assets/Team%20Members/ashley-singh-psyd.webp","/provider/ashley-singh-psy-d/"],
+  ["Chris Barclay, PhD, BCBA","School Psychologist","/Assets/Team%20Members/chris-barclay-phd-bcba-ncsp.webp","/provider/chris-barclay-ph-d-bcba-ncsp/"],
+  ["Patricia Nogelo, PhD, LCSW","Psychologist","/Assets/Team%20Members/patricia-nogelo-phd-lcsw.webp","/provider/patricia-nogelo-ph-d-lcsw/"],
+  ["Bido Aguessy, PsyD","Psychologist","/Assets/Team%20Members/bido-aguessey-psyd-lpc-a.webp","/provider/bido-aguessy-psy-d-lpc-a/"],
 ];
-const featured = { name: "Lee", meta: "Local Guide · IOP graduate", text: "I truly loved this IOP. I recently graduated and can honestly say it has been pivotal to my healing journey and my life in general. In the beginning I was insanely skeptical about group therapy… but the group setting, the therapists, and the other members made it such a safe, welcoming, and supportive space. I learned tools I’ll carry with me for life, and the group gave me a safe place to start the deep work I couldn’t have done alone. If you’re considering IOP or Hopewell, trust me — you should do it." };
+const locations = [
+  ["Glastonbury — Pratt St", "33 Pratt St", "Glastonbury, CT 06033", "/location/glastonbury-ct/"],
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203", "Glastonbury, CT 06033", "/location/glastonbury-ct-2/"],
+  ["South Glastonbury", "1420 Main St, Suite 124", "Glastonbury, CT 06073", "/location/glastonbury-ct-3/"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301", "West Hartford, CT 06107", "/location/west-hartford-ct/"],
+  ["East Hampton", "151 E. High St", "East Hampton, CT 06424", "/location/east-hampton-ct/"],
+  ["Westbrook", "70 Essex Road", "Westbrook, CT 06498", "/location/westbrook-ct/"],
+];
 const reviews = [
   { name: "Julie Stevens", meta: "2 months ago", text: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
   { name: "Jake Sted", meta: "2 months ago", text: "Hopewell’s IOP program made a huge difference in my life. The groups were engaging, and the therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day." },
@@ -61,43 +93,92 @@ const reviews = [
   { name: "Cynthia Askew", meta: "6 months ago", text: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
 ];
 const steps = [
-  { icon: "phone", t: "Reach out", d: "Call us, or request a confidential callback." },
-  { icon: "shield", t: "Verify insurance", d: "We check your benefits for you — free." },
-  { icon: "clipboard", t: "Assessment", d: "A clinical assessment to match your needs." },
+  { icon: "phone", t: "Reach out", d: "Call us, or request a confidential callback — no commitment." },
+  { icon: "shield", t: "Verify insurance", d: "We check your benefits for you — free, in minutes." },
+  { icon: "clipboard", t: "Assessment", d: "A clinical assessment to match you to the right care." },
   { icon: "compass", t: "Begin care", d: "Start at the right level — and adjust as you heal." },
 ];
-const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</span>`;
+const byId = (slug) => providers.find((p) => p.slug === slug);
+const blogTeasers = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1)).slice(0, 3);
+
+// --- Homepage structured data: MedicalBusiness + aggregateRating + sameAs (rich results + knowledge panel) ---
+const SITE = "https://www.hopewellhealthsolutions.com";
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "@id": SITE + "/#organization",
+  name: "Hopewell Health Solutions",
+  alternateName: "Hopewell Health Solutions and Psychiatry, Inc.",
+  url: SITE + "/",
+  logo: SITE + "/Assets/logo/hopewell-hhs-logo.svg",
+  image: SITE + "/Assets/full%20team%20happy.webp",
+  description: "Outpatient mental health and psychiatry across Connecticut — IOP, PHP, TMS, Spravato®, medication management and counseling for ages 4 and up.",
+  telephone: "+1-860-946-0447",
+  email: "hhs4help@gmail.com",
+  priceRange: "$$",
+  medicalSpecialty: "Psychiatric",
+  foundingDate: "2013",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "33 Pratt St",
+    addressLocality: "Glastonbury",
+    addressRegion: "CT",
+    postalCode: "06033",
+    addressCountry: "US",
+  },
+  areaServed: [
+    "Glastonbury CT", "South Glastonbury CT", "West Hartford CT", "East Hampton CT", "Westbrook CT",
+    "Hartford County CT", "Middlesex County CT", "South Windsor", "Wethersfield", "Rocky Hill",
+    "Newington", "Berlin", "Colchester", "Old Saybrook", "Clinton",
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "368",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  sameAs: [
+    "https://www.instagram.com/hopewellhealthsolutions/",
+    "https://www.facebook.com/hopewellhealth/",
+    "https://x.com/hopewellHealthS",
+    "https://www.linkedin.com/company/hopewell-health-solutions-llc/",
+    "https://www.tiktok.com/@hopewellhs",
+    "https://co.pinterest.com/hopewellhs/",
+    "https://bsky.app/profile/hopewellhs.bsky.social",
+    "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012",
+    "https://recovery.com/outpatient/hopewell-health-solutions-south-glastonbury/",
+    "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396",
+  ],
+};
 ---
 
-<Base title="Hopewell Health Solutions | Mental Health & Psychiatry CT" description="Outpatient mental health & psychiatry across Connecticut — IOP, PHP, TMS & medication management. 4.8★, Joint Commission accredited. Verify your insurance.">
+<Base title="Mental Health & Psychiatry in Glastonbury & West Hartford, CT | Hopewell Health Solutions" description="Hopewell Health Solutions — Connecticut’s trusted outpatient mental-health & psychiatry team. IOP, PHP, TMS, Spravato® & medication management across Glastonbury, West Hartford, East Hampton & Westbrook. 4.8★, Joint Commission accredited. Verify your insurance." canonical={SITE + "/"}>
   <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Mental Health &amp; Psychiatry · In person across Connecticut</p>
-        <h1 class="mt-4 font-display text-5xl sm:text-6xl text-ink leading-[1.05]">There is hope to heal.</h1>
-        <p class="mt-5 text-lg text-muted max-w-xl leading-relaxed">Connecticut’s most trusted outpatient mental-health team — intensive programs, psychiatry, medication management, and TMS, delivered in person by clinicians who know your name.</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Glastonbury · West Hartford · East Hampton · Westbrook, CT</p>
+        <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Mental Health &amp; Psychiatry in Connecticut</h1>
+        <p class="mt-3 font-display text-2xl sm:text-3xl text-azul leading-tight">There is hope to heal.</p>
+        <p class="mt-5 text-lg text-muted max-w-xl leading-relaxed">Connecticut’s most trusted outpatient mental-health team — intensive programs, psychiatry, medication management, TMS and Spravato®, delivered in person by clinicians who know your name. For ages 4 and up, in person or by telehealth.</p>
         <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink">
           <span><span class="text-yellow-400">★★★★★</span> <strong>4.8</strong> · 368 reviews</span>
-          <span class="text-line">|</span><span class="inline-flex items-center gap-1.5"><Icon name="shield" class="h-4 w-4 text-azul" />Joint Commission accredited</span>
         </div>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify Your Insurance →</a>
-          <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+          <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition"><Icon name="phone" class="h-4 w-4" />Call (860) 946-0447</a>
+        </div>
+        <div class="mt-8 pt-6 border-t border-line">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Accredited &amp; verified by</p>
+          <div class="mt-3 flex flex-wrap items-center gap-x-7 gap-y-3">
+            {trustMarks.map(([alt, src]) => <img src={src} alt={alt} loading="lazy" class="h-9 w-auto max-w-[120px] object-contain" />)}
+          </div>
         </div>
       </div>
       <div id="verify" class="scroll-mt-28"><LeadForm /></div>
-    </div>
-  </section>
-
-  <!-- CREDIBILITY SLIDER -->
-  <section class="bg-ink text-white py-4 overflow-hidden">
-    <div class="marquee">
-      {[...credibility, ...credibility].map((c) => (
-        <span class="flex items-center gap-2 px-7 text-sm whitespace-nowrap"><span class="text-azul-light">◆</span>{c}</span>
-      ))}
     </div>
   </section>
 
@@ -106,16 +187,22 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
   <!-- FOR ME / LOVED ONE -->
   <section class="bg-white">
     <div class="mx-auto max-w-6xl px-5 py-16">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Where would you like to begin?</h2>
-      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">One in five U.S. adults lives with a mental health condition. You are not alone — and you don’t have to navigate this alone.</p>
-      <div class="mt-8 grid sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
-        <div class="rounded-2xl border border-line bg-crema p-7 flex gap-4">
-          <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="heart" class="h-6 w-6" /></span>
-          <div><h3 class="font-display text-2xl text-ink">Help for myself</h3><p class="mt-1 text-muted">Taking the first step takes courage. We’ll make the next ones simple.</p><a href="#programs" class="mt-3 inline-block font-semibold text-azul">Find my program →</a></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Where Would You Like to Begin?</h2>
+      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">One in five U.S. adults lives with a mental health condition — and untreated, it rarely gets easier on its own. You are not alone, and you don’t have to navigate this alone. Wherever you’re starting from, there’s a clear next step here.</p>
+      <div class="mt-8 grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="rounded-2xl border border-line bg-crema overflow-hidden flex flex-col">
+          <img src="/Assets/Guy%20facing%20the%20horizon.webp" alt="Beginning your own healing journey" loading="lazy" class="h-44 w-full object-cover" />
+          <div class="p-7 flex gap-4">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="heart" class="h-6 w-6" /></span>
+            <div><h3 class="font-display text-2xl text-ink">Help for myself</h3><p class="mt-1 text-muted">Taking the first step takes courage. We’ll make the next ones simple.</p><a href="#programs" class="mt-3 inline-block font-semibold text-azul">Find my program →</a></div>
+          </div>
         </div>
-        <div class="rounded-2xl border border-line bg-crema p-7 flex gap-4">
-          <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="users" class="h-6 w-6" /></span>
-          <div><h3 class="font-display text-2xl text-ink">Help for someone I love</h3><p class="mt-1 text-muted">A child, partner, or parent who’s struggling? We’ll help you help them.</p><a href="#verify" class="mt-3 inline-block font-semibold text-azul">Get guidance →</a></div>
+        <div class="rounded-2xl border border-line bg-crema overflow-hidden flex flex-col">
+          <img src="/Assets/couple%20hugging.webp" alt="Supporting a loved one who is struggling" loading="lazy" class="h-44 w-full object-cover" />
+          <div class="p-7 flex gap-4">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="users" class="h-6 w-6" /></span>
+            <div><h3 class="font-display text-2xl text-ink">Help for someone I love</h3><p class="mt-1 text-muted">A child, partner, or parent who’s struggling? We’ll help you help them.</p><a href="#verify" class="mt-3 inline-block font-semibold text-azul">Get guidance →</a></div>
+          </div>
         </div>
       </div>
     </div>
@@ -125,13 +212,48 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
   <section id="why" class="bg-ink text-white scroll-mt-20">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-azul-light">Why Hopewell</p>
-      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-white text-center">Care you can’t get just anywhere</h2>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-white text-center">Care You Can’t Get Just Anywhere</h2>
       <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
         {usps.map((u) => (
-          <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-7 hover:bg-white/10 transition">
+          <div class="rounded-2xl bg-white p-7 shadow-lg hover:-translate-y-0.5 transition">
             <span class="grid h-14 w-14 place-items-center rounded-2xl bg-azul text-white"><Icon name={u.icon} class="h-7 w-7" /></span>
-            <h3 class="mt-5 font-display text-xl text-white leading-snug">{u.t}</h3>
-            <p class="mt-2 text-sm text-white/70 leading-relaxed">{u.d}</p>
+            <h3 class="mt-5 font-display text-xl text-ink leading-snug">{u.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{u.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / MISSION -->
+  <section id="about" class="bg-white scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <img src="/Assets/full%20team%20happy.webp" alt="The Hopewell Health Solutions team" loading="lazy" class="w-full aspect-[4/3] object-cover rounded-3xl border border-line" />
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">About Hopewell</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink leading-tight">Our Mission Is to Help You Live Your Best Life</h2>
+        <p class="mt-5 text-muted leading-relaxed">Hopewell Health Solutions is a superior mental-health practice rooted in Glastonbury and West Hartford, Connecticut. Our board-certified specialists take an innovative, multidisciplinary approach to care for clients aged 4 and older — in a compassionate, safe environment, whether in person or by telehealth.</p>
+        <p class="mt-4 text-muted leading-relaxed">We offer dialectical behavior therapy (DBT), cognitive behavioral therapy (CBT), play therapy, EMDR and accelerated resolution therapy (ART), the Gottman Method for couples, trauma treatments, and mind-body approaches like mindfulness and yoga therapy. When medication is part of the plan, our prescribers build personalized psychiatric plans — never one-size-fits-all — alongside advanced options like TMS and Spravato® for treatment-resistant depression.</p>
+        <p class="mt-4 font-display text-xl text-azul">Therapy first. Medication second. Transformation third.</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/about-us/" class="rounded-lg bg-azul px-6 py-3 font-semibold text-white hover:bg-azul-dark transition">More about us</a>
+          <a href="/about-us/team/" class="inline-flex items-center gap-2 rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Meet the team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12">
+        {stats.map(([n, l, icon], i) => (
+          <div class={`text-center px-4 ${i > 0 ? "lg:border-l lg:border-white/15" : ""}`}>
+            <span class="grid h-12 w-12 mx-auto place-items-center rounded-xl bg-gold-light/15 text-gold-light"><Icon name={icon} class="h-6 w-6" /></span>
+            <p class="mt-4 font-display text-5xl sm:text-6xl text-gold-light leading-none">{n}</p>
+            <p class="mt-3 text-sm font-semibold text-white/85 leading-snug">{l}</p>
           </div>
         ))}
       </div>
@@ -141,8 +263,8 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
   <!-- PROGRAMS (photo cards) -->
   <section id="programs" class="bg-white scroll-mt-20">
     <div class="mx-auto max-w-6xl px-5 py-16">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink">Find the right level of care</h2>
-      <p class="mt-3 text-muted max-w-2xl">A full continuum under one roof — step up or down as you heal.</p>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink">Mental Health Programs for Every Level of Care</h2>
+      <p class="mt-3 text-muted max-w-2xl">A full continuum under one roof — from weekly counseling to intensive day programs. You can step up when you need more support, or step down as you heal, without ever switching teams.</p>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {programs.map((p) => (
           <a href={p.href} class="group rounded-2xl overflow-hidden border border-line bg-white hover:shadow-xl hover:-translate-y-0.5 transition">
@@ -181,14 +303,33 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
     </div>
   </section>
 
-  <!-- WHAT WE TREAT (icon cards) -->
-  <section id="what-we-treat" class="bg-crema scroll-mt-20">
+  <!-- ADVANCED TREATMENTS -->
+  <section id="treatments" class="bg-crema scroll-mt-20">
     <div class="mx-auto max-w-6xl px-5 py-16">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Specialized help for what you’re facing</h2>
-      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">Dedicated, evidence-based care for the conditions we see most.</p>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Advanced & evidence-based</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Advanced Treatments: TMS, Spravato® &amp; EMDR</h2>
+      <p class="mt-3 text-muted max-w-2xl">When traditional therapy and medication aren’t enough on their own, we offer the kind of advanced, research-backed options most outpatient practices can’t — all under the same roof, coordinated by the same team.</p>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {treatments.map((t) => (
+          <a href={t.href} class="group rounded-2xl bg-white border border-line p-6 hover:border-azul hover:shadow-lg transition flex flex-col">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul group-hover:bg-azul group-hover:text-white transition"><Icon name={t.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-xl text-ink group-hover:text-azul transition">{t.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{t.d}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul">Learn more <Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE TREAT (icon cards) -->
+  <section id="what-we-treat" class="bg-white scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Conditions We Treat</h2>
+      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">Dedicated, evidence-based care for the conditions we see most — for individuals, couples, and families across Connecticut.</p>
       <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {conditions.map((c) => (
-          <a href="#" class="group rounded-2xl bg-white border border-line p-6 flex items-center gap-4 hover:border-azul hover:shadow-lg transition">
+          <a href={c.href} class="group rounded-2xl bg-crema border border-line p-6 flex items-center gap-4 hover:border-azul hover:shadow-lg transition">
             <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul-light text-azul group-hover:bg-azul group-hover:text-white transition"><Icon name={c.icon} class="h-6 w-6" /></span>
             <span class="font-display text-lg text-ink leading-tight">{c.t}</span>
           </a>
@@ -197,30 +338,21 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
     </div>
   </section>
 
-  <!-- APPROACH -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
-      <span class="grid h-14 w-14 mx-auto place-items-center rounded-2xl bg-azul-light text-azul"><Icon name="sparkles" class="h-7 w-7" /></span>
-      <h2 class="mt-5 font-display text-3xl sm:text-4xl text-ink">Therapy first. Medication second. Transformation third.</h2>
-      <p class="mt-5 text-lg text-muted leading-relaxed">Our board-certified, multidisciplinary team uses proven methods — CBT, DBT, EMDR, ART, the Gottman Method, and more — tailored to you, never a template. We treat the whole person, ages 4 and up, with advanced options like TMS and Spravato® for treatment-resistant depression.</p>
-    </div>
-  </section>
-
   <!-- TEAM -->
   <section id="team" class="bg-crema scroll-mt-20">
     <div class="mx-auto max-w-6xl px-5 py-16">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Meet the people who’ll walk beside you</h2>
-      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">47 licensed clinicians across Connecticut. Real credentials. Real names. Real relationships.</p>
-      <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
-        {team.map(([name, role, img]) => (
-          <div class="text-center">
-            <img src={img} alt={name} loading="lazy" class="w-full aspect-square object-cover object-top rounded-xl border border-line bg-white" />
-            <p class="mt-2 font-display text-sm text-ink leading-tight">{name}</p>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Meet the People Who’ll Walk Beside You</h2>
+      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">Led by our doctoral-level psychologists (PhD &amp; PsyD) — part of a team of 50+ licensed clinicians across Connecticut. Real credentials. Real names. Real relationships.</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+        {team.map(([name, role, img, href]) => (
+          <a href={href} class="group text-center w-[44%] sm:w-[31%] max-w-[200px]">
+            <img src={img} alt={name} loading="lazy" class="w-full aspect-square object-cover object-top rounded-2xl border border-line bg-white group-hover:border-azul transition" />
+            <p class="mt-2 font-display text-sm text-ink leading-tight group-hover:text-azul transition">{name}</p>
             <p class="text-xs text-muted">{role}</p>
-          </div>
+          </a>
         ))}
       </div>
-      <div class="text-center mt-8"><a href="#" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Meet our full team →</a></div>
+      <div class="text-center mt-8"><a href="/about-us/team/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Meet our full team →</a></div>
     </div>
   </section>
 
@@ -233,25 +365,15 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
           <span class="font-display text-4xl text-ink">4.8</span>
           <span class="text-yellow-400 text-2xl">★★★★★</span>
         </div>
-        <p class="mt-2 text-muted">367 Google reviews · As featured on Eyewitness News 3</p>
+        <p class="mt-2 text-muted">368 Google reviews · As featured on Eyewitness News 3</p>
       </div>
 
-      <!-- featured -->
-      <figure class="mt-10 rounded-3xl bg-crema border border-line p-8 md:p-10 max-w-4xl mx-auto">
-        <div class="text-yellow-400 text-xl">★★★★★</div>
-        <blockquote class="mt-4 font-display text-2xl md:text-3xl text-ink leading-snug">“{featured.text}”</blockquote>
-        <figcaption class="mt-5 flex items-center gap-3">
-          <span class="grid h-11 w-11 place-items-center rounded-full bg-azul text-white font-display text-lg">{featured.name.charAt(0)}</span>
-          <span><span class="block font-semibold text-ink">{featured.name}</span><span class="block text-xs text-muted">{featured.meta}</span></span>
-        </figcaption>
-      </figure>
-
-      <!-- grid -->
-      <div class="mt-6 grid md:grid-cols-3 gap-5">
+      <!-- grid (uniform card style, consistent with the rest of the site) -->
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r) => (
-          <figure class="rounded-2xl border border-line bg-white p-6 shadow-sm">
-            <div class="text-yellow-400">★★★★★</div>
-            <blockquote class="mt-3 text-ink leading-relaxed text-[15px]">“{r.text}”</blockquote>
+          <figure class="flex flex-col rounded-2xl border border-line bg-crema p-6">
+            <div class="text-yellow-400 text-sm">★★★★★</div>
+            <blockquote class="mt-3 text-ink leading-relaxed text-[15px] flex-1">“{r.text}”</blockquote>
             <figcaption class="mt-4 flex items-center gap-3 border-t border-line pt-4">
               <span class="grid h-9 w-9 place-items-center rounded-full bg-azul-light text-azul font-semibold text-sm">{r.name.charAt(0).toUpperCase()}</span>
               <span><span class="block text-sm font-semibold text-ink">{r.name}</span><span class="block text-xs text-muted">{r.meta}</span></span>
@@ -259,14 +381,15 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
           </figure>
         ))}
       </div>
+      <div class="text-center mt-8"><a href="/testimonials/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Read more testimonials →</a></div>
     </div>
   </section>
 
-  <!-- INSURANCE — bigger logos -->
+  <!-- INSURANCE -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink">Comprehensive coverage options</h2>
-      <p class="mt-3 text-muted max-w-2xl mx-auto">In-network with most major plans. Not sure about yours? We’ll check it for you — free, in minutes.</p>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink">Comprehensive Coverage Options</h2>
+      <p class="mt-3 text-muted max-w-2xl mx-auto">We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you — free, in minutes.</p>
       <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
         {insurers.map(([name, img]) => (
           <div class="rounded-xl bg-white border border-line p-5 flex items-center justify-center h-24">
@@ -274,17 +397,19 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
           </div>
         ))}
       </div>
-      <a href="#verify" class="mt-10 inline-block rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify my benefits →</a>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify my benefits →</a>
+        <a href="/rates-and-insurance-coverage/" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition">Rates &amp; insurance</a>
+      </div>
     </div>
   </section>
 
   <!-- GETTING STARTED — flow diagram -->
-  <section id="locations" class="bg-white scroll-mt-20">
+  <section class="bg-white">
     <div class="mx-auto max-w-6xl px-5 py-16">
-      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Getting started is simple</h2>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Getting Started Is Simple</h2>
       <p class="mt-3 text-center text-muted">Reaching out is the hardest part — we handle the rest.</p>
       <div class="mt-12 grid md:grid-cols-4 gap-y-10 md:gap-0 relative">
-        <!-- connector line -->
         <div class="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-line"></div>
         {steps.map((s, i) => (
           <div class="relative text-center px-4">
@@ -295,14 +420,71 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
           </div>
         ))}
       </div>
+      <div class="mt-12 text-center">
+        <a href="#verify" class="inline-flex items-center gap-2 rounded-lg bg-azul px-8 py-4 font-semibold text-white hover:bg-azul-dark transition">Get Started Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS + LOCAL SEO -->
+  <section id="locations" class="bg-crema scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Connecticut roots</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Care Near You, Across Central Connecticut</h2>
+        <p class="mt-3 text-muted max-w-3xl mx-auto">Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT — serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.</p>
+      </div>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {locations.map(([city, addr, cityline, href]) => (
+          <a href={href} class="group rounded-2xl bg-white border border-line p-6 hover:border-azul hover:shadow-lg transition flex gap-4">
+            <span class="text-azul mt-0.5 shrink-0"><Icon name="pin" class="h-6 w-6" /></span>
+            <div>
+              <h3 class="font-display text-lg text-ink group-hover:text-azul transition">{city}</h3>
+              <p class="mt-1 text-sm text-muted">{addr}<br />{cityline}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-azul">View location <Icon name="arrow" class="h-4 w-4" /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="text-center mt-8"><a href="/locations/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">See all locations →</a></div>
+    </div>
+  </section>
+
+  <!-- FROM THE BLOG -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Guidance &amp; resources</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">From the Hopewell Blog</h2>
+          <p class="mt-2 text-muted max-w-2xl">Practical, evidence-based articles written and clinically reviewed by our Connecticut team.</p>
+        </div>
+        <a href="/blog/" class="rounded-lg border border-azul px-5 py-2.5 text-sm font-semibold text-azul hover:bg-azul-light transition whitespace-nowrap">View all articles →</a>
+      </div>
+      <div class="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {blogTeasers.map((p) => (
+          <a href={`/post/${p.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-crema hover:border-azul hover:shadow-lg transition">
+            <div class="aspect-[16/10] overflow-hidden bg-azul-light">
+              {p.heroImage && <img src={p.heroImage} alt="" loading="lazy" class="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-300" />}
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-semibold uppercase tracking-wide text-azul">{p.category}</span>
+              <h3 class="mt-2 font-display text-lg text-ink leading-snug group-hover:text-azul transition">{p.title}</h3>
+              <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2 flex-1">{p.excerpt}</p>
+              <p class="mt-4 text-xs text-muted">{byId(p.authorSlug)?.name}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Looking for something to share with your family? Explore our <a href="/handouts/" class="text-azul font-semibold hover:underline">free downloadable handouts</a> on anxiety, self-harm, and school refusal.</p>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="bg-azul text-white">
     <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">You don’t have to do this alone.</h2>
-      <p class="mt-4 text-white/85 text-lg">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure.</p>
+      <h2 class="font-display text-3xl sm:text-4xl text-white">You Don’t Have to Do This Alone.</h2>
+      <p class="mt-4 text-white/85 text-lg">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. There is hope to heal, and it can start right now.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
         <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
@@ -311,11 +493,4 @@ const Stars = `<span class="text-yellow-400 tracking-tight">★★★★★</spa
   </section>
 
   <Footer />
-
-  <style>
-    .marquee { display: flex; width: max-content; animation: hh-scroll 38s linear infinite; }
-    .marquee:hover { animation-play-state: paused; }
-    @keyframes hh-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
-  </style>
 </Base>

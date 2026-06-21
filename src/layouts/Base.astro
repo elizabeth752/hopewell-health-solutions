@@ -5,13 +5,19 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  image?: string;
 }
 
+const SITE = "https://www.hopewellhealthsolutions.com";
 const {
   title = "Hopewell Health Solutions",
   description = "Hopewell Health Solutions",
   canonical,
+  image = "/Assets/full%20team%20happy.webp",
 } = Astro.props;
+
+const ogImage = image.startsWith("http") ? image : SITE + image;
+const ogUrl = canonical || SITE + Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -21,6 +27,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <!-- Brand fonts: Baskervville (headings) + Urbanist (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,6 +38,21 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hopewell Health Solutions" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <slot />
