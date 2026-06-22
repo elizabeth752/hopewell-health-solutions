@@ -35,5 +35,5 @@ export default {
 <h2>Final Thoughts</h2>
 <p>If you're exploring treatment options for mental health and substance use, it can be helpful to shift the question from "What's the least I can do?" to "What level of support would actually help me feel and function better?"</p>
 <p>For many, a Partial Hospitalization Program is that level.</p>
-<p>If this sounds like it could be the right fit for you, or you just want to hear more and ask questions, call us at 860-946-0447 (option 1) or email us at hhs4help@gmail.com.</p>`,
+<p>If this sounds like it could be the right fit for you, or you just want to hear more and ask questions, call us at 860-735-1448 (option 1) or email us at hhs4help@gmail.com.</p>`,
 };

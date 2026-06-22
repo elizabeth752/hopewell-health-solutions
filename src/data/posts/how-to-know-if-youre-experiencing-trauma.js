@@ -65,5 +65,5 @@ export default {
 <li>Teen &amp; Tween Mental Health Intensive Outpatient Program (IOP)</li>
 </ul>
 
-<p><strong>Reach out to Hopewell Health Solutions by calling 860-946-0447 to learn more</strong></p>`,
+<p><strong>Reach out to Hopewell Health Solutions by calling 860-735-1448 to learn more</strong></p>`,
 };

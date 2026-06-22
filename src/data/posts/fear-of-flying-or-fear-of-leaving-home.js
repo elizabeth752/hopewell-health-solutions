@@ -62,5 +62,5 @@ export default {
 <p>You're allowed to be scared.</p>
 <p>You're allowed to miss home.</p>
 <p>And you're allowed to take off at your own pace.</p>
-<p>If you are looking for support, Hopewell Health Solutions is here for you. Please reach out at <strong>860-946-0447</strong> or by emailing <a href="mailto:hhs4help@gmail.com"><strong>hhs4help@gmail.com</strong></a><strong>.</strong></p>`,
+<p>If you are looking for support, Hopewell Health Solutions is here for you. Please reach out at <strong>860-735-1448</strong> or by emailing <a href="mailto:hhs4help@gmail.com"><strong>hhs4help@gmail.com</strong></a><strong>.</strong></p>`,
 };

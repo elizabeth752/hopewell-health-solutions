@@ -56,6 +56,6 @@ export default {
 
 <p>If any of these signs feel familiar, reaching out for support could be an important next step. A therapist can help you process what you're going through, discover new ways of coping, and build a healthier, more balanced life.</p>
 
-<p>Hopewell Health Solutions is here for you when you're ready to take the leap into therapy. We have a diverse team of therapists available and will work with you to find a good match to fit your personality and needs. Reach out to us at 860-946-0447 or <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a></p>
+<p>Hopewell Health Solutions is here for you when you're ready to take the leap into therapy. We have a diverse team of therapists available and will work with you to find a good match to fit your personality and needs. Reach out to us at 860-735-1448 or <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a></p>
 `,
 };

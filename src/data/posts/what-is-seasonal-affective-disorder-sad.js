@@ -49,5 +49,5 @@ export default {
 </ul>
 <h2>Why SAD Doesn't Have to Stay Sad</h2>
 <p>Seasonal Affective Disorder might have an unfortunate name, but it doesn't define you. With the right support and treatment, SAD is highly manageable. At <strong>Hopewell Health Solutions</strong>, we're dedicated to helping Connecticut residents through every season. Whether it's therapy, medication management, or a combination of both, we're here to guide you toward brighter days.</p>
-<p><strong>Take the first step toward feeling better. Contact us today at 860-946-0447 or email us at hhs4help@gmail.com.Let's work together to bring back the light in your life—Connecticut winters don't have to dim your shine.</strong></p>`,
+<p><strong>Take the first step toward feeling better. Contact us today at 860-735-1448 or email us at hhs4help@gmail.com.Let's work together to bring back the light in your life—Connecticut winters don't have to dim your shine.</strong></p>`,
 };

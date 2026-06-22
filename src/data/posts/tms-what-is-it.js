@@ -50,5 +50,5 @@ export default {
 <li>Convenient: sessions are short (about 20 minutes) 5 days a week, and require no downtime</li>
 </ul>
 
-<p>At Hopewell Health Solutions, we offer TMS with Neurostar. If you would like to learn more or have any questions, please feel free to visit our <a href="https://www.hopewellhealthsolutions.com/service/tms"><strong>website</strong></a> or call 860-946-0447.</p>`,
+<p>At Hopewell Health Solutions, we offer TMS with Neurostar. If you would like to learn more or have any questions, please feel free to visit our <a href="https://www.hopewellhealthsolutions.com/service/tms"><strong>website</strong></a> or call 860-735-1448.</p>`,
 };

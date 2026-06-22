@@ -53,6 +53,6 @@ export default {
 
 <p>If you or someone you love is showing signs of addiction, reach out for help. Compassionate care can change the course of a life.</p>
 
-<p>Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-946-0447 (option 1 for IOP) to learn more about our specialized Intensive Outpatient Programs for women and adults. Recovery starts with a single step and we are here to walk it with you.</p>
+<p>Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-735-1448 (option 1 for IOP) to learn more about our specialized Intensive Outpatient Programs for women and adults. Recovery starts with a single step and we are here to walk it with you.</p>
 `,
 };

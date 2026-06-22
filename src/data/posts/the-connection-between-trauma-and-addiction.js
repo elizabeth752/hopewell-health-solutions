@@ -46,6 +46,6 @@ export default {
 
 <p>Addiction may begin as a response to pain, but recovery begins with understanding. When we heal the wounds of trauma, the need for escape begins to fade.</p>
 
-<p>If you or someone you love is struggling with addiction or trauma, help is available. Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-946-0447 (option 1) to learn more about our trauma-informed Intensive Outpatient Programs and how we can support lasting recovery and healing.</p>
+<p>If you or someone you love is struggling with addiction or trauma, help is available. Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-735-1448 (option 1) to learn more about our trauma-informed Intensive Outpatient Programs and how we can support lasting recovery and healing.</p>
 `,
 };

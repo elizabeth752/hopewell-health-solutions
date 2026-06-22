@@ -41,7 +41,7 @@ const faqs = [
   ["Do you offer telehealth, or do I have to come in person?", "Both. You can be seen in person at any of our offices or by secure video telehealth anywhere in Connecticut. Many clients combine the two — in-person visits when it helps, virtual sessions when life is busy."],
   ["Can I see the same provider at more than one office?", "Our clinical team works as one practice across all locations. We’ll match you to the provider who best fits your needs and help you find the most convenient office or a telehealth option."],
   ["Which services are available at each location?", "Outpatient therapy and medication management are available across our offices, and our intensive programs (IOP/PHP) and specialized treatments (TMS, Spravato®, testing) are offered at select locations. Call us and we’ll direct you to the right office for the care you need."],
-  ["What are your hours?", "Appointments are available during the day and in the evening, by appointment. Call (860) 946-0447 for current availability at the office nearest you."],
+  ["What are your hours?", "Appointments are available during the day and in the evening, by appointment. Call (860) 735-1448 for current availability at the office nearest you."],
   ["Do you take my insurance?", "We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit."],
 ];
 const schema = {
@@ -49,7 +49,7 @@ const schema = {
   "@type": "MedicalOrganization",
   name: "Hopewell Health Solutions",
   url: canonical,
-  telephone: "+1-860-946-0447",
+  telephone: "+1-860-735-1448",
   location: locations.map((l) => ({
     "@type": "MedicalClinic",
     name: `Hopewell Health Solutions — ${l.name}`,
@@ -85,7 +85,7 @@ const schema = {
             ))}
           </ul>
           <div class="mt-8">
-            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+            <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
           </div>
         </div>
         <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Find your nearest office" sub="Free, confidential. We’ll help you choose a location or a telehealth visit." /></div>
@@ -105,7 +105,7 @@ const schema = {
         <p>Hopewell Health Solutions has grown into one of Connecticut’s most accessible outpatient mental health and psychiatry practices, with <strong>six offices</strong> spanning Hartford County and the shoreline — three in Glastonbury, plus West Hartford, East Hampton, and Westbrook. Wherever you are in the state, compassionate, evidence-based care is close to home — and when getting to an office isn’t practical, secure telehealth brings the same trusted team to you.</p>
         <p>Since 2013, we’ve built our reputation on a simple idea: change is a practice, not a concept. Our clinicians fuse psychology, psychiatry, and whole-person wellness into care that’s active, collaborative, and tailored to each person. Across every location you’ll find the same standard of care — a Joint Commission–accredited practice with a 4.8-star reputation and a team of psychiatrists, board-certified nurse practitioners, psychologists, and licensed therapists who genuinely listen.</p>
         <p>Each office offers the support most people need most often — <a href="/programs/counseling/" class="text-azul font-semibold">individual, couples, and family therapy</a> and <a href="/programs/medication-management/" class="text-azul font-semibold">medication management</a>. Across the practice we also provide our <a href="/programs/intensive-outpatient-program/" class="text-azul font-semibold">Intensive Outpatient Program (IOP)</a> and <a href="/programs/partial-hospitalization-program/" class="text-azul font-semibold">Partial Hospitalization Program (PHP)</a>, plus specialized treatments such as <a href="/treatment-methods/tms/" class="text-azul font-semibold">TMS</a>, <a href="/treatment-methods/spravato/" class="text-azul font-semibold">Spravato®</a>, and <a href="/treatment-methods/neuropsychological-testing/" class="text-azul font-semibold">neuropsychological and ADHD testing</a>. Because all of it lives under one roof, you can step up or down between levels of care — or add a service — without ever having to start over with a new practice.</p>
-        <p>We treat the full range of mental health and behavioral concerns: depression, anxiety, trauma and PTSD, ADHD, OCD, bipolar disorder, and co-occurring substance use. We welcome individuals of every age, background, and identity, and we work hard to make starting easy — most major PPO insurance plans are accepted (we don’t accept Medicaid / HUSKY), and our team verifies your benefits for free before your first visit. Choose the office nearest you below, or call <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> and we’ll help you find the right location, provider, and level of care.</p>
+        <p>We treat the full range of mental health and behavioral concerns: depression, anxiety, trauma and PTSD, ADHD, OCD, bipolar disorder, and co-occurring substance use. We welcome individuals of every age, background, and identity, and we work hard to make starting easy — most major PPO insurance plans are accepted (we don’t accept Medicaid / HUSKY), and our team verifies your benefits for free before your first visit. Choose the office nearest you below, or call <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a> and we’ll help you find the right location, provider, and level of care.</p>
       </div>
     </div>
   </section>
@@ -129,7 +129,7 @@ const schema = {
               <p class="mt-3 text-sm text-ink leading-relaxed flex-1">{l.blurb}</p>
               <div class="mt-5 flex flex-wrap gap-3">
                 <a href={`/location/${l.slug}/`} class="inline-flex items-center gap-1.5 rounded-lg bg-azul px-5 py-2.5 text-sm font-semibold text-white hover:bg-azul-dark transition">View office <Icon name="arrow" class="h-4 w-4" /></a>
-                <a href="tel:8609460447" class="inline-flex items-center gap-1.5 rounded-lg border border-azul px-5 py-2.5 text-sm font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />Call</a>
+                <a href="tel:8607351448" class="inline-flex items-center gap-1.5 rounded-lg border border-azul px-5 py-2.5 text-sm font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />Call</a>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ const schema = {
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care wherever you are</p>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Telehealth across Connecticut</h2>
-        <p class="mt-4 text-ink leading-relaxed text-[17px]">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space — and you can move between in-person and virtual visits whenever it suits your life. Call <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a> to set up your first appointment.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space — and you can move between in-person and virtual visits whenever it suits your life. Call <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a> to set up your first appointment.</p>
       </div>
     </div>
   </section>
@@ -253,7 +253,7 @@ const schema = {
       <p class="mt-4 text-white/85 text-lg">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you choose the location nearest you, or set up a telehealth visit.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
-        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
         <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
       </div>
       <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>

@@ -49,5 +49,5 @@ export default {
 
 <p>At Hopewell Health Solutions in Glastonbury, Connecticut, we believe that those who protect and serve deserve the same level of care and compassion they give to others.</p>
 
-<p>If you are a first responder who is struggling with the invisible weight of trauma, you do not have to carry it alone. <strong>Call Hopewell Health Solutions at 860-946-0447 (option 1)</strong> to learn more about our First Responder Intensive Outpatient Program and how we can help you begin healing from job-related trauma with dignity and support.</p>`,
+<p>If you are a first responder who is struggling with the invisible weight of trauma, you do not have to carry it alone. <strong>Call Hopewell Health Solutions at 860-735-1448 (option 1)</strong> to learn more about our First Responder Intensive Outpatient Program and how we can help you begin healing from job-related trauma with dignity and support.</p>`,
 };

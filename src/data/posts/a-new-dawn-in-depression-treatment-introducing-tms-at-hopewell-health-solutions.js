@@ -23,5 +23,5 @@ export default {
 <h2>Ready to Explore TMS?</h2>
 <p>If you or someone you love has been battling depression and traditional treatments haven't been effective, TMS might be the next step to consider. Reach out to us at Hopewell Health Solutions. Let's discuss if TMS is right for you and potentially open the door to a new chapter in your mental health journey.</p>
 <p>Depression is tough, but so are you. And with new treatments like TMS, provided by NeuroStar, there's always hope for a brighter tomorrow.</p>
-<p>For information call 860-946-0447, or check out NeuroStar's website to read some client testimonials. <a href="https://neurostar.com/is-neurostar-right-for-me/">https://neurostar.com/is-neurostar-right-for-me/</a></p>`,
+<p>For information call 860-735-1448, or check out NeuroStar's website to read some client testimonials. <a href="https://neurostar.com/is-neurostar-right-for-me/">https://neurostar.com/is-neurostar-right-for-me/</a></p>`,
 };

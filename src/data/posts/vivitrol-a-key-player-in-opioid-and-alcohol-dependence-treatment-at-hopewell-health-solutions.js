@@ -52,5 +52,5 @@ export default {
 
 <p>Vivitrol is an essential component of the medication-assisted treatment offerings at Hopewell Health Solutions, providing hope and a viable path to recovery for many struggling with opioid and alcohol dependence. With professionals like Katherine Salvador leading the treatment process, patients at Hopewell can expect compassionate, personalized care tailored to their unique recovery needs. If you or someone you love is battling addiction, consider reaching out to our team to learn more about how Vivitrol can be part of a successful recovery plan.</p>
 
-<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-946-0447, or email hhs4help@gmail.com. We're here to help you take the first step towards a healthier, substance-free life.</p>`,
+<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-735-1448, or email hhs4help@gmail.com. We're here to help you take the first step towards a healthier, substance-free life.</p>`,
 };

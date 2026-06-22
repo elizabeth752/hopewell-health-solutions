@@ -47,6 +47,6 @@ export default {
 
 <p>At Hopewell Health Solutions in Glastonbury, Connecticut, we believe that the people who care for our community deserve the same level of care in return. If you or someone you know is struggling with trauma, addiction, nightmares, burnout, or emotional exhaustion, help is available.</p>
 
-<p>Call Hopewell Health Solutions at 860-946-0447 (option 1) to learn more about our First Responder Intensive Outpatient Program and how we can support your healing journey.</p>
+<p>Call Hopewell Health Solutions at 860-735-1448 (option 1) to learn more about our First Responder Intensive Outpatient Program and how we can support your healing journey.</p>
 `,
 };

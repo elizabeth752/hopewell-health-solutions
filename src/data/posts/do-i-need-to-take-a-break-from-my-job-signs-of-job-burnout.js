@@ -60,6 +60,6 @@ export default {
 <p>Burnout doesn't mean you're weak or you've failed. It means your system is overloaded and trying to tell you something. Listening to your body and mind is not just important - it's essential. You deserve to feel energized, fulfilled, and appreciated at work, not like you are just surviving through the day. Your health and happiness matter just as much as your productivity.The sooner you recognize the signs, the sooner you can begin to recover and rebuild a healthier relationship with work and improve your mental and emotional well being.</p>
 <h2>Looking for Support in Navigating Burnout?</h2>
 <p>Hopewell Health Solutions is here to help. We have a diverse team of therapists ready to offer support.</p>
-<p>Call 860-946-0447</p>
+<p>Call 860-735-1448</p>
 <p>Email hhs4help@gmail.com</p>`,
 };

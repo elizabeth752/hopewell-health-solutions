@@ -38,18 +38,18 @@ const reviews = [
   { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
 ];
 const faqs = [
-  [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at (860) 946-0447 or request an appointment online.`],
+  [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at (860) 735-1448 or request an appointment online.`],
   ["Do you offer in-person and telehealth appointments?", "Yes — you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."],
   ["What services are offered at this location?", "Outpatient therapy (individual, couples, and family), medication management, and our intensive programs. Specific services and providers vary by office — call us and we’ll match you to the right care and location."],
   ["Do you take my insurance?", "We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit."],
-  ["How do I book my first appointment?", "Call (860) 946-0447 or request an appointment online. Our team will help you choose the right provider, service, and location."],
+  ["How do I book my first appointment?", "Call (860) 735-1448 or request an appointment online. Our team will help you choose the right provider, service, and location."],
 ];
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
   name: `Hopewell Health Solutions — ${l.name}`,
   url: canonical,
-  telephone: "+1-860-946-0447",
+  telephone: "+1-860-735-1448",
   email: "hhs4help@gmail.com",
   address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
   geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
@@ -59,7 +59,7 @@ const schema = {
 };
 ---
 
-<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted. Call (860) 946-0447.`} canonical={canonical}>
+<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted. Call (860) 735-1448.`} canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
@@ -84,7 +84,7 @@ const schema = {
             ))}
           </ul>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="tel:8609460447" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 946-0447</a>
+            <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
             <a href={directions} target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 rounded-lg bg-azul-bright px-8 py-4 text-lg font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="pin" class="h-5 w-5" />Get directions</a>
           </div>
         </div>
@@ -108,7 +108,7 @@ const schema = {
         <p class="mt-5 text-ink leading-relaxed text-[17px]">{l.blurb}</p>
         <div class="mt-6 space-y-3 text-ink">
           <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Address:</span> {fullAddress}</span></p>
-          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="phone" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Phone:</span> <a href="tel:8609460447" class="text-azul font-semibold">(860) 946-0447</a></span></p>
+          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="phone" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Phone:</span> <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a></span></p>
           <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Hours:</span> By appointment — daytime &amp; evening availability</span></p>
         </div>
         <a href={directions} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Get directions <Icon name="arrow" class="h-4 w-4" /></a>
@@ -246,7 +246,7 @@ const schema = {
       <p class="mt-4 text-white/85 text-lg">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you book at our {l.name} office or by telehealth.</p>
       <div class="mt-7 flex flex-wrap justify-center gap-3">
         <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
-        <a href="tel:8609460447" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 946-0447</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
         <a href={directions} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="pin" class="h-4 w-4" />Get directions</a>
       </div>
       <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>

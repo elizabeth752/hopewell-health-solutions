@@ -33,5 +33,5 @@ export default {
 <h2>A Place to Heal, Grow, and Reconnect</h2>
 <p>Healing is not linear, and at Hopewell Health Solutions, we make space for that truth. Our mission is to help each person strengthen their sense of identity, build resilience, and rediscover hope.</p>
 <p>If you or someone you love is struggling with mental health challenges, you do not have to do it alone. The right support can make all the difference.</p>
-<p>Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-946-0447 (option 1) to learn more about our Intensive Outpatient Programs and how we can support you or your loved one on the path to wellness.</p>`,
+<p>Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-735-1448 (option 1) to learn more about our Intensive Outpatient Programs and how we can support you or your loved one on the path to wellness.</p>`,
 };

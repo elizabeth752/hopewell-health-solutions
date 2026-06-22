@@ -52,6 +52,6 @@ export default {
 
 <p>A safety plan doesn't mean something is wrong with you. It means you're taking your mental health seriously and building a foundation for stability and growth.</p>
 
-<p>If you're looking for therapy or an Intensive Outpatient Program in Glastonbury, Connecticut, and want support creating a safety plan that truly fits your life, <strong>Hopewell Health Solutions</strong> is here to help. For more information, call 860-946-0447 (option 1 for IOP) or email us at <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a>.</p>
+<p>If you're looking for therapy or an Intensive Outpatient Program in Glastonbury, Connecticut, and want support creating a safety plan that truly fits your life, <strong>Hopewell Health Solutions</strong> is here to help. For more information, call 860-735-1448 (option 1 for IOP) or email us at <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a>.</p>
 `,
 };

@@ -21,5 +21,5 @@ export default {
 <p>Affirming therapy best practices challenge negative societal narratives about identity by separating identity from stigma, developing pride and self acceptance and building supportive community connections.</p>
 <p>For LGBTQ+ individuals affirmation is a protective factor. When providers intentionally create spaces where identity is honored rather than questioned, healing becomes possible in ways that extend far beyond the therapy room.</p>
 <p>Hopewell Health Solutions believes that healing happens when people feel seen. Inclusive behavioral health care ensures that every client, regardless of sexual orientation or gender identity, has the opportunity to thrive.</p>
-<p>If you're looking for therapy or an Intensive Outpatient Program in Glastonbury, Connecticut, and want inclusive affirming care, <strong>Hopewell Health Solutions</strong> is here to help. For more information, call 860-946-0447 (option 1 for IOP) or email us at <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a>.</p>`,
+<p>If you're looking for therapy or an Intensive Outpatient Program in Glastonbury, Connecticut, and want inclusive affirming care, <strong>Hopewell Health Solutions</strong> is here to help. For more information, call 860-735-1448 (option 1 for IOP) or email us at <a href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a>.</p>`,
 };

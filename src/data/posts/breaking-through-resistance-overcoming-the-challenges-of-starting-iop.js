@@ -44,6 +44,6 @@ export default {
 <p>It can feel incredibly challenging and overwhelming to consider an Intensive Outpatient Program (IOP) for you or a loved one. However, many sources of resistance or challenges in starting can be worked through with the support of your care team. There's never shame in getting the help you need. IOP is an excellent opportunity to build knowledge of emotional regulation, skills, and strategies that will benefit you for the rest of your life!</p>
 
 <p><strong>For more information about IOP:</strong></p>
-<p><strong>Call:</strong> 860-946-0447</p>
+<p><strong>Call:</strong> 860-735-1448</p>
 <p><strong>Email:</strong> hhs4help@gmail.com</p>`,
 };

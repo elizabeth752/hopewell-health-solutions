@@ -50,5 +50,5 @@ export default {
 
 <p>Suboxone plays a critical role in the battle against opioid addiction. At Hopewell Health Solutions, with skilled professionals like Katherine Salvador, patients find a supportive environment to safely initiate their recovery journey. If you or someone you know is struggling with opioid addiction, consider the personalized, effective care offered by our team at Hopewell.</p>
 
-<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-946-0447, or email hhs4help@gmail.com. We're here to help you take the first step towards a healthier, substance-free life.</p>`,
+<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-735-1448, or email hhs4help@gmail.com. We're here to help you take the first step towards a healthier, substance-free life.</p>`,
 };

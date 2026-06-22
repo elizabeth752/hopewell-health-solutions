@@ -55,6 +55,6 @@ export default {
 <h2>Stability in the Chaos</h2>
 <p>Summer doesn't have to mean losing your mental footing. With some intention and planning, it can be restorative and manageable. Pay attention to your mental health, prioritize time for self-care, and don't hesitate to ask for support - especially if seasonal changes are bringing up more than you expected.</p>
 
-<p>Hopewell Health Solutions is here to support you. Call 860-946-0447 or email hhs4help@gmail.com with any questions or to set up an appointment.</p>
+<p>Hopewell Health Solutions is here to support you. Call 860-735-1448 or email hhs4help@gmail.com with any questions or to set up an appointment.</p>
 `,
 };

@@ -24,5 +24,5 @@ export default {
 <h2>Why Choose Genesight Testing at Hopewell Health Solutions?</h2>
 <p>Choosing Genesight testing at Hopewell means opting for a path that significantly enhances the precision of psychiatric treatment. It empowers our clients and their families to understand that there is a science-backed, personalized approach available that can streamline the journey to recovery.</p>
 <p>Genesight testing represents more than just an advancement in medical technology—it epitomizes our commitment to compassionate, individualized care. At Hopewell Health Solutions, we believe that everyone's path to mental wellness should be as unique as their DNA. Through the application of Genesight testing, we are making personalized medicine a reality for every client we serve.</p>
-<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-946-0447, or email hhs4help@gmail.com.</p>`,
+<p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-735-1448, or email hhs4help@gmail.com.</p>`,
 };

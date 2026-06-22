@@ -57,7 +57,7 @@ export default {
         { p: "Treatment for mental health and co-occurring disorders is deeply important and should be respected as such. When you are in active treatment via an IOP, TMS, or Spravato, your focus should be on healing — not worrying about losing your job or being unable to cover expenses. When you know your leave options and your treatment team supports you, you can engage more fully in recovery and return to work with restored health and resilience." },
         { p: "At Hopewell Health Solutions in Glastonbury we are here to partner with you through both treatment and the logistics of accessing support at work. If you have questions about whether your program qualifies, speak with your clinician and your employer's HR department." },
         { note: "This article is general information, not legal advice. Eligibility for CT Paid Leave and FMLA depends on your specific employer, role, and medical circumstances. Confirm details with your employer's HR department and the official resources below." },
-        { p: "Call Hopewell Health Solutions at (860) 946-0447 (option 1 for IOP) to learn how our programs and clinical team can support you through treatment, leave, and recovery." },
+        { p: "Call Hopewell Health Solutions at (860) 735-1448 (option 1 for IOP) to learn how our programs and clinical team can support you through treatment, leave, and recovery." },
       ],
     },
   ],

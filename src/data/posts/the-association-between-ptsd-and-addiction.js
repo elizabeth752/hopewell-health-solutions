@@ -60,5 +60,5 @@ export default {
 
 <p>If you or someone you love is struggling with PTSD and substance use, know that you are not alone - help is available.</p>
 
-<p><strong>Hopewell Health Solutions</strong> is here to help. To discuss options, reach out to us over the phone at 860-946-0447 or through email at hhs4help@gmail.com.</p>`,
+<p><strong>Hopewell Health Solutions</strong> is here to help. To discuss options, reach out to us over the phone at 860-735-1448 or through email at hhs4help@gmail.com.</p>`,
 };

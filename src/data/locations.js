@@ -1,5 +1,5 @@
 // Hopewell Health Solutions — 6 distinct Connecticut offices. Slugs + addresses match the live
-// /location/<slug> pages exactly (verified against the live site). NAP phone (860) 946-0447 sitewide.
+// /location/<slug> pages exactly (verified against the live site). NAP phone (860) 735-1448 sitewide.
 // photoDir/photos set only for offices with real photography; others fall back to the map only.
 export const locations = [
   {
