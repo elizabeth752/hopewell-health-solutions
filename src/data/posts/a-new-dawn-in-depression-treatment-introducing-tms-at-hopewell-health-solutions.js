@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "Hopewell Health Solutions now offers NeuroStar TMS, a non-invasive treatment option for adults and teens with treatment-resistant depression.",
   heroImage: "/Assets/Blogs/a-new-dawn-in-depression-treatment-introducing-tms-at-hopewell-health-solutions.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-01-29",
   dateModified: "2025-01-29",

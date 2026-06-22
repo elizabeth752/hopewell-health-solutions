@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "Addiction reshapes the brain's reward system, but therapy and medication can help rewire it and support lasting recovery.",
   heroImage: "/Assets/Blogs/addiction-treatment-and-the-brain-how-therapy-and-medication-can-help-rewire-your-mind.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-10-16",
   dateModified: "2024-10-16",

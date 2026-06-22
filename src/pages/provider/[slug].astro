@@ -17,7 +17,7 @@ const initials = (() => {
   return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
 })();
 const bioParas = p.bio ? p.bio.split("\n\n") : [];
-const metaDesc = p.bio ? p.bio.replace(/\s+/g, " ").slice(0, 155) : `${p.name} — ${p.role} at Hopewell Health Solutions, Glastonbury & West Hartford, CT.`;
+const metaDesc = p.bio ? p.bio.replace(/\s+/g, " ").slice(0, 155) : `${p.name} — ${p.role} at Hopewell Health Solutions, Glastonbury, Westbrook & West Hartford, CT.`;
 const schema = {
   "@context": "https://schema.org",
   "@type": "Person",

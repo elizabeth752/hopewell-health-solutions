@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "A comprehensive guide to medication management: its key components, benefits, common challenges, supporting tools, and who can benefit most.",
   heroImage: "/Assets/Blogs/what-is-medication-management-a-comprehensive-guide-to-effective-treatment.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-10-16",
   dateModified: "2024-10-16",

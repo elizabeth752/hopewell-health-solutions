@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "An overview of how SSRIs influence serotonin in the brain and why they are important for treating depression, anxiety, and related conditions.",
   heroImage: "/Assets/Blogs/ssris-how-do-they-work-why-are-they-important.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-02-17",
   dateModified: "2025-02-17",

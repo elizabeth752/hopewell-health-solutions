@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "How Spravato (esketamine) works, how it's administered, and whether it may be right for adults with treatment-resistant depression.",
   heroImage: "/Assets/Blogs/what-is-spravato-and-how-can-it-help.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-11-20",
   dateModified: "2024-11-20",

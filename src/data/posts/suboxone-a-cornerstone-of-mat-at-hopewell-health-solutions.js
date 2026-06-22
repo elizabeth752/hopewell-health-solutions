@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "An overview of Suboxone as a medication-assisted treatment for opioid addiction at Hopewell Health Solutions, how it works, and what to expect.",
   heroImage: "/Assets/Blogs/suboxone-a-cornerstone-of-mat-at-hopewell-health-solutions.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "katherine-salvador-pa-c",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-04-28",
   dateModified: "2025-04-28",

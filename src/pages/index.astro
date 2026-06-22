@@ -16,10 +16,10 @@ const trustMarks = [
   ["Recovery.com Verified Provider", C + "recovery-verified.png"],
 ];
 const usps = [
-  { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough." },
+  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Intensive Outpatient (IOP) & Partial Hospitalization (PHP) — for women, teens, tweens, first responders & substance use. Built for who you are." },
+  { icon: "users", t: "Real, in-person care", d: "While others go all-virtual, our IOP, PHP, therapy and medication management happen face to face — human to human, with telehealth when you need it." },
   { icon: "dna", t: "GeneSight® genetic testing", d: "A simple cheek swab shows which medications fit your DNA — so we skip the trial-and-error." },
-  { icon: "users", t: "50+ specialists you’ll actually meet", d: "Psychologists, psychiatric NPs & trauma experts — matched to you by name, not an algorithm." },
-  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Women’s, Teen, Tween, Substance Use & First Responder IOP — built for who you are." },
+  { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough." },
 ];
 const programs = [
   { t: "Adult IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", icon: "users", img: "/Assets/AdobeStock_403830351.webp" },
@@ -66,15 +66,15 @@ const insurers = [
   ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
   ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
 ];
-// Doctoral-level clinicians (PhD / PsyD) — the practice's psychologists.
+// Featured team — prescribers first, then founder & psychologists.
 const team = [
+  ["Katrin Moskowitz, DNP","Psychiatric NP","/Assets/Team%20Members/katrin-moskowitz-dnp-pmhnp-bc-fnp.webp","/provider/katrin-moskowitz-dnp-pmhnp-bc-fnp/"],
+  ["Tracy Sibley, PMHNP-BC","Psychiatric NP","/Assets/Team%20Members/tracy-sibley-pmhnp-bc-aprn.webp","/provider/tracy-sibley-pmhnp-bc-aprn/"],
+  ["Christopher Patenaude, PA","Physician Assistant","/Assets/Team%20Members/chris-patenaude-pa.webp","/provider/chris-patenaude-pa/"],
   ["Kristine A. Schlichting, PhD","Founder & Director","/Assets/Team%20Members/kristine-a-schlichting-phd.webp","/provider/kristine-a-schlichting-ph-d/"],
   ["Eric Schwartz, PsyD, ABPP","Psychologist","/Assets/Team%20Members/eric-schwarz-psyd-abpp.webp","/provider/eric-schwartz-psy-d-abpp/"],
   ["Laura Miller, PhD","Neuropsychologist","/Assets/Team%20Members/laura-miller-phd.webp","/provider/laura-miller-ph-d/"],
   ["Ashley Singh, PsyD","Psychologist","/Assets/Team%20Members/ashley-singh-psyd.webp","/provider/ashley-singh-psy-d/"],
-  ["Chris Barclay, PhD, BCBA","School Psychologist","/Assets/Team%20Members/chris-barclay-phd-bcba-ncsp.webp","/provider/chris-barclay-ph-d-bcba-ncsp/"],
-  ["Patricia Nogelo, PhD, LCSW","Psychologist","/Assets/Team%20Members/patricia-nogelo-phd-lcsw.webp","/provider/patricia-nogelo-ph-d-lcsw/"],
-  ["Bido Aguessy, PsyD","Psychologist","/Assets/Team%20Members/bido-aguessey-psyd-lpc-a.webp","/provider/bido-aguessy-psy-d-lpc-a/"],
 ];
 const locations = [
   ["Glastonbury — Pratt St", "33 Pratt St", "Glastonbury, CT 06033", "/location/glastonbury-ct/"],
@@ -108,7 +108,7 @@ const orgSchema = {
   "@type": "MedicalBusiness",
   "@id": SITE + "/#organization",
   name: "Hopewell Health Solutions",
-  alternateName: "Hopewell Health Solutions and Psychiatry, Inc.",
+  alternateName: "Hopewell Health Solutions, LLC.",
   url: SITE + "/",
   logo: SITE + "/Assets/logo/hopewell-hhs-logo.svg",
   image: SITE + "/Assets/full%20team%20happy.webp",
@@ -153,13 +153,13 @@ const orgSchema = {
 };
 ---
 
-<Base title="Mental Health & Psychiatry in Glastonbury & West Hartford, CT | Hopewell Health Solutions" description="Hopewell Health Solutions — Connecticut’s trusted outpatient mental-health & psychiatry team. IOP, PHP, TMS, Spravato® & medication management across Glastonbury, West Hartford, East Hampton & Westbrook. 4.8★, Joint Commission accredited. Verify your insurance." canonical={SITE + "/"}>
+<Base title="Mental Health & Psychiatry in Glastonbury, Westbrook & West Hartford, CT | Hopewell Health Solutions" description="Hopewell Health Solutions — Connecticut’s trusted outpatient mental-health & psychiatry team. IOP, PHP, TMS, Spravato® & medication management across Glastonbury, West Hartford, East Hampton & Westbrook. 4.8★, Joint Commission accredited. Verify your insurance." canonical={SITE + "/"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-[3fr_2fr] gap-12 items-center">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Glastonbury · West Hartford · East Hampton · Westbrook, CT</p>
         <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Mental Health &amp; Psychiatry in Connecticut</h1>
@@ -342,7 +342,7 @@ const orgSchema = {
   <section id="team" class="bg-crema scroll-mt-20">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Meet the People Who’ll Walk Beside You</h2>
-      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">Led by our doctoral-level psychologists (PhD &amp; PsyD) — part of a team of 50+ licensed clinicians across Connecticut. Real credentials. Real names. Real relationships.</p>
+      <p class="mt-3 text-center text-muted max-w-2xl mx-auto">A diverse, board-certified team of 50+ licensed clinicians across Connecticut — prescribers, psychologists, and therapists. Real credentials. Real names. Real relationships.</p>
       <div class="mt-10 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
         {team.map(([name, role, img, href]) => (
           <a href={href} class="group text-center w-[44%] sm:w-[31%] max-w-[200px]">

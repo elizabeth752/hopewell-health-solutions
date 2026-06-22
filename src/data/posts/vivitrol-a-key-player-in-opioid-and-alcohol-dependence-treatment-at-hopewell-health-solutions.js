@@ -6,7 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "Vivitrol, a once-monthly injectable naltrexone used in Hopewell's MAT program, supports recovery from opioid and alcohol dependence.",
   heroImage: "/Assets/Blogs/vivitrol-a-key-player-in-opioid-and-alcohol-dependence-treatment-at-hopewell-health-solutions.webp",
-  authorSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  authorSlug: "katherine-salvador-pa-c",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-05-05",
   dateModified: "2025-05-05",
