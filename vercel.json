@@ -6,7 +6,7 @@
     { "source": "/schedule", "destination": "/", "permanent": true },
     { "source": "/social-media", "destination": "/", "permanent": true },
 
-    { "source": "/about", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/about", "destination": "/about-us/", "permanent": true },
     { "source": "/providers", "destination": "/about-us/team/", "permanent": true },
     { "source": "/eric-schwartz-psyd-abpp", "destination": "/provider/eric-schwartz-psy-d-abpp/", "permanent": true },
 
