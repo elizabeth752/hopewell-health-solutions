@@ -1,5 +1,11 @@
 ---
-// Reusable CTM lead form. Fields: name · phone · insurance carrier · member/policy ID.
+// Reusable CTM lead form — posts directly to CallTrackingMetrics FormReactor.
+// Field map → CTM:
+//   Full name        → caller_name
+//   Phone            → phone_number (normalized to E.164, +1…)
+//   Insurance carrier→ custom_fields[insurance_carrier]
+//   Member/Policy ID → custom_fields[membership_policy_id]
+//   gclid + ValueTrack from the landing URL → paid_attribution[…]
 const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false } = Astro.props;
 const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCare","Evernorth","Harvard Pilgrim","Magellan","Meritain","Optum","TRICARE","UMR","UnitedHealthcare","VA Community Care","Other / Not sure"];
 const pad = compact ? "py-2.5" : "py-3";
@@ -7,15 +13,92 @@ const pad = compact ? "py-2.5" : "py-3";
 <div class="rounded-2xl bg-white shadow-xl border border-line p-6">
   <h2 class="font-display text-2xl text-ink">{heading}</h2>
   <p class="text-sm text-muted mt-1">{sub}</p>
-  <form class="mt-4 space-y-3" onsubmit="return false">
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" placeholder="Full name" required />
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="tel" placeholder="Phone" required />
-    <select class={`w-full rounded-lg border border-line px-4 ${pad} text-sm text-muted`} required>
+  <form class="ctm-lead-form mt-4 space-y-3" novalidate>
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="caller_name" placeholder="Full name" autocomplete="name" required />
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="tel" name="phone_number" placeholder="Phone" autocomplete="tel" required />
+    <select class={`w-full rounded-lg border border-line px-4 ${pad} text-sm text-muted`} name="insurance_carrier" required>
       <option value="">Insurance carrier</option>
       {carriers.map((c) => <option value={c}>{c}</option>)}
     </select>
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" placeholder="Member / Policy ID" />
-    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
-    <button class="w-full rounded-lg bg-azul py-3 font-semibold text-white hover:bg-azul-dark transition">Verify My Insurance →</button>
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="membership_policy_id" placeholder="Member / Policy ID" />
+    <!-- honeypot: bots fill this; humans never see it -->
+    <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="consent" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
+    <button type="submit" class="w-full rounded-lg bg-azul py-3 font-semibold text-white hover:bg-azul-dark transition disabled:opacity-60">Verify My Insurance →</button>
+    <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
 </div>
+
+<script>
+  const ENDPOINT = "https://api.calltrackingmetrics.com/api/v1/formreactor/FRT472ABB2C5B9B141A2C5FD685C3B99AA7C4D9E51C77A5713BC9CA7A5614657D23?key=yYBso7xF0eLA7muEfQpyXvOXWoolLLAcWJPbTqcZquLAGpCg";
+  const FORM_ID = "hopewell-website-lead";
+  const ATTR_KEYS = ["gclid","gbraid","wbraid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
+
+  // Capture ad attribution from the landing URL and persist it across the visit.
+  (function captureAttribution() {
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const stored = JSON.parse(localStorage.getItem("hhs_attr") || "{}");
+      let changed = false;
+      ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) { stored[k] = v; changed = true; } });
+      if (changed) localStorage.setItem("hhs_attr", JSON.stringify(stored));
+    } catch (e) {}
+  })();
+  function getAttr() { try { return JSON.parse(localStorage.getItem("hhs_attr") || "{}"); } catch (e) { return {}; } }
+
+  function toE164(raw) {
+    const d = (raw || "").replace(/\D/g, "");
+    if (d.length === 10) return "+1" + d;
+    if (d.length === 11 && d[0] === "1") return "+" + d;
+    return d ? "+" + d : "";
+  }
+
+  function bind(form) {
+    const msg = form.querySelector(".ctm-form-msg");
+    const btn = form.querySelector('button[type="submit"]');
+    const show = (text, ok) => {
+      msg.textContent = text;
+      msg.className = "ctm-form-msg text-sm rounded-lg px-3 py-2 " + (ok ? "bg-sage-light text-sage" : "bg-gold-light text-ink");
+    };
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const get = (n) => (form.querySelector(`[name="${n}"]`) || {}).value || "";
+      // honeypot + consent guards
+      if (get("company_website")) return;
+      if (!form.querySelector('[name="consent"]').checked) { show("Please agree to be contacted so we can reach you.", false); return; }
+      const phone = toE164(get("phone_number"));
+      if (phone.length < 12) { show("Please enter a valid phone number.", false); return; }
+
+      const body = new URLSearchParams();
+      body.set("phone_number", phone);
+      if (get("caller_name")) body.set("caller_name", get("caller_name"));
+      if (get("insurance_carrier")) body.set("custom_fields[insurance_carrier]", get("insurance_carrier"));
+      if (get("membership_policy_id")) body.set("custom_fields[membership_policy_id]", get("membership_policy_id"));
+      const a = getAttr();
+      if (a.gclid) body.set("paid_attribution[gclid]", a.gclid);
+      if (a.campaignid) body.set("paid_attribution[campaign_id]", a.campaignid);
+      if (a.adgroupid) body.set("paid_attribution[adgroup_id]", a.adgroupid);
+      if (a.creative) body.set("paid_attribution[creative_id]", a.creative);
+      body.set("paid_attribution[form_id]", FORM_ID);
+
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = "Sending…";
+      try {
+        const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() });
+        if (!res.ok) throw new Error("Bad status " + res.status);
+        form.reset();
+        show("Thank you — we’ve got your info and will reach out shortly.", true);
+        // GA4/GTM conversion event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "generate_lead", form_id: FORM_ID });
+      } catch (err) {
+        show("Something went wrong. Please call us at (860) 735-1448 and we’ll help right away.", false);
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  }
+
+  document.querySelectorAll(".ctm-lead-form").forEach(bind);
+</script>
