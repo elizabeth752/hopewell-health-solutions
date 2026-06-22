@@ -1,8 +1,60 @@
 {
   "redirects": [
+    { "source": "/index", "destination": "/", "permanent": true },
+
     { "source": "/contact-us", "destination": "/admissions/", "permanent": true },
     { "source": "/schedule", "destination": "/", "permanent": true },
     { "source": "/social-media", "destination": "/", "permanent": true },
-    { "source": "/content/what-is-emdr-therapy", "destination": "/treatment-methods/emdr/", "permanent": true }
+
+    { "source": "/about", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/providers", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/eric-schwartz-psyd-abpp", "destination": "/provider/eric-schwartz-psy-d-abpp/", "permanent": true },
+
+    { "source": "/our-terms", "destination": "/terms/", "permanent": true },
+    { "source": "/your-privacy", "destination": "/privacy/", "permanent": true },
+    { "source": "/accessibility-statement", "destination": "/accessibility/", "permanent": true },
+    { "source": "/blog-archive", "destination": "/blog/", "permanent": true },
+    { "source": "/contents", "destination": "/programs/", "permanent": true },
+    { "source": "/services", "destination": "/programs/", "permanent": true },
+
+    { "source": "/glastonbury", "destination": "/location/glastonbury-ct/", "permanent": true },
+    { "source": "/west-hartford", "destination": "/location/west-hartford-ct/", "permanent": true },
+    { "source": "/east-hampton", "destination": "/location/east-hampton-ct/", "permanent": true },
+
+    { "source": "/tweenteen-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/womens-wellness-iop", "destination": "/programs/womens-wellness-iop/", "permanent": true },
+    { "source": "/womens-trauma", "destination": "/programs/womens-trauma-iop/", "permanent": true },
+    { "source": "/adult-mental-health-iop", "destination": "/programs/adult-mental-health-iop/", "permanent": true },
+    { "source": "/first-responder-iop", "destination": "/programs/first-responder-iop/", "permanent": true },
+    { "source": "/partial-hospitalization-program", "destination": "/programs/partial-hospitalization-program/", "permanent": true },
+    { "source": "/medication-management", "destination": "/programs/medication-management/", "permanent": true },
+    { "source": "/medication-management-service", "destination": "/programs/medication-management/", "permanent": true },
+    { "source": "/spravato", "destination": "/treatment-methods/spravato/", "permanent": true },
+    { "source": "/hhs-therapeutic-treatments", "destination": "/treatment-methods/therapeutic-treatments/", "permanent": true },
+    { "source": "/neuropsychological-psychological-testing", "destination": "/treatment-methods/neuropsychological-testing/", "permanent": true },
+
+    { "source": "/service/intensive-outpatient-program", "destination": "/programs/intensive-outpatient-program/", "permanent": true },
+    { "source": "/service/spravato", "destination": "/treatment-methods/spravato/", "permanent": true },
+    { "source": "/service/medication-management", "destination": "/programs/medication-management/", "permanent": true },
+    { "source": "/service/counseling", "destination": "/programs/counseling/", "permanent": true },
+    { "source": "/service/hhs-therapeutic-treatments", "destination": "/treatment-methods/therapeutic-treatments/", "permanent": true },
+    { "source": "/service/neuropsychological-testing", "destination": "/treatment-methods/neuropsychological-testing/", "permanent": true },
+    { "source": "/service/tms", "destination": "/treatment-methods/tms/", "permanent": true },
+    { "source": "/service/adhd-testing", "destination": "/treatment-methods/adhd-testing/", "permanent": true },
+    { "source": "/service/s-u-d-treatment", "destination": "/what-we-treat/substance-use-disorder/", "permanent": true },
+    { "source": "/service/alcohol-dependence-treatment", "destination": "/what-we-treat/alcohol/", "permanent": true },
+    { "source": "/service/drug-dependence-treatment", "destination": "/what-we-treat/drug/", "permanent": true },
+    { "source": "/service/prescription-drug-dependence-treatment", "destination": "/what-we-treat/prescription-drugs/", "permanent": true },
+
+    { "source": "/content/what-is-emdr-therapy", "destination": "/treatment-methods/emdr/", "permanent": true },
+    { "source": "/content/intensive-outpatient", "destination": "/programs/intensive-outpatient-program/", "permanent": true },
+    { "source": "/content/adult-intensive-outpatient-program", "destination": "/programs/adult-mental-health-iop/", "permanent": true },
+    { "source": "/content/addiction-intensive-outpatient-program", "destination": "/programs/substance-use-iop/", "permanent": true },
+    { "source": "/content/womens-trauma-intensive-outpatient-program", "destination": "/programs/womens-trauma-iop/", "permanent": true },
+    { "source": "/content/psychiatric-care--medication-management", "destination": "/programs/medication-management/", "permanent": true },
+    { "source": "/content/spravato", "destination": "/treatment-methods/spravato/", "permanent": true },
+    { "source": "/content/hhs-therapeutic-treatments", "destination": "/treatment-methods/therapeutic-treatments/", "permanent": true },
+    { "source": "/content/neuropsychologicalpsychological-testing", "destination": "/treatment-methods/neuropsychological-testing/", "permanent": true },
+    { "source": "/content/rates-and-insurance-coverage", "destination": "/rates-and-insurance-coverage/", "permanent": true }
   ]
 }
