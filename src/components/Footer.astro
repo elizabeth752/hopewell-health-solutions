@@ -14,9 +14,25 @@ const directories = [
   { label: "BBB", href: "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396", icon: D + "BBB.png" },
 ];
 const cols = [
-  { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
-  { h: "What We Treat", links: ["Depression", "Anxiety", "Trauma & PTSD", "Substance Use", "ADHD"] },
-  { h: "Treatments", links: ["TMS", "Spravato®", "EMDR", "GeneSight®"] },
+  { h: "Programs", links: [
+    ["Intensive Outpatient (IOP)", "/programs/intensive-outpatient-program/"],
+    ["Partial Hospitalization (PHP)", "/programs/partial-hospitalization-program/"],
+    ["Medication Management", "/programs/medication-management/"],
+    ["Outpatient Therapy", "/programs/counseling/"],
+  ] },
+  { h: "What We Treat", links: [
+    ["Depression", "/what-we-treat/depression/"],
+    ["Anxiety", "/what-we-treat/anxiety/"],
+    ["Trauma & PTSD", "/what-we-treat/trauma-ptsd/"],
+    ["Substance Use", "/what-we-treat/substance-use-disorder/"],
+    ["ADHD", "/what-we-treat/adhd/"],
+  ] },
+  { h: "Treatments", links: [
+    ["TMS", "/treatment-methods/tms/"],
+    ["Spravato®", "/treatment-methods/spravato/"],
+    ["EMDR", "/treatment-methods/emdr/"],
+    ["GeneSight®", "/treatment-methods/genesight-testing/"],
+  ] },
 ];
 ---
 <footer class="bg-ink text-white/80">
@@ -34,7 +50,7 @@ const cols = [
         <div>
           <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">{c.h}</h4>
           <ul class="space-y-2 text-sm">
-            {c.links.map((l) => <li><a href="#" class="hover:text-white transition">{l}</a></li>)}
+            {c.links.map(([label, href]) => <li><a href={href} class="hover:text-white transition">{label}</a></li>)}
           </ul>
         </div>
       ))}

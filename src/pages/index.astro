@@ -178,7 +178,7 @@ const orgSchema = {
           </div>
         </div>
       </div>
-      <div id="verify" class="scroll-mt-28"><LeadForm /></div>
+      <div id="verify" class="scroll-mt-28 hidden lg:block"><LeadForm /></div>
     </div>
   </section>
 
@@ -194,14 +194,14 @@ const orgSchema = {
           <img src="/Assets/Guy%20facing%20the%20horizon.webp" alt="Beginning your own healing journey" loading="lazy" class="h-44 w-full object-cover" />
           <div class="p-7 flex gap-4">
             <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="heart" class="h-6 w-6" /></span>
-            <div><h3 class="font-display text-2xl text-ink">Help for myself</h3><p class="mt-1 text-muted">Taking the first step takes courage. We’ll make the next ones simple.</p><a href="#programs" class="mt-3 inline-block font-semibold text-azul">Find my program →</a></div>
+            <div><h3 class="font-display text-2xl text-ink">Help for myself</h3><p class="mt-1 text-muted">Taking the first step takes courage. We’ll make the next ones simple.</p><a href="/programs/" class="mt-3 inline-block font-semibold text-azul">Find my program →</a></div>
           </div>
         </div>
         <div class="rounded-2xl border border-line bg-crema overflow-hidden flex flex-col">
           <img src="/Assets/couple%20hugging.webp" alt="Supporting a loved one who is struggling" loading="lazy" class="h-44 w-full object-cover" />
           <div class="p-7 flex gap-4">
             <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-azul text-white"><Icon name="users" class="h-6 w-6" /></span>
-            <div><h3 class="font-display text-2xl text-ink">Help for someone I love</h3><p class="mt-1 text-muted">A child, partner, or parent who’s struggling? We’ll help you help them.</p><a href="#verify" class="mt-3 inline-block font-semibold text-azul">Get guidance →</a></div>
+            <div><h3 class="font-display text-2xl text-ink">Help for someone I love</h3><p class="mt-1 text-muted">A child, partner, or parent who’s struggling? We’ll help you help them.</p><a href="/admissions/#for-families" class="mt-3 inline-block font-semibold text-azul">Get guidance →</a></div>
           </div>
         </div>
       </div>
@@ -485,10 +485,14 @@ const orgSchema = {
     <div class="mx-auto max-w-3xl px-5 py-16 text-center">
       <h2 class="font-display text-3xl sm:text-4xl text-white">You Don’t Have to Do This Alone.</h2>
       <p class="mt-4 text-white/85 text-lg">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. There is hope to heal, and it can start right now.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <!-- desktop: the form lives in the hero, so these scroll/call -->
+      <div class="mt-7 hidden lg:flex flex-wrap justify-center gap-3">
         <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
         <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
       </div>
+      <!-- mobile: the lead form lives here instead of the hero -->
+      <div class="mt-8 lg:hidden text-left"><LeadForm /></div>
+      <a href="tel:8607351448" class="mt-5 lg:hidden inline-flex items-center justify-center gap-2 font-semibold text-white"><Icon name="phone" class="h-4 w-4" />Prefer to talk? Call (860) 735-1448</a>
     </div>
   </section>
 
