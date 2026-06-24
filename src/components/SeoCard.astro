@@ -1,0 +1,83 @@
+---
+// Technical-SEO header shown on each Content Studio page document.
+interface Meta {
+  title: string;
+  desc: string;
+  h1: string;
+  canonical: string;
+  headings: string;
+  schema: string[];
+  reviewer?: string | null;
+  social: string;
+  interlinks: string[];
+}
+const { meta } = Astro.props as { meta: Meta };
+// Full business name "Hopewell Health Solutions" runs long by design (NAP+W) — allow up to 65
+const titleOk = meta.title.length >= 45 && meta.title.length <= 65;
+const descOk = meta.desc.length >= 140 && meta.desc.length <= 160;
+const pill = (ok: boolean) =>
+  ok ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-800";
+---
+
+<div class="rounded-lg border border-azul bg-white p-6 max-w-4xl">
+  <p class="text-sm font-semibold text-ink mb-4">
+    🔧 Technical SEO — embedded in this page
+  </p>
+
+  <dl class="space-y-3 text-sm">
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted flex items-center gap-2">
+        Meta title
+        <span class={`rounded-full px-2 py-0.5 text-[10px] font-bold ${pill(titleOk)}`}>{meta.title.length} chars · target 50–60</span>
+      </dt>
+      <dd class="text-ink font-medium mt-0.5">{meta.title}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted flex items-center gap-2">
+        Meta description
+        <span class={`rounded-full px-2 py-0.5 text-[10px] font-bold ${pill(descOk)}`}>{meta.desc.length} chars · target 150–160</span>
+      </dt>
+      <dd class="text-ink mt-0.5">{meta.desc}</dd>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-3">
+      <div>
+        <dt class="text-xs font-semibold uppercase tracking-wide text-muted">H1 (one per page)</dt>
+        <dd class="text-ink mt-0.5">{meta.h1}</dd>
+      </div>
+      <div>
+        <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Canonical</dt>
+        <dd class="text-ink mt-0.5 font-mono text-xs break-all">{meta.canonical}</dd>
+      </div>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Heading hierarchy</dt>
+      <dd class="text-ink mt-0.5">{meta.headings}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted mb-1">Schema markup</dt>
+      <dd class="flex flex-wrap gap-1.5">
+        {meta.schema.map((s) => <span class="rounded-full bg-azul-light text-azul text-xs font-semibold px-2.5 py-1">{s}</span>)}
+      </dd>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted mb-1">Interlinks (built into copy)</dt>
+      <dd>
+        <ul class="space-y-0.5">
+          {meta.interlinks.map((l) => <li class="text-ink flex gap-2"><span class="text-azul font-bold">→</span><span class="font-mono text-xs">{l}</span></li>)}
+        </ul>
+      </dd>
+    </div>
+    <div class={`rounded-md p-3 ${meta.reviewer ? "bg-green-50 border border-green-200" : "bg-crema border border-line"}`}>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Medical reviewer (E-E-A-T)</dt>
+      <dd class="text-ink mt-0.5">{meta.reviewer ?? "N/A — non-clinical page (no reviewer byline needed)"}</dd>
+    </div>
+    <div>
+      <dt class="text-xs font-semibold uppercase tracking-wide text-muted">Social</dt>
+      <dd class="text-ink mt-0.5">{meta.social}</dd>
+    </div>
+  </dl>
+
+  <p class="mt-4 border-t border-line pt-3 text-xs text-muted">
+    <strong class="text-ink">Global (every page):</strong> self-canonical · Open Graph + Twitter cards · BreadcrumbList schema · descriptive alt text on every image · varied internal anchor text · mobile + Core Web Vitals. <strong class="text-ink">Organization + MedicalBusiness schema</strong> is implemented once in the site shell and inherited everywhere.
+  </p>
+</div>

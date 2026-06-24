@@ -1,0 +1,97 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  wide?: boolean;
+}
+const { title, subtitle, wide = false } = Astro.props;
+const wrap = wide ? "max-w-[1480px]" : "max-w-6xl";
+
+const tabs = [
+  { href: "/review/", label: "Overview" },
+  { href: "/review/content/", label: "Content" },
+  { href: "/review/branding/", label: "Branding" },
+  { href: "/review/wiki/", label: "Client Wiki" },
+  { href: "/review/architecture/", label: "Architecture" },
+  { href: "/review/redirects/", label: "Redirect Map" },
+];
+
+// Normalize current path for active-tab matching (trailingSlash: always)
+const path = Astro.url.pathname.replace(/\/+$/, "/") || "/review/";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title} · Hopewell Internal Review</title>
+  </head>
+  <body class="bg-crema">
+    <!-- Internal banner -->
+    <div class="bg-ink text-white text-xs tracking-wide text-center py-1.5 px-4">
+      INTERNAL REVIEW — not part of the public site · Hopewell Health Solutions ·
+      elev8
+    </div>
+
+    <!-- Header + tabs -->
+    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-line">
+      <div class={`mx-auto ${wrap} px-6`}>
+        <div class="flex items-center justify-between py-4">
+          <a href="/review/" class="flex items-center gap-2.5">
+            <span
+              class="grid h-8 w-8 place-items-center rounded-md bg-azul text-white font-display text-lg leading-none"
+              >H</span
+            >
+            <span class="font-display text-lg text-ink">Hopewell</span>
+            <span class="text-muted text-sm">/ review</span>
+          </a>
+          <a
+            href="/"
+            class="text-sm font-semibold text-azul hover:text-azul-dark transition"
+            >View site →</a
+          >
+        </div>
+        <nav class="flex gap-1 overflow-x-auto -mb-px">
+          {
+            tabs.map((t) => {
+              const active = path === t.href;
+              return (
+                <a
+                  href={t.href}
+                  class={`whitespace-nowrap px-4 py-3 text-sm font-semibold border-b-2 transition ${
+                    active
+                      ? "border-azul text-azul"
+                      : "border-transparent text-muted hover:text-ink"
+                  }`}
+                >
+                  {t.label}
+                </a>
+              );
+            })
+          }
+        </nav>
+      </div>
+    </header>
+
+    <!-- Page title -->
+    <div class={`mx-auto ${wrap} px-6 pt-10 pb-6`}>
+      <h1 class="font-display text-4xl text-ink">{title}</h1>
+      {subtitle && <p class="mt-2 text-muted text-lg max-w-2xl">{subtitle}</p>}
+    </div>
+
+    <main class={`mx-auto ${wrap} px-6 pb-24`}>
+      <slot />
+    </main>
+  </body>
+</html>

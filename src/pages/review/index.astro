@@ -1,0 +1,64 @@
+---
+import Review from "../../layouts/Review.astro";
+
+const cards = [
+  {
+    href: "/review/branding/",
+    title: "Brand Board",
+    desc: "Colors, typography, buttons & UI tokens — the live design system.",
+    meta: "Azul · Crema · Navy · Baskervville + Urbanist",
+  },
+  {
+    href: "/review/wiki/",
+    title: "Client Wiki",
+    desc: "Everything we know about Hopewell — services, locations, ICP, payers, team, compliance.",
+    meta: "Synthesized from 7 call docs",
+  },
+  {
+    href: "/review/architecture/",
+    title: "Site Architecture",
+    desc: "The ideal folder taxonomy — programs, conditions, therapies, locations, admissions.",
+    meta: "Existing + net-new pages",
+  },
+  {
+    href: "/review/redirects/",
+    title: "Redirect Map",
+    desc: "Every old Tebra URL → its new home. 301 plan to kill the cannibalization.",
+    meta: "Blog = phase 2",
+  },
+];
+---
+
+<Review
+  title="Project Review"
+  subtitle="A visual workspace for the Hopewell rebuild. Review the brand, the knowledge base, the new architecture, and the migration plan — then we build."
+>
+  <div class="grid gap-5 sm:grid-cols-2">
+    {
+      cards.map((c) => (
+        <a
+          href={c.href}
+          class="group rounded-2xl border border-line bg-white p-7 transition hover:border-azul hover:shadow-lg"
+        >
+          <h2 class="font-display text-2xl text-ink group-hover:text-azul transition">
+            {c.title}
+          </h2>
+          <p class="mt-2 text-muted">{c.desc}</p>
+          <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-azul">
+            {c.meta}
+          </p>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-10 rounded-2xl bg-azul-light border border-line p-7">
+    <h3 class="font-display text-xl text-ink">Where we are</h3>
+    <ul class="mt-3 space-y-1.5 text-muted">
+      <li>✅ Repo connected, Astro + Tailwind scaffold live, brand wired</li>
+      <li>✅ 47 team photos + 12 insurance logos loaded</li>
+      <li>✅ Client wiki, ideal architecture & full redirect map drafted</li>
+      <li>⏳ Next: lock architecture decisions → build the homepage</li>
+    </ul>
+  </div>
+</Review>

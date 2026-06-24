@@ -1,0 +1,152 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/admissions";
+
+const steps = [
+  { icon: "phone", t: "Reach out", d: "Call us, or request a confidential callback — no commitment." },
+  { icon: "shield", t: "Verify insurance", d: "We check your benefits for you — free, in minutes." },
+  { icon: "clipboard", t: "Assessment", d: "A clinical assessment matches you to the right care." },
+  { icon: "compass", t: "Begin care", d: "Start at the right level — and adjust as you heal." },
+];
+const expect = [
+  { icon: "phone", t: "A real person, not a portal", d: "When you call, you’ll reach a caring member of our team — never an automated maze." },
+  { icon: "shield", t: "A free benefits check", d: "We verify your insurance for you, so you know your coverage before you commit to anything." },
+  { icon: "clipboard", t: "A thorough assessment", d: "A clinical assessment matches you with the right clinician and the right level of care." },
+  { icon: "compass", t: "A plan built around you", d: "You’ll start at the level that fits — and we adjust the plan as you heal." },
+];
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
+  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+];
+---
+
+<Base title="Admissions — Get Started | Hopewell Health Solutions" description="Getting started at Hopewell Health Solutions in Connecticut is simple. Verify your insurance, learn what to expect, and reach our team — confidentially, with no pressure. In person & telehealth." canonical={canonical}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <nav class="text-xs text-muted mb-5"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Admissions</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Getting started</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Admissions Made Simple</h1>
+      <div class="mx-auto mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-5 text-lg text-muted">Reaching out is the hardest part — we handle the rest. From your first call to your first session, the Hopewell Health Solutions team makes admissions simple, confidential, and pressure-free.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Verify Your Insurance →</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">How admissions works</h2>
+      <p class="mt-3 text-center text-muted">Four simple steps — and a real person with you the whole way.</p>
+      <div class="mt-12 grid md:grid-cols-4 gap-y-10 md:gap-0 relative">
+        <div class="hidden md:block absolute top-7 left-[12.5%] right-[12.5%] h-0.5 bg-line"></div>
+        {steps.map((s, i) => (
+          <div class="relative text-center px-4">
+            <span class="relative z-10 grid h-14 w-14 mx-auto place-items-center rounded-full bg-azul text-white ring-8 ring-white"><Icon name={s.icon} class="h-7 w-7" /></span>
+            <div class="mt-1 text-xs font-bold uppercase tracking-wide text-azul">Step {i + 1}</div>
+            <h3 class="mt-1 font-display text-lg text-ink">{s.t}</h3>
+            <p class="mt-1 text-sm text-muted">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section id="what-to-expect" class="bg-crema scroll-mt-24">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">No surprises</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What to expect</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">From the first call to your first session, here’s what working with us looks like.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {expect.map((e) => (
+          <div class="rounded-2xl border border-line bg-white p-6">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul-light text-azul"><Icon name={e.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{e.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{e.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY INSURANCE -->
+  <section class="bg-white">
+    <div id="verify" class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start scroll-mt-28">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance & rates</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Verify your insurance — free</h2>
+        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and walks you through your options before you commit to anything.</p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {insurers.map(([name, img]) => (
+            <div class="rounded-xl bg-crema border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-muted">+ most major PPOs · <a href="/rates-and-insurance-coverage/" class="text-azul font-semibold">See full rates &amp; insurance details</a></p>
+      </div>
+      <div class="lg:sticky lg:top-28"><LeadForm heading="Request a confidential callback" sub="Free insurance check. No pressure. We’ll call you back with a full benefits breakdown." /></div>
+    </div>
+  </section>
+
+  <!-- FOR FAMILIES -->
+  <section id="for-families" class="bg-crema scroll-mt-24">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/full%20team%20happy.webp" alt="Support for families at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-80 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">For families & loved ones</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Helping someone you love</h2>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">Watching a child, partner, or parent struggle is one of the hardest things there is. You don’t need a diagnosis or all the answers to reach out — call us, and we’ll help you understand the options and figure out the right next step.</p>
+        <p class="mt-3 text-ink leading-relaxed text-[17px]">Our teen and tween programs weave families directly into the work, and our team is always glad to talk through how to support a loved one with compassion and patience.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-6 py-3 text-sm font-semibold text-white hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+          <a href="#verify" class="inline-flex items-center gap-2 rounded-lg border border-azul px-6 py-3 text-sm font-semibold text-azul hover:bg-azul-light transition">Get guidance</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Reach out</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Contact our team</h2>
+      <p class="mt-3 text-muted">We’re here to answer questions, verify benefits, or just talk through your options — confidentially, with no pressure.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-xl bg-crema border border-line px-6 py-4 font-semibold text-ink hover:border-azul transition"><Icon name="phone" class="h-5 w-5 text-azul" />(860) 735-1448</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-xl bg-crema border border-line px-6 py-4 font-semibold text-ink hover:border-azul transition"><Icon name="clipboard" class="h-5 w-5 text-azul" />hhs4help@gmail.com</a>
+        <a href="/locations/" class="inline-flex items-center gap-2 rounded-xl bg-crema border border-line px-6 py-4 font-semibold text-ink hover:border-azul transition"><Icon name="pin" class="h-5 w-5 text-azul" />Our 6 CT locations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready when you are</h2>
+      <p class="mt-4 text-white/85 text-lg">Whether it’s for you or someone you love, reaching out is the first step. We’ll take it from there.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

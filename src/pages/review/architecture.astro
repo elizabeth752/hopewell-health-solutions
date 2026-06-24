@@ -1,0 +1,121 @@
+---
+import Review from "../../layouts/Review.astro";
+
+// status: EXISTS | REBUILD | MIGRATE | NEW
+const tree = [
+  { path: "/", label: "Home", status: "REBUILD", depth: 0 },
+  { path: "/programs/", label: "Programs — levels of care", status: "NEW", depth: 0, hub: true },
+  { path: "/programs/intensive-outpatient-program/", label: "IOP overview", status: "MIGRATE", depth: 1 },
+  { path: "/programs/adult-mental-health-iop/", label: "Adult Mental Health IOP", status: "REBUILD", depth: 1 },
+  { path: "/programs/mens-iop/", label: "Men's IOP", status: "NEW", depth: 1 },
+  { path: "/programs/womens-wellness-iop/", label: "Women's Wellness IOP", status: "REBUILD", depth: 1 },
+  { path: "/programs/teen-iop/", label: "Teen IOP (13–17)", status: "REBUILD", depth: 1 },
+  { path: "/programs/tween-iop/", label: "Tween IOP (8–12)", status: "NEW", depth: 1 },
+  { path: "/programs/first-responder-iop/", label: "First Responder IOP", status: "REBUILD", depth: 1 },
+  { path: "/programs/substance-use-iop/", label: "Substance Use IOP", status: "REBUILD", depth: 1 },
+  { path: "/programs/partial-hospitalization-program/", label: "PHP", status: "REBUILD", depth: 1 },
+  { path: "/programs/medication-management/", label: "Medication Management", status: "REBUILD", depth: 1 },
+  { path: "/programs/outpatient-therapy/", label: "Outpatient Therapy", status: "MIGRATE", depth: 1 },
+
+  { path: "/what-we-treat/", label: "What We Treat — conditions", status: "NEW", depth: 0, hub: true },
+  { path: "/what-we-treat/depression/", label: "Depression", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/anxiety/", label: "Anxiety", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/trauma-ptsd/", label: "Trauma & PTSD", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/bipolar-disorder/", label: "Bipolar Disorder", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/ocd/", label: "OCD", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/adhd/", label: "ADHD", status: "NEW", depth: 1 },
+  { path: "/what-we-treat/substance-use-disorder/", label: "Substance Use Disorder (pillar)", status: "REBUILD", depth: 1 },
+  { path: "/what-we-treat/alcohol-addiction/", label: "Alcohol Addiction", status: "REBUILD", depth: 2 },
+  { path: "/what-we-treat/drug-addiction/", label: "Drug Addiction", status: "REBUILD", depth: 2 },
+  { path: "/what-we-treat/prescription-drug-addiction/", label: "Prescription Drug Addiction", status: "REBUILD", depth: 2 },
+  { path: "/what-we-treat/co-occurring-disorders/", label: "Co-occurring Disorders", status: "NEW", depth: 1 },
+
+  { path: "/treatment-methods/", label: "Treatment Methods — therapies", status: "NEW", depth: 0, hub: true },
+  { path: "/treatment-methods/tms/", label: "TMS", status: "MIGRATE", depth: 1 },
+  { path: "/treatment-methods/spravato/", label: "Spravato", status: "MIGRATE", depth: 1 },
+  { path: "/treatment-methods/medication-assisted-treatment/", label: "MAT", status: "NEW", depth: 1 },
+  { path: "/treatment-methods/emdr/", label: "EMDR", status: "MIGRATE", depth: 1 },
+  { path: "/treatment-methods/dbt/", label: "DBT", status: "NEW", depth: 1 },
+  { path: "/treatment-methods/group-therapy/", label: "Group Therapy", status: "NEW", depth: 1 },
+  { path: "/treatment-methods/neuropsychological-testing/", label: "Neuropsych Testing", status: "MIGRATE", depth: 1 },
+  { path: "/treatment-methods/adhd-testing/", label: "ADHD Testing", status: "MIGRATE", depth: 1 },
+  { path: "/treatment-methods/genesight-testing/", label: "GeneSight Testing", status: "NEW", depth: 1 },
+
+  { path: "/locations/", label: "Locations", status: "REBUILD", depth: 0, hub: true },
+  { path: "/locations/glastonbury-ct/", label: "Glastonbury (300 Hebron) — flagship", status: "REBUILD", depth: 1 },
+  { path: "/locations/south-glastonbury-ct/", label: "South Glastonbury (1420 Main)", status: "MIGRATE", depth: 1 },
+  { path: "/locations/glastonbury-pratt-ct/", label: "Glastonbury (33 Pratt)", status: "MIGRATE", depth: 1 },
+  { path: "/locations/west-hartford-ct/", label: "West Hartford", status: "MIGRATE", depth: 1 },
+  { path: "/locations/east-hampton-ct/", label: "East Hampton", status: "MIGRATE", depth: 1 },
+  { path: "/locations/westbrook-ct/", label: "Westbrook (NEW location)", status: "REBUILD", depth: 1 },
+
+  { path: "/about-us/", label: "About Us", status: "MIGRATE", depth: 0, hub: true },
+  { path: "/about-us/team/", label: "Our Team (hub + ~50 providers)", status: "MIGRATE", depth: 1 },
+  { path: "/about-us/careers/", label: "Careers", status: "NEW", depth: 1 },
+
+  { path: "/admissions/", label: "Admissions", status: "NEW", depth: 0, hub: true },
+  { path: "/admissions/rates-and-insurance/", label: "Rates & Insurance", status: "MIGRATE", depth: 1 },
+  { path: "/admissions/verify-insurance/", label: "Verify Insurance", status: "NEW", depth: 1 },
+  { path: "/admissions/what-to-expect/", label: "What to Expect", status: "NEW", depth: 1 },
+  { path: "/admissions/for-families/", label: "For Families", status: "NEW", depth: 1 },
+
+  { path: "/contact/", label: "Contact", status: "MIGRATE", depth: 0 },
+  { path: "/testimonials/", label: "Testimonials", status: "EXISTS", depth: 0 },
+  { path: "/resources/", label: "Resources (handouts)", status: "MIGRATE", depth: 0 },
+  { path: "/blog/", label: "Blog — PHASE 2", status: "PHASE2", depth: 0 },
+];
+
+const badge = {
+  EXISTS: "bg-green-100 text-green-800",
+  REBUILD: "bg-amber-100 text-amber-800",
+  MIGRATE: "bg-azul-light text-azul",
+  NEW: "bg-purple-100 text-purple-800",
+  PHASE2: "bg-gray-200 text-gray-600",
+};
+const legend = [
+  { s: "NEW", t: "Doesn't exist — build from scratch" },
+  { s: "REBUILD", t: "Exists but thin/wrong — full rewrite" },
+  { s: "MIGRATE", t: "Exists at wrong URL — move + redirect" },
+  { s: "EXISTS", t: "Keep slug, optimize content" },
+];
+
+const counts = tree.reduce((a, n) => { a[n.status] = (a[n.status] || 0) + 1; return a; }, {});
+---
+
+<Review
+  title="Site Architecture"
+  subtitle="The ideal folder taxonomy. Conditions and admissions are the big net-new clusters; everything else consolidates the old three-pattern mess."
+>
+  <!-- Counts -->
+  <div class="flex flex-wrap gap-3 mb-6">
+    {["NEW","REBUILD","MIGRATE","EXISTS"].map((s) => (
+      <div class="rounded-xl border border-line bg-white px-5 py-3">
+        <span class={`inline-block rounded-full text-xs font-bold px-2 py-0.5 ${badge[s]}`}>{s}</span>
+        <span class="ml-2 font-display text-2xl text-ink">{counts[s] || 0}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- Legend -->
+  <div class="rounded-xl bg-azul-light border border-line p-4 mb-6 grid gap-2 sm:grid-cols-2">
+    {legend.map((l) => (
+      <p class="text-sm text-ink"><span class={`inline-block rounded-full text-[10px] font-bold px-2 py-0.5 mr-2 ${badge[l.s]}`}>{l.s}</span>{l.t}</p>
+    ))}
+  </div>
+
+  <!-- Tree -->
+  <div class="rounded-2xl border border-line bg-white overflow-hidden">
+    {tree.map((n) => (
+      <div
+        class={`flex items-center justify-between gap-4 px-5 py-2.5 border-b border-line last:border-0 ${n.hub ? "bg-crema" : ""}`}
+      >
+        <div class="flex items-center gap-2 min-w-0" style={`padding-left:${n.depth * 28}px`}>
+          {n.depth >= 1 && <span class="text-line">└</span>}
+          <code class={`text-sm truncate ${n.hub ? "font-semibold text-ink" : "text-muted"}`}>{n.path}</code>
+          <span class="text-sm text-ink truncate hidden sm:inline">· {n.label}</span>
+        </div>
+        <span class={`shrink-0 rounded-full text-[10px] font-bold uppercase px-2 py-0.5 ${badge[n.status]}`}>{n.status === "PHASE2" ? "Phase 2" : n.status}</span>
+      </div>
+    ))}
+  </div>
+</Review>

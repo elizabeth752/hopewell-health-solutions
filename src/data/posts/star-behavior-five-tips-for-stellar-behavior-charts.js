@@ -1,0 +1,26 @@
+export default {
+  slug: "star-behavior-five-tips-for-stellar-behavior-charts",
+  title: "Star Behavior: Five Tips for Stellar Behavior Charts",
+  metaTitle: "Star Behavior: Five Tips for Stellar Behavior Charts | Mental Health & Psychiatry located in Glastonbury and West Hartford, CT | Hopewell Health Solutions",
+  metaDescription: "Behavior charts can increase good behavior, build self-esteem, and foster grit in children. Five practical tips to make behavior charts a success at home.",
+  category: "Teens & Families",
+  excerpt: "Five practical tips to make behavior charts work in your home, building better behaved kids, stronger self-esteem, and lasting grit.",
+  heroImage: "/Assets/Blogs/star-behavior-five-tips-for-stellar-behavior-charts.webp",
+  authorSlug: "chris-barclay-ph-d-bcba-ncsp",
+  reviewerSlug: "kristine-a-schlichting-ph-d",
+  datePublished: "2017-02-15",
+  dateModified: "2017-02-15",
+  readingMinutes: 3,
+  bodyHtml: `<p>We've all seen them, adorning the walls of our homes and cluttering our children's classrooms; behavior charts. Behavior charts can be a great way to increase good behavior in children, build self-esteem, and foster grit. They're easy to make and simple to use, but doing it right can mean the difference between better behaved kids with happy parents and sheets of wasted stickers. Many parents I work with say they tried using charts and that they just didn't work. This is usually because the child isn't interested and excited about the chart in the first place, and even if they are excited about it, interest in earning fades quickly. Don't give up hope! Behavior charts are simple and do work, and here are a few tips to help make them a success in your house.</p>
+<h2>The Very Basics</h2>
+<p>Make it special by customizing the chart for your child. Better yet, ask them to help make it with you; you will get better buy-in when its partly their creation. Let them decorate the chart or even choose a special theme. For example, if they are really into space, print out a picture of a spaceship and let them color it in. As they earn "points" add star stickers around it until the constellation adds up to the reward. For younger children, use pictures instead of words. There is a ton of great kid-friendly clip art on the web to illustrate any task or behavior.</p>
+<h2>Sweeten the Pot</h2>
+<p>Make sure the reward is motivating. You know your child best; what will they be excited enough about that they are willing to work for it? It doesn't need to be extravagant. In fact, you're much better off starting with small, easily achievable rewards. Think being able to pick out a favorite meal, have bubbles in the bath tub, or choosing a game to play one-on-one with you. You'll be amazed at how reinforcing special time or activities are, instead of toys and other material things.</p>
+<h2>Go Slow (at first)</h2>
+<p>It's best to start with a low bar so your child sees quick success. This builds momentum and interest right away. It also boosts self-confidence (yours and theirs) to tackle the more difficult goals as you go. Here's how it works: choose one behavior that your child already does that you want to see more of. When they do the behavior, point it out and have them check the box or choose and place a sticker on the chart. As your child masters the task, either swap it for a new one or add another and keep going.</p>
+<h2>Up the Ante</h2>
+<p>Make the prize small and easy to get, at first. One reason behavior charts often fail is that the reward is too hard to attain and interest peters out before the goal line. For example, with a three-year-old, read them an extra book at bedtime for every three stars earned. As they achieve success, slowly increase the number of points needed to earn the reward. An added bonus: you're teaching them to work for the things that they want.</p>
+<h2>Lead the Way</h2>
+<p>It's essential to be clear and specific when it comes to what will earn a point. One great way to do this is to model the behavior. Think of it as a rehearsal before the play, and you're the director. For example, if you're goal is better brushing, explain that they will earn a point, (sticker, smiley face, check mark, etc..) when they brush their teeth "like this." Do it alongside your child; put the right amount of toothpaste on your brush, start the timer, and brush your teeth correctly until the timer goes off. Children often learn better by seeing rather than just hearing something explained. It also helps minimize confusion about what is required to earn points.</p>
+<p>Dr. Michelle Reynolds is a Licensed Psychologist in the state of Connecticut. Dr. Reynolds has a passion for helping people integrate healthy lifestyle choices across all aspects of life using a holistic model to help patients flourish. She earned her Doctorate in Clinical Health Psychology from the Albert Einstein College of Medicine at Yeshiva University, and has worked in the mental health field since 1995 in diverse settings including hospitals, mental health clinics, home-based services, and private practice. In her free time, Dr. Reynolds enjoys geocaching, biking and kayaking with her husband and children.</p>`,
+};

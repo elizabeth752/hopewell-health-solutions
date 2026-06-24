@@ -1,0 +1,343 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import { posts, relatedPosts } from "../../data/posts.js";
+import { providers } from "../../data/providers.js";
+
+export function getStaticPaths() {
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+
+const SITE = "https://www.hopewellhealthsolutions.com";
+const TM = "/Assets/Team%20Members/";
+const INS = "/Assets/Insurance/";
+const canonical = `${SITE}/post/${post.slug}/`;
+
+// --- Author / reviewer (E-E-A-T) — real clinicians from providers.js ---
+const byId = (slug) => providers.find((p) => p.slug === slug);
+const author = byId(post.authorSlug);
+const reviewer = post.reviewerSlug ? byId(post.reviewerSlug) : null;
+const initials = (name) => {
+  const w = name.split(",")[0].trim().split(" ").filter(Boolean);
+  return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
+};
+const photoUrl = (p) => (p && p.photo ? `${TM}${p.photo}.webp` : null);
+const authorExcerpt = author?.bio ? author.bio.split("\n\n")[0] : "";
+
+// --- Dates ---
+const fmt = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+const wasUpdated = post.dateModified && post.dateModified !== post.datePublished;
+
+// --- Sidebar widgets ---
+const insurers = [
+  ["Aetna", "AETNA.webp"], ["Anthem", "Anthem.webp"], ["Blue Cross Blue Shield", "BCBS.webp"],
+  ["Cigna", "CIGNA.webp"], ["Optum", "Optum.webp"], ["UnitedHealthcare", "UnitedHealthcare.webp"],
+];
+// Verbatim GBP reviews (mirrors the approved set on the homepage — never fabricate)
+const reviews = [
+  { name: "Julie Stevens", meta: "2 months ago", text: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen." },
+  { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you." },
+  { name: "stacey miller", meta: "3 months ago", text: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted." },
+];
+
+// --- Share links ---
+const enc = encodeURIComponent;
+const share = {
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${enc(canonical)}`,
+  twitter: `https://twitter.com/intent/tweet?url=${enc(canonical)}&text=${enc(post.title)}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(canonical)}`,
+};
+
+const related = relatedPosts(post.slug, 3);
+
+// --- Metas: pull verbatim from the live page where provided; fall back to excerpt ---
+const metaTitle = post.metaTitle || `${post.title} | Hopewell Health Solutions`;
+const metaDesc = (post.metaDescription || post.excerpt || "").slice(0, 160);
+const hasSources = post.sources && post.sources.length > 0;
+
+// --- Body: migrated posts carry verbatim `bodyHtml`; auto-build the TOC from its <h2>s ---
+// Hand-authored posts use structured `sections` instead. We build a unified `tocItems`
+// list and (for bodyHtml) inject id anchors so the TOC links resolve.
+const slugifyHeading = (s) =>
+  s.toLowerCase().replace(/<[^>]+>/g, "").replace(/&[a-z]+;/gi, " ").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+let bodyHtml = post.bodyHtml || null;
+let tocItems = [];
+if (bodyHtml) {
+  bodyHtml = bodyHtml.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_m, _attrs, inner) => {
+    const text = inner.replace(/<[^>]+>/g, "").trim();
+    const id = slugifyHeading(text);
+    tocItems.push({ id, text });
+    return `<h2 id="${id}" class="post-h2">${inner}</h2>`;
+  });
+} else if (post.sections) {
+  tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
+}
+
+// --- JSON-LD: BlogPosting with author + reviewedBy + publisher (E-E-A-T core) ---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: metaDesc,
+  image: `${SITE}${post.heroImage}`,
+  datePublished: post.datePublished,
+  dateModified: post.dateModified || post.datePublished,
+  ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
+  ...(reviewer ? { reviewedBy: { "@type": "Person", name: reviewer.name, jobTitle: reviewer.role, url: `${SITE}/provider/${reviewer.slug}/` } } : {}),
+  publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-hhs-logo.svg` } },
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+};
+---
+
+<Base title={metaTitle} description={metaDesc} canonical={canonical}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- ============ HERO / BANNER ============ -->
+  <section class="relative overflow-hidden bg-crema">
+    {/* Consistent ghosted background on every post (the post's own image is still used in cards + schema) */}
+    <img src="/Assets/Hands.webp" alt="" aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.12]" />
+    <div class="relative mx-auto max-w-5xl px-5 pt-8 pb-12">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/blog/" class="hover:text-azul">Blog</a> / <span class="text-ink">{post.category}</span></nav>
+
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-azul-light px-3 py-1 text-xs font-semibold text-azul"><Icon name="clipboard" class="h-3.5 w-3.5" />{post.category}</span>
+
+      <h1 class="mt-4 max-w-4xl font-display text-3xl sm:text-4xl md:text-5xl text-azul leading-[1.12]">{post.title}</h1>
+
+      <!-- meta row -->
+      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
+        <span>Published {fmt(post.datePublished)}</span>
+        {wasUpdated && <span>· Updated {fmt(post.dateModified)}</span>}
+        {post.readingMinutes && <span>· {post.readingMinutes} min read</span>}
+      </div>
+
+      <!-- author byline (E-E-A-T) -->
+      <div class="mt-7 flex flex-col gap-5 border-t border-line pt-6 sm:flex-row sm:items-start sm:justify-between">
+        <div class="flex items-start gap-4">
+          {photoUrl(author)
+            ? <img src={photoUrl(author)} alt={author.name} class="h-16 w-16 shrink-0 rounded-xl object-cover object-top" />
+            : <div class="grid h-16 w-16 shrink-0 place-items-center rounded-xl bg-azul-light"><span class="font-display text-xl text-azul">{author ? initials(author.name) : "HHS"}</span></div>}
+          <div class="max-w-xl">
+            <p class="font-display text-lg text-ink leading-tight">{author?.name}</p>
+            <p class="text-sm font-semibold text-azul">{author?.role}</p>
+            {authorExcerpt && <p class="mt-1.5 text-sm text-muted leading-relaxed line-clamp-3">{authorExcerpt}</p>}
+            {author && <a href={`/provider/${author.slug}/`} class="mt-1 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio</a>}
+          </div>
+        </div>
+
+        <!-- share -->
+        <div class="shrink-0">
+          <p class="text-xs font-semibold uppercase tracking-wide text-muted">Share on</p>
+          <div class="mt-2 flex items-center gap-2">
+            <a href={share.facebook} target="_blank" rel="noopener" aria-label="Share on Facebook" class="grid h-9 w-9 place-items-center rounded-lg border border-line text-azul hover:bg-azul-light transition">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.8-.1-1.6-.15-2.4-.15-2.4 0-4.05 1.45-4.05 4.15v2.3H7.5V13h2.75v8h3.25Z"/></svg>
+            </a>
+            <a href={share.twitter} target="_blank" rel="noopener" aria-label="Share on X" class="grid h-9 w-9 place-items-center rounded-lg border border-line text-azul hover:bg-azul-light transition">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
+            </a>
+            <a href={share.linkedin} target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="grid h-9 w-9 place-items-center rounded-lg border border-line text-azul hover:bg-azul-light transition">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2ZM1.25 8.25h3.5V22h-3.5V8.25ZM8 8.25h3.35v1.88h.05c.47-.88 1.6-1.8 3.3-1.8 3.53 0 4.18 2.32 4.18 5.34V22h-3.5v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.18 1.48-2.18 3v5.8H8V8.25Z"/></svg>
+            </a>
+            <button type="button" data-copy-link aria-label="Copy link" class="grid h-9 w-9 place-items-center rounded-lg border border-line text-azul hover:bg-azul-light transition"><Icon name="link" class="h-4 w-4" /></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY: sidebar + article ============ -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-14">
+      <div class="grid gap-10 lg:grid-cols-[300px_minmax(0,1fr)]">
+
+        <!-- SIDEBAR -->
+        <aside class="order-2 lg:order-1 space-y-6 lg:sticky lg:top-24 lg:self-start">
+          <!-- TOC -->
+          <nav class="rounded-2xl border border-line bg-crema/60 p-5" aria-label="Table of contents">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-azul">Table of Contents</p>
+            <ul class="mt-3 space-y-2 text-sm">
+              {tocItems.map((t) => (
+                <li><a href={`#${t.id}`} class="text-muted hover:text-azul transition">{t.text}</a></li>
+              ))}
+              {hasSources && <li><a href="#sources" class="text-muted hover:text-azul transition">Sources</a></li>}
+            </ul>
+          </nav>
+
+          <!-- Insurance widget -->
+          <div class="rounded-2xl border border-line p-5">
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-azul">We Accept Insurance Plans</p>
+            <div class="mt-4 grid grid-cols-3 gap-3 items-center">
+              {insurers.map(([name, file]) => (
+                <img src={`${INS}${file}`} alt={name} loading="lazy" class="h-8 w-full object-contain opacity-90" />
+              ))}
+            </div>
+            <a href="/admissions/rates-and-insurance/" class="mt-4 inline-block text-sm font-semibold text-azul hover:underline">Verify your coverage →</a>
+          </div>
+
+          <!-- Google reviews widget -->
+          <div class="rounded-2xl border border-line p-5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.4 5.4 0 0 1-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24z"/>
+                  <path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09z"/>
+                  <path fill="#EA4335" d="M12 4.74c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.29 6.62l3.98 3.09C6.22 6.85 8.87 4.74 12 4.74z"/>
+                </svg>
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-azul">Google Reviews</p>
+              </div>
+              <span class="text-xs font-semibold text-ink">4.8 <span class="text-gold">★</span></span>
+            </div>
+            <div class="mt-4 space-y-4">
+              {reviews.map((r) => (
+                <figure class="border-t border-line pt-3 first:border-0 first:pt-0">
+                  <div class="text-gold text-xs">★★★★★</div>
+                  <blockquote class="mt-1 text-[13px] text-ink leading-relaxed">“{r.text}”</blockquote>
+                  <figcaption class="mt-1 text-xs text-muted">{r.name} · {r.meta}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <a href="/admissions/" class="block rounded-xl bg-azul-bright px-5 py-3 text-center text-sm font-semibold text-white hover:bg-azul transition">Contact Us</a>
+        </aside>
+
+        <!-- ARTICLE -->
+        <article class="order-1 lg:order-2 max-w-3xl">
+          {post.intro && <p class="text-[19px] leading-relaxed text-ink">{post.intro}</p>}
+
+          {bodyHtml
+            ? <div class="post-body mt-2" set:html={bodyHtml} />
+            : (post.sections || []).map((s) => (
+              <div id={s.id} class="scroll-mt-28 mt-10">
+                <h2 class="font-display text-2xl sm:text-3xl text-azul leading-snug">{s.h2}</h2>
+                <div class="mt-4 space-y-4">
+                  {s.blocks.map((b) => (
+                    b.p ? <p class="text-[17px] leading-relaxed text-ink">{b.p}</p>
+                    : b.h3 ? <h3 class="pt-2 font-display text-xl text-ink">{b.h3}</h3>
+                    : b.ul ? (
+                      <ul class="space-y-2.5 pl-1">
+                        {b.ul.map((li) => <li class="flex gap-3 text-[17px] leading-relaxed text-ink"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>{li}</span></li>)}
+                      </ul>
+                    )
+                    : b.note ? <p class="rounded-2xl bg-azul-light/40 border border-azul/30 p-5 text-[15px] text-ink">{b.note}</p>
+                    : null
+                  ))}
+                </div>
+              </div>
+            ))}
+
+          <!-- Sources (E-E-A-T) -->
+          {post.sources && post.sources.length > 0 && (
+            <div id="sources" class="scroll-mt-28 mt-12 border-t border-line pt-7">
+              <h2 class="font-display text-2xl text-azul">Sources</h2>
+              <ol class="mt-4 space-y-2.5 text-[15px]">
+                {post.sources.map((src) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
+                    <a href={src.href} target="_blank" rel="noopener nofollow" class="text-azul hover:underline break-words">{src.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          <!-- bottom share -->
+          <div class="mt-10 flex items-center gap-3 border-t border-line pt-6">
+            <span class="text-sm font-semibold text-muted">Share:</span>
+            <a href={share.facebook} target="_blank" rel="noopener" aria-label="Share on Facebook" class="text-azul hover:text-azul-bright"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.8-.1-1.6-.15-2.4-.15-2.4 0-4.05 1.45-4.05 4.15v2.3H7.5V13h2.75v8h3.25Z"/></svg></a>
+            <a href={share.twitter} target="_blank" rel="noopener" aria-label="Share on X" class="text-azul hover:text-azul-bright"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+            <a href={share.linkedin} target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="text-azul hover:text-azul-bright"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2ZM1.25 8.25h3.5V22h-3.5V8.25ZM8 8.25h3.35v1.88h.05c.47-.88 1.6-1.8 3.3-1.8 3.53 0 4.18 2.32 4.18 5.34V22h-3.5v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.18 1.48-2.18 3v5.8H8V8.25Z"/></svg></a>
+          </div>
+
+          <!-- author bio card (E-E-A-T reinforcement) -->
+          {author && (
+            <div class="mt-8 rounded-2xl border border-line bg-crema/60 p-6">
+              <p class="text-xs font-semibold uppercase tracking-wide text-muted">Written by</p>
+              <div class="mt-3 flex items-start gap-4">
+                {photoUrl(author)
+                  ? <img src={photoUrl(author)} alt={author.name} class="h-14 w-14 shrink-0 rounded-xl object-cover object-top" />
+                  : <div class="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-azul-light"><span class="font-display text-lg text-azul">{initials(author.name)}</span></div>}
+                <div>
+                  <p class="font-display text-lg text-ink">{author.name}</p>
+                  <p class="text-sm font-semibold text-azul">{author.role}</p>
+                  {authorExcerpt && <p class="mt-2 text-sm text-muted leading-relaxed">{authorExcerpt}</p>}
+                  <a href={`/provider/${author.slug}/`} class="mt-2 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio →</a>
+                </div>
+              </div>
+              {reviewer && (
+                <p class="mt-4 border-t border-line pt-4 text-sm text-muted">
+                  <span class="inline-flex items-center gap-1.5 font-semibold text-ink"><Icon name="shield" class="h-4 w-4 text-azul" />Medically reviewed by</span>
+                  <a href={`/provider/${reviewer.slug}/`} class="text-azul font-semibold hover:underline"> {reviewer.name}</a>, {reviewer.role}.
+                </p>
+              )}
+            </div>
+          )}
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POPULAR ARTICLES ============ -->
+  {related.length > 0 && (
+    <section class="bg-crema">
+      <div class="mx-auto max-w-6xl px-5 py-16">
+        <h2 class="font-display text-3xl text-azul">Popular articles</h2>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {related.map((r) => {
+            const a = byId(r.authorSlug);
+            return (
+              <a href={`/post/${r.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white hover:border-azul hover:shadow-lg transition">
+                <div class="aspect-[16/10] overflow-hidden bg-azul-light">
+                  {r.heroImage && <img src={r.heroImage} alt="" loading="lazy" class="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-300" />}
+                </div>
+                <div class="flex flex-1 flex-col p-5">
+                  <span class="text-xs font-semibold uppercase tracking-wide text-azul">{r.category}</span>
+                  <h3 class="mt-2 font-display text-lg text-ink leading-snug group-hover:text-azul transition">{r.title}</h3>
+                  <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2 flex-1">{r.excerpt}</p>
+                  <p class="mt-4 text-xs text-muted">{a?.name} · {fmt(r.datePublished)}</p>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Footer />
+
+  <script>
+    document.querySelectorAll("[data-copy-link]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        navigator.clipboard?.writeText(window.location.href);
+        btn.setAttribute("aria-label", "Link copied");
+      });
+    });
+  </script>
+
+  <!-- Styling for verbatim migrated bodies (set:html content can't take scoped classes) -->
+  <style is:global>
+    .post-body { color: var(--color-ink); }
+    .post-body > * + * { margin-top: 1.1rem; }
+    .post-body p { font-size: 17px; line-height: 1.75; }
+    .post-body h2, .post-body .post-h2 {
+      font-family: var(--font-display); color: var(--color-azul);
+      font-size: 1.6rem; line-height: 1.3; margin-top: 2.25rem; scroll-margin-top: 7rem;
+    }
+    .post-body h3 {
+      font-family: var(--font-display); color: var(--color-ink);
+      font-size: 1.25rem; margin-top: 1.5rem;
+    }
+    .post-body ul { list-style: disc; padding-left: 1.25rem; }
+    .post-body ol { list-style: decimal; padding-left: 1.25rem; }
+    .post-body li { margin-top: 0.5rem; }
+    .post-body li::marker { color: var(--color-azul); }
+    .post-body a { color: var(--color-azul); text-decoration: underline; }
+    .post-body strong { font-weight: 600; color: var(--color-ink); }
+    @media (min-width: 640px) { .post-body h2, .post-body .post-h2 { font-size: 1.875rem; } }
+  </style>
+</Base>

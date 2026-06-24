@@ -1,0 +1,282 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+
+const T = "/Assets/therapeutic-treatments/";
+const heroUsps = [
+  { icon: "sparkles", t: "An array of evidence-based & holistic therapies" },
+  { icon: "users", t: "For clients aged 4 and older" },
+  { icon: "swap", t: "Tailored to you — never one-size-fits-all" },
+  { icon: "cloud", t: "In person & via telehealth across Connecticut" },
+];
+const apps = [
+  ["Buddhify", T + "budify.webp"],
+  ["Calm", T + "calm.webp"],
+  ["Insight Timer", T + "insight.webp"],
+  ["Headspace", T + "headspace.webp"],
+];
+// Text-only modalities grouped into colored tile bands (like the original).
+const navyPair = [
+  ["Outdoor Nature-Assisted Therapy", "An intervention to treat, hasten recovery, and rehabilitate, with the core principle that therapy involves plants, natural materials, and/or the outdoor environment."],
+  ["Play Therapy", "Primarily used to help children ages 3–12 explore their lives and express repressed thoughts and emotions through play, in a safe playroom — learning healthier self-expression, empathy, and positive problem-solving."],
+];
+const toneTiles = [
+  { t: "Yoga Therapy", d: "The specific application of yogic tools — postures, breath work, and meditation techniques — to address physical, mental, and emotional needs.", cls: "bg-azul text-white", sub: "text-white/85" },
+  { t: "Exposure Therapy", d: "A behavior-therapy technique for anxiety disorders — gradually exposing you to the anxiety source (without danger) to help you overcome distress.", cls: "bg-sage text-white", sub: "text-white/85" },
+  { t: "Biofeedback", d: "Gaining greater awareness of your body’s physiological functions using instruments, with the goal of learning to regulate them at will.", cls: "bg-azul-dark text-white", sub: "text-white/85" },
+  { t: "Systematic Desensitization", d: "A behavioral therapy based on classical conditioning that replaces a phobia’s fear response with a relaxation response, gradually, through counter-conditioning.", cls: "bg-ink text-white", sub: "text-white/85" },
+];
+---
+
+<Base title="HHS Therapeutic Treatments in CT | Hopewell Health Solutions" description="An array of therapeutic treatments at Hopewell Health Solutions, Glastonbury, Westbrook & West Hartford CT — DBT, CBT, EMDR/ART, pet & nature therapy, play therapy, telehealth, mindfulness & more, for ages 4+.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/treatment-methods/" class="hover:text-azul">Treatments</a> / <span class="text-ink">HHS Therapeutic Treatments</span></nav>
+      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">HHS Therapeutic Treatments · Glastonbury, CT · Ages 4+</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">HHS Therapeutic Treatments</h1>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <p class="mt-5 text-ink leading-relaxed text-[17px] max-w-xl">Nearly 20% of adults receive treatment for mental health conditions — and many children and teens do, too. We offer a wide array of evidence-based and holistic therapies for clients aged 4 and older, matched to what each person needs.</p>
+          <ul class="mt-6 space-y-3">
+            {heroUsps.map((u) => (
+              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Kristine Schlichting, PhD</p>
+        </div>
+        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Find the right therapy" sub="Free, confidential. We’ll match you to the approach that fits." /></div>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  <!-- DBT (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src={T + "Talk%20therapy.webp"} alt="Dialectical Behavior Therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Talk therapy</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Dialectical Behavior Therapy (DBT)</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">DBT is a type of psychotherapy — talk therapy — that uses a cognitive-behavioral approach and emphasizes the psychosocial aspects of treatment.</p>
+        <span class="mt-5 inline-flex items-center gap-2 rounded-lg bg-azul-light px-4 py-2 text-sm font-semibold text-azul"><Icon name="sparkles" class="h-4 w-4" />SPACE Training with Dr. Schwartz</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CBT (centered) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <span class="inline-grid h-14 w-14 place-items-center rounded-2xl bg-azul-light text-azul"><Icon name="brain" class="h-7 w-7" /></span>
+      <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-azul">CBT</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Cognitive Behavioral Therapy</h2>
+      <p class="mt-5 text-ink leading-relaxed text-[17px]">A psycho-social intervention that aims to improve mental health by challenging and changing unhelpful cognitive distortions and behaviors, improving emotional regulation, and developing personal coping strategies that target solving current problems.</p>
+    </div>
+  </section>
+
+  <!-- Solutions-Focused (text left / image right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src={T + "solution%20focused.webp"} alt="Solutions-Focused Therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">We assist clients by</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Solutions-Focused Therapy</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">A goal-directed, collaborative approach to psychotherapeutic change, conducted through direct observation of clients’ responses to a series of precisely constructed questions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Self-Modeling (centered + example cards) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Observational learning</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Video Self-Modeling</h2>
+      <p class="mt-5 text-ink leading-relaxed text-[17px]">A form of observational learning in which individuals watch themselves performing a behavior successfully on video, then imitate the targeted behavior.</p>
+      <div class="mt-8 grid sm:grid-cols-2 gap-5 text-left">
+        {["Behavior video self-monitoring", "Restrictive-eating video self-monitoring"].map((label) => (
+          <div class="flex items-center gap-4 rounded-2xl bg-white border border-line p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-ink text-white"><Icon name="sparkles" class="h-6 w-6" /></span>
+            <div><span class="block font-display text-lg text-ink leading-tight">{label}</span><span class="text-xs text-muted">Example case</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pet-Assisted (text left / image right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src={T + "dog.webp"} alt="Pet-Assisted Therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Used in conjunction with traditional therapy</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Pet-Assisted Therapy</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Animal-assisted therapy works alongside the traditional work of a licensed clinician. Dogs are the primary animals used, though programs offer different animals for different needs. Animals provide calm, comfort, and safety — diverting attention from stress toward pleasure.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">Building a bond with an animal can help people develop self-worth and trust, stabilize emotions, and improve communication, self-regulation, and socialization.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ART (centered + button) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <span class="inline-grid h-14 w-14 place-items-center rounded-2xl bg-azul-light text-azul"><Icon name="bolt" class="h-7 w-7" /></span>
+      <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-azul">A briefer version of EMDR</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Accelerated Resolution Therapy (ART)</h2>
+      <p class="mt-5 text-ink leading-relaxed text-[17px]">ART was created to help people who have experienced trauma. The protocol brings up original traumatic experiences and actually changes the way that information is ultimately stored.</p>
+      <a href="/media/" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Watch helpful videos <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+  </section>
+
+  <!-- Walk-Talk (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src={T + "walk.webp"} alt="Walk-Talk Therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Pairing mental &amp; physical health</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Walk-Talk Therapy</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Just like it sounds — the client and therapist are outside walking during therapy instead of sitting in an office. Many clients find it a more relaxed environment than the therapy office, with added mental and physical health benefits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outdoor + Play (navy 2-up) -->
+  <section class="bg-ink text-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid md:grid-cols-2 gap-10 lg:gap-14">
+      {navyPair.map(([t, d]) => (
+        <div>
+          <h2 class="font-display text-2xl sm:text-3xl text-white">{t}</h2>
+          <div class="mt-4 h-px w-12 bg-gold"></div>
+          <p class="mt-4 text-white/85 leading-relaxed text-[17px]">{d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Telehealth + Meditation (two image cards) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid md:grid-cols-2 gap-6">
+      <div class="overflow-hidden rounded-2xl bg-white border border-line">
+        <img src={T + "telehealth.webp"} alt="Telehealth therapy at Hopewell Health Solutions" loading="lazy" class="h-56 w-full object-cover" />
+        <div class="p-7">
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Online therapy</p>
+          <h2 class="mt-2 font-display text-2xl text-ink">Telehealth</h2>
+          <p class="mt-3 text-ink leading-relaxed text-[15px]">Also known as telemental health — a therapist or counselor provides counseling and support over the internet through video conferencing, online chat, email, or a phone call.</p>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-2xl bg-white border border-line">
+        <img src={T + "meditaiton.webp"} alt="Meditation at Hopewell Health Solutions" loading="lazy" class="h-56 w-full object-cover" />
+        <div class="p-7">
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Calm &amp; clarity</p>
+          <h2 class="mt-2 font-display text-2xl text-ink">Meditation</h2>
+          <p class="mt-3 text-ink leading-relaxed text-[15px]">A practice that uses a technique — such as mindfulness or focusing the mind on a particular object, thought, or activity — to train attention and awareness and achieve a mentally clear, emotionally calm, and stable state.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mindfulness + apps (centered) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <span class="inline-grid h-14 w-14 place-items-center rounded-2xl bg-azul-light text-azul"><Icon name="cloud" class="h-7 w-7" /></span>
+      <h2 class="mt-5 font-display text-3xl sm:text-4xl text-ink">Mindfulness</h2>
+      <p class="mt-5 text-ink leading-relaxed text-[17px]">The psychological process of purposely bringing your attention to experiences in the present moment without judgment — developed through the practice of meditation and other training.</p>
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.15em] text-azul">Apps we recommend</p>
+      <div class="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
+        {apps.map(([name, img]) => (
+          <div class="flex flex-col items-center gap-2">
+            <img src={img} alt={name} loading="lazy" class="h-12 w-12 rounded-xl object-contain" />
+            <span class="text-sm font-semibold text-ink">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Yoga / Exposure / Biofeedback / Systematic (tone tiles) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {toneTiles.map((t) => (
+          <div class={`rounded-2xl p-7 ${t.cls}`}>
+            <h3 class="font-display text-xl leading-snug text-white">{t.t}</h3>
+            <div class="mt-3 h-px w-10 bg-white/40"></div>
+            <p class={`mt-3 text-sm leading-relaxed ${t.sub}`}>{t.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Couples — Gottman (text left / image right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src={T + "couples%20gott.webp"} alt="Couples therapy — the Gottman Method — at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Couples therapy</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">The Gottman Method</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">An approach to couples therapy that includes a thorough assessment of the relationship and integrates research-based interventions grounded in the Sound Relationship House Theory.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trauma-Informed Individual (image left / text right) -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src={T + "trauma%20informed.webp"} alt="Trauma-informed individual therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">EMDR &amp; PC</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Trauma-Informed Individual Therapy</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">A trauma-informed approach seeks awareness of the widespread impact of trauma on life experience and relationships. It recognizes trauma’s role in the outlook, emotions, and behavior of a person with a trauma history.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trauma-Informed Group (text left / image right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div class="lg:order-2"><img src="/Assets/AdobeStock_404268940.webp" alt="Trauma-informed group therapy at Hopewell Health Solutions" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" /></div>
+      <div class="lg:order-1">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">TFTG</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">Trauma-Informed Group Therapy</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Trauma Focus Group Therapy (TFTG) emphasizes two cognitive-behavioral methods — systematic prolonged exposure and cognitive restructuring — to process each member’s trauma. Each member has the opportunity to recount their story as others listen.</p>
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid bg="crema" />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Find the right therapy for you</h2>
+      <p class="mt-4 text-white/85 text-lg">Not sure where to start? Our team will help match you — or your child — to the approach that fits best. Reach out to Hopewell Health Solutions today, confidentially and with no pressure.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

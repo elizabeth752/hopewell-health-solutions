@@ -1,0 +1,139 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/treatment-methods/group-therapy";
+
+const heroUsps = [
+  { icon: "users", t: "Therapist-led groups in a confidential, supportive setting" },
+  { icon: "heart", t: "Connect with people who truly understand what you're going through" },
+  { icon: "compass", t: "Process groups, psychoeducation and skills-building" },
+  { icon: "shield", t: "A core part of our IOP and PHP programs in Connecticut" },
+];
+const types = [
+  ["Process groups", "A safe space to talk through what you're feeling and experiencing, with a clinician guiding the conversation and the group offering support and perspective."],
+  ["Psychoeducation groups", "Learn how mental health, emotions and recovery actually work — practical knowledge that helps the rest of treatment make sense."],
+  ["Skills groups", "Hands-on practice with coping tools from approaches like DBT and CBT, so you leave with techniques you can use the same day."],
+  ["Support groups", "Connection-focused groups built around shared experiences, where members encourage one another and remind each other they're not alone."],
+];
+const faq = [
+  ["What is group therapy?", "Group therapy is a form of treatment where a small number of people meet together with one or more licensed clinicians. The therapist guides the session while members share, listen, learn skills, and support one another. It's a core part of intensive outpatient and partial hospitalization care."],
+  ["Will I be forced to share personal things?", "No. You are always in control of what you share and when. Many people simply listen at first and open up gradually as trust builds. Our clinicians create a respectful, low-pressure environment where you set your own pace."],
+  ["Is what I say kept private?", "Yes. Confidentiality is a foundation of group therapy. Clinicians are bound by privacy laws, and every member agrees to keep what's shared in the room inside the room. We review these ground rules clearly before anyone begins."],
+  ["Is group therapy as effective as individual therapy?", "Research shows group therapy can be just as effective as individual therapy for many concerns, and it offers something one-on-one work cannot — the experience of being understood by peers and practicing new skills in real relationships. At Hopewell, group and individual care work hand in hand."],
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  name: "Group Therapy",
+  url: canonical,
+  about: { "@type": "MedicalTherapy", name: "Group Therapy" },
+  publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+};
+---
+
+<Base title="Group Therapy | Hopewell Health Solutions" description="Therapist-led group therapy — process groups, psychoeducation and skills-building in a confidential, supportive setting. A core part of the IOP and PHP programs at Hopewell Health Solutions in Connecticut." canonical={canonical}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 pt-8 pb-14">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/treatment-methods/" class="hover:text-azul">Treatments</a> / <span class="text-ink">Group Therapy</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Connection-based care</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Group Therapy</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <div class="mt-7 grid gap-3 sm:grid-cols-2">
+        {heroUsps.map((u) => (
+          <div class="flex items-start gap-3 rounded-xl bg-white border border-line p-4">
+            <span class="text-azul mt-0.5 shrink-0"><Icon name={u.icon} class="h-5 w-5" /></span>
+            <span class="text-ink font-semibold text-sm leading-snug">{u.t}</span>
+          </div>
+        ))}
+      </div>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="/admissions/" class="inline-flex items-center gap-2 rounded-lg border border-azul px-6 py-3 text-sm font-semibold text-azul hover:bg-azul-light transition">Request an appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip showLink={false} />
+
+  <!-- BODY -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 space-y-6 text-ink leading-relaxed text-[17px]">
+      <p>One of the heaviest parts of struggling with your mental health is the feeling that no one else could possibly understand. Group therapy gently dismantles that belief. The moment you hear someone else describe the exact thought you were sure only you had, something shifts — the isolation loosens its grip. That experience of being understood by people who have walked a similar road is one of the most powerful forces in healing, and it's something individual therapy, for all its value, simply can't provide. At Hopewell Health Solutions, group therapy is a cornerstone of how we help people recover.</p>
+
+      <h2 class="font-display text-2xl sm:text-3xl text-azul pt-2">What group therapy is</h2>
+      <p>Group therapy brings together a small number of people who meet regularly with one or more licensed clinicians. It is not simply a room where people take turns talking — it is a structured, professionally guided form of treatment. The therapist keeps the group safe and focused, facilitates meaningful conversation, teaches skills, and makes sure everyone's voice is respected. Groups are intentionally kept small enough that you're never lost in the crowd, and confidentiality is built into the foundation so members can speak openly.</p>
+
+      <h2 class="font-display text-2xl sm:text-3xl text-azul pt-2">Types of groups you might join</h2>
+      <p>"Group therapy" is really an umbrella term for several different kinds of groups, each with its own purpose. Most treatment plans include a mix.</p>
+
+      <div class="not-prose grid gap-4 sm:grid-cols-2">
+        {types.map(([t, d]) => (
+          <div class="rounded-2xl bg-crema border border-line p-6">
+            <p class="font-display text-xl text-azul">{t}</p>
+            <p class="mt-2 text-muted text-[15px] leading-relaxed">{d}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="font-display text-2xl sm:text-3xl text-azul pt-2">Why it works</h2>
+      <p>Group therapy heals in ways that surprise many people who were nervous to try it. It breaks the isolation that so often accompanies depression, anxiety, trauma and addiction. It lets you both receive support and offer it — and helping someone else can be just as healing as being helped. It gives you a living laboratory to practice new skills, like setting a boundary or asking for what you need, in a setting that's safe and supportive. And it offers perspective: hearing how others handle similar challenges expands your own sense of what's possible. Members frequently say the group became one of the most important parts of their week.</p>
+
+      <h2 class="font-display text-2xl sm:text-3xl text-azul pt-2">Group therapy at Hopewell</h2>
+      <p>At Hopewell, group therapy is a central component of our intensive outpatient (IOP) and partial hospitalization (PHP) programs, where it works alongside individual therapy and, when appropriate, medication management. Every group is led by a licensed clinician, and the tone is warm, respectful and judgment-free. You are never pressured to share before you're ready — many people listen quietly at first and open up as trust grows. Whether you're processing a difficult experience, learning new coping tools, or simply discovering that you are not as alone as you felt, our groups are designed to meet you where you are and walk with you forward.</p>
+
+      <h2 class="font-display text-2xl sm:text-3xl text-azul pt-2">Frequently asked questions</h2>
+      <div class="not-prose divide-y divide-line border-t border-b border-line">
+        {faq.map(([q, a]) => (
+          <details class="group py-4">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 font-semibold text-ink list-none">
+              {q}<span class="text-azul transition group-open:rotate-45 text-xl leading-none">+</span>
+            </summary>
+            <p class="mt-3 text-muted text-[16px] leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 py-14 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">In-network with most major plans</p>
+      <h2 class="mt-2 font-display text-3xl text-ink">Group therapy is often covered by insurance</h2>
+      <p class="mt-3 text-muted">We'll verify your benefits before you start. Call <a href="tel:8607351448" class="font-semibold text-azul hover:underline">(860) 735-1448</a>.</p>
+      <a href="/rates-and-insurance-coverage/" class="mt-7 inline-block text-sm font-semibold text-azul hover:underline">See rates &amp; insurance →</a>
+    </div>
+  </section>
+
+  <ServicesGrid bg="white" />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">You don't have to do this alone</h2>
+      <p class="mt-4 text-white/85 text-lg">Talk with our Connecticut team about joining a group — confidentially, with no pressure.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="/admissions/" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Request an appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

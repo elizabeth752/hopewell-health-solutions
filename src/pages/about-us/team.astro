@@ -1,0 +1,128 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+import { providers } from "../../data/providers.js";
+
+const TM = "/Assets/Team%20Members/";
+const initials = (name) => {
+  const w = name.split(",")[0].trim().split(" ").filter(Boolean);
+  return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
+};
+// Single source of truth: providers.js. Each card links to /provider/[slug]/.
+const sections = [
+  { title: "Leadership", people: providers.filter((p) => p.category === "leadership"), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Medical Staff", people: providers.filter((p) => p.category === "medical"), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Clinical Staff", people: providers.filter((p) => p.category === "psychology" || p.category === "clinical"), cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
+];
+const L = "/Assets/Media%20Appearances/";
+const press = [
+  { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
+  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.png", date: "Honoree", title: "Kristine Schlichting — recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
+  { outlet: "FOX61", logo: L + "fox61.png", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "Teen mental health crisis", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-teen-mental-health-crisis/" },
+  { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
+  { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
+];
+---
+
+<Base title="Our Clinical Team | Hopewell Health Solutions" description="Meet the clinical team at Hopewell Health Solutions — board-certified psychiatrists, nurse practitioners, psychologists, counselors & social workers across Glastonbury, Westbrook & West Hartford, CT.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/about-us/" class="hover:text-azul">About</a> / <span class="text-ink">Our Team</span></nav>
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The experts of Hopewell Health Solutions</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Meet our clinical team</h1>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <p class="mt-5 text-ink leading-relaxed text-[17px]">Innovative, holistic, and effective mental health care — all in one place. HHS is a comprehensive outpatient group offering medication management, counseling, and intensive outpatient programming. Our purpose is to empower clients to change so they can live well.</p>
+          <div class="mt-6 flex flex-wrap items-center gap-2 text-sm font-semibold">
+            <span class="rounded-full bg-azul-light px-3 py-1.5 text-azul">1 · Therapy first</span>
+            <Icon name="arrow" class="h-4 w-4 text-muted" />
+            <span class="rounded-full bg-azul-light px-3 py-1.5 text-azul">2 · Medication second</span>
+            <Icon name="arrow" class="h-4 w-4 text-muted" />
+            <span class="rounded-full bg-azul-light px-3 py-1.5 text-azul">3 · Transformation third</span>
+          </div>
+          <div class="mt-8">
+            <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
+          </div>
+        </div>
+        <img src="/Assets/Team%20united.webp" alt="The Hopewell Health Solutions clinical team in Glastonbury, CT" loading="lazy" class="rounded-2xl w-full h-72 lg:h-[28rem] object-cover shadow-sm" />
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  {sections.map((sec, i) => (
+    <section class={i % 2 === 0 ? "bg-white" : "bg-crema"}>
+      <div class="mx-auto max-w-6xl px-5 py-16">
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The experts of Hopewell Health Solutions</p>
+          <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">{sec.title}</h2>
+        </div>
+        <div class={`mt-10 grid ${sec.cols} gap-5`}>
+          {sec.people.map((m) => (
+            <a href={`/provider/${m.slug}/`} class="group overflow-hidden rounded-2xl bg-white border border-line shadow-sm hover:border-azul hover:shadow-lg transition">
+              {m.photo
+                ? <img src={`${TM}${m.photo}.webp`} alt={m.name} loading="lazy" class="aspect-square w-full object-cover object-top" />
+                : <div class="grid aspect-square place-items-center bg-azul-light"><span class="font-display text-3xl text-azul">{initials(m.name)}</span></div>}
+              <div class="p-4">
+                <h3 class="font-display text-base text-ink leading-tight group-hover:text-azul transition">{m.name}</h3>
+                <p class="mt-1 text-xs text-muted leading-snug">{m.role}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- PRESS & FEATURES -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">As featured in</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Press &amp; features</h2>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {press.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener" class="group flex flex-col rounded-2xl bg-white border border-line p-6 shadow-sm hover:border-azul hover:shadow-lg transition">
+            <div class="flex items-center justify-between gap-3 min-h-[2rem]">
+              <img src={p.logo} alt={p.outlet} loading="lazy" class="h-7 w-auto max-w-[60%] object-contain" />
+              <span class="text-xs text-muted shrink-0">{p.date}</span>
+            </div>
+            <p class="mt-4 font-display text-lg text-ink leading-snug flex-1 group-hover:text-azul transition">{p.title}</p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul">Read the feature <Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/media/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid bg="white" />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Care from people who truly listen</h2>
+      <p class="mt-4 text-white/85 text-lg">Our team is here to walk alongside you. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll match you with the right clinician.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

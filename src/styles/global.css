@@ -16,26 +16,42 @@
   --color-muted: #5a6b7a;       /* secondary text */
   --color-line: #e4ddd0;        /* hairline borders on cream */
 
+  /* Lighter, brighter blue — the primary CTA button color so it always
+     pops against the navy header/bands and crema sections on any page. */
+  --color-azul-bright: #2f76c4;
+
+  /* Warm accents — used sparingly to vary the blue (ties to GBP gold + a calm sage) */
+  --color-gold: #b6863c;        /* warm gold accent */
+  --color-gold-light: #f3e8d2;  /* gold tint */
+  --color-sage: #5c7c6b;        /* muted sage accent */
+  --color-sage-light: #e4ece6;  /* sage tint */
+
   /* Type — Baskervville (serif, headings) + Urbanist (sans, body) */
   --font-sans: "Urbanist", system-ui, sans-serif;
   --font-display: "Baskervville", Georgia, serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* Base element defaults live in @layer base so Tailwind utility classes
+   (text-white, text-azul, etc.) can override them. Unlayered CSS would
+   otherwise win over layered utilities in Tailwind v4 — this was the
+   root cause of recurring dark-heading-on-dark-background bugs. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--color-ink);
-  background: #ffffff;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #ffffff;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  color: var(--color-ink);
-  line-height: 1.15;
-  font-weight: 400; /* Baskervville ships a single weight */
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    line-height: 1.15;
+    font-weight: 400; /* Baskervville ships a single weight */
+  }
 }

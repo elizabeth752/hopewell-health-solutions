@@ -1,0 +1,39 @@
+---
+import Icon from "./Icon.astro";
+// "What We Offer — Conditions & Treatments" cross-link grid. Embed in page content
+// (e.g. before the final CTA). Props: bg ("crema" | "white"),
+// heading / eyebrow overrides.
+const { bg = "crema", eyebrow = "What we offer", heading = "Conditions & Treatments" } = Astro.props;
+const services = [
+  { t: "Intensive Outpatient Program", href: "/programs/intensive-outpatient-program/", icon: "users" },
+  { t: "Spravato®", href: "/treatment-methods/spravato/", icon: "sparkles" },
+  { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
+  { t: "Counseling", href: "/programs/counseling/", icon: "heart" },
+  { t: "HHS Therapeutic Treatments", href: "/treatment-methods/therapeutic-treatments/", icon: "refresh" },
+  { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
+  { t: "S.U.D. Treatment", href: "/what-we-treat/substance-use-disorder/", icon: "swap" },
+  { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
+  { t: "TMS", href: "/treatment-methods/tms/", icon: "brain" },
+  { t: "Alcohol Dependence Treatment", href: "/what-we-treat/alcohol/", icon: "shield" },
+  { t: "Drug Dependence Treatment", href: "/what-we-treat/drug/", icon: "compass" },
+  { t: "Prescription Drug Dependence Treatment", href: "/what-we-treat/prescription-drugs/", icon: "alert" },
+];
+const bgClass = bg === "white" ? "bg-white" : "bg-crema";
+---
+<section class={bgClass}>
+  <div class="mx-auto max-w-6xl px-5 py-16">
+    <div class="text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">{eyebrow}</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">{heading}</h2>
+    </div>
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {services.map((s) => (
+        <a href={s.href} class="group flex items-center gap-3 rounded-xl bg-white border border-line px-4 py-3.5 hover:border-azul hover:shadow-sm transition">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={s.icon} class="h-5 w-5" /></span>
+          <span class="text-sm font-semibold text-ink group-hover:text-azul transition">{s.t}</span>
+          <Icon name="arrow" class="h-4 w-4 ml-auto text-muted group-hover:text-azul transition" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

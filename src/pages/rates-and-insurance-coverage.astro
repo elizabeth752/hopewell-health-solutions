@@ -1,0 +1,103 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/rates-and-insurance-coverage";
+
+// In-network carriers (verbatim from the live page); logo where we have one, else text chip.
+const inNetwork = [
+  ["Aetna", "/Assets/Insurance/AETNA.webp"],
+  ["Anthem", "/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross / Blue Shield", "/Assets/Insurance/BCBS.webp"],
+  ["Cigna", "/Assets/Insurance/CIGNA.webp"],
+  ["Optum", "/Assets/Insurance/Optum.webp"],
+  ["UnitedHealthcare", "/Assets/Insurance/UnitedHealthcare.webp"],
+  ["TRICARE", "/Assets/Insurance/TRICARE.webp"],
+  ["Magellan", "/Assets/Insurance/Magellan%20Health.webp"],
+  ["UMR", "/Assets/Insurance/URM.webp"],
+  ["VA Community Care", "/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare", "/Assets/ConnnectiCare.webp"],
+  ["Harvard Pilgrim", "/Assets/Harvard%20Pilgrim.webp"],
+];
+const textOnly = ["United", "Meritain", "Evernorth"]; // named in-network, no logo on file
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  name: "Rates and Insurance Coverage",
+  url: canonical,
+  publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
+};
+---
+
+<Base title="Rates & Insurance Coverage | Hopewell Health Solutions" description="Hopewell Health Solutions is in-network with most major insurance carriers — Anthem, Aetna, Cigna, Optum, United, TRICARE and more. See our rates, payment, and insurance coverage for IOP, medication management, and counseling in Connecticut." canonical={canonical}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 pt-8 pb-14">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Rates &amp; Insurance Coverage</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Admissions</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Rates and Insurance Coverage</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-5 text-lg text-muted">Hopewell Health Solutions provides IOP, med management and counseling services throughout Connecticut. Following are our rates and insurance coverage information for our services.</p>
+    </div>
+  </section>
+
+  <!-- INSURANCE LOGOS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-5 py-14">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Insurance coverage</p>
+        <h2 class="mt-2 font-display text-3xl text-ink">We’re in-network with most major carriers</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-muted">We accept most insurance carriers — please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
+      </div>
+      <div class="mt-9 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
+        {inNetwork.map(([name, src]) => <img src={src} alt={name} loading="lazy" class="h-10 w-full object-contain" />)}
+      </div>
+      <div class="mt-5 flex flex-wrap justify-center gap-2">
+        {textOnly.map((n) => <span class="rounded-full bg-crema border border-line px-3 py-1 text-sm font-semibold text-ink">{n}</span>)}
+      </div>
+      <p class="mt-8 text-center text-muted">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="text-azul font-semibold">860-735-1448</a> to inquire about other insurance plans.</p>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16 grid gap-5 sm:grid-cols-2">
+      <div class="rounded-2xl bg-white border border-line p-6">
+        <div class="flex items-center gap-2 text-azul"><Icon name="phone" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Rates</h2></div>
+        <p class="mt-3 text-ink leading-relaxed">Please call the office for rates: <a href="tel:8607351448" class="text-azul font-semibold">860-735-1448</a>. Telehealth sessions available.</p>
+      </div>
+      <div class="rounded-2xl bg-white border border-line p-6">
+        <div class="flex items-center gap-2 text-azul"><Icon name="clipboard" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Payment</h2></div>
+        <p class="mt-3 text-ink leading-relaxed">Cash, check, and all major credit cards accepted for payment.</p>
+      </div>
+      <div class="rounded-2xl bg-white border border-line p-6">
+        <div class="flex items-center gap-2 text-azul"><Icon name="calendar" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Cancellation Policy</h2></div>
+        <p class="mt-3 text-ink leading-relaxed">If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session.</p>
+      </div>
+      <div class="rounded-2xl bg-white border border-line p-6">
+        <div class="flex items-center gap-2 text-azul"><Icon name="shield" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Your responsibility</h2></div>
+        <p class="mt-3 text-ink leading-relaxed">Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Questions about coverage?</h2>
+      <p class="mt-4 text-white/85 text-lg">Our team will verify your benefits and walk you through your options — no pressure.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">hhs4help@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
