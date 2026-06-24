@@ -14,7 +14,9 @@ const logos = [
   ["WOUB Public Media", "/Assets/Media%20Appearances/woub-public-media.jpg"],
 ];
 // Repeat the set so one group is always wider than the viewport (no empty gaps).
-const group = [...logos, ...logos];
+// 3× of 6 logos keeps a single group wider than any normal desktop, so the
+// -50% loop never reveals blank space mid-scroll.
+const group = [...logos, ...logos, ...logos];
 const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 ---
 <section class={`${bgClass} border-y border-line`}>

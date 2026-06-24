@@ -14,17 +14,33 @@ const directories = [
   { label: "BBB", href: "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396", icon: D + "BBB.png" },
 ];
 const cols = [
-  { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
-  { h: "What We Treat", links: ["Depression", "Anxiety", "Trauma & PTSD", "Substance Use", "ADHD"] },
-  { h: "Treatments", links: ["TMS", "Spravato®", "EMDR", "GeneSight®"] },
+  { h: "Programs", links: [
+    ["Intensive Outpatient (IOP)", "/programs/intensive-outpatient-program/"],
+    ["Partial Hospitalization (PHP)", "/programs/partial-hospitalization-program/"],
+    ["Medication Management", "/programs/medication-management/"],
+    ["Outpatient Therapy", "/programs/counseling/"],
+  ] },
+  { h: "What We Treat", links: [
+    ["Depression", "/what-we-treat/depression/"],
+    ["Anxiety", "/what-we-treat/anxiety/"],
+    ["Trauma & PTSD", "/what-we-treat/trauma-ptsd/"],
+    ["Substance Use", "/what-we-treat/substance-use-disorder/"],
+    ["ADHD", "/what-we-treat/adhd/"],
+  ] },
+  { h: "Treatments", links: [
+    ["TMS", "/treatment-methods/tms/"],
+    ["Spravato®", "/treatment-methods/spravato/"],
+    ["EMDR", "/treatment-methods/emdr/"],
+    ["GeneSight®", "/treatment-methods/genesight-testing/"],
+  ] },
 ];
 ---
 <footer class="bg-ink text-white/80">
   <div class="mx-auto max-w-6xl px-5 py-14">
     <div class="grid gap-10 md:grid-cols-4">
       <div>
-        <a href="/" class="inline-block mb-4" aria-label="Hopewell Health Solutions — home">
-          <img src="/Assets/logo/hopewell-hhs-logo-white.svg" alt="Hopewell Health Solutions" width="640" height="380" class="h-20 w-auto" />
+        <a href="/" class="inline-block mb-4 rounded-xl bg-white px-4 py-3" aria-label="Hopewell Health Solutions — home">
+          <img src="/Assets/logo/hopewell-wave-logo.jpg" alt="Hopewell Health Solutions" width="1405" height="517" class="h-16 w-auto" />
         </a>
         <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
         <a href="tel:8607351448" class="mt-4 inline-block font-display text-2xl text-white">(860) 735-1448</a>
@@ -34,7 +50,7 @@ const cols = [
         <div>
           <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">{c.h}</h4>
           <ul class="space-y-2 text-sm">
-            {c.links.map((l) => <li><a href="#" class="hover:text-white transition">{l}</a></li>)}
+            {c.links.map(([label, href]) => <li><a href={href} class="hover:text-white transition">{label}</a></li>)}
           </ul>
         </div>
       ))}
