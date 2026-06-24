@@ -1,0 +1,65 @@
+---
+const locations = [
+  ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct/"],
+  ["Downtown Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct-2/"],
+  ["South Glastonbury", "1420 Main St", "/location/glastonbury-ct-3/"],
+  ["West Hartford", "1216 Farmington Ave", "/location/west-hartford-ct/"],
+  ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
+  ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
+];
+const D = "/Assets/Favicons/";
+const directories = [
+  { label: "Psychology Today", href: "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", icon: D + "PT.png" },
+  { label: "Recovery.com", href: "https://recovery.com/outpatient/hopewell-health-solutions-south-glastonbury/", icon: D + "recovery.com.png" },
+  { label: "BBB", href: "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396", icon: D + "BBB.png" },
+];
+const cols = [
+  { h: "Programs", links: ["Intensive Outpatient (IOP)", "Partial Hospitalization (PHP)", "Medication Management", "Outpatient Therapy"] },
+  { h: "What We Treat", links: ["Depression", "Anxiety", "Trauma & PTSD", "Substance Use", "ADHD"] },
+  { h: "Treatments", links: ["TMS", "Spravato®", "EMDR", "GeneSight®"] },
+];
+---
+<footer class="bg-ink text-white/80">
+  <div class="mx-auto max-w-6xl px-5 py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <a href="/" class="inline-block mb-4" aria-label="Hopewell Health Solutions — home">
+          <img src="/Assets/logo/hopewell-hhs-logo-white.svg" alt="Hopewell Health Solutions" width="640" height="380" class="h-20 w-auto" />
+        </a>
+        <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
+        <a href="tel:8607351448" class="mt-4 inline-block font-display text-2xl text-white">(860) 735-1448</a>
+        <p class="text-xs mt-3">Joint Commission accredited · 4.8★ · Since 2013</p>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">{c.h}</h4>
+          <ul class="space-y-2 text-sm">
+            {c.links.map((l) => <li><a href="#" class="hover:text-white transition">{l}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 border-t border-white/15 pt-8">
+      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Our Connecticut Locations</h4>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
+        {locations.map(([city, addr, href]) => (
+          <a href={href} class="flex gap-2 hover:text-white transition"><span class="text-azul-light">●</span><span><span class="text-white">{city}</span> — {addr}</span></a>
+        ))}
+      </div>
+    </div>
+    <div class="mt-10 border-t border-white/15 pt-8">
+      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Find &amp; Review Us</h4>
+      <div class="flex flex-wrap items-center gap-3">
+        {directories.map((d) => (
+          <a href={d.href} target="_blank" rel="noopener" aria-label={d.label} title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 hover:bg-white px-3 py-1.5 text-xs font-semibold text-ink transition">
+            <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+      <span>© 2026 Hopewell Health Solutions, LLC. All rights reserved.</span>
+      <span class="flex gap-4"><a href="/privacy/" class="hover:text-white">Privacy</a><a href="/hipaa-notice/" class="hover:text-white">HIPAA Notice</a><a href="/terms/" class="hover:text-white">Terms</a><a href="/accessibility/" class="hover:text-white">Accessibility</a></span>
+    </div>
+  </div>
+</footer>

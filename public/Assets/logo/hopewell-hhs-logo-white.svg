@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="HHS — Hopewell Health Solutions">
+  <g fill="#ffffff" stroke="#ffffff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M 7,125 C 4,138 2,158 2,180 C 1,213 4,232 14,251 C 30,279 58,299 90,317 C 110,330 129,346 146,362 C 150,349 152,324 149,299 C 146,275 138,256 121,243 C 100,232 78,222 57,214 C 64,232 77,250 88,268 C 70,252 44,236 33,222 C 28,206 22,188 18,170 C 16,150 12,132 7,125 Z"></path>
+    <g transform="translate(640,0) scale(-1,1)"><path d="M 7,125 C 4,138 2,158 2,180 C 1,213 4,232 14,251 C 30,279 58,299 90,317 C 110,330 129,346 146,362 C 150,349 152,324 149,299 C 146,275 138,256 121,243 C 100,232 78,222 57,214 C 64,232 77,250 88,268 C 70,252 44,236 33,222 C 28,206 22,188 18,170 C 16,150 12,132 7,125 Z"></path></g>
+  </g>
+  <g fill="#ffffff" font-family="'Times New Roman', Tinos, Georgia, serif" text-anchor="middle">
+    <text x="320" y="128" font-weight="700" font-size="150" letter-spacing="6">HHS</text>
+    <text x="320" y="218" font-weight="700" font-size="46">Hopewell Health</text>
+    <text x="320" y="262" font-weight="700" font-size="46">Solutions</text>
+    <text x="320" y="308" font-style="italic" font-size="23">CT's Premier Therapy</text>
+    <text x="320" y="330" font-style="italic" font-size="23">&amp;</text>
+    <text x="320" y="352" font-style="italic" font-size="23">Psychiatric Practice</text>
+  </g>
+</svg>

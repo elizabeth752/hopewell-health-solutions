@@ -1,0 +1,166 @@
+---
+import Icon from "./Icon.astro";
+
+// Full ideal IA. Live pages resolve; unbuilt ones 404 until shipped (intentional
+// — lets us navigate/visualize the whole sitemap as we build it out).
+const menu = [
+  { label: "Programs", href: "/programs/", children: [
+    { label: "IOP Overview", href: "/programs/intensive-outpatient-program/" },
+    { label: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/" },
+    { label: "Teen IOP (13–17)", href: "/programs/teen-tween-iop/#teen" },
+    { label: "Tween IOP (8–12)", href: "/programs/teen-tween-iop/#tween" },
+    { label: "Women's Wellness IOP", href: "/programs/womens-wellness-iop/" },
+    { label: "Women's Trauma IOP", href: "/programs/womens-trauma-iop/" },
+    { label: "First Responder IOP", href: "/programs/first-responder-iop/" },
+    { label: "Substance Use IOP", href: "/programs/substance-use-iop/" },
+    { label: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/" },
+    { label: "Medication Management", href: "/programs/medication-management/" },
+    { label: "Counseling", href: "/programs/counseling/" },
+  ]},
+  { label: "What We Treat", href: "/what-we-treat/", children: [
+    { label: "Depression", href: "/what-we-treat/depression/" },
+    { label: "Anxiety", href: "/what-we-treat/anxiety/" },
+    { label: "Trauma & PTSD", href: "/what-we-treat/trauma-ptsd/" },
+    { label: "ADHD", href: "/what-we-treat/adhd/" },
+    { label: "OCD", href: "/what-we-treat/ocd/" },
+    { label: "Bipolar Disorder", href: "/what-we-treat/bipolar/" },
+    { label: "Co-Occurring Disorders", href: "/what-we-treat/co-occurring/" },
+    { label: "Substance Use Disorder (S.U.D.)", href: "/what-we-treat/substance-use-disorder/" },
+    { label: "Alcohol Dependence", href: "/what-we-treat/alcohol/" },
+    { label: "Drug Dependence", href: "/what-we-treat/drug/" },
+    { label: "Prescription Drug Dependence", href: "/what-we-treat/prescription-drugs/" },
+  ]},
+  { label: "Treatments", href: "/treatment-methods/", children: [
+    { label: "TMS", href: "/treatment-methods/tms/" },
+    { label: "Spravato®", href: "/treatment-methods/spravato/" },
+    { label: "Medication-Assisted Treatment", href: "/treatment-methods/medication-assisted-treatment/" },
+    { label: "EMDR", href: "/treatment-methods/emdr/" },
+    { label: "DBT", href: "/treatment-methods/dbt/" },
+    { label: "Group Therapy", href: "/treatment-methods/group-therapy/" },
+    { label: "HHS Therapeutic Treatments", href: "/treatment-methods/therapeutic-treatments/" },
+    { label: "GeneSight® Testing", href: "/treatment-methods/genesight-testing/" },
+    { label: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/" },
+    { label: "ADHD Testing", href: "/treatment-methods/adhd-testing/" },
+  ]},
+  { label: "Locations", href: "/locations/", children: [
+    { label: "Glastonbury — Pratt St", href: "/location/glastonbury-ct/" },
+    { label: "Downtown Glastonbury — Hebron Ave", href: "/location/glastonbury-ct-2/" },
+    { label: "South Glastonbury — Main St", href: "/location/glastonbury-ct-3/" },
+    { label: "West Hartford", href: "/location/west-hartford-ct/" },
+    { label: "East Hampton", href: "/location/east-hampton-ct/" },
+    { label: "Westbrook", href: "/location/westbrook-ct/" },
+  ]},
+  { label: "Resources", href: "/blog/", align: "right", children: [
+    { label: "Blog", href: "/blog/" },
+    { label: "Testimonials", href: "/testimonials/" },
+    { label: "Handouts", href: "/handouts/" },
+    { label: "Media", href: "/media/" },
+  ]},
+  { label: "About", href: "/about-us/", align: "right", children: [
+    { label: "About Us", href: "/about-us/" },
+    { label: "Our Team", href: "/about-us/team/" },
+    { label: "Careers", href: "/about-us/careers/" },
+  ]},
+  { label: "Admissions", href: "/admissions/", align: "right", children: [
+    { label: "Verify Insurance", href: "/admissions/#verify" },
+    { label: "Rates & Insurance", href: "/rates-and-insurance-coverage/" },
+    { label: "What to Expect", href: "/admissions/#what-to-expect" },
+    { label: "For Families", href: "/admissions/#for-families" },
+  ]},
+];
+
+// Monochrome brand glyphs (fill=currentColor) so they sit cleanly on the dark top bar.
+const ICONS = {
+  instagram: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.95c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.21.55.47.94.88 1.35.41.41.8.67 1.35.88.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.32a4.57 4.57 0 1 1 0 9.14 4.57 4.57 0 0 1 0-9.14Zm0 7.54a2.97 2.97 0 1 0 0-5.94 2.97 2.97 0 0 0 0 5.94Zm5.82-7.74a1.07 1.07 0 1 1-2.14 0 1.07 1.07 0 0 1 2.14 0Z"/></svg>',
+  facebook: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.8-.1-1.6-.15-2.4-.15-2.4 0-4.05 1.45-4.05 4.15v2.3H7.5V13h2.75v8h3.25Z"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-[11px] w-[11px]"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>',
+  linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2ZM1.25 8.25h3.5V22h-3.5V8.25ZM8 8.25h3.35v1.88h.05c.47-.88 1.6-1.8 3.3-1.8 3.53 0 4.18 2.32 4.18 5.34V22h-3.5v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.18 1.48-2.18 3v5.8H8V8.25Z"/></svg>',
+  tiktok: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M16.6 5.82a4.28 4.28 0 0 1-1.05-2.82h-3.2v12.7a2.59 2.59 0 0 1-2.58 2.48 2.59 2.59 0 0 1 0-5.18c.27 0 .52.04.76.12v-3.3a5.86 5.86 0 0 0-.76-.05 5.83 5.83 0 1 0 5.83 5.83V9.01a7.45 7.45 0 0 0 4.37 1.4V7.2a4.28 4.28 0 0 1-3.04-1.38Z"/></svg>',
+  pinterest: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.64 7.86 6.36 9.32-.09-.79-.17-2 .03-2.86.18-.78 1.18-4.97 1.18-4.97s-.3-.6-.3-1.49c0-1.4.81-2.44 1.82-2.44.86 0 1.27.64 1.27 1.41 0 .86-.55 2.15-.83 3.34-.24 1 .5 1.81 1.48 1.81 1.78 0 3.15-1.88 3.15-4.58 0-2.4-1.72-4.07-4.18-4.07-2.85 0-4.52 2.13-4.52 4.34 0 .86.33 1.78.74 2.28.08.1.09.19.07.29l-.28 1.14c-.04.18-.15.22-.34.13-1.25-.58-2.03-2.4-2.03-3.87 0-3.15 2.29-6.04 6.6-6.04 3.46 0 6.16 2.47 6.16 5.77 0 3.44-2.17 6.21-5.18 6.21-1.01 0-1.96-.53-2.29-1.15l-.62 2.37c-.22.86-.83 1.94-1.24 2.6.94.29 1.92.44 2.95.44 5.52 0 10-4.48 10-10S17.52 2 12 2Z"/></svg>',
+  bluesky: '<svg viewBox="0 0 24 24" fill="currentColor" class="h-3 w-3"><path d="M6.34 4.13c2.18 1.64 4.52 4.96 5.66 6.75 1.14-1.79 3.48-5.11 5.66-6.75 1.57-1.18 4.12-2.1 4.12.81 0 .58-.33 4.89-.53 5.59-.68 2.43-3.16 3.05-5.36 2.68 3.85.65 4.83 2.82 2.72 4.99-4.01 4.12-5.76-1.03-6.21-2.35-.08-.24-.12-.36-.12-.26 0-.1-.04.02-.12.26-.45 1.32-2.2 6.47-6.21 2.35-2.11-2.17-1.13-4.34 2.72-4.99-2.2.37-4.68-.25-5.36-2.68-.2-.7-.53-5.01-.53-5.59 0-2.91 2.55-1.99 4.12-.81Z"/></svg>',
+};
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/hopewellhealthsolutions/", svg: ICONS.instagram },
+  { label: "Facebook", href: "https://www.facebook.com/hopewellhealth/", svg: ICONS.facebook },
+  { label: "X (Twitter)", href: "https://x.com/hopewellHealthS", svg: ICONS.x },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/hopewell-health-solutions-llc/", svg: ICONS.linkedin },
+  { label: "TikTok", href: "https://www.tiktok.com/@hopewellhs", svg: ICONS.tiktok },
+  { label: "Pinterest", href: "https://co.pinterest.com/hopewellhs/", svg: ICONS.pinterest },
+  { label: "Bluesky", href: "https://bsky.app/profile/hopewellhs.bsky.social", svg: ICONS.bluesky },
+];
+---
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
+  <!-- top bar -->
+  <div class="bg-ink text-white text-xs">
+    <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-between gap-4">
+      <span class="tracking-wide">Empower · Change · Live Well</span>
+      <div class="flex items-center gap-2">
+        <span class="hidden sm:inline text-white/55 mr-1">Follow us</span>
+        {socials.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label} class="grid h-6 w-6 place-items-center rounded-full border border-white/40 text-white hover:bg-white hover:text-ink hover:border-white transition"><Fragment set:html={s.svg} /></a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- main nav -->
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="flex items-center justify-between py-3.5 gap-4">
+      <a href="/" class="shrink-0" aria-label="Hopewell Health Solutions — home">
+        <img src="/Assets/logo/hopewell-hhs-logo.svg" alt="Hopewell Health Solutions" width="640" height="380" class="h-12 sm:h-14 w-auto" />
+      </a>
+
+      <!-- desktop nav -->
+      <nav class="hidden lg:flex items-center gap-x-5">
+        {menu.map((m) => (
+          <div class="relative group">
+            <a href={m.href} class="flex items-center gap-1 text-sm font-semibold text-ink hover:text-azul transition py-2">
+              {m.label}<Icon name="arrow" class="h-3 w-3 rotate-90 opacity-60 transition group-hover:translate-y-0.5" />
+            </a>
+            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
+              <div class="w-64 rounded-2xl border border-line bg-white shadow-xl p-2">
+                <ul>
+                  {m.children.map((c) => (
+                    <li><a href={c.href} class="block rounded-lg px-3 py-2 text-sm font-medium text-ink hover:bg-crema hover:text-azul transition">{c.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="tel:8607351448" class="hidden xl:inline-flex items-center gap-2 rounded-lg bg-azul-bright px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <!-- mobile toggle -->
+        <button id="mobileToggle" class="lg:hidden grid h-10 w-10 place-items-center rounded-lg border border-line text-ink" aria-label="Open menu" aria-expanded="false">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- mobile panel -->
+  <div id="mobilePanel" class="hidden lg:hidden border-t border-line bg-white max-h-[80vh] overflow-y-auto">
+    <div class="mx-auto max-w-6xl px-5 py-5 space-y-5">
+      {menu.map((m) => (
+        <div>
+          <a href={m.href} class="block text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-2">{m.label}</a>
+          <ul class="space-y-0.5">
+            {m.children.map((c) => <li><a href={c.href} class="block py-1.5 text-sm font-semibold text-ink">{c.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+      <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-5 py-3 text-sm font-semibold text-white"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobileToggle");
+  const panel = document.getElementById("mobilePanel");
+  btn?.addEventListener("click", () => {
+    const open = panel?.classList.toggle("hidden") === false;
+    btn.setAttribute("aria-expanded", String(open));
+  });
+</script>

@@ -1,0 +1,309 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import ServicesGrid from "../../components/ServicesGrid.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/what-we-treat/trauma-ptsd";
+
+const heroUsps = [
+  { icon: "shield", t: "Board-certified, trauma-informed clinicians" },
+  { icon: "refresh", t: "EMDR, ART & CPT — evidence-based trauma therapies" },
+  { icon: "users", t: "Specialized Women’s Trauma & First Responder programs" },
+  { icon: "compass", t: "In person (Glastonbury, Westbrook & West Hartford) or telehealth" },
+];
+const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+const signs = [
+  { t: "Flashbacks, nightmares, or intrusive memories", icon: "cloud" },
+  { t: "Avoiding people, places, or reminders of what happened", icon: "swap" },
+  { t: "Feeling on guard, jumpy, or easily startled", icon: "bolt" },
+  { t: "Trouble sleeping or concentrating", icon: "calendar" },
+  { t: "Emotional numbness or feeling detached from others", icon: "link" },
+  { t: "Irritability, anger, or feeling unsafe", icon: "alert" },
+  { t: "Negative changes in mood, beliefs, or self-worth", icon: "heart" },
+];
+const seekHelp = [
+  { t: "Symptoms have lasted more than a month", icon: "calendar" },
+  { t: "Memories or reminders disrupt your daily life", icon: "cloud" },
+  { t: "You’re avoiding things in order to feel safe", icon: "swap" },
+  { t: "Sleep, mood, or relationships are suffering", icon: "refresh" },
+  { t: "You’re using alcohol or substances to cope", icon: "pill" },
+  { t: "The trauma still feels present, even long after", icon: "heart" },
+];
+const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
+const approach = [
+  { icon: "refresh", tone: "azul", t: "EMDR therapy", d: "Eye Movement Desensitization and Reprocessing helps the brain reprocess painful memories so they lose their grip — often faster than talk therapy alone.", href: "/treatment-methods/emdr/" },
+  { icon: "brain", tone: "gold", t: "Trauma-focused therapy", d: "Evidence-based approaches like Cognitive Processing Therapy (CPT) and Accelerated Resolution Therapy (ART), plus trauma-informed CBT — always at your pace.", href: "/programs/counseling/" },
+  { icon: "heart", tone: "sage", t: "Women’s Trauma IOP", d: "A women-only group program built specifically around trauma — a safe, validating space to do the deeper work alongside others who understand.", href: "/programs/womens-trauma-iop/" },
+  { icon: "shield", tone: "azul", t: "First Responder IOP", d: "Specialized care for police, fire, EMS, and dispatch — for the cumulative trauma the job carries, with clinicians who get it.", href: "/programs/first-responder-iop/" },
+  { icon: "pill", tone: "gold", t: "Medication management", d: "When helpful, psychiatric medication to ease sleep problems, hypervigilance, and mood symptoms while you do the healing work.", href: "/programs/medication-management/" },
+  { icon: "sparkles", tone: "sage", t: "Whole-person, tailored care", d: "We treat trauma alongside anxiety, depression, or substance use — never in isolation — at a pace that always feels safe.", href: null },
+];
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
+  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+];
+const reviews = [
+  { n: "Julie Stevens", t: "2 months ago", q: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
+  { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. All the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
+  { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
+  { n: "Cynthia Askew", t: "6 months ago", q: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
+  { n: "stacey miller", t: "3 months ago", q: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
+  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
+];
+const locations = [
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
+  ["Glastonbury", "33 Pratt St, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus"],
+  ["South Glastonbury", "1420 Main St, Suite 124, Glastonbury, CT 06073", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301, West Hartford, CT 06107", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus"],
+  ["East Hampton", "151 E. High St, East Hampton, CT 06424", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus"],
+  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
+];
+const faqs = [
+  ["What is PTSD?", "Post-traumatic stress disorder (PTSD) is a mental health condition that can develop after experiencing or witnessing a deeply distressing event — such as an accident, assault, abuse, combat, or a medical crisis. Most people recover from trauma with time and support, but for some, the mind and body stay in survival mode long after the danger has passed. When symptoms last more than a month and interfere with daily life, it may be PTSD. It is not a sign of weakness — it’s the nervous system’s response to overwhelming experience, and it is highly treatable."],
+  ["What are the signs of trauma or PTSD?", "Common signs include flashbacks, nightmares, or intrusive memories; avoiding people, places, or reminders of what happened; feeling on guard, jumpy, or easily startled; trouble sleeping or concentrating; emotional numbness or feeling detached; irritability or anger; and negative changes in mood, beliefs, or self-worth. Many people also turn to alcohol or substances to cope. Trauma can surface soon after an event or years later."],
+  ["What is EMDR, and how does it help with trauma?", "EMDR (Eye Movement Desensitization and Reprocessing) is an evidence-based therapy that helps the brain reprocess painful memories so they lose their emotional charge. Using guided eye movements or other bilateral stimulation, EMDR allows distressing experiences to be 'filed away' properly — so they stop intruding on the present. It’s recognized by the American Psychiatric Association, the World Health Organization, and the Department of Defense, and it often works faster than talk therapy alone."],
+  ["How is PTSD treated?", "At Hopewell Health Solutions, trauma and PTSD are treated with evidence-based, trauma-informed care. That often includes EMDR, Cognitive Processing Therapy (CPT), and Accelerated Resolution Therapy (ART), delivered at a pace that feels safe, along with medication management when it’s helpful. We also offer specialized group programs — a Women’s Trauma IOP and a First Responder IOP — for those who benefit from healing alongside others with shared experiences. Treatment is always tailored to the individual."],
+  ["When should I seek help for trauma?", "Reach out when symptoms have lasted more than a month, when memories or reminders disrupt your daily life, when you’re avoiding things to feel safe, or when sleep, mood, or relationships are suffering. You don’t have to wait until you hit a breaking point — and you don’t have to relive every detail to heal. If you ever feel unsafe, call or text 988, or call 911."],
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+};
+---
+
+<Base title="Trauma & PTSD Treatment in CT | Hopewell Health Solutions" description="Trauma & PTSD treatment at Hopewell Health Solutions in Glastonbury, Westbrook & West Hartford, CT — EMDR, ART & CPT, plus specialized Women's Trauma and First Responder programs. In person & telehealth." canonical={canonical}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Trauma &amp; PTSD</span></nav>
+      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Trauma &amp; PTSD Treatment · Glastonbury, Westbrook &amp; West Hartford, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Trauma &amp; PTSD Treatment in Connecticut</h1>
+          <p class="mt-3 font-display text-xl text-azul italic">What happened to you doesn’t have to define what comes next.</p>
+          <div class="mt-5 h-px w-16 bg-gold"></div>
+          <div class="mt-5 flex items-center gap-2.5 text-sm">
+            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
+            <span class="font-semibold text-ink">4.8</span>
+            <span class="text-muted">· 368 Google reviews</span>
+          </div>
+          <ul class="mt-6 space-y-3">
+            {heroUsps.map((u) => (
+              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
+          </div>
+          <p class="mt-6 text-xs text-muted">Medically reviewed by Kristine Schlichting, PhD</p>
+        </div>
+        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Take the first step" sub="Free, confidential. We’ll verify your benefits and help you find the right trauma care." /></div>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+  <!-- WHAT IS (image left / text right) -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <img src="/Assets/Hands.webp" alt="Compassionate, trauma-informed care at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Stuck in survival mode</p>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is trauma & PTSD?</h2>
+        <div class="mt-4 h-px w-16 bg-azul/40"></div>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Trauma is the emotional response to a deeply distressing or disturbing event — whether a single incident or harm that built up over time. Most people recover with support, but for some, the mind and body stay locked in survival mode long after the danger has passed. When symptoms persist for more than a month and interfere with daily life, it may be post-traumatic stress disorder (PTSD).</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">PTSD isn’t a sign of weakness, and it isn’t “all in your head” — it’s the nervous system’s response to overwhelming experience, and it’s very treatable. The trauma-informed team at Hopewell Health Solutions uses proven therapies like EMDR, ART, and CPT, along with specialized group programs and medication management, to help you process what happened and feel safe in your life again.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNS -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Know what to look for</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Signs of trauma & PTSD</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Trauma affects everyone differently, but common signs include:</p>
+      </div>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        {signs.map((s) => (
+          <div class="flex items-center gap-3 rounded-xl bg-white border border-line p-5">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={s.icon} class="h-5 w-5" /></span>
+            <span class="text-sm font-semibold text-ink leading-snug">{s.t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR APPROACH -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What trauma treatment looks like here</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our approach to trauma & PTSD treatment</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Trauma-informed and paced for safety — combining proven therapies, specialized group programs, and medication when it helps.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {approach.map((a) => (
+          <div class="rounded-2xl border border-line bg-crema p-6 flex flex-col">
+            <span class={`grid h-12 w-12 place-items-center rounded-xl ${toneMap[a.tone]}`}><Icon name={a.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-lg text-ink leading-snug">{a.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{a.d}</p>
+            {a.href && <a href={a.href} class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul hover:gap-2 transition-all">Learn more <Icon name="arrow" class="h-4 w-4" /></a>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BAND -->
+  <section class="relative">
+    <img src="/Assets/team%20together%202.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" />
+    <div class="absolute inset-0 bg-ink/80"></div>
+    <div class="relative mx-auto max-w-3xl px-5 py-20 text-center">
+      <p class="font-display text-2xl sm:text-3xl text-white italic leading-snug">“Healing from trauma is possible. With the right care, painful memories lose their grip — and you can feel safe again.”</p>
+    </div>
+  </section>
+
+  <!-- WHEN TO SEEK HELP -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">It may be time for support</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">When to seek trauma treatment</h2>
+        <p class="mt-3 text-muted max-w-2xl mx-auto">Many people live with the effects of trauma for years before reaching out. Consider seeking support when:</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {seekHelp.map((s) => (
+          <div class="flex items-start gap-3 rounded-xl bg-white border border-line p-5">
+            <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={s.icon} class="h-5 w-5" /></span>
+            <span class="text-sm font-semibold text-ink leading-snug pt-1.5">{s.t}</span>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-ink max-w-2xl mx-auto leading-relaxed">If any of these feel familiar, reach out to the team at Hopewell Health Solutions. <strong>You don’t have to relive every detail to heal.</strong></p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-azul px-7 py-3.5 font-semibold text-white hover:bg-azul-dark transition">Request an appointment</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-azul px-7 py-3.5 font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <div class="inline-flex items-center gap-3 rounded-full bg-white border border-line px-5 py-2.5 shadow-sm">
+          <span class="h-6 w-6 inline-block" set:html={googleG} />
+          <span class="font-display text-2xl text-ink leading-none">4.8</span>
+          <span class="text-yellow-400 text-lg leading-none">★★★★★</span>
+          <span class="text-sm text-muted">368 Google reviews</span>
+        </div>
+        <p class="mt-3 text-muted">Clients describe feeling genuinely heard · As featured on Eyewitness News 3</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        {reviews.map((r) => (
+          <figure class="rounded-2xl bg-white border border-line p-7 shadow-sm flex flex-col">
+            <div class="flex items-center justify-between">
+              <span class="text-yellow-400 text-lg">★★★★★</span>
+              <span class="h-5 w-5 inline-block opacity-90" set:html={googleG} />
+            </div>
+            <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
+              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
+              <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Most major PPO plans accepted</h2>
+        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — before you commit to anything.</p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {insurers.map(([name, img]) => (
+            <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
+          ))}
+        </div>
+        <p class="mt-4 text-sm text-muted text-center sm:text-left">+ most major PPOs</p>
+      </div>
+      <div class="lg:sticky lg:top-28"><LeadForm heading="Check your coverage" sub="Free, confidential. Takes 2 minutes — we’ll call you back with a full benefits breakdown." /></div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="text-center">
+        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our locations</h2>
+        <p class="mt-3 text-muted">In person at six Connecticut offices — plus virtual visits statewide.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {locations.map(([city, addr, map]) => (
+          <div class="overflow-hidden rounded-2xl bg-white border border-line">
+            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <div class="flex gap-3 p-5">
+              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
+              <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-muted">Reach us at <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a> · <a href="mailto:hhs4help@gmail.com" class="text-azul font-semibold">hhs4help@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-16">
+      <h2 class="font-display text-3xl text-ink text-center">Trauma & PTSD treatment — common questions</h2>
+      <div class="mt-8 space-y-3">
+        {faqs.map(([q, a]) => (
+          <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
+            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-3 text-ink leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid bg="white" />
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">You can feel safe again</h2>
+      <p class="mt-4 text-white/85 text-lg">Whatever you’ve been carrying, you don’t have to carry it alone. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you take the first step toward healing.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="#verify" class="rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="mailto:hhs4help@gmail.com" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Email Us</a>
+      </div>
+      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

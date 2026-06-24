@@ -1,0 +1,66 @@
+---
+// Variation 1: "As featured in & on" press-logo strip — seamless infinite marquee.
+// Props:
+//   bg       — "white" | "crema"
+//   heading  — override the eyebrow label
+//   showLink — show the "See all press →" link (false on the Media page itself)
+const { bg = "white", heading = "As featured in & on", showLink = true } = Astro.props;
+const logos = [
+  ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
+  ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.png"],
+  ["WFSB Eyewitness News 3", "/Assets/Media%20Appearances/wfsb.avif"],
+  ["FOX61", "/Assets/Media%20Appearances/fox61.png"],
+  ["NBC Connecticut", "/Assets/Media%20Appearances/nbc-connecticut.png"],
+  ["WOUB Public Media", "/Assets/Media%20Appearances/woub-public-media.jpg"],
+];
+// Repeat the set so one group is always wider than the viewport (no empty gaps).
+const group = [...logos, ...logos];
+const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
+---
+<section class={`${bgClass} border-y border-line`}>
+  <div class="mx-auto max-w-6xl px-5 py-8">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
+
+    {/* Two identical groups; track scrolls exactly one group width → seamless.
+        Spacing is driven by margin-right (not flex gap) so the loop seam is gapless. */}
+    <div class="ms-mask mt-6 overflow-hidden">
+      <div class="ms-track flex w-max">
+        <ul class="flex shrink-0 items-center">
+          {group.map(([name, src]) => (
+            <li class="shrink-0"><img src={src} alt={name} loading="lazy" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+          ))}
+        </ul>
+        <ul class="flex shrink-0 items-center" aria-hidden="true">
+          {group.map(([name, src]) => (
+            <li class="shrink-0"><img src={src} alt="" loading="lazy" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {showLink && (
+      <div class="mt-6 text-center">
+        <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &rarr;</a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ms-track {
+    animation: ms-scroll 40s linear infinite;
+  }
+  .ms-track:hover { animation-play-state: paused; }
+  @keyframes ms-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  /* Soft fade at both edges so logos scroll in/out gracefully */
+  .ms-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ms-track { animation: none; }
+  }
+</style>

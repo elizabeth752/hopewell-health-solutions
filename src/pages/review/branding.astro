@@ -1,0 +1,113 @@
+---
+import Review from "../../layouts/Review.astro";
+
+const colors = [
+  { name: "Azul", hex: "#265489", role: "Primary — buttons, links, pills", cls: "bg-azul", text: "text-white" },
+  { name: "Azul Dark", hex: "#1B3E63", role: "Hover / pressed states", cls: "bg-azul-dark", text: "text-white" },
+  { name: "Azul Light", hex: "#E7EEF5", role: "Soft tint — pill bg, sections", cls: "bg-azul-light", text: "text-ink" },
+  { name: "Crema", hex: "#F5F2EB", role: "Light section background", cls: "bg-crema", text: "text-ink" },
+  { name: "Navy (párrafos)", hex: "#001D37", role: "Body + heading text", cls: "bg-ink", text: "text-white" },
+  { name: "Muted", hex: "#5A6B7A", role: "Secondary text", cls: "bg-muted", text: "text-white" },
+];
+
+const typeScale = [
+  { tag: "H1", cls: "font-display text-5xl", sample: "There is hope to heal" },
+  { tag: "H2", cls: "font-display text-4xl", sample: "Connecticut's intensive programs center" },
+  { tag: "H3", cls: "font-display text-2xl", sample: "Intensive Outpatient Program" },
+  { tag: "Body", cls: "font-sans text-lg", sample: "Compassionate, evidence-based mental wellness and psychiatry — in person, across Connecticut." },
+  { tag: "Small", cls: "font-sans text-sm text-muted", sample: "Most major PPO plans accepted · Verify your benefits in minutes." },
+];
+---
+
+<Review
+  title="Brand Board"
+  subtitle="The live design system. Every token here is wired into the build — change a value once and the whole site re-skins."
+>
+  <!-- Colors -->
+  <section>
+    <h2 class="font-display text-2xl text-ink mb-4">Color</h2>
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        colors.map((c) => (
+          <div class="rounded-xl border border-line bg-white overflow-hidden">
+            <div class={`${c.cls} ${c.text} h-28 flex items-end p-4`}>
+              <span class="font-display text-xl">{c.name}</span>
+            </div>
+            <div class="p-4">
+              <p class="font-mono text-sm text-ink uppercase">{c.hex}</p>
+              <p class="text-sm text-muted mt-1">{c.role}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section class="mt-12">
+    <h2 class="font-display text-2xl text-ink mb-4">Typography</h2>
+    <div class="grid gap-4 sm:grid-cols-2 mb-6">
+      <div class="rounded-xl border border-line bg-white p-6">
+        <p class="text-xs uppercase tracking-wide text-azul font-semibold">Headings</p>
+        <p class="font-display text-4xl text-ink mt-2">Baskervville</p>
+        <p class="font-display text-lg text-muted mt-1">Aa Bb Cc · 1234567890</p>
+      </div>
+      <div class="rounded-xl border border-line bg-white p-6">
+        <p class="text-xs uppercase tracking-wide text-azul font-semibold">Body</p>
+        <p class="font-sans text-4xl text-ink mt-2 font-semibold">Urbanist</p>
+        <p class="font-sans text-lg text-muted mt-1">Aa Bb Cc · 1234567890</p>
+      </div>
+    </div>
+    <div class="rounded-xl border border-line bg-white divide-y divide-line">
+      {
+        typeScale.map((t) => (
+          <div class="flex items-baseline gap-6 p-5">
+            <span class="w-14 shrink-0 text-xs font-mono uppercase text-muted">{t.tag}</span>
+            <span class={`${t.cls} text-ink`}>{t.sample}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section class="mt-12">
+    <h2 class="font-display text-2xl text-ink mb-4">Components</h2>
+    <div class="rounded-xl border border-line bg-white p-8 space-y-8">
+      <div>
+        <p class="text-xs uppercase tracking-wide text-muted font-semibold mb-3">Buttons</p>
+        <div class="flex flex-wrap gap-3 items-center">
+          <button class="rounded-lg bg-azul px-6 py-3 font-semibold text-white transition hover:bg-azul-dark">Verify Your Insurance</button>
+          <button class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul transition hover:bg-azul-light">Call (860) 735-1448</button>
+          <button class="rounded-lg bg-ink px-6 py-3 font-semibold text-white transition hover:opacity-90">Get Started</button>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-muted font-semibold mb-3">Pills (always blue)</p>
+        <div class="flex flex-wrap gap-2">
+          {["Intensive Outpatient", "PHP", "Med Management", "TMS", "Women's Wellness", "Teen & Tween"].map((p) => (
+            <span class="rounded-full bg-azul-light text-azul text-sm font-semibold px-3.5 py-1.5">{p}</span>
+          ))}
+        </div>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-wide text-muted font-semibold mb-3">Card</p>
+        <div class="max-w-sm rounded-xl border border-line bg-crema p-6">
+          <span class="rounded-full bg-azul-light text-azul text-xs font-semibold px-3 py-1">Program</span>
+          <h4 class="font-display text-xl text-ink mt-3">Adult Mental Health IOP</h4>
+          <p class="text-muted text-sm mt-2">Structured, in-person therapy 3–5 days a week — depression, anxiety, trauma and more.</p>
+          <a href="#" class="inline-block mt-4 text-azul font-semibold text-sm">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo note -->
+  <section class="mt-12">
+    <h2 class="font-display text-2xl text-ink mb-4">Logo</h2>
+    <div class="rounded-xl border border-dashed border-azul bg-azul-light p-8 text-center">
+      <p class="text-ink font-semibold">⏳ Logo file pending from client</p>
+      <p class="text-muted text-sm mt-1">Using the “H” mark + Baskervville wordmark as a placeholder until the official logo lands.</p>
+    </div>
+  </section>
+</Review>
