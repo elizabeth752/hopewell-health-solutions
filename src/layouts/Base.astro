@@ -17,7 +17,9 @@ const {
 } = Astro.props;
 
 const ogImage = image.startsWith("http") ? image : SITE + image;
-const ogUrl = canonical || SITE + Astro.url.pathname;
+// Every page gets a self-referencing canonical by default (override via the `canonical` prop).
+const canonicalHref = canonical || SITE + Astro.url.pathname;
+const ogUrl = canonicalHref;
 ---
 
 <!doctype html>
@@ -44,7 +46,7 @@ const ogUrl = canonical || SITE + Astro.url.pathname;
     />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="canonical" href={canonicalHref} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

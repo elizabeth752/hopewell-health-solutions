@@ -5,8 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: set to the production domain once it's live
-  site: 'https://hopewellhealthsolutions.com',
+  site: 'https://www.hopewellhealthsolutions.com',
   trailingSlash: 'always',      // clean, consistent URLs e.g. /programs/medical-detox/
   build: { format: 'directory' },
   integrations: [
