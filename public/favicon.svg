@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hopewell Health Solutions">
-  <rect width="64" height="64" rx="13" fill="#265489"/>
-  <!-- Hopewell mark (wings) + HHS monogram, scaled from the brand logo into the square -->
-  <g transform="translate(32,33) scale(0.082) translate(-320,-191)">
-    <g fill="#ffffff" stroke="#ffffff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
-      <path d="M 7,125 C 4,138 2,158 2,180 C 1,213 4,232 14,251 C 30,279 58,299 90,317 C 110,330 129,346 146,362 C 150,349 152,324 149,299 C 146,275 138,256 121,243 C 100,232 78,222 57,214 C 64,232 77,250 88,268 C 70,252 44,236 33,222 C 28,206 22,188 18,170 C 16,150 12,132 7,125 Z"></path>
-      <g transform="translate(640,0) scale(-1,1)"><path d="M 7,125 C 4,138 2,158 2,180 C 1,213 4,232 14,251 C 30,279 58,299 90,317 C 110,330 129,346 146,362 C 150,349 152,324 149,299 C 146,275 138,256 121,243 C 100,232 78,222 57,214 C 64,232 77,250 88,268 C 70,252 44,236 33,222 C 28,206 22,188 18,170 C 16,150 12,132 7,125 Z"></path></g>
-    </g>
-    <text x="320" y="128" fill="#ffffff" font-family="Georgia, 'Times New Roman', Tinos, serif" font-weight="700" font-size="150" letter-spacing="6" text-anchor="middle">HHS</text>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13" fill="#ffffff" stroke="#e4ddd0"/>
+  <!-- HHS monogram, matching the brand logo -->
+  <text x="32" y="31" fill="#2a2a9e" font-family="Georgia, 'Times New Roman', Tinos, serif" font-weight="700" font-size="25" letter-spacing="1" text-anchor="middle">HHS</text>
+  <!-- multicolor wave, echoing the logo -->
+  <g fill="none" stroke-width="2.6" stroke-linecap="round">
+    <path d="M7 39 Q 20 32 32 39 T 57 38" stroke="#3fae49"/>
+    <path d="M7 44 Q 20 37 32 44 T 57 43" stroke="#2f76c4"/>
+    <path d="M7 49 Q 20 42 32 49 T 57 48" stroke="#7e4fa8"/>
   </g>
 </svg>
