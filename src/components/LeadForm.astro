@@ -41,10 +41,30 @@ const pad = compact ? "py-2.5" : "py-3";
       const stored = JSON.parse(localStorage.getItem("hhs_attr") || "{}");
       let changed = false;
       ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) { stored[k] = v; changed = true; } });
+      // First-touch session signals so CTM can classify the true source (direct/organic/referral),
+      // not a default. Captured once and kept for the whole visit.
+      if (!("landing_url" in stored)) { stored.landing_url = window.location.href; changed = true; }
+      if (!("referrer" in stored)) {
+        const ref = document.referrer || "";
+        // Ignore our own pages so internal navigation never overwrites the real (external) referrer.
+        stored.referrer = (ref && ref.indexOf(window.location.hostname) === -1) ? ref : "";
+        changed = true;
+      }
       if (changed) localStorage.setItem("hhs_attr", JSON.stringify(stored));
     } catch (e) {}
   })();
   function getAttr() { try { return JSON.parse(localStorage.getItem("hhs_attr") || "{}"); } catch (e) { return {}; } }
+
+  // CTM's tracking script sets a first-party session cookie holding the real source.
+  // Pass it so the submission ties to that tracked visit instead of getting a default.
+  function getCtmSid() {
+    try {
+      const m = document.cookie.match(/(?:^|;\s*)(?:__ctmid|__ctm_sid|ctm_sid)=([^;]+)/i);
+      if (m) return decodeURIComponent(m[1]);
+      if (window.__ctm && window.__ctm.config && window.__ctm.config.sid) return String(window.__ctm.config.sid);
+    } catch (e) {}
+    return "";
+  }
 
   function toE164(raw) {
     const d = (raw || "").replace(/\D/g, "");
@@ -80,6 +100,15 @@ const pad = compact ? "py-2.5" : "py-3";
       if (a.adgroupid) body.set("paid_attribution[adgroup_id]", a.adgroupid);
       if (a.creative) body.set("paid_attribution[creative_id]", a.creative);
       body.set("paid_attribution[form_id]", FORM_ID);
+
+      // --- Real session/source so CTM attributes the true origin (not a forced default) ---
+      ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach((k) => { if (a[k]) body.set(k, a[k]); });
+      if (a.keyword) body.set("keyword", a.keyword);
+      body.set("referrer", typeof a.referrer === "string" ? a.referrer : (document.referrer || ""));
+      if (a.landing_url) body.set("landing_url", a.landing_url);
+      body.set("url", window.location.href);
+      const sid = getCtmSid();
+      if (sid) { body.set("sid", sid); body.set("visitor_sid", sid); }
 
       btn.disabled = true;
       const original = btn.textContent;
