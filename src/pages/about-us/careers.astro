@@ -1,0 +1,86 @@
+---
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/about-us/careers";
+
+const why = [
+  { icon: "heart", t: "Mission-driven work", d: "Help Connecticut individuals and families heal, with real clinical outcomes — not a volume mill." },
+  { icon: "users", t: "A genuine team", d: "Collaborative, supportive, and close-knit. Our clinicians know each other and each other's clients by name." },
+  { icon: "compass", t: "In-person, relationship-based care", d: "We believe in showing up in person. You'll do meaningful, hands-on clinical work — not just screens." },
+  { icon: "sparkles", t: "Room to grow", d: "A growing practice across multiple Connecticut locations means real opportunity to advance and specialize." },
+];
+const roles = [
+  "Psychiatric Nurse Practitioners (PMHNP) & Physician Assistants",
+  "Licensed Psychologists & Neuropsychologists",
+  "Licensed Clinicians — LCSW, LPC, LMFT & associates",
+  "Group facilitators & IOP/PHP clinicians",
+  "Admissions, intake & client-support staff",
+];
+---
+
+<Base title="Careers | Hopewell Health Solutions" description="Join the team at Hopewell Health Solutions — a growing Connecticut mental-health & psychiatry practice. We're always interested in compassionate clinicians, prescribers, and support staff who believe in in-person, relationship-based care." canonical={canonical}>
+  <Header />
+
+  <!-- HERO -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-5xl px-5 pt-8 pb-14">
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/about-us/" class="hover:text-azul">About</a> / <span class="text-ink">Careers</span></nav>
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Join our team</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Careers at Hopewell Health Solutions</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-6 max-w-2xl text-lg text-muted leading-relaxed">We're a growing Connecticut mental-health and psychiatry practice — and we're always interested in talented, compassionate people who want to do care the right way. If that sounds like you, we'd love to hear from you.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-azul-bright px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="/about-us/team/" class="inline-flex items-center gap-2 rounded-lg border border-azul px-6 py-3 text-sm font-semibold text-azul hover:bg-azul-light transition">Meet the team</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY WORK HERE -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-center">Why work at Hopewell</h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {why.map((w) => (
+          <div class="rounded-2xl border border-line bg-crema p-6">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-azul text-white"><Icon name={w.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-4 font-display text-xl text-ink">{w.t}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE LOOK FOR -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-4xl px-5 py-16">
+      <h2 class="font-display text-3xl sm:text-4xl text-ink">Who we're looking for</h2>
+      <p class="mt-4 text-muted leading-relaxed">As we grow across our Connecticut locations, we regularly welcome new colleagues across clinical and support roles, including:</p>
+      <ul class="mt-7 space-y-3">
+        {roles.map((r) => (
+          <li class="flex items-start gap-3 rounded-xl bg-white border border-line p-4">
+            <span class="text-azul mt-0.5 shrink-0"><Icon name="shield" class="h-5 w-5" /></span>
+            <span class="text-ink font-semibold text-sm leading-snug">{r}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-azul text-white">
+    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Let's talk</h2>
+      <p class="mt-4 text-white/85 text-lg">Even if you don't see your exact role listed, reach out — we're always glad to connect with great people who share our commitment to care. Call us and tell us a little about yourself.</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
