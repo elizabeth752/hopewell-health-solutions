@@ -76,7 +76,7 @@ if (bodyHtml) {
   tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
 }
 
-// --- JSON-LD: BlogPosting with author + reviewedBy + publisher (E-E-A-T core) ---
+// --- JSON-LD: BlogPosting with author + publisher (E-E-A-T core; reviewer shown visibly, not in schema) ---
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -86,7 +86,6 @@ const schema = {
   datePublished: post.datePublished,
   dateModified: post.dateModified || post.datePublished,
   ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
-  ...(reviewer ? { reviewedBy: { "@type": "Person", name: reviewer.name, jobTitle: reviewer.role, url: `${SITE}/provider/${reviewer.slug}/` } } : {}),
   publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.jpg` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
