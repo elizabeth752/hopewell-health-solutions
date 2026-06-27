@@ -76,7 +76,7 @@ if (bodyHtml) {
   tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
 }
 
-// --- JSON-LD: BlogPosting with author + reviewedBy + publisher (E-E-A-T core) ---
+// --- JSON-LD: BlogPosting with author + publisher (E-E-A-T core; reviewer shown visibly, not in schema) ---
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
