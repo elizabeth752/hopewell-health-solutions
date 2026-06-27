@@ -40,13 +40,12 @@ const ogUrl = canonicalHref;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <!-- Brand fonts: Baskervville (headings) + Urbanist (body) -->
+    <!-- Brand fonts: Baskervville (headings) + Urbanist (body) — loaded non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" /></noscript>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalHref} />
