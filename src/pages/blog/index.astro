@@ -6,7 +6,7 @@ import Icon from "../../components/Icon.astro";
 import { posts } from "../../data/posts.js";
 import { providers } from "../../data/providers.js";
 
-const canonical = "https://www.hopewellhealthsolutions.com/blog";
+const canonical = "https://www.hopewellhealthsolutions.com/blog/";
 const byId = (slug) => providers.find((p) => p.slug === slug);
 const fmt = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
