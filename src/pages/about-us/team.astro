@@ -15,7 +15,7 @@ const initials = (name) => {
 // Single source of truth: providers.js. Each card links to /provider/[slug]/.
 const sections = [
   { title: "Leadership", people: providers.filter((p) => p.category === "leadership" && !p.hideFromTeam), cols: "sm:grid-cols-2 lg:grid-cols-3" },
-  { title: "Medical Staff", people: providers.filter((p) => p.category === "medical" && !p.hideFromTeam), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Medical Staff", people: providers.filter((p) => (p.category === "medical" || p.alsoMedicalStaff) && !p.hideFromTeam), cols: "sm:grid-cols-2 lg:grid-cols-3" },
   { title: "Clinical Staff", people: providers.filter((p) => (p.category === "psychology" || p.category === "clinical") && !p.hideFromTeam), cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
 ];
 const L = "/Assets/Media%20Appearances/";
