@@ -1,0 +1,7 @@
+---
+// Renders a Portable Text H2 with an id anchor so the table-of-contents links resolve.
+import { slugifyHeading, blockText } from "../lib/sanity";
+const { node } = Astro.props as { node: any };
+const id = slugifyHeading(blockText(node));
+---
+<h2 id={id}><slot /></h2>

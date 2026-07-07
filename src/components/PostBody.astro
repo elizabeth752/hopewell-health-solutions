@@ -1,0 +1,18 @@
+---
+// Renders a post body (Portable Text) inside the existing `.post-body` styling.
+// Only the H2 needs a custom renderer (for TOC anchor ids); everything else uses
+// semantic defaults that the .post-body CSS already styles.
+import { PortableText } from "astro-portabletext";
+import PtHeading2 from "./PtHeading2.astro";
+
+const { value } = Astro.props as { value: any };
+
+const components = {
+  block: {
+    h2: PtHeading2,
+  },
+};
+---
+<div class="post-body">
+  <PortableText value={value} components={components} />
+</div>

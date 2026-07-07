@@ -3,33 +3,35 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import { posts, relatedPosts } from "../../data/posts.js";
-import { providers } from "../../data/providers.js";
+import PostBody from "../../components/PostBody.astro";
+import { urlFor, getPost, getAllPostSlugs, getRelatedPosts, slugifyHeading, blockText } from "../../lib/sanity";
 
-export function getStaticPaths() {
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+export async function getStaticPaths() {
+  const slugs = await getAllPostSlugs();
+  return slugs.filter((s) => s.slug).map((s) => ({ params: { slug: s.slug } }));
 }
-const { post } = Astro.props;
+
+const { slug } = Astro.params;
+const post = await getPost(slug);
 
 const SITE = "https://www.hopewellhealthsolutions.com";
-const TM = "/Assets/Team%20Members/";
 const INS = "/Assets/Insurance/";
 const canonical = `${SITE}/post/${post.slug}/`;
 
-// --- Author / reviewer (E-E-A-T) — real clinicians from providers.js ---
-const byId = (slug) => providers.find((p) => p.slug === slug);
-const author = byId(post.authorSlug);
-const reviewer = post.reviewerSlug ? byId(post.reviewerSlug) : null;
+// --- Author / reviewer (E-E-A-T) — resolved from Sanity references ---
+const author = post.author;
+const reviewer = post.reviewer;
 const initials = (name) => {
-  const w = name.split(",")[0].trim().split(" ").filter(Boolean);
-  return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
+  const w = (name || "").split(",")[0].trim().split(" ").filter(Boolean);
+  return (w[0]?.[0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
 };
-const photoUrl = (p) => (p && p.photo ? `${TM}${p.photo}.webp` : null);
+const authorPhoto = author?.image ? urlFor(author.image).width(160).height(160).fit("crop").url() : null;
 const authorExcerpt = author?.bio ? author.bio.split("\n\n")[0] : "";
 
-// --- Dates ---
-const fmt = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-const wasUpdated = post.dateModified && post.dateModified !== post.datePublished;
+// --- Dates (stored as ISO; display in UTC so the calendar day never shifts) ---
+const fmt = (iso) =>
+  iso ? new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }) : "";
+const wasUpdated = post.updatedAt && post.updatedAt !== post.publishedAt;
 
 // --- Sidebar widgets ---
 const insurers = [
@@ -51,41 +53,31 @@ const share = {
   linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(canonical)}`,
 };
 
-const related = relatedPosts(post.slug, 3);
+const related = await getRelatedPosts(post.slug, post.category, 3);
 
-// --- Metas: pull verbatim from the live page where provided; fall back to excerpt ---
+// --- Metas ---
 const metaTitle = post.metaTitle || `${post.title} | Hopewell Health Solutions`;
 const metaDesc = (post.metaDescription || post.excerpt || "").slice(0, 160);
 const hasSources = post.sources && post.sources.length > 0;
 
-// --- Body: migrated posts carry verbatim `bodyHtml`; auto-build the TOC from its <h2>s ---
-// Hand-authored posts use structured `sections` instead. We build a unified `tocItems`
-// list and (for bodyHtml) inject id anchors so the TOC links resolve.
-const slugifyHeading = (s) =>
-  s.toLowerCase().replace(/<[^>]+>/g, "").replace(/&[a-z]+;/gi, " ").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-let bodyHtml = post.bodyHtml || null;
-let tocItems = [];
-if (bodyHtml) {
-  bodyHtml = bodyHtml.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_m, _attrs, inner) => {
-    const text = inner.replace(/<[^>]+>/g, "").trim();
-    const id = slugifyHeading(text);
-    tocItems.push({ id, text });
-    return `<h2 id="${id}" class="post-h2">${inner}</h2>`;
-  });
-} else if (post.sections) {
-  tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
-}
+// --- Table of contents from the body's H2 blocks (ids match PtHeading2) ---
+const tocItems = (post.body || [])
+  .filter((b) => b._type === "block" && b.style === "h2")
+  .map((b) => ({ id: slugifyHeading(blockText(b)), text: blockText(b) }))
+  .filter((t) => t.text);
 
-// --- JSON-LD: BlogPosting with author + publisher (E-E-A-T core; reviewer shown visibly, not in schema) ---
+const heroImage = post.mainImage ? urlFor(post.mainImage).width(1200).url() : null;
+
+// --- JSON-LD: BlogPosting with author + publisher (reviewer shown visibly, not in schema) ---
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: post.title,
   description: metaDesc,
-  image: `${SITE}${post.heroImage}`,
-  datePublished: post.datePublished,
-  dateModified: post.dateModified || post.datePublished,
-  ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
+  ...(heroImage ? { image: heroImage } : {}),
+  datePublished: post.publishedAt?.slice(0, 10),
+  dateModified: (post.updatedAt || post.publishedAt)?.slice(0, 10),
+  ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.providerSlug}/` } } : {}),
   publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.jpg` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
@@ -108,22 +100,22 @@ const schema = {
 
       <!-- meta row -->
       <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
-        <span>Published {fmt(post.datePublished)}</span>
-        {wasUpdated && <span>· Updated {fmt(post.dateModified)}</span>}
+        <span>Published {fmt(post.publishedAt)}</span>
+        {wasUpdated && <span>· Updated {fmt(post.updatedAt)}</span>}
         {post.readingMinutes && <span>· {post.readingMinutes} min read</span>}
       </div>
 
       <!-- author byline (E-E-A-T) -->
       <div class="mt-7 flex flex-col gap-5 border-t border-line pt-6 sm:flex-row sm:items-start sm:justify-between">
         <div class="flex items-start gap-4">
-          {photoUrl(author)
-            ? <img src={photoUrl(author)} alt={author.name} class="h-16 w-16 shrink-0 rounded-xl object-cover object-top" />
+          {authorPhoto
+            ? <img src={authorPhoto} alt={author.name} class="h-16 w-16 shrink-0 rounded-xl object-cover object-top" />
             : <div class="grid h-16 w-16 shrink-0 place-items-center rounded-xl bg-azul-light"><span class="font-display text-xl text-azul">{author ? initials(author.name) : "HHS"}</span></div>}
           <div class="max-w-xl">
             <p class="font-display text-lg text-ink leading-tight">{author?.name}</p>
             <p class="text-sm font-semibold text-azul">{author?.role}</p>
             {authorExcerpt && <p class="mt-1.5 text-sm text-muted leading-relaxed line-clamp-3">{authorExcerpt}</p>}
-            {author && <a href={`/provider/${author.slug}/`} class="mt-1 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio</a>}
+            {author && <a href={`/provider/${author.providerSlug}/`} class="mt-1 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio</a>}
           </div>
         </div>
 
@@ -206,38 +198,17 @@ const schema = {
 
         <!-- ARTICLE -->
         <article class="order-1 lg:order-2 max-w-3xl">
-          {post.intro && <p class="text-[19px] leading-relaxed text-ink">{post.intro}</p>}
-
-          {bodyHtml
-            ? <div class="post-body mt-2" set:html={bodyHtml} />
-            : (post.sections || []).map((s) => (
-              <div id={s.id} class="scroll-mt-28 mt-10">
-                <h2 class="font-display text-2xl sm:text-3xl text-azul leading-snug">{s.h2}</h2>
-                <div class="mt-4 space-y-4">
-                  {s.blocks.map((b) => (
-                    b.p ? <p class="text-[17px] leading-relaxed text-ink">{b.p}</p>
-                    : b.h3 ? <h3 class="pt-2 font-display text-xl text-ink">{b.h3}</h3>
-                    : b.ul ? (
-                      <ul class="space-y-2.5 pl-1">
-                        {b.ul.map((li) => <li class="flex gap-3 text-[17px] leading-relaxed text-ink"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>{li}</span></li>)}
-                      </ul>
-                    )
-                    : b.note ? <p class="rounded-2xl bg-azul-light/40 border border-azul/30 p-5 text-[15px] text-ink">{b.note}</p>
-                    : null
-                  ))}
-                </div>
-              </div>
-            ))}
+          <PostBody value={post.body} />
 
           <!-- Sources (E-E-A-T) -->
-          {post.sources && post.sources.length > 0 && (
+          {hasSources && (
             <div id="sources" class="scroll-mt-28 mt-12 border-t border-line pt-7">
               <h2 class="font-display text-2xl text-azul">Sources</h2>
               <ol class="mt-4 space-y-2.5 text-[15px]">
                 {post.sources.map((src) => (
                   <li class="flex gap-3">
                     <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"></span>
-                    <a href={src.href} target="_blank" rel="noopener nofollow" class="text-azul hover:underline break-words">{src.text}</a>
+                    <a href={src.url} target="_blank" rel="noopener nofollow" class="text-azul hover:underline break-words">{src.text}</a>
                   </li>
                 ))}
               </ol>
@@ -257,20 +228,20 @@ const schema = {
             <div class="mt-8 rounded-2xl border border-line bg-crema/60 p-6">
               <p class="text-xs font-semibold uppercase tracking-wide text-muted">Written by</p>
               <div class="mt-3 flex items-start gap-4">
-                {photoUrl(author)
-                  ? <img src={photoUrl(author)} alt={author.name} class="h-14 w-14 shrink-0 rounded-xl object-cover object-top" />
+                {authorPhoto
+                  ? <img src={authorPhoto} alt={author.name} class="h-14 w-14 shrink-0 rounded-xl object-cover object-top" />
                   : <div class="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-azul-light"><span class="font-display text-lg text-azul">{initials(author.name)}</span></div>}
                 <div>
                   <p class="font-display text-lg text-ink">{author.name}</p>
                   <p class="text-sm font-semibold text-azul">{author.role}</p>
                   {authorExcerpt && <p class="mt-2 text-sm text-muted leading-relaxed">{authorExcerpt}</p>}
-                  <a href={`/provider/${author.slug}/`} class="mt-2 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio →</a>
+                  <a href={`/provider/${author.providerSlug}/`} class="mt-2 inline-block text-sm font-semibold text-azul hover:underline">Read Full Bio →</a>
                 </div>
               </div>
               {reviewer && (
                 <p class="mt-4 border-t border-line pt-4 text-sm text-muted">
                   <span class="inline-flex items-center gap-1.5 font-semibold text-ink"><Icon name="shield" class="h-4 w-4 text-azul" />Medically reviewed by</span>
-                  <a href={`/provider/${reviewer.slug}/`} class="text-azul font-semibold hover:underline"> {reviewer.name}</a>, {reviewer.role}.
+                  <a href={`/provider/${reviewer.providerSlug}/`} class="text-azul font-semibold hover:underline"> {reviewer.name}</a>, {reviewer.role}.
                 </p>
               )}
             </div>
@@ -286,22 +257,19 @@ const schema = {
       <div class="mx-auto max-w-6xl px-5 py-16">
         <h2 class="font-display text-3xl text-azul">Popular articles</h2>
         <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {related.map((r) => {
-            const a = byId(r.authorSlug);
-            return (
-              <a href={`/post/${r.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white hover:border-azul hover:shadow-lg transition">
-                <div class="aspect-[16/10] overflow-hidden bg-azul-light">
-                  {r.heroImage && <img src={r.heroImage} alt="" loading="lazy" class="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-300" />}
-                </div>
-                <div class="flex flex-1 flex-col p-5">
-                  <span class="text-xs font-semibold uppercase tracking-wide text-azul">{r.category}</span>
-                  <h3 class="mt-2 font-display text-lg text-ink leading-snug group-hover:text-azul transition">{r.title}</h3>
-                  <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2 flex-1">{r.excerpt}</p>
-                  <p class="mt-4 text-xs text-muted">{a?.name} · {fmt(r.datePublished)}</p>
-                </div>
-              </a>
-            );
-          })}
+          {related.map((r) => (
+            <a href={`/post/${r.slug}/`} class="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white hover:border-azul hover:shadow-lg transition">
+              <div class="aspect-[16/10] overflow-hidden bg-azul-light">
+                {r.mainImage && <img src={urlFor(r.mainImage).width(640).height(400).fit("crop").url()} alt="" loading="lazy" class="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-300" />}
+              </div>
+              <div class="flex flex-1 flex-col p-5">
+                <span class="text-xs font-semibold uppercase tracking-wide text-azul">{r.category}</span>
+                <h3 class="mt-2 font-display text-lg text-ink leading-snug group-hover:text-azul transition">{r.title}</h3>
+                <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2 flex-1">{r.excerpt}</p>
+                <p class="mt-4 text-xs text-muted">{r.authorName} · {fmt(r.publishedAt)}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -318,12 +286,12 @@ const schema = {
     });
   </script>
 
-  <!-- Styling for verbatim migrated bodies (set:html content can't take scoped classes) -->
+  <!-- Styling for post bodies (Portable Text renders semantic tags into .post-body) -->
   <style is:global>
     .post-body { color: var(--color-ink); }
     .post-body > * + * { margin-top: 1.1rem; }
     .post-body p { font-size: 17px; line-height: 1.75; }
-    .post-body h2, .post-body .post-h2 {
+    .post-body h2 {
       font-family: var(--font-display); color: var(--color-azul);
       font-size: 1.6rem; line-height: 1.3; margin-top: 2.25rem; scroll-margin-top: 7rem;
     }
@@ -337,6 +305,7 @@ const schema = {
     .post-body li::marker { color: var(--color-azul); }
     .post-body a { color: var(--color-azul); text-decoration: underline; }
     .post-body strong { font-weight: 600; color: var(--color-ink); }
-    @media (min-width: 640px) { .post-body h2, .post-body .post-h2 { font-size: 1.875rem; } }
+    .post-body blockquote { border-left: 3px solid var(--color-azul); padding-left: 1rem; color: var(--color-muted); font-style: italic; }
+    @media (min-width: 640px) { .post-body h2 { font-size: 1.875rem; } }
   </style>
 </Base>
