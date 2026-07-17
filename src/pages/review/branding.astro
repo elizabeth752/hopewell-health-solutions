@@ -1,6 +1,8 @@
 ---
 import Review from "../../layouts/Review.astro";
 
+if (import.meta.env.PROD) return Astro.redirect("/");
+
 const colors = [
   { name: "Azul", hex: "#265489", role: "Primary — buttons, links, pills", cls: "bg-azul", text: "text-white" },
   { name: "Azul Dark", hex: "#1B3E63", role: "Hover / pressed states", cls: "bg-azul-dark", text: "text-white" },
