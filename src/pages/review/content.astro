@@ -3,6 +3,8 @@ import Review from "../../layouts/Review.astro";
 import SeoCard from "../../components/SeoCard.astro";
 import ContentDoc from "../../components/ContentDoc.astro";
 import { providers } from "../../data/providers.js";
+
+if (import.meta.env.PROD) return Astro.redirect("/");
 const provCats = [
   { key: "leadership", label: "Leadership" },
   { key: "medical", label: "Medical & Psychiatric" },

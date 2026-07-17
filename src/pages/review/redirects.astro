@@ -1,6 +1,8 @@
 ---
 import Review from "../../layouts/Review.astro";
 
+if (import.meta.env.PROD) return Astro.redirect("/");
+
 const groups = [
   {
     title: "Hubs & homepage",

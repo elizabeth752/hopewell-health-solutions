@@ -1,6 +1,8 @@
 ---
 import Review from "../../layouts/Review.astro";
 
+if (import.meta.env.PROD) return Astro.redirect("/");
+
 // status: EXISTS | REBUILD | MIGRATE | NEW
 const tree = [
   { path: "/", label: "Home", status: "REBUILD", depth: 0 },

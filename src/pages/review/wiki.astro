@@ -1,6 +1,8 @@
 ---
 import Review from "../../layouts/Review.astro";
 
+if (import.meta.env.PROD) return Astro.redirect("/");
+
 const facts = [
   { k: "Legal name", v: "Hopewell Health Solutions, LLC." },
   { k: "Founded", v: "2013" },
