@@ -9,6 +9,7 @@
     { "source": "/about", "destination": "/about-us/", "permanent": true },
     { "source": "/providers", "destination": "/about-us/team/", "permanent": true },
     { "source": "/eric-schwartz-psyd-abpp", "destination": "/provider/eric-schwartz-psy-d-abpp/", "permanent": true },
+    { "source": "/provider/sarah-schiano-dicola-lcsw", "destination": "/about-us/team/", "permanent": true },
 
     { "source": "/our-terms", "destination": "/terms/", "permanent": true },
     { "source": "/your-privacy", "destination": "/privacy/", "permanent": true },
