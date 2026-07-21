@@ -71,7 +71,7 @@ const press = [
           {sec.people.map((m) => (
             <a href={`/provider/${m.slug}/`} class="group overflow-hidden rounded-2xl bg-white border border-line shadow-sm hover:border-azul hover:shadow-lg transition">
               {m.photo
-                ? <img src={`${TM}${m.photo}.webp`} alt={m.name} loading="lazy" class="aspect-square w-full object-cover object-top" />
+                ? <img src={`${TM}${m.photo}.webp`} alt={m.name} loading="lazy" class={`aspect-square w-full object-cover ${m.photoPos || "object-top"}`} />
                 : <div class="grid aspect-square place-items-center bg-azul-light"><span class="font-display text-3xl text-azul">{initials(m.name)}</span></div>}
               <div class="p-4">
                 <h3 class="font-display text-base text-ink leading-tight group-hover:text-azul transition">{m.name}</h3>
