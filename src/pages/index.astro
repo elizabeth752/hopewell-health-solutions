@@ -85,11 +85,9 @@ const locations = [
   ["Westbrook", "70 Essex Road", "Westbrook, CT 06498", "/location/westbrook-ct/"],
 ];
 const reviews = [
-  { name: "Julie Stevens", meta: "2 months ago", text: "From the moment I walked in, the staff made me feel welcome and cared for. The providers are professional, compassionate, and truly take the time to listen. Highly recommend this practice to anyone looking for thoughtful, personalized care!" },
   { name: "Jake Sted", meta: "2 months ago", text: "Hopewell’s IOP program made a huge difference in my life. The groups were engaging, and the therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day." },
   { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
   { name: "Joana Yoo", meta: "10 months ago", text: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
-  { name: "stacey miller", meta: "3 months ago", text: "They put me on the schedule as a new patient within the same week of calling, which never happens, and made sure my insurance was accepted. The provider and staff were very professional and kind." },
   { name: "Cynthia Askew", meta: "6 months ago", text: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
 ];
 const steps = [
@@ -381,21 +379,21 @@ const orgSchema = {
         ))}
       </div>
       <!-- video testimonial teaser -->
-      <a href="/testimonials/#video" class="mt-10 group flex flex-col sm:flex-row items-center gap-5 rounded-2xl border border-line bg-crema p-5 sm:p-6 max-w-3xl mx-auto hover:border-azul hover:shadow-lg transition">
-        <span class="relative shrink-0 w-full sm:w-48 aspect-video overflow-hidden rounded-xl">
-          <img src="https://img.youtube.com/vi/awy7nfDgC0k/hqdefault.jpg" alt="Teen IOP Success Story video thumbnail" loading="lazy" class="h-full w-full object-cover" />
-          <span class="absolute inset-0 grid place-items-center bg-ink/25 group-hover:bg-ink/35 transition">
-            <span class="grid h-11 w-11 place-items-center rounded-full bg-white/90 text-azul">
-              <svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+      <div class="mt-14 max-w-4xl mx-auto">
+        <div class="text-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Watch a client's story</p>
+          <p class="mt-2 font-display text-2xl sm:text-3xl text-ink">Teen IOP Success Story</p>
+          <p class="mt-2 text-muted">How Hopewell helped one teen take back her life.</p>
+        </div>
+        <a href="/testimonials/#video" class="group mt-7 block relative aspect-video overflow-hidden rounded-3xl border border-line shadow-md hover:shadow-2xl hover:border-azul transition">
+          <img src="https://img.youtube.com/vi/awy7nfDgC0k/maxresdefault.jpg" alt="Teen IOP Success Story video thumbnail" loading="lazy" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" />
+          <span class="absolute inset-0 grid place-items-center bg-ink/30 group-hover:bg-ink/40 transition">
+            <span class="grid h-20 w-20 sm:h-24 sm:w-24 place-items-center rounded-full bg-white/95 text-azul shadow-xl group-hover:scale-110 transition">
+              <svg viewBox="0 0 24 24" class="h-9 w-9 sm:h-11 sm:w-11 ml-1" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
             </span>
           </span>
-        </span>
-        <div class="text-center sm:text-left">
-          <p class="text-xs font-semibold uppercase tracking-wide text-gold">Watch a client's story</p>
-          <p class="mt-1 font-display text-xl text-ink group-hover:text-azul transition">Teen IOP Success Story</p>
-          <p class="mt-1 text-sm text-muted">How Hopewell helped one teen take back her life.</p>
-        </div>
-      </a>
+        </a>
+      </div>
 
       <div class="text-center mt-8"><a href="/testimonials/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Read more testimonials →</a></div>
     </div>
