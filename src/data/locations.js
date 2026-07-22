@@ -32,8 +32,13 @@ export const locations = [
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus",
     blurb: "Our Downtown Glastonbury office on Hebron Avenue offers outpatient therapy, medication management, and intensive programs in a convenient suite — an easy drive from across Hartford County, with parking on site.",
     areas: ["Glastonbury", "South Glastonbury", "East Hartford", "Manchester", "Wethersfield", "Rocky Hill", "Marlborough", "Hebron"],
-    photoDir: null,
-    photos: null,
+    photoDir: "/Assets/locations/downtown-glastonbury",
+    photos: [
+      ["exterior.webp", "Exterior of the Downtown Glastonbury office at 300 Hebron Avenue"],
+      ["sign.webp", "Glastonbury Medical Arts Center sign at 300 Hebron Avenue"],
+      ["street.webp", "The 300 Hebron Avenue building from the street"],
+      ["parking.webp", "On-site parking at the Downtown Glastonbury office"],
+    ],
   },
   {
     slug: "glastonbury-ct-3",
