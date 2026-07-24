@@ -63,7 +63,7 @@ const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><pa
       <figure class="mx-auto mt-10 max-w-3xl rounded-3xl bg-white border border-line p-8 text-center">
         <div class="text-gold">★★★★★</div>
         <blockquote class="mt-4 font-display text-xl sm:text-2xl text-ink leading-snug">“{featured.text}”</blockquote>
-        <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{featured.name}</span> · {featured.meta}</figcaption>
+        <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{featured.name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span> · {featured.meta}</figcaption>
       </figure>
 
       <!-- grid -->
@@ -72,7 +72,7 @@ const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><pa
           <figure class="flex flex-col rounded-2xl bg-white border border-line p-6">
             <div class="text-gold text-sm">★★★★★</div>
             <blockquote class="mt-3 text-ink leading-relaxed text-[15px] flex-1">“{r.text}”</blockquote>
-            <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{r.name}</span> · {r.meta}</figcaption>
+            <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{r.name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span> · {r.meta}</figcaption>
           </figure>
         ))}
       </div>

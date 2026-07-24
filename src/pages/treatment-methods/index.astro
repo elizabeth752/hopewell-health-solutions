@@ -114,7 +114,7 @@ const Card = "group rounded-2xl bg-white border border-line p-6 hover:border-azu
             <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
             <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
               <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
-              <span><span class="block text-sm font-semibold text-ink">{r.n}</span><span class="block text-xs text-muted">{r.t}</span></span>
+              <span><span class="block text-sm font-semibold text-ink">{r.n.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span><span class="block text-xs text-muted">{r.t}</span></span>
             </figcaption>
           </figure>
         ))}

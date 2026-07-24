@@ -34,10 +34,12 @@ export const locations = [
     areas: ["Glastonbury", "South Glastonbury", "East Hartford", "Manchester", "Wethersfield", "Rocky Hill", "Marlborough", "Hebron"],
     photoDir: "/Assets/locations/downtown-glastonbury",
     photos: [
-      ["exterior.webp", "Exterior of the Downtown Glastonbury office at 300 Hebron Avenue"],
+      ["exterior.webp", "Exterior of the 300 Medical Arts Center in Glastonbury"],
+      ["exterior-2.webp", "The Medical Arts Center building at 300 Hebron Avenue"],
+      ["building.webp", "The Medical Arts Center building exterior"],
       ["sign.webp", "Glastonbury Medical Arts Center sign at 300 Hebron Avenue"],
-      ["street.webp", "The 300 Hebron Avenue building from the street"],
-      ["parking.webp", "On-site parking at the Downtown Glastonbury office"],
+      ["campus.webp", "The Medical Arts Center campus and grounds"],
+      ["entrance.webp", "Welcoming entrance at the Downtown Glastonbury office"],
     ],
   },
   {
