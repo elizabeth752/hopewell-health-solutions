@@ -193,7 +193,7 @@ const schema = {
                 <figure class="border-t border-line pt-3 first:border-0 first:pt-0">
                   <div class="text-gold text-xs">★★★★★</div>
                   <blockquote class="mt-1 text-[13px] text-ink leading-relaxed">“{r.text}”</blockquote>
-                  <figcaption class="mt-1 text-xs text-muted">{r.name} · {r.meta}</figcaption>
+                  <figcaption class="mt-1 text-xs text-muted">{r.name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."} · {r.meta}</figcaption>
                 </figure>
               ))}
             </div>
