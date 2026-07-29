@@ -7,16 +7,14 @@
 const { bg = "white", heading = "As featured in & on", showLink = true } = Astro.props;
 const logos = [
   ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
-  ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.png"],
+  ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.webp"],
   ["WFSB Eyewitness News 3", "/Assets/Media%20Appearances/wfsb.avif"],
-  ["FOX61", "/Assets/Media%20Appearances/fox61.png"],
-  ["NBC Connecticut", "/Assets/Media%20Appearances/nbc-connecticut.png"],
-  ["WOUB Public Media", "/Assets/Media%20Appearances/woub-public-media.jpg"],
+  ["FOX61", "/Assets/Media%20Appearances/fox61.webp"],
+  ["NBC Connecticut", "/Assets/Media%20Appearances/nbc-connecticut.webp"],
+  ["WOUB Public Media", "/Assets/Media%20Appearances/woub-public-media.webp"],
 ];
-// Repeat the set so one group is always wider than the viewport (no empty gaps).
-// 3× of 6 logos keeps a single group wider than any normal desktop, so the
-// -50% loop never reveals blank space mid-scroll.
-const group = [...logos, ...logos, ...logos];
+// One set is enough for the marquee loop (duplicated once in the DOM for seamlessness).
+// Avoid 3× duplication — that used to emit 36 <img> requests on every page.
 const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 ---
 <section class={`${bgClass} border-y border-line`}>
@@ -28,13 +26,13 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
     <div class="ms-mask mt-6 overflow-hidden">
       <div class="ms-track flex w-max">
         <ul class="flex shrink-0 items-center">
-          {group.map(([name, src]) => (
-            <li class="shrink-0"><img src={src} alt={name} loading="lazy" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+          {logos.map(([name, src]) => (
+            <li class="shrink-0"><img src={src} alt={name} width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
           ))}
         </ul>
         <ul class="flex shrink-0 items-center" aria-hidden="true">
-          {group.map(([name, src]) => (
-            <li class="shrink-0"><img src={src} alt="" loading="lazy" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+          {logos.map(([, src]) => (
+            <li class="shrink-0"><img src={src} alt="" width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
           ))}
         </ul>
       </div>

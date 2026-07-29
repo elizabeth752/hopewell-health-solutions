@@ -35,13 +35,11 @@ const ogUrl = canonicalHref;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
     <meta name="robots" content={robots} />
-    <!-- Brand fonts: Baskervville (headings) + Urbanist (body) — loaded non-render-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Self-hosted fonts — preload critical faces for faster LCP (H1/body text) -->
+    <link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/baskervville-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" /></noscript>
+    <link rel="dns-prefetch" href="https://api.calltrackingmetrics.com" />
     <!-- Google Tag Manager — deferred until idle to reduce JS/main-thread impact -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -53,9 +51,9 @@ const ogUrl = canonicalHref;
         document.head.appendChild(s);
       }
       if ("requestIdleCallback" in window) {
-        requestIdleCallback(loadGtm, { timeout: 3000 });
+        requestIdleCallback(loadGtm, { timeout: 4500 });
       } else {
-        window.addEventListener("load", function () { setTimeout(loadGtm, 1); });
+        window.addEventListener("load", function () { setTimeout(loadGtm, 2000); });
       }
     </script>
     <title>{title}</title>

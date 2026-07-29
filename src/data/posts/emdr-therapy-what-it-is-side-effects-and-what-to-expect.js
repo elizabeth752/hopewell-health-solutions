@@ -8,7 +8,7 @@ export default {
   category: "Therapy Approaches",
   excerpt:
     "EMDR is an evidence-based, 8-phase treatment for trauma, anxiety, depression, and substance use disorders. Here's how it works and what to expect.",
-  heroImage: "/Assets/Blogs/emdr-therapy-what-it-is-side-effects-and-what-to-expect.webp",
+  heroImage: "/Assets/Blogs/opt/emdr-therapy-what-it-is-side-effects-and-what-to-expect.webp",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-07-01",
