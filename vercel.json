@@ -1,6 +1,12 @@
 {
+  "trailingSlash": true,
   "redirects": [
     { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
+    { "source": "/sitemap", "destination": "/sitemap-index.xml", "permanent": true },
+
+    { "source": "/review", "destination": "/", "permanent": true },
+    { "source": "/review/:path*", "destination": "/", "permanent": true },
 
     { "source": "/contact-us", "destination": "/admissions/", "permanent": true },
     { "source": "/schedule", "destination": "/", "permanent": true },
@@ -23,6 +29,12 @@
     { "source": "/east-hampton", "destination": "/location/east-hampton-ct/", "permanent": true },
 
     { "source": "/tweenteen-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/teen-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/tween-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/mens-iop", "destination": "/programs/adult-mental-health-iop/", "permanent": true },
+    { "source": "/programs/teen-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/programs/tween-iop", "destination": "/programs/teen-tween-iop/", "permanent": true },
+    { "source": "/programs/mens-iop", "destination": "/programs/adult-mental-health-iop/", "permanent": true },
     { "source": "/womens-wellness-iop", "destination": "/programs/womens-wellness-iop/", "permanent": true },
     { "source": "/womens-trauma", "destination": "/programs/womens-trauma-iop/", "permanent": true },
     { "source": "/adult-mental-health-iop", "destination": "/programs/adult-mental-health-iop/", "permanent": true },
