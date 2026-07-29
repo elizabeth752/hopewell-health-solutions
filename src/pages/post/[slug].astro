@@ -84,7 +84,7 @@ const schema = {
   datePublished: post.datePublished,
   dateModified: post.dateModified || post.datePublished,
   ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
-  publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.jpg` } },
+  publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.webp` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
 ---

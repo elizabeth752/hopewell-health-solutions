@@ -8,7 +8,7 @@ export default {
   category: "Levels of Care",
   excerpt:
     "Weekly therapy isn't a magic fix for everyone. Here are the signs that you or your teen may need the more structured, frequent support of an IOP.",
-  heroImage: "/Assets/Blogs/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step.webp",
+  heroImage: "/Assets/Blogs/opt/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step.webp",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-07-03",
