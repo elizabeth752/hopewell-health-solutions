@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+---
+
+<Base
+  title="Page Not Found | Hopewell Health Solutions"
+  description="The page you’re looking for doesn’t exist or has moved. Find Hopewell Health Solutions programs, treatments, and locations in Connecticut."
+  canonical="https://www.hopewellhealthsolutions.com/"
+  robots="noindex, follow"
+>
+  <Header />
+  <main class="bg-crema">
+    <section class="mx-auto max-w-3xl px-5 py-24 text-center">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">404</p>
+      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink">Page not found</h1>
+      <p class="mt-4 text-lg text-muted">
+        This page doesn’t exist or may have moved. Use the links below to get where you need to go.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="rounded-lg bg-azul px-6 py-3 font-semibold text-white hover:bg-azul-dark transition">Go home</a>
+        <a href="/programs/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Programs</a>
+        <a href="/admissions/" class="rounded-lg border border-azul px-6 py-3 font-semibold text-azul hover:bg-azul-light transition">Admissions</a>
+        <a href="tel:8607351448" class="rounded-lg border border-line px-6 py-3 font-semibold text-ink hover:bg-white transition">(860) 735-1448</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

@@ -3,6 +3,7 @@ Allow: /
 
 # Internal review/preview pages — keep out of the index
 Disallow: /review/
+Disallow: /review
 
 # AI crawlers welcome (GEO/AEO)
 User-agent: GPTBot
