@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   canonical?: string;
   image?: string;
+  robots?: string;
 }
 
 const SITE = "https://www.hopewellhealthsolutions.com";
@@ -14,6 +15,7 @@ const {
   description = "Hopewell Health Solutions",
   canonical,
   image = "/Assets/full%20team%20happy.webp",
+  robots = "index, follow, max-image-preview:large",
 } = Astro.props;
 
 const ogImage = image.startsWith("http") ? image : SITE + image;
@@ -27,25 +29,35 @@ const ogUrl = canonicalHref;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KHKPJ2RF');</script>
-    <!-- End Google Tag Manager -->
     <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={robots} />
     <!-- Brand fonts: Baskervville (headings) + Urbanist (body) — loaded non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Urbanist:wght@400;500;600;700&display=swap" /></noscript>
+    <!-- Google Tag Manager — deferred until idle to reduce JS/main-thread impact -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+      function loadGtm() {
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtm.js?id=GTM-KHKPJ2RF";
+        document.head.appendChild(s);
+      }
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(loadGtm, { timeout: 3000 });
+      } else {
+        window.addEventListener("load", function () { setTimeout(loadGtm, 1); });
+      }
+    </script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalHref} />
