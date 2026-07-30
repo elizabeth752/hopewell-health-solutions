@@ -80,9 +80,7 @@
     { "source": "/admissions/rates-and-insurance/", "destination": "/rates-and-insurance-coverage/", "permanent": true },
     { "source": "/admissions/verify-insurance/", "destination": "/admissions/", "permanent": true },
     { "source": "/contact/", "destination": "/admissions/", "permanent": true },
-    { "source": "/resources/", "destination": "/handouts/", "permanent": true },
-    { "source": "/treatment-methods/medication-assisted-treatment/", "destination": "/treatment-methods/", "permanent": true },
-    { "source": "/treatment-methods/group-therapy/", "destination": "/treatment-methods/", "permanent": true }
+    { "source": "/resources/", "destination": "/handouts/", "permanent": true }
   ],
   "headers": [
     {
