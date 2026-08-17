@@ -19,6 +19,7 @@
     { "source": "/provider/sarah-schiano-dicola-lcsw/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/amina-huric-lmsw/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/michelle-munasami-lmft/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/shawn-curtis-psy-d/", "destination": "/about-us/team/", "permanent": true },
 
     { "source": "/our-terms/", "destination": "/terms/", "permanent": true },
     { "source": "/your-privacy/", "destination": "/privacy/", "permanent": true },
