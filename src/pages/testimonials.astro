@@ -3,8 +3,38 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
+import { locations } from "../data/locations.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/testimonials/";
+
+// Reviewers are shown as initials only — never full names. Applies to every review on the page.
+const initials = (name) =>
+  name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + ".";
+
+// Client video testimonials — all published on the Hopewell Health Solutions YouTube channel.
+// thumb = the video's branded title card, exported from the Figma design and served locally so the
+// page loads no YouTube player JS until a visitor actually presses play.
+const featuredVideo = {
+  id: "awy7nfDgC0k",
+  title: "“It’s Been So Much Better”",
+  ytTitle: "Teen IOP Success Story: How Hopewell Helped Me Take Back My Life",
+  thumb: "/Assets/testimonials/teen-iop-take-back-my-life.webp",
+  text: "Eli talks about his time in our Teen Intensive Outpatient Program (IOP). Hear how the program, designed for ages 13–17, offered Eli 1:1 support, has helped him build relationships, and improved his performance at school.",
+};
+const videos = [
+  { id: "x6R6XOZmxUQ", title: "“They Understand What You’re Going Through”",
+    ytTitle: "Women’s Wellness IOP Testimonial: Finding Connection and Support",
+    thumb: "/Assets/testimonials/womens-wellness-connection-support.webp",
+    text: "See how our Women’s Wellness IOP, designed for women carrying heavy emotional loads and daily responsibilities, taught this attendee to know herself, and how the connection to other women made a real difference in her world." },
+  { id: "S_CyYMDqEio", title: "“It Saved My Life”",
+    ytTitle: "I Knew I Needed Help — But I Never Imagined Life Could Get This Good | Women’s Wellness IOP",
+    thumb: "/Assets/testimonials/womens-wellness-works.webp",
+    text: "In this video, one of our alumni describes our Women’s Wellness IOP as “one of the best things I’ve ever done for myself.” Watch how things got better for her as she moved through the program." },
+  { id: "uIlSCS7clwE", title: "“You Have to Take That Step”",
+    ytTitle: "Hear Evan share his experience in Hopewell Health Solutions’ Intensive Outpatient Program (IOP)",
+    thumb: "/Assets/testimonials/evan-iop-experience.webp",
+    text: "Evan shares how therapy wasn’t giving him the deeper care he needed. When he came to Hopewell, he was able to believe that people wanted to help him and he created the support systems he was worthy of." },
+];
 
 // Verbatim Google Business Profile reviews (the approved, real set — never fabricated).
 const featured = { name: "Lee", meta: "Local Guide · IOP graduate", text: "I truly loved this IOP. I recently graduated and can honestly say it has been pivotal to my healing journey and my life in general. In the beginning I was insanely skeptical about group therapy… but the group setting, the therapists, and the other members made it such a safe, welcoming, and supportive space. I learned tools I’ll carry with me for life, and the group gave me a safe place to start the deep work I couldn’t have done alone. If you’re considering IOP or Hopewell, trust me — you should do it." };
@@ -18,12 +48,25 @@ const reviews = [
 ];
 
 const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.4 5.4 0 0 1-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12 4.74c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.29 6.62l3.98 3.09C6.22 6.85 8.87 4.74 12 4.74z"/></svg>';
+
+// VideoObject schema for the four testimonials (rich results for video search).
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@graph": [featuredVideo, ...videos].map((v) => ({
+    "@type": "VideoObject",
+    name: v.ytTitle,
+    description: v.text,
+    thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+    embedUrl: `https://www.youtube.com/embed/${v.id}`,
+    publisher: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
+  })),
+};
 ---
 
-<Base title="Testimonials & Reviews | Hopewell Health Solutions" description="Hear from Hopewell Health Solutions clients — real Google reviews and videos about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical}>
+<Base title="Testimonials & Reviews | Hopewell Health Solutions" description="Hear from Hopewell Health Solutions clients — video testimonials and real Google reviews about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical}>
   <Header />
 
-  <!-- HERO -->
+  {/* HERO */}
   <section class="bg-crema">
     <div class="mx-auto max-w-4xl px-5 py-16 text-center">
       <nav class="text-xs text-muted mb-5"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Testimonials</span></nav>
@@ -31,50 +74,78 @@ const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><pa
       <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink">Testimonials &amp; Reviews</h1>
       <div class="mx-auto mt-5 h-px w-16 bg-gold"></div>
       <p class="mt-5 inline-flex items-center gap-2 text-muted"><Fragment set:html={googleG} /> <span class="text-gold">★★★★★</span> <strong class="text-ink">4.8</strong> · 368 Google reviews</p>
+      <p class="mx-auto mt-6 max-w-3xl text-ink leading-relaxed text-[17px]">When we say that we’re Connecticut’s most trusted outpatient mental health team, we really mean it. But we know that the most powerful words come from the incredible people who have already taken part in our programs. See what they have to say about how we’ve helped them find stability, community, and the fulfilled lives they deserve.</p>
     </div>
   </section>
 
-  <!-- VIDEO TESTIMONIAL -->
+  {/* VIDEO TESTIMONIALS — id="video" is linked from the homepage; keep it. */}
   <section id="video" class="bg-white scroll-mt-20">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">In their own voice</p>
-      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Teen IOP Success Story</h2>
-      <p class="mt-3 text-muted">How Hopewell helped one teen take back his life.</p>
-      <div class="mt-8 aspect-video overflow-hidden rounded-2xl border border-line shadow-sm">
-        <iframe
-          src="https://www.youtube.com/embed/awy7nfDgC0k"
-          title="Teen IOP Success Story: How Hopewell Helped Me Take Back My Life"
-          class="h-full w-full"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">In their own voice</p>
+      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Life-Changing Experiences at Hopewell Health Solutions</h2>
+
+      {/* featured (landscape) */}
+      <div class="mt-10 grid items-center gap-8 lg:grid-cols-2">
+        <button type="button" class="video-play group relative block w-full overflow-hidden rounded-2xl bg-ink" data-id={featuredVideo.id} data-title={featuredVideo.ytTitle} aria-label={`Play video: ${featuredVideo.ytTitle}`}>
+          <img src={featuredVideo.thumb} alt={featuredVideo.ytTitle} loading="lazy" width="1600" height="900" class="aspect-video w-full object-cover transition group-hover:scale-[1.02]" />
+          <span class="absolute inset-0 grid place-items-center">
+            <span class="grid h-16 w-16 place-items-center rounded-full bg-white/90 shadow-lg transition group-hover:bg-white">
+              <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7 fill-azul" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+          </span>
+        </button>
+        <div class="lg:pl-4">
+          <h3 class="font-display text-2xl text-azul leading-snug">{featuredVideo.title}</h3>
+          <div class="mt-4 h-px w-[90px] bg-gold"></div>
+          <p class="mt-5 text-ink leading-relaxed">{featuredVideo.text}</p>
+        </div>
+      </div>
+
+      {/* three verticals */}
+      <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {videos.map((v) => (
+          <figure class="flex flex-col">
+            <button type="button" class="video-play group relative block w-full overflow-hidden rounded-2xl bg-ink" data-id={v.id} data-title={v.ytTitle} aria-label={`Play video: ${v.ytTitle}`}>
+              <img src={v.thumb} alt={v.ytTitle} loading="lazy" width="900" height="1600" class="aspect-[4/5] w-full object-cover transition group-hover:scale-[1.02]" />
+              <span class="absolute inset-0 grid place-items-center">
+                <span class="grid h-14 w-14 place-items-center rounded-full bg-white/90 shadow-lg transition group-hover:bg-white">
+                  <svg viewBox="0 0 24 24" class="ml-1 h-6 w-6 fill-azul" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+              </span>
+            </button>
+            <figcaption class="mt-6 text-center">
+              <h3 class="font-display text-xl text-azul leading-snug">{v.title}</h3>
+              <div class="mx-auto mt-4 h-px w-[90px] bg-gold"></div>
+              <p class="mt-4 text-ink leading-relaxed text-[15px]">{v.text}</p>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- WRITTEN REVIEWS -->
+  {/* WRITTEN REVIEWS */}
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="flex items-center justify-center gap-2">
         <Fragment set:html={googleG} />
-        <h2 class="font-display text-3xl sm:text-4xl text-ink">What our clients say</h2>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink">Healing Journeys, Told By Our Alumni</h2>
       </div>
 
-      <!-- featured -->
+      {/* featured */}
       <figure class="mx-auto mt-10 max-w-3xl rounded-3xl bg-white border border-line p-8 text-center">
         <div class="text-gold">★★★★★</div>
         <blockquote class="mt-4 font-display text-xl sm:text-2xl text-ink leading-snug">“{featured.text}”</blockquote>
-        <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{featured.name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span> · {featured.meta}</figcaption>
+        <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{initials(featured.name)}</span> · {featured.meta}</figcaption>
       </figure>
 
-      <!-- grid -->
+      {/* grid */}
       <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r) => (
           <figure class="flex flex-col rounded-2xl bg-white border border-line p-6">
             <div class="text-gold text-sm">★★★★★</div>
             <blockquote class="mt-3 text-ink leading-relaxed text-[15px] flex-1">“{r.text}”</blockquote>
-            <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{r.name.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span> · {r.meta}</figcaption>
+            <figcaption class="mt-4 text-sm text-muted"><span class="font-semibold text-ink">{initials(r.name)}</span> · {r.meta}</figcaption>
           </figure>
         ))}
       </div>
@@ -85,17 +156,83 @@ const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><pa
     </div>
   </section>
 
-  <!-- CTA -->
+  {/* WHAT SETS US APART */}
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="grid gap-8 lg:grid-cols-[420px_1fr] lg:gap-14 lg:items-center">
+        <h2 class="font-display text-3xl sm:text-4xl text-ink leading-tight">What Sets Us Apart From Other Care</h2>
+        <div>
+          <p class="text-ink leading-relaxed">We’ve walked with more than 50,000 people on their healing journey. We treat anyone who needs it, regardless of their background or how they identify. We welcome LGBTQIA+ individuals, as well as other marginalized communities. We see every person as they are, we consider the unique societal challenges they face, and we strive to make people healthier.</p>
+          <div class="mt-6 flex items-center gap-5 rounded-2xl bg-crema p-5">
+            <img src="/Assets/credibility/joint-commission.webp" alt="The Joint Commission — Accredited" loading="lazy" width="737" height="152" class="h-9 w-auto max-w-[150px] shrink-0 object-contain" />
+            <p class="text-ink leading-relaxed text-[15px]">We are accredited by the Joint Commission and recognized as a high-quality care provider, committed to providing safe, trusted, and effective care.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* LOCATIONS */}
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16">
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-14 lg:items-center">
+        <div>
+          <h2 class="font-display text-3xl sm:text-4xl text-ink">We’re Close to You in Connecticut</h2>
+          <p class="mt-5 text-ink leading-relaxed">We believe that everyone should have access to quality mental health and addiction care. We have six centers across Connecticut to ensure that more people can join our programs in the moments they most need.</p>
+          <p class="mt-4 text-ink leading-relaxed">Visit us in person, or join our programs virtually via one of our centers:</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {locations.map((l) => (
+            <a href={`/location/${l.slug}/`} class="group rounded-2xl bg-white border border-line p-5 hover:border-azul hover:shadow-lg transition">
+              <div class="flex items-start gap-3">
+                <Icon name="pin" class="h-5 w-5 shrink-0 text-azul" />
+                <div>
+                  <h3 class="font-display text-lg text-ink leading-tight group-hover:text-azul transition">{l.name}</h3>
+                  <p class="mt-1.5 text-sm text-muted leading-snug">{l.street}<br />{l.city}, CT {l.zip}</p>
+                  <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-azul">View location <Icon name="arrow" class="h-3.5 w-3.5" /></span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
   <section class="bg-azul text-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready to write your own story?</h2>
-      <p class="mt-4 text-white/85 text-lg">Reach out to our Connecticut team today — confidentially, with no pressure.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl text-white">Write Your Own Recovery Story With Us</h2>
+      <p class="mt-6 text-white/85 leading-relaxed">These testimonials are just a few of the wonderful things people have to say about Hopewell Health Solutions. We’re constantly humbled and honored to play a role in people’s well-being, and we aim to continue helping the most people in the most effective ways. We encourage anyone who needs support with their mental health to contact our admissions team. Every recovery story starts with a phone call.</p>
+      <p class="mt-6 font-display text-2xl text-white">There is always hope. Find yours with us.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="tel:8607351448" class="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-3.5 font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />Speak With Admissions</a>
         <a href="/admissions/" class="inline-flex items-center gap-2 rounded-lg border border-white/60 px-7 py-3.5 font-semibold text-white hover:bg-white/10 transition">Get started</a>
       </div>
     </div>
   </section>
 
   <Footer />
+
+  <script is:inline set:html={JSON.stringify(videoSchema)} type="application/ld+json" />
+
+  {/* Click-to-load YouTube: no player JS ships until a visitor presses play. */}
+  <script is:inline>
+    document.querySelectorAll(".video-play").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const frame = document.createElement("iframe");
+        frame.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.id}?autoplay=1&rel=0`;
+        frame.title = btn.dataset.title;
+        frame.className = "absolute inset-0 h-full w-full";
+        frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        frame.referrerPolicy = "strict-origin-when-cross-origin";
+        frame.allowFullscreen = true;
+        const shell = document.createElement("div");
+        shell.className = btn.className.replace("video-play", "") + " relative";
+        shell.style.aspectRatio = btn.querySelector("img").classList.contains("aspect-video") ? "16 / 9" : "4 / 5";
+        shell.appendChild(frame);
+        btn.replaceWith(shell);
+      });
+    });
+  </script>
 </Base>
