@@ -15,7 +15,7 @@ export default {
   authorSlug: "tj-aitken-cpsrp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-08-10",
-  dateModified: "2026-08-10",
+  dateModified: "2026-08-17",
   readingMinutes: 8,
   intro:
     "An Intensive Outpatient Program (IOP) is a type of structured care for anyone struggling with their mental health. Considering there's been a substantial rise in the number of mental health issues among young people in recent years, an IOP can be an effective and necessary step to heal. With advancements in technology and expectations of how care is delivered, IOP has increasingly become available in-person and virtually. For young people, the virtual option may be more appealing due to the flexibility and sense of privacy. But does the format impact the outcomes of care? Is one version better than the other? Let's take a look at what the research says.",
@@ -32,6 +32,10 @@ export default {
         },
         {
           p: "Most IOPs (including ours) integrate evidence-based therapies such as cognitive behavioral therapy (CBT) and dialectical behavior therapy (DBT), with medication management (e.g. for antidepressants and mood stabilizers) if needed, and wellness activities, such as yoga and meditation. Our program additionally has parent night and support for parents to ensure that you are updated on your child's progress and have your own dedicated care.",
+        },
+        {
+          img: "/Assets/Blogs/teen-iop-bridge-to-mental-health.webp",
+          alt: "Infographic: Intensive Outpatient Programs (IOP) as a bridge to teen mental health between weekly therapy and residential care",
         },
       ],
     },
@@ -121,6 +125,10 @@ export default {
         },
         {
           p: "Our center in Glastonbury hosts our teen IOP and is fully equipped for in-person sessions or virtual sessions.",
+        },
+        {
+          img: "/Assets/Blogs/virtual-vs-in-person-teen-iop.webp",
+          alt: "Infographic: Virtual vs. in-person IOP — how to choose the right format for your teen",
         },
         { p: "There's always hope to heal. Speak with our admissions team now." },
       ],
