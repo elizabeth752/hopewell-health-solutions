@@ -220,6 +220,11 @@ const schema = {
                         {b.ul.map((li) => <li class="flex gap-3 text-[17px] leading-relaxed text-ink"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>{li}</span></li>)}
                       </ul>
                     )
+                    : b.img ? (
+                      <figure class="my-2">
+                        <img src={b.img} alt={b.alt || ""} loading="lazy" class="w-full h-auto rounded-xl border border-line shadow-sm" />
+                      </figure>
+                    )
                     : b.note ? <p class="rounded-2xl bg-azul-light/40 border border-azul/30 p-5 text-[15px] text-ink">{b.note}</p>
                     : null
                   ))}
