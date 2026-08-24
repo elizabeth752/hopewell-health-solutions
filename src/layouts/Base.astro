@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import EventPopup from "../components/EventPopup.astro";
 
 interface Props {
   title?: string;
@@ -80,5 +81,6 @@ const ogUrl = canonicalHref;
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHKPJ2RF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <slot />
+    <EventPopup />
   </body>
 </html>

@@ -1,0 +1,144 @@
+---
+/*
+  Corner event popup — temporary, self-expiring promo card (bottom-right).
+
+  Two layers of expiry so this can never outlive the event:
+    1. Build-time  — past EXPIRES, the markup is not emitted at all.
+    2. Runtime     — the site is a static build, so if nothing rebuilds after
+                     the event the baked HTML would linger. The inline script
+                     re-checks the date in the visitor's browser and removes
+                     the card. Belt and braces; delete the component after Sept.
+
+  Dismissal is remembered in localStorage so it doesn't nag on every page view.
+*/
+import Icon from "./Icon.astro";
+
+// Expiry = end of event day in CONNECTICUT time. The offset is explicit on purpose:
+// a bare "2026-09-13T23:59:59" is parsed in the *build machine's* timezone, and Vercel
+// builds in UTC while we develop in GMT-5 — that drift would move the real cutoff.
+// -04:00 = EDT, which is what Connecticut is on 13 Sept.
+const EXPIRES = new Date("2026-09-13T23:59:59-04:00");
+// The flyer's RSVP deadline. After it, the CTA drops the stale "RSVP by 30 August"
+// label (see the script below — it has to be re-checked client-side, because a static
+// build that isn't redeployed would otherwise keep showing a passed deadline).
+const RSVP_DEADLINE = new Date("2026-08-30T23:59:59-04:00");
+const show = new Date() <= EXPIRES;
+
+// Details transcribed from the client's flyer, verbatim — including the RSVP
+// line, which is NOT the sitewide NAP number (860) 735-1448. Event line only.
+const EVENT = {
+  eyebrow: "Alumni Reunion",
+  title: "Reconnect, Reminisce, and Rejoice",
+  date: "Sunday, 13 September 2026",
+  time: "1pm–3pm",
+  place: "151 E. High St, East Hampton, CT 06424",
+  blurb: "Join us for our 1st annual recovery celebration, filled with food and support.",
+  rsvpBy: "RSVP by 30 August",
+  rsvpLate: "Call to RSVP",
+  phone: "(860) 245-8310",
+  tel: "8602458310",
+  directions: "/location/east-hampton-ct/",
+};
+---
+
+{show && (
+  <aside
+    id="eventPopup"
+    aria-label={`${EVENT.eyebrow} — ${EVENT.date}`}
+    data-expires={EXPIRES.toISOString()}
+    data-rsvp-deadline={RSVP_DEADLINE.toISOString()}
+    data-rsvp-late={`${EVENT.rsvpLate} · ${EVENT.phone}`}
+    class="fixed z-50 hidden bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 sm:w-[22rem]
+           translate-y-3 opacity-0 transition-[opacity,transform] duration-300 ease-out
+           motion-reduce:transition-none motion-reduce:translate-y-0"
+  >
+    <div class="relative rounded-xl bg-ink text-white shadow-2xl ring-1 ring-white/10">
+      <button
+        type="button"
+        id="eventPopupClose"
+        aria-label="Close alumni reunion announcement"
+        class="absolute -top-2.5 -right-2.5 grid h-7 w-7 place-items-center rounded-full bg-ink text-white/80
+               ring-1 ring-white/20 hover:bg-azul hover:text-white transition"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-3.5 w-3.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="px-6 py-6">
+        <p class="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+          <span class="h-px w-5 bg-gold/60"></span>{EVENT.eyebrow}<span class="h-px flex-1 bg-gold/60"></span>
+        </p>
+
+        <h2 class="mt-3 font-display text-[1.6rem] leading-tight text-white">{EVENT.title}</h2>
+
+        <dl class="mt-4 space-y-2 text-sm text-white/85">
+          <div class="flex gap-2.5">
+            <Icon name="calendar" class="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+            <dd>{EVENT.date} · {EVENT.time}</dd>
+          </div>
+          <div class="flex gap-2.5">
+            <Icon name="pin" class="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+            <dd>{EVENT.place}</dd>
+          </div>
+        </dl>
+
+        <p class="mt-4 text-sm leading-relaxed text-white/70">{EVENT.blurb}</p>
+
+        <a
+          href={`tel:${EVENT.tel}`}
+          data-event-cta="alumni-reunion-rsvp"
+          class="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-gold px-5 py-3
+                 text-sm font-semibold text-ink shadow-sm hover:bg-gold/90 transition"
+        >
+          <Icon name="phone" class="h-4 w-4" /><span data-rsvp-label>{EVENT.rsvpBy} · {EVENT.phone}</span>
+        </a>
+
+        <a href={EVENT.directions} class="mt-3 block text-center text-xs text-white/60 underline underline-offset-4 hover:text-white transition">
+          Get directions to East Hampton
+        </a>
+      </div>
+    </div>
+  </aside>
+)}
+
+{show && (
+  <script>
+    (function () {
+      var el = document.getElementById("eventPopup");
+      if (!el) return;
+
+      // Runtime expiry — protects against a stale static build sitting past the event.
+      if (new Date() > new Date(el.dataset.expires)) { el.remove(); return; }
+
+      // Past the flyer's RSVP date the event is still on, so keep the card up but
+      // stop advertising a deadline that has already passed.
+      if (new Date() > new Date(el.dataset.rsvpDeadline)) {
+        var label = el.querySelector("[data-rsvp-label]");
+        if (label) label.textContent = el.dataset.rsvpLate;
+      }
+
+      var KEY = "hhs-alumni-reunion-2026-dismissed";
+      try { if (localStorage.getItem(KEY)) { el.remove(); return; } } catch (e) {}
+
+      // Reveal after a beat so it doesn't fight the page for attention on load.
+      setTimeout(function () {
+        el.classList.remove("hidden");
+        requestAnimationFrame(function () {
+          el.classList.remove("translate-y-3", "opacity-0");
+        });
+      }, 1400);
+
+      function dismiss() {
+        el.classList.add("translate-y-3", "opacity-0");
+        try { localStorage.setItem(KEY, "1"); } catch (e) {}
+        setTimeout(function () { el.remove(); }, 300);
+      }
+
+      document.getElementById("eventPopupClose")?.addEventListener("click", dismiss);
+      // Tapping the RSVP number counts as acted-upon — don't show it again.
+      el.querySelector("[data-event-cta]")?.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") dismiss(); });
+    })();
+  </script>
+)}
