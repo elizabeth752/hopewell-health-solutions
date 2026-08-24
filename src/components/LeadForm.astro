@@ -3,6 +3,8 @@
 // Field map → CTM:
 //   Full name        → caller_name
 //   Phone            → phone_number (normalized to E.164, +1…)
+//   Email (optional) → email  (CTM's built-in contact field, sent top-level —
+//                      NOT custom_fields[]. CTM silently drops misnamed keys.)
 //   Insurance carrier→ custom_fields[insurance_carrier]
 //   Member/Policy ID → custom_fields[membership_policy_id]
 //   gclid + ValueTrack from the landing URL → paid_attribution[…]
@@ -16,6 +18,7 @@ const pad = compact ? "py-2.5" : "py-3";
   <form class="ctm-lead-form mt-4 space-y-3" novalidate>
     <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="caller_name" placeholder="Full name" autocomplete="name" required />
     <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="tel" name="phone_number" placeholder="Phone" autocomplete="tel" required />
+    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
     <select class={`w-full rounded-lg border border-line px-4 ${pad} text-sm text-muted`} name="insurance_carrier" required>
       <option value="">Insurance carrier</option>
       {carriers.map((c) => <option value={c}>{c}</option>)}
@@ -88,10 +91,13 @@ const pad = compact ? "py-2.5" : "py-3";
       if (!form.querySelector('[name="consent"]').checked) { show("Please agree to be contacted so we can reach you.", false); return; }
       const phone = toE164(get("phone_number"));
       if (phone.length < 12) { show("Please enter a valid phone number.", false); return; }
+      const email = get("email").trim();
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { show("Please enter a valid email address, or leave it blank.", false); return; }
 
       const body = new URLSearchParams();
       body.set("phone_number", phone);
       if (get("caller_name")) body.set("caller_name", get("caller_name"));
+      if (email) body.set("email", email);
       if (get("insurance_carrier")) body.set("custom_fields[insurance_carrier]", get("insurance_carrier"));
       if (get("membership_policy_id")) body.set("custom_fields[membership_policy_id]", get("membership_policy_id"));
       const a = getAttr();
