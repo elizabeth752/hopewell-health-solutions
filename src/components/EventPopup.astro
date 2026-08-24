@@ -1,0 +1,158 @@
+---
+/*
+  Bottom event strip — temporary, self-expiring promo bar pinned to the viewport.
+
+  Deliberately a slim full-width strip rather than a corner card: a card large
+  enough to read was overlapping the hero lead form on desktop. The strip only
+  ever occupies ~70px at the very bottom, and the script pads the body by its
+  own height so it never sits on top of the footer either.
+
+  Colours are solid on purpose. The first pass used white/70-style alpha over
+  navy and washed out badly — everything here is a fixed hex with a checked
+  contrast ratio against the navy (all >= 8:1).
+
+  Two layers of expiry so this can never outlive the event:
+    1. Build-time  — past EXPIRES, the markup is not emitted at all.
+    2. Runtime     — the site is a static build, so if nothing rebuilds after
+                     the event the baked HTML would linger. The inline script
+                     re-checks the date in the visitor's browser and removes
+                     the strip. Belt and braces; delete the component after Sept.
+
+  Dismissal is remembered in localStorage so it doesn't nag on every page view.
+*/
+import Icon from "./Icon.astro";
+
+// Expiry = end of event day in CONNECTICUT time. The offset is explicit on purpose:
+// a bare "2026-09-13T23:59:59" is parsed in the *build machine's* timezone, and Vercel
+// builds in UTC while we develop in GMT-5 — that drift would move the real cutoff.
+// -04:00 = EDT, which is what Connecticut is on 13 Sept.
+const EXPIRES = new Date("2026-09-13T23:59:59-04:00");
+// The flyer's RSVP deadline. After it, the CTA drops the stale "RSVP by 30 August"
+// label (see the script below — it has to be re-checked client-side, because a static
+// build that isn't redeployed would otherwise keep showing a passed deadline).
+const RSVP_DEADLINE = new Date("2026-08-30T23:59:59-04:00");
+const show = new Date() <= EXPIRES;
+
+// Details transcribed from the client's flyer, verbatim — including the RSVP
+// line, which is NOT the sitewide NAP number (860) 735-1448. Event line only.
+const EVENT = {
+  eyebrow: "Alumni Reunion",
+  title: "Reconnect, Reminisce, and Rejoice",
+  when: "Sun 13 Sept · 1–3pm",
+  place: "151 E. High St, East Hampton",
+  rsvpBy: "RSVP by 30 Aug",
+  rsvpLate: "Call to RSVP",
+  phone: "(860) 245-8310",
+  tel: "8602458310",
+  directions: "/location/east-hampton-ct/",
+};
+
+// Solid on-navy palette. GOLD is brightened from the brand --color-gold (#b6863c),
+// which is a mid-tone built for cream backgrounds and goes muddy on the dark bar.
+// Scoped to this component so the sitewide token is untouched.
+const GOLD = "#e3b457"; // 8.2:1 on navy
+const BODY = "#c9d6e2"; // 10.8:1 on navy
+---
+
+{show && (
+  <aside
+    id="eventPopup"
+    aria-label={`${EVENT.eyebrow} — ${EVENT.when}`}
+    data-expires={EXPIRES.toISOString()}
+    data-rsvp-deadline={RSVP_DEADLINE.toISOString()}
+    data-rsvp-late={EVENT.rsvpLate}
+    class="fixed inset-x-0 bottom-0 z-50 hidden translate-y-full
+           transition-transform duration-300 ease-out
+           motion-reduce:transition-none motion-reduce:translate-y-0"
+  >
+    <div class="border-t-2 bg-ink shadow-[0_-4px_24px_rgba(0,0,0,0.35)]" style={`border-color:${GOLD}`}>
+      <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:gap-6 sm:px-6">
+
+        <div class="min-w-0 flex-1">
+          <p class="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] sm:text-[11px]" style={`color:${GOLD}`}>
+            <span class="hidden h-px w-4 sm:block" style={`background:${GOLD}`}></span>{EVENT.eyebrow}
+          </p>
+          <p class="mt-0.5 text-sm leading-snug sm:mt-1 sm:text-[0.95rem]">
+            <span class="hidden font-display text-white sm:inline">{EVENT.title} — </span>
+            <span style={`color:${BODY}`}>
+              {EVENT.when}<span class="hidden sm:inline"> · <a href={EVENT.directions} class="hover:text-white hover:underline underline-offset-4 transition">{EVENT.place}</a></span>
+            </span>
+          </p>
+        </div>
+
+        <a
+          href={`tel:${EVENT.tel}`}
+          data-event-cta="alumni-reunion-rsvp"
+          class="flex shrink-0 items-center gap-2 rounded-lg px-3 py-2.5 text-xs font-bold text-ink shadow-sm
+                 transition hover:brightness-110 sm:px-5 sm:py-3 sm:text-sm"
+          style={`background:${GOLD}`}
+        >
+          <Icon name="phone" class="h-4 w-4" />
+          <span class="sm:hidden">RSVP</span>
+          <span class="hidden sm:inline" data-rsvp-label>{EVENT.rsvpBy}</span>
+          <span class="hidden sm:inline">· {EVENT.phone}</span>
+        </a>
+
+        <button
+          type="button"
+          id="eventPopupClose"
+          aria-label="Close alumni reunion announcement"
+          class="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white ring-1 ring-white/30
+                 transition hover:bg-white hover:text-ink"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="h-4 w-4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+
+      </div>
+    </div>
+  </aside>
+)}
+
+{show && (
+  <script>
+    (function () {
+      var el = document.getElementById("eventPopup");
+      if (!el) return;
+
+      // Runtime expiry — protects against a stale static build sitting past the event.
+      if (new Date() > new Date(el.dataset.expires)) { el.remove(); return; }
+
+      // Past the flyer's RSVP date the event is still on, so keep the strip up but
+      // stop advertising a deadline that has already passed.
+      if (new Date() > new Date(el.dataset.rsvpDeadline)) {
+        var label = el.querySelector("[data-rsvp-label]");
+        if (label) label.textContent = el.dataset.rsvpLate;
+      }
+
+      var KEY = "hhs-alumni-reunion-2026-dismissed";
+      try { if (localStorage.getItem(KEY)) { el.remove(); return; } } catch (e) {}
+
+      // The strip is fixed, so reserve the space it covers — otherwise it sits on
+      // top of the last rows of the footer.
+      function pad() { document.body.style.paddingBottom = el.offsetHeight + "px"; }
+
+      // Reveal after a beat so it doesn't fight the page for attention on load.
+      setTimeout(function () {
+        el.classList.remove("hidden");
+        pad();
+        requestAnimationFrame(function () { el.classList.remove("translate-y-full"); });
+      }, 1400);
+
+      window.addEventListener("resize", function () { if (!el.classList.contains("hidden")) pad(); });
+
+      function dismiss() {
+        el.classList.add("translate-y-full");
+        document.body.style.paddingBottom = "";
+        try { localStorage.setItem(KEY, "1"); } catch (e) {}
+        setTimeout(function () { el.remove(); }, 300);
+      }
+
+      document.getElementById("eventPopupClose")?.addEventListener("click", dismiss);
+      // Tapping the RSVP number counts as acted-upon — don't show it again.
+      el.querySelector("[data-event-cta]")?.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, "1"); } catch (e) {}
+      });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") dismiss(); });
+    })();
+  </script>
+)}
