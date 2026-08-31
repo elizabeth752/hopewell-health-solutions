@@ -95,6 +95,10 @@ export default {
             "You are drinking or using more to get through the evenings",
           ],
         },
+        {
+          img: "/Assets/Blogs/recovering-from-narcissistic-abuse-infographic.svg",
+          alt: "Infographic: Narcissistic abuse by the numbers — PTSD and C-PTSD prevalence among IPV survivors, the six lingering symptoms, why weekly therapy alone often isn't enough, and Hopewell's Women's Trauma IOP schedule",
+        },
       ],
     },
     {
