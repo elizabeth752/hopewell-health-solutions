@@ -17,6 +17,7 @@
     { "source": "/providers/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/eric-schwartz-psyd-abpp/", "destination": "/provider/eric-schwartz-psy-d-abpp/", "permanent": true },
     { "source": "/provider/sarah-schiano-dicola-lcsw/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/rosa-kleinberg-aprn-pmhnp-bc/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/amina-huric-lmsw/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/michelle-munasami-lmft/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/shawn-curtis-psy-d/", "destination": "/about-us/team/", "permanent": true },
