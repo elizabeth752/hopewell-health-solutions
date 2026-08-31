@@ -135,6 +135,10 @@ export default {
             "The effort of appearing fine is affecting your work, your relationships, or your sense of yourself",
           ],
         },
+        {
+          img: "/Assets/Blogs/silent-panic-attacks-infographic.svg",
+          alt: "Infographic: Silent panic attacks by the numbers — panic attack vs. panic disorder prevalence, prevalence by gender, the hidden symptoms behind a calm face, how long an attack takes to peak, and Hopewell's care for panic and anxiety",
+        },
       ],
     },
     {
