@@ -41,6 +41,10 @@ export default {
         {
           p: "Yes. Because the physical intensity of a silent panic attack does not translate into visible signs, family, friends, and coworkers often have no idea it happened. Some people describe getting through an entire attack at their desk or in a crowded room without a single person asking if they are okay.",
         },
+        {
+          img: "/Assets/Blogs/opt/silent-panic-attacks-what-they-are-and-when-to-seek-treatment.webp",
+          alt: "Friends gathered around a table looking at their phones — a social moment where a silent panic attack can happen without anyone noticing",
+        },
       ],
     },
     {
