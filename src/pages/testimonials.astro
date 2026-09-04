@@ -14,25 +14,34 @@ const initials = (name) =>
 // Client video testimonials — all published on the Hopewell Health Solutions YouTube channel.
 // thumb = the video's branded title card, exported from the Figma design and served locally so the
 // page loads no YouTube player JS until a visitor actually presses play.
+// uploadDate / duration come from the live YouTube watch page (ISO 8601 + ISO 8601 duration).
 const featuredVideo = {
   id: "awy7nfDgC0k",
   title: "“It’s Been So Much Better”",
   ytTitle: "Teen IOP Success Story: How Hopewell Helped Me Take Back My Life",
   thumb: "/Assets/testimonials/teen-iop-take-back-my-life.webp",
+  uploadDate: "2026-06-30T12:10:06-07:00",
+  duration: "PT3M12S",
   text: "Eli talks about his time in our Teen Intensive Outpatient Program (IOP). Hear how the program, designed for ages 13–17, offered Eli 1:1 support, has helped him build relationships, and improved his performance at school.",
 };
 const videos = [
   { id: "x6R6XOZmxUQ", title: "“They Understand What You’re Going Through”",
     ytTitle: "Women’s Wellness IOP Testimonial: Finding Connection and Support",
     thumb: "/Assets/testimonials/womens-wellness-connection-support.webp",
+    uploadDate: "2026-05-12T09:20:48-07:00",
+    duration: "PT0M47S",
     text: "See how our Women’s Wellness IOP, designed for women carrying heavy emotional loads and daily responsibilities, taught this attendee to know herself, and how the connection to other women made a real difference in her world." },
   { id: "S_CyYMDqEio", title: "“It Saved My Life”",
     ytTitle: "I Knew I Needed Help — But I Never Imagined Life Could Get This Good | Women’s Wellness IOP",
     thumb: "/Assets/testimonials/womens-wellness-works.webp",
+    uploadDate: "2026-08-04T10:21:30-07:00",
+    duration: "PT0M26S",
     text: "In this video, one of our alumni describes our Women’s Wellness IOP as “one of the best things I’ve ever done for myself.” Watch how things got better for her as she moved through the program." },
   { id: "uIlSCS7clwE", title: "“You Have to Take That Step”",
     ytTitle: "Hear Evan share his experience in Hopewell Health Solutions’ Intensive Outpatient Program (IOP)",
     thumb: "/Assets/testimonials/evan-iop-experience.webp",
+    uploadDate: "2026-05-12T09:02:17-07:00",
+    duration: "PT0M35S",
     text: "Evan shares how therapy wasn’t giving him the deeper care he needed. When he came to Hopewell, he was able to believe that people wanted to help him and he created the support systems he was worthy of." },
 ];
 
@@ -50,6 +59,7 @@ const reviews = [
 const googleG = '<svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47a5.4 5.4 0 0 1-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09A11.99 11.99 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.29a7.2 7.2 0 0 1 0-4.58V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12 4.74c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.69 1.29 6.62l3.98 3.09C6.22 6.85 8.87 4.74 12 4.74z"/></svg>';
 
 // VideoObject schema for the four testimonials (rich results for video search).
+// Google requires name, description, thumbnailUrl, uploadDate, and contentUrl OR embedUrl.
 const videoSchema = {
   "@context": "https://schema.org",
   "@graph": [featuredVideo, ...videos].map((v) => ({
@@ -57,6 +67,9 @@ const videoSchema = {
     name: v.ytTitle,
     description: v.text,
     thumbnailUrl: `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`,
+    uploadDate: v.uploadDate,
+    duration: v.duration,
+    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
     embedUrl: `https://www.youtube.com/embed/${v.id}`,
     publisher: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
   })),
