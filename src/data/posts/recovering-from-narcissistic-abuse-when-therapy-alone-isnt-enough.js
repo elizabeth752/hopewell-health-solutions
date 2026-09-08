@@ -45,6 +45,10 @@ export default {
         {
           p: "Among intimate partner violence survivors in a 2026 sample, C-PTSD was more common than PTSD, at 31.2% versus 17.1%.",
         },
+        {
+          img: "/Assets/Blogs/narcissistic-abuse-diagnosis-pictogram.svg",
+          alt: "Pictogram showing 52.3% of intimate partner violence survivors screen positive for probable PTSD, versus 1.7% with no IPV history, alongside a comparison of C-PTSD (31.2%) and PTSD (17.1%) prevalence among survivors",
+        },
       ],
     },
     {
@@ -67,6 +71,10 @@ export default {
         {
           p: "In that same 2026 study, affected people with C-PTSD carried more severe problems across nearly every measure, including anxiety, depression, attachment, and social support.",
         },
+        {
+          img: "/Assets/Blogs/narcissistic-abuse-symptom-tree.svg",
+          alt: "Tree diagram branching from 'After the relationship ends' into six lingering symptoms: chronic self-doubt, hypervigilance, persistent shame, silenced needs, numbness alternating with reactivity, and trust difficulty",
+        },
       ],
     },
     {
@@ -78,6 +86,10 @@ export default {
         },
         {
           p: "A 2025 clinical trial compared an eight-day intensive treatment program against traditionally spaced weekly treatment for PTSD and C-PTSD. Both produced large symptom reductions that held at follow-up, with no significant difference between them, and dropout was significantly lower in the intensive format.",
+        },
+        {
+          img: "/Assets/Blogs/narcissistic-abuse-week-tracker.svg",
+          alt: "Seven-day tracker showing one therapy session versus six unsupported days each week for avoidance to rebuild",
         },
       ],
     },
@@ -94,10 +106,6 @@ export default {
             "You are isolated, and therapy is your only regular contact about what happened",
             "You are drinking or using more to get through the evenings",
           ],
-        },
-        {
-          img: "/Assets/Blogs/recovering-from-narcissistic-abuse-infographic.svg",
-          alt: "Infographic: Narcissistic abuse by the numbers — PTSD and C-PTSD prevalence among IPV survivors, the six lingering symptoms, why weekly therapy alone often isn't enough, and Hopewell's Women's Trauma IOP schedule",
         },
       ],
     },

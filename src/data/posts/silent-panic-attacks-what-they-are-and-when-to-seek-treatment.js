@@ -66,6 +66,10 @@ export default {
             "An overwhelming sense of dread, or a fear of losing control",
           ],
         },
+        {
+          img: "/Assets/Blogs/silent-panic-attacks-symptoms-map.svg",
+          alt: "Diagram mapping the six internal symptoms of a silent panic attack around a central hub: racing heart, chest tightness, breathlessness, dizziness, depersonalization, and dread",
+        },
       ],
     },
     {
@@ -77,6 +81,10 @@ export default {
         },
         {
           p: "The lingering exhaustion and low-grade dread that follows can last much longer, especially when the person spends that time trying to look normal for whoever is around them.",
+        },
+        {
+          img: "/Assets/Blogs/silent-panic-attacks-timeline.svg",
+          alt: "Timeline showing a panic attack peaking around ten minutes after onset, followed by hours of lingering exhaustion",
         },
       ],
     },
@@ -122,6 +130,10 @@ export default {
         {
           p: "An estimated 2.7% of U.S. adults were diagnosed with panic disorder in the past year, and past-year prevalence is higher for women (3.8%) than for men (1.6%).",
         },
+        {
+          img: "/Assets/Blogs/silent-panic-attacks-diagnosis-venn.svg",
+          alt: "Nested-circle diagram showing panic disorder (2.7%) as a smaller group within anyone who has a panic attack in a given year (about 11%), with the three criteria that separate a diagnosis and the gender split by prevalence",
+        },
       ],
     },
     {
@@ -138,10 +150,6 @@ export default {
             "Physical symptoms have sent you to urgent care or the emergency room more than once",
             "The effort of appearing fine is affecting your work, your relationships, or your sense of yourself",
           ],
-        },
-        {
-          img: "/Assets/Blogs/silent-panic-attacks-infographic.svg",
-          alt: "Infographic: Silent panic attacks by the numbers — panic attack vs. panic disorder prevalence, prevalence by gender, the hidden symptoms behind a calm face, how long an attack takes to peak, and Hopewell's care for panic and anxiety",
         },
       ],
     },

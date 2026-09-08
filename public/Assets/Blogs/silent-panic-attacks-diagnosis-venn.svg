@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="640" rx="24" fill="#f5f2eb"/>
+
+  <!-- outer set: any panic attack -->
+  <circle cx="360" cy="330" r="250" fill="#e7eef5" stroke="#2f76c4" stroke-width="2"/>
+  <text x="360" y="115" text-anchor="middle" font-size="16" font-weight="700" letter-spacing="1" fill="#1b3e63">ANY PANIC ATTACK</text>
+  <text x="360" y="140" text-anchor="middle" font-size="13" fill="#5a6b7a">~11% of adults, per year</text>
+
+  <!-- inner set: panic disorder -->
+  <circle cx="360" cy="380" r="118" fill="#1b3e63"/>
+  <text x="360" y="368" text-anchor="middle" font-size="15" font-weight="700" fill="#f3e8d2">PANIC DISORDER</text>
+  <text x="360" y="410" text-anchor="middle" font-size="40" font-weight="700" fill="#ffffff">2.7%</text>
+
+  <!-- branch lines: diagnostic criteria feeding the inner circle -->
+  <g stroke="#b6863c" stroke-width="2" fill="none">
+    <path d="M700,220 C 560,220 520,280 452,315"/>
+    <path d="M700,380 C 600,380 540,380 478,380"/>
+    <path d="M700,540 C 560,540 520,470 452,445"/>
+  </g>
+  <circle cx="700" cy="220" r="5" fill="#b6863c"/>
+  <circle cx="700" cy="380" r="5" fill="#b6863c"/>
+  <circle cx="700" cy="540" r="5" fill="#b6863c"/>
+
+  <text x="720" y="200" font-size="14" font-weight="700" fill="#001d37">Diagnosed when:</text>
+  <text x="720" y="226" font-size="14" fill="#001d37">Attacks are recurrent</text>
+  <text x="720" y="248" font-size="14" fill="#001d37">and unexpected</text>
+
+  <text x="720" y="368" font-size="14" fill="#001d37">1+ month of persistent</text>
+  <text x="720" y="390" font-size="14" fill="#001d37">worry about another</text>
+
+  <text x="720" y="528" font-size="14" fill="#001d37">Behavior changes to</text>
+  <text x="720" y="550" font-size="14" fill="#001d37">avoid an attack</text>
+
+  <!-- gender split, minimal -->
+  <g>
+    <rect x="140" y="580" width="150" height="40" rx="20" fill="#ffffff" stroke="#e4ddd0"/>
+    <text x="215" y="605" text-anchor="middle" font-size="14" fill="#001d37"><tspan font-weight="700" fill="#b6863c">3.8%</tspan> Women</text>
+  </g>
+  <g>
+    <rect x="300" y="580" width="140" height="40" rx="20" fill="#ffffff" stroke="#e4ddd0"/>
+    <text x="370" y="605" text-anchor="middle" font-size="14" fill="#001d37"><tspan font-weight="700" fill="#2f76c4">1.6%</tspan> Men</text>
+  </g>
+
+  <text x="640" y="612" font-size="11" font-style="italic" fill="#5a6b7a">Source: National Institute of Mental Health, accessed 2026</text>
+</svg>

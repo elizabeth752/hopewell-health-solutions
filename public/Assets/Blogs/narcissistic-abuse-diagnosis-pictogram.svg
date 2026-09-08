@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" width="1000" height="520" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="520" rx="24" fill="#f5f2eb"/>
+
+  <!-- divider -->
+  <line x1="500" y1="60" x2="500" y2="460" stroke="#e4ddd0" stroke-width="1.5"/>
+
+  <!-- PANEL A: probable PTSD after IPV, 10-icon pictogram -->
+  <text x="250" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Probable PTSD After Intimate Partner Violence</text>
+
+  <!-- row 1 (5 icons) -->
+  <g transform="translate(90,110)" fill="#2f76c4">
+    <g transform="translate(0,0)"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(65,0)"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(130,0)"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(195,0)"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(260,0)"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+  </g>
+  <!-- row 2: 1 filled + 4 outline (rounds 52.3% -> ~5.2/10) -->
+  <g transform="translate(90,190)">
+    <g transform="translate(0,0)" fill="#2f76c4"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(65,0)" fill="none" stroke="#c9cfd6" stroke-width="2"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(130,0)" fill="none" stroke="#c9cfd6" stroke-width="2"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(195,0)" fill="none" stroke="#c9cfd6" stroke-width="2"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+    <g transform="translate(260,0)" fill="none" stroke="#c9cfd6" stroke-width="2"><circle cx="0" cy="0" r="10"/><path d="M-14,42 C-14,20 14,20 14,42 Z"/></g>
+  </g>
+
+  <text x="250" y="300" text-anchor="middle" font-size="38" font-weight="700" fill="#2f76c4">52.3%</text>
+  <text x="250" y="326" text-anchor="middle" font-size="13" fill="#5a6b7a">of survivors screen positive</text>
+  <text x="250" y="368" text-anchor="middle" font-size="13" fill="#5a6b7a">vs. <tspan font-weight="700" fill="#001d37">1.7%</tspan> with no IPV history</text>
+  <text x="250" y="400" text-anchor="middle" font-size="11" font-style="italic" fill="#5a6b7a">Source: Astridge et al., 2026</text>
+
+  <!-- PANEL B: C-PTSD vs PTSD among survivors, paired dial -->
+  <text x="750" y="60" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">C-PTSD Outpaces PTSD Among Survivors</text>
+
+  <!-- dial 1: C-PTSD 31.2% -->
+  <g transform="translate(650,180)">
+    <circle r="70" fill="none" stroke="#e4ddd0" stroke-width="16"/>
+    <circle r="70" fill="none" stroke="#b6863c" stroke-width="16" stroke-linecap="round"
+      stroke-dasharray="137 440" transform="rotate(-90)"/>
+    <text y="8" text-anchor="middle" font-size="26" font-weight="700" fill="#b6863c">31.2%</text>
+  </g>
+  <text x="650" y="278" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">C-PTSD</text>
+
+  <!-- dial 2: PTSD 17.1% -->
+  <g transform="translate(850,180)">
+    <circle r="70" fill="none" stroke="#e4ddd0" stroke-width="16"/>
+    <circle r="70" fill="none" stroke="#2f76c4" stroke-width="16" stroke-linecap="round"
+      stroke-dasharray="75 440" transform="rotate(-90)"/>
+    <text y="8" text-anchor="middle" font-size="26" font-weight="700" fill="#2f76c4">17.1%</text>
+  </g>
+  <text x="850" y="278" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">PTSD</text>
+
+  <text x="750" y="330" text-anchor="middle" font-size="13" fill="#5a6b7a">among intimate partner violence survivors</text>
+  <text x="750" y="400" text-anchor="middle" font-size="11" font-style="italic" fill="#5a6b7a">Source: Hu et al., 2026</text>
+</svg>

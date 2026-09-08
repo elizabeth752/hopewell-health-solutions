@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="380" rx="24" fill="#f5f2eb"/>
+
+  <!-- baseline -->
+  <line x1="70" y1="300" x2="930" y2="300" stroke="#e4ddd0" stroke-width="2"/>
+
+  <!-- acute rise to peak: solid -->
+  <path d="M90,290 C 150,286 220,150 330,110" fill="none" stroke="#2f76c4" stroke-width="4" stroke-linecap="round"/>
+  <!-- lingering tail: dashed, fading -->
+  <path d="M330,110 C 480,140 650,230 900,270" fill="none" stroke="#b6863c" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1,11"/>
+
+  <!-- onset marker -->
+  <circle cx="90" cy="290" r="8" fill="#2f76c4"/>
+  <text x="90" y="330" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">Onset</text>
+
+  <!-- peak marker -->
+  <circle cx="330" cy="110" r="10" fill="#1b3e63"/>
+  <text x="330" y="76" text-anchor="middle" font-size="34" font-weight="700" fill="#1b3e63">~10 min</text>
+  <text x="330" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">Peak</text>
+
+  <!-- tail marker -->
+  <circle cx="900" cy="270" r="7" fill="#b6863c"/>
+  <text x="900" y="330" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">Hours</text>
+  <text x="900" y="350" text-anchor="middle" font-size="12" fill="#5a6b7a">of lingering exhaustion</text>
+
+  <text x="500" y="40" text-anchor="middle" font-size="14" font-weight="700" letter-spacing="1.5" fill="#b6863c">MINUTES TO PEAK, HOURS TO RECOVER</text>
+</svg>

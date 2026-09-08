@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="620" rx="24" fill="#f5f2eb"/>
+
+  <!-- spokes -->
+  <g stroke="#c9cfd6" stroke-width="2">
+    <line x1="500" y1="310" x2="500" y2="145"/>
+    <line x1="500" y1="310" x2="675" y2="215"/>
+    <line x1="500" y1="310" x2="675" y2="405"/>
+    <line x1="500" y1="310" x2="500" y2="475"/>
+    <line x1="500" y1="310" x2="325" y2="405"/>
+    <line x1="500" y1="310" x2="325" y2="215"/>
+  </g>
+
+  <!-- hub -->
+  <circle cx="500" cy="310" r="92" fill="#1b3e63"/>
+  <text x="500" y="300" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">SILENT</text>
+  <text x="500" y="323" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">PANIC</text>
+  <text x="500" y="346" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">ATTACK</text>
+
+  <!-- leaf: Racing Heart (top) -->
+  <g>
+    <circle cx="500" cy="90" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <path transform="translate(500,90)" d="M-18,2 L-9,2 L-4,-11 L0,11 L4,-14 L9,3 L18,3" fill="none" stroke="#1b3e63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="500" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Racing Heart</text>
+  </g>
+
+  <!-- leaf: Chest Tightness (upper right) -->
+  <g>
+    <circle cx="735" cy="180" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <g transform="translate(735,180)" stroke="#1b3e63" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-18,0 L-6,0 M-6,0 L-12,-6 M-6,0 L-12,6"/>
+      <path d="M18,0 L6,0 M6,0 L12,-6 M6,0 L12,6"/>
+    </g>
+    <text x="735" y="254" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Chest Tightness</text>
+  </g>
+
+  <!-- leaf: Breathless (lower right) -->
+  <g>
+    <circle cx="735" cy="440" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <g transform="translate(735,440)" stroke="#1b3e63" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M-16,-6 Q-8,-13 0,-6 Q8,1 16,-6"/>
+      <path d="M-16,7 Q-8,0 0,7 Q8,14 16,7"/>
+    </g>
+    <text x="735" y="514" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Breathless</text>
+  </g>
+
+  <!-- leaf: Dizziness (bottom) -->
+  <g>
+    <circle cx="500" cy="530" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <path transform="translate(500,530)" d="M13,-13 A16,16 0 1,1 -13,-13 M-13,-13 L-19,-15 M-13,-13 L-15,-7" fill="none" stroke="#1b3e63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="500" y="604" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Dizziness</text>
+  </g>
+
+  <!-- leaf: Depersonalization (lower left) -->
+  <g>
+    <circle cx="265" cy="440" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <circle cx="265" cy="440" r="16" fill="none" stroke="#1b3e63" stroke-width="2.5" stroke-dasharray="4,3"/>
+    <circle cx="265" cy="440" r="4.5" fill="#1b3e63"/>
+    <text x="265" y="514" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Depersonalization</text>
+  </g>
+
+  <!-- leaf: Dread (upper left) -->
+  <g>
+    <circle cx="265" cy="180" r="52" fill="#ffffff" stroke="#1b3e63" stroke-width="2.5"/>
+    <text x="265" y="180" dy="0.35em" text-anchor="middle" font-size="32" font-weight="700" fill="#1b3e63">!</text>
+    <text x="265" y="254" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Dread</text>
+  </g>
+
+</svg>
