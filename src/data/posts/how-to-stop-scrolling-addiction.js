@@ -40,6 +40,21 @@
 // visual language (a bedtime feedback loop, a signs icon-grid, a stat bar
 // chart), not one summary poster. No baked-in CTA band; the post page's sidebar
 // already carries one.
+//
+// Internal links: 10 added at first natural occurrence, all to real, already-
+// built pages (mirrors the Virtue Recovery Center interlinking rule — first
+// occurrence only, verify every target resolves before shipping). Required
+// switching `[slug].astro`'s p/li rendering from plain text to `set:html` so
+// hand-authored posts can carry inline <a> tags at all — see docs/blog-post-
+// standard.md §Internal Links for why and what was checked before that change.
+//   /what-we-treat/anxiety/, /what-we-treat/depression/, /what-we-treat/adhd/,
+//   /what-we-treat/trauma-ptsd/ — the four conditions named as scrolling's
+//   underlying drivers.
+//   /treatment-methods/therapeutic-treatments/ (CBT), /treatment-methods/dbt/,
+//   /treatment-methods/emdr/ — the modalities named in the treatment section.
+//   /programs/intensive-outpatient-program/, /programs/partial-hospitalization-
+//   program/, /programs/teen-tween-iop/ — the levels of care named in the
+//   closing section.
 export default {
   slug: "how-to-stop-scrolling-addiction",
   title: "How to Stop Scrolling Addiction",
@@ -163,7 +178,7 @@ export default {
       h2: "When Is Scrolling a Symptom of Something Else?",
       blocks: [
         {
-          p: "Compulsive scrolling often sits on top of an untreated condition. Anxiety uses it for reassurance. Depression uses it to pass hours that feel unbearable. Attention-Deficit/Hyperactivity Disorder (ADHD) makes low-effort stimulation difficult to leave, and trauma symptoms use it to stay numb.",
+          p: "Compulsive scrolling often sits on top of an untreated condition. <a href=\"/what-we-treat/anxiety/\">Anxiety</a> uses it for reassurance. <a href=\"/what-we-treat/depression/\">Depression</a> uses it to pass hours that feel unbearable. <a href=\"/what-we-treat/adhd/\">Attention-Deficit/Hyperactivity Disorder (ADHD)</a> makes low-effort stimulation difficult to leave, and <a href=\"/what-we-treat/trauma-ptsd/\">trauma</a> symptoms use it to stay numb.",
         },
         {
           p: "The relationship runs both ways. High screen use means worse sleep, less physical activity, and weaker social and emotional support, each of which feeds depression and anxiety in turn.",
@@ -181,13 +196,13 @@ export default {
           p: "A synthesis of 125 studies on problematic digital technology use found that structured psychological therapies produced the most consistent benefit. The strongest results came from approaches aimed at regaining control of use and reducing the cues that drive unhealthy use.",
         },
         {
-          p: "The APA identifies assessment and counseling as the first step. Cognitive Behavioral Therapy (CBT) is most commonly used, while family involvement in therapy is also helpful for many people.",
+          p: "The APA identifies assessment and counseling as the first step. <a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a> is most commonly used, while family involvement in therapy is also helpful for many people.",
         },
         {
-          p: "At Hopewell Health Solutions, our clinicians use CBT, Dialectical Behavior Therapy (DBT), Eye Movement Desensitization and Reprocessing (EMDR), and Accelerated Resolution Therapy (ART) to treat scrolling addiction and the causes that sit deeper beneath.",
+          p: "At Hopewell Health Solutions, our clinicians use CBT, <a href=\"/treatment-methods/dbt/\">Dialectical Behavior Therapy (DBT)</a>, <a href=\"/treatment-methods/emdr/\">Eye Movement Desensitization and Reprocessing (EMDR)</a>, and Accelerated Resolution Therapy (ART) to treat scrolling addiction and the causes that sit deeper beneath.",
         },
         {
-          p: "Care is available at every level. We have weekly counseling, an Intensive Outpatient Program (IOP) with day and evening tracks, and a Partial Hospitalization Program (PHP). Teen and tween IOPs serve ages 8 through 18, with families included in the work to ensure comprehensive healing.",
+          p: "Care is available at every level. We have weekly counseling, an <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Program (IOP)</a> with day and evening tracks, and a <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program (PHP)</a>. <a href=\"/programs/teen-tween-iop/\">Teen and tween IOPs</a> serve ages 8 through 18, with families included in the work to ensure comprehensive healing.",
         },
       ],
     },

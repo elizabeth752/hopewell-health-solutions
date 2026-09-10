@@ -274,11 +274,11 @@ const schemas = [blogPostingSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
                 <h2 class="font-display text-2xl sm:text-3xl text-azul leading-snug">{s.h2}</h2>
                 <div class="mt-4 space-y-4">
                   {s.blocks.map((b) => (
-                    b.p ? <p class="text-[17px] leading-relaxed text-ink">{b.p}</p>
+                    b.p ? <p class="text-[17px] leading-relaxed text-ink [&_a]:text-azul [&_a]:font-semibold [&_a]:hover:underline" set:html={b.p} />
                     : b.h3 ? <h3 class="pt-2 font-display text-xl text-ink">{b.h3}</h3>
                     : b.ul ? (
                       <ul class="space-y-2.5 pl-1">
-                        {b.ul.map((li) => <li class="flex gap-3 text-[17px] leading-relaxed text-ink"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>{li}</span></li>)}
+                        {b.ul.map((li) => <li class="flex gap-3 text-[17px] leading-relaxed text-ink"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="[&_a]:text-azul [&_a]:font-semibold [&_a]:hover:underline" set:html={li} /></li>)}
                       </ul>
                     )
                     : b.img ? (
