@@ -74,11 +74,14 @@ if (bodyHtml) {
   tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
 }
 
-// --- JSON-LD: BlogPosting with author + reviewer + publisher (E-E-A-T core) ---
-// Schema strategy mirrors the Virtue Recovery Center build: BlogPosting carries
-// reviewedBy (not just a visible byline), plus BreadcrumbList, an auto-built
-// FAQPage, and an ImageObject per in-article graphic — see docs/blog-post-
-// standard.md's schema section on that project for the pattern being matched.
+// --- JSON-LD: BlogPosting with author + publisher (E-E-A-T core) ---
+// Schema strategy mirrors the Virtue Recovery Center build: BreadcrumbList, an
+// auto-built FAQPage, and an ImageObject per in-article graphic — see docs/
+// blog-post-standard.md's schema section on that project for the pattern being
+// matched. NOTE: `reviewedBy` is a real schema.org property only on
+// MedicalWebPage, not on Article/BlogPosting — adding it here isn't recognized
+// by validators, so the reviewer stays visible-only (byline + bio card), not in
+// schema, same as before this change.
 const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -88,7 +91,6 @@ const blogPostingSchema = {
   datePublished: post.datePublished,
   dateModified: post.dateModified || post.datePublished,
   ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
-  ...(reviewer ? { reviewedBy: { "@type": "Person", name: reviewer.name, jobTitle: reviewer.role, url: `${SITE}/provider/${reviewer.slug}/` } } : {}),
   publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.webp` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
