@@ -74,8 +74,12 @@ if (bodyHtml) {
   tocItems = post.sections.map((s) => ({ id: s.id, text: s.h2 }));
 }
 
-// --- JSON-LD: BlogPosting with author + publisher (E-E-A-T core; reviewer shown visibly, not in schema) ---
-const schema = {
+// --- JSON-LD: BlogPosting with author + reviewer + publisher (E-E-A-T core) ---
+// Schema strategy mirrors the Virtue Recovery Center build: BlogPosting carries
+// reviewedBy (not just a visible byline), plus BreadcrumbList, an auto-built
+// FAQPage, and an ImageObject per in-article graphic — see docs/blog-post-
+// standard.md's schema section on that project for the pattern being matched.
+const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: post.title,
@@ -84,14 +88,69 @@ const schema = {
   datePublished: post.datePublished,
   dateModified: post.dateModified || post.datePublished,
   ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
+  ...(reviewer ? { reviewedBy: { "@type": "Person", name: reviewer.name, jobTitle: reviewer.role, url: `${SITE}/provider/${reviewer.slug}/` } } : {}),
   publisher: { "@type": "Organization", name: "Hopewell Health Solutions", logo: { "@type": "ImageObject", url: `${SITE}/Assets/logo/hopewell-wave-logo.webp` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
 };
+
+// --- JSON-LD: BreadcrumbList ---
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+    { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}/blog/` },
+    { "@type": "ListItem", position: 3, name: post.title, item: canonical },
+  ],
+};
+
+// --- JSON-LD: FAQPage — auto-built from question-style H2s in hand-authored posts.
+// Per the Virtue build's rule: every FAQ answer must be the article's own paragraph,
+// verbatim, not written fresh for schema — using each section's first `p` block
+// guarantees that instead of hand-maintaining a separate faqs list per post.
+// Migrated posts (bodyHtml) are skipped; retrofitting those is a separate pass.
+const faqSections = bodyHtml
+  ? []
+  : (post.sections || []).filter((s) => /\?\s*$/.test(s.h2 || "") && s.blocks?.[0]?.p);
+const faqSchema = faqSections.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqSections.map((s) => ({
+        "@type": "Question",
+        name: s.h2,
+        acceptedAnswer: { "@type": "Answer", text: s.blocks[0].p },
+      })),
+    }
+  : null;
+
+// --- JSON-LD: ImageObject for every captioned in-article graphic ---
+const imageSchemas = bodyHtml
+  ? []
+  : (post.sections || [])
+      .flatMap((s) => s.blocks || [])
+      .filter((b) => b.img && b.alt)
+      .map((b) => ({
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        contentUrl: `${SITE}${b.img}`,
+        url: `${SITE}${b.img}`,
+        name: b.alt,
+        caption: b.alt,
+        creditText: "Hopewell Health Solutions",
+        creator: { "@type": "Organization", name: "Hopewell Health Solutions" },
+        license: canonical,
+        acquireLicensePage: `${SITE}/admissions/`,
+      }));
+
+const schemas = [blogPostingSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : []), ...imageSchemas];
 ---
 
 <Base title={metaTitle} description={metaDesc} canonical={canonical}>
   <Header />
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  {schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
 
   <!-- ============ HERO / BANNER ============ -->
   <section class="relative overflow-hidden bg-crema">
