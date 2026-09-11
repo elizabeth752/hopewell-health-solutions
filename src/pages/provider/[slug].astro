@@ -7,7 +7,7 @@ import ServicesGrid from "../../components/ServicesGrid.astro";
 import { providers } from "../../data/providers.js";
 
 export function getStaticPaths() {
-  return providers.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+  return providers.filter((p) => !p.removed).map((p) => ({ params: { slug: p.slug }, props: { p } }));
 }
 const { p } = Astro.props;
 const TM = "/Assets/Team%20Members/";
