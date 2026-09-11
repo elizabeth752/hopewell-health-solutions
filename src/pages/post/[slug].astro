@@ -334,7 +334,9 @@ const schemas = [blogPostingSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema
               {reviewer && (
                 <p class="mt-4 border-t border-line pt-4 text-sm text-muted">
                   <span class="inline-flex items-center gap-1.5 font-semibold text-ink"><Icon name="shield" class="h-4 w-4 text-azul" />Medically reviewed by</span>
-                  <a href={`/provider/${reviewer.slug}/`} class="text-azul font-semibold hover:underline"> {reviewer.name}</a>, {reviewer.role}.
+                  {reviewer.removed
+                    ? <span class="font-semibold text-ink"> {reviewer.name}</span>
+                    : <a href={`/provider/${reviewer.slug}/`} class="text-azul font-semibold hover:underline"> {reviewer.name}</a>}, {reviewer.role}.
                 </p>
               )}
             </div>
