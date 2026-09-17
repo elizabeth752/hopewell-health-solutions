@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="1000" height="320" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="320" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">HOW COMMON IS ANHEDONIA?</text>
+  <text x="500" y="66" text-anchor="middle" font-size="13" fill="#5a6b7a">The closest clinical term to emptiness, by population</text>
+
+  <!-- axis track -->
+  <line x1="120" y1="190" x2="880" y2="190" stroke="#e4ddd0" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- major-depression band: 35% to 70% -->
+  <rect x="386" y="185" width="266" height="10" rx="5" fill="#b6863c"/>
+
+  <!-- no-mental-illness marker: 4.3% -->
+  <circle cx="152.7" cy="190" r="9" fill="#265489"/>
+
+  <!-- axis ticks -->
+  <line x1="120" y1="182" x2="120" y2="198" stroke="#c9cfd6" stroke-width="1.5"/>
+  <text x="120" y="216" text-anchor="middle" font-size="11" fill="#5a6b7a">0%</text>
+  <line x1="500" y1="182" x2="500" y2="198" stroke="#c9cfd6" stroke-width="1.5"/>
+  <text x="500" y="216" text-anchor="middle" font-size="11" fill="#5a6b7a">50%</text>
+  <line x1="880" y1="182" x2="880" y2="198" stroke="#c9cfd6" stroke-width="1.5"/>
+  <text x="880" y="216" text-anchor="middle" font-size="11" fill="#5a6b7a">100%</text>
+
+  <!-- labels above -->
+  <text x="152.7" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#265489">4.3%</text>
+  <text x="152.7" y="168" text-anchor="middle" font-size="11" fill="#001d37">No mental illness</text>
+
+  <text x="519" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#b6863c">35%&#8211;70%</text>
+  <text x="519" y="158" text-anchor="middle" font-size="11" fill="#001d37">Major depression</text>
+
+  <text x="500" y="270" text-anchor="middle" font-size="13" fill="#5a6b7a">Anhedonia also shows up across other psychiatric conditions, including trauma, BPD, and burnout.</text>
+  <text x="500" y="292" text-anchor="middle" font-size="12" fill="#5a6b7a">Emptiness is common. It is not a character flaw, and treatment for it exists.</text>
+</svg>

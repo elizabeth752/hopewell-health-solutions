@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="1000" height="420" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="420" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">WHAT CAN SIT BEHIND THE EMPTINESS</text>
+
+  <!-- Row 1: 4 tiles, x=50..950, width 210, gap 20 -->
+  <!-- Tile 1: Depression -->
+  <rect x="50" y="66" width="210" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(155,116)">
+    <line x1="0" y1="-20" x2="0" y2="14" stroke="#265489" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-10,4 L0,18 L10,4" fill="none" stroke="#265489" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <text x="155" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Depression</text>
+  <text x="155" y="188" text-anchor="middle" font-size="10.5" fill="#5a6b7a">diminished interest is a</text>
+  <text x="155" y="202" text-anchor="middle" font-size="10.5" fill="#5a6b7a">core diagnostic symptom</text>
+
+  <!-- Tile 2: Unprocessed trauma -->
+  <rect x="280" y="66" width="210" height="150" rx="16" fill="#1b3e63"/>
+  <g transform="translate(385,116)">
+    <path d="M0,-22 L18,-8 L11,20 L-11,20 L-18,-8 Z" fill="none" stroke="#f5f2eb" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M-6,-6 L4,2 L-2,4 L8,14" fill="none" stroke="#b6863c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="385" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Unprocessed Trauma</text>
+  <text x="385" y="188" text-anchor="middle" font-size="10.5" fill="#e7eef5">flattening once protected,</text>
+  <text x="385" y="202" text-anchor="middle" font-size="10.5" fill="#e7eef5">then it stayed on</text>
+
+  <!-- Tile 3: Burnout -->
+  <rect x="510" y="66" width="210" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(615,116)">
+    <path d="M0,-22 C10,-10 12,-2 6,6 C10,4 14,-2 14,-2 C16,10 8,22 -2,22 C-14,22 -18,10 -14,0 C-11,3 -9,3 -8,0 C-10,-6 -6,-16 0,-22 Z" fill="none" stroke="#265489" stroke-width="3"/>
+  </g>
+  <text x="615" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Burnout &amp; Stress</text>
+  <text x="615" y="188" text-anchor="middle" font-size="10.5" fill="#5a6b7a">nothing feels rewarding,</text>
+  <text x="615" y="202" text-anchor="middle" font-size="10.5" fill="#5a6b7a">even rest</text>
+
+  <!-- Tile 4: Grief -->
+  <rect x="740" y="66" width="210" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(845,116)">
+    <path d="M0,20 C-24,0 -22,-20 -6,-20 C-1,-20 0,-16 0,-16 C0,-16 1,-20 6,-20 C22,-20 24,0 0,20 Z" fill="none" stroke="#265489" stroke-width="3"/>
+    <line x1="-4" y1="-4" x2="4" y2="6" stroke="#b6863c" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="845" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Grief</text>
+  <text x="845" y="188" text-anchor="middle" font-size="10.5" fill="#5a6b7a">including losses never</text>
+  <text x="845" y="202" text-anchor="middle" font-size="10.5" fill="#5a6b7a">fully mourned</text>
+
+  <!-- Row 2: 3 tiles centered, width 210, gap 20, total 670, start x=165 -->
+  <!-- Tile 5: Substance use -->
+  <rect x="165" y="246" width="210" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(270,296)">
+    <path d="M-14,-18 L14,-18 L9,20 L-9,20 Z" fill="none" stroke="#265489" stroke-width="3" stroke-linejoin="round"/>
+    <line x1="-11" y1="-4" x2="11" y2="-4" stroke="#265489" stroke-width="3"/>
+  </g>
+  <text x="270" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Alcohol or Substance Use</text>
+  <text x="270" y="368" text-anchor="middle" font-size="10.5" fill="#5a6b7a">blunts the highs and</text>
+  <text x="270" y="382" text-anchor="middle" font-size="10.5" fill="#5a6b7a">the lows alike</text>
+
+  <!-- Tile 6: Isolation -->
+  <rect x="395" y="246" width="210" height="150" rx="16" fill="#1b3e63"/>
+  <g transform="translate(500,296)">
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#f5f2eb" stroke-width="2" stroke-dasharray="3,5"/>
+    <circle cx="0" cy="-4" r="6" fill="#b6863c"/>
+    <path d="M-9,14 C-9,4 9,4 9,14" fill="none" stroke="#b6863c" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="500" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Isolation</text>
+  <text x="500" y="368" text-anchor="middle" font-size="10.5" fill="#e7eef5">lost roles after a move,</text>
+  <text x="500" y="382" text-anchor="middle" font-size="10.5" fill="#e7eef5">retirement, or empty nest</text>
+
+  <!-- Tile 7: Medication effects -->
+  <rect x="625" y="246" width="210" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(730,296) rotate(-40)">
+    <rect x="-20" y="-9" width="40" height="18" rx="9" fill="none" stroke="#265489" stroke-width="3"/>
+    <line x1="0" y1="-9" x2="0" y2="9" stroke="#265489" stroke-width="3"/>
+  </g>
+  <text x="730" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Medication Effects</text>
+  <text x="730" y="368" text-anchor="middle" font-size="10.5" fill="#5a6b7a">some antidepressants can</text>
+  <text x="730" y="382" text-anchor="middle" font-size="10.5" fill="#5a6b7a">narrow emotional range</text>
+</svg>
