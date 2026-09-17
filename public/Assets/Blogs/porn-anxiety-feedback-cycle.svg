@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="pacArrowGold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b6863c"/>
+    </marker>
+    <marker id="pacArrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#265489"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="460" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">THE CONNECTION RUNS IN BOTH DIRECTIONS</text>
+
+  <!-- top arc: Anxiety -> Use -->
+  <path d="M300,150 C 420,90 580,90 700,150" fill="none" stroke="#b6863c" stroke-width="3.5" marker-end="url(#pacArrowGold)"/>
+  <text x="500" y="88" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8a5f22">USED AS ESCAPE</text>
+
+  <!-- bottom arc: Use -> Anxiety -->
+  <path d="M700,250 C 580,310 420,310 300,250" fill="none" stroke="#265489" stroke-width="3.5" marker-end="url(#pacArrowBlue)"/>
+  <text x="500" y="340" text-anchor="middle" font-size="12.5" font-weight="700" fill="#265489">FEEDS THE ANXIETY BACK</text>
+
+  <!-- node: Anxiety -->
+  <circle cx="200" cy="200" r="92" fill="#ffffff" stroke="#265489" stroke-width="2.5"/>
+  <text x="200" y="195" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">Anxiety</text>
+  <text x="200" y="216" text-anchor="middle" font-size="10.5" fill="#5a6b7a">grief &#183; divorce &#183; job loss</text>
+  <text x="200" y="230" text-anchor="middle" font-size="10.5" fill="#5a6b7a">loneliness &#183; social insecurity</text>
+
+  <!-- node: Problematic Use -->
+  <circle cx="800" cy="200" r="92" fill="#1b3e63"/>
+  <text x="800" y="192" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Problematic</text>
+  <text x="800" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Use</text>
+  <text x="800" y="230" text-anchor="middle" font-size="10.5" fill="#e7eef5">concealment &#183; lost sleep</text>
+
+  <text x="500" y="400" text-anchor="middle" font-size="13" fill="#5a6b7a">Concealment, lost sleep, discovery-and-apology cycles, and shame keep the nervous system braced.</text>
+  <text x="500" y="422" text-anchor="middle" font-size="12" fill="#5a6b7a">Both directions respond to treatment &#8212; the plan is built around which one came first for you.</text>
+</svg>
