@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="600" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">LONELINESS IS LINKED TO REAL HEALTH RISKS</text>
+  <text x="500" y="64" text-anchor="middle" font-size="12.5" fill="#5a6b7a">CDC: social isolation and loneliness raise the risk for &#8212;</text>
+
+  <!-- spokes (staircase layout; hub circle drawn on top covers the inner segment) -->
+  <line x1="170" y1="320" x2="400" y2="140" stroke="#c9cfd6" stroke-width="2"/>
+  <line x1="170" y1="320" x2="490" y2="230" stroke="#c9cfd6" stroke-width="2"/>
+  <line x1="170" y1="320" x2="580" y2="320" stroke="#c9cfd6" stroke-width="2"/>
+  <line x1="170" y1="320" x2="670" y2="410" stroke="#c9cfd6" stroke-width="2"/>
+  <line x1="170" y1="320" x2="760" y2="500" stroke="#c9cfd6" stroke-width="2"/>
+
+  <!-- hub -->
+  <circle cx="170" cy="320" r="88" fill="#1b3e63"/>
+  <text x="170" y="312" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">Loneliness &amp;</text>
+  <text x="170" y="332" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">Social Isolation</text>
+
+  <!-- Risk 1: Heart disease & stroke -->
+  <circle cx="400" cy="140" r="34" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(400,140)">
+    <path d="M0,10 C-16,-2 -16,-18 -4,-18 C0,-18 0,-14 0,-14 C0,-14 0,-18 4,-18 C16,-18 16,-2 0,10 Z" fill="none" stroke="#265489" stroke-width="2.5"/>
+  </g>
+  <text x="446" y="135" font-size="13" font-weight="700" fill="#001d37">Heart disease &amp;</text>
+  <text x="446" y="152" font-size="13" font-weight="700" fill="#001d37">stroke</text>
+
+  <!-- Risk 2: Type 2 diabetes -->
+  <circle cx="490" cy="230" r="34" fill="#b6863c"/>
+  <g transform="translate(490,230)">
+    <path d="M0,-16 C8,-4 14,4 14,10 C14,18 8,22 0,22 C-8,22 -14,18 -14,10 C-14,4 -8,-4 0,-16 Z" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+  <text x="536" y="225" font-size="13" font-weight="700" fill="#001d37">Type 2</text>
+  <text x="536" y="242" font-size="13" font-weight="700" fill="#001d37">diabetes</text>
+
+  <!-- Risk 3: Depression & anxiety -->
+  <circle cx="580" cy="320" r="34" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(580,320)">
+    <path d="M-16,4 C-16,-10 -6,-16 0,-16 C6,-16 16,-10 16,4 C10,0 6,4 0,0 C-6,4 -10,0 -16,4 Z" fill="none" stroke="#265489" stroke-width="2.5" stroke-linejoin="round"/>
+  </g>
+  <text x="626" y="315" font-size="13" font-weight="700" fill="#001d37">Depression &amp;</text>
+  <text x="626" y="332" font-size="13" font-weight="700" fill="#001d37">anxiety</text>
+
+  <!-- Risk 4: Dementia -->
+  <circle cx="670" cy="410" r="34" fill="#b6863c"/>
+  <g transform="translate(670,410)">
+    <path d="M-14,-8 C-14,-18 14,-18 14,-8 C18,-6 18,4 14,6 C14,16 -14,16 -14,6 C-18,4 -18,-6 -14,-8 Z" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
+    <line x1="0" y1="-10" x2="0" y2="12" stroke="#ffffff" stroke-width="2" stroke-dasharray="2,3"/>
+  </g>
+  <text x="716" y="416" font-size="13" font-weight="700" fill="#001d37">Dementia</text>
+
+  <!-- Risk 5: Earlier death -->
+  <circle cx="760" cy="500" r="34" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(760,500)">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#265489" stroke-width="2.5"/>
+    <line x1="0" y1="0" x2="0" y2="-9" stroke="#265489" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="7" y2="4" stroke="#265489" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="806" y="506" font-size="13" font-weight="700" fill="#001d37">Earlier death</text>
+
+  <text x="500" y="578" text-anchor="middle" font-size="12" fill="#5a6b7a">About 1 in 3 U.S. adults reports feeling lonely; about 1 in 4 lacks needed social or emotional support.</text>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="1000" height="480" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="480" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">HABITS WITH REAL EVIDENCE BEHIND THEM</text>
+
+  <!-- Row 1: Consistent exercise -->
+  <circle cx="150" cy="94" r="20" fill="#265489"/>
+  <path d="M141,94 L148,101 L161,86" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,0)"/>
+  <text x="190" y="89" font-size="15" font-weight="700" fill="#001d37">Consistent exercise</text>
+  <text x="190" y="108" font-size="12.5" fill="#5a6b7a">activates the same reward circuit that therapy relies on</text>
+
+  <!-- Row 2: Adequate sleep -->
+  <circle cx="150" cy="152" r="20" fill="#265489"/>
+  <path d="M141,152 L148,159 L161,144" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="147" font-size="15" font-weight="700" fill="#001d37">Adequate sleep, on a regular schedule</text>
+  <text x="190" y="166" font-size="12.5" fill="#5a6b7a">short sleep increases reward-chasing and less goal-directed choices</text>
+
+  <!-- Row 3: Protein at meals -->
+  <circle cx="150" cy="210" r="20" fill="#265489"/>
+  <path d="M141,210 L148,217 L161,202" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="205" font-size="15" font-weight="700" fill="#001d37">Protein at meals</text>
+  <text x="190" y="224" font-size="12.5" fill="#5a6b7a">supplies tyrosine, the amino acid dopamine is built from</text>
+
+  <!-- Row 4: Daylight early in the day -->
+  <circle cx="150" cy="268" r="20" fill="#265489"/>
+  <path d="M141,268 L148,275 L161,260" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="263" font-size="15" font-weight="700" fill="#001d37">Daylight early in the day</text>
+  <text x="190" y="282" font-size="12.5" fill="#5a6b7a">helps anchor the sleep schedule that motivation depends on</text>
+
+  <!-- Row 5: Small achievable goals -->
+  <circle cx="150" cy="326" r="20" fill="#265489"/>
+  <path d="M141,326 L148,333 L161,318" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="321" font-size="15" font-weight="700" fill="#001d37">Small, achievable goals</text>
+  <text x="190" y="340" font-size="12.5" fill="#5a6b7a">gives the reward circuit something concrete to register</text>
+
+  <!-- Row 6: Real relationships -->
+  <circle cx="150" cy="384" r="20" fill="#265489"/>
+  <path d="M141,384 L148,391 L161,376" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="190" y="379" font-size="15" font-weight="700" fill="#001d37">Real relationships</text>
+  <text x="190" y="398" font-size="12.5" fill="#5a6b7a">social contact naturally activates the same reward circuit</text>
+
+  <!-- Row 7: Less or no alcohol (reduce, not add) -->
+  <circle cx="150" cy="442" r="20" fill="#b6863c"/>
+  <line x1="141" y1="442" x2="159" y2="442" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="190" y="437" font-size="15" font-weight="700" fill="#001d37">Less or no alcohol</text>
+  <text x="190" y="456" font-size="12.5" fill="#5a6b7a">produces dopamine surges far larger than natural rewards do</text>
+</svg>

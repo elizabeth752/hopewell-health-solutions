@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="460" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">WHAT PARTNER PHONE USE PREDICTS</text>
+  <text x="500" y="64" text-anchor="middle" font-size="12.5" fill="#5a6b7a">Meta-analysis of 52 studies, 19,698 people</text>
+
+  <!-- baseline -->
+  <line x1="100" y1="250" x2="900" y2="250" stroke="#c9cfd6" stroke-width="1.5"/>
+
+  <!-- Down cluster label -->
+  <text x="305" y="130" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#265489">PHUBBING PREDICTS LESS &#8595;</text>
+  <!-- Up cluster label -->
+  <text x="725" y="372" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="0.5" fill="#b6863c">PHUBBING PREDICTS MORE &#8593;</text>
+
+  <!-- Bar 1: Satisfaction, down, height 54 -->
+  <rect x="165" y="250" width="110" height="54" rx="4" fill="#265489"/>
+  <text x="220" y="234" text-anchor="middle" font-size="15" font-weight="700" fill="#265489">-0.22</text>
+  <text x="220" y="320" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">Relationship</text>
+  <text x="220" y="334" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">satisfaction</text>
+
+  <!-- Bar 2: Intimacy, down, height 65 -->
+  <rect x="305" y="250" width="110" height="65" rx="4" fill="#265489"/>
+  <text x="360" y="234" text-anchor="middle" font-size="15" font-weight="700" fill="#265489">-0.27</text>
+  <text x="360" y="331" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">Intimacy</text>
+
+  <!-- Bar 3: Responsiveness, down, height 71 -->
+  <rect x="445" y="250" width="110" height="71" rx="4" fill="#265489"/>
+  <text x="500" y="234" text-anchor="middle" font-size="15" font-weight="700" fill="#265489">-0.29</text>
+  <text x="500" y="337" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">Perceived</text>
+  <text x="500" y="351" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">responsiveness</text>
+
+  <!-- Bar 4: Conflict, up, height 140 -->
+  <rect x="585" y="110" width="110" height="140" rx="4" fill="#b6863c"/>
+  <text x="640" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#b6863c">+0.57</text>
+  <text x="640" y="100" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">Conflict</text>
+
+  <!-- Bar 5: Jealousy, up, height 71 -->
+  <rect x="725" y="179" width="110" height="71" rx="4" fill="#b6863c"/>
+  <text x="780" y="268" text-anchor="middle" font-size="15" font-weight="700" fill="#b6863c">+0.29</text>
+  <text x="780" y="169" text-anchor="middle" font-size="12.5" font-weight="700" fill="#001d37">Jealousy</text>
+
+  <text x="500" y="416" text-anchor="middle" font-size="12" fill="#5a6b7a">Loneliness and attachment anxiety or avoidance also predict the behavior &#8212; it runs in a loop, not as a simple bad habit.</text>
+</svg>

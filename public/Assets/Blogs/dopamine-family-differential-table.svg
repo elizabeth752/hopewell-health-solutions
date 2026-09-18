@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="1000" height="440" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="440" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="38" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">THE PATTERN TELLS YOU MORE THAN THE SYMPTOM DOES</text>
+
+  <!-- Card 1: Depression -->
+  <rect x="30" y="60" width="220" height="360" rx="14" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <rect x="30" y="60" width="220" height="48" rx="14" fill="#1b3e63"/>
+  <rect x="30" y="90" width="220" height="18" fill="#1b3e63"/>
+  <text x="140" y="89" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">Depression</text>
+  <text x="50" y="138" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">TIMING</text>
+  <text x="50" y="158" font-size="12.5" fill="#001d37">A change from that</text>
+  <text x="50" y="174" font-size="12.5" fill="#001d37">person's baseline,</text>
+  <text x="50" y="190" font-size="12.5" fill="#001d37">lasting 2+ weeks</text>
+  <text x="50" y="228" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">ALSO LOOK FOR</text>
+  <text x="50" y="248" font-size="12.5" fill="#5a6b7a">Sleep changes,</text>
+  <text x="50" y="264" font-size="12.5" fill="#5a6b7a">appetite changes,</text>
+  <text x="50" y="280" font-size="12.5" fill="#5a6b7a">hopelessness</text>
+
+  <!-- Card 2: ADHD -->
+  <rect x="270" y="60" width="220" height="360" rx="14" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <rect x="270" y="60" width="220" height="48" rx="14" fill="#265489"/>
+  <rect x="270" y="90" width="220" height="18" fill="#265489"/>
+  <text x="380" y="89" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">ADHD</text>
+  <text x="290" y="138" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">TIMING</text>
+  <text x="290" y="158" font-size="12.5" fill="#001d37">A lifelong pattern,</text>
+  <text x="290" y="174" font-size="12.5" fill="#001d37">not a recent shift</text>
+  <text x="290" y="228" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">ALSO LOOK FOR</text>
+  <text x="290" y="248" font-size="12.5" fill="#5a6b7a">Difficulty starting</text>
+  <text x="290" y="264" font-size="12.5" fill="#5a6b7a">across school,</text>
+  <text x="290" y="280" font-size="12.5" fill="#5a6b7a">work, and home</text>
+
+  <!-- Card 3: Medication Effects -->
+  <rect x="510" y="60" width="220" height="360" rx="14" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <rect x="510" y="60" width="220" height="48" rx="14" fill="#265489"/>
+  <rect x="510" y="90" width="220" height="18" fill="#265489"/>
+  <text x="620" y="89" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">Medication Effects</text>
+  <text x="530" y="138" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">TIMING</text>
+  <text x="530" y="158" font-size="12.5" fill="#001d37">Begins after a dose</text>
+  <text x="530" y="174" font-size="12.5" fill="#001d37">or prescription change</text>
+  <text x="530" y="228" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">ALSO LOOK FOR</text>
+  <text x="530" y="248" font-size="12.5" fill="#5a6b7a">Narrowed emotional</text>
+  <text x="530" y="264" font-size="12.5" fill="#5a6b7a">range &#8212; raise it with</text>
+  <text x="530" y="280" font-size="12.5" fill="#5a6b7a">the prescriber</text>
+
+  <!-- Card 4: Other Medical Causes -->
+  <rect x="750" y="60" width="220" height="360" rx="14" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <rect x="750" y="60" width="220" height="48" rx="14" fill="#1b3e63"/>
+  <rect x="750" y="90" width="220" height="18" fill="#1b3e63"/>
+  <text x="860" y="89" text-anchor="middle" font-size="14.5" font-weight="700" fill="#ffffff">Other Medical Causes</text>
+  <text x="770" y="138" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">TIMING</text>
+  <text x="770" y="158" font-size="12.5" fill="#001d37">Varies &#8212; assessment</text>
+  <text x="770" y="174" font-size="12.5" fill="#001d37">comes before conclusions</text>
+  <text x="770" y="228" font-size="11" font-weight="700" letter-spacing="0.5" fill="#b6863c">ALSO LOOK FOR</text>
+  <text x="770" y="248" font-size="12.5" fill="#5a6b7a">Substance use, thyroid</text>
+  <text x="770" y="264" font-size="12.5" fill="#5a6b7a">conditions, anemia,</text>
+  <text x="770" y="280" font-size="12.5" fill="#5a6b7a">sleep disorders</text>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="1000" height="400" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="400" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">EXERCISE BEFORE THERAPY, DOUBLE THE REMISSION</text>
+  <text x="500" y="64" text-anchor="middle" font-size="12.5" fill="#5a6b7a">8-week CBT pilot trial for major depression, 40 adults</text>
+
+  <!-- baseline -->
+  <line x1="120" y1="340" x2="880" y2="340" stroke="#c9cfd6" stroke-width="1.5"/>
+
+  <!-- Bar 1: CBT alone, 33% -->
+  <rect x="330" y="235" width="150" height="105" rx="6" fill="#265489"/>
+  <text x="405" y="220" text-anchor="middle" font-size="34" font-weight="700" fill="#265489">33%</text>
+  <text x="405" y="364" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">CBT Alone</text>
+
+  <!-- arrow -->
+  <path d="M500,240 C 530,200 570,200 600,160" fill="none" stroke="#b6863c" stroke-width="3" marker-end="url(#dopArrow)"/>
+  <defs>
+    <marker id="dopArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b6863c"/>
+    </marker>
+  </defs>
+
+  <!-- Bar 2: Exercise + CBT, 69% -->
+  <rect x="620" y="120" width="150" height="220" rx="6" fill="#b6863c"/>
+  <text x="695" y="105" text-anchor="middle" font-size="34" font-weight="700" fill="#b6863c">69%</text>
+  <text x="695" y="364" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Exercise + CBT</text>
+
+  <text x="500" y="392" text-anchor="middle" font-size="12" fill="#5a6b7a">30 minutes of moderate exercise immediately before each session, for half the group.</text>
+</svg>

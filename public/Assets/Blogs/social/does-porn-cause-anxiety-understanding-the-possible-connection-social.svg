@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>.serif { font-family: Georgia, 'Times New Roman', serif; }</style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="628" fill="#f5f2eb"/>
+
+  <!-- ============ LEFT PANEL ============ -->
+  <rect x="0" y="0" width="460" height="628" fill="#1b3e63"/>
+  <text x="230" y="54" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f3e8d2">HOPEWELL HEALTH SOLUTIONS</text>
+
+  <text x="230" y="158" text-anchor="middle" class="serif" font-size="27" font-weight="700" fill="#ffffff">Does Porn Cause Anxiety?</text>
+  <text x="230" y="194" text-anchor="middle" class="serif" font-size="25" font-weight="700" fill="#ffffff">Understanding the Connection</text>
+
+  <line x1="190" y1="222" x2="270" y2="222" stroke="#b6863c" stroke-width="2"/>
+  <text x="230" y="248" text-anchor="middle" font-size="13" letter-spacing="0.5" fill="#e7eef5">Mental Health Care</text>
+
+  <text x="230" y="562" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">(860) 735-1448</text>
+  <text x="230" y="594" text-anchor="middle" font-size="13" fill="#9fb6ce">hopewellhealthsolutions.com</text>
+
+  <!-- ============ RIGHT: HERO STAT ============ -->
+  <text x="500" y="76" font-size="13" font-weight="700" letter-spacing="1.8" fill="#b6863c">BY THE NUMBERS</text>
+
+  <text x="830" y="222" text-anchor="middle" font-size="88" font-weight="700" fill="#b6863c">0.19 / 0.26</text>
+  <text x="830" y="266" text-anchor="middle" font-size="18" fill="#001d37">correlation with anxiety / depression &#8212; problematic use only</text>
+  <text x="830" y="294" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6b7a">Source: Tan et al., 2026 &#183; general use: not significant</text>
+
+  <!-- ============ RIGHT: CO-OCCURRENCE STAT ROW ============ -->
+  <line x1="500" y1="330" x2="1160" y2="330" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="500" y="356" font-size="12" font-weight="700" letter-spacing="1.2" fill="#b6863c">WHAT OFTEN CO-OCCURS WITH CSBD</text>
+
+  <rect x="500" y="380" width="200" height="110" rx="12" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="600" y="426" text-anchor="middle" font-size="28" font-weight="700" fill="#265489">10.8%</text>
+  <text x="600" y="452" text-anchor="middle" font-size="11" fill="#001d37">screened positive for CSBD</text>
+  <text x="600" y="474" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5a6b7a">Grant et al., 2025</text>
+
+  <rect x="730" y="380" width="200" height="110" rx="12" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="830" y="426" text-anchor="middle" font-size="28" font-weight="700" fill="#265489">67,000</text>
+  <text x="830" y="452" text-anchor="middle" font-size="11" fill="#001d37">adults, 34 countries</text>
+  <text x="830" y="474" text-anchor="middle" font-size="9.5" font-style="italic" fill="#5a6b7a">B&#337;the et al., 2026</text>
+
+  <rect x="960" y="380" width="200" height="110" rx="12" fill="#b6863c"/>
+  <text x="1060" y="426" text-anchor="middle" font-size="24" font-weight="700" fill="#ffffff">CBT &amp; ACT</text>
+  <text x="1060" y="452" text-anchor="middle" font-size="11" fill="#ffffff">strongest evidence</text>
+  <text x="1060" y="474" text-anchor="middle" font-size="9.5" font-style="italic" fill="#f3e8d2">L&#243;pez-Pinar et al., 2025</text>
+
+  <text x="830" y="524" text-anchor="middle" font-size="13" fill="#5a6b7a">Also correlates with ADHD, BPD, and substance use &#8212; treatment addresses all of it.</text>
+
+  <rect x="500" y="556" width="660" height="1" fill="#e4ddd0"/>
+  <text x="500" y="588" font-size="11" fill="#5a6b7a">CBT &amp; ACT &#183; IOP &amp; PHP available &#183; 6 CT locations</text>
+</svg>

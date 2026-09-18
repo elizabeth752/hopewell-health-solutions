@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>.serif { font-family: Georgia, 'Times New Roman', serif; }</style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="628" fill="#f5f2eb"/>
+
+  <!-- ============ LEFT PANEL ============ -->
+  <rect x="0" y="0" width="460" height="628" fill="#1b3e63"/>
+  <text x="230" y="54" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f3e8d2">HOPEWELL HEALTH SOLUTIONS</text>
+
+  <text x="230" y="158" text-anchor="middle" class="serif" font-size="29" font-weight="700" fill="#ffffff">How Do You Increase</text>
+  <text x="230" y="196" text-anchor="middle" class="serif" font-size="29" font-weight="700" fill="#ffffff">Dopamine Naturally?</text>
+
+  <line x1="190" y1="224" x2="270" y2="224" stroke="#b6863c" stroke-width="2"/>
+  <text x="230" y="250" text-anchor="middle" font-size="13" letter-spacing="0.5" fill="#e7eef5">Mental Health Care</text>
+
+  <text x="230" y="562" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">(860) 735-1448</text>
+  <text x="230" y="594" text-anchor="middle" font-size="13" fill="#9fb6ce">hopewellhealthsolutions.com</text>
+
+  <!-- ============ RIGHT: HERO STAT ============ -->
+  <text x="500" y="76" font-size="13" font-weight="700" letter-spacing="1.8" fill="#b6863c">THE HEADLINE STAT</text>
+
+  <text x="830" y="228" text-anchor="middle" font-size="110" font-weight="700" fill="#b6863c">69%</text>
+  <text x="830" y="266" text-anchor="middle" font-size="18" fill="#001d37">reached remission with exercise + CBT, vs. 33% with CBT alone</text>
+  <text x="830" y="294" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6b7a">Source: Meyer et al., 2026 &#183; 8-week trial, n=40</text>
+
+  <!-- ============ RIGHT: HABITS ICON STRIP ============ -->
+  <line x1="500" y1="330" x2="1160" y2="330" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="500" y="356" font-size="12" font-weight="700" letter-spacing="1.2" fill="#b6863c">HABITS WITH REAL EVIDENCE BEHIND THEM</text>
+
+  <!-- Exercise -->
+  <circle cx="555" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(555,420)">
+    <path d="M-13,2 L-6,2 L-3,-8 L0,8 L3,-10 L6,2 L13,2" fill="none" stroke="#265489" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="555" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#001d37">Exercise</text>
+
+  <!-- Sleep -->
+  <circle cx="665" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(665,420)">
+    <path d="M6,-12 A12,12 0 1,0 6,12 A9.5,9.5 0 0,1 6,-12 Z" fill="none" stroke="#265489" stroke-width="1.8" stroke-linejoin="round"/>
+  </g>
+  <text x="665" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#001d37">Sleep</text>
+
+  <!-- Protein -->
+  <circle cx="775" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(775,420)">
+    <line x1="-10" y1="-11" x2="-10" y2="11" stroke="#265489" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-5" y1="-11" x2="-5" y2="0" stroke="#265489" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="0" y1="-11" x2="0" y2="0" stroke="#265489" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-5" y1="0" x2="0" y2="0" stroke="#265489" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="11" y1="-11" x2="11" y2="11" stroke="#265489" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <text x="775" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#001d37">Protein</text>
+
+  <!-- Daylight -->
+  <circle cx="885" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(885,420)">
+    <circle cx="0" cy="0" r="7" fill="none" stroke="#265489" stroke-width="1.8"/>
+    <g stroke="#265489" stroke-width="1.8" stroke-linecap="round">
+      <line x1="0" y1="-12" x2="0" y2="-15"/>
+      <line x1="0" y1="12" x2="0" y2="15"/>
+      <line x1="-12" y1="0" x2="-15" y2="0"/>
+      <line x1="12" y1="0" x2="15" y2="0"/>
+      <line x1="-8.5" y1="-8.5" x2="-10.5" y2="-10.5"/>
+      <line x1="8.5" y1="8.5" x2="10.5" y2="10.5"/>
+      <line x1="-8.5" y1="8.5" x2="-10.5" y2="10.5"/>
+      <line x1="8.5" y1="-8.5" x2="10.5" y2="-10.5"/>
+    </g>
+  </g>
+  <text x="885" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#001d37">Daylight</text>
+
+  <!-- Small Goals -->
+  <circle cx="995" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(995,420)">
+    <circle cx="0" cy="0" r="13" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <circle cx="0" cy="0" r="7" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <circle cx="0" cy="0" r="2.5" fill="#b6863c"/>
+  </g>
+  <text x="995" y="468" text-anchor="middle" font-size="11.5" font-weight="700" fill="#001d37">Small Goals</text>
+
+  <!-- Real Relationships -->
+  <circle cx="1105" cy="420" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(1105,420)">
+    <circle cx="-6" cy="0" r="9" fill="none" stroke="#265489" stroke-width="1.8"/>
+    <circle cx="6" cy="0" r="9" fill="none" stroke="#265489" stroke-width="1.8"/>
+  </g>
+  <text x="1105" y="468" text-anchor="middle" font-size="11" font-weight="700" fill="#001d37">Relationships</text>
+
+  <text x="830" y="524" text-anchor="middle" font-size="13" fill="#5a6b7a">Ordinary behavior, repeated over weeks &#8212; no supplement produces a result like that.</text>
+
+  <rect x="500" y="556" width="660" height="1" fill="#e4ddd0"/>
+  <text x="500" y="588" font-size="11" fill="#5a6b7a">Counseling &#183; IOP &amp; PHP &#183; TMS available &#183; 6 CT locations</text>
+</svg>

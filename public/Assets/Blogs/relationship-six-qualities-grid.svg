@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="1000" height="420" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="420" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="42" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">SIX QUALITIES OF A MEANINGFUL RELATIONSHIP</text>
+
+  <!-- Tile 1: Trust (white) -->
+  <rect x="60" y="66" width="280" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(200,114)">
+    <circle cx="-9" cy="0" r="15" fill="none" stroke="#265489" stroke-width="3"/>
+    <circle cx="9" cy="0" r="15" fill="none" stroke="#265489" stroke-width="3"/>
+  </g>
+  <text x="200" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Trust</text>
+  <text x="200" y="188" text-anchor="middle" font-size="10.5" fill="#5a6b7a">predicting how the other person</text>
+  <text x="200" y="202" text-anchor="middle" font-size="10.5" fill="#5a6b7a">will treat your vulnerability</text>
+
+  <!-- Tile 2: Emotional Safety (navy) -->
+  <rect x="360" y="66" width="280" height="150" rx="16" fill="#1b3e63"/>
+  <g transform="translate(500,114)">
+    <path d="M0,-20 L17,-12 L17,6 C17,18 8,24 0,27 C-8,24 -17,18 -17,6 L-17,-12 Z" fill="none" stroke="#f5f2eb" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M-7,1 L-2,8 L9,-8" fill="none" stroke="#b6863c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="500" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Emotional Safety</text>
+  <text x="500" y="188" text-anchor="middle" font-size="10.5" fill="#e7eef5">disagreement does not put</text>
+  <text x="500" y="202" text-anchor="middle" font-size="10.5" fill="#e7eef5">the relationship at risk</text>
+
+  <!-- Tile 3: Mutual Respect (white) -->
+  <rect x="660" y="66" width="280" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(800,110)">
+    <line x1="-24" y1="0" x2="24" y2="0" stroke="#265489" stroke-width="3"/>
+    <line x1="0" y1="-14" x2="0" y2="0" stroke="#265489" stroke-width="3"/>
+    <path d="M-24,0 L-34,18 L-14,18 Z" fill="none" stroke="#265489" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M24,0 L14,18 L34,18 Z" fill="none" stroke="#265489" stroke-width="2.5" stroke-linejoin="round"/>
+  </g>
+  <text x="800" y="168" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Mutual Respect</text>
+  <text x="800" y="188" text-anchor="middle" font-size="10.5" fill="#5a6b7a">both people's needs treated</text>
+  <text x="800" y="202" text-anchor="middle" font-size="10.5" fill="#5a6b7a">as real, not inconveniences</text>
+
+  <!-- Tile 4: Vulnerability (white) -->
+  <rect x="60" y="246" width="280" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(200,294)">
+    <path d="M-26,0 C-14,-18 14,-18 26,0 C14,18 -14,18 -26,0 Z" fill="none" stroke="#265489" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#265489" stroke-width="3"/>
+  </g>
+  <text x="200" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Vulnerability</text>
+  <text x="200" y="368" text-anchor="middle" font-size="10.5" fill="#5a6b7a">saying the true thing instead</text>
+  <text x="200" y="382" text-anchor="middle" font-size="10.5" fill="#5a6b7a">of the acceptable one</text>
+
+  <!-- Tile 5: Communication (navy) -->
+  <rect x="360" y="246" width="280" height="150" rx="16" fill="#1b3e63"/>
+  <g transform="translate(500,290)">
+    <path d="M-24,-16 L24,-16 C29,-16 33,-12 33,-7 L33,7 C33,12 29,16 24,16 L-6,16 L-16,26 L-14,16 L-24,16 C-29,16 -33,12 -33,7 L-33,-7 C-33,-12 -29,-16 -24,-16 Z" fill="none" stroke="#f5f2eb" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="-12" cy="0" r="2.5" fill="#b6863c"/>
+    <circle cx="0" cy="0" r="2.5" fill="#b6863c"/>
+    <circle cx="12" cy="0" r="2.5" fill="#b6863c"/>
+  </g>
+  <text x="500" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Communication</text>
+  <text x="500" y="368" text-anchor="middle" font-size="10.5" fill="#e7eef5">repair happens after conflict,</text>
+  <text x="500" y="382" text-anchor="middle" font-size="10.5" fill="#e7eef5">not only avoidance of it</text>
+
+  <!-- Tile 6: Healthy Boundaries (white) -->
+  <rect x="660" y="246" width="280" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <g transform="translate(800,294)">
+    <rect x="-26" y="-20" width="52" height="40" rx="10" fill="none" stroke="#265489" stroke-width="3" stroke-dasharray="7,6"/>
+  </g>
+  <text x="800" y="348" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Healthy Boundaries</text>
+  <text x="800" y="368" text-anchor="middle" font-size="10.5" fill="#5a6b7a">closeness does not require</text>
+  <text x="800" y="382" text-anchor="middle" font-size="10.5" fill="#5a6b7a">losing yourself</text>
+</svg>
