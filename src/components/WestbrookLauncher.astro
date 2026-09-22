@@ -6,7 +6,7 @@
   the launch details. The ✕ shrinks it back to the circle; clicking the circle
   opens it again. It only opens by itself on the homepage, on desktop; on every
   other page it waits as the circle so it doesn't cover content on each click. On mobile it starts closed (the open card would cover most of the
-  screen) and the circle carries a gold "!" alert badge to invite a tap.
+  screen) and the circle carries a gold "New!" badge to invite a tap.
 
   Replaces the full-screen AnnouncementPopup the client found too intrusive.
   Details from the client's request: launch Sept 28, 70 Essex Road, Westbrook.
@@ -58,7 +58,7 @@ const status =
 <div class="wb-anchor">
 <div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-hide-after={HIDE_AFTER} data-tz={TZ} data-auto-open={autoOpen ? "" : undefined}>
   <button type="button" class="wb-fab" aria-label="Open Westbrook opening announcement" aria-controls="wb-card" aria-expanded="false">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></svg>
+    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s-7.5-6.4-7.5-12.5a7.5 7.5 0 0 1 15 0C19.5 15.6 12 22 12 22Z" fill="currentColor" /><circle cx="12" cy="9.5" r="2.8" fill="#e0b973" /></svg>
   </button>
 
   <div id="wb-card" class="wb-body" role="dialog" aria-label="Westbrook location opening" aria-hidden="true">
@@ -102,7 +102,7 @@ const status =
     </div>
   </div>
 </div>
-<span class="wb-alert" aria-hidden="true">!</span>
+<span class="wb-alert" aria-hidden="true">New!</span>
 </div>
 )}
 
@@ -366,19 +366,21 @@ const status =
   }
   .wb-alert {
     position: absolute;
-    left: 42px;
-    bottom: 42px;
-    width: 22px;
+    left: 32px;
+    bottom: 44px;
     height: 22px;
+    padding: 0 7px;
     display: grid;
     place-items: center;
     border: 2px solid #fff;
-    border-radius: 50%;
+    border-radius: 999px;
     background: var(--color-gold);
     color: #fff;
-    font-size: 13px;
+    font-size: 10.5px;
     font-weight: 800;
+    letter-spacing: 0.02em;
     line-height: 1;
+    white-space: nowrap;
     pointer-events: none;
     transition: opacity 0.2s 0.35s, transform 0.2s 0.35s;
     /* 10s after load (or after the card is closed): inflate to 1.5×, then shrink away. */
@@ -388,7 +390,7 @@ const status =
     content: "";
     position: absolute;
     inset: -2px;
-    border-radius: 50%;
+    border-radius: 999px;
     border: 2px solid var(--color-gold);
     opacity: 0;
     /* Blink only for the first 5s after load (2.5 × 2s), then rest hidden. */
@@ -439,7 +441,7 @@ const status =
     fab.addEventListener("click", () => setOpen(true));
     close.addEventListener("click", () => {
       setOpen(false);
-      // Restart the "!" badge from zero: swapping in a fresh copy replays its
+      // Restart the "New!" badge from zero: swapping in a fresh copy replays its
       // 5s blink and the 10s inflate-and-vanish, even if it had already vanished.
       const alert = document.querySelector(".wb-alert");
       alert?.replaceWith(alert.cloneNode(true));
@@ -457,7 +459,7 @@ const status =
       days > 1 ? `Opens in ${days} days` : days === 1 ? "Opens tomorrow" : "Since Sept 28";
 
     // Desktop: grow from the circle shortly after load so the motion reads as
-    // intentional. Mobile (below Tailwind's md): stay closed, the "!" badge invites a tap.
+    // intentional. Mobile (below Tailwind's md): stay closed, the "New!" badge invites a tap.
     if (root.hasAttribute("data-auto-open") && !window.matchMedia("(max-width: 767px)").matches) {
       setTimeout(() => setOpen(true), 900);
     }
