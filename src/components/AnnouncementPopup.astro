@@ -12,6 +12,11 @@
 
   Dismissal is remembered in localStorage as a timestamp (not a flag) so it
   re-appears 24h later instead of being gone for good after one close.
+
+  Only ever triggers on the homepage, and only on a "fresh" arrival there —
+  no referrer (typed URL / new tab) or a referrer from another site. Clicking
+  the logo from a post back to "/" is same-site internal navigation, so it
+  is deliberately excluded (checked via document.referrer's origin).
 */
 
 // Expiry = end of day in Connecticut. Explicit offset on purpose: a bare
@@ -69,6 +74,15 @@ const TEL = "8609460447";
 
       // Runtime expiry — protects against a stale static build sitting past the date.
       if (new Date() > new Date(overlay.dataset.expires)) { overlay.remove(); return; }
+
+      // Homepage only, and only on a fresh arrival — not on internal navigation
+      // (e.g. clicking the logo from a post back to "/").
+      if (window.location.pathname !== "/") { overlay.remove(); return; }
+      var ref = document.referrer;
+      var isInternalNav = ref && (function () {
+        try { return new URL(ref).origin === window.location.origin; } catch (e) { return false; }
+      })();
+      if (isInternalNav) { overlay.remove(); return; }
 
       var KEY = "hhs-announcement-westbrook-popup-dismissed-at";
       var DAY_MS = 24 * 60 * 60 * 1000;
