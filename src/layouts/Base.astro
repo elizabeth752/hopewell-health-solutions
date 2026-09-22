@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import EventPopup from "../components/EventPopup.astro";
+import AnnouncementPopup from "../components/AnnouncementPopup.astro";
 
 interface Props {
   title?: string;
@@ -82,5 +83,6 @@ const ogUrl = canonicalHref;
     <!-- End Google Tag Manager (noscript) -->
     <slot />
     <EventPopup />
+    <AnnouncementPopup />
   </body>
 </html>

@@ -1,0 +1,108 @@
+---
+/*
+  Announcement popup — Westbrook "Now Accepting Clients" flyer.
+  Full-screen modal, image-only body, navy call bar pinned to the bottom.
+
+  Two layers of expiry, same pattern as EventPopup.astro:
+    1. Build-time — past EXPIRES, the markup is not emitted at all.
+    2. Runtime    — the site is a static build, so a stale deploy after the
+                    expiry date would otherwise keep showing it. The inline
+                    script re-checks the date client-side and removes it.
+  Delete this component after 28 Sept 2026.
+
+  Dismissal is remembered in localStorage as a timestamp (not a flag) so it
+  re-appears 24h later instead of being gone for good after one close.
+*/
+
+// Expiry = end of day in Connecticut. Explicit offset on purpose: a bare
+// "2026-09-28T23:59:59" parses in the *build machine's* timezone, and Vercel
+// builds in UTC while dev happens in GMT-5 — that drift would move the real
+// cutoff. -04:00 = EDT, which is what Connecticut is on 28 Sept.
+const EXPIRES = new Date("2026-09-28T23:59:59-04:00");
+const show = new Date() <= EXPIRES;
+
+const PHONE = "(860) 946-0447";
+const TEL = "8609460447";
+---
+
+{show && (
+  <div
+    id="announcementPopupOverlay"
+    data-expires={EXPIRES.toISOString()}
+    class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 p-4"
+  >
+    <div class="relative w-full max-w-[500px] max-sm:max-w-[90vw]">
+      <button
+        type="button"
+        id="announcementPopupClose"
+        aria-label="Close announcement"
+        class="absolute -top-2 -right-2 z-10 grid h-9 w-9 place-items-center rounded-full bg-ink text-white shadow-md ring-2 ring-white transition hover:bg-azul-dark"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="h-4 w-4"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="overflow-hidden rounded-[15px] border-[3px] border-white shadow-2xl">
+        <img
+          src="/images/westbrook-popup.jpg"
+          alt="Hopewell Health Solutions, Westbrook CT — now accepting clients. Individual therapy, psychiatric medication management, and Women's Wellness IOP."
+          width="1024"
+          height="1536"
+          class="block h-auto w-full"
+        />
+        <a
+          href={`tel:${TEL}`}
+          id="announcementPopupCta"
+          class="block w-full rounded-b-[15px] bg-ink py-4 text-center text-base font-semibold text-white transition hover:brightness-110"
+        >
+          Call Admissions: {PHONE}
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
+{show && (
+  <script>
+    (function () {
+      var overlay = document.getElementById("announcementPopupOverlay");
+      if (!overlay) return;
+
+      // Runtime expiry — protects against a stale static build sitting past the date.
+      if (new Date() > new Date(overlay.dataset.expires)) { overlay.remove(); return; }
+
+      var KEY = "hhs-announcement-westbrook-popup-dismissed-at";
+      var DAY_MS = 24 * 60 * 60 * 1000;
+
+      try {
+        var dismissedAt = localStorage.getItem(KEY);
+        if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < DAY_MS) {
+          overlay.remove();
+          return;
+        }
+      } catch (e) {}
+
+      function open() {
+        overlay.classList.remove("hidden");
+        overlay.classList.add("flex");
+        document.body.style.overflow = "hidden";
+      }
+
+      function close() {
+        overlay.classList.add("hidden");
+        overlay.classList.remove("flex");
+        document.body.style.overflow = "";
+        try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+      }
+
+      setTimeout(open, 1500);
+
+      document.getElementById("announcementPopupClose")?.addEventListener("click", close);
+      overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+      // Tapping the call CTA counts as acted-upon — remember it too.
+      document.getElementById("announcementPopupCta")?.addEventListener("click", function () {
+        try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+      });
+    })();
+  </script>
+)}
