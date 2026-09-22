@@ -15,8 +15,14 @@
   The countdown ("Opens in N days") counts calendar days in the office's own
   timezone — 70 Essex Rd, Westbrook, CT is on US Eastern (America/New_York) —
   so it ticks over at local midnight in Connecticut, not the visitor's.
-  It's rendered at build time and recomputed in the browser, so a static build
-  that isn't redeployed never shows a stale number.
+  From launch day on, the countdown is replaced by "Now open / Since Sept 28".
+
+  The launcher shows for one month after launch (through HIDE_AFTER) and then
+  hides itself. It is NOT deleted: the client may want to keep it — to bring it
+  back, move HIDE_AFTER forward.
+
+  Dates are checked at build time and again in the browser, so a static build
+  that isn't redeployed never shows a stale label or outlives HIDE_AFTER.
 */
 import Icon from "./Icon.astro";
 
@@ -24,22 +30,24 @@ const PHONE = { display: "(860) 735-1448", tel: "8607351448" };
 // Same place as the Westbrook embed in src/data/locations.js, as a regular Maps link.
 const MAP_URL = "https://www.google.com/maps/search/?api=1&query=70+Essex+Rd%2C+Westbrook%2C+CT+06498";
 
-const LAUNCH_DAY = "2026-09-28"; // YYYY-MM-DD, Westbrook local date
+// All dates are YYYY-MM-DD in Westbrook local time.
+const LAUNCH_DAY = "2026-09-28";
+const HIDE_AFTER = "2026-10-28"; // last day it shows; hidden from the next day
 const TZ = "America/New_York";
 
-// Days from today (in Westbrook) to launch day. Kept in sync with the copy in the script below.
-function countdownLabel(now: Date) {
-  const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(now); // YYYY-MM-DD
-  const days = Math.round((Date.parse(LAUNCH_DAY) - Date.parse(today)) / 86400000);
-  if (days > 1) return `Opens in ${days} days`;
-  if (days === 1) return "Opens tomorrow";
-  if (days === 0) return "Opens today";
-  return "Now open";
-}
+// Kept in sync with the same logic in the script below.
+const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
+const daysToLaunch = Math.round((Date.parse(LAUNCH_DAY) - Date.parse(today)) / 86400000);
+const show = today <= HIDE_AFTER;
+const status =
+  daysToLaunch > 0
+    ? { title: "Launch day", note: daysToLaunch === 1 ? "Opens tomorrow" : `Opens in ${daysToLaunch} days` }
+    : { title: "Now open", note: "Since Sept 28" };
 ---
 
+{show && (
 <div class="wb-anchor">
-<div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-tz={TZ}>
+<div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-hide-after={HIDE_AFTER} data-tz={TZ}>
   <button type="button" class="wb-fab" aria-label="Open Westbrook opening announcement" aria-controls="wb-card" aria-expanded="false">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></svg>
   </button>
@@ -72,7 +80,7 @@ function countdownLabel(now: Date) {
         <p class="wb-title">A new home in <i>Westbrook</i></p>
         <div class="wb-date">
           <div class="wb-cal" aria-hidden="true"><small>Sept</small><b>28</b></div>
-          <div><strong>Launch day</strong><span data-wb-countdown>{countdownLabel(new Date())}</span></div>
+          <div><strong data-wb-status>{status.title}</strong><span data-wb-countdown>{status.note}</span></div>
         </div>
         <a class="wb-find" href={MAP_URL} target="_blank" rel="noopener">
           <small>Find us</small><strong>70 Essex Rd</strong><br />Westbrook, CT
@@ -84,6 +92,7 @@ function countdownLabel(now: Date) {
 </div>
 <span class="wb-alert" aria-hidden="true">!</span>
 </div>
+)}
 
 <style>
   /* Fixed anchor so the alert badge can sit outside the launcher's clipping box. */
@@ -383,7 +392,12 @@ function countdownLabel(now: Date) {
 
 <script>
   const root = document.getElementById("wb-launcher");
-  if (root) {
+  const today = root && new Intl.DateTimeFormat("en-CA", { timeZone: root.dataset.tz }).format(new Date());
+
+  // Past the one-month window: hide it (the markup stays in the source).
+  if (root && today && today > root.dataset.hideAfter!) {
+    root.closest(".wb-anchor")?.remove();
+  } else if (root && today) {
     const fab = root.querySelector<HTMLButtonElement>(".wb-fab")!;
     const card = root.querySelector<HTMLElement>(".wb-body")!;
     const close = root.querySelector<HTMLButtonElement>(".wb-x")!;
@@ -407,11 +421,12 @@ function countdownLabel(now: Date) {
       if (e.key === "Escape" && root.classList.contains("is-open")) setOpen(false);
     });
 
-    // Recompute the countdown in the visitor's browser, in Westbrook's timezone.
-    const today = new Intl.DateTimeFormat("en-CA", { timeZone: root.dataset.tz }).format(new Date());
+    // Recompute the label in the visitor's browser, in Westbrook's timezone.
+    // Countdown until launch; from launch day on, "Now open".
     const days = Math.round((Date.parse(root.dataset.launch!) - Date.parse(today)) / 86400000);
+    root.querySelector("[data-wb-status]")!.textContent = days > 0 ? "Launch day" : "Now open";
     root.querySelector("[data-wb-countdown]")!.textContent =
-      days > 1 ? `Opens in ${days} days` : days === 1 ? "Opens tomorrow" : days === 0 ? "Opens today" : "Now open";
+      days > 1 ? `Opens in ${days} days` : days === 1 ? "Opens tomorrow" : "Since Sept 28";
 
     // Desktop: grow from the circle shortly after load so the motion reads as
     // intentional. Mobile (below Tailwind's md): stay closed, the "!" badge invites a tap.
