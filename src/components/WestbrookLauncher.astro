@@ -1,0 +1,437 @@
+---
+/*
+  Westbrook opening launcher — floating bottom-left button (homepage only).
+
+  On load it grows from a 60px circle into a small postcard (~260 × 420) with
+  the launch details. The ✕ shrinks it back to the circle; clicking the circle
+  opens it again. No localStorage: every homepage load opens it once on
+  desktop. On mobile it starts closed (the open card would cover most of the
+  screen) and the circle carries a gold "!" alert badge to invite a tap.
+
+  Replaces the full-screen AnnouncementPopup the client found too intrusive.
+  Details from the client's request: launch Sept 28, 70 Essex Road, Westbrook.
+  Call button uses the sitewide NAP number.
+
+  The countdown ("Opens in N days") counts calendar days in the office's own
+  timezone — 70 Essex Rd, Westbrook, CT is on US Eastern (America/New_York) —
+  so it ticks over at local midnight in Connecticut, not the visitor's.
+  From launch day on, the countdown is replaced by "Now open / Since Sept 28".
+
+  The launcher shows for one month after launch (through HIDE_AFTER) and then
+  hides itself. It is NOT deleted: the client may want to keep it — to bring it
+  back, move HIDE_AFTER forward.
+
+  Dates are checked at build time and again in the browser, so a static build
+  that isn't redeployed never shows a stale label or outlives HIDE_AFTER.
+*/
+import Icon from "./Icon.astro";
+
+const PHONE = { display: "(860) 735-1448", tel: "8607351448" };
+// Same place as the Westbrook embed in src/data/locations.js, as a regular Maps link.
+const MAP_URL = "https://www.google.com/maps/search/?api=1&query=70+Essex+Rd%2C+Westbrook%2C+CT+06498";
+
+// All dates are YYYY-MM-DD in Westbrook local time.
+const LAUNCH_DAY = "2026-09-28";
+const HIDE_AFTER = "2026-10-28"; // last day it shows; hidden from the next day
+const TZ = "America/New_York";
+
+// Kept in sync with the same logic in the script below.
+const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
+const daysToLaunch = Math.round((Date.parse(LAUNCH_DAY) - Date.parse(today)) / 86400000);
+const show = today <= HIDE_AFTER;
+const status =
+  daysToLaunch > 0
+    ? { title: "Launch day", note: daysToLaunch === 1 ? "Opens tomorrow" : `Opens in ${daysToLaunch} days` }
+    : { title: "Now open", note: "Since Sept 28" };
+---
+
+{show && (
+<div class="wb-anchor">
+<div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-hide-after={HIDE_AFTER} data-tz={TZ}>
+  <button type="button" class="wb-fab" aria-label="Open Westbrook opening announcement" aria-controls="wb-card" aria-expanded="false">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></svg>
+  </button>
+
+  <div id="wb-card" class="wb-body" role="dialog" aria-label="Westbrook location opening" aria-hidden="true">
+    <div class="wb-frame">
+      <div class="wb-map" aria-hidden="true">
+        <svg viewBox="0 0 244 128" preserveAspectRatio="xMidYMid slice">
+          <rect width="244" height="128" fill="#e4ece6" />
+          <path d="M0 104 C60 96 120 112 244 100 L244 128 L0 128Z" fill="#cfe0ea" />
+          <path d="M-10 58 C50 50 120 70 260 52" stroke="#fff" stroke-width="10" fill="none" />
+          <path d="M-10 58 C50 50 120 70 260 52" stroke="#d8cdb6" stroke-width="1" fill="none" stroke-dasharray="4 4" />
+          <path d="M78 -5 C84 30 86 70 96 104" stroke="#fff" stroke-width="6" fill="none" />
+          <path d="M170 -5 C160 30 164 60 150 100" stroke="#fff" stroke-width="5" fill="none" />
+          <text x="184" y="72" font-family="Urbanist, system-ui, sans-serif" font-size="8" font-weight="700" fill="#5c7c6b" letter-spacing="1">ESSEX RD</text>
+          <text x="14" y="120" font-family="Baskervville, Georgia, serif" font-size="9" font-style="italic" fill="#5a7f98">Long Island Sound</text>
+          <circle cx="122" cy="60" r="16" fill="#b6863c" opacity=".18" />
+          <path d="M122 64s-9-8-9-14.5a9 9 0 0 1 18 0C131 56 122 64 122 64Z" fill="#001d37" />
+          <circle cx="122" cy="49.5" r="3.2" fill="#e0b973" />
+        </svg>
+      </div>
+      <a class="wb-maplink" href={MAP_URL} target="_blank" rel="noopener" aria-label="Open 70 Essex Road, Westbrook in Google Maps">
+        <Icon name="pin" class="h-3.5 w-3.5" />Map
+      </a>
+      <button type="button" class="wb-x" aria-label="Close announcement">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+      <div class="wb-in">
+        <p class="wb-eb">Grand opening</p>
+        <p class="wb-title">A new home in <i>Westbrook</i></p>
+        <div class="wb-date">
+          <div class="wb-cal" aria-hidden="true"><small>Sept</small><b>28</b></div>
+          <div><strong data-wb-status>{status.title}</strong><span data-wb-countdown>{status.note}</span></div>
+        </div>
+        <a class="wb-find" href={MAP_URL} target="_blank" rel="noopener">
+          <small>Find us</small><strong>70 Essex Rd</strong><br />Westbrook, CT
+        </a>
+        <a class="wb-cta" href={`tel:${PHONE.tel}`}><Icon name="phone" class="h-4 w-4" />{PHONE.display}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<span class="wb-alert" aria-hidden="true">!</span>
+</div>
+)}
+
+<style>
+  /* Fixed anchor so the alert badge can sit outside the launcher's clipping box. */
+  .wb-anchor {
+    position: fixed;
+    left: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    z-index: 45;
+  }
+  .wb {
+    --wb-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #fff;
+    color: var(--color-ink);
+    box-shadow: 0 10px 28px rgba(0, 29, 55, 0.22), inset 0 0 0 2px var(--color-gold);
+    /* Closing: content fades first, then the box shrinks (0.14s delay). */
+    transition: width 0.42s var(--wb-ease) 0.14s, height 0.42s var(--wb-ease) 0.14s,
+      border-radius 0.42s var(--wb-ease) 0.14s, box-shadow 0.3s;
+  }
+  .wb.is-open {
+    width: 260px;
+    height: 420px;
+    border-radius: 16px;
+    box-shadow: 0 14px 34px rgba(0, 29, 55, 0.25);
+    transition-delay: 0s;
+  }
+  .wb-fab {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s 0.3s;
+  }
+  .wb.is-open .wb-fab {
+    opacity: 0;
+    pointer-events: none;
+    transition-delay: 0s;
+  }
+  .wb-body {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    height: 420px;
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.14s, visibility 0s 0.14s;
+  }
+  .wb.is-open .wb-body {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.26s 0.3s, visibility 0s;
+  }
+  .wb-frame {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--color-gold);
+    border-radius: 10px;
+  }
+  .wb-map {
+    flex: none;
+    height: 96px;
+    background: var(--color-sage-light);
+  }
+  .wb-map svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .wb-x {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--color-ink);
+    box-shadow: 0 1px 4px rgba(0, 29, 55, 0.2);
+    cursor: pointer;
+  }
+  .wb-maplink {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px 5px 8px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-ink);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 1px 4px rgba(0, 29, 55, 0.2);
+    transition: background 0.2s;
+  }
+  .wb-maplink:hover {
+    background: var(--color-crema);
+  }
+  .wb-in {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 14px;
+  }
+  .wb-eb {
+    margin: 0;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-sage);
+  }
+  .wb-title {
+    margin: 4px 0 8px;
+    font-family: var(--font-display);
+    font-size: 23px;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+  .wb-title i {
+    color: var(--color-gold);
+  }
+  .wb-date {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border-radius: 10px;
+    background: var(--color-crema);
+  }
+  .wb-cal {
+    flex: none;
+    width: 50px;
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    border-radius: 8px;
+    background: #fff;
+    text-align: center;
+  }
+  .wb-cal small {
+    display: block;
+    padding: 2px 0;
+    background: var(--color-gold);
+    color: #fff;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .wb-cal b {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--color-ink);
+  }
+  .wb-date strong {
+    display: block;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+  .wb-date span {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8a6429; /* darker gold: 4.9:1 on crema, brand gold alone is too light for text */
+    font-variant-numeric: tabular-nums;
+  }
+  .wb-find {
+    display: block;
+    margin: 8px 0 10px;
+    padding: 8px 9px;
+    border-radius: 8px;
+    background: var(--color-crema);
+    color: var(--color-ink);
+    font-size: 12.5px;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .wb-find:hover {
+    background: var(--color-line);
+  }
+  .wb-find small {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .wb-find strong {
+    font-size: 13.5px;
+  }
+  .wb-cta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    background: var(--color-azul);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .wb-cta:hover {
+    background: var(--color-azul-dark);
+  }
+  .wb-fab:focus-visible,
+  .wb-x:focus-visible,
+  .wb-maplink:focus-visible,
+  .wb-find:focus-visible,
+  .wb-cta:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  .wb-alert {
+    position: absolute;
+    left: 42px;
+    bottom: 42px;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+    transition: opacity 0.2s 0.35s, transform 0.2s 0.35s;
+    /* 10s after load (or after the card is closed): inflate to 1.5×, then shrink away. */
+    animation: wb-vanish 0.6s ease-in-out 10s forwards;
+  }
+  .wb-alert::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--color-gold);
+    opacity: 0;
+    /* Blink only for the first 5s after load (2.5 × 2s), then rest hidden. */
+    animation: wb-ping 2s cubic-bezier(0.2, 0.8, 0.2, 1) 2.5;
+  }
+  .wb.is-open + .wb-alert {
+    opacity: 0;
+    transform: scale(0.6);
+    transition-delay: 0s;
+    animation: none;
+  }
+  @keyframes wb-vanish {
+    0% { transform: scale(1); opacity: 1; }
+    45% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+  }
+  @keyframes wb-ping {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+  @media (max-width: 400px) {
+    .wb-anchor { left: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wb, .wb-fab, .wb-body, .wb-alert { transition: none; }
+    .wb-alert, .wb-alert::after { animation: none; }
+  }
+</style>
+
+<script>
+  const root = document.getElementById("wb-launcher");
+  const today = root && new Intl.DateTimeFormat("en-CA", { timeZone: root.dataset.tz }).format(new Date());
+
+  // Past the one-month window: hide it (the markup stays in the source).
+  if (root && today && today > root.dataset.hideAfter!) {
+    root.closest(".wb-anchor")?.remove();
+  } else if (root && today) {
+    const fab = root.querySelector<HTMLButtonElement>(".wb-fab")!;
+    const card = root.querySelector<HTMLElement>(".wb-body")!;
+    const close = root.querySelector<HTMLButtonElement>(".wb-x")!;
+
+    const setOpen = (open: boolean) => {
+      root.classList.toggle("is-open", open);
+      fab.setAttribute("aria-expanded", String(open));
+      card.setAttribute("aria-hidden", String(!open));
+    };
+
+    fab.addEventListener("click", () => setOpen(true));
+    close.addEventListener("click", () => {
+      setOpen(false);
+      // Restart the "!" badge from zero: swapping in a fresh copy replays its
+      // 5s blink and the 10s inflate-and-vanish, even if it had already vanished.
+      const alert = document.querySelector(".wb-alert");
+      alert?.replaceWith(alert.cloneNode(true));
+      fab.focus({ preventScroll: true });
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && root.classList.contains("is-open")) setOpen(false);
+    });
+
+    // Recompute the label in the visitor's browser, in Westbrook's timezone.
+    // Countdown until launch; from launch day on, "Now open".
+    const days = Math.round((Date.parse(root.dataset.launch!) - Date.parse(today)) / 86400000);
+    root.querySelector("[data-wb-status]")!.textContent = days > 0 ? "Launch day" : "Now open";
+    root.querySelector("[data-wb-countdown]")!.textContent =
+      days > 1 ? `Opens in ${days} days` : days === 1 ? "Opens tomorrow" : "Since Sept 28";
+
+    // Desktop: grow from the circle shortly after load so the motion reads as
+    // intentional. Mobile (below Tailwind's md): stay closed, the "!" badge invites a tap.
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      setTimeout(() => setOpen(true), 900);
+    }
+  }
+</script>
