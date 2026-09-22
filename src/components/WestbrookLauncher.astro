@@ -1,11 +1,11 @@
 ---
 /*
-  Westbrook opening launcher — floating bottom-left button (homepage only).
+  Westbrook opening launcher — floating bottom-left button on every page (via Base.astro).
 
   On load it grows from a 60px circle into a small postcard (~260 × 444) with
   the launch details. The ✕ shrinks it back to the circle; clicking the circle
-  opens it again. No localStorage: every homepage load opens it once on
-  desktop. On mobile it starts closed (the open card would cover most of the
+  opens it again. It only opens by itself on the homepage, on desktop; on every
+  other page it waits as the circle so it doesn't cover content on each click. On mobile it starts closed (the open card would cover most of the
   screen) and the circle carries a gold "!" alert badge to invite a tap.
 
   Replaces the full-screen AnnouncementPopup the client found too intrusive.
@@ -29,6 +29,8 @@
 import Icon from "./Icon.astro";
 
 const PHONE = { display: "(860) 735-1448", tel: "8607351448" };
+// Auto-open only on the homepage.
+const autoOpen = Astro.url.pathname === "/";
 const SERVICES = [
   { label: "Individual Therapy", href: "/programs/counseling/" },
   { label: "Psychiatric Medication Management", href: "/programs/medication-management/" },
@@ -54,7 +56,7 @@ const status =
 
 {show && (
 <div class="wb-anchor">
-<div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-hide-after={HIDE_AFTER} data-tz={TZ}>
+<div id="wb-launcher" class="wb" data-launch={LAUNCH_DAY} data-hide-after={HIDE_AFTER} data-tz={TZ} data-auto-open={autoOpen ? "" : undefined}>
   <button type="button" class="wb-fab" aria-label="Open Westbrook opening announcement" aria-controls="wb-card" aria-expanded="false">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></svg>
   </button>
@@ -456,7 +458,7 @@ const status =
 
     // Desktop: grow from the circle shortly after load so the motion reads as
     // intentional. Mobile (below Tailwind's md): stay closed, the "!" badge invites a tap.
-    if (!window.matchMedia("(max-width: 767px)").matches) {
+    if (root.hasAttribute("data-auto-open") && !window.matchMedia("(max-width: 767px)").matches) {
       setTimeout(() => setOpen(true), 900);
     }
   }
