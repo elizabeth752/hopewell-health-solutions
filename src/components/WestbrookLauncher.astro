@@ -2,7 +2,7 @@
 /*
   Westbrook opening launcher — floating bottom-left button (homepage only).
 
-  On load it grows from a 60px circle into a small postcard (~260 × 420) with
+  On load it grows from a 60px circle into a small postcard (~260 × 444) with
   the launch details. The ✕ shrinks it back to the circle; clicking the circle
   opens it again. No localStorage: every homepage load opens it once on
   desktop. On mobile it starts closed (the open card would cover most of the
@@ -10,6 +10,8 @@
 
   Replaces the full-screen AnnouncementPopup the client found too intrusive.
   Details from the client's request: launch Sept 28, 70 Essex Road, Westbrook.
+  Services offered at Westbrook sit as a quiet footnote under the call button,
+  on purpose: the client wants them present but not the focus of the card.
   Call button uses the sitewide NAP number.
 
   The countdown ("Opens in N days") counts calendar days in the office's own
@@ -27,6 +29,11 @@
 import Icon from "./Icon.astro";
 
 const PHONE = { display: "(860) 735-1448", tel: "8607351448" };
+const SERVICES = [
+  { label: "Individual Therapy", href: "/programs/counseling/" },
+  { label: "Psychiatric Medication Management", href: "/programs/medication-management/" },
+  { label: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/" },
+];
 // Same place as the Westbrook embed in src/data/locations.js, as a regular Maps link.
 const MAP_URL = "https://www.google.com/maps/search/?api=1&query=70+Essex+Rd%2C+Westbrook%2C+CT+06498";
 
@@ -77,7 +84,7 @@ const status =
       </button>
       <div class="wb-in">
         <p class="wb-eb">Grand opening</p>
-        <p class="wb-title">A new home in <i>Westbrook</i></p>
+        <p class="wb-title">Now accepting clients in <i>Westbrook</i></p>
         <div class="wb-date">
           <div class="wb-cal" aria-hidden="true"><small>Sept</small><b>28</b></div>
           <div><strong data-wb-status>{status.title}</strong><span data-wb-countdown>{status.note}</span></div>
@@ -86,6 +93,9 @@ const status =
           <small>Find us</small><strong>70 Essex Rd</strong><br />Westbrook, CT
         </a>
         <a class="wb-cta" href={`tel:${PHONE.tel}`}><Icon name="phone" class="h-4 w-4" />{PHONE.display}</a>
+        <p class="wb-services">
+          {SERVICES.map((s, i) => <>{i > 0 && " · "}<a href={s.href}>{s.label}</a></>)}
+        </p>
       </div>
     </div>
   </div>
@@ -120,7 +130,7 @@ const status =
   }
   .wb.is-open {
     width: 260px;
-    height: 420px;
+    height: 444px;
     border-radius: 16px;
     box-shadow: 0 14px 34px rgba(0, 29, 55, 0.25);
     transition-delay: 0s;
@@ -147,7 +157,7 @@ const status =
     left: 0;
     bottom: 0;
     width: 260px;
-    height: 420px;
+    height: 444px;
     padding: 8px;
     opacity: 0;
     visibility: hidden;
@@ -169,7 +179,7 @@ const status =
   }
   .wb-map {
     flex: none;
-    height: 96px;
+    height: 88px;
     background: var(--color-sage-light);
   }
   .wb-map svg {
@@ -225,6 +235,21 @@ const status =
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-sage);
+  }
+  .wb-services {
+    margin: 7px 0 0;
+    font-size: 10.5px;
+    line-height: 1.35;
+    text-align: center;
+    color: var(--color-muted);
+  }
+  .wb-services a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .wb-services a:hover {
+    color: var(--color-ink);
+    text-decoration: underline;
   }
   .wb-title {
     margin: 4px 0 8px;
@@ -331,6 +356,7 @@ const status =
   .wb-fab:focus-visible,
   .wb-x:focus-visible,
   .wb-maplink:focus-visible,
+  .wb-services a:focus-visible,
   .wb-find:focus-visible,
   .wb-cta:focus-visible {
     outline: 2px solid var(--color-gold);
