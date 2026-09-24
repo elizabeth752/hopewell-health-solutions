@@ -25,14 +25,15 @@
 //
 // Infographics: per the confirmed pattern (memory: hopewell-blog-infographic-
 // standard) — three small, section-adjacent SVGs, each its own visual
-// language (a rollout timeline, a services card grid, a 4-step process flow),
-// plus a fourth "Now Open" location-pin hero graphic (not a stock photo —
-// Westbrook has no sourced location photo yet per locations.js `photoDir:
-// null`, so a branded announcement graphic was used instead of a generic,
-// unrelated stock image standing in for a specific real address). No
-// baked-in CTA band on the section SVGs; the post page's sidebar carries one.
-// A 1200×628 (1.91:1) social share card was also built in the same visual
-// language, exported to public/Assets/Blogs/social/ and to the user's
+// language (a rollout timeline, a services card grid, a 4-step process flow).
+// No baked-in CTA band on them; the post page's sidebar carries one.
+// Hero image: a real photo of the new campus (70 Essex Road, signage
+// included), supplied in the user's Downloads as "Westbrook new image.png" —
+// resized/optimized to the repo's existing hero convention (1024w webp,
+// quality 78), matching locations.js's still-null Westbrook `photoDir` now
+// being filled by this post's own hero rather than a placeholder graphic.
+// A 1200×628 (1.91:1) social share card was also built in the brand's SVG
+// visual language, exported to public/Assets/Blogs/social/ and to the user's
 // Downloads folder per their request.
 //
 // Internal links: 11 added at first natural occurrence, all to real,
