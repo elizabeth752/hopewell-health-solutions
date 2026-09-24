@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="460" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="50" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">WHAT'S AVAILABLE AT WESTBROOK</text>
+
+  <!-- card template: 4 cards, 2x2 -->
+  <!-- card 1: Women's Wellness IOP -->
+  <rect x="60" y="88" width="420" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <circle cx="112" cy="140" r="26" fill="#e7eef5"/>
+  <g transform="translate(112,140)" stroke="#265489" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="-7" r="6"/>
+    <path d="M-11,12 C-11,0 11,0 11,12"/>
+  </g>
+  <text x="150" y="130" font-size="15" font-weight="700" fill="#001d37">Women&#8217;s Wellness IOP</text>
+  <text x="150" y="152" font-size="12.5" fill="#5a6b7a">Trauma-informed, DBT-based,</text>
+  <text x="150" y="169" font-size="12.5" fill="#5a6b7a">women-only groups</text>
+  <rect x="90" y="196" width="126" height="24" rx="12" fill="#e7eef5"/>
+  <text x="153" y="212" text-anchor="middle" font-size="10.5" font-weight="700" fill="#265489">MORNING &amp; EVENING</text>
+
+  <!-- card 2: Medication Management -->
+  <rect x="520" y="88" width="420" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <circle cx="572" cy="140" r="26" fill="#e7eef5"/>
+  <g transform="translate(572,140)" stroke="#265489" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-6" y="-12" width="12" height="24" rx="6"/>
+    <line x1="-6" y1="0" x2="6" y2="0"/>
+  </g>
+  <text x="610" y="130" font-size="15" font-weight="700" fill="#001d37">Psychiatric Medication</text>
+  <text x="610" y="149" font-size="15" font-weight="700" fill="#001d37">Management</text>
+  <text x="610" y="171" font-size="12.5" fill="#5a6b7a">Therapy first, medication second</text>
+  <rect x="550" y="196" width="150" height="24" rx="12" fill="#f3e8d2"/>
+  <text x="625" y="212" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8a6224">GENESIGHT AVAILABLE</text>
+
+  <!-- card 3: Individual Therapy -->
+  <rect x="60" y="256" width="420" height="150" rx="16" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <circle cx="112" cy="308" r="26" fill="#e7eef5"/>
+  <g transform="translate(112,308)" stroke="#265489" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="12"/>
+    <path d="M0,-4 L0,4 M-4,0 L4,0" stroke-width="1.6"/>
+  </g>
+  <text x="150" y="298" font-size="15" font-weight="700" fill="#001d37">Individual Therapy</text>
+  <text x="150" y="320" font-size="12.5" fill="#5a6b7a">One-on-one counseling,</text>
+  <text x="150" y="337" font-size="12.5" fill="#5a6b7a">in person or telehealth</text>
+  <rect x="90" y="364" width="120" height="24" rx="12" fill="#e7eef5"/>
+  <text x="150" y="380" text-anchor="middle" font-size="10.5" font-weight="700" fill="#265489">DAY &amp; EVENING</text>
+
+  <!-- card 4: Co-occurring IOP (October) -->
+  <rect x="520" y="256" width="420" height="150" rx="16" fill="#1b3e63"/>
+  <circle cx="572" cy="308" r="26" fill="#2a4d73"/>
+  <g transform="translate(572,308)" stroke="#f3e8d2" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="-5" cy="0" r="9"/>
+    <circle cx="6" cy="0" r="9"/>
+  </g>
+  <text x="610" y="298" font-size="15" font-weight="700" fill="#ffffff">Adult Co-Occurring IOP</text>
+  <text x="610" y="320" font-size="12.5" fill="#cddaea">Mental health and substance</text>
+  <text x="610" y="337" font-size="12.5" fill="#cddaea">use, treated together</text>
+  <rect x="550" y="364" width="110" height="24" rx="12" fill="#b6863c"/>
+  <text x="605" y="380" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1b3e63">STARTS OCTOBER</text>
+
+  <text x="500" y="440" text-anchor="middle" font-size="13" fill="#5a6b7a">All four services are based at 70 Essex Road, Westbrook, CT.</text>
+</svg>
