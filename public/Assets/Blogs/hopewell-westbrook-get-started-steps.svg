@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" width="1000" height="320" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1000" height="320" rx="24" fill="#f5f2eb"/>
+
+  <text x="500" y="46" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="1.2" fill="#b6863c">FOUR STEPS TO GET STARTED</text>
+
+  <defs>
+    <marker id="sArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#265489"/>
+    </marker>
+  </defs>
+
+  <line x1="155" y1="168" x2="845" y2="168" stroke="#dcd3c0" stroke-width="3"/>
+  <line x1="200" y1="168" x2="342" y2="168" stroke="#265489" stroke-width="3" marker-end="url(#sArrow)"/>
+  <line x1="450" y1="168" x2="592" y2="168" stroke="#265489" stroke-width="3" marker-end="url(#sArrow)"/>
+  <line x1="700" y1="168" x2="800" y2="168" stroke="#265489" stroke-width="3" marker-end="url(#sArrow)"/>
+
+  <!-- step 1 -->
+  <circle cx="150" cy="168" r="52" fill="#265489"/>
+  <text x="150" y="160" text-anchor="middle" font-size="22" font-weight="700" fill="#f3e8d2">1</text>
+  <text x="150" y="180" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">Reach Out</text>
+  <text x="150" y="242" text-anchor="middle" font-size="11.5" fill="#5a6b7a">Call or request a</text>
+  <text x="150" y="258" text-anchor="middle" font-size="11.5" fill="#5a6b7a">confidential callback</text>
+
+  <!-- step 2 -->
+  <circle cx="400" cy="168" r="52" fill="#265489"/>
+  <text x="400" y="160" text-anchor="middle" font-size="22" font-weight="700" fill="#f3e8d2">2</text>
+  <text x="400" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Verify Insurance</text>
+  <text x="400" y="242" text-anchor="middle" font-size="11.5" fill="#5a6b7a">Benefits checked free,</text>
+  <text x="400" y="258" text-anchor="middle" font-size="11.5" fill="#5a6b7a">usually within minutes</text>
+
+  <!-- step 3 -->
+  <circle cx="650" cy="168" r="52" fill="#265489"/>
+  <text x="650" y="160" text-anchor="middle" font-size="22" font-weight="700" fill="#f3e8d2">3</text>
+  <text x="650" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Assessment</text>
+  <text x="650" y="242" text-anchor="middle" font-size="11.5" fill="#5a6b7a">A clinical assessment</text>
+  <text x="650" y="258" text-anchor="middle" font-size="11.5" fill="#5a6b7a">finds the right level of care</text>
+
+  <!-- step 4 -->
+  <circle cx="850" cy="168" r="52" fill="#b6863c"/>
+  <text x="850" y="160" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">4</text>
+  <text x="850" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">Begin Care</text>
+  <text x="850" y="242" text-anchor="middle" font-size="11.5" fill="#5a6b7a">Start at the right level,</text>
+  <text x="850" y="258" text-anchor="middle" font-size="11.5" fill="#5a6b7a">adjust as you progress</text>
+</svg>

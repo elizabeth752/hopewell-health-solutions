@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 529" width="1024" height="529" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>.serif { font-family: Georgia, 'Times New Roman', serif; }</style>
+    <radialGradient id="heroGlow" cx="78%" cy="22%" r="65%">
+      <stop offset="0%" stop-color="#2f76c4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1b3e63" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1024" height="529" fill="#001d37"/>
+  <rect x="0" y="0" width="1024" height="529" fill="url(#heroGlow)"/>
+
+  <!-- fine hairline frame -->
+  <rect x="18" y="18" width="988" height="493" fill="none" stroke="#2f4a68" stroke-width="1"/>
+
+  <!-- eyebrow -->
+  <text x="512" y="108" text-anchor="middle" font-size="15" font-weight="700" letter-spacing="3" fill="#b6863c">HOPEWELL HEALTH SOLUTIONS</text>
+
+  <!-- map pin -->
+  <g transform="translate(512,192)">
+    <path d="M0,-46 C29,-46 50,-24 50,4 C50,38 8,70 0,78 C-8,70 -50,38 -50,4 C-50,-24 -29,-46 0,-46 Z" fill="none" stroke="#f3e8d2" stroke-width="3"/>
+    <circle cx="0" cy="2" r="16" fill="#b6863c"/>
+  </g>
+
+  <!-- headline -->
+  <text x="512" y="322" text-anchor="middle" class="serif" font-size="42" font-weight="700" fill="#ffffff">Now Open in Westbrook, CT</text>
+
+  <line x1="452" y1="348" x2="572" y2="348" stroke="#b6863c" stroke-width="2"/>
+
+  <text x="512" y="382" text-anchor="middle" font-size="17" letter-spacing="0.4" fill="#e7eef5">70 Essex Road &#183; Programs begin September 28</text>
+
+  <!-- service chip row -->
+  <g font-size="13" font-weight="600" fill="#001d37">
+    <rect x="122" y="434" width="238" height="40" rx="20" fill="#f5f2eb"/>
+    <text x="241" y="459" text-anchor="middle">Women&#8217;s Wellness IOP</text>
+
+    <rect x="378" y="434" width="268" height="40" rx="20" fill="#f5f2eb"/>
+    <text x="512" y="459" text-anchor="middle">Medication Management</text>
+
+    <rect x="664" y="434" width="238" height="40" rx="20" fill="#f5f2eb"/>
+    <text x="783" y="459" text-anchor="middle">Individual Therapy</text>
+  </g>
+
+  <text x="512" y="504" text-anchor="middle" font-size="13" fill="#9fb6ce">Adult co-ed, co-occurring IOP joins the campus in October</text>
+</svg>
