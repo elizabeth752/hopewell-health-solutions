@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" role="img" aria-labelledby="stitle sdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="stitle">What goes into an adapted safety plan</title>
+  <desc id="sdesc">A standard safety plan covers five parts: personal warning signs, coping strategies, people and places that help, professional contacts, and how to make the environment safer. Researchers working with autistic adults adapted the format by replacing abstract wording with concrete descriptions, adding visual tools for identifying emotions, rephrasing headings as personal questions such as what matters to me, and letting each person choose how the plan is stored so it can be found during a crisis.</desc>
+  <rect width="1100" height="480" fill="#ffffff"/>
+  <text x="30" y="40" font-family="Georgia, 'Baskervville', serif" font-size="24" font-weight="700" fill="#001d37">Five parts of a safety plan</text>
+
+  <!-- 5 cards -->
+  <g font-size="13">
+    <g transform="translate(30,70)">
+      <rect width="196" height="190" rx="14" fill="#e7eef5"/>
+      <circle cx="98" cy="46" r="26" fill="#265489"/>
+      <text x="98" y="53" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">1</text>
+      <text x="98" y="100" text-anchor="middle" font-weight="700" fill="#001d37">Personal</text>
+      <text x="98" y="118" text-anchor="middle" font-weight="700" fill="#001d37">warning signs</text>
+    </g>
+    <g transform="translate(246,70)">
+      <rect width="196" height="190" rx="14" fill="#e4ece6"/>
+      <circle cx="98" cy="46" r="26" fill="#5c7c6b"/>
+      <text x="98" y="53" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">2</text>
+      <text x="98" y="100" text-anchor="middle" font-weight="700" fill="#001d37">Coping</text>
+      <text x="98" y="118" text-anchor="middle" font-weight="700" fill="#001d37">strategies</text>
+    </g>
+    <g transform="translate(462,70)">
+      <rect width="196" height="190" rx="14" fill="#f3e8d2"/>
+      <circle cx="98" cy="46" r="26" fill="#b6863c"/>
+      <text x="98" y="53" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">3</text>
+      <text x="98" y="100" text-anchor="middle" font-weight="700" fill="#001d37">People &amp; places</text>
+      <text x="98" y="118" text-anchor="middle" font-weight="700" fill="#001d37">that help</text>
+    </g>
+    <g transform="translate(678,70)">
+      <rect width="196" height="190" rx="14" fill="#e7eef5"/>
+      <circle cx="98" cy="46" r="26" fill="#265489"/>
+      <text x="98" y="53" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">4</text>
+      <text x="98" y="100" text-anchor="middle" font-weight="700" fill="#001d37">Professional</text>
+      <text x="98" y="118" text-anchor="middle" font-weight="700" fill="#001d37">contacts</text>
+    </g>
+    <g transform="translate(894,70)">
+      <rect width="176" height="190" rx="14" fill="#e4ece6"/>
+      <circle cx="88" cy="46" r="26" fill="#5c7c6b"/>
+      <text x="88" y="53" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">5</text>
+      <text x="88" y="100" text-anchor="middle" font-weight="700" fill="#001d37">Making the</text>
+      <text x="88" y="118" text-anchor="middle" font-weight="700" fill="#001d37">environment safer</text>
+    </g>
+  </g>
+
+  <path d="M40 300 h1020" stroke="#e4ddd0" stroke-width="2" stroke-dasharray="2 8"/>
+  <text x="30" y="336" font-size="15" font-weight="700" fill="#265489">Adapted for autistic adults, with input from the autism community:</text>
+  <g font-size="13" fill="#001d37">
+    <text x="30" y="368">&#8226; Concrete descriptions instead of abstract wording</text>
+    <text x="30" y="392">&#8226; Visual tools for identifying emotions</text>
+    <text x="565" y="368">&#8226; Headings rephrased as personal questions, e.g. "What matters to me"</text>
+    <text x="565" y="392">&#8226; Each person chooses how the plan is stored, so it can be found in a crisis</text>
+  </g>
+  <rect x="30" y="420" width="1040" height="40" rx="10" fill="#265489"/>
+  <text x="550" y="445" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Build the plan while the person is steady, not during a crisis.</text>
+</svg>

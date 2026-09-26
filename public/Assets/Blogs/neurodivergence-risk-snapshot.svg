@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 480" role="img" aria-labelledby="rtitle rdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="rtitle">How much higher the risk is</title>
+  <desc id="rdesc">In a review of over 48,000 autistic and possibly autistic participants without an intellectual disability: 34.2 percent had experienced suicidal ideation, 21.9 percent had made a plan, and 24.3 percent reported attempts or related behavior. Separately, 2025 research following children with a clinical ADHD diagnosis over time found roughly 3.3 times the odds of suicidal behavior compared with children without the diagnosis.</desc>
+  <rect width="1100" height="480" fill="#ffffff"/>
+
+  <!-- Left panel: autism prevalence -->
+  <g>
+    <rect x="30" y="20" width="500" height="440" rx="16" fill="#e7eef5"/>
+    <text x="60" y="64" font-size="16" font-weight="700" fill="#265489">AUTISTIC &amp; POSSIBLY AUTISTIC ADULTS</text>
+    <text x="60" y="86" font-size="13" fill="#5a6b7a">Review of over 48,000 participants, no intellectual disability</text>
+
+    <g font-size="14">
+      <text x="60" y="132" font-weight="700" fill="#001d37">Suicidal ideation</text>
+      <rect x="60" y="142" width="440" height="22" rx="11" fill="#ffffff"/>
+      <rect x="60" y="142" width="220" height="22" rx="11" fill="#265489"/>
+      <text x="288" y="158" font-size="14" font-weight="700" fill="#ffffff">34.2%</text>
+
+      <text x="60" y="202" font-weight="700" fill="#001d37">Made a suicide plan</text>
+      <rect x="60" y="212" width="440" height="22" rx="11" fill="#ffffff"/>
+      <rect x="60" y="212" width="141" height="22" rx="11" fill="#5c7c6b"/>
+      <text x="209" y="228" font-size="14" font-weight="700" fill="#ffffff">21.9%</text>
+
+      <text x="60" y="272" font-weight="700" fill="#001d37">Attempts or related behavior</text>
+      <rect x="60" y="282" width="440" height="22" rx="11" fill="#ffffff"/>
+      <rect x="60" y="282" width="157" height="22" rx="11" fill="#b6863c"/>
+      <text x="225" y="298" font-size="14" font-weight="700" fill="#ffffff">24.3%</text>
+    </g>
+
+    <text x="60" y="350" font-size="15" font-weight="700" fill="#001d37">About one in three had thoughts of suicide.</text>
+    <text x="60" y="376" font-size="13" fill="#5a6b7a">The number reflects years of being misread and support</text>
+    <text x="60" y="394" font-size="13" fill="#5a6b7a">built for a different kind of mind, not autism itself.</text>
+    <text x="60" y="430" font-size="12" font-style="italic" fill="#5a6b7a">Source: Newell et al., 2023, Molecular Autism</text>
+  </g>
+
+  <!-- Right panel: ADHD odds -->
+  <g>
+    <rect x="560" y="20" width="510" height="440" rx="16" fill="#f3e8d2"/>
+    <text x="590" y="64" font-size="16" font-weight="700" fill="#265489">CHILDREN &amp; ADOLESCENTS WITH ADHD</text>
+    <text x="590" y="86" font-size="13" fill="#5a6b7a">Longitudinal studies followed diagnosed children over time</text>
+
+    <text x="815" y="235" text-anchor="middle" font-family="Georgia, 'Baskervville', serif" font-size="96" font-weight="700" fill="#b6863c">3.3&#215;</text>
+    <text x="815" y="272" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">the odds of suicidal behavior</text>
+    <text x="815" y="296" text-anchor="middle" font-size="14" fill="#5a6b7a">compared with children without an ADHD diagnosis</text>
+
+    <text x="590" y="360" font-size="15" font-weight="700" fill="#001d37">Elevated risk is not a forecast for any one person.</text>
+    <text x="590" y="386" font-size="13" fill="#5a6b7a">Much of what pushes it upward can be changed: untreated</text>
+    <text x="590" y="404" font-size="13" fill="#5a6b7a">depression, isolation, exhaustion, and support that does not fit.</text>
+    <text x="590" y="430" font-size="12" font-style="italic" fill="#5a6b7a">Source: Garas et al., 2025, Brain and Behavior</text>
+  </g>
+</svg>

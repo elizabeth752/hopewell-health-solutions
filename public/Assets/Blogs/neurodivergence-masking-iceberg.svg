@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" role="img" aria-labelledby="mtitle mdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="mtitle">What masking costs</title>
+  <desc id="mdesc">What others see above the surface: rehearsed conversations, forced eye contact, suppressed stimming, and a person who looks fine at work or school. Below the surface, higher masking is associated with more symptoms of anxiety and depression, more past interpersonal trauma, lower self-esteem, and a weaker sense of being oneself. The collapse that follows at home is the cost of that performance.</desc>
+  <rect width="1100" height="560" fill="#ffffff"/>
+
+  <!-- sky (above the waterline) -->
+  <rect x="0" y="0" width="1100" height="260" fill="#e7eef5"/>
+  <!-- water (below the waterline) -->
+  <path d="M0 260 C 180 240, 360 280, 550 260 S 920 240, 1100 260 L 1100 560 L 0 560 Z" fill="#265489" opacity="0.92"/>
+  <path d="M0 276 C 200 256, 380 294, 560 276 S 900 256, 1100 276 L 1100 560 L 0 560 Z" fill="#1b3e63" opacity="0.5"/>
+
+  <!-- iceberg: visible tip above waterline -->
+  <path d="M470 264 L560 100 L650 264 Z" fill="#ffffff" stroke="#e4ddd0" stroke-width="2"/>
+  <!-- submerged mass below waterline -->
+  <path d="M470 264 L650 264 L760 500 L360 500 Z" fill="#dfe9f3" opacity="0.9"/>
+
+  <text x="560" y="50" text-anchor="middle" font-size="17" font-weight="700" fill="#001d37">What others see</text>
+  <text x="560" y="166" text-anchor="middle" font-size="13" fill="#001d37">Calm, composed,</text>
+  <text x="560" y="184" text-anchor="middle" font-size="13" fill="#001d37">"doing fine"</text>
+
+  <!-- above-the-waterline list: sits inside the sky zone, so dark text on the light ground -->
+  <g font-size="13" fill="#001d37">
+    <text x="60" y="84" font-weight="700">Above the waterline: the performance</text>
+    <text x="60" y="112">Rehearsing conversations in advance</text>
+    <text x="60" y="134">Forcing eye contact</text>
+    <text x="60" y="156">Suppressing stimming that would settle the nervous system</text>
+  </g>
+
+  <!-- below-the-waterline list: sits inside the water zone, so light text on the dark ground -->
+  <g font-size="13">
+    <text x="60" y="330" font-weight="700" fill="#f3e8d2">Below the waterline: the cost</text>
+    <text x="60" y="356" fill="#ffffff">More symptoms of anxiety and depression</text>
+    <text x="60" y="380" fill="#ffffff">More past interpersonal trauma</text>
+    <text x="60" y="404" fill="#ffffff">Lower self-esteem</text>
+    <text x="60" y="428" fill="#ffffff">A weaker sense of being oneself</text>
+  </g>
+
+  <rect x="30" y="500" width="1040" height="40" rx="10" fill="#b6863c"/>
+  <text x="550" y="525" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">A person who appears fine at work or school may be spending everything they have to appear that way.</text>
+</svg>
