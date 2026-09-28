@@ -1,0 +1,202 @@
+---
+/*
+  Open house invitation on a location page, styled after the client's printed
+  flyer ("Open House Invite - version 1"): shoreline sky-to-sand wash, big serif
+  "Open House" with a script "& Networking Event", pastel icon circles for the
+  details, and the four services as coloured badges.
+
+  Data comes from `event` on the location in src/data/locations.js; the page
+  only renders this before event day ends, and removes it in the browser after.
+  The script face (Great Vibes, OFL) is self-hosted like the site's other fonts
+  and only loads on pages that render this component.
+*/
+import Icon from "./Icon.astro";
+
+interface Props {
+  ev: any;
+  l: any;
+  directions: string;
+}
+const { ev, l, directions } = Astro.props;
+
+// Flyer order and colours: peach lotus, sage people, blue pill, lavender leaf.
+const TONES = [
+  { bg: "#f3ddd2", fg: "#a85d45", icon: "lotus" },
+  { bg: "#dbe5da", fg: "#557257", icon: "users" },
+  { bg: "#d9e7f4", fg: "#2f5f93", icon: "pill" },
+  { bg: "#e6def1", fg: "#6d5a92", icon: "leaf" },
+];
+const LOTUS = '<path d="M12 20c-3.5 0-7-2.2-8-6 2.6-.3 5.4.6 8 3.5 2.6-2.9 5.4-3.8 8-3.5-1 3.8-4.5 6-8 6Z"/><path d="M12 17.5c-1.6-2-2.4-4.3-2.4-6.6 0-2 .8-4 2.4-5.9 1.6 1.9 2.4 3.9 2.4 5.9 0 2.3-.8 4.6-2.4 6.6Z"/>';
+const LEAF = '<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-4 6-7 10-9"/>';
+
+const details = [
+  { icon: "calendar", bg: "#d9e7f4", fg: "#2f5f93", lines: ["Friday", "October 23rd"], sub: "3:00 – 5:00 PM" },
+  { icon: "pin", bg: "#dbe5da", fg: "#557257", lines: ["70 Essex Road", "Westbrook, CT"], sub: "Building B" },
+  { icon: "users", bg: "#f3ddd2", fg: "#a85d45", lines: ["Food and drinks", "will be provided"], sub: "Come as you please!" },
+];
+
+// Google Calendar "add event" link. Times are the event's own, converted to UTC.
+const utc = (iso: string) => new Date(iso).toISOString().replace(/[-:]|\.\d{3}/g, "");
+const calendarUrl =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  `&text=${encodeURIComponent("Hopewell Westbrook Open House & Networking Event")}` +
+  `&dates=${utc(ev.start)}/${utc(ev.end)}` +
+  `&details=${encodeURIComponent(ev.intro)}` +
+  `&location=${encodeURIComponent("70 Essex Road, Building B, Westbrook, CT 06498")}`;
+---
+
+<section id={ev.id} class="oh scroll-mt-28" data-event-end={ev.end}>
+  <svg class="oh-wave oh-wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c180 30 360 30 540 8s360-40 540-14 270 36 360 20V0H0Z" fill="#fff" /></svg>
+
+  <div class="relative mx-auto max-w-6xl px-5 pt-20 pb-24 sm:pt-24">
+    <p class="oh-tag">Stronger individuals. <br class="hidden sm:block" />Brighter tomorrows.</p>
+
+    <div class="text-center">
+      <p class="inline-block rounded-md bg-white/70 px-4 py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#1d3764]">You are cordially invited to our</p>
+      <h2 class="mt-4 font-display text-[#1d3764] leading-none">
+        <span class="block text-6xl sm:text-8xl">Open House</span>
+        <span class="oh-script block -mt-1 sm:-mt-3 text-4xl sm:text-6xl">&amp; Networking Event</span>
+        <span class="sr-only"> at Hopewell Health Solutions {l.name}</span>
+      </h2>
+      <p class="mx-auto mt-6 max-w-2xl font-display text-lg sm:text-xl leading-relaxed text-[#1d3764]/90">{ev.intro}</p>
+    </div>
+
+    <!-- When / where / what -->
+    <div class="mt-12 grid gap-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-[#1d3764]/15">
+      {details.map((d) => (
+        <div class="flex items-center gap-4 sm:justify-center sm:px-6">
+          <span class="grid h-16 w-16 shrink-0 place-items-center rounded-full" style={`background:${d.bg};color:${d.fg}`}><Icon name={d.icon} class="h-7 w-7" /></span>
+          <p class="text-sm font-semibold uppercase leading-snug tracking-[0.14em] text-[#1d3764]">
+            {d.lines.map((t) => <span class="block">{t}</span>)}
+            <span class="mt-0.5 block text-xs tracking-[0.12em] text-[#1d3764]/70">{d.sub}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Services -->
+    <div class="mt-14 rounded-3xl bg-[#f4efe6]/85 px-5 py-8 sm:px-8 ring-1 ring-[#1d3764]/10 backdrop-blur-sm">
+      <p class="flex items-center gap-4 text-center text-[11px] sm:text-xs font-semibold uppercase tracking-[0.24em] text-[#1d3764]">
+        <span class="h-px flex-1 bg-[#1d3764]/20"></span>Learn more about our services at Hopewell {l.name}<span class="h-px flex-1 bg-[#1d3764]/20"></span>
+      </p>
+      <ul class="mt-8 grid grid-cols-2 gap-y-8 lg:grid-cols-4 lg:divide-x lg:divide-[#1d3764]/15">
+        {ev.services.map((s, i) => {
+          const t = TONES[i % TONES.length];
+          return (
+            <li class="px-3 text-center">
+              <a href={s.href} class="group block">
+                <span class="mx-auto grid h-20 w-20 place-items-center rounded-full transition group-hover:scale-105" style={`background:${t.bg};color:${t.fg}`}>
+                  {t.icon === "lotus" || t.icon === "leaf"
+                    ? <svg viewBox="0 0 24 24" class="h-9 w-9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={t.icon === "lotus" ? LOTUS : LEAF} />
+                    : <Icon name={t.icon} class="h-9 w-9" />}
+                </span>
+                <span class="mt-4 block font-display text-xl leading-tight text-[#1d3764] group-hover:text-azul transition">{s.label}</span>
+                <span class="mt-1 block font-display text-[15px] italic leading-snug text-[#1d3764]/70">{s.note}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    <!-- Photos -->
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      <figure class="oh-photo">
+        <img src="/Assets/locations/westbrook/aerial.webp" alt="Aerial view of Buildings A and B at 70 Essex Road, Westbrook" loading="lazy" />
+        <figcaption>Building B · the taller building</figcaption>
+      </figure>
+      <figure class="oh-photo">
+        <img src="/Assets/locations/westbrook/waiting-room.webp" alt="Bright waiting room at Hopewell Westbrook" loading="lazy" />
+        <figcaption>Come see inside</figcaption>
+      </figure>
+    </div>
+
+    <!-- Sign-off -->
+    <div class="mt-12 text-center">
+      <p class="oh-script text-4xl sm:text-5xl text-[#2f5f93]">We hope to see you there!</p>
+      <div class="mt-7 flex flex-wrap justify-center gap-3">
+        <a href={calendarUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 rounded-lg bg-[#1d3764] px-7 py-3.5 font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="calendar" class="h-5 w-5" />Add to calendar</a>
+        <a href={directions} target="_blank" rel="noopener" class="inline-flex items-center gap-2.5 rounded-lg border border-[#1d3764]/40 bg-white/70 px-7 py-3.5 font-semibold text-[#1d3764] hover:bg-white transition"><Icon name="pin" class="h-5 w-5" />Get directions</a>
+      </div>
+      <p class="mt-4 text-sm text-[#1d3764]/70">{ev.extras[1]}</p>
+    </div>
+  </div>
+
+  <svg class="oh-wave oh-wave--bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c200-34 420-30 620 0s420 28 560 4 200-24 260-14v50H0Z" fill="#fff" /></svg>
+</section>
+
+<style>
+  @font-face {
+    font-family: "Great Vibes";
+    src: url("/fonts/great-vibes-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  .oh {
+    position: relative;
+    overflow: hidden;
+    /* Sky over the Sound, fading to sand, with a pale sea band at the bottom. */
+    background:
+      radial-gradient(60% 40% at 85% 8%, rgba(255, 255, 255, 0.9), transparent 70%),
+      radial-gradient(45% 30% at 10% 90%, rgba(230, 222, 241, 0.55), transparent 70%),
+      radial-gradient(50% 35% at 95% 70%, rgba(243, 221, 210, 0.55), transparent 70%),
+      linear-gradient(180deg, #e3eef8 0%, #f3f6f8 38%, #fbf7ef 72%, #f6eee0 100%);
+  }
+  .oh-script {
+    font-family: "Great Vibes", "Brush Script MT", cursive;
+    font-weight: 400;
+    color: #3a6ea5;
+  }
+  .oh-tag {
+    position: absolute;
+    top: 5.5rem;
+    left: 1.25rem;
+    display: none;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.25;
+    color: #1d3764;
+  }
+  @media (min-width: 1100px) {
+    .oh-tag { display: block; }
+  }
+  .oh-wave {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 48px;
+  }
+  .oh-wave--top { top: -1px; }
+  .oh-wave--bottom { bottom: -1px; }
+  .oh-photo {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    box-shadow: 0 12px 30px rgba(29, 55, 100, 0.14);
+    background: #fff;
+    padding: 6px;
+  }
+  .oh-photo img {
+    display: block;
+    width: 100%;
+    height: 17rem;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+  .oh-photo figcaption {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #1d3764;
+  }
+</style>

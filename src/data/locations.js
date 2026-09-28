@@ -105,7 +105,42 @@ export const locations = [
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus",
     blurb: "Our Westbrook office on Essex Road serves the Connecticut shoreline with outpatient therapy and psychiatric care — a convenient, welcoming location for individuals and families across the Old Saybrook and Clinton area.",
     areas: ["Westbrook", "Old Saybrook", "Clinton", "Essex", "Madison", "Deep River", "Old Lyme", "Killingworth"],
-    photoDir: null,
-    photos: null,
+    // Hours sent by the client 2026-09-18 (TJ Aitken), confirmed by Dora Torres 2026-09-22.
+    hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
+    // Photos sent by TJ, Sept 2026. Duplicates and one dated shot of the same room left out.
+    photoDir: "/Assets/locations/westbrook",
+    photos: [
+      ["aerial.webp", "Aerial view of the Hopewell Westbrook campus at 70 Essex Road"],
+      ["exterior.webp", "Hopewell Health Solutions sign and building at 70 Essex Road, Westbrook"],
+      ["sign.webp", "Hopewell Health Solutions sign on Essex Road in Westbrook"],
+      ["sign-entrance.webp", "Front entrance and sign at the Westbrook office"],
+      ["waiting-room.webp", "Waiting room and front desk at the Westbrook office"],
+      ["therapy-room-shore.webp", "Therapy room with shoreline artwork in Westbrook"],
+      ["therapy-room.webp", "Therapy room with sofa and armchair in Westbrook"],
+      ["therapy-room-garden.webp", "Bright therapy room with plants in Westbrook"],
+      ["therapy-room-sage.webp", "Therapy room with a green sofa in Westbrook"],
+      ["office.webp", "Clinician office and seating area in Westbrook"],
+      ["sitting-room.webp", "Sitting room with a window view in Westbrook"],
+    ],
+    // Open house, transcribed from the client's flyer ("Open House Invite - version 1").
+    // Shown on the page and in WestbrookLauncher until the end of event day, Connecticut time.
+    event: {
+      id: "open-house",
+      eyebrow: "Open House & Networking Event",
+      title: "Open House at Hopewell Westbrook",
+      intro: "Come tour our Westbrook location, meet our team, and connect with local providers. We look forward to an afternoon of community, collaboration, and conversation.",
+      when: "Friday, October 23 · 3:00–5:00 PM",
+      start: "2026-10-23T15:00:00-04:00",
+      end: "2026-10-23T17:00:00-04:00",
+      where: "70 Essex Road, Westbrook, CT 06498 · Building B",
+      extras: ["Food and drinks will be provided. Come as you please!", "Ample parking available at our location."],
+      // The flyer says "Adult IOP, Coming November 2025", a typo for a date the client has not confirmed.
+      services: [
+        { label: "Women’s Wellness IOP", note: "A trauma-informed, skills-based program for adult women", href: "/programs/womens-wellness-iop/" },
+        { label: "Adult IOP", note: "Coming soon", href: "/programs/adult-mental-health-iop/" },
+        { label: "Psychiatric Medication Management", note: "Including MAT", href: "/programs/medication-management/" },
+        { label: "Individual Counseling", note: "Support for your unique journey", href: "/programs/counseling/" },
+      ],
+    },
   },
 ];

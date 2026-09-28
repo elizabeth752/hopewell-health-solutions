@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
+import OpenHouse from "../../components/OpenHouse.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
 import { locations } from "../../data/locations.js";
 
@@ -57,11 +58,36 @@ const schema = {
   areaServed: l.areas.map((a) => ({ "@type": "City", name: a })),
   medicalSpecialty: ["Psychiatric", "Behavioral"],
 };
+
+// Optional one-off event (see `event` in locations.js). Hidden after event day at build time;
+// the script at the bottom re-checks in the browser so a stale static build can't outlive it.
+const ev = l.event && new Date() <= new Date(l.event.end) ? l.event : null;
+const eventSchema = ev && {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: `${ev.eyebrow} — Hopewell Health Solutions ${l.name}`,
+  description: ev.intro,
+  startDate: ev.start,
+  endDate: ev.end,
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  isAccessibleForFree: true,
+  location: {
+    "@type": "Place",
+    name: `Hopewell Health Solutions — ${l.name}`,
+    address: { "@type": "PostalAddress", streetAddress: `${l.street}, Building B`, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
+  },
+  organizer: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
+  url: `${canonical}#${ev.id}`,
+};
+// An odd photo count leaves a hole in the grid, so the first photo spans two columns.
+const featureFirst = l.photos && l.photos.length % 2 === 1;
 ---
 
 <Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted. Call (860) 735-1448.`} canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
 
   <!-- HERO -->
   <section class="bg-crema">
@@ -93,6 +119,8 @@ const schema = {
     </div>
   </section>
 
+  {ev && <OpenHouse ev={ev} l={l} directions={directions} />}
+
   <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
   <!-- MAP & GETTING HERE -->
@@ -109,7 +137,7 @@ const schema = {
         <div class="mt-6 space-y-3 text-ink">
           <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Address:</span> {fullAddress}</span></p>
           <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="phone" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Phone:</span> <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a></span></p>
-          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Hours:</span> By appointment — daytime &amp; evening availability</span></p>
+          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Hours:</span> {l.hours ?? "By appointment — daytime & evening availability"}</span></p>
         </div>
         <a href={directions} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Get directions <Icon name="arrow" class="h-4 w-4" /></a>
       </div>
@@ -121,8 +149,8 @@ const schema = {
           <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Inside our {l.name} office</h2>
         </div>
         <div class="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
-          {l.photos.map(([file, alt]) => (
-            <img src={`${l.photoDir}/${file}`} alt={alt} loading="lazy" class="w-full h-56 lg:h-64 object-cover rounded-2xl border border-line" />
+          {l.photos.map(([file, alt], i) => (
+            <img src={`${l.photoDir}/${file}`} alt={alt} loading="lazy" class:list={["w-full h-56 lg:h-64 object-cover rounded-2xl border border-line", featureFirst && i === 0 && "col-span-2"]} />
           ))}
         </div>
       </div>
@@ -254,4 +282,10 @@ const schema = {
   </section>
 
   <Footer />
+  {ev && (
+    <script>
+      const el = document.querySelector<HTMLElement>("[data-event-end]");
+      if (el && new Date() > new Date(el.dataset.eventEnd!)) el.remove();
+    </script>
+  )}
 </Base>
