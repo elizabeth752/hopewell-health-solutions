@@ -2,7 +2,7 @@
 /*
   Westbrook opening launcher — floating bottom-left button on every page (via Base.astro).
 
-  On load it grows from a 60px circle into a small postcard (~260 × 444, 500 while
+  On load it grows from a 60px circle into a small postcard (~260 × 444, 510 while
   the open house button shows) with
   the launch details. The ✕ shrinks it back to the circle; clicking the circle
   opens it again. It only opens by itself on the homepage, on desktop; on every
@@ -104,7 +104,7 @@ const status =
         {ev && (
           <a class="wb-event" href={`/location/westbrook-ct/#${ev.id}`} data-event-end={ev.end}>
             <span><small>You’re invited</small><strong>Open House · Fri, Oct 23</strong></span>
-            <Icon name="arrow" class="h-4 w-4" />
+            <span class="wb-event-go"><Icon name="arrow" class="h-3.5 w-3.5" /></span>
           </a>
         )}
         <a class="wb-cta" href={`tel:${PHONE.tel}`}><Icon name="phone" class="h-4 w-4" />{PHONE.display}</a>
@@ -350,24 +350,44 @@ const status =
     font-size: 13.5px;
   }
   .wb:has(.wb-event) {
-    --wb-h: 500px;
+    --wb-h: 510px;
   }
+  /* Flyer peach-pink so the invitation stands apart from the cream "Find us"
+     box. #94472f text is 5.0:1 on the pink; ink is well above that. */
   .wb-event {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
     margin: -2px 0 10px;
-    padding: 8px 12px;
-    border: 1.5px solid var(--color-gold);
+    padding: 9px 12px;
+    border: 1.5px solid #d99a85;
     border-radius: 10px;
-    background: #fff;
+    background: #f6dcd3;
     color: var(--color-ink);
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, border-color 0.2s;
   }
   .wb-event:hover {
-    background: var(--color-crema);
+    background: #f3d0c4;
+    border-color: #c9826b;
+  }
+  /* Soft glow that pulses a few times once the card has opened. */
+  .wb-event::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 11px;
+    box-shadow: 0 0 0 0 rgba(217, 154, 133, 0.6);
+    pointer-events: none;
+  }
+  .wb.is-open .wb-event::after {
+    animation: wb-glow 1.8s ease-out 0.9s 3;
+  }
+  @keyframes wb-glow {
+    0% { box-shadow: 0 0 0 0 rgba(217, 154, 133, 0.6); }
+    100% { box-shadow: 0 0 0 9px rgba(217, 154, 133, 0); }
   }
   .wb-event small {
     display: block;
@@ -375,10 +395,20 @@ const status =
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #8a6429;
+    color: #94472f;
   }
   .wb-event strong {
     font-size: 13.5px;
+  }
+  .wb-event-go {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #fff;
+    color: #94472f;
   }
   .wb-cta {
     margin-top: auto;
@@ -461,7 +491,7 @@ const status =
   }
   @media (prefers-reduced-motion: reduce) {
     .wb, .wb-fab, .wb-body, .wb-alert { transition: none; }
-    .wb-alert, .wb-alert::after { animation: none; }
+    .wb-alert, .wb-alert::after, .wb.is-open .wb-event::after { animation: none; }
   }
 </style>
 
