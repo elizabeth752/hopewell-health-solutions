@@ -9,7 +9,7 @@ import MediaStrip from "../../components/MediaStrip.astro";
 const canonical = "https://www.hopewellhealthsolutions.com/what-we-treat/";
 
 const mentalHealth = [
-  { t: "Depression", d: "More than sadness — therapy, medication, TMS & Spravato® for lasting relief.", href: "/what-we-treat/depression/", icon: "cloud" },
+  { t: "Depression", d: "More than sadness — therapy, medication & TMS for lasting relief.", href: "/what-we-treat/depression/", icon: "cloud" },
   { t: "Anxiety", d: "CBT, exposure therapy & skills for panic, social anxiety, GAD and more.", href: "/what-we-treat/anxiety/", icon: "alert" },
   { t: "Trauma & PTSD", d: "EMDR, ART & CPT, plus Women’s Trauma and First Responder programs.", href: "/what-we-treat/trauma-ptsd/", icon: "heart" },
   { t: "ADHD", d: "Comprehensive testing and treatment for children, teens & adults.", href: "/what-we-treat/adhd/", icon: "bolt" },
@@ -66,7 +66,7 @@ const Card = "group rounded-2xl bg-white border border-line p-6 hover:border-azu
     <div class="mx-auto max-w-6xl px-5 py-16">
       <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Mental health</p>
       <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Mental health conditions</h2>
-      <p class="mt-3 text-muted max-w-2xl">Evidence-based, compassionate care — therapy, medication management, and advanced options like TMS and Spravato® — tailored to each person.</p>
+      <p class="mt-3 text-muted max-w-2xl">Evidence-based, compassionate care — therapy, medication management, and advanced options like TMS — tailored to each person.</p>
       <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {mentalHealth.map((c) => (
           <a href={c.href} class={Card}>

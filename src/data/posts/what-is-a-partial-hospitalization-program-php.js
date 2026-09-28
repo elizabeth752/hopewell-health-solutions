@@ -13,7 +13,7 @@ export default {
   readingMinutes: 3,
   bodyHtml: `<h2>What Is a PHP?</h2>
 <p>A Partial Hospitalization Program (PHP) is a structured, intensive level of mental health treatment designed for individuals who need consistent, daily support but don't require overnight care.</p>
-<p>Clients attend treatment during the day, often five or six days per week for several hours and then return home in the evenings. This allows for a balance between necessary clinical support and real-life integration, which is often where meaningful change begins to happen.</p>
+<p>Clients attend treatment during the day, typically five days a week for several hours and then return home in the evenings. This allows for a balance between necessary clinical support and real-life integration, which is often where meaningful change begins to happen.</p>
 <p>Here at Hopewell Health Solutions, our PHP is designed to provide both stability and forward movement to truly help clients not only feel better but function better in their daily lives.</p>
 <h2>Understanding the Different Levels of Mental Health Care</h2>
 <p>To make sense of PHP it helps to look at the full spectrum of mental health care.</p>

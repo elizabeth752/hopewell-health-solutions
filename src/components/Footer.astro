@@ -10,8 +10,8 @@ const locations = [
 const D = "/Assets/Favicons/";
 const directories = [
   { label: "Psychology Today", href: "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", icon: D + "PT.png" },
-  { label: "Recovery.com", href: "https://recovery.com/outpatient/hopewell-health-solutions-south-glastonbury/", icon: D + "recovery.com.png" },
-  { label: "BBB", href: "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396", icon: D + "BBB.png" },
+  { label: "Recovery.com", icon: D + "recovery.com.png" },
+  { label: "BBB", icon: D + "BBB.png" },
 ];
 const cols = [
   { h: "Programs", links: [
@@ -29,7 +29,6 @@ const cols = [
   ] },
   { h: "Treatments", links: [
     ["TMS", "/treatment-methods/tms/"],
-    ["Spravato®", "/treatment-methods/spravato/"],
     ["EMDR", "/treatment-methods/emdr/"],
     ["GeneSight®", "/treatment-methods/genesight-testing/"],
   ] },
@@ -66,10 +65,14 @@ const cols = [
     <div class="mt-10 border-t border-white/15 pt-8">
       <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Find &amp; Review Us</h4>
       <div class="flex flex-wrap items-center gap-3">
-        {directories.map((d) => (
+        {directories.map((d) => d.href ? (
           <a href={d.href} target="_blank" rel="noopener" aria-label={d.label} title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 hover:bg-white px-3 py-1.5 text-xs font-semibold text-ink transition">
             <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
           </a>
+        ) : (
+          <span title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-ink">
+            <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
+          </span>
         ))}
       </div>
     </div>

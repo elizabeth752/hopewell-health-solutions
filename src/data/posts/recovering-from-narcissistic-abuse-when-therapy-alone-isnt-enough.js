@@ -152,7 +152,7 @@ export default {
           p: "Eye Movement Desensitization and Reprocessing (EMDR) targets the memories that talking has not reached. Dialectical Behavior Therapy (DBT) rebuilds emotional regulation and boundary-setting. Accelerated Resolution Therapy (ART) and group therapy address the isolation and shame that keep survivors quiet.",
         },
         {
-          p: "Where medication belongs in the plan, our prescribers build it individually rather than by default. For depression that has not responded to medication and therapy, we offer Transcranial Magnetic Stimulation (TMS) and FDA-approved ketamine treatment, Spravato. Neuropsychological testing is available when the diagnostic picture stays unclear.",
+          p: "Where medication belongs in the plan, our prescribers build it individually rather than by default. For depression that has not responded to medication and therapy, we offer Transcranial Magnetic Stimulation (TMS). Neuropsychological testing is available when the diagnostic picture stays unclear.",
         },
       ],
     },

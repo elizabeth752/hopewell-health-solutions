@@ -1,6 +1,6 @@
 # Hopewell Health Solutions
 
-> Outpatient mental health & psychiatry across Connecticut for ages 4 and up. Intensive Outpatient Programs (IOP), Partial Hospitalization (PHP), medication management, counseling, and advanced treatments including TMS, Spravato®, and EMDR. In person at six Connecticut locations (Glastonbury, South Glastonbury, West Hartford, East Hampton, Westbrook) and via telehealth across New England. Joint Commission accredited, 4.8★ across 368 Google reviews, serving Connecticut since 2013.
+> Outpatient mental health & psychiatry across Connecticut for ages 4 and up. Intensive Outpatient Programs (IOP), Partial Hospitalization (PHP), medication management, counseling, and advanced treatments including TMS and EMDR. In person at six Connecticut locations (Glastonbury, South Glastonbury, West Hartford, East Hampton, Westbrook) and via telehealth across New England. Joint Commission accredited, 4.8★ across 368 Google reviews, serving Connecticut since 2013.
 
 ## Programs
 - [Intensive Outpatient Program (IOP)](https://www.hopewellhealthsolutions.com/programs/intensive-outpatient-program/)
@@ -16,7 +16,6 @@
 
 ## Treatments
 - [TMS Therapy](https://www.hopewellhealthsolutions.com/treatment-methods/tms/)
-- [Spravato® (Esketamine)](https://www.hopewellhealthsolutions.com/treatment-methods/spravato/)
 - [EMDR Therapy](https://www.hopewellhealthsolutions.com/treatment-methods/emdr/)
 - [Therapeutic Treatments (ART, Gottman, mindfulness)](https://www.hopewellhealthsolutions.com/treatment-methods/therapeutic-treatments/)
 - [Neuropsychological Testing](https://www.hopewellhealthsolutions.com/treatment-methods/neuropsychological-testing/)
