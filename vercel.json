@@ -51,6 +51,7 @@
     { "source": "/medication-management-service/", "destination": "/programs/medication-management/", "permanent": true },
     { "source": "/spravato/", "destination": "/programs/medication-management/", "permanent": true },
     { "source": "/treatment-methods/spravato/", "destination": "/programs/medication-management/", "permanent": true },
+    { "source": "/post/what-is-spravato-and-how-can-it-help/", "destination": "/programs/medication-management/", "permanent": true },
     { "source": "/hhs-therapeutic-treatments/", "destination": "/treatment-methods/therapeutic-treatments/", "permanent": true },
     { "source": "/neuropsychological-psychological-testing/", "destination": "/treatment-methods/neuropsychological-testing/", "permanent": true },
 
