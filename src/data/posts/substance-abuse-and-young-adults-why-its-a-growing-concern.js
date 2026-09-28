@@ -2,7 +2,7 @@ export default {
   slug: "substance-abuse-and-young-adults-why-its-a-growing-concern",
   title: "Substance Abuse and Young Adults: Why It's a Growing Concern",
   metaTitle: "Substance Abuse and Young Adults: Why It's a Growing Concern | Mental Health & Psychiatry located in Glastonbury and West Hartford, CT | Hopewell Health Solutions",
-  metaDescription: "Young adults aged 18-25 are at the highest risk for substance use disorders. Hopewell Health Solutions offers therapy, medication management, and Spravato.",
+  metaDescription: "Young adults aged 18-25 are at the highest risk for substance use disorders. Hopewell Health Solutions offers therapy and medication management.",
   category: "Addiction & Recovery",
   excerpt: "Why young adults face the highest risk of substance use disorders, and how Hopewell Health Solutions helps break the cycle of addiction.",
   heroImage: "/Assets/Blogs/substance-abuse-and-young-adults-why-its-a-growing-concern.webp",
@@ -13,7 +13,7 @@ export default {
   readingMinutes: 4,
   bodyHtml: `<p>Jake, a 26-year-old recent college grad, never thought he'd have a problem with substance use. It started innocently enough—drinking a little more during stressful times, using marijuana to "take the edge off," or occasionally popping a pill to help him stay focused at work. But before he knew it, what began as casual use turned into a dependency he couldn't shake. When Jake came to <strong>Hopewell Health Solutions</strong>, he felt like he was spiraling—his relationships were strained, his job performance was slipping, and he wasn't sure how to get back in control.</p>
 
-<p>Unfortunately, Jake's story is not unique. Young adults today are increasingly finding themselves caught in the cycle of substance abuse, and it's an issue that's only growing. At <strong>Hopewell Health Solutions</strong> in Glastonbury, Connecticut, we offer individualized therapy, <strong>medication management</strong>, and even advanced treatments like <strong>Spravato</strong> for treatment-resistant depression—because we understand that addiction is often tied to deeper mental health struggles.</p>
+<p>Unfortunately, Jake's story is not unique. Young adults today are increasingly finding themselves caught in the cycle of substance abuse, and it's an issue that's only growing. At <strong>Hopewell Health Solutions</strong> in Glastonbury, Connecticut, we offer individualized therapy and <strong>medication management</strong>—because we understand that addiction is often tied to deeper mental health struggles.</p>
 
 <h2>The Hidden Pressures Fueling Substance Use</h2>
 
@@ -35,8 +35,6 @@ export default {
 
 <p>That's why at Hopewell, we take a holistic approach to treatment. Our team of therapists and clinicians doesn't just focus on the substance abuse itself, but also on addressing the mental health issues that often fuel the addiction. Through <strong>individualized therapy</strong> and <strong>medication management</strong>, we help clients like Jake regain control over their lives.</p>
 
-<p>For those dealing with co-occurring disorders, such as depression alongside addiction, we offer treatments like <strong>Spravato</strong>, an FDA-approved nasal spray for treatment-resistant depression. This can be a game-changer for clients who haven't responded to traditional medications.</p>
-
 <h2>Breaking the Cycle of Addiction</h2>
 
 <p>Breaking free from substance abuse isn't easy, but it's possible with the right support system. At <strong>Hopewell Health Solutions</strong>, we work closely with young adults to create personalized treatment plans that address their unique needs. Whether it's through cognitive-behavioral therapy (CBT), dialectical behavior therapy (DBT), or group support, we provide a variety of tools to help our clients build healthier coping mechanisms.</p>
@@ -49,7 +47,7 @@ export default {
 
 <ul>
 <li><strong>Individualized therapy</strong> to address both the substance use and the underlying mental health concerns.</li>
-<li><strong>Medication management</strong> to ensure that clients are receiving the best possible care, including treatments like <strong>Spravato</strong> for those with treatment-resistant depression.</li>
+<li><strong>Medication management</strong> to ensure that clients are receiving the best possible care.</li>
 <li><strong>Relapse prevention strategies</strong>, focusing on building healthy habits and coping mechanisms that last.</li>
 </ul>
 

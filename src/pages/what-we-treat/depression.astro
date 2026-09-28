@@ -11,7 +11,7 @@ const canonical = "https://www.hopewellhealthsolutions.com/what-we-treat/depress
 
 const heroUsps = [
   { icon: "shield", t: "Board-certified psychologists & psychiatric prescribers" },
-  { icon: "brain", t: "Therapy, medication management, TMS & Spravato® under one roof" },
+  { icon: "brain", t: "Therapy, medication management & TMS under one roof" },
   { icon: "heart", t: "Help for treatment-resistant depression — when nothing has worked" },
   { icon: "compass", t: "In person (Glastonbury, Westbrook & West Hartford) or telehealth" },
 ];
@@ -38,9 +38,8 @@ const approach = [
   { icon: "pill", tone: "azul", t: "Medication management", d: "Thoughtful psychiatric prescribing from our board-certified providers — finding the right medication, at the right dose, with careful follow-up and adjustments over time.", href: "/programs/medication-management/" },
   { icon: "brain", tone: "gold", t: "Therapy that works", d: "Evidence-based talk therapy — including CBT and DBT — to shift the thoughts and patterns that keep depression in place, and to build skills that last.", href: "/programs/counseling/" },
   { icon: "bolt", tone: "sage", t: "TMS for treatment-resistant depression", d: "When medication and therapy haven’t been enough, FDA-cleared TMS uses gentle magnetic pulses to reactivate the brain — drug-free, with no downtime.", href: "/treatment-methods/tms/" },
-  { icon: "sparkles", tone: "azul", t: "Spravato® (esketamine)", d: "For depression that hasn’t responded to other treatments, Spravato is administered and monitored right in our offices, often with rapid relief.", href: "/treatment-methods/spravato/" },
-  { icon: "calendar", tone: "gold", t: "Intensive Outpatient Program", d: "When weekly sessions aren’t enough, our IOP adds several days a week of structured group and individual support — without putting your life on hold.", href: "/programs/intensive-outpatient-program/" },
-  { icon: "heart", tone: "sage", t: "Whole-person care", d: "We treat depression alongside anxiety, trauma, or chronic stress — never in isolation — with a plan built around you and your goals.", href: null },
+  { icon: "calendar", tone: "azul", t: "Intensive Outpatient Program", d: "When weekly sessions aren’t enough, our IOP adds several days a week of structured group and individual support — without putting your life on hold.", href: "/programs/intensive-outpatient-program/" },
+  { icon: "heart", tone: "gold", t: "Whole-person care", d: "We treat depression alongside anxiety, trauma, or chronic stress — never in isolation — with a plan built around you and your goals.", href: null },
 ];
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
@@ -69,8 +68,8 @@ const locations = [
 const faqs = [
   ["What is depression?", "Depression — also called major depressive disorder — is a common but serious mood disorder that affects how you feel, think, and handle daily life. It’s more than feeling sad or going through a rough patch: it’s a persistent low mood and loss of interest that lasts for weeks or longer, and it often affects sleep, appetite, energy, and concentration as well as mood. Depression is a real medical condition rooted in brain chemistry, genetics, and life experience — not a weakness or something a person can simply 'snap out of' — and it is highly treatable."],
   ["What are the signs of depression?", "Common signs include persistent sadness or low mood; loss of interest or pleasure in activities once enjoyed; sleeping too much or too little; fatigue or low energy; trouble concentrating, remembering, or making decisions; changes in appetite or weight; and feelings of worthlessness, guilt, or hopelessness. Some people also experience physical symptoms like aches or digestive issues, or thoughts that life isn’t worth living. If symptoms last more than two weeks or interfere with daily life, it’s worth reaching out for an evaluation."],
-  ["How is depression treated?", "Depression is treated with a combination of approaches tailored to the individual. At Hopewell Health Solutions, that often includes evidence-based therapy (such as CBT and DBT), psychiatric medication management, and — when weekly support isn’t enough — a structured Intensive Outpatient Program. For depression that hasn’t responded to medication or therapy, we also offer advanced, FDA-cleared options like TMS and Spravato®. Most people improve significantly with the right combination and consistent care."],
-  ["What is treatment-resistant depression?", "Treatment-resistant depression refers to depression that hasn’t improved enough after trying one or more standard treatments, such as antidepressants or therapy. It does not mean depression is untreatable — it means a different approach is needed. Options like TMS (a drug-free magnetic stimulation therapy) and Spravato® (esketamine, given and monitored in-office) are designed specifically for these situations and can bring relief when earlier treatments fell short."],
+  ["How is depression treated?", "Depression is treated with a combination of approaches tailored to the individual. At Hopewell Health Solutions, that often includes evidence-based therapy (such as CBT and DBT), psychiatric medication management, and — when weekly support isn’t enough — a structured Intensive Outpatient Program. For depression that hasn’t responded to medication or therapy, we also offer advanced, FDA-cleared options like TMS. Most people improve significantly with the right combination and consistent care."],
+  ["What is treatment-resistant depression?", "Treatment-resistant depression refers to depression that hasn’t improved enough after trying one or more standard treatments, such as antidepressants or therapy. It does not mean depression is untreatable — it means a different approach is needed. Options like TMS (a drug-free magnetic stimulation therapy) are designed specifically for these situations and can bring relief when earlier treatments fell short."],
   ["When should I seek help for depression?", "Reach out when low mood has lasted more than two weeks, when depression is affecting your work, school, sleep, or relationships, or when therapy or medication alone hasn’t been enough. You don’t need to wait until things feel unbearable — earlier support makes recovery easier. If you are having thoughts of harming yourself or that life isn’t worth living, call or text 988 right away, or call 911."],
 ];
 const faqSchema = {
@@ -80,7 +79,7 @@ const faqSchema = {
 };
 ---
 
-<Base title="Depression Treatment in CT | Hopewell Health Solutions" description="Depression treatment at Hopewell Health Solutions in Glastonbury, Westbrook & West Hartford, CT — therapy, medication management, TMS & Spravato® for lasting relief, including treatment-resistant depression. In person & telehealth." canonical={canonical}>
+<Base title="Depression Treatment in CT | Hopewell Health Solutions" description="Depression treatment at Hopewell Health Solutions in Glastonbury, Westbrook & West Hartford, CT — therapy, medication management, TMS for lasting relief, including treatment-resistant depression. In person & telehealth." canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
@@ -125,7 +124,7 @@ const faqSchema = {
         <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is depression?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
         <p class="mt-5 text-ink leading-relaxed text-[17px]">Depression — also called major depressive disorder — is a common but serious mood disorder that changes how you feel, think, and handle daily life. It’s more than sadness or a passing low: it’s a persistent heaviness and loss of interest that can last for weeks, months, or longer, often showing up in the body as well as the mind — in your sleep, energy, appetite, and concentration.</p>
-        <p class="mt-4 text-ink leading-relaxed text-[17px]">Depression is not a weakness, and it’s not something you can simply will away. It’s a real medical condition shaped by brain chemistry, genetics, life experience, and stress — and it is highly treatable. The board-certified team at Hopewell Health Solutions treats depression with therapy, medication management, and advanced options like TMS and Spravato® — meeting you where you are and building a plan around your life.</p>
+        <p class="mt-4 text-ink leading-relaxed text-[17px]">Depression is not a weakness, and it’s not something you can simply will away. It’s a real medical condition shaped by brain chemistry, genetics, life experience, and stress — and it is highly treatable. The board-certified team at Hopewell Health Solutions treats depression with therapy, medication management, and advanced options like TMS — meeting you where you are and building a plan around your life.</p>
       </div>
     </div>
   </section>
