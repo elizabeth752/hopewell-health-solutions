@@ -2,7 +2,8 @@
 /*
   Westbrook opening launcher — floating bottom-left button on every page (via Base.astro).
 
-  On load it grows from a 60px circle into a small postcard (~260 × 444) with
+  On load it grows from a 60px circle into a small postcard (~260 × 444, 500 while
+  the open house button shows) with
   the launch details. The ✕ shrinks it back to the circle; clicking the circle
   opens it again. It only opens by itself on the homepage, on desktop; on every
   other page it waits as the circle so it doesn't cover content on each click. On mobile it starts closed (the open card would cover most of the
@@ -27,6 +28,7 @@
   that isn't redeployed never shows a stale label or outlives HIDE_AFTER.
 */
 import Icon from "./Icon.astro";
+import { locations } from "../data/locations.js";
 
 const PHONE = { display: "(860) 735-1448", tel: "8607351448" };
 // Auto-open only on the homepage.
@@ -43,6 +45,11 @@ const MAP_URL = "https://www.google.com/maps/search/?api=1&query=70+Essex+Rd%2C+
 const LAUNCH_DAY = "2026-09-28";
 const HIDE_AFTER = "2026-10-28"; // last day it shows; hidden from the next day
 const TZ = "America/New_York";
+
+// Open house button: links to the event section on the Westbrook page and
+// disappears after event day (same data as that section, see locations.js).
+const westbrook = locations.find((l) => l.slug === "westbrook-ct");
+const ev = westbrook?.event && new Date() <= new Date(westbrook.event.end) ? westbrook.event : null;
 
 // Kept in sync with the same logic in the script below.
 const today = new Intl.DateTimeFormat("en-CA", { timeZone: TZ }).format(new Date());
@@ -94,6 +101,12 @@ const status =
         <a class="wb-find" href={MAP_URL} target="_blank" rel="noopener">
           <small>Find us</small><strong>70 Essex Rd</strong><br />Westbrook, CT
         </a>
+        {ev && (
+          <a class="wb-event" href={`/location/westbrook-ct/#${ev.id}`} data-event-end={ev.end}>
+            <span><small>You’re invited</small><strong>Open House · Fri, Oct 23</strong></span>
+            <Icon name="arrow" class="h-4 w-4" />
+          </a>
+        )}
         <a class="wb-cta" href={`tel:${PHONE.tel}`}><Icon name="phone" class="h-4 w-4" />{PHONE.display}</a>
         <p class="wb-services">
           {SERVICES.map((s, i) => <>{i > 0 && " · "}<a href={s.href}>{s.label}</a></>)}
@@ -132,7 +145,7 @@ const status =
   }
   .wb.is-open {
     width: 260px;
-    height: 444px;
+    height: var(--wb-h, 444px);
     border-radius: 16px;
     box-shadow: 0 14px 34px rgba(0, 29, 55, 0.25);
     transition-delay: 0s;
@@ -159,7 +172,7 @@ const status =
     left: 0;
     bottom: 0;
     width: 260px;
-    height: 444px;
+    height: var(--wb-h, 444px);
     padding: 8px;
     opacity: 0;
     visibility: hidden;
@@ -336,6 +349,37 @@ const status =
   .wb-find strong {
     font-size: 13.5px;
   }
+  .wb:has(.wb-event) {
+    --wb-h: 500px;
+  }
+  .wb-event {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: -2px 0 10px;
+    padding: 8px 12px;
+    border: 1.5px solid var(--color-gold);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .wb-event:hover {
+    background: var(--color-crema);
+  }
+  .wb-event small {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a6429;
+  }
+  .wb-event strong {
+    font-size: 13.5px;
+  }
   .wb-cta {
     margin-top: auto;
     display: flex;
@@ -360,6 +404,7 @@ const status =
   .wb-maplink:focus-visible,
   .wb-services a:focus-visible,
   .wb-find:focus-visible,
+  .wb-event:focus-visible,
   .wb-cta:focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
@@ -437,6 +482,10 @@ const status =
       fab.setAttribute("aria-expanded", String(open));
       card.setAttribute("aria-hidden", String(!open));
     };
+
+    // Past event day on a stale build: drop the open house button, card shrinks back.
+    const eventLink = root.querySelector<HTMLElement>(".wb-event");
+    if (eventLink && new Date() > new Date(eventLink.dataset.eventEnd!)) eventLink.remove();
 
     fab.addEventListener("click", () => setOpen(true));
     close.addEventListener("click", () => {
