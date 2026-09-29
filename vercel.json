@@ -21,6 +21,8 @@
     { "source": "/provider/amina-huric-lmsw/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/michelle-munasami-lmft/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/shawn-curtis-psy-d/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/khentrell-graham-lmsw/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/octavia-francis-person-lpc-a/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/katrin-moskowitz-dnp-pmhnp-bc-fnp/", "destination": "/about-us/team/", "permanent": true },
 
     { "source": "/our-terms/", "destination": "/terms/", "permanent": true },
