@@ -32,9 +32,7 @@ const team = [
 const C = "/Assets/credibility/";
 const trustMarks = [
   ["The Joint Commission — Accredited", C + "joint-commission.webp"],
-  ["Better Business Bureau Accredited", C + "bbb.webp"],
   ["Psychology Today Verified", C + "psychology-today.webp"],
-  ["Recovery.com Verified Provider", C + "recovery-verified.webp"],
 ];
 const reviews = [
   { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. All the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
@@ -135,7 +133,7 @@ const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><pa
   <section class="bg-white border-t border-line">
     <div class="mx-auto max-w-6xl px-5 py-12">
       <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-muted">Accredited, verified &amp; trusted</p>
-      <div class="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center">
+      <div class="mt-7 grid grid-cols-2 gap-8 items-center justify-items-center max-w-md mx-auto">
         {trustMarks.map(([alt, src]) => <img src={src} alt={alt} loading="lazy" class="h-14 w-auto max-w-[160px] object-contain" />)}
       </div>
     </div>
