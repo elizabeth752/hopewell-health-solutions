@@ -58,8 +58,19 @@ export const locations = [
     areas: ["South Glastonbury", "Glastonbury", "Cromwell", "Rocky Hill", "Portland", "Middletown", "Marlborough", "East Hampton"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
-    photoDir: null,
-    photos: null,
+    // Photos supplied by TJ (client), 2026-10-02.
+    photoDir: "/Assets/locations/1420-main",
+    photos: [
+      ["1420-2.webp", "Reception and front desk at the South Glastonbury office"],
+      ["1420-1.webp", "Hopewell Health Solutions sign at 1420 Main Street in South Glastonbury"],
+      ["1420-3.webp", "Welcome window at the South Glastonbury office"],
+      ["1420-4.webp", "Waiting room at the South Glastonbury office"],
+      ["1420-5.webp", "Group therapy room at the South Glastonbury office"],
+      ["1420-6.webp", "Individual therapy office in South Glastonbury"],
+      ["1420-7.webp", "Clinician office at the South Glastonbury location"],
+      ["1420-8.webp", "Comfortable therapy room at the South Glastonbury office"],
+      ["1420-9.webp", "Family therapy room at the South Glastonbury office"],
+    ],
   },
   {
     slug: "west-hartford-ct",
