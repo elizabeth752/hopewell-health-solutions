@@ -16,12 +16,9 @@
 //       were 50% more likely to complete treatment than clients traveling
 //       farther, holding demographics and drug-problem type constant.
 //
-// Phone number: the docx repeats (860) 579-6423 for this Westbrook campaign
-// specifically, distinct from the sitewide NAP number (860) 735-1448 used
-// everywhere else in the repo (see src/data/locations.js) and on the existing
-// WestbrookLauncher.astro floating card. Treated as an intentional, campus-
-// specific tracking line for this announcement and kept as given in the docx
-// rather than overwritten with the general NAP number.
+// Phone number: the docx used (860) 579-6423 for this Westbrook campaign, but
+// the client asked (Oct 2026) to use the sitewide NAP number (860) 735-1448
+// here too, matching src/data/locations.js and WestbrookLauncher.astro.
 //
 // Infographics: per the confirmed pattern (memory: hopewell-blog-infographic-
 // standard) — three small, section-adjacent SVGs, each its own visual
@@ -72,7 +69,7 @@ export default {
           p: "The new campus is Hopewell Health Solutions – Westbrook, at 70 Essex Road, Westbrook, CT 06498, serving the shoreline with Women’s Wellness IOP, psychiatric medication management, and individual therapy.",
         },
         {
-          p: "The <a href=\"/programs/womens-wellness-iop/\">Women’s Wellness Intensive Outpatient Program (IOP)</a> runs in both morning and evening sessions. <a href=\"/programs/medication-management/\">Medication management</a> and <a href=\"/programs/counseling/\">individual therapy</a> are scheduled by appointment. Call us to find a time that works: (860) 579-6423.",
+          p: "The <a href=\"/programs/womens-wellness-iop/\">Women’s Wellness Intensive Outpatient Program (IOP)</a> runs in both morning and evening sessions. <a href=\"/programs/medication-management/\">Medication management</a> and <a href=\"/programs/counseling/\">individual therapy</a> are scheduled by appointment. Call us to find a time that works: (860) 735-1448.",
         },
       ],
     },
@@ -200,7 +197,7 @@ export default {
         },
         {
           ul: [
-            "Reach out. Call (860) 579-6423 or request a confidential callback. No commitment.",
+            "Reach out. Call (860) 735-1448 or request a confidential callback. No commitment.",
             "Verify your insurance. Our team checks your benefits at no cost, usually within minutes.",
             "Complete an assessment. A clinical assessment determines which level of care fits, which is sometimes less than people expect and sometimes more.",
             "Begin care. You start at the right level and adjust as you progress, without changing teams.",
@@ -241,7 +238,7 @@ export default {
           p: "More than 50 licensed clinicians, prescribers, psychologists, and therapists work with us, and we are a Joint Commission accredited practice serving Connecticut clients since 2013.",
         },
         {
-          p: "Whether you are asking for yourself or for someone you love, admissions will walk you through the next step. Call (860) 579-6423.",
+          p: "Whether you are asking for yourself or for someone you love, admissions will walk you through the next step. Call (860) 735-1448.",
         },
       ],
     },

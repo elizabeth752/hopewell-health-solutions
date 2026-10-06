@@ -7,7 +7,7 @@ export default {
   excerpt: "PHP is a structured, intensive level of mental health care for those who need daily support but don't require overnight or inpatient hospitalization.",
   heroImage: "/Assets/Comprehensive%20Tailored%20Care.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2026-04-02",
   dateModified: "2026-04-02",
   readingMinutes: 3,

@@ -13,7 +13,7 @@ export default {
     "Why first responders carry invisible wounds, how cumulative trauma shows up, and how specialized care helps them heal and rebuild resilience.",
   heroImage: "/Assets/Blogs/trauma-and-first-responders-the-hidden-cost-of-heroism.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2025-12-15",
   dateModified: "2025-12-15",
   readingMinutes: 3,

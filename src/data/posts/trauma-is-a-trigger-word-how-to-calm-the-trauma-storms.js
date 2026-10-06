@@ -7,7 +7,7 @@ export default {
   excerpt: "Trauma can feel overwhelming, but grounding, breathing, self-compassion, and trauma-informed therapy offer real tools to find calm within the storm.",
   heroImage: "/Assets/Blogs/trauma-is-a-trigger-word-how-to-calm-the-trauma-storms.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-10-07",
   dateModified: "2024-10-07",
   readingMinutes: 4,

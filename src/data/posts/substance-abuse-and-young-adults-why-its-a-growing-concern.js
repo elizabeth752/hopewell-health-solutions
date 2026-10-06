@@ -7,7 +7,7 @@ export default {
   excerpt: "Why young adults face the highest risk of substance use disorders, and how Hopewell Health Solutions helps break the cycle of addiction.",
   heroImage: "/Assets/Blogs/substance-abuse-and-young-adults-why-its-a-growing-concern.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-10-07",
   dateModified: "2024-10-07",
   readingMinutes: 4,
