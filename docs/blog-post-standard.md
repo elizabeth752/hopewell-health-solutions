@@ -54,9 +54,21 @@ language (don't reskin the last post's shapes with new labels).
   coordinate, which read as one line connecting to the wrong label even
   though the paths were mathematically correct — order callout rows to match
   the source shape's natural top-to-bottom layout so no two leader lines can
-  visually cross. (3) A rotated "balance scale" beam read fine in source but
-  needs the pivot/rotation actually checked at render time to confirm the
-  heavier side reads as lower.
+  visually cross. (3) A rotated "balance scale" beam (`<line>` + `transform=
+  "rotate(-6 cx cy)"`) rendered and was eyeballed as fine, then shipped with
+  the heavier side reading as *higher* — `rotate()` pivots around the point
+  you give it, not around "make the right side go down," so the sign of the
+  angle needs to be checked against which side you want lower, not assumed.
+  The same rotation also left a gap above one pan, because its connector
+  line used fixed coordinates that didn't match where the rotated beam
+  endpoint actually landed. A user caught both in the published PR, not the
+  render-and-glance QA pass. Fix: for any tilt/beam/seesaw diagram, skip
+  `rotate()` entirely — author the two beam endpoints as literal coordinates
+  (e.g. `x1,y1` to `x2,y2` with the heavier side's `y` numerically larger),
+  and attach every connector line to those exact literal endpoints. When a
+  render looks "about right," explicitly re-derive which element is supposed
+  to be visually lower/heavier/first and confirm the raster agrees — don't
+  let a plausible-looking image stand in for that check.
 - The `sections` block model has no table type (`p`, `h3`, `ul`, `img`, `note`
   only). When source copy includes a comparison table, don't flatten it to
   prose — build one of the three infographics as the table's replacement
