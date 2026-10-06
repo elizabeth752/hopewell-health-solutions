@@ -7,7 +7,7 @@ export default {
   excerpt: "How Intensive Outpatient Programs (IOPs) provide effective, flexible addiction treatment that fits around daily life and supports lasting recovery.",
   heroImage: "/Assets/Blogs/addiction-iop-treatment-what-it-is-and-why-it-works.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-11-19",
   dateModified: "2024-11-19",
   readingMinutes: 3,

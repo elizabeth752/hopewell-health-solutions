@@ -7,7 +7,7 @@ export default {
   excerpt: "Trauma can be silent and subtle. Learn the common signs you may be experiencing it, why naming it matters, and what to do next.",
   heroImage: "/Assets/Blogs/how-to-know-if-youre-experiencing-trauma.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2025-07-21",
   dateModified: "2025-07-21",
   readingMinutes: 3,

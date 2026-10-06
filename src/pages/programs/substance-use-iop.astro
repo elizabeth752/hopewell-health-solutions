@@ -61,14 +61,13 @@ const reviews = [
 ];
 const locations = [
   ["Downtown Glastonbury", "300 Hebron Ave, Suite 203, Glastonbury, CT 06033", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus"],
-  ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
 ];
 const faqs = [
   ["What is an Addiction IOP?", "A structured yet flexible program for substance use disorders — a higher level of care than weekly outpatient therapy, but without an overnight stay. You receive intensive support several times a week while living at home and keeping up with work, school, and family."],
   ["How often will I attend, and for how long?", "Typically three to five sessions a week, each lasting a few hours. The program generally spans six to eight weeks, adjusted to your needs."],
   ["Is IOP right for me, or do I need inpatient?", "IOP is ideal if you’re ready to commit to recovery but don’t need 24/7 supervision. If you’re experiencing severe withdrawal, need medical detox, or require round-the-clock care, an inpatient program may fit better — our specialists assess to recommend the right level."],
   ["What substances do you treat?", "Alcohol, prescription medications, opioids, stimulants, and other illicit substances — including co-occurring mental health conditions."],
-  ["Will my insurance cover it?", "We accept most major PPO plans, including Tricare (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free."],
+  ["Will my insurance cover it?", "We accept most major PPO plans. TRICARE East is accepted as a PPO plan (we’re not in network with TRICARE), and we don’t accept Medicaid / HUSKY. We’ll verify your benefits for free."],
 ];
 ---
 
@@ -97,7 +96,6 @@ const faqs = [
           <div class="mt-8">
             <a href="tel:8607351448" class="inline-flex items-center gap-2.5 rounded-lg border border-azul px-8 py-4 text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
           </div>
-          <p class="mt-6 text-xs text-muted">Medically reviewed by Katrin Moskowitz, DNP, PMHNP-BC</p>
         </div>
         <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading="Take the first step" sub="Confidential. Free insurance check — we’ll help you find the right level of care." /></div>
       </div>
@@ -250,7 +248,7 @@ const faqs = [
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
         <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Most major PPO plans accepted</h2>
-        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans, including Tricare (we don’t accept Medicaid / HUSKY). Our admissions team verifies your benefits at no cost — before you commit to anything.</p>
+        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans. TRICARE East is accepted as a PPO plan (not in network), and we don’t accept Medicaid / HUSKY. Our admissions team verifies your benefits at no cost — before you commit to anything.</p>
         <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
           {insurers.map(([name, img]) => (
             <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>

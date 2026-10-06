@@ -13,7 +13,7 @@ export default {
     "Why the emergency room can't treat the underlying mental health condition behind a crisis, and how IOP and PHP provide the sustained care healing requires.",
   heroImage: "/Assets/Blogs/why-the-er-is-not-mental-health-treatment-and-why-php-and-iop-is.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2026-06-09",
   dateModified: "2026-06-09",
   readingMinutes: 5,

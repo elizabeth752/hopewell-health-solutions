@@ -7,7 +7,7 @@ export default {
   excerpt: "A Hopewell IOP clinician compares inpatient care and intensive outpatient programs to help parents choose the right level of care for their child.",
   heroImage: "/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-09-24",
   dateModified: "2024-09-24",
   readingMinutes: 4,

@@ -77,7 +77,7 @@ const faqs = [
   ["What does the program include, and what’s the schedule?", "Our IOPs meet four times a week (Mon–Thu), day or evening depending on the track. Tweens run 4:30–7:30 PM and teens run 5–8 PM; Women’s Wellness and Adult Co-Occurring run 9 AM–12 PM or 5–8 PM. Each runs 8–12 weeks and blends DBT, CBT, interpersonal therapy, mindfulness, and expressive therapies (art, music, yoga). Family involvement is encouraged in the tween and teen programs."],
   ["Who can benefit from an IOP?", "Individuals experiencing depression, anxiety, PTSD, self-injury or suicidal thoughts, school refusal, trauma, emotional dysregulation, or substance use. All programs are inclusive and affirming — we welcome everyone regardless of gender identity, sexual orientation, cultural background, or diagnosis."],
   ["What makes Hopewell Health Solutions’ IOPs unique?", "A multidisciplinary team with 10–30 years of experience, customized treatment plans, a holistic approach — and we are the only private IOP in Connecticut that is Joint Commission Accredited."],
-  ["Do you accept insurance for the IOP programs?", "Yes — we accept almost all private insurances, including Tricare, for all of our IOP programs (we don’t accept Medicaid / HUSKY)."],
+  ["Do you accept insurance for the IOP programs?", "Yes — we accept almost all private insurances for all of our IOP programs. TRICARE East is accepted as a PPO plan (we’re not in network with TRICARE), and we don’t accept Medicaid / HUSKY."],
   ["How do I get started?", "Call us or request a consultation online to schedule an in-person or telehealth evaluation with our intake team. We’ll help determine which IOP track is the right fit for you or your loved one."],
 ];
 ---
@@ -264,8 +264,8 @@ const faqs = [
     <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Almost all private insurance — including Tricare</h2>
-        <p class="mt-3 text-muted max-w-xl">We accept almost all private insurance plans for our IOP programs, including Tricare (we don’t accept Medicaid / HUSKY). Our admissions team verifies your benefits at no cost — before you commit to anything.</p>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Almost all private insurance — TRICARE East accepted as PPO</h2>
+        <p class="mt-3 text-muted max-w-xl">We accept almost all private insurance plans for our IOP programs. TRICARE East is accepted as a PPO plan (we’re not in network with TRICARE), and we don’t accept Medicaid / HUSKY. Our admissions team verifies your benefits at no cost — before you commit to anything.</p>
         <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
           {insurers.map(([name, img]) => (
             <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>

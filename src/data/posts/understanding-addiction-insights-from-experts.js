@@ -7,7 +7,7 @@ export default {
   excerpt: "Expert insights on how addiction changes the brain, why willpower isn't enough, and the treatments that make recovery possible.",
   heroImage: "/Assets/Blogs/understanding-addiction-insights-from-experts.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-10-07",
   dateModified: "2024-10-07",
   readingMinutes: 4,

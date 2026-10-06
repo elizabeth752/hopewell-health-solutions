@@ -7,7 +7,7 @@ export default {
   excerpt: "First responder trauma is often chronic, cumulative, and tied to identity, requiring care that combines clinical expertise with cultural understanding.",
   heroImage: "/Assets/Blogs/why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2025-12-22",
   dateModified: "2025-12-22",
   readingMinutes: 3,

@@ -7,7 +7,7 @@ export default {
   excerpt: "First responders face daily trauma and stress. Recognize the warning signs and learn how specialized therapy can help you heal and regain balance.",
   heroImage: "/Assets/Blogs/first-responder-mental-health-when-you-need-help.webp",
   authorSlug: "teesha-huertas-lcsw",
-  reviewerSlug: "katrin-moskowitz-dnp-pmhnp-bc-fnp",
+  reviewerSlug: null,
   datePublished: "2024-10-16",
   dateModified: "2024-10-16",
   readingMinutes: 4,
