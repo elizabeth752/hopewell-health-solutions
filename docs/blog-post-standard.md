@@ -42,6 +42,26 @@ language (don't reskin the last post's shapes with new labels).
   full-size raster before calling it done — a label sitting exactly on top of
   a dashed line can look fine in a quick preview and only show as broken once
   you look at it at real size.
+- **Rasterize every infographic to PNG and actually look at it before shipping**
+  (confirmed 2026-10-06, postpartum-rage/baby-blues posts) — three real bugs
+  only showed up this way, none visible from reading the SVG source: (1) a
+  `transform="translate(x,y) scale(s)"` on a path whose own coordinates were
+  already in final position — `scale()` multiplies from the origin `(0,0)`,
+  not the shape's own center, so it silently teleported the icon away from
+  where it visually needed to be; author icon paths directly in their final
+  position instead of scaling a copy-pasted shape into place. (2) A multi-item
+  body-map/callout diagram with ≥3 leader lines had two lines share an x
+  coordinate, which read as one line connecting to the wrong label even
+  though the paths were mathematically correct — order callout rows to match
+  the source shape's natural top-to-bottom layout so no two leader lines can
+  visually cross. (3) A rotated "balance scale" beam read fine in source but
+  needs the pivot/rotation actually checked at render time to confirm the
+  heavier side reads as lower.
+- The `sections` block model has no table type (`p`, `h3`, `ul`, `img`, `note`
+  only). When source copy includes a comparison table, don't flatten it to
+  prose — build one of the three infographics as the table's replacement
+  (e.g. two side-by-side comparison cards), and drop a one-line prose synthesis
+  of the table right before it so the section still reads without the image.
 
 ## 3. Schema
 

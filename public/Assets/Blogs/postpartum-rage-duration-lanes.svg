@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="dltitle dldesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="dltitle">How long postpartum rage can last</title>
+  <desc id="dldesc">Irritability that comes with the baby blues usually fades within the first two weeks. Anger that is severe or lasts longer, most often starting four to eight weeks after birth but possible any time in the first year, may be a sign of postpartum depression that needs treatment.</desc>
+  <rect width="1100" height="420" fill="#ffffff"/>
+
+  <text x="50" y="48" font-size="20" font-weight="700" fill="#001d37">There is no set timeline</text>
+
+  <!-- axis -->
+  <line x1="260" y1="340" x2="1040" y2="340" stroke="#e4ddd0" stroke-width="2"/>
+  <text x="260" y="365" font-size="12" fill="#5a6b7a">Birth</text>
+  <text x="380" y="365" text-anchor="middle" font-size="12" fill="#5a6b7a">2 wks</text>
+  <text x="520" y="365" text-anchor="middle" font-size="12" fill="#5a6b7a">4&#8211;8 wks</text>
+  <text x="1040" y="365" text-anchor="end" font-size="12" fill="#5a6b7a">12 months</text>
+  <line x1="380" y1="330" x2="380" y2="350" stroke="#5a6b7a" stroke-width="1.5"/>
+  <line x1="520" y1="330" x2="520" y2="350" stroke="#5a6b7a" stroke-width="1.5"/>
+
+  <!-- Lane 1: baby blues -->
+  <text x="60" y="118" font-size="14" font-weight="700" fill="#001d37">The baby blues</text>
+  <rect x="260" y="130" width="120" height="36" rx="18" fill="#e7eef5"/>
+  <rect x="260" y="130" width="120" height="36" rx="18" fill="none" stroke="#265489" stroke-width="2"/>
+  <text x="320" y="153" text-anchor="middle" font-size="13" font-weight="700" fill="#265489">Usually fades</text>
+  <text x="60" y="140" font-size="12" fill="#5a6b7a">mild, comes and goes</text>
+
+  <!-- Lane 2: possible PPD -->
+  <text x="60" y="228" font-size="14" font-weight="700" fill="#001d37">Anger that is severe</text>
+  <text x="60" y="246" font-size="12" fill="#5a6b7a">or lasts past 2 weeks</text>
+  <rect x="380" y="240" width="200" height="36" rx="18" fill="#f3e8d2"/>
+  <rect x="380" y="240" width="200" height="36" rx="18" fill="none" stroke="#b6863c" stroke-width="2"/>
+  <text x="480" y="263" text-anchor="middle" font-size="13" font-weight="700" fill="#b6863c">Most cases begin</text>
+  <rect x="580" y="240" width="460" height="36" rx="18" fill="#f3e8d2" opacity="0.55" stroke="#b6863c" stroke-width="2" stroke-dasharray="3,6"/>
+  <text x="810" y="263" text-anchor="middle" font-size="13" font-weight="700" fill="#b6863c">...but can start any time in year one</text>
+
+  <text x="60" y="400" font-size="13" fill="#5a6b7a">Either way, anger tied to depression or anxiety usually needs treatment to ease.</text>
+</svg>
