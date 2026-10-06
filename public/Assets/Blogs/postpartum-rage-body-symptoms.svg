@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" role="img" aria-labelledby="bstitle bsdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="bstitle">Early physical warning signs of postpartum rage</title>
+  <desc id="bsdesc">Rage often gives warning signs in the body first: a hot face, a tight jaw, a racing heart, and shaking or clenched hands. Noticing these early can be the moment to step away.</desc>
+  <rect width="1100" height="520" fill="#ffffff"/>
+
+  <text x="50" y="52" font-size="20" font-weight="700" fill="#001d37">Notice your early signs</text>
+  <text x="50" y="78" font-size="14" fill="#5a6b7a">Rage often gives warning signs in the body first</text>
+
+  <!-- simple front-facing bust silhouette -->
+  <g transform="translate(300,280)">
+    <path d="M-90,170 C-90,70 -60,10 0,10 C60,10 90,70 90,170 Z" fill="#e7eef5"/>
+    <circle cx="0" cy="-45" r="62" fill="#e7eef5"/>
+    <circle cx="0" cy="-45" r="62" fill="none" stroke="#265489" stroke-width="2.5"/>
+    <path d="M-90,170 C-90,70 -60,10 0,10 C60,10 90,70 90,170 Z" fill="none" stroke="#265489" stroke-width="2.5"/>
+  </g>
+
+  <!-- 4 rows, top to bottom matching the body from face down to torso, so no leader line crosses another -->
+
+  <!-- row 1: hot face (forehead) -->
+  <circle cx="340" cy="245" r="5" fill="#b6863c"/>
+  <path d="M340,245 Q410,210 448,180" stroke="#b6863c" stroke-width="1.5" fill="none"/>
+  <circle cx="470" cy="170" r="26" fill="#f3e8d2"/>
+  <path d="M458,168 q6,-7 12,0 q6,-7 12,0" fill="none" stroke="#b6863c" stroke-width="2" stroke-linecap="round"/>
+  <path d="M458,176 q6,-7 12,0 q6,-7 12,0" fill="none" stroke="#b6863c" stroke-width="2" stroke-linecap="round"/>
+  <text x="508" y="166" font-size="15" font-weight="700" fill="#001d37">A hot face</text>
+  <text x="508" y="184" font-size="12" fill="#5a6b7a">flushed, warm</text>
+
+  <!-- row 2: tight jaw (chin / jawline) -->
+  <circle cx="330" cy="315" r="5" fill="#265489"/>
+  <path d="M330,315 Q400,280 448,260" stroke="#265489" stroke-width="1.5" fill="none"/>
+  <circle cx="470" cy="250" r="26" fill="#e7eef5"/>
+  <path d="M460,241 L480,241 L476,264 L464,264 Z" fill="none" stroke="#265489" stroke-width="2" stroke-linejoin="round"/>
+  <text x="508" y="246" font-size="15" font-weight="700" fill="#001d37">A tight jaw</text>
+  <text x="508" y="264" font-size="12" fill="#5a6b7a">clenched, aching</text>
+
+  <!-- row 3: racing heart (chest) -->
+  <circle cx="320" cy="385" r="5" fill="#b6863c"/>
+  <path d="M320,385 Q400,350 448,340" stroke="#b6863c" stroke-width="1.5" fill="none"/>
+  <circle cx="470" cy="330" r="26" fill="#f3e8d2"/>
+  <path d="M470,344 C456,332 456,318 466,316 C469,315 470,318 470,320 C470,318 471,315 474,316 C484,318 484,332 470,344 Z" fill="#b6863c"/>
+  <text x="508" y="326" font-size="15" font-weight="700" fill="#001d37">A racing heart</text>
+  <text x="508" y="344" font-size="12" fill="#5a6b7a">pounding, fast</text>
+
+  <!-- row 4: shaking hands (lower torso) -->
+  <circle cx="280" cy="432" r="5" fill="#265489"/>
+  <path d="M280,432 Q380,415 448,410" stroke="#265489" stroke-width="1.5" fill="none"/>
+  <circle cx="470" cy="410" r="26" fill="#e7eef5"/>
+  <path d="M461,400 l-2,16 M470,398 l0,18 M479,400 l2,16" stroke="#265489" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <text x="508" y="406" font-size="15" font-weight="700" fill="#001d37">Shaking hands</text>
+  <text x="508" y="424" font-size="12" fill="#5a6b7a">or clenched fists</text>
+
+  <text x="50" y="495" font-size="13" fill="#5a6b7a">Patterns around hunger, night feedings, or a certain time of day show where to add support.</text>
+</svg>

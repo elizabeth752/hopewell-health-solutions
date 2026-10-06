@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>.serif { font-family: Georgia, 'Times New Roman', serif; }</style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="628" fill="#f5f2eb"/>
+
+  <!-- ============ LEFT PANEL ============ -->
+  <rect x="0" y="0" width="460" height="628" fill="#1b3e63"/>
+  <text x="230" y="54" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f3e8d2">HOPEWELL HEALTH SOLUTIONS</text>
+
+  <text x="230" y="150" text-anchor="middle" class="serif" font-size="25" font-weight="700" fill="#ffffff">Postpartum Rage</text>
+  <text x="230" y="184" text-anchor="middle" class="serif" font-size="20" fill="#ffffff">Why It Happens &amp; When</text>
+  <text x="230" y="212" text-anchor="middle" class="serif" font-size="20" fill="#ffffff">to Get Help</text>
+
+  <line x1="190" y1="240" x2="270" y2="240" stroke="#b6863c" stroke-width="2"/>
+  <text x="230" y="266" text-anchor="middle" font-size="13" letter-spacing="0.5" fill="#e7eef5">Women's Mental Health</text>
+
+  <text x="230" y="562" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">(860) 735-1448</text>
+  <text x="230" y="594" text-anchor="middle" font-size="13" fill="#9fb6ce">hopewellhealthsolutions.com</text>
+
+  <!-- ============ RIGHT: HERO STAT ============ -->
+  <text x="500" y="76" font-size="13" font-weight="700" letter-spacing="1.8" fill="#b6863c">BY THE NUMBERS</text>
+
+  <text x="830" y="220" text-anchor="middle" font-size="110" font-weight="700" fill="#b6863c">1 in 8</text>
+  <text x="830" y="260" text-anchor="middle" font-size="18" fill="#001d37">new mothers in the U.S. report</text>
+  <text x="830" y="284" text-anchor="middle" font-size="18" fill="#001d37">postpartum depression symptoms</text>
+  <text x="830" y="310" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6b7a">Source: Office on Women's Health, 2023</text>
+
+  <!-- ============ RIGHT: TRIGGERS STRIP ============ -->
+  <line x1="500" y1="344" x2="1160" y2="344" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="500" y="370" font-size="12" font-weight="700" letter-spacing="1.2" fill="#b6863c">TRIGGERS OFTEN STACK UP AT ONCE</text>
+
+  <!-- Sleep loss -->
+  <circle cx="555" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(555,434)">
+    <path d="M-10,2 C-10,-6 -2,-10 6,-6 C-2,-4 -4,2 2,4 C-4,6 -10,6 -10,2 Z" fill="#265489"/>
+  </g>
+  <text x="555" y="482" text-anchor="middle" font-size="11" font-weight="700" fill="#001d37">Sleep Loss</text>
+
+  <!-- Mental load -->
+  <circle cx="665" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(665,434)">
+    <rect x="-10" y="-9" width="20" height="18" rx="2" fill="none" stroke="#265489" stroke-width="1.8"/>
+    <line x1="-6" y1="-3" x2="6" y2="-3" stroke="#265489" stroke-width="1.6"/>
+    <line x1="-6" y1="2" x2="6" y2="2" stroke="#265489" stroke-width="1.6"/>
+    <line x1="-6" y1="7" x2="2" y2="7" stroke="#265489" stroke-width="1.6"/>
+  </g>
+  <text x="665" y="482" text-anchor="middle" font-size="10.5" font-weight="700" fill="#001d37">Mental Load</text>
+
+  <!-- Support -->
+  <circle cx="775" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(775,434)">
+    <circle cx="-6" cy="-6" r="5" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <circle cx="6" cy="-6" r="5" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <path d="M-13,9 C-13,0 -2,0 -2,9 M-1,9 C-1,0 13,0 13,9" fill="none" stroke="#265489" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <text x="775" y="482" text-anchor="middle" font-size="11" font-weight="700" fill="#001d37">Support</text>
+
+  <!-- Hard birth -->
+  <circle cx="885" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(885,434)">
+    <path d="M0,-12 C7,-12 11,-6 11,0 C11,8 4,12 0,12 C-4,12 -11,8 -11,0 C-11,-6 -7,-12 0,-12 Z" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <path d="M-5,0 L-1,4 L6,-5" fill="none" stroke="#b6863c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="885" y="482" text-anchor="middle" font-size="10.5" font-weight="700" fill="#001d37">A Hard Birth</text>
+
+  <!-- Hormones -->
+  <circle cx="995" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(995,434)">
+    <path d="M0,-12 C5,-5 6,-1 3,3 C5,2 7,-1 7,-1 C8,5 4,12 -1,12 C-8,12 -9,5 -8,0 C-6,2 -5,2 -4,0 C-5,-3 -3,-8 0,-12 Z" fill="none" stroke="#265489" stroke-width="1.6"/>
+  </g>
+  <text x="995" y="482" text-anchor="middle" font-size="10.5" font-weight="700" fill="#001d37">Hormones</text>
+
+  <!-- History -->
+  <circle cx="1105" cy="434" r="26" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(1105,434)">
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#265489" stroke-width="1.6"/>
+    <line x1="0" y1="0" x2="0" y2="-7" stroke="#265489" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="5" y2="3" stroke="#265489" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <text x="1105" y="482" text-anchor="middle" font-size="11" font-weight="700" fill="#001d37">History</text>
+
+  <text x="830" y="538" text-anchor="middle" font-size="13" fill="#5a6b7a">It's common, it has real triggers, and it is treatable.</text>
+
+  <rect x="500" y="570" width="660" height="1" fill="#e4ddd0"/>
+  <text x="500" y="602" font-size="11" fill="#5a6b7a">Individual therapy &#183; Medication management &#183; Women's Wellness IOP &#183; 6 CT locations</text>
+</svg>

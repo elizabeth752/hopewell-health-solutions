@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" role="img" aria-labelledby="cctitle ccdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="cctitle">Baby blues versus postpartum depression, side by side</title>
+  <desc id="ccdesc">Baby blues start within days of birth, last two weeks or less, feel mild, and ease with rest and support. Postpartum depression can start any time in the first year, lasts more than two weeks, feels heavier and more constant, and usually needs professional care to improve.</desc>
+  <rect width="1100" height="600" fill="#ffffff"/>
+
+  <text x="550" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#001d37">Two different experiences</text>
+
+  <!-- Card: Baby Blues -->
+  <rect x="40" y="68" width="490" height="500" rx="18" fill="#e7eef5"/>
+  <text x="285" y="110" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">The Baby Blues</text>
+
+  <g font-size="13.5" fill="#001d37">
+    <text x="70" y="152" font-weight="700">When it starts</text>
+    <text x="70" y="172">Within a few days of birth</text>
+
+    <text x="70" y="210" font-weight="700">How long it lasts</text>
+    <text x="70" y="230">Two weeks or less</text>
+
+    <text x="70" y="268" font-weight="700">How strong it feels</text>
+    <text x="70" y="288">Mild, comes and goes</text>
+
+    <text x="70" y="326" font-weight="700">Daily life</text>
+    <text x="70" y="346">You can still manage day to day</text>
+
+    <text x="70" y="384" font-weight="700">Feelings about the baby</text>
+    <text x="70" y="404">Tired, but still connected</text>
+
+    <text x="70" y="442" font-weight="700">What helps</text>
+    <text x="70" y="462">Rest, help at home, and time</text>
+  </g>
+  <line x1="70" y1="500" x2="500" y2="500" stroke="#265489" stroke-width="1.5" opacity="0.3"/>
+  <text x="285" y="534" text-anchor="middle" font-size="13" fill="#265489" font-weight="700">Common and short-lived</text>
+
+  <!-- Card: Postpartum Depression -->
+  <rect x="570" y="68" width="490" height="500" rx="18" fill="#1b3e63"/>
+  <text x="815" y="110" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">Postpartum Depression</text>
+
+  <g font-size="13.5" fill="#f3e8d2">
+    <text x="600" y="152" font-weight="700" fill="#ffffff">When it starts</text>
+    <text x="600" y="172">Weeks to months after birth, up to a year</text>
+
+    <text x="600" y="210" font-weight="700" fill="#ffffff">How long it lasts</text>
+    <text x="600" y="230">More than two weeks; usually needs treatment</text>
+
+    <text x="600" y="268" font-weight="700" fill="#ffffff">How strong it feels</text>
+    <text x="600" y="288">Heavier and more constant</text>
+
+    <text x="600" y="326" font-weight="700" fill="#ffffff">Daily life</text>
+    <text x="600" y="346">Hard to eat, sleep, work, or care for the baby</text>
+
+    <text x="600" y="384" font-weight="700" fill="#ffffff">Feelings about the baby</text>
+    <text x="600" y="404">May feel distant, numb, or unsure</text>
+
+    <text x="600" y="442" font-weight="700" fill="#ffffff">What helps</text>
+    <text x="600" y="462">Therapy, medicine, or both</text>
+  </g>
+  <line x1="600" y1="500" x2="1030" y2="500" stroke="#b6863c" stroke-width="1.5" opacity="0.5"/>
+  <text x="815" y="534" text-anchor="middle" font-size="13" fill="#f3e8d2" font-weight="700">Usually needs professional care</text>
+</svg>

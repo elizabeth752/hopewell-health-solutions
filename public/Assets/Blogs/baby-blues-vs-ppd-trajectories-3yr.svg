@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 520" role="img" aria-labelledby="trtitle trdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="trtitle">Postpartum depression symptoms can follow different paths over three years</title>
+  <desc id="trdesc">An NIH study followed more than 4,500 mothers for three years after birth. Most had low symptoms the whole time. About 13 percent started with moderate symptoms that eased over time. About 8 percent started with mild symptoms that got worse. About 5 percent had high symptoms that stayed high, in some cases for years.</desc>
+  <rect width="1100" height="520" fill="#ffffff"/>
+
+  <text x="50" y="46" font-size="20" font-weight="700" fill="#001d37">Symptoms don't follow one path</text>
+  <text x="50" y="70" font-size="13.5" fill="#5a6b7a">NIH study following more than 4,500 mothers for three years after birth</text>
+
+  <!-- axes -->
+  <line x1="90" y1="420" x2="1040" y2="420" stroke="#5a6b7a" stroke-width="1.5"/>
+  <line x1="90" y1="110" x2="90" y2="420" stroke="#5a6b7a" stroke-width="1.5"/>
+  <text x="90" y="440" font-size="12" fill="#5a6b7a">Birth</text>
+  <text x="430" y="440" text-anchor="middle" font-size="12" fill="#5a6b7a">Year 1</text>
+  <text x="765" y="440" text-anchor="middle" font-size="12" fill="#5a6b7a">Year 2</text>
+  <text x="1040" y="440" text-anchor="end" font-size="12" fill="#5a6b7a">Year 3</text>
+  <text x="58" y="424" text-anchor="end" font-size="11" fill="#5a6b7a">Low</text>
+  <text x="58" y="268" text-anchor="end" font-size="11" fill="#5a6b7a">Moderate</text>
+  <text x="58" y="118" text-anchor="end" font-size="11" fill="#5a6b7a">High</text>
+
+  <!-- Low, most mothers (flat, low) -->
+  <path d="M90,400 L1040,398" fill="none" stroke="#265489" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Moderate, improving: 13% -->
+  <path d="M90,275 C 320,260 560,330 1040,378" fill="none" stroke="#b6863c" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Mild, worsening: 8% -->
+  <path d="M90,392 C 320,370 560,290 1040,195" fill="none" stroke="#5c7c6b" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- High, persisting: 5% -->
+  <path d="M90,150 C 320,145 560,150 1040,155" fill="none" stroke="#9b2f2f" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- legend -->
+  <g font-size="13">
+    <rect x="700" y="120" width="360" height="150" rx="12" fill="#f5f2eb"/>
+    <line x1="718" y1="144" x2="742" y2="144" stroke="#265489" stroke-width="4"/>
+    <text x="752" y="149" fill="#001d37">Low symptoms &#8212; most mothers</text>
+    <line x1="718" y1="172" x2="742" y2="172" stroke="#b6863c" stroke-width="4"/>
+    <text x="752" y="177" fill="#001d37">Moderate, improving &#8212; 13%</text>
+    <line x1="718" y1="200" x2="742" y2="200" stroke="#5c7c6b" stroke-width="4"/>
+    <text x="752" y="205" fill="#001d37">Mild, worsening &#8212; 8%</text>
+    <line x1="718" y1="228" x2="742" y2="228" stroke="#9b2f2f" stroke-width="4"/>
+    <text x="752" y="233" fill="#001d37">High, stays high &#8212; 5%</text>
+    <text x="718" y="258" font-size="11.5" fill="#5a6b7a">in some cases, for years</text>
+  </g>
+
+  <text x="50" y="485" font-size="13" fill="#5a6b7a">With treatment the picture changes &#8212; most women feel better and symptoms improve.</text>
+</svg>
