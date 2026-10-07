@@ -1,4 +1,5 @@
 ---
+import LegitScriptSeal from "./LegitScriptSeal.astro";
 const locations = [
   ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct/"],
   ["Downtown Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct-2/"],
@@ -72,6 +73,7 @@ const cols = [
             <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
           </span>
         ))}
+        <LegitScriptSeal />
       </div>
     </div>
     <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
