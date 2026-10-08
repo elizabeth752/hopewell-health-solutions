@@ -1,5 +1,6 @@
 ---
 import LegitScriptSeal from "../../components/LegitScriptSeal.astro";
+import BbbSeal from "../../components/BbbSeal.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -134,9 +135,10 @@ const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><pa
   <section class="bg-white border-t border-line">
     <div class="mx-auto max-w-6xl px-5 py-12">
       <p class="text-center text-xs font-semibold uppercase tracking-[0.15em] text-muted">Accredited, verified &amp; trusted</p>
-      <div class="mt-7 grid grid-cols-3 gap-8 items-center justify-items-center max-w-xl mx-auto">
+      <div class="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center max-w-3xl mx-auto">
         {trustMarks.map(([alt, src]) => <img src={src} alt={alt} loading="lazy" class="h-14 w-auto max-w-[160px] object-contain" />)}
         <LegitScriptSeal />
+        <BbbSeal />
       </div>
     </div>
   </section>
