@@ -8,6 +8,7 @@ import MediaStrip from "../components/MediaStrip.astro";
 import { posts } from "../data/posts.js";
 import { providers } from "../data/providers.js";
 import LegitScriptSeal from "../components/LegitScriptSeal.astro";
+import BbbSeal from "../components/BbbSeal.astro";
 
 const C = "/Assets/credibility/";
 const trustMarks = [
@@ -144,6 +145,7 @@ const orgSchema = {
     "https://co.pinterest.com/hopewellhs/",
     "https://bsky.app/profile/hopewellhs.bsky.social",
     "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012",
+    "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396",
   ],
 };
 ---
@@ -171,6 +173,7 @@ const orgSchema = {
           <div class="mt-3 flex flex-wrap items-center gap-x-7 gap-y-3">
             {trustMarks.map(([alt, src]) => <img src={src} alt={alt} width="150" height="36" loading="lazy" decoding="async" class="h-9 w-auto max-w-[150px] object-contain" />)}
             <LegitScriptSeal />
+            <BbbSeal />
           </div>
         </div>
       </div>
