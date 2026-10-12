@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" role="img" aria-labelledby="pgtitle pgdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="pgtitle">How common are postpartum obsessions and compulsions?</title>
+  <desc id="pgdesc">Out of 100 new mothers screened two weeks after birth in one study, about 11 screened positive for OCD, 38 more reported milder obsessions or compulsions that did not reach that level, and 51 reported no such symptoms.</desc>
+  <rect width="1100" height="620" fill="#ffffff"/>
+
+  <text x="50" y="50" font-size="20" font-weight="700" fill="#001d37">How common are these thoughts?</text>
+  <text x="50" y="76" font-size="14" fill="#5a6b7a">Out of 100 new mothers screened two weeks after birth, in one study</text>
+
+  <!-- 10x10 grid of 100 person icons, row-major, first 11 = OCD positive, next 38 = subclinical, remaining 51 = no symptoms -->
+  <g id="grid">
+    <!-- generated programmatically below via repeated g transforms -->
+  </g>
+
+  <!-- Row-by-row icons: 10 columns, 10 rows. Column x centers: 77,111,145,179,213,247,281,315,349,383 (step 34, start 77).
+       Row y centers: 130,170,210,250,290,330,370,410,450,490 (step 40, start 130). -->
+
+  <!-- Row 1 (icons 1-10): 1-10 fill OCD-positive blue (all 10) -->
+  <g fill="#265489">
+    <g transform="translate(77,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,130)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  </g>
+  <!-- Row 2 (icons 11-20): icon 11 blue, icons 12-20 gold -->
+  <g>
+    <g fill="#265489" transform="translate(77,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(111,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(145,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(179,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(213,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(247,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(281,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(315,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(349,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#b6863c" transform="translate(383,170)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  </g>
+  <!-- Rows 3-5 (icons 21-50): all gold (30 icons, running subclinical total 11+9+30=50) -->
+  <g fill="#b6863c">
+    <g transform="translate(77,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,210)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+
+    <g transform="translate(77,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,250)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+
+    <g transform="translate(77,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  </g>
+  <!-- Icon 50 (last of the subclinical block: 9+10+10+9=38 gold total through here) is gray, not gold -->
+  <g fill="#d7d2c6" transform="translate(383,290)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  <!-- Row 6 (icons 51-60): all neutral gray -->
+  <g>
+    <g fill="#d7d2c6" transform="translate(77,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(111,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(145,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(179,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(213,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(247,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(281,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(315,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(349,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g fill="#d7d2c6" transform="translate(383,330)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  </g>
+  <!-- Rows 7-10 (icons 61-100): all neutral gray (40 icons) -->
+  <g fill="#d7d2c6">
+    <g transform="translate(77,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,370)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+
+    <g transform="translate(77,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,410)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+
+    <g transform="translate(77,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,450)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+
+    <g transform="translate(77,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(111,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(145,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(179,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(213,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(247,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(281,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(315,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(349,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+    <g transform="translate(383,490)"><circle cx="0" cy="-13" r="6"/><path d="M-9,10 C-9,-4 9,-4 9,10 Z"/></g>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="14" fill="#001d37">
+    <circle cx="480" cy="125" r="7" fill="#265489"/>
+    <text x="500" y="130" font-weight="700">11 of 100</text>
+    <text x="500" y="150" fill="#5a6b7a" font-size="13">screened positive for OCD</text>
+
+    <circle cx="480" cy="195" r="7" fill="#b6863c"/>
+    <text x="500" y="200" font-weight="700">38 of 100</text>
+    <text x="500" y="220" fill="#5a6b7a" font-size="13">had milder obsessions or</text>
+    <text x="500" y="236" fill="#5a6b7a" font-size="13">compulsions, short of OCD</text>
+
+    <circle cx="480" cy="305" r="7" fill="#d7d2c6"/>
+    <text x="500" y="310" font-weight="700">51 of 100</text>
+    <text x="500" y="330" fill="#5a6b7a" font-size="13">reported no such symptoms</text>
+  </g>
+
+  <text x="550" y="580" text-anchor="middle" font-size="12.5" fill="#5a6b7a">Based on 461 postpartum women screened with a standard OCD scale two weeks after birth.</text>
+</svg>
