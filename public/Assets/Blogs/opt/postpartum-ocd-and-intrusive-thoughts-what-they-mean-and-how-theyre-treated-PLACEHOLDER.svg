@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 529" role="img" aria-label="Abstract calming graphic in Hopewell's brand colors, standing in for a real photo">
+  <rect width="1024" height="529" fill="#f5f2eb"/>
+  <path d="M-40 100 C 220 170, 460 40, 740 130 S 1040 70, 1090 110 L 1090 -40 L -40 -40 Z" fill="#e7eef5"/>
+  <path d="M-40 140 C 280 80, 500 190, 780 100 S 1040 150, 1090 120 L 1090 -40 L -40 -40 Z" fill="#f3e8d2" opacity="0.8"/>
+  <g transform="translate(512,300)">
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#265489" stroke-width="2.5" opacity="0.3"/>
+    <circle cx="0" cy="0" r="68" fill="none" stroke="#5c7c6b" stroke-width="2.5" opacity="0.4"/>
+    <circle cx="0" cy="0" r="38" fill="#b6863c" opacity="0.2"/>
+  </g>
+</svg>

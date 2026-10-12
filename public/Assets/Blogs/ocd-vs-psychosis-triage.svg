@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" role="img" aria-labelledby="tgtitle tgdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="tgtitle">Postpartum OCD versus postpartum psychosis</title>
+  <desc id="tgdesc">Unusual thoughts or behaviors after having a baby split into two very different paths. Postpartum OCD is common and treatable: the thoughts feel unwanted, the mother knows they don't make sense, and she takes steps to protect her baby. Postpartum psychosis is rare, affecting about 1 to 2 of every 1,000 births, and is a medical emergency with signs like seeing or hearing things that are not there, strange fixed beliefs, and rapid mood swings.</desc>
+  <rect width="1100" height="640" fill="#ffffff"/>
+
+  <text x="550" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#001d37">Two very different paths</text>
+
+  <!-- Top node -->
+  <rect x="330" y="62" width="440" height="64" rx="14" fill="#e7eef5"/>
+  <text x="550" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Unusual thoughts or behaviors after having a baby</text>
+
+  <!-- Fork connector lines -->
+  <line x1="550" y1="126" x2="288" y2="200" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="275,208 287,195 297,208" fill="#5a6b7a"/>
+  <line x1="550" y1="126" x2="812" y2="200" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="825,208 813,195 803,208" fill="#5a6b7a"/>
+
+  <!-- Left box: Postpartum OCD -->
+  <rect x="70" y="210" width="430" height="370" rx="18" fill="#e7eef5"/>
+  <text x="285" y="252" text-anchor="middle" font-size="19" font-weight="700" fill="#265489">Postpartum OCD</text>
+  <text x="285" y="276" text-anchor="middle" font-size="13" font-weight="700" fill="#5a6b7a">COMMON · TREATABLE</text>
+
+  <g font-size="14" fill="#001d37">
+    <circle cx="106" cy="316" r="4" fill="#265489"/>
+    <text x="120" y="321">Thoughts feel unwanted and upsetting</text>
+
+    <circle cx="106" cy="352" r="4" fill="#265489"/>
+    <text x="120" y="357">You know the thoughts don't make sense</text>
+
+    <circle cx="106" cy="388" r="4" fill="#265489"/>
+    <text x="120" y="393">You take steps to protect your baby</text>
+
+    <circle cx="106" cy="424" r="4" fill="#265489"/>
+    <text x="120" y="429">No loss of touch with reality</text>
+  </g>
+  <line x1="106" y1="464" x2="464" y2="464" stroke="#265489" stroke-width="1.5" opacity="0.3"/>
+  <text x="106" y="498" font-size="13.5" font-weight="700" fill="#001d37">Care:</text>
+  <text x="106" y="520" font-size="13.5" fill="#5a6b7a">ERP therapy and medication,</text>
+  <text x="106" y="540" font-size="13.5" fill="#5a6b7a">often alongside support at home.</text>
+
+  <!-- Right box: Postpartum Psychosis -->
+  <rect x="600" y="210" width="430" height="370" rx="18" fill="#1b3e63"/>
+  <text x="815" y="252" text-anchor="middle" font-size="19" font-weight="700" fill="#ffffff">Postpartum Psychosis</text>
+  <text x="815" y="276" text-anchor="middle" font-size="13" font-weight="700" fill="#f3e8d2">RARE · MEDICAL EMERGENCY</text>
+
+  <g font-size="14" fill="#ffffff">
+    <circle cx="636" cy="316" r="4" fill="#f3e8d2"/>
+    <text x="650" y="321">Seeing or hearing things that aren't there</text>
+
+    <circle cx="636" cy="352" r="4" fill="#f3e8d2"/>
+    <text x="650" y="357">Strange, fixed beliefs</text>
+
+    <circle cx="636" cy="388" r="4" fill="#f3e8d2"/>
+    <text x="650" y="393">Rapid mood swings or confusion</text>
+
+    <circle cx="636" cy="424" r="4" fill="#f3e8d2"/>
+    <text x="650" y="429">Little or no sleep for 2+ days</text>
+  </g>
+  <line x1="636" y1="464" x2="994" y2="464" stroke="#f3e8d2" stroke-width="1.5" opacity="0.5"/>
+  <text x="636" y="498" font-size="13.5" font-weight="700" fill="#ffffff">About 1 to 2 of every 1,000 births.</text>
+  <text x="636" y="520" font-size="13.5" fill="#f3e8d2">Call 911, call or text 988, or go to</text>
+  <text x="636" y="540" font-size="13.5" fill="#f3e8d2">the nearest ER right away.</text>
+</svg>

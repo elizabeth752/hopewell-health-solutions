@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 580" role="img" aria-labelledby="cltitle cldesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="cltitle">The postpartum OCD cycle</title>
+  <desc id="cldesc">An intrusive thought about the baby causes anxiety to rise, which leads to a compulsion like checking or cleaning, which brings brief relief, before the thought returns and the cycle repeats.</desc>
+  <rect width="1100" height="580" fill="#ffffff"/>
+
+  <text x="50" y="52" font-size="20" font-weight="700" fill="#001d37">The postpartum OCD cycle</text>
+  <text x="50" y="78" font-size="14" fill="#5a6b7a">Why compulsions only bring short-term relief</text>
+
+  <!-- Card 1: Intrusive Thought (top-left), spans x:60-360 y:110-260 -->
+  <rect x="60" y="110" width="300" height="150" rx="16" fill="#e7eef5"/>
+  <g transform="translate(100,165)">
+    <path d="M-16,-10 q-6,0 -6,8 q0,8 6,8 l6,0 l6,10 l0,-10 l6,0 q6,0 6,-8 q0,-8 -6,-8 Z" fill="#ffffff" stroke="#265489" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="-6" cy="-2" r="1.6" fill="#265489"/>
+    <circle cx="0" cy="-2" r="1.6" fill="#265489"/>
+    <circle cx="6" cy="-2" r="1.6" fill="#265489"/>
+  </g>
+  <text x="140" y="162" font-size="16" font-weight="700" fill="#001d37">Intrusive Thought</text>
+  <text x="140" y="184" font-size="13" fill="#5a6b7a">A scary thought or image about</text>
+  <text x="140" y="202" font-size="13" fill="#5a6b7a">the baby pops into your mind</text>
+  <text x="140" y="220" font-size="13" fill="#5a6b7a">without warning.</text>
+
+  <!-- Card 2: Anxiety Rises (top-right), spans x:740-1040 y:110-260 -->
+  <rect x="740" y="110" width="300" height="150" rx="16" fill="#f3e8d2"/>
+  <g transform="translate(780,165)">
+    <path d="M-16,8 l6,-18 l6,12 l6,-22 l6,16 l10,0" fill="none" stroke="#b6863c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="820" y="162" font-size="16" font-weight="700" fill="#001d37">Anxiety Rises</text>
+  <text x="820" y="184" font-size="13" fill="#5a6b7a">The thought feels urgent and</text>
+  <text x="820" y="202" font-size="13" fill="#5a6b7a">hard to ignore or brush off.</text>
+
+  <!-- Card 3: Compulsion (bottom-right), spans x:740-1040 y:320-470 -->
+  <rect x="740" y="320" width="300" height="150" rx="16" fill="#f3e8d2"/>
+  <g transform="translate(780,375)" stroke="#b6863c" stroke-width="2.2" stroke-linecap="round" fill="none">
+    <path d="M-18,-14 l6,6 l10,-12"/>
+    <path d="M-18,2 l6,6 l10,-12"/>
+    <path d="M-18,18 l6,6 l10,-12"/>
+  </g>
+  <text x="820" y="372" font-size="16" font-weight="700" fill="#001d37">Compulsion</text>
+  <text x="820" y="394" font-size="13" fill="#5a6b7a">You check, clean, count, or</text>
+  <text x="820" y="412" font-size="13" fill="#5a6b7a">avoid, over and over, to calm</text>
+  <text x="820" y="430" font-size="13" fill="#5a6b7a">the fear.</text>
+
+  <!-- Card 4: Brief Relief (bottom-left), spans x:60-360 y:320-470 -->
+  <rect x="60" y="320" width="300" height="150" rx="16" fill="#e7eef5"/>
+  <g transform="translate(100,375)" fill="#265489" opacity="0.85">
+    <circle cx="-10" cy="0" r="11"/>
+    <circle cx="6" cy="-6" r="15"/>
+    <circle cx="20" cy="2" r="10"/>
+  </g>
+  <text x="140" y="372" font-size="16" font-weight="700" fill="#001d37">Brief Relief</text>
+  <text x="140" y="394" font-size="13" fill="#5a6b7a">The anxiety eases — but only</text>
+  <text x="140" y="412" font-size="13" fill="#5a6b7a">for a little while.</text>
+
+  <!-- Connector: top edge, left to right (card1 → card2), arrow points right -->
+  <line x1="360" y1="185" x2="726" y2="185" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="740,185 724,178 724,192" fill="#5a6b7a"/>
+
+  <!-- Connector: right edge, top to bottom (card2 → card3), arrow points down -->
+  <line x1="890" y1="260" x2="890" y2="306" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="890,320 883,304 897,304" fill="#5a6b7a"/>
+
+  <!-- Connector: bottom edge, right to left (card3 → card4), arrow points left -->
+  <line x1="740" y1="395" x2="374" y2="395" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="360,395 376,388 376,402" fill="#5a6b7a"/>
+
+  <!-- Connector: left edge, bottom to top (card4 → card1), arrow points up -->
+  <line x1="210" y1="320" x2="210" y2="274" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="210,260 203,276 217,276" fill="#5a6b7a"/>
+
+  <!-- Center label -->
+  <text x="550" y="285" text-anchor="middle" font-size="14" font-style="italic" fill="#5a6b7a">Relief fades, the thought</text>
+  <text x="550" y="305" text-anchor="middle" font-size="14" font-style="italic" fill="#5a6b7a">returns, and the cycle repeats.</text>
+</svg>
