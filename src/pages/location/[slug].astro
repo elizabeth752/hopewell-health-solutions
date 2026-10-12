@@ -50,7 +50,7 @@ const schema = {
   "@type": "MedicalClinic",
   name: `Hopewell Health Solutions — ${l.name}`,
   url: canonical,
-  telephone: "+1-860-735-1448",
+  ...(l.phone ? { telephone: l.phone } : {}),
   email: "hhs4help@gmail.com",
   address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
   geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
@@ -91,7 +91,7 @@ const eventSchema = ev && {
 const featureFirst = l.photos && l.photos.length % 2 === 1;
 ---
 
-<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted. Call (860) 735-1448.`} canonical={canonical}>
+<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}

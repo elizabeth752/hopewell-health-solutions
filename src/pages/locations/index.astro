@@ -49,11 +49,11 @@ const schema = {
   "@type": "MedicalOrganization",
   name: "Hopewell Health Solutions",
   url: canonical,
-  telephone: "+1-860-735-1448",
   location: locations.map((l) => ({
     "@type": "MedicalClinic",
     name: `Hopewell Health Solutions — ${l.name}`,
     url: `https://www.hopewellhealthsolutions.com/location/${l.slug}`,
+    ...(l.phone ? { telephone: l.phone } : {}),
     address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
     geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
   })),
