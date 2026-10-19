@@ -25,6 +25,8 @@
     { "source": "/provider/octavia-francis-person-lpc-a/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/katrin-moskowitz-dnp-pmhnp-bc-fnp/", "destination": "/about-us/team/", "permanent": true },
     { "source": "/provider/kaitlin-spang-msn-aprn-pmhnp-bc/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/joy-burchell-lcsw/", "destination": "/about-us/team/", "permanent": true },
+    { "source": "/provider/amenah-thomas-lpc-a/", "destination": "/about-us/team/", "permanent": true },
 
     { "source": "/our-terms/", "destination": "/terms/", "permanent": true },
     { "source": "/your-privacy/", "destination": "/privacy/", "permanent": true },
