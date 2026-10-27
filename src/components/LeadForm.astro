@@ -34,7 +34,7 @@ const pad = compact ? "py-2.5" : "py-3";
 </div>
 
 <script>
-  const ENDPOINT = "/api/lead";
+  const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise
   const FORM_ID = "hopewell-website-lead";
   const ATTR_KEYS = ["gclid","gbraid","wbraid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
 
