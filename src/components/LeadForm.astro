@@ -1,5 +1,6 @@
 ---
-// Reusable CTM lead form — posts directly to CallTrackingMetrics FormReactor.
+// Reusable CTM lead form — posts to /api/lead (api/lead.js), which adds the
+// FormReactor key server-side so it never ships in the page.
 // Field map → CTM:
 //   Full name        → caller_name
 //   Phone            → phone_number (normalized to E.164, +1…)
@@ -33,7 +34,7 @@ const pad = compact ? "py-2.5" : "py-3";
 </div>
 
 <script>
-  const ENDPOINT = "https://api.calltrackingmetrics.com/api/v1/formreactor/FRT472ABB2C5B9B141A2C5FD685C3B99AA7C4D9E51C77A5713BC9CA7A5614657D23?key=yYBso7xF0eLA7muEfQpyXvOXWoolLLAcWJPbTqcZquLAGpCg";
+  const ENDPOINT = "/api/lead";
   const FORM_ID = "hopewell-website-lead";
   const ATTR_KEYS = ["gclid","gbraid","wbraid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
 
@@ -121,7 +122,8 @@ const pad = compact ? "py-2.5" : "py-3";
       btn.textContent = "Sending…";
       try {
         const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() });
-        if (!res.ok) throw new Error("Bad status " + res.status);
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error("Bad status " + res.status);
         form.reset();
         show("Thank you — we’ve got your info and will reach out shortly.", true);
         // GA4/GTM conversion event
