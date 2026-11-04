@@ -124,3 +124,52 @@ Aim for **~10 links per post**, same range as Virtue's practice.
   raw HTML rendering — none had any, so the switch was safe project-wide.
   If a future post's copy genuinely needs a literal `<` or unescaped `&` in
   body text, it must be entity-escaped (`&amp;`, `&lt;`) same as any HTML.
+
+## 5. Social share card
+
+One card per post, sized for a Facebook/LinkedIn link preview (1200x628 —
+1.91:1). Used ad hoc on three posts before this was written up
+(postpartum-rage, baby-blues-vs-ppd, postpartum-ocd); formalized here
+2026-11-04 on the postpartum-anxiety post at the user's request, so the
+recipe below is the actual template those three cards already follow, not a
+new design.
+
+- **File location & naming**: `public/Assets/Blogs/social/{slug}-social.svg`
+  + `{slug}-social.png` (both the source SVG and the rasterized PNG, same as
+    the in-article infographics' svg/png pairing).
+- **Not wired to the site's `og:image`/`twitter:image` meta tags** — those
+  fall back to `Base.astro`'s site-wide default image for every post
+  currently (no post passes an `image` prop to `Base`). This card is a
+  manually-posted social asset (e.g. for elev8media to publish to Facebook/
+  Instagram/LinkedIn alongside the post link), not an automatic Open Graph
+  image. Revisit the `Base`/`[slug].astro` wiring separately if the goal
+  shifts to auto-populating link-preview images sitewide.
+- **Template** (1200x628, `viewBox="0 0 1200 628"`):
+  - Left panel: navy (`#1b3e63`) rect, 0–460px wide, full height.
+    - Brand wordmark, small caps, letter-spaced, cream (`#f3e8d2`), top.
+    - Post title in serif (Georgia), white, 2–3 short lines, centered.
+    - A short gold (`#b6863c`) divider rule under the title.
+    - Category/section label (e.g. "Women's Mental Health") below the rule.
+    - Phone number, bold white, large, near the bottom.
+    - Domain, small, muted blue (`#9fb6ce`), under the phone number.
+  - Right side (cream `#f5f2eb` background, x > 460):
+    - "BY THE NUMBERS" eyebrow in gold, small caps, letter-spaced.
+    - One fetch-verified headline stat, large gold numerals (~110px),
+      centered, with its two-line plain-language caption below in navy
+      (`#001d37`) and an italic source line in muted gray (`#5a6b7a`).
+    - A thin divider, then a second eyebrow line naming what the icon strip
+      below represents.
+    - **Feature one of the post's three section infographics here**, redrawn
+      as 3–4 small icon-in-circle chips (not a scaled-down copy-paste of the
+      full-size graphic — author each small icon's path at its own literal
+      coordinates, same no-`scale()` rule as the in-article infographics).
+      Alternate the circle stroke color across the brand palette (navy/gold/
+      sage) so the chips read as a set, not a repeated single color.
+    - A one-line supporting tagline under the chips.
+    - A final thin divider and a footer line of services/locations
+      (e.g. "Individual therapy · Medication management · Women's Wellness
+      IOP · 6 CT locations").
+- **Rasterize at 2x (2400x1256) and visually check it**, same discipline as
+  the in-article infographics — this is a brand-new composition each time
+  (new stat, new icon set), not a template fill-in, so it can carry the same
+  transform/alignment bugs documented in §2 above.

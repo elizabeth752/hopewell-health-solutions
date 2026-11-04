@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 330" role="img" aria-labelledby="rftitle rfdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="rftitle">What raises the risk of postpartum anxiety</title>
+  <desc id="rfdesc">Six factors that raise the risk of postpartum anxiety, arranged along an arc: a personal or family history of anxiety or depression, depression after a past pregnancy, a thyroid imbalance, a past miscarriage or loss, a stressful delivery, and lack of support.</desc>
+  <rect width="1100" height="330" fill="#ffffff"/>
+
+  <text x="50" y="44" font-size="20" font-weight="700" fill="#001d37">What raises the risk?</text>
+  <text x="50" y="68" font-size="14" fill="#5a6b7a">These factors often combine, not act alone</text>
+
+  <!-- soft ribbon arc behind the nodes -->
+  <path d="M90,230 C 230,110 420,90 550,100 C 680,90 870,110 1010,230" fill="none" stroke="#f3e8d2" stroke-width="90" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+  <!-- Node 1 -->
+  <circle cx="90" cy="230" r="28" fill="#ffffff" stroke="#265489" stroke-width="2.4"/>
+  <text x="90" y="238" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">1</text>
+  <text x="90" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">History of anxiety</text>
+  <text x="90" y="302" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">or depression</text>
+
+  <!-- Node 2 -->
+  <circle cx="274" cy="150" r="28" fill="#ffffff" stroke="#b6863c" stroke-width="2.4"/>
+  <text x="274" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#b6863c">2</text>
+  <text x="274" y="204" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Depression after a</text>
+  <text x="274" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">past pregnancy</text>
+
+  <!-- Node 3 -->
+  <circle cx="458" cy="104" r="28" fill="#ffffff" stroke="#265489" stroke-width="2.4"/>
+  <text x="458" y="112" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">3</text>
+  <text x="458" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">A thyroid</text>
+  <text x="458" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">imbalance</text>
+
+  <!-- Node 4 -->
+  <circle cx="642" cy="104" r="28" fill="#ffffff" stroke="#b6863c" stroke-width="2.4"/>
+  <text x="642" y="112" text-anchor="middle" font-size="18" font-weight="700" fill="#b6863c">4</text>
+  <text x="642" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">A past miscarriage</text>
+  <text x="642" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">or loss</text>
+
+  <!-- Node 5 -->
+  <circle cx="826" cy="150" r="28" fill="#ffffff" stroke="#265489" stroke-width="2.4"/>
+  <text x="826" y="158" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">5</text>
+  <text x="826" y="204" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">A stressful</text>
+  <text x="826" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">delivery</text>
+
+  <!-- Node 6 -->
+  <circle cx="1010" cy="230" r="28" fill="#ffffff" stroke="#b6863c" stroke-width="2.4"/>
+  <text x="1010" y="238" text-anchor="middle" font-size="18" font-weight="700" fill="#b6863c">6</text>
+  <text x="1010" y="284" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Lack of</text>
+  <text x="1010" y="302" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">support</text>
+</svg>
