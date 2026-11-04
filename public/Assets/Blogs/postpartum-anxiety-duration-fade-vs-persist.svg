@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="dftitle dfdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="dftitle">How long postpartum anxiety lasts, compared with the baby blues</title>
+  <desc id="dfdesc">The baby blues fade on their own within about two weeks. Postpartum anxiety stays elevated for weeks or months and usually does not fade on its own until treatment starts.</desc>
+  <defs>
+    <linearGradient id="blueFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#265489" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#265489" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="goldPersist" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b6863c" stop-opacity="1"/>
+      <stop offset="82%" stop-color="#b6863c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#b6863c" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="1100" height="420" fill="#ffffff"/>
+
+  <text x="50" y="48" font-size="20" font-weight="700" fill="#001d37">How long does it last?</text>
+  <text x="50" y="72" font-size="14" fill="#5a6b7a">The baby blues fade on their own; anxiety usually needs treatment</text>
+
+  <!-- Row 1: baby blues -->
+  <text x="60" y="142" font-size="14" font-weight="700" fill="#001d37">The baby blues</text>
+  <text x="60" y="160" font-size="12" fill="#5a6b7a">fades within days</text>
+  <rect x="260" y="150" width="200" height="36" rx="18" fill="url(#blueFade)"/>
+  <rect x="260" y="150" width="200" height="36" rx="18" fill="none" stroke="#265489" stroke-width="2"/>
+
+  <!-- Row 2: postpartum anxiety -->
+  <text x="60" y="262" font-size="14" font-weight="700" fill="#001d37">Postpartum anxiety</text>
+  <text x="60" y="280" font-size="12" fill="#5a6b7a">usually needs treatment</text>
+  <rect x="260" y="270" width="780" height="36" rx="18" fill="url(#goldPersist)"/>
+  <rect x="260" y="270" width="780" height="36" rx="18" fill="none" stroke="#b6863c" stroke-width="2"/>
+
+  <!-- Treatment marker -->
+  <line x1="900" y1="255" x2="900" y2="330" stroke="#001d37" stroke-width="1.5" stroke-dasharray="2,5"/>
+  <path d="M900,246 L916,246 L908,260 Z" fill="#001d37"/>
+  <text x="900" y="232" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">Treatment starts</text>
+
+  <!-- shared timeline axis -->
+  <line x1="260" y1="345" x2="1040" y2="345" stroke="#e4ddd0" stroke-width="2"/>
+  <line x1="260" y1="340" x2="260" y2="350" stroke="#5a6b7a" stroke-width="1.5"/>
+  <text x="260" y="365" font-size="12" fill="#5a6b7a">Birth</text>
+  <line x1="460" y1="340" x2="460" y2="350" stroke="#5a6b7a" stroke-width="1.5"/>
+  <text x="460" y="365" text-anchor="middle" font-size="12" fill="#5a6b7a">2 wks</text>
+  <line x1="1040" y1="340" x2="1040" y2="350" stroke="#5a6b7a" stroke-width="1.5"/>
+  <text x="1040" y="365" text-anchor="end" font-size="12" fill="#5a6b7a">weeks to months</text>
+
+  <text x="60" y="400" font-size="13" fill="#5a6b7a">Postpartum anxiety usually does not fade on its own &#8212; treatment is the main path to relief.</text>
+</svg>
