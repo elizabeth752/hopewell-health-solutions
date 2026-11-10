@@ -29,9 +29,8 @@
 // `tracy-sibley-pmhnp-bc-aprn`. No reviewer named in the docx, so kept as the standing clinical reviewer,
 // Kristine Schlichting, PhD.
 //
-// Hero image: NO sourced photo exists yet for this topic (checked ~/Downloads, the source docx's embedded
-// media — none — and public/Assets/Blogs). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before this goes fully live.
+// Hero image: the temporary abstract placeholder was replaced with the approved counseling-room
+// photo already used on the counseling page.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (an ascending bar "stack" for the
 // six triggers, an anatomical callout diagram for early physical warning signs, and a duration/timeline-lane
@@ -51,7 +50,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Snapping at everyone since you had a baby? Postpartum rage is common, it has real triggers, and it is treatable — here is what it feels like, what causes it, and when to call for help.",
-  heroImage: "/Assets/Blogs/opt/postpartum-rage-why-it-happens-and-when-to-get-help-PLACEHOLDER.svg",
+  heroImage: "/Assets/service/therapy-room.webp",
+  heroAlt: "A calming counseling room at Hopewell Health Solutions, Glastonbury CT",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-06",
