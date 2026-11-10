@@ -33,9 +33,8 @@
 // `christina-lindsay-pmhnp-bc-aprn` ("Christina (Tina) Lindsay"). No reviewer named in the docx, so kept as
 // the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: NO sourced photo exists yet for this topic (checked ~/Downloads, the source docx's embedded
-// media — none — and public/Assets/Blogs). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before this goes fully live.
+// Hero image: the temporary abstract placeholder was replaced with the approved trauma-informed
+// group photo already used on the therapeutic-treatments page.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (two side-by-side comparison cards
 // replacing the docx's table — the `sections` block model has no table type — a feather/stone "weight" pair,
@@ -55,7 +54,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Still crying every day three weeks after giving birth? That's longer than the baby blues usually last. Here is how the baby blues and postpartum depression compare, and when to call for help.",
-  heroImage: "/Assets/Blogs/opt/baby-blues-vs-postpartum-depression-how-to-tell-the-difference-PLACEHOLDER.svg",
+  heroImage: "/Assets/service/trauma-informed-group.webp",
+  heroAlt: "Trauma-informed group therapy at Hopewell Health Solutions",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-06",

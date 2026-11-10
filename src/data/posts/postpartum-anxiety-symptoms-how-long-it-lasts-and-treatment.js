@@ -30,9 +30,8 @@
 // Christina Lindsay, PMHNP-BC, APRN (`christina-lindsay-pmhnp-bc-aprn`). No reviewer named in the docx, so kept
 // as the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: no sourced photo exists yet for this topic (checked ~/Downloads, the source docx's embedded
-// media — none — and public/Assets/Blogs). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before this goes fully live.
+// Hero image: the temporary abstract placeholder was replaced with the approved Women's Wellness
+// photo already used on the Women's Wellness IOP page.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (none reuse shapes from the
 // postpartum-rage/baby-blues/postpartum-ocd posts): a three-domain symptom grid (thoughts/body/behavior), a
@@ -54,7 +53,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Constant worry after having a baby may be postpartum anxiety. About 1 in 5 new mothers report anxiety symptoms — here are the signs, what panic attacks feel like, how long it lasts, and how treatment works.",
-  heroImage: "/Assets/Blogs/opt/postpartum-anxiety-symptoms-how-long-it-lasts-and-treatment-PLACEHOLDER.svg",
+  heroImage: "/Assets/service/womens-wellness.webp",
+  heroAlt: "Women supporting each other in Hopewell's Women's Wellness IOP",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-11-04",
