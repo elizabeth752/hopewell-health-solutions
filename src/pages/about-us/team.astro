@@ -13,11 +13,33 @@ const initials = (name) => {
   return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
 };
 // Single source of truth: providers.js. Each card links to /provider/[slug]/.
+// Medical + clinical order and location groups follow the client's "Staff List for Website" PDF
+// (ClickUp 1dfm34y3p64, 2026-11-11). Someone listed at more than one location appears in each.
+const roster = {
+  medGlastonbury: ["christina-lindsay-pmhnp-bc-aprn", "tracy-sibley-pmhnp-bc-aprn", "ana-arroyo-aprn-pmhnp-bc", "chris-patenaude-pa", "katherine-salvador-pa-c", "linda-scillia-pmhnp-bc-aprn"],
+  glastonbury: ["jonathan-ficara-lcsw", "madeline-blinderman-lpc-a", "amenah-thomas-lpc-a", "eunice-rivera-miranda-ph-d", "meagan-carr-ph-d", "jeff-rapp-lmsw", "dashelle-barco-lpc", "cassie-gittens-lpc-a", "kelly-fluckiger-lmsw", "karmen-hayensworth-lmsw", "viviana-alvarado-lpc-a", "traci-schneider-maatc-lpc-a-atr-p", "kayla-orozco-lcsw", "natalia-de-lonardo-lpca", "dori-bessette-crail-lmft", "joanne-malinka-lcsw", "angela-pierce-lmsw", "eleni-fatsis-lmsw", "nathan-truong-lmft-a", "savannah-henault-lmsw", "madison-anderson-lmsw", "kris-feller-lmsw", "william-telemaque-lpca", "christina-coelho-lmsw", "jessenia-medina-lpc-ncc", "stacy-piscottano-lmsw", "sheryll-waring-lpc-ldac", "erica-schwartz-lcat", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d", "bido-aguessy-psy-d-lpc-a", "kelvin-young-cpsrp", "sherrie-gaudet-lcsw", "patricia-nogelo-ph-d-lcsw", "eric-schwartz-psy-d-abpp"],
+  westbrook: ["jackie-plagesse-lmfta", "noah-mccarter-lpc-a", "jeff-rapp-lmsw", "kate-henneberry-lmfta", "kaitlyn-czapiga-lmsw"],
+  eastHampton: ["erin-kruse-lmsw", "kate-henneberry-lmfta", "mariah-thomas-lmsw", "ashley-singh-psy-d"],
+  westHartford: ["kimberly-devine-lcsw", "eric-schwartz-psy-d-abpp", "christina-coelho-lmsw", "amenah-thomas-lpc-a"],
+};
+const bySlug = Object.fromEntries(providers.map((p) => [p.slug, p]));
+const pick = (slugs) => slugs.map((s) => {
+  if (!bySlug[s]) throw new Error(`team.astro roster: unknown provider slug "${s}"`);
+  return bySlug[s];
+}).filter((p) => !p.hideFromTeam);
+const clinicalCols = "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4";
 const sections = [
   { title: "Leadership", people: providers.filter((p) => p.category === "leadership" && !p.hideFromTeam), cols: "sm:grid-cols-2 lg:grid-cols-3" },
-  { title: "Medical Staff", people: providers.filter((p) => (p.category === "medical" || p.alsoMedicalStaff) && !p.hideFromTeam), cols: "sm:grid-cols-2 lg:grid-cols-3" },
-  { title: "Clinical Staff", people: providers.filter((p) => (p.category === "psychology" || p.category === "clinical") && !p.hideFromTeam), cols: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" },
+  { title: "Medical Staff – Glastonbury", people: pick(roster.medGlastonbury), cols: "sm:grid-cols-2 lg:grid-cols-3" },
+  { title: "Clinical Staff – Glastonbury", people: pick(roster.glastonbury), cols: clinicalCols },
+  { title: "Clinical Staff – Westbrook", people: pick(roster.westbrook), cols: clinicalCols },
+  { title: "Clinical Staff – East Hampton", people: pick(roster.eastHampton), cols: clinicalCols },
+  { title: "Clinical Staff – West Hartford", people: pick(roster.westHartford), cols: clinicalCols },
 ];
+// Guard: every medical/clinical provider shown on the team page must be in the client's list.
+const listed = new Set(Object.values(roster).flat());
+const unlisted = providers.filter((p) => !p.hideFromTeam && p.category !== "leadership" && !listed.has(p.slug));
+if (unlisted.length) throw new Error(`team.astro roster: not placed in a location group: ${unlisted.map((p) => p.slug).join(", ")}`);
 const L = "/Assets/Media%20Appearances/";
 const press = [
   { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
