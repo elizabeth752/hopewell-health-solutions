@@ -10,7 +10,8 @@ export default {
   category: "Mental Health",
   excerpt:
     "11% of Americans have a panic attack in a given year, but not every one of them looks the way movies portray it. Silent panic attacks bring the same racing heart, chest tightness, and wave of dread as any other panic attack, just without a visible sign anyone would notice.",
-  heroImage: "/Assets/Blogs/opt/silent-panic-attacks-what-they-are-and-when-to-seek-treatment.webp",
+  heroImage: "/Assets/Blogs/silent-panic-attacks-what-they-are-and-when-to-seek-treatment-hero.webp",
+  heroAlt: "A woman sipping water as she tries to steady a wave of panic",
   authorSlug: "colleen-callaway-mba",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-08-26",

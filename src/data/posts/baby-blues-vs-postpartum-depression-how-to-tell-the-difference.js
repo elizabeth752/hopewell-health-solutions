@@ -33,8 +33,7 @@
 // `christina-lindsay-pmhnp-bc-aprn` ("Christina (Tina) Lindsay"). No reviewer named in the docx, so kept as
 // the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: the temporary abstract placeholder was replaced with the approved trauma-informed
-// group photo already used on the therapeutic-treatments page.
+// Hero image: topic-matched stock photo from the elev8 article photo library (2026-11-11).
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (two side-by-side comparison cards
 // replacing the docx's table — the `sections` block model has no table type — a feather/stone "weight" pair,
@@ -54,8 +53,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Still crying every day three weeks after giving birth? That's longer than the baby blues usually last. Here is how the baby blues and postpartum depression compare, and when to call for help.",
-  heroImage: "/Assets/service/trauma-informed-group.webp",
-  heroAlt: "Trauma-informed group therapy at Hopewell Health Solutions",
+  heroImage: "/Assets/Blogs/baby-blues-vs-postpartum-depression-hero.webp",
+  heroAlt: "A new mother pausing quietly with her eyes closed, reflecting on how she has been feeling",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-06",

@@ -34,8 +34,7 @@
 // and Crisis Lifeline + 911) and did not add anything beyond it. Category: "Inclusive Care" (matches the
 // existing LGBTQ+ inclusivity post — identity/accessibility-focused mental health content).
 //
-// Hero image: the temporary abstract placeholder was replaced with the approved ADHD group-session
-// photo already used on the ADHD treatment page. No crisis or self-harm imagery.
+// Hero image: topic-matched stock photo from the elev8 article photo library (2026-11-11).
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (a two-panel risk-stat snapshot, an
 // iceberg diagram for the cost of masking, and a five-part card strip for the adapted safety plan) — none reuse
@@ -57,8 +56,8 @@ export default {
   category: "Inclusive Care",
   excerpt:
     "Autistic and ADHD adults report suicidal thoughts at rates well above the general population, and the reasons are specific: exhaustion from masking, untreated depression, and support built for a different kind of mind.",
-  heroImage: "/Assets/service/what-is-adhd.webp",
-  heroAlt: "ADHD testing and treatment at Hopewell Health Solutions, Connecticut",
+  heroImage: "/Assets/Blogs/neurodivergence-suicidality-hero.webp",
+  heroAlt: "A clinician offering warm, supportive care to a client during a one-on-one session",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-26",

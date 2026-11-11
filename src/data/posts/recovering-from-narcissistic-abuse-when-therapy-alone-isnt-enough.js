@@ -10,8 +10,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Recovering from narcissistic abuse takes more than one therapy hour a week for many people. Around half of women who survive intimate partner violence screen positive for probable PTSD and Complex PTSD. See how Hopewell Health Solutions treats narcissistic abuse trauma across Connecticut through trauma-focused counseling, EMDR, DBT, group therapy, and psychiatry coordinated by one team.",
-  heroImage:
-    "/Assets/Blogs/opt/recovering-from-narcissistic-abuse-when-therapy-alone-isnt-enough.webp",
+  heroImage: "/Assets/Blogs/recovering-from-narcissistic-abuse-when-therapy-alone-isnt-enough-hero.webp",
+  heroAlt: "A woman sharing her experience with a therapist during a counseling session",
   authorSlug: "colleen-callaway-mba",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-08-25",

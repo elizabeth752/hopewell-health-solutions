@@ -10,8 +10,8 @@ export default {
   category: "Teens & Families",
   excerpt:
     "A virtual or in-person IOP both deliver effective care for mental health. For teens, the different formats can accommodate their studies and social life — and improve recovery outcomes.",
-  heroImage:
-    "/Assets/Blogs/opt/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens.webp",
+  heroImage: "/Assets/Blogs/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens-hero.webp",
+  heroAlt: "A young woman joining a virtual therapy session from her laptop at home",
   authorSlug: "tj-aitken-cpsrp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-08-10",

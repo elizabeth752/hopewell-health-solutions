@@ -30,8 +30,7 @@
 // Christina Lindsay, PMHNP-BC, APRN (`christina-lindsay-pmhnp-bc-aprn`). No reviewer named in the docx, so kept
 // as the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: the temporary abstract placeholder was replaced with the approved Women's Wellness
-// photo already used on the Women's Wellness IOP page.
+// Hero image: topic-matched stock photo from the elev8 article photo library (2026-11-11).
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (none reuse shapes from the
 // postpartum-rage/baby-blues/postpartum-ocd posts): a three-domain symptom grid (thoughts/body/behavior), a
@@ -53,8 +52,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Constant worry after having a baby may be postpartum anxiety. About 1 in 5 new mothers report anxiety symptoms — here are the signs, what panic attacks feel like, how long it lasts, and how treatment works.",
-  heroImage: "/Assets/service/womens-wellness.webp",
-  heroAlt: "Women supporting each other in Hopewell's Women's Wellness IOP",
+  heroImage: "/Assets/Blogs/postpartum-anxiety-hero.webp",
+  heroAlt: "A woman breathing slowly with her hands on her chest to calm anxious feelings",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-11-04",
