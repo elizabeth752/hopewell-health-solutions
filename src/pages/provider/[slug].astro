@@ -26,7 +26,7 @@ const schema = {
   worksFor: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
   url: `https://www.hopewellhealthsolutions.com/provider/${p.slug}`,
   ...(p.bio ? { description: p.bio.replace(/\s+/g, " ") } : {}),
-  ...(photo ? { image: `https://www.hopewellhealthsolutions.com${photo}` } : {}),
+  ...(photo && !p.photoPlaceholder ? { image: `https://www.hopewellhealthsolutions.com${photo}` } : {}),
 };
 ---
 
