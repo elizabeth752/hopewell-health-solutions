@@ -10,8 +10,8 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt:
     "Choosing an Intensive Outpatient Program (IOP) means committing to real change while still going home every night to work, family, and real life. At Hopewell Health Solutions, that structure is paired with peer support: recovery coaching and peer-to-peer groups led by people who have lived through similar experiences.",
-  heroImage:
-    "/Assets/Blogs/opt/what-its-really-like-to-go-through-an-iop-program-a-peer-recovery-perspective.webp",
+  heroImage: "/Assets/Blogs/what-its-really-like-to-go-through-an-iop-program-a-peer-recovery-perspective-hero.webp",
+  heroAlt: "Adults talking together in an intensive outpatient group session",
   authorSlug: "colleen-callaway-mba",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-08-24",

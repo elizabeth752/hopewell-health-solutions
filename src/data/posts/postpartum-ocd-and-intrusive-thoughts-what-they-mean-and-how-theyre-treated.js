@@ -35,8 +35,7 @@
 // `christina-lindsay-pmhnp-bc-aprn` (her focus list already includes postpartum depression). No reviewer named
 // in the docx, so kept as the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: the temporary abstract placeholder was replaced with the approved individual-therapy
-// room photo already used on the therapeutic-treatments page.
+// Hero image: topic-matched stock photo from the elev8 article photo library (2026-11-11).
 //
 // Infographics: three section-adjacent SVGs, each its own visual language — a rectangular flowchart loop for
 // the obsession/compulsion cycle, a branching triage diagram contrasting OCD with psychosis, and a 100-icon
@@ -60,8 +59,8 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Having unwanted thoughts about something bad happening to your baby? They are common after birth, they do not mean you will act on them, and postpartum OCD is treatable — here is what to know.",
-  heroImage: "/Assets/service/trauma-informed-individual.webp",
-  heroAlt: "Trauma-informed individual therapy at Hopewell Health Solutions",
+  heroImage: "/Assets/Blogs/postpartum-ocd-intrusive-thoughts-hero.webp",
+  heroAlt: "A worried woman lost in thought, troubled by unwanted intrusive thoughts",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-12",
