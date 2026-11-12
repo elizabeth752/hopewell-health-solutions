@@ -20,7 +20,7 @@ const [r1, r2, r3] = reviews;
       </p>
     </div>
 
-    <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+    <div class="hb-reviews-c-grid mt-10 grid md:grid-cols-2 gap-5 items-start">
       <!-- column 1: featured -->
       <figure class="hb-reviews-c-feature">
         <span class="hb-reviews-c-mark font-display" aria-hidden="true">“</span>
@@ -28,15 +28,15 @@ const [r1, r2, r3] = reviews;
         <figcaption class="mt-8 pt-5 border-t border-white/20 text-sm"><span class="text-yellow-400" aria-hidden="true">★★★★★</span> <strong class="text-white">{initials(featured.name)}</strong> <span class="text-white/75">· {featured.meta}</span></figcaption>
       </figure>
 
-      <!-- column 2: video + one review, nudged down for a staggered rhythm -->
+      <!-- column 2 (widest): video + one review, nudged down for a staggered rhythm -->
       <div class="grid gap-5 lg:mt-12">
         <a href="/testimonials/#video" class="hb-reviews-c-video hb-touch">
           <span class="hb-reviews-c-thumb">
             <img src="/Assets/testimonials/teen-iop-take-back-my-life.webp" alt="Teen IOP Success Story video thumbnail" width="1600" height="900" loading="lazy" decoding="async" />
-            <span class="hb-reviews-c-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-6 w-6 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
+            <span class="hb-reviews-c-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-8 w-8 ml-1" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
           </span>
-          <span class="block px-5 py-4">
-            <span class="block font-display text-xl text-ink">Teen IOP Success Story</span>
+          <span class="block px-6 py-5">
+            <span class="block font-display text-2xl text-ink">Teen IOP Success Story</span>
             <span class="mt-1 block text-sm text-ink">How Hopewell helped one teen take back his life.</span>
           </span>
         </a>
@@ -75,12 +75,14 @@ const [r1, r2, r3] = reviews;
   }
   .hb-reviews-c-mark { position: absolute; top: -18px; right: 18px; font-size: 9rem; line-height: 1; color: var(--color-gold-light); opacity: .25; }
   .hb-reviews-c-card { border-radius: 20px; background: #fff; padding: 24px; box-shadow: 0 1px 0 rgba(0,29,55,.04); }
-  .hb-reviews-c-video { display: block; overflow: hidden; border-radius: 20px; background: #fff; transition: transform .3s, box-shadow .3s; }
+  .hb-reviews-c-video { display: block; overflow: hidden; border-radius: 20px; background: #fff; box-shadow: 0 10px 28px rgba(0,29,55,.10); transition: transform .3s, box-shadow .3s; }
+  /* desktop: the video column is wider than the two review columns so the video leads */
+  @media (min-width: 1024px) { .hb-reviews-c-grid { grid-template-columns: 1fr 1.4fr 1fr; } }
   .hb-reviews-c-thumb { position: relative; display: block; aspect-ratio: 16/9; overflow: hidden; }
   .hb-reviews-c-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
   .hb-reviews-c-play {
     position: absolute; left: 50%; top: 50%; translate: -50% -50%;
-    display: grid; place-items: center; width: 56px; height: 56px; border-radius: 999px;
+    display: grid; place-items: center; width: 76px; height: 76px; border-radius: 999px;
     background: #fff; color: var(--color-azul); box-shadow: 0 10px 26px rgba(0,0,0,.28); transition: transform .3s, background .3s, color .3s;
   }
   :is(.hb-reviews-c-video:hover, .hb-reviews-c-video.is-active) { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(0,29,55,.14); }
