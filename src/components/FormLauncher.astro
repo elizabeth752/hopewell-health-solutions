@@ -1,0 +1,149 @@
+---
+// Floating "Check Your Coverage" launcher (bottom right) holding the lead form in a pop-up panel, so the hero can drop
+// the form. On desktop the panel opens by itself on load and folds back to a circle after AUTO_OPEN_MS unless the
+// visitor starts using it (it never takes focus when it opens by itself). Phones start with the pill, which shrinks
+// to a circle after COLLAPSE_MS. Any link to #verify on the page opens the panel instead of jumping.
+import LeadForm from "./LeadForm.astro";
+const LABEL = "Check Your Coverage";
+---
+<div class="fl-root" data-form-launcher>
+  <div class="fl-panel" id="fl-panel" role="dialog" aria-labelledby="fl-title" hidden>
+    <div class="fl-head">
+      <span id="fl-title" class="fl-title">{LABEL}</span>
+      <button type="button" class="fl-close" data-fl-close aria-label="Close the insurance form">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+    <div class="fl-body"><LeadForm variant="card" formId="float" /></div>
+  </div>
+
+  <button type="button" class="fl-btn" data-fl-toggle aria-controls="fl-panel" aria-expanded="false" aria-label={LABEL}>
+    <span class="fl-icon fl-icon--form" aria-hidden="true">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="2" /><path d="M9 3.5h6v2.5H9z" /><path d="M8.5 10.5h7M8.5 14h7M8.5 17.5h4" /></svg>
+    </span>
+    <span class="fl-icon fl-icon--close" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </span>
+    <span class="fl-label" aria-hidden="true">{LABEL}</span>
+  </button>
+</div>
+
+<style>
+
+  .fl-root { position: fixed; right: 24px; bottom: 24px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+
+  /* Launcher: pill -> circle */
+  .fl-btn { position: relative; display: inline-flex; align-items: center; height: 60px; min-width: 60px; padding: 0 26px 0 18px;
+    border: 1px solid rgb(255 255 255 / .4); border-radius: 999px; cursor: pointer; color: #fff; font: inherit;
+    background: linear-gradient(135deg, #c99a4e 0%, #9a6f2c 100%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .25), 0 2px 6px rgb(90 60 20 / .25), 0 12px 30px rgb(90 60 20 / .3);
+    transition: padding .5s cubic-bezier(.4, 0, .2, 1), transform .2s; }
+  .fl-btn:hover { transform: translateY(-1px); background: linear-gradient(135deg, #d4a75c 0%, #8a6226 100%); }
+  .fl-btn:focus-visible { outline: 3px solid var(--color-gold); outline-offset: 3px; }
+  .fl-icon { display: inline-flex; flex: 0 0 24px; justify-content: center; }
+  .fl-icon--close { display: none; }
+  .fl-label { display: inline-block; overflow: hidden; white-space: nowrap; max-width: 220px; margin-left: 10px; opacity: 1;
+    font-size: 16px; font-weight: 600; transition: max-width .5s cubic-bezier(.4, 0, .2, 1), margin-left .5s cubic-bezier(.4, 0, .2, 1), opacity .25s; }
+  .fl-root.is-compact .fl-btn, .fl-root.is-open .fl-btn { padding: 0 17px; }
+  .fl-root.is-compact .fl-label, .fl-root.is-open .fl-label { max-width: 0; margin-left: 0; opacity: 0; }
+  .fl-root.is-open .fl-icon--form { display: none; }
+  .fl-root.is-open .fl-icon--close { display: inline-flex; }
+
+  /* Once compact (and closed), two rings spread from the circle every 3s */
+  .fl-btn::before, .fl-btn::after { content: ""; position: absolute; inset: 0; border-radius: 999px; border: 2px solid rgb(182 134 60 / .75); pointer-events: none; opacity: 0; }
+  .fl-root.is-compact:not(.is-open) .fl-btn::before { animation: fl-ripple 3s cubic-bezier(.2, .6, .3, 1) infinite; }
+  .fl-root.is-compact:not(.is-open) .fl-btn::after { animation: fl-ripple 3s cubic-bezier(.2, .6, .3, 1) .35s infinite; }
+  @keyframes fl-ripple { 0% { transform: scale(1); opacity: .85; } 55%, 100% { transform: scale(2.1); opacity: 0; } }
+
+  /* Panel */
+  .fl-panel { width: 500px; max-width: calc(100vw - 32px); max-height: calc(100vh - 120px); overflow: auto; background: #fff; border-radius: 18px;
+    box-shadow: 0 4px 12px rgb(0 29 55 / .14), 0 28px 64px rgb(0 29 55 / .28); transform-origin: bottom right; animation: fl-in .22s ease-out; }
+  .fl-panel[hidden] { display: none; }
+  .fl-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 10px 0 20px; }
+  .fl-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-muted); }
+  .fl-close { display: inline-grid; place-items: center; width: 45px; height: 45px; border: 0; border-radius: 8px; background: none; color: var(--color-ink); cursor: pointer; }
+  .fl-close:hover { background: var(--color-azul-light); }
+  /* The form card is sized for a hero; flatten it inside the panel */
+  .fl-body :global(.lead-card) { box-shadow: none; border-radius: 0; padding-top: 4px; }
+  @keyframes fl-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 1023px) {
+    .fl-root { right: 16px; bottom: 16px; }
+    .fl-btn { height: 56px; min-width: 56px; padding: 0 22px 0 16px; }
+    .fl-root.is-compact .fl-btn, .fl-root.is-open .fl-btn { padding: 0 15px; }
+    .fl-panel { max-height: calc(100vh - 110px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fl-btn, .fl-label { transition: none; }
+    .fl-btn::before, .fl-btn::after { animation: none !important; }
+    .fl-panel { animation: none; }
+  }
+</style>
+
+<script>
+  (() => {
+    const COLLAPSE_MS = 10000;
+    const REEXPAND_MS = 20000; // after closing the panel the label shows again for this long
+    const AUTO_OPEN_MS = 10000;
+    const root = document.querySelector<HTMLElement>("[data-form-launcher]");
+    if (!root) return;
+    const btn = root.querySelector<HTMLButtonElement>("[data-fl-toggle]")!;
+    const panel = root.querySelector<HTMLElement>("#fl-panel")!;
+    const closeBtn = root.querySelector<HTMLButtonElement>("[data-fl-close]")!;
+    const label = btn.getAttribute("aria-label")!;
+    let returnFocus: HTMLElement | null = null;
+    let timer = 0;
+    const collapseIn = (ms: number) => { clearTimeout(timer); timer = window.setTimeout(() => root.classList.add("is-compact"), ms); };
+    collapseIn(COLLAPSE_MS);
+
+    const open = (from?: HTMLElement, auto = false) => {
+      clearTimeout(timer);
+      returnFocus = from ?? btn;
+      panel.hidden = false;
+      root.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+      btn.setAttribute("aria-label", "Close the insurance form");
+      if (!auto) panel.querySelector<HTMLInputElement>("input:not([type='hidden']):not(.hidden)")?.focus({ preventScroll: true });
+    };
+    const close = () => {
+      panel.hidden = true;
+      root.classList.remove("is-open", "is-compact");
+      collapseIn(REEXPAND_MS);
+      btn.setAttribute("aria-expanded", "false");
+      btn.setAttribute("aria-label", label);
+      returnFocus?.focus({ preventScroll: true });
+    };
+
+    // Desktop: open by itself on load, then fold to the circle unless the visitor engaged with it
+    if (matchMedia("(min-width: 1024px)").matches) {
+      let engaged = false;
+      const engage = () => { engaged = true; };
+      panel.addEventListener("focusin", engage);
+      panel.addEventListener("input", engage);
+      panel.addEventListener("pointerdown", engage);
+      window.setTimeout(() => {
+        open(undefined, true);
+        returnFocus = null;
+        window.setTimeout(() => {
+          if (engaged || panel.hidden) return;
+          panel.hidden = true;
+          root.classList.remove("is-open");
+          root.classList.add("is-compact");
+          btn.setAttribute("aria-expanded", "false");
+          btn.setAttribute("aria-label", label);
+        }, AUTO_OPEN_MS);
+      }, 600);
+    }
+
+    btn.addEventListener("click", () => (panel.hidden ? open() : close()));
+    closeBtn.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) close(); });
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest<HTMLAnchorElement>('a[href="#verify"]');
+      if (link && !root.contains(link)) { e.preventDefault(); open(link); return; }
+      if (!panel.hidden && !root.contains(target)) close();
+    });
+  })();
+</script>

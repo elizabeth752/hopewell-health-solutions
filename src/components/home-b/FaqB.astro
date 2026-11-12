@@ -1,0 +1,73 @@
+---
+// FAQ B — two columns: sticky heading + call card on the left, a numbered
+// hairline accordion (native <details>) on the right. White background.
+import Icon from "../Icon.astro";
+
+// FAQ answers use only facts already published on the current homepage.
+const faqs = [
+  ["Who do you treat?", "We care for children, teens and adults — ages 4 and up — along with couples and families. Our Teen & Tween IOP serves ages 8–18, and our Women’s Wellness IOP offers a women-only group."],
+  ["Do you offer telehealth?", "Yes. Our IOP, PHP, therapy and medication management happen in person whenever possible, and telehealth is available when you need it. Our team also sees clients virtually across New England."],
+  ["What is the difference between IOP and PHP?", "Intensive Outpatient (IOP) is about 3 hours a day, 4 days a week, in the day or evening, so you can keep living at home, working and parenting. Partial Hospitalization (PHP) is full-day treatment — the highest outpatient level of care. You can step up or down as you heal, with the same team."],
+  ["Do you take my insurance?", "We’re in-network with most major plans, including Aetna, Anthem, Blue Cross Blue Shield, Cigna, UnitedHealthcare, TRICARE and more, and licensed in Connecticut, Massachusetts, New York and Florida. Send us your details and we’ll check your benefits for you — free, in minutes."],
+  ["What if medication and therapy haven’t worked for me?", "We offer advanced options most outpatient practices can’t: FDA-cleared TMS for treatment-resistant depression, and GeneSight® genetic testing, a simple cheek swab that shows which medications fit your DNA."],
+  ["Where are your offices?", "We have offices in Glastonbury (Pratt St, Downtown and South Glastonbury), West Hartford, East Hampton and Westbrook, CT, serving Hartford and Middlesex Counties."],
+];
+---
+<section class="bg-white">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+    <div class="grid gap-10 hb-faq-b-grid lg:gap-16">
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <h2 class="font-display text-3xl sm:text-4xl hb-faq-b-h2 text-ink text-balance">Frequently Asked Questions</h2>
+        <span class="hb-faq-b-rule" aria-hidden="true"></span>
+        <a href="tel:8607351448" class="hb-faq-b-call hb-touch mt-8 hidden lg:flex">
+          <span class="hb-faq-b-call-icon" aria-hidden="true"><Icon name="phone" class="h-5 w-5" /></span>
+          <span class="min-w-0">
+            <span class="block text-sm text-muted">Prefer to talk?</span>
+            <span class="block font-semibold text-ink whitespace-nowrap">Call (860) 735-1448</span>
+          </span>
+        </a>
+      </div>
+
+      <div class="hb-faq-b-list">
+        {faqs.map(([q, a], i) => (
+          <details class="hb-faq-b-item" open={i === 0}>
+            <summary>
+              <span class="hb-faq-b-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span class="font-display text-lg sm:text-xl text-ink leading-snug text-balance">{q}</span>
+              <span class="hb-faq-b-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <p class="hb-faq-b-answer text-ink leading-relaxed text-pretty">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) { .hb-faq-b-h2 { font-size: 3rem; line-height: 1.1; } }
+  @media (min-width: 1024px) { .hb-faq-b-grid { grid-template-columns: minmax(0,5fr) minmax(0,7fr); } }
+  .hb-faq-b-rule { display: block; margin-top: 24px; width: 72px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-azul), var(--color-gold)); }
+  .hb-faq-b-call { align-items: center; gap: 14px; max-width: 320px; padding: 16px 18px; border-radius: 16px; background: var(--color-crema); transition: background .3s; }
+  .hb-faq-b-call-icon { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 12px; background: #fff; color: var(--color-azul); transition: all .3s; }
+  :is(.hb-faq-b-call:hover, .hb-faq-b-call.is-active) { background: var(--color-azul-light); }
+  :is(.hb-faq-b-call:hover, .hb-faq-b-call.is-active) .hb-faq-b-call-icon { background: var(--color-azul); color: #fff; transform: rotate(-6deg); }
+  .hb-faq-b-call:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 3px; }
+
+  .hb-faq-b-list { border-top: 1px solid var(--color-line); }
+  .hb-faq-b-item { border-bottom: 1px solid var(--color-line); }
+  .hb-faq-b-item summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 36px 1fr 32px; gap: 14px; align-items: center; padding: 22px 4px; border-radius: 8px; }
+  .hb-faq-b-item summary::-webkit-details-marker { display: none; }
+  .hb-faq-b-item summary:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 2px; }
+  .hb-faq-b-num { font-family: var(--font-display); font-size: 1.15rem; color: #8a6226; /* deeper gold: 4.5:1+ on white (WCAG AA) */ transition: color .3s; }
+  .hb-faq-b-chev { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--color-line); color: var(--color-azul); transition: transform .3s, background .3s, color .3s, border-color .3s; }
+  .hb-faq-b-item summary:hover .hb-faq-b-chev { border-color: var(--color-azul); }
+  .hb-faq-b-item[open] .hb-faq-b-chev { transform: rotate(180deg); background: var(--color-azul); border-color: var(--color-azul); color: #fff; }
+  .hb-faq-b-item[open] .hb-faq-b-num { color: var(--color-azul); }
+  .hb-faq-b-answer { padding: 0 46px 24px 54px; }
+  @media (max-width: 639px) {
+    .hb-faq-b-item summary { grid-template-columns: 28px 1fr 32px; gap: 10px; }
+    .hb-faq-b-answer { padding: 0 4px 22px 42px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hb-faq-b-chev, .hb-faq-b-call, .hb-faq-b-call-icon { transition: none; } }
+</style>

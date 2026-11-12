@@ -1,0 +1,78 @@
+---
+// Blog C — tall full-photo cards on a cream band: text sits on a navy gradient
+// over the article image; the excerpt slides up on hover / mid-screen on touch.
+import Icon from "../Icon.astro";
+import { posts } from "../../data/posts.js";
+import { providers } from "../../data/providers.js";
+
+const byId = (slug) => providers.find((p) => p.slug === slug);
+const blogTeasers = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1)).slice(0, 3);
+const fmt = (d) => new Date(`${d}T12:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+---
+<section class="bg-crema">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+    <div class="hb-blog-c-head flex flex-col gap-6">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">From the Hopewell Blog</h2>
+        <p class="mt-3 text-ink text-pretty">Practical, evidence-based articles written and clinically reviewed by our Connecticut team.</p>
+      </div>
+      <a href="/blog/" class="hb-blog-c-btn hb-blog-c-btn--desk flex-none">View all articles <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {blogTeasers.map((p) => (
+        <a href={`/post/${p.slug}/`} class="hb-blog-c-card hb-touch group">
+          {p.heroImage && <img src={p.heroImage} alt="" loading="lazy" class="hb-blog-c-img" />}
+          <span class="hb-blog-c-cat">{p.category}</span>
+          <div class="hb-blog-c-body">
+            <time datetime={p.datePublished} class="text-xs text-white/85">{fmt(p.datePublished)}</time>
+            <h3 class="mt-2 font-display text-xl text-white leading-snug text-balance">{p.title}</h3>
+            <div class="hb-blog-c-more">
+              <div style="min-height:0;overflow:hidden">
+                <p class="pt-3 text-sm text-white/85 leading-relaxed line-clamp-3 text-pretty">{p.excerpt}</p>
+              </div>
+            </div>
+            <p class="mt-4 flex items-center justify-between gap-3 hb-blog-c-meta pt-4 text-xs text-white/85">
+              <span class="truncate">{byId(p.authorSlug)?.name}</span>
+              <span class="hb-blog-c-go" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-10 hb-blog-c-foot flex flex-col items-center gap-3 text-center text-sm text-ink">
+      <a href="/blog/" class="hb-blog-c-btn hb-blog-c-btn--mob w-full">View all articles <Icon name="arrow" class="h-4 w-4" /></a>
+      <span class="text-pretty">Or explore our <a href="/handouts/" class="text-azul font-semibold hover:underline">free downloadable handouts</a>.</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hb-blog-c-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 45px; padding: 0 24px; border-radius: 8px; border: 1px solid rgba(0,29,55,.8); font-weight: 600; color: var(--color-ink); transition: background .25s, color .25s; }
+  .hb-blog-c-btn:hover { background: var(--color-ink); color: #fff; }
+  .hb-blog-c-btn:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 2px; }
+  .hb-blog-c-btn--desk { display: none; }
+  .hb-blog-c-btn--mob { max-width: 320px; }
+  .hb-blog-c-meta { border-top: 1px solid rgba(255,255,255,.2); }
+  @media (min-width: 768px) {
+    .hb-blog-c-btn--desk { display: inline-flex; }
+    .hb-blog-c-btn--mob { display: none; }
+    .hb-blog-c-head { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+    .hb-blog-c-foot { flex-direction: row; justify-content: center; }
+  }
+  .hb-blog-c-card { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: flex-end; min-height: 420px; overflow: hidden; border-radius: 24px; background: var(--color-ink); box-shadow: 0 10px 30px rgba(0,29,55,.12); transition: transform .3s, box-shadow .3s; }
+  .hb-blog-c-card:focus-visible { outline: 3px solid var(--color-azul); outline-offset: 4px; }
+  .hb-blog-c-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .hb-blog-c-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(0,29,55,.96) 0%, rgba(0,29,55,.82) 42%, rgba(0,29,55,.15) 75%, rgba(0,29,55,0)); }
+  .hb-blog-c-cat { position: absolute; top: 18px; left: 18px; max-width: calc(100% - 36px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 999px; background: rgba(255,255,255,.94); color: var(--color-ink); font-size: 12px; font-weight: 600; padding: 6px 12px; }
+  .hb-blog-c-body { padding: 24px; }
+  /* excerpt reveal: grid-rows 0fr -> 1fr */
+  .hb-blog-c-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s ease; }
+  .hb-blog-c-go { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 999px; border: 1px solid rgba(255,255,255,.4); color: #fff; transition: all .3s; }
+  :is(.hb-blog-c-card:hover, .hb-blog-c-card.is-active, .hb-blog-c-card:focus-visible) { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,29,55,.22); }
+  :is(.hb-blog-c-card:hover, .hb-blog-c-card.is-active, .hb-blog-c-card:focus-visible) .hb-blog-c-img { transform: scale(1.06); }
+  :is(.hb-blog-c-card:hover, .hb-blog-c-card.is-active, .hb-blog-c-card:focus-visible) .hb-blog-c-more { grid-template-rows: 1fr; }
+  :is(.hb-blog-c-card:hover, .hb-blog-c-card.is-active, .hb-blog-c-card:focus-visible) .hb-blog-c-go { background: var(--color-gold-light); border-color: var(--color-gold-light); color: var(--color-ink); transform: translateX(3px); }
+  @media (prefers-reduced-motion: reduce) { .hb-blog-c-card, .hb-blog-c-img, .hb-blog-c-more, .hb-blog-c-go { transition: none; } }
+</style>

@@ -1,0 +1,50 @@
+---
+// CTA C — inset rounded panel on a white band: ghosted team photo under a
+// navy-to-blue gradient, copy on the left and a white action card on the right
+// (desktop). The white margin keeps it visually apart from the navy footer.
+// Mobile keeps the lead form + call link inside the panel.
+import Icon from "../Icon.astro";
+import LeadForm from "../LeadForm.astro";
+---
+<section class="bg-white">
+  <div class="mx-auto max-w-6xl px-5 py-12 hb-cta-c-wrap">
+    <div class="hb-cta-c-panel relative isolate overflow-hidden">
+      <img src="/Assets/full%20team%20happy.webp" alt="" width="1100" height="734" loading="lazy" class="hb-cta-c-ghost" />
+      <div class="grid items-center gap-10 hb-cta-c-grid hb-cta-c-inner">
+        <div class="hb-cta-c-copy text-center">
+          <h2 class="font-display text-3xl sm:text-5xl text-white leading-tight text-balance">You Don’t Have to Do This Alone.</h2>
+          <span class="hb-cta-c-rule" aria-hidden="true"></span>
+          <p class="mt-5 text-lg text-white/85 leading-relaxed text-pretty">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. There is hope to heal, and it can start right now.</p>
+        </div>
+
+        <div class="hb-cta-c-card hidden lg:block">
+          <a href="#verify" class="flex w-full items-center justify-center gap-2 rounded-lg bg-azul px-6 h-[45px] font-semibold text-white hover:bg-azul-dark transition hb-cta-c-focus"><Icon name="shield" class="h-4 w-4" />Verify Your Insurance</a>
+          <div class="hb-cta-c-or" aria-hidden="true"><span>or</span></div>
+          <a href="tel:8607351448" class="flex w-full items-center justify-center gap-2 rounded-lg hb-cta-c-outline px-6 h-[45px] font-semibold text-ink hover:bg-crema transition hb-cta-c-focus"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        </div>
+
+        <div class="lg:hidden text-center">
+          <div class="text-left text-ink max-w-[500px] mx-auto"><LeadForm variant="card" formId="hb-cta-c" /></div>
+          <a href="tel:8607351448" class="mt-5 inline-flex items-center justify-center gap-2 font-semibold text-white"><Icon name="phone" class="h-4 w-4" />Prefer to talk? Call (860) 735-1448</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hb-cta-c-focus:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 2px; }
+  .hb-cta-c-inner { padding: 48px 20px; }
+  .hb-cta-c-rule { margin-left: auto; margin-right: auto; }
+  .hb-cta-c-outline { border: 1px solid rgba(0,29,55,.7); }
+  @media (min-width: 640px) { .hb-cta-c-inner { padding: 48px 40px; } }
+  @media (min-width: 1024px) { .hb-cta-c-wrap { padding-top: 64px; padding-bottom: 64px; } .hb-cta-c-inner { padding: 64px 56px; column-gap: 56px; } .hb-cta-c-copy { text-align: left; } .hb-cta-c-rule { margin-left: 0; } }
+  @media (min-width: 1024px) { .hb-cta-c-grid { grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); } }
+  .hb-cta-c-panel { border-radius: 32px; background: linear-gradient(120deg, #001d37 0%, #1b3e63 45%, #265489 100%); box-shadow: 0 24px 60px rgba(0,29,55,.18); }
+  .hb-cta-c-ghost { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; opacity: .16; mix-blend-mode: luminosity; }
+  .hb-cta-c-panel::after { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(45% 70% at 100% 0%, rgba(182,134,60,.28), transparent 70%); pointer-events: none; }
+  .hb-cta-c-rule { display: block; margin-top: 20px; width: 72px; height: 3px; border-radius: 3px; background: var(--color-gold-light); }
+  .hb-cta-c-card { border-radius: 20px; background: #fff; padding: 28px; box-shadow: 0 20px 44px rgba(0,0,0,.22); }
+  .hb-cta-c-or { display: flex; align-items: center; gap: 12px; margin: 14px 0; font-size: 13px; color: var(--color-muted); }
+  .hb-cta-c-or::before, .hb-cta-c-or::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--color-line), transparent); }
+</style>
