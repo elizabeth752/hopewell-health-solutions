@@ -7,9 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/check-blog-images.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check:blog-images": "node scripts/check-blog-images.mjs",
     "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {

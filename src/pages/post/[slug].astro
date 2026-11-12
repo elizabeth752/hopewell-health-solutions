@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import { posts, relatedPosts } from "../../data/posts.js";
 import { providers } from "../../data/providers.js";
+import { blogImages, previewImageFor } from "../../data/blogImageManifest.js";
 
 export function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -55,6 +56,9 @@ const related = relatedPosts(post.slug, 3);
 const metaTitle = post.metaTitle || `${post.title} | Hopewell Health Solutions`;
 const metaDesc = (post.metaDescription || post.excerpt || "").slice(0, 160);
 const hasSources = post.sources && post.sources.length > 0;
+// Link-share preview (og:image/twitter:image): the post's own hero by default,
+// or an explicit override from blogImageManifest.js when one is set.
+const preview = previewImageFor(post);
 
 // --- Body: migrated posts carry verbatim `bodyHtml`; auto-build the TOC from its <h2>s ---
 // Hand-authored posts use structured `sections` instead. We build a unified `tocItems`
@@ -75,89 +79,16 @@ if (bodyHtml) {
 }
 
 // --- In-article photos ---
-// Every post already has a hero (`heroImage`), shown as the featured image at the
-// top of the article. A small number of migrated posts with no pictures in the
-// body get exactly ONE more, matched to that specific post's topic (not a broad
-// category) — e.g. postpartum posts only ever get postpartum/new-parent imagery,
-// TMS posts get the NeuroStar equipment, teen posts get teen photos, and so on.
-// Built 2026-11-12 after auditing PR #73's old category-rotation pool: several of
-// its "approved" service photos turned out to be mislabeled (showing generic
-// staff team photos instead of their named topic) and the broad per-category
-// pools reused the same handful of images across dozens of unrelated posts.
-// Where no photo in the library genuinely matches a post's topic, that post gets
-// no second image rather than a mismatched one — see docs/blog-post-standard.md.
-const INLINE_BY_SLUG = {
-  "a-new-dawn-in-depression-treatment-introducing-tms-at-hopewell-health-solutions": { src: "/Assets/TMS/neurostar-tms.webp", alt: "The NeuroStar TMS system used for Transcranial Magnetic Stimulation at Hopewell Health Solutions" },
-  "addiction-iop-treatment-what-it-is-and-why-it-works": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "addiction-treatment-and-the-brain-how-therapy-and-medication-can-help-rewire-your-mind": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "anxiety-coping-strategies-expert-tips-for-finding-calm": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "are-you-a-high-functioning-alcoholic": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "breaking-through-resistance-overcoming-the-challenges-of-starting-iop": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "building-emotional-resilience-through-iop-how-to-bounce-back-from-lifes-challenges": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "common-myths-about-iop-misconceptions-and-providing-clarity": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "emdr-therapy-what-it-is-side-effects-and-what-to-expect": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "empowering-healing-the-womens-trauma-group-at-hopewell-health-solutions": { src: "/Assets/couple%20hugging.webp", alt: "Women in Hopewell Health Solutions' Women's Trauma IOP group session" },
-  "exploring-dbt-therapy-effectiveness-and-approach-at-hopewell-health-solutions": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "exploring-genesight-testing-personalizing-mental-health-treatment-at-hopewell-health-solutions": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "finding-the-path-to-recovery-substance-use-disorder-iop-at-hopewell-health-solutions": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "first-responder-mental-health-when-you-need-help": { src: "/Assets/service/first-responder-session.webp", alt: "A first responder in a one-on-one session with a clinician at Hopewell Health Solutions" },
-  "guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "harmonizing-home-life-the-role-of-intensive-outpatient-programs-in-enhancing-family-dynamics": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "how-intensive-outpatient-programs-iop-can-help-with-bullying": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "how-the-world-of-social-media-affects-teens": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "how-to-help-your-kids-during-a-mental-health-crisis": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "how-to-know-if-youre-experiencing-trauma": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "how-to-make-the-most-of-your-iop-experience-tips-for-success": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "how-to-recognize-when-its-time-to-see-a-therapist": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "how-tween-anxiety-is-treated-in-an-intensive-outpatient-program-iop": { src: "/Assets/tweens-1729660767703.webp", alt: "A group of teens supporting one another" },
-  "how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing": { src: "/Assets/couple%20hugging.webp", alt: "Women in Hopewell Health Solutions' Women's Trauma IOP group session" },
-  "inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "iop-for-depression-in-connecticut-when-outpatient-treatment-is-enough": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "iop-vs-outpatient-therapy-which-option-is-right-for-you": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "is-porn-addiction-really-a-problem-why-it-might-be-impacting-your-life-more-than-you-think": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "php-vs-iop-which-level-of-care-is-right-for-you": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "psychiatric-medications-for-addiction-how-they-support-recovery": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "quick-parenting-tips-for-managing-a-childs-anxiety": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "signs-of-addiction-in-women": { src: "/Assets/service/womens-wellness.webp", alt: "Women in Hopewell Health Solutions' Women's Wellness IOP" },
-  "signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "ssris-how-do-they-work-why-are-they-important": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "star-behavior-five-tips-for-stellar-behavior-charts": { src: "/Assets/teen%20smiling.webp", alt: "A teenager at Hopewell Health Solutions" },
-  "suboxone-a-cornerstone-of-mat-at-hopewell-health-solutions": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "substance-abuse-and-young-adults-why-its-a-growing-concern": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "the-association-between-ptsd-and-addiction": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "the-connection-between-trauma-and-addiction": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "the-counterintuitive-magic-of-group-therapy-for-social-anxiety": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "the-importance-of-in-person-intensive-outpatient-programs-iops": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "the-power-of-presence-why-in-person-therapy-remains-crucial": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "the-role-of-group-therapy-in-iop-why-connection-is-key-to-healing": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "tms-what-is-it": { src: "/Assets/TMS/neurostar-tms.webp", alt: "The NeuroStar TMS system used for Transcranial Magnetic Stimulation at Hopewell Health Solutions" },
-  "top-5-reasons-to-engage-in-hopewell-health-solutions-tween-iop": { src: "/Assets/tweens-1729660767703.webp", alt: "A group of teens supporting one another" },
-  "trauma-and-first-responders-the-hidden-cost-of-heroism": { src: "/Assets/service/first-responder-session.webp", alt: "A first responder in a one-on-one session with a clinician at Hopewell Health Solutions" },
-  "trauma-is-a-trigger-word-how-to-calm-the-trauma-storms": { src: "/Assets/service/trauma-informed-individual.webp", alt: "A private, trauma-informed counseling room at Hopewell Health Solutions" },
-  "understanding-addiction-insights-from-experts": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "understanding-medication-assisted-treatment-the-what-why-and-how": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "vivitrol-a-key-player-in-opioid-and-alcohol-dependence-treatment-at-hopewell-health-solutions": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "what-are-the-levels-of-anxiety-and-when-do-you-need-more-than-therapy": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "what-is-a-partial-hospitalization-program-php": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "what-is-a-safety-plan-and-how-can-you-make-one": { src: "/Assets/Hands.webp", alt: "Two people offering mutual support, hand to hand" },
-  "what-is-iop": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "what-is-medication-management-a-comprehensive-guide-to-effective-treatment": { src: "/Assets/Guy%20facing%20the%20horizon.webp", alt: "A clinician reviewing a treatment plan with a patient at Hopewell Health Solutions" },
-  "what-its-really-like-to-go-through-an-iop-program-a-peer-recovery-perspective": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "what-makes-hopewells-intensive-outpatient-program-iop-so-special": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "why-is-hopewell-health-solutions-tween-iop-great-for-depression": { src: "/Assets/tweens-1729660767703.webp", alt: "A group of teens supporting one another" },
-  "why-the-er-is-not-mental-health-treatment-and-why-php-and-iop-is": { src: "/Assets/service/iop-group-session.webp", alt: "A group therapy session in Hopewell Health Solutions' IOP" },
-  "why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder": { src: "/Assets/service/first-responder-session.webp", alt: "A first responder in a one-on-one session with a clinician at Hopewell Health Solutions" },
-};
+// Every post already has a hero (heroImage), shown as the featured image at
+// the top of the article. A small number of migrated posts with no pictures
+// in the body get exactly one more, drawn from src/data/blogImageManifest.js
+// — the single list of which photo belongs inside which post. A post with no
+// entry there (or no inline match for its topic) gets no second image rather
+// than a mismatched one. See docs/blog-post-standard.md.
 const existingInline = bodyHtml
   ? (bodyHtml.match(/<img\b/gi) || []).length
   : (post.sections || []).reduce((n, s) => n + (s.blocks || []).filter((b) => b.img).length, 0);
-const inlineCandidate = existingInline === 0 ? INLINE_BY_SLUG[post.slug] : null;
+const inlineCandidate = existingInline === 0 ? blogImages[post.slug]?.inline : null;
 const inlineImages = inlineCandidate && inlineCandidate.src !== post.heroImage ? [inlineCandidate] : [];
 const figureMarkup = (img) => {
   const alt = String(img.alt || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -209,7 +140,7 @@ const blogPostingSchema = {
   "@type": "BlogPosting",
   headline: post.title,
   description: metaDesc,
-  image: `${SITE}${post.heroImage}`,
+  image: `${SITE}${preview.src}`,
   datePublished: post.datePublished,
   dateModified: post.dateModified || post.datePublished,
   ...(author ? { author: { "@type": "Person", name: author.name, jobTitle: author.role, url: `${SITE}/provider/${author.slug}/` } } : {}),
@@ -274,7 +205,7 @@ const imageSchemas = [
 const schemas = [blogPostingSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : []), ...imageSchemas];
 ---
 
-<Base title={metaTitle} description={metaDesc} canonical={canonical} image={post.heroImage}>
+<Base title={metaTitle} description={metaDesc} canonical={canonical} image={preview.src}>
   <Header />
   {schemas.map((s) => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
