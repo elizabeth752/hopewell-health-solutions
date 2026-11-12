@@ -9,10 +9,61 @@
 //   Insurance carrier→ custom_fields[insurance_carrier]
 //   Member/Policy ID → custom_fields[membership_policy_id]
 //   gclid + ValueTrack from the landing URL → paid_attribution[…]
-const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false } = Astro.props;
+// variant="card": labeled two-column card with HIPAA badge (same fields, names and submit logic).
+const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false, variant = "default", formId = "hhs-lead" } = Astro.props;
+const lbl = "mb-1.5 block text-[13px] leading-snug text-muted";
+const field = "h-[45px] w-full min-w-0 rounded-lg border border-muted/50 bg-white px-[13px] text-[15px] text-ink focus:border-azul focus:outline-none focus:ring-2 focus:ring-azul/25";
 const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCare","Evernorth","Harvard Pilgrim","Magellan","Meritain","Optum","TRICARE","UMR","UnitedHealthcare","VA Community Care","Other / Not sure"];
 const pad = compact ? "py-2.5" : "py-3";
 ---
+{variant === "card" ? (
+<div class="lead-card w-full rounded-2xl bg-white p-5 text-ink shadow-[0_2px_6px_rgba(0,0,0,0.18),0_20px_44px_rgba(0,0,0,0.18)]">
+  <div class="mb-4 flex items-center gap-3">
+    <img src="/Assets/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="block h-10 w-auto flex-none" />
+    <span class="text-lg font-bold tracking-[-0.015em]">Talk to an Admissions Specialist</span>
+  </div>
+  <form class="ctm-lead-form grid grid-cols-1 gap-3 sm:grid-cols-2" novalidate>
+    <div>
+      <label class={lbl} for={`${formId}-name`}>What’s your name? <span aria-hidden="true" class="text-red-700">*</span></label>
+      <input id={`${formId}-name`} class={field} type="text" name="caller_name" autocomplete="name" required maxlength="80" />
+    </div>
+    <div>
+      <label class={lbl} for={`${formId}-phone`}>What’s your number? <span aria-hidden="true" class="text-red-700">*</span></label>
+      <div class="flex gap-2">
+        <span aria-hidden="true" class="flex h-[45px] flex-none items-center gap-[5px] rounded-lg border border-muted/50 bg-crema px-2.5 text-sm text-ink">
+          <svg viewBox="0 0 19 10" width="19" height="10" class="block rounded-[2px]" aria-hidden="true"><rect width="19" height="10" fill="#B22234" /><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77" /><rect width="7.6" height="5.38" fill="#3C3B6E" /></svg>
+          US +1
+        </span>
+        <input id={`${formId}-phone`} class={field} type="tel" name="phone_number" autocomplete="tel-national" inputmode="tel" required />
+      </div>
+    </div>
+    <div>
+      <label class:list={[lbl, "whitespace-nowrap"]} for={`${formId}-policy`}>Membership Policy ID (optional)</label>
+      <input id={`${formId}-policy`} class={field} type="text" name="membership_policy_id" maxlength="40" autocomplete="off" />
+    </div>
+    <div>
+      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier (optional)</label>
+      <div class="relative">
+        <select id={`${formId}-carrier`} class:list={[field, "appearance-none pr-10"]} name="insurance_carrier">
+          <option value="" selected></option>
+          {carriers.map((c) => <option value={c}>{c}</option>)}
+        </select>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted"><path d="m6 9 6 6 6-6" /></svg>
+      </div>
+    </div>
+    <div class="sm:col-span-2">
+      <label class={lbl} for={`${formId}-email`}>Email (optional)</label>
+      <input id={`${formId}-email`} class={field} type="email" name="email" autocomplete="email" maxlength="120" />
+    </div>
+    <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <label class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2"><input type="checkbox" name="consent" class="mt-0.5 h-4 w-4 flex-none accent-azul" required /><span>I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</span></label>
+    <button type="submit" class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-lg bg-azul-bright px-[30px] text-[15px] font-bold text-white transition hover:bg-azul disabled:cursor-wait disabled:opacity-60 sm:col-span-2">Check Your Coverage</button>
+    <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2 sm:col-span-2" role="status" aria-live="polite"></p>
+  </form>
+  <p class="mt-3.5 text-center text-[11px] leading-relaxed text-muted">Or call us at <a href="tel:8607351448" class="font-bold text-azul">(860) 735-1448</a>. Everything you share is confidential.</p>
+  <p class="mt-2 text-center text-[10px] leading-normal text-muted">By submitting, you agree to our <a href="/privacy/" class="underline">Privacy Policy</a>.</p>
+</div>
+) : (
 <div class="rounded-2xl bg-white shadow-xl border border-line p-6">
   <h2 class="font-display text-2xl text-ink">{heading}</h2>
   <p class="text-sm text-muted mt-1">{sub}</p>
@@ -32,6 +83,7 @@ const pad = compact ? "py-2.5" : "py-3";
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
 </div>
+)}
 
 <script>
   const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise

@@ -73,6 +73,8 @@ const menu = [
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
   <!-- top bar -->
   <div class="bg-ink text-white text-xs">
+    <!-- optional page override: <div slot="topbar">…</div>; default = social links -->
+    <slot name="topbar">
     <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-end gap-4">
       <div class="flex items-center gap-2">
         <span class="hidden sm:inline text-white/55 mr-1">Follow us</span>
@@ -81,6 +83,7 @@ const menu = [
         ))}
       </div>
     </div>
+    </slot>
   </div>
 
   <!-- main nav -->
