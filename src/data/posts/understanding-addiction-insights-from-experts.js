@@ -6,6 +6,7 @@ export default {
   category: "Addiction & Recovery",
   excerpt: "Expert insights on how addiction changes the brain, why willpower isn't enough, and the treatments that make recovery possible.",
   heroImage: "/Assets/Blogs/understanding-addiction-insights-from-experts.webp",
+  heroAlt: "A NIDA graphic reading \"Advancing Addiction Science for 50 Years\" beside a colorful brain scan",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2024-10-07",

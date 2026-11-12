@@ -6,6 +6,7 @@ export default {
   category: "Levels of Care",
   excerpt: "A Hopewell IOP clinician compares inpatient care and intensive outpatient programs to help parents choose the right level of care for their child.",
   heroImage: "/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp",
+  heroAlt: "A therapist using mood cards to connect with a young child",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2024-09-24",

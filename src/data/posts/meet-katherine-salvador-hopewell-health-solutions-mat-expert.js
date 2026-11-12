@@ -6,6 +6,7 @@ export default {
   category: "Meet the Team",
   excerpt: "Get to know Katherine Salvador, PA-C, the board-certified physician assistant who leads Medication-Assisted Treatment at Hopewell Health Solutions.",
   heroImage: "/Assets/Blogs/meet-katherine-salvador-hopewell-health-solutions-mat-expert.webp",
+  heroAlt: "Katherine Salvador, PA-C, Hopewell Health Solutions' MAT provider",
   authorSlug: "katherine-salvador-pa-c",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-05-19",

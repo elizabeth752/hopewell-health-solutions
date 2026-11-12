@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "What your first day in Hopewell's IOP looks like: the welcome, meeting others, program overview, group therapy, and the nightly schedule.",
   heroImage: "/Assets/Blogs/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop.webp",
+  heroAlt: "A group of smiling Hopewell Health Solutions staff members standing together",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-03-17",

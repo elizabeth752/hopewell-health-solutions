@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "How Intensive Outpatient Programs help bridge individual mental health care and overall family well-being for stronger, more supportive relationships at home.",
   heroImage: "/Assets/Blogs/harmonizing-home-life-the-role-of-intensive-outpatient-programs-in-enhancing-family-dynamics.webp",
+  heroAlt: "A teen covering her ears while her parents argue in the background",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-04-07",

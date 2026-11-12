@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "How an Intensive Outpatient Program helps people affected by bullying through emotional support, coping skills, confidence building, and family therapy.",
   heroImage: "/Assets/Blogs/how-intensive-outpatient-programs-iop-can-help-with-bullying.webp",
+  heroAlt: "A child being bullied by classmates on a school playground",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-02-24",

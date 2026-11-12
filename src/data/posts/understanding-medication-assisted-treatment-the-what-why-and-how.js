@@ -6,6 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "How Hopewell Health Solutions uses Medication-Assisted Treatment (MAT) to support recovery from substance use disorders with a whole-patient approach.",
   heroImage: "/Assets/Blogs/understanding-medication-assisted-treatment-the-what-why-and-how.webp",
+  heroAlt: "A \"MAT: Medication-Assisted Treatment\" logo graphic",
   authorSlug: "katherine-salvador-pa-c",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-04-14",

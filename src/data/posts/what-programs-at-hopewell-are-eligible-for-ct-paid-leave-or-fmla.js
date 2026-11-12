@@ -9,6 +9,7 @@ export default {
   excerpt:
     "Many clients ask whether our IOP and TMS programs qualify for leave under CT Paid Leave or FMLA. Here's how to think about eligibility, documentation, and next steps.",
   heroImage: "/Assets/Blogs/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla.webp",
+  heroAlt: "The Connecticut state flag",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-05-21",

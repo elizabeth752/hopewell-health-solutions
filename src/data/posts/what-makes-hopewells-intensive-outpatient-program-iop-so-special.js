@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "How Hopewell's Intensive Outpatient Program offers personalized, compassionate, evidence-based care that meets each person where they are.",
   heroImage: "/Assets/Blogs/what-makes-hopewells-intensive-outpatient-program-iop-so-special.webp",
+  heroAlt: "A group of hands joined together in a show of unity and support",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-11-24",

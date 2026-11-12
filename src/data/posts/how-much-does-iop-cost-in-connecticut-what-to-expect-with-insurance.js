@@ -9,6 +9,7 @@ export default {
   excerpt:
     "The cost of an IOP in Connecticut varies by location, length of program, and how you pay. Here's what to expect with insurance, financing, and out-of-pocket options.",
   heroImage: "/Assets/Blogs/opt/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance.webp",
+  heroAlt: "Two women reviewing information together on a laptop",
   authorSlug: "colleen-callaway-mba",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-06-23",

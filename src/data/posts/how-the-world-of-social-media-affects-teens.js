@@ -11,6 +11,7 @@ export default {
   excerpt:
     "The upsides and downsides of social media for teens, plus healthy habits to help them navigate the digital world mindfully.",
   heroImage: "/Assets/Blogs/how-the-world-of-social-media-affects-teens.webp",
+  heroAlt: "A close-up of a smartphone screen showing social media app icons",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-07-07",

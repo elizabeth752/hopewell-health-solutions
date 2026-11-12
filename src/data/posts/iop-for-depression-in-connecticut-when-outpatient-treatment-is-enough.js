@@ -9,6 +9,7 @@ export default {
   excerpt:
     "Depression can be managed without residential care. Here's how an Intensive Outpatient Program treats depression in Connecticut while you keep living at home.",
   heroImage: "/Assets/Blogs/opt/iop-for-depression-in-connecticut-when-outpatient-treatment-is-enough.webp",
+  heroAlt: "A support group sitting in a circle, talking with one another",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-07-06",

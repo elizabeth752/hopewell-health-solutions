@@ -11,6 +11,7 @@ export default {
   excerpt:
     "Signs it may be time to see a therapist — overwhelming emotions, strained relationships, unhealthy coping, major life changes, or feeling stuck.",
   heroImage: "/Assets/Blogs/how-to-recognize-when-its-time-to-see-a-therapist.webp",
+  heroAlt: "A woman talking with a therapist during a counseling session",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2025-08-25",

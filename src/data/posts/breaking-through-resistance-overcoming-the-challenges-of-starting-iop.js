@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "Starting an IOP can feel overwhelming. Here are the common challenges clients face when beginning treatment, and how to overcome them.",
   heroImage: "/Assets/Blogs/breaking-through-resistance-overcoming-the-challenges-of-starting-iop.webp",
+  heroAlt: "A distressed woman talking with a therapist who is taking notes",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-06-02",

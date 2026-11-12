@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Why having a baby challenges Type A personalities most, and a 3R recipe to reassess, revise, and recalibrate your expectations as a parent.",
   heroImage: "/Assets/Blogs/the-type-a-personality-redirect-control-and-keep-your-sanity-using-this-3-step-recipe.webp",
+  heroAlt: "A frazzled mother holding her head while her two young children eat breakfast",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2017-02-01",

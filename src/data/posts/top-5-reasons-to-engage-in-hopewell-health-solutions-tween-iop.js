@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Five reasons Hopewell Health Solutions' Tween IOP may be the right fit for your child: collaborative care, age-appropriate support, DBT, easy scheduling, and fun.",
   heroImage: "/Assets/Blogs/top-5-reasons-to-engage-in-hopewell-health-solutions-tween-iop.webp",
+  heroAlt: "A group of smiling tweens standing close together outdoors",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-02-10",

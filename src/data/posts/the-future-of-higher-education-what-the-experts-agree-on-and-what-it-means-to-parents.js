@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Takeaways from a CT Forum panel on the future of American education, and what they mean for how parents guide and support their kids.",
   heroImage: "/Assets/Blogs/the-future-of-higher-education-what-the-experts-agree-on-and-what-it-means-to-parents.webp",
+  heroAlt: "A panel discussion graphic titled \"The Future of Higher Education\"",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2017-01-09",

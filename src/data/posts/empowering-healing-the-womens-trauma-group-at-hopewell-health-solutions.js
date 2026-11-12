@@ -6,6 +6,7 @@ export default {
   category: "Women's Mental Health",
   excerpt: "An 8-week, DBT-informed Women's Trauma Group at Hopewell Health Solutions offering women a safe, supportive space to heal from trauma.",
   heroImage: "/Assets/Blogs/empowering-healing-the-womens-trauma-group-at-hopewell-health-solutions.webp",
+  heroAlt: "A woman in a quiet, reflective moment of healing",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-01-29",

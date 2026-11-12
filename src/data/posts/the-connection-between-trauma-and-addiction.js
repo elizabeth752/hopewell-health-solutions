@@ -12,6 +12,7 @@ export default {
   excerpt:
     "Addiction often begins as a way to escape the pain of trauma. Learn how the two intertwine and how trauma-informed IOP care helps break the cycle.",
   heroImage: "/Assets/Blogs/the-connection-between-trauma-and-addiction.webp",
+  heroAlt: "An illustration of a person weighed down by a wrecking ball labeled \"Trauma\"",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-12-01",

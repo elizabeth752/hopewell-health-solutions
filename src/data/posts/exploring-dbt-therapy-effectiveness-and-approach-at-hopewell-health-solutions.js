@@ -6,6 +6,7 @@ export default {
   category: "Therapy Approaches",
   excerpt: "How Dialectical Behavior Therapy (DBT) works, why it's effective, and how Hopewell Health Solutions uses it across its tween, teen, and adult IOP programs.",
   heroImage: "/Assets/Blogs/exploring-dbt-therapy-effectiveness-and-approach-at-hopewell-health-solutions.webp",
+  heroAlt: "Wooden blocks spelling out \"DBT\"",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-02-03",

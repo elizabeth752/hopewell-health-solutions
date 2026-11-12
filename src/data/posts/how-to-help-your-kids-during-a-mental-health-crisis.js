@@ -11,6 +11,7 @@ export default {
   excerpt:
     "A clinician's guide for parents on spotting a mental health crisis, responding calmly, communicating, and supporting a child's recovery one step at a time.",
   heroImage: "/Assets/Blogs/how-to-help-your-kids-during-a-mental-health-crisis.webp",
+  heroAlt: "Two people embracing in a supportive hug, seen from behind",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-09-12",

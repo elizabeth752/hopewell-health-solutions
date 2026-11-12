@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "Hopewell Health Solutions addresses six common myths about Intensive Outpatient Programs and clarifies what IOP really is for kids and teens.",
   heroImage: "/Assets/Blogs/common-myths-about-iop-misconceptions-and-providing-clarity.webp",
+  heroAlt: "A \"Myths vs. Facts\" graphic",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-09-09",

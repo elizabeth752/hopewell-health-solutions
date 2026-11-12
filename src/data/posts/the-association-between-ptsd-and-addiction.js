@@ -6,6 +6,7 @@ export default {
   category: "Trauma & PTSD",
   excerpt: "Why PTSD and addiction so often occur together, the cycle they create, and why effective treatment must address both trauma and substance use at once.",
   heroImage: "/Assets/Blogs/the-association-between-ptsd-and-addiction.webp",
+  heroAlt: "Wooden blocks spelling out \"PTSD, Post Traumatic Stress Disorder\"",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-09-22",

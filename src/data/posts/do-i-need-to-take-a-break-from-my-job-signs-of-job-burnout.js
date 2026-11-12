@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "Burnout is more than being tired. Learn the signs of job burnout, what causes it, and practical steps you can take to start recovering.",
   heroImage: "/Assets/Blogs/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout.webp",
+  heroAlt: "A tired man rubbing his eyes at his office desk, a sign of job burnout",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2025-07-14",

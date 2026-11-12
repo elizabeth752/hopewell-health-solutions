@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "A look at the factors driving rising mental health struggles in young adults, from pandemic fallout and financial strain to dating and social media.",
   heroImage: "/Assets/Blogs/why-are-young-adults-struggling-more-with-mental-health-issues.webp",
+  heroAlt: "A group of young adults taking a smiling selfie together outdoors",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2024-10-16",

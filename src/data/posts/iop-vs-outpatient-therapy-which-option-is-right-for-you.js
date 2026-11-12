@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "How IOP differs from traditional weekly outpatient therapy, and how to know which level of mental health support is right for you or your child.",
   heroImage: "/Assets/Blogs/iop-vs-outpatient-therapy-which-option-is-right-for-you.webp",
+  heroAlt: "A support group of adults talking together in a circle of chairs",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-06-20",

@@ -53,6 +53,7 @@ export default {
   excerpt:
     "Hopewell Health Solutions is opening a new campus at 70 Essex Road in Westbrook, CT, bringing Women's Wellness IOP, psychiatric medication management, and individual therapy to the Connecticut shoreline starting September 28, with an adult co-occurring IOP following in October.",
   heroImage: "/Assets/Blogs/opt/hopewell-health-solutions-westbrook-campus.webp",
+  heroAlt: "The exterior of Hopewell Health Solutions' Westbrook, Connecticut campus",
   authorSlug: "tj-aitken-cpsrp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-24",

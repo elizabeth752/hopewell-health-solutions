@@ -12,6 +12,7 @@ export default {
   excerpt:
     "You go to work, pay the bills, keep up appearances — but alcohol plays a bigger role than people know. The signs of high functioning alcoholism.",
   heroImage: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp",
+  heroAlt: "A man holding his head on the couch next to a bottle of alcohol and a glass",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-07-28",

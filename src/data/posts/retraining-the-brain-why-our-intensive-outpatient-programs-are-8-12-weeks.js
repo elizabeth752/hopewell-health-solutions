@@ -6,6 +6,7 @@ export default {
   category: "Intensive Outpatient (IOP)",
   excerpt: "How Hopewell's 8-12 week DBT-based IOPs for children and teens use neuroplasticity to retrain the brain and form healthier emotional patterns.",
   heroImage: "/Assets/Blogs/retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks.webp",
+  heroAlt: "A support group of adults talking together in a bright room",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-10-07",

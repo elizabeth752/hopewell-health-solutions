@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "A guide to teen counseling covering the challenges teens face, the goals and benefits of therapy, types of counseling available, and how parents can help.",
   heroImage: "/Assets/Blogs/guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health.webp",
+  heroAlt: "A teenage girl talking with a therapist during a counseling session",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-09-24",

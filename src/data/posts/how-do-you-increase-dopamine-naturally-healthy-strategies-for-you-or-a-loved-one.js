@@ -99,6 +99,7 @@ export default {
     "Dopamine is not the pleasure chemical, and it is not something to maximize. It reinforces behavior, which is why weak dopamine signaling feels like low drive rather than sadness. Here is what the evidence supports about sleep, exercise, nutrition, daylight, goals, and relationships.",
   heroImage:
     "/Assets/Blogs/opt/how-do-you-increase-dopamine-naturally-healthy-strategies-for-you-or-a-loved-one.webp",
+  heroAlt: "A smiling woman hiking up a sunny mountain trail",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-18",

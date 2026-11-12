@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "How an Intensive Outpatient Program treats tween anxiety using DBT, mindfulness, group and family therapy, coping skills, and optional medication management.",
   heroImage: "/Assets/Blogs/how-tween-anxiety-is-treated-in-an-intensive-outpatient-program-iop.webp",
+  heroAlt: "A mother comforting her anxious tween daughter, holding hands",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-03-10",

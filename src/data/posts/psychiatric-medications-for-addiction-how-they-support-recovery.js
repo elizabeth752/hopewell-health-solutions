@@ -6,6 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "How psychiatric medications support addiction recovery by reducing cravings, easing withdrawal symptoms, and stabilizing mood.",
   heroImage: "/Assets/Blogs/psychiatric-medications-for-addiction-how-they-support-recovery.webp",
+  heroAlt: "A clinician taking notes while listening to a patient during a session",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-11-20",

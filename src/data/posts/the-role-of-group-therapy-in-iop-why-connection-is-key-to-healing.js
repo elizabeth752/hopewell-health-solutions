@@ -6,6 +6,7 @@ export default {
   category: "Therapy Approaches",
   excerpt: "Why group therapy is a cornerstone of IOP — building connection, accountability, and coping skills that help people heal together.",
   heroImage: "/Assets/Blogs/the-role-of-group-therapy-in-iop-why-connection-is-key-to-healing.webp",
+  heroAlt: "A group therapy session with participants sitting in a circle of chairs",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-03-24",

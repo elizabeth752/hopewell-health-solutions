@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "Why the fear of flying often masks a deeper fear of growing up and leaving home, and how therapy can help young adults navigate independence.",
   heroImage: "/Assets/Blogs/fear-of-flying-or-fear-of-leaving-home.webp",
+  heroAlt: "A woman looking anxiously out a window, holding her hand to her face",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2025-08-04",

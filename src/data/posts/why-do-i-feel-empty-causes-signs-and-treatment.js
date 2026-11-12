@@ -73,6 +73,7 @@ export default {
   excerpt:
     "Feeling empty is not a diagnosis — it's usually a symptom of something else. Anhedonia, the reduced ability to feel interest or pleasure, appears in 35% to 70% of people with major depression. Here's what's behind the numbness, and how treatment reaches it.",
   heroImage: "/Assets/Blogs/opt/why-do-i-feel-empty-causes-signs-and-treatment.webp",
+  heroAlt: "A woman journaling calmly at a table overlooking greenery",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-17",

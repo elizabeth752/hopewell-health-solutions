@@ -11,6 +11,7 @@ export default {
   excerpt:
     "What an Intensive Outpatient Program is, its benefits, and how it compares to inpatient, outpatient, and partial hospitalization care.",
   heroImage: "/Assets/Blogs/what-is-iop.webp",
+  heroAlt: "An empty Hopewell Health Solutions group therapy room set up for an IOP session",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-09-24",

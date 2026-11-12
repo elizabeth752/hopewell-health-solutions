@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "How an Intensive Outpatient Program can be a game-changer for tweens battling depression while they keep living at home and attending school.",
   heroImage: "/Assets/Blogs/why-is-hopewell-health-solutions-tween-iop-great-for-depression.webp",
+  heroAlt: "A young boy sitting alone on the floor with his head down in a hallway",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-03-31",

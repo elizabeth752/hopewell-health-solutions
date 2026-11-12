@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "Dr. K shares the life lessons skiing has taught her about facing fear, embracing intensity, and getting back up after every fall.",
   heroImage: "/Assets/Blogs/life-lessons-learned-on-the-mountain.webp",
+  heroAlt: "A family skiing together on a snowy mountain trail",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2017-01-11",

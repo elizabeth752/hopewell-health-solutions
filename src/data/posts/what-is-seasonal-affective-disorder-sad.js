@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "What Seasonal Affective Disorder is, how to recognize its symptoms, and how therapy, medication, and light therapy can help you manage it.",
   heroImage: "/Assets/Blogs/what-is-seasonal-affective-disorder-sad.webp",
+  heroAlt: "A woman looking out a window at a snowy winter scene",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2024-12-04",

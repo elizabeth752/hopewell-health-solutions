@@ -12,6 +12,7 @@ export default {
   excerpt:
     "A safety plan is a compassionate, practical tool for moments of emotional overwhelm. Learn what it includes and how to create one.",
   heroImage: "/Assets/Blogs/what-is-a-safety-plan-and-how-can-you-make-one.webp",
+  heroAlt: "A \"Safety\" checklist graphic with three checked items",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2026-01-07",

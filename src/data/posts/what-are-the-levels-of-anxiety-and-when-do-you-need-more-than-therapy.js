@@ -9,6 +9,7 @@ export default {
   excerpt:
     "Generalized anxiety disorder, social anxiety, health anxiety, and panic disorder can range widely in intensity. Here's how to know when therapy isn't enough.",
   heroImage: "/Assets/Blogs/opt/what-are-the-levels-of-anxiety-and-when-do-you-need-more-than-therapy.webp",
+  heroAlt: "A clinician taking notes during a one-on-one counseling session",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-06-29",

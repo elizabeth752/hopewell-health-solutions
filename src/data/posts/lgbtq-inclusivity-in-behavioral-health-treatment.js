@@ -6,6 +6,7 @@ export default {
   category: "Inclusive Care",
   excerpt: "How affirming, inclusive behavioral health care removes barriers for LGBTQ+ clients and strengthens the therapeutic alliance and outcomes.",
   heroImage: "/Assets/Blogs/lgbtq-inclusivity-in-behavioral-health-treatment.webp",
+  heroAlt: "An illustration reading \"Affirming Care for All\" with a rainbow heart and a group of LGBTQ teens",
   authorSlug: "cassie-gittens-lpc-a",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-03-03",

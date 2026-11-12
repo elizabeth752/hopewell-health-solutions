@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Busy-parent tips for breaking the routine and building happy family memories through new traditions and creative themed nights.",
   heroImage: "/Assets/Blogs/beyond-game-night-adding-more-fun-into-family-time.webp",
+  heroAlt: "Four kids smiling inside a play tent lit with flashlights during family time",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2017-01-18",

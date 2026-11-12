@@ -9,6 +9,7 @@ export default {
   excerpt:
     "PHP and IOP are both part of the continuum of care, but they differ in intensity, structure, and flexibility. Here's how to choose the level that's right for you.",
   heroImage: "/Assets/Blogs/opt/php-vs-iop-which-level-of-care-is-right-for-you.webp",
+  heroAlt: "A support group of friends talking and laughing together in a circle",
   authorSlug: "colleen-callaway-mba",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-06-26",

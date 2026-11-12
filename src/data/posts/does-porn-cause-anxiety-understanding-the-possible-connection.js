@@ -80,6 +80,7 @@ export default {
   excerpt:
     "A 2026 review of 19 studies found that problematic use, not general use, was associated with anxiety, and the relationship appears to run both ways: anxiety drives use as escape, while secrecy, lost sleep, conflict, and shame feed the anxiety back.",
   heroImage: "/Assets/Blogs/opt/does-porn-cause-anxiety-understanding-the-possible-connection.webp",
+  heroAlt: "A woman sitting at a table with a laptop, lost in thought",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-17",

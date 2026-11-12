@@ -11,6 +11,7 @@ export default {
   excerpt:
     "How addiction develops differently in women, the warning signs to watch for, and how trauma-informed IOP treatment supports lasting recovery.",
   heroImage: "/Assets/Blogs/signs-of-addiction-in-women.webp",
+  heroAlt: "A clinician's hand resting supportively on a woman's shoulder during a group session",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-12-08",

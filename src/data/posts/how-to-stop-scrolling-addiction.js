@@ -65,6 +65,7 @@ export default {
   excerpt:
     "About half of American smartphone users worry they use their phone too much, and among adults under 30 that number climbs to 80%. Scrolling is rarely the whole problem — it is usually how anxiety, low mood, or exhaustion gets managed instead of treated.",
   heroImage: "/Assets/Blogs/opt/how-to-stop-scrolling-addiction.webp",
+  heroAlt: "A group of friends at a café, each looking down at their phones",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-09",

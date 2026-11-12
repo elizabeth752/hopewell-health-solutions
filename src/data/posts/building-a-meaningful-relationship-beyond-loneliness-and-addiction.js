@@ -81,6 +81,7 @@ export default {
   excerpt:
     "About one in three U.S. adults reports feeling lonely, and about one in four say they lack the social and emotional support they need. Loneliness, trauma, and compulsive behaviors quietly erode trust and closeness, and every one of them responds to treatment.",
   heroImage: "/Assets/Blogs/opt/building-a-meaningful-relationship-beyond-loneliness-and-addiction.webp",
+  heroAlt: "A couple smiling and talking together at an outdoor café table",
   authorSlug: "tj-aitken-cpsrp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-18",

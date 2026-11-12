@@ -6,6 +6,7 @@ export default {
   category: "Addiction & Recovery",
   excerpt: "Addiction is a disease, not a weakness. See how substance use disorder therapy programs give people the tools and support to rebuild their lives.",
   heroImage: "/Assets/Blogs/the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives.webp",
+  heroAlt: "A woman supporting a man as he holds pills in his hand on the couch",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2024-10-07",

@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "A former school counselor shares insider tips for parents on advocating for their child and building an effective 504 Plan.",
   heroImage: "/Assets/Blogs/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations.webp",
+  heroAlt: "A teacher and parent talking with a child at school",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2017-02-27",

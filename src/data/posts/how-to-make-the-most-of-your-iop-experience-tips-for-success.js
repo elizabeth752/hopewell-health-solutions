@@ -12,6 +12,7 @@ export default {
   excerpt:
     "Six practical tips for success to help you get the most out of your Intensive Outpatient Program experience.",
   heroImage: "/Assets/Blogs/how-to-make-the-most-of-your-iop-experience-tips-for-success.webp",
+  heroAlt: "A lit lightbulb next to the words \"Helpful Tips\"",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-06-30",

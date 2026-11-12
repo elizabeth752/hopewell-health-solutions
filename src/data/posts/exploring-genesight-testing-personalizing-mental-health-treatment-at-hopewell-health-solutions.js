@@ -6,6 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "How Hopewell Health Solutions uses Genesight pharmacogenomic testing to tailor psychiatric medication to each client's genetic profile.",
   heroImage: "/Assets/Blogs/exploring-genesight-testing-personalizing-mental-health-treatment-at-hopewell-health-solutions.webp",
+  heroAlt: "A hand holding a GeneSight psychotropic pharmacogenomic test report",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-06-09",

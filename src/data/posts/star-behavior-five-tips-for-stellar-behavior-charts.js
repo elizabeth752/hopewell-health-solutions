@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Five practical tips to make behavior charts work in your home, building better behaved kids, stronger self-esteem, and lasting grit.",
   heroImage: "/Assets/Blogs/star-behavior-five-tips-for-stellar-behavior-charts.webp",
+  heroAlt: "A smiling child pointing to a magnetic responsibility and behavior chart",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2017-02-15",

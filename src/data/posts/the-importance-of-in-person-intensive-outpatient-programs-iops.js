@@ -6,6 +6,7 @@ export default {
   category: "Therapy Approaches",
   excerpt: "Why Hopewell Health Solutions recommends in-person attendance for its Intensive Outpatient Programs over virtual options.",
   heroImage: "/Assets/Blogs/the-importance-of-in-person-intensive-outpatient-programs-iops.webp",
+  heroAlt: "A support group of adults sitting together in a circle, smiling",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-02-03",

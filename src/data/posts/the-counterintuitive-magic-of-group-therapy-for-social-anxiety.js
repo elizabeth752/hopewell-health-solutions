@@ -6,6 +6,7 @@ export default {
   category: "Therapy Approaches",
   excerpt: "Why group therapy is a surprisingly healing and empowering approach to social anxiety for children, teens, and adults alike.",
   heroImage: "/Assets/Blogs/the-counterintuitive-magic-of-group-therapy-for-social-anxiety.webp",
+  heroAlt: "A group of children sitting in a circle during a group therapy session",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-04-21",

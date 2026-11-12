@@ -12,6 +12,7 @@ export default {
   excerpt:
     "How the shift to summer disrupts routines and support systems, the mental health impact, and practical ways to stay grounded.",
   heroImage: "/Assets/Blogs/how-changes-in-routine-during-summer-can-impact-mental-health.webp",
+  heroAlt: "A hand holding a watermelon slice carved with the words \"Hello Summer\"",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2025-06-24",

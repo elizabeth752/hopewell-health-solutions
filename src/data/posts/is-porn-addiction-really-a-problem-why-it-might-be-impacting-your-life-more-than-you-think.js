@@ -13,6 +13,7 @@ export default {
   excerpt:
     "Porn addiction is rarely talked about, yet it can quietly take control of your time, emotions, and relationships. How therapy can help you reclaim power.",
   heroImage: "/Assets/Blogs/is-porn-addiction-really-a-problem-why-it-might-be-impacting-your-life-more-than-you-think.webp",
+  heroAlt: "A hand-drawn mind map exploring the topic of pornography addiction",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2024-10-07",

@@ -6,6 +6,7 @@ export default {
   category: "Teens & Families",
   excerpt: "Practical, easy-to-remember tips for parents to help calm a child's anxiety, from breathing exercises and routines to modeling calm and knowing when to seek support.",
   heroImage: "/Assets/Blogs/quick-parenting-tips-for-managing-a-childs-anxiety.webp",
+  heroAlt: "A mother comforting her worried daughter while looking at a laptop together",
   authorSlug: "chris-barclay-ph-d-bcba-ncsp",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2024-10-07",

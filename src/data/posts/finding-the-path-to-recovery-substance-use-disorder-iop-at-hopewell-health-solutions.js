@@ -6,6 +6,7 @@ export default {
   category: "Addiction & Recovery",
   excerpt: "How Hopewell Health Solutions' Substance Use Disorder Intensive Outpatient Program supports recovery through therapy, peer support, and medication management.",
   heroImage: "/Assets/Blogs/finding-the-path-to-recovery-substance-use-disorder-iop-at-hopewell-health-solutions.webp",
+  heroAlt: "An illustration of a man weighed down by a chained pill bottle, representing substance dependency",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-01-29",

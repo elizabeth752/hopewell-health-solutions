@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "Expert-recommended coping techniques to help manage anxiety, from mindful breathing and muscle relaxation to therapy, medication, and structured IOP support.",
   heroImage: "/Assets/Blogs/anxiety-coping-strategies-expert-tips-for-finding-calm.webp",
+  heroAlt: "A man using a paper bag breathing technique to cope with an anxious moment",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2024-10-16",

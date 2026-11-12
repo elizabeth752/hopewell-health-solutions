@@ -6,6 +6,7 @@ export default {
   category: "Therapy Approaches",
   excerpt: "Online therapy expanded access, but the depth of human connection and non-verbal communication make in-person therapy uniquely powerful for healing.",
   heroImage: "/Assets/Blogs/the-power-of-presence-why-in-person-therapy-remains-crucial.webp",
+  heroAlt: "A smiling young man talking with a therapist during an in-person session",
   authorSlug: "kaitlyn-czapiga-lmsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-03-03",

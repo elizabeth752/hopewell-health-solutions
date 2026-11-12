@@ -9,6 +9,7 @@ export default {
   excerpt:
     "When it comes to mood swings vs. a mood disorder, being informed means seeking the right care and living a stable, fulfilled life. Here's how to know the difference.",
   heroImage: "/Assets/Blogs/mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it.webp",
+  heroAlt: "A smiling woman talking with a clinician holding a clipboard",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-07-20",

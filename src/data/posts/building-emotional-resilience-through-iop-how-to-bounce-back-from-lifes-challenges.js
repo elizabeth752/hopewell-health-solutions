@@ -6,6 +6,7 @@ export default {
   category: "Mental Health",
   excerpt: "How an Intensive Outpatient Program (IOP) at Hopewell Health Solutions helps build emotional resilience to bounce back from life's challenges.",
   heroImage: "/Assets/Blogs/building-emotional-resilience-through-iop-how-to-bounce-back-from-lifes-challenges.webp",
+  heroAlt: "A stressed man sitting on his couch with his head in his hand at home",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",
   datePublished: "2025-08-11",

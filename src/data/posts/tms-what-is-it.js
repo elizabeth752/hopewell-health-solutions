@@ -6,6 +6,7 @@ export default {
   category: "Medication & Psychiatry",
   excerpt: "A plain-language overview of TMS (Transcranial Magnetic Stimulation): how it works, what it treats, what treatment entails, side effects, and benefits.",
   heroImage: "/Assets/Blogs/tms-what-is-it.webp",
+  heroAlt: "A diagram of the brain's lobes, used to explain how TMS targets specific regions",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2025-05-12",

@@ -6,6 +6,7 @@ export default {
   category: "Trauma & PTSD",
   excerpt: "First responder trauma is often chronic, cumulative, and tied to identity, requiring care that combines clinical expertise with cultural understanding.",
   heroImage: "/Assets/Blogs/why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder.webp",
+  heroAlt: "A group portrait of an EMT, a firefighter, and a police officer",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-12-22",
