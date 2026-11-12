@@ -1,0 +1,63 @@
+---
+// Conditions — option C: arched photo on the left, numbered editorial index (gold numerals) on the right.
+const conditions = [
+  { t: "Depression", icon: "cloud", href: "/what-we-treat/depression/" },
+  { t: "Anxiety", icon: "alert", href: "/what-we-treat/anxiety/" },
+  { t: "Trauma & PTSD", icon: "heart-even", href: "/what-we-treat/trauma-ptsd/" },
+  { t: "ADHD", icon: "bolt", href: "/what-we-treat/adhd/" },
+  { t: "Bipolar Disorder", icon: "swap", href: "/what-we-treat/bipolar/" },
+  { t: "OCD", icon: "refresh", href: "/what-we-treat/ocd/" },
+  { t: "Substance Use", icon: "pill", href: "/what-we-treat/substance-use-disorder/" },
+  { t: "Co-occurring Disorders", icon: "link", href: "/what-we-treat/co-occurring/" },
+];
+---
+
+<section class="bg-crema">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-[2fr_3fr] gap-10 lg:gap-14 items-center">
+    <div class="hb-conditions-c-photo hidden lg:block">
+      <img src="/Assets/service/therapy-room.webp" alt="A calm, sunlit therapy room at Hopewell" width="1200" height="967" loading="lazy" decoding="async" />
+    </div>
+    <div>
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Conditions We Treat</h2>
+      <p class="mt-3 text-ink max-w-xl text-pretty">Dedicated, evidence-based care for the conditions we see most — for individuals, couples, and families across Connecticut.</p>
+      <ol class="mt-8 grid sm:grid-cols-2 gap-x-10 list-none p-0">
+        {conditions.map((c, i) => (
+          <li>
+            <a href={c.href} class="hb-conditions-c-row hb-touch">
+              <span class="hb-conditions-c-num font-display" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span class="hb-conditions-c-name font-display text-xl sm:text-2xl text-ink leading-tight">{c.t}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hb-conditions-c-photo { position: relative; }
+  .hb-conditions-c-photo::before {
+    content: ""; position: absolute; inset: 18px -18px -18px 18px; z-index: 0;
+    border: 1px solid var(--color-sage); border-radius: 999px 999px 28px 28px; opacity: .45;
+  }
+  .hb-conditions-c-photo img {
+    position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 999px 999px 28px 28px;
+  }
+  .hb-conditions-c-row {
+    position: relative; display: flex; align-items: baseline; gap: 18px;
+    padding: 18px 0; border-bottom: 1px solid rgba(92,124,107,.28);
+  }
+  .hb-conditions-c-num { flex-shrink: 0; width: 2ch; font-size: 1rem; color: #8a6226; /* deeper gold: 4.5:1+ on crema (WCAG AA) */ transition: color .3s; }
+  .hb-conditions-c-name { position: relative; transition: color .3s, transform .3s; }
+  /* underline draws in from the left */
+  .hb-conditions-c-name::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%;
+    background: var(--color-azul); transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+  }
+  :is(.hb-conditions-c-row:hover, .hb-conditions-c-row.is-active) .hb-conditions-c-name { color: var(--color-azul); transform: translateX(6px); }
+  :is(.hb-conditions-c-row:hover, .hb-conditions-c-row.is-active) .hb-conditions-c-name::after { transform: scaleX(1); }
+  :is(.hb-conditions-c-row:hover, .hb-conditions-c-row.is-active) .hb-conditions-c-num { color: var(--color-azul); }
+  .hb-conditions-c-row:focus-visible { outline: 3px solid var(--color-azul-bright); outline-offset: 2px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) { .hb-conditions-c-name, .hb-conditions-c-name::after { transition: none; } }
+</style>

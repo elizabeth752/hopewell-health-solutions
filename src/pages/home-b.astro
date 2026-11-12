@@ -1,0 +1,304 @@
+---
+// LOCAL PROPOSAL ONLY — alternative homepage ("B"). Not linked, noindex, never commit.
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import FooterB from "../components/home-b/FooterB.astro";
+import Icon from "../components/Icon.astro";
+import FormLauncher from "../components/FormLauncher.astro";
+import NoOrphans from "../components/home-b/NoOrphans.astro";
+import AboutB from "../components/home-b/AboutB.astro";
+import ProgramsC from "../components/home-b/ProgramsC.astro";
+import TreatmentsB from "../components/home-b/TreatmentsB.astro";
+import ConditionsC from "../components/home-b/ConditionsC.astro";
+import TeamC from "../components/home-b/TeamC.astro";
+import ReviewsC from "../components/home-b/ReviewsC.astro";
+import LocationsB from "../components/home-b/LocationsB.astro";
+import BlogC from "../components/home-b/BlogC.astro";
+import FaqB from "../components/home-b/FaqB.astro";
+import CtaC from "../components/home-b/CtaC.astro";
+import MediaStrip from "../components/MediaStrip.astro";
+import LegitScriptSeal from "../components/LegitScriptSeal.astro";
+import BbbSeal from "../components/BbbSeal.astro";
+
+const trustMarks = [
+  ["The Joint Commission — Gold Seal of Approval", "/Assets/home-b/joint-commission-seal.webp", 240, 240, "h-12 w-12"],
+  ["Psychology Today Verified", "/Assets/home-b/psychology-today-verified.webp", 600, 179, "h-9 w-auto"],
+];
+const usps = [
+  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Intensive Outpatient (IOP) & Partial Hospitalization (PHP) — for women, teens, tweens, first responders & substance use. Built for who you are." },
+  { icon: "users", t: "Real, in-person care", d: "While others go all-virtual, our IOP, PHP, therapy and medication management happen face to face — human to human, with telehealth when you need it." },
+  { icon: "dna", t: "GeneSight® genetic testing", d: "A simple cheek swab shows which medications fit your DNA — so we skip the trial-and-error." },
+  { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough." },
+];
+// Optional 3rd value = display width in px (SVG logos, sized up per review: +20px, UMR +10px).
+const I = "/Assets/home-b/insurance/";
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield",I + "bcbs.svg",89],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum",I + "optum.svg",90],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR",I + "umr.svg",50],
+  ["UnitedHealthcare",I + "unitedhealthcare.svg",91],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+  ["ConnectiCare",I + "connecticare.svg",86],["Harvard Pilgrim",I + "harvard-pilgrim.svg",87],
+];
+const steps = [
+  { icon: "phone", t: "Reach out", d: "Call us, or request a confidential callback — no commitment." },
+  { icon: "shield", t: "Verify insurance", d: "We check your benefits for you — free, in minutes." },
+  { icon: "clipboard", t: "Assessment", d: "A clinical assessment to match you to the right care." },
+  { icon: "compass", t: "Begin care", d: "Start at the right level — and adjust as you heal." },
+];
+---
+
+<Base title="Home B (proposal) | Hopewell Health Solutions" description="Local design proposal — not for production." robots="noindex, nofollow">
+  <Header>
+    <div slot="topbar" class="hb-tb">
+      <div class="mx-auto max-w-6xl px-5 h-9 flex items-center justify-between gap-4 text-[13px]">
+        <a href="#verify" class="inline-flex items-center gap-2 whitespace-nowrap">
+          <Icon name="shield" class="h-4 w-4 text-gold-light" />
+          <span class="text-white"><strong>In-network with most major plans</strong><span class="hidden md:inline text-white/70"> · Free insurance check in minutes</span></span>
+        </a>
+        <a href="#verify" class="hb-tb-link whitespace-nowrap">Verify my coverage →</a>
+      </div>
+    </div>
+  </Header>
+
+  <!-- HERO — navy with ghost team photo, form on the right -->
+  <section class="hb-hero relative isolate overflow-hidden bg-ink text-white">
+    <img src="/Assets/home-b/hero-couple.webp" alt="" aria-hidden="true" width="1536" height="768" class="hb-hero-photo" fetchpriority="high" />
+    <div class="relative mx-auto max-w-6xl px-5 py-16 lg:py-24 ">
+      <div class="max-w-[600px]">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.2rem] text-white leading-[1.08] text-balance"><span class="sm:whitespace-nowrap">Mental Health &amp; Psychiatry</span> <span class="sm:block">in Connecticut</span></h1>
+        <p class="mt-4 font-display italic text-2xl sm:text-3xl text-gold-light leading-tight">There is hope to heal.</p>
+        <p class="mt-6 text-lg text-white/80 max-w-xl leading-relaxed text-pretty">Intensive programs, psychiatry, medication management and TMS — delivered in person by clinicians who know your name, in Glastonbury, West Hartford, East Hampton and Westbrook. For ages 4 and up, in person or by telehealth.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-7 h-[45px] font-semibold text-white hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />Call (860) 735-1448</a>
+          <a href="#verify" class="inline-flex justify-center items-center rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition">Check Your Coverage</a>
+          <span class="inline-flex items-center gap-2 text-sm text-white/85"><span class="grid h-6 w-6 place-items-center rounded-full bg-white"><img src="/Assets/home-b/google-g.svg" alt="Google" width="14" height="14" class="h-3.5 w-3.5" /></span><span class="text-yellow-400">★★★★★</span><strong class="text-white">4.8</strong> · 368 reviews</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="bg-white border-b border-line">
+    <div class="mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+      <p class="text-sm font-semibold text-muted">Accredited &amp; verified by</p>
+      {trustMarks.map(([alt, src, w, h, cls]) => <img src={src} alt={alt} width={w} height={h} loading="lazy" decoding="async" class={`${cls} object-contain`} />)}
+      <LegitScriptSeal />
+      <BbbSeal />
+    </div>
+  </section>
+
+  <!-- WHERE TO BEGIN — full-photo cards -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+      <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Where Would You Like to Begin?</h2>
+      <p class="mt-3 text-ink max-w-2xl text-pretty">One in five U.S. adults lives with a mental health condition — and untreated, it rarely gets easier on its own. You are not alone, and you don’t have to navigate this alone.</p>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <a href="/programs/" class="hb-begin hb-touch group">
+          <img src="/Assets/service/home-help-myself-opt.webp" alt="Beginning your own healing journey" width="800" height="440" loading="lazy" decoding="async" />
+          <span class="hb-begin-body">
+            <span class="font-display text-3xl text-white">Help for myself</span>
+            <span class="mt-2 block text-white/85">Taking the first step takes courage. We’ll make the next ones simple.</span>
+            <span class="hb-begin-cta">Find my program <Icon name="arrow" class="h-4 w-4" /></span>
+          </span>
+        </a>
+        <a href="/admissions/#for-families" class="hb-begin hb-touch group">
+          <img src="/Assets/service/home-help-loved-one-opt.webp" alt="Supporting a loved one who is struggling" width="800" height="440" loading="lazy" decoding="async" />
+          <span class="hb-begin-body">
+            <span class="font-display text-3xl text-white">Help for someone I love</span>
+            <span class="mt-2 block text-white/85">A child, partner, or parent who’s struggling? We’ll help you help them.</span>
+            <span class="hb-begin-cta">Get guidance <Icon name="arrow" class="h-4 w-4" /></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <MediaStrip bg="white" />
+
+  <!-- WHY — sticky photo + numbered list -->
+  <section id="why" class="bg-white scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-[5fr_6fr] gap-12 items-start">
+      <div class="lg:sticky lg:top-28">
+        <h2 class="font-display text-3xl sm:text-4xl text-ink leading-tight text-balance">Care You Can’t Get Just Anywhere</h2>
+        <p class="mt-4 text-ink leading-relaxed text-pretty">Therapy first. Medication second. Transformation third. Four things set Hopewell apart from other outpatient practices in Connecticut.</p>
+        <img src="/Assets/service/home-mission-opt.webp" alt="The Hopewell Health Solutions team" width="1000" height="750" loading="lazy" decoding="async" class="mt-8 w-full aspect-[4/3] object-cover rounded-3xl" />
+      </div>
+      <ol class="hb-why">
+        {usps.map((u, i) => (
+          <li class="hb-why-item hb-touch">
+            <span class="hb-why-num font-display">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3 class="font-display text-2xl text-ink leading-snug text-balance">{u.t}</h3>
+              <p class="mt-3 text-ink leading-relaxed">{u.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ABOUT — light editorial + stats band -->
+  <div id="about" class="scroll-mt-20"><AboutB /></div>
+
+  <!-- PROGRAMS — bento mosaic + intensity bar -->
+  <div id="programs" class="scroll-mt-20"><ProgramsC /></div>
+
+  <!-- TREATMENTS — TMS photo banner + icon row -->
+  <div id="treatments" class="scroll-mt-20"><TreatmentsB /></div>
+
+  <!-- CONDITIONS — arched photo + numbered index -->
+  <div id="what-we-treat" class="scroll-mt-20"><ConditionsC /></div>
+
+  <!-- TEAM — portrait carousel -->
+  <div id="team" class="scroll-mt-20"><TeamC /></div>
+
+  <!-- REVIEWS — staggered review wall -->
+  <ReviewsC />
+
+  <!-- INSURANCE -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-[2fr_3fr] gap-10 items-center">
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Comprehensive Coverage Options</h2>
+        <p class="mt-3 text-ink text-pretty">We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you — free, in minutes.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#verify" class="inline-flex items-center justify-center rounded-lg bg-azul px-7 h-[45px] font-semibold text-white hover:bg-azul-dark transition">Verify my benefits →</a>
+          <a href="/rates-and-insurance-coverage/" class="inline-flex items-center justify-center rounded-lg border border-azul px-7 h-[45px] font-semibold text-azul hover:bg-azul-light transition">Rates &amp; insurance</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+        {insurers.map(([name, img, w]) => (
+          <div class="rounded-xl bg-white/90 border border-line p-3 flex items-center justify-center h-20">
+            {w
+              ? <img src={img} alt={name} loading="lazy" style={`width:${w}px`} class="h-auto max-h-12 max-w-full object-contain" />
+              : <img src={img} alt={name} loading="lazy" class="max-h-11 max-w-[85%] object-contain" />}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GETTING STARTED — scroll-drawn line -->
+  <section class="bg-crema">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20 grid lg:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Getting Started Is Simple</h2>
+        <p class="mt-3 text-ink">Reaching out is the hardest part — we handle the rest.</p>
+        <img src="/Assets/Glastonbury%20Location%20Main/Couch.webp" alt="A calm therapy room at our Glastonbury office" loading="lazy" class="mt-8 hidden lg:block w-full aspect-[4/3] object-cover rounded-3xl" />
+      </div>
+      <div>
+      <div class="hb-steps" data-steps>
+        <span class="hb-steps-track" aria-hidden="true"><span class="hb-steps-fill"></span></span>
+        <ol class="list-none p-0 m-0">
+        {steps.map((s, i) => (
+          <li class="hb-step">
+            <span class="hb-step-dot"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wide text-azul">Step {i + 1}</p>
+              <h3 class="mt-1 font-display text-2xl text-ink">{s.t}</h3>
+              <p class="mt-1 text-ink">{s.d}</p>
+            </div>
+          </li>
+        ))}
+        </ol>
+      </div>
+      <div class="pl-[76px]"><a href="#verify" class="inline-flex items-center justify-center rounded-lg bg-azul px-8 h-[45px] font-semibold text-white hover:bg-azul-dark transition">Get Started Now →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS — office photo cards -->
+  <div id="locations" class="scroll-mt-20"><LocationsB /></div>
+
+  <!-- BLOG — full-photo cards -->
+  <BlogC />
+
+  <!-- FAQ — sticky numbered list -->
+  <FaqB />
+
+  <!-- FINAL CTA — inset panel + action card -->
+  <CtaC />
+
+  <FooterB />
+  <FormLauncher />
+  <NoOrphans />
+</Base>
+
+<style is:global>
+  /* home-b only: fully white header (top social bar included) */
+  header.sticky { background: #fff !important; backdrop-filter: none !important; }
+  .hb-tb-link { font-weight: 600; color: var(--color-gold-light); }
+  .hb-tb-link:hover { text-decoration: underline; }
+  @media (max-width: 639px) { .hb-tb .hb-tb-link { display: none; } .hb-tb > div { justify-content: center; } }
+</style>
+
+<style>
+  /* HERO */
+  .hb-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right 25%; z-index: -2; }
+  .hb-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,29,55,.94) 0%, rgba(0,29,55,.85) 38%, rgba(0,29,55,.35) 62%, rgba(0,29,55,0) 80%); }
+  @media (max-width: 1023px) { .hb-hero::after { background: linear-gradient(180deg, rgba(0,29,55,.78), rgba(0,29,55,.92)); } }
+
+  /* shared icon tile with tilt on hover (Lotus card idea) */
+  .hb-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--color-azul-light); color: var(--color-azul); transition: transform .3s, background .3s, color .3s; }
+  :is(.group:hover, .hb-touch.is-active) .hb-icon { background: var(--color-azul); color: #fff; transform: rotate(-6deg) scale(1.06); }
+  :is(.group:hover, .hb-touch.is-active) .hb-icon--light { background: var(--color-gold-light); color: var(--color-ink); }
+
+  /* WHERE TO BEGIN */
+  .hb-begin { position: relative; display: block; min-height: 340px; border-radius: 24px; overflow: hidden; }
+  .hb-begin img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+  .hb-begin::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,29,55,.9) 10%, rgba(0,29,55,.25) 65%, transparent); }
+  .hb-begin-body { position: absolute; z-index: 1; left: 28px; right: 28px; bottom: 28px; }
+  .hb-begin-cta { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--color-gold-light); }
+  :is(.hb-begin:hover, .hb-begin.is-active) img { transform: scale(1.05); }
+
+  /* WHY */
+  .hb-why { list-style: none; padding: 0; margin: 0; }
+  .hb-why-item { display: grid; grid-template-columns: 64px 1fr; gap: 16px; padding: 32px 0; border-top: 1px solid var(--color-line); }
+  .hb-why-item:last-child { border-bottom: 1px solid var(--color-line); }
+  .hb-why-num { font-size: 2.5rem; line-height: 1; color: var(--color-gold); }
+  .hb-why-item .hb-icon { display: none; }
+
+
+
+
+
+
+
+
+
+  /* STEPS — line draws as you scroll */
+  .hb-steps { position: relative; }
+  .hb-steps-track { position: absolute; left: 27px; top: 28px; bottom: 64px; width: 2px; background: var(--color-line); }
+  .hb-steps-fill { display: block; width: 100%; height: calc(var(--p, 0) * 100%); background: var(--color-azul); }
+  .hb-step { position: relative; display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding-bottom: 36px; }
+  .hb-step-dot { position: relative; z-index: 1; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 999px; background: #fff; border: 2px solid var(--color-line); color: var(--color-muted); transition: all .35s; }
+  .hb-step.is-on .hb-step-dot { background: var(--color-azul); border-color: var(--color-azul); color: #fff; box-shadow: 0 0 0 8px var(--color-azul-light); }
+
+
+
+  @media (prefers-reduced-motion: reduce) { .hb-steps-fill { height: 100%; } * { transition: none !important; } }
+</style>
+
+<script>
+  // Touch has no hover: activate cards as they cross mid-screen.
+  if (window.matchMedia("(hover: none)").matches) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => e.target.classList.toggle("is-active", e.isIntersecting)), { rootMargin: "-45% 0px -45% 0px" });
+    document.querySelectorAll(".hb-touch").forEach((el) => io.observe(el));
+  }
+  // Steps line fills with scroll; dots light up as the line reaches them.
+  const list = document.querySelector("[data-steps]");
+  if (list) {
+    const fill = list.querySelector(".hb-steps-track");
+    const dots = [...list.querySelectorAll(".hb-step")];
+    const update = () => {
+      const r = fill.getBoundingClientRect();
+      const mid = window.innerHeight * 0.6;
+      const p = Math.min(1, Math.max(0, (mid - r.top) / r.height));
+      list.style.setProperty("--p", p.toFixed(3));
+      dots.forEach((d) => d.classList.toggle("is-on", d.getBoundingClientRect().top + 28 <= mid));
+    };
+    addEventListener("scroll", update, { passive: true });
+    update();
+  }
+</script>

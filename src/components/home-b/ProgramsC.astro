@@ -1,0 +1,93 @@
+---
+// Programs — option C: bento mosaic of photo tiles (text over image) + continuum as one intensity bar split in three levels.
+import Icon from "../Icon.astro";
+const programs = [
+  { t: "Adult IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: "/Assets/AdobeStock_403830351.webp" },
+  { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp" },
+  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-tween-iop/", img: "/Assets/teen%20smiling.webp" },
+  { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", href: "/programs/partial-hospitalization-program/", img: "/Assets/AdobeStock_542909901.webp" },
+  { t: "Medication Management", d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", href: "/programs/medication-management/", img: "/Assets/AdobeStock_404268940.webp" },
+  { t: "Counseling", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", img: "/Assets/couple%20hugging.webp" },
+];
+const continuum = [
+  { t: "Outpatient Therapy", d: "Weekly individual, couples & family sessions" },
+  { t: "Intensive Outpatient (IOP)", d: "3 hrs/day · 4 days/week · day or evening" },
+  { t: "Partial Hospitalization (PHP)", d: "Full-day care — highest outpatient level" },
+];
+---
+<section class="bg-crema scroll-mt-20">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+    <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Mental Health Programs for Every Level of Care</h2>
+    <p class="mt-3 text-ink max-w-2xl text-pretty">A full continuum under one roof — from weekly counseling to intensive day programs. Step up when you need more support, or step down as you heal, without ever switching teams.</p>
+    <ul class="hb-prog-c-grid mt-10 list-none p-0">
+      {programs.map((p, i) => (
+        <li class={i < 2 ? "hb-prog-c-lg" : "hb-prog-c-sm"}>
+          <a href={p.href} class="hb-prog-c-tile hb-touch">
+            <img src={p.img} alt="" loading="lazy" decoding="async" />
+            <span class="hb-prog-c-body">
+              <h3 class={`font-display text-white leading-tight text-balance ${i < 2 ? "text-3xl" : "text-xl"}`}>{p.t}</h3>
+              <span class="hb-prog-c-desc mt-2 block text-white/85 text-[15px] leading-relaxed text-pretty">{p.d}</span>
+            </span>
+            <span class="hb-prog-c-arrow" aria-hidden="true"><Icon name="arrow" class="h-5 w-5" /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- continuum as an intensity bar -->
+    <div class="mt-14 rounded-3xl bg-white border border-line p-8 lg:p-10">
+      <h3 class="font-display text-2xl text-ink text-balance">Your Continuum of Care</h3>
+      <p class="mt-2 text-ink text-sm text-pretty">Move up or down as you heal — one team, one coordinated plan.</p>
+      <ol class="hb-prog-c-bar mt-8 list-none p-0">
+        {continuum.map((c, i) => (
+          <li class="hb-prog-c-level" style={`--lvl:${i}`}>
+            <span class="hb-prog-c-seg" aria-hidden="true"></span>
+            <div class="hb-prog-c-text">
+              <p class="font-display text-lg text-ink leading-tight text-balance"><span class="text-azul">{i + 1}.</span> {c.t}</p>
+              <p class="mt-1 text-sm text-ink text-pretty">{c.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hb-prog-c-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 640px) { .hb-prog-c-grid { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) {
+    .hb-prog-c-grid { grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .hb-prog-c-lg { grid-column: span 6; }
+    .hb-prog-c-sm { grid-column: span 3; }
+  }
+  .hb-prog-c-tile { position: relative; display: block; height: 100%; min-height: 280px; overflow: hidden; border-radius: 22px; isolation: isolate; background: var(--color-ink); }
+  .hb-prog-c-lg .hb-prog-c-tile { min-height: 340px; }
+  @media (min-width: 1024px) { .hb-prog-c-lg .hb-prog-c-tile { min-height: 400px; } .hb-prog-c-sm .hb-prog-c-tile { min-height: 320px; } }
+  .hb-prog-c-tile:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 3px; }
+  .hb-prog-c-tile img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .7s; }
+  .hb-prog-c-tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(0,29,55,.94) 8%, rgba(0,29,55,.55) 50%, rgba(0,29,55,.05)); transition: background .4s; }
+  .hb-prog-c-body { position: absolute; left: 22px; right: 22px; bottom: 22px; }
+  .hb-prog-c-arrow { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,.16); color: #fff; backdrop-filter: blur(4px); transition: background .3s, color .3s, transform .3s; }
+  :is(.hb-prog-c-tile:hover, .hb-prog-c-tile.is-active) img { transform: scale(1.06); }
+  :is(.hb-prog-c-tile:hover, .hb-prog-c-tile.is-active)::after { background: linear-gradient(to top, rgba(0,29,55,.96) 15%, rgba(38,84,137,.6) 60%, rgba(38,84,137,.15)); }
+  :is(.hb-prog-c-tile:hover, .hb-prog-c-tile.is-active) .hb-prog-c-arrow { background: var(--color-gold-light); color: var(--color-ink); transform: rotate(-45deg); }
+
+  /* intensity bar: vertical on mobile, horizontal from md */
+  .hb-prog-c-bar { display: grid; gap: 0; }
+  .hb-prog-c-level { display: grid; grid-template-columns: 14px 1fr; gap: 18px; }
+  .hb-prog-c-seg { display: block; width: 14px; min-height: 96px; background: color-mix(in srgb, var(--color-azul) calc(30% + var(--lvl) * 35%), var(--color-azul-light)); }
+  .hb-prog-c-level:first-child .hb-prog-c-seg { border-radius: 999px 999px 0 0; }
+  .hb-prog-c-level:last-child .hb-prog-c-seg { border-radius: 0 0 999px 999px; background: var(--color-ink); }
+  .hb-prog-c-text { padding: 10px 0 18px; }
+  @media (min-width: 768px) {
+    .hb-prog-c-bar { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .hb-prog-c-level { grid-template-columns: 1fr; gap: 16px; }
+    .hb-prog-c-seg { width: auto; min-height: 0; height: calc(12px + var(--lvl) * 8px); align-self: end; }
+    .hb-prog-c-level:first-child .hb-prog-c-seg { border-radius: 999px 0 0 999px; }
+    .hb-prog-c-level:last-child .hb-prog-c-seg { border-radius: 0 999px 999px 0; }
+    .hb-prog-c-level { grid-template-rows: 28px auto; }
+    .hb-prog-c-text { padding: 0 12px 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hb-prog-c-tile, .hb-prog-c-tile * { transition: none !important; } }
+</style>

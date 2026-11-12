@@ -1,0 +1,67 @@
+---
+// Locations — option B: 3×2 grid of photo cards, each office's real exterior on top, address below.
+import Icon from "../Icon.astro";
+
+const locations = [
+  ["Glastonbury — Pratt St", "33 Pratt St", "Glastonbury, CT 06033", "/location/glastonbury-ct/"],
+  ["Downtown Glastonbury", "300 Hebron Ave, Suite 203", "Glastonbury, CT 06033", "/location/glastonbury-ct-2/"],
+  ["South Glastonbury", "1420 Main St, Suite 124", "Glastonbury, CT 06073", "/location/glastonbury-ct-3/"],
+  ["West Hartford", "1216 Farmington Ave, Suite 301", "West Hartford, CT 06107", "/location/west-hartford-ct/"],
+  ["East Hampton", "151 E. High St", "East Hampton, CT 06424", "/location/east-hampton-ct/"],
+  ["Westbrook", "70 Essex Road", "Westbrook, CT 06498", "/location/westbrook-ct/"],
+];
+// Exterior photo per office (same order as `locations`).
+const photos = [
+  ["/Assets/locations/glastonbury/exterior.webp", "center 60%"],
+  ["/Assets/locations/downtown-glastonbury/exterior.webp", "center 40%"],
+  ["/Assets/locations/1420-main/1420-1.webp", "center 30%"],
+  ["/Assets/locations/west-hartford/exterior.webp", "center 45%"],
+  ["/Assets/locations/east-hampton/exterior.webp", "center 55%"],
+  ["/Assets/locations/westbrook/exterior.webp", "center"],
+];
+---
+
+<section class="bg-white">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+    <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Care Near You, Across Central Connecticut</h2>
+    <p class="mt-3 text-ink max-w-3xl text-pretty">Offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT — serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. We also see clients virtually across New England.</p>
+    <ul class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {locations.map(([city, addr, cityline, href], i) => (
+        <li>
+          <a href={href} class="hb-locations-b-card hb-touch">
+            <span class="hb-locations-b-photo">
+              <img src={photos[i][0]} alt={`Hopewell Health Solutions office in ${city}`} loading="lazy" decoding="async" style={`object-position:${photos[i][1]}`} />
+            </span>
+            <span class="flex items-start gap-3 p-5">
+              <span class="hb-locations-b-pin"><Icon name="pin" class="h-5 w-5" /></span>
+              <span class="flex-1 min-w-0">
+                <span class="block font-display text-xl text-ink leading-tight">{city}</span>
+                <span class="mt-1 block text-sm text-muted">{addr}<br />{cityline}</span>
+              </span>
+              <Icon name="arrow" class="hb-locations-b-arrow h-5 w-5 mt-1 text-azul shrink-0" />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-10 text-center"><a href="/locations/" class="inline-flex items-center justify-center rounded-lg bg-azul px-7 h-[45px] font-semibold text-white hover:bg-azul-dark transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-azul-bright">See all locations →</a></div>
+  </div>
+</section>
+
+<style>
+  .hb-locations-b-card {
+    display: flex; flex-direction: column; height: 100%; overflow: hidden;
+    border-radius: 20px; background: #fff; border: 1px solid var(--color-line);
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+  }
+  .hb-locations-b-photo { position: relative; display: block; aspect-ratio: 16/10; overflow: hidden; background: var(--color-crema); }
+  .hb-locations-b-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+  .hb-locations-b-pin { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; background: var(--color-azul-light); color: var(--color-azul); transition: background .3s, color .3s, transform .3s; }
+  .hb-locations-b-arrow { transition: transform .3s; }
+  :is(.hb-locations-b-card:hover, .hb-locations-b-card.is-active) { transform: translateY(-4px); box-shadow: 0 18px 36px rgba(0,29,55,.12); border-color: transparent; }
+  :is(.hb-locations-b-card:hover, .hb-locations-b-card.is-active) img { transform: scale(1.06); }
+  :is(.hb-locations-b-card:hover, .hb-locations-b-card.is-active) .hb-locations-b-pin { background: var(--color-azul); color: #fff; transform: rotate(-6deg); }
+  :is(.hb-locations-b-card:hover, .hb-locations-b-card.is-active) .hb-locations-b-arrow { transform: translateX(4px); }
+  .hb-locations-b-card:focus-visible { outline: 3px solid var(--color-azul-bright); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .hb-locations-b-card, .hb-locations-b-photo img, .hb-locations-b-pin, .hb-locations-b-arrow { transition: none; } }
+</style>

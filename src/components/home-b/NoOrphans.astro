@@ -1,0 +1,47 @@
+---
+// No orphan words (all-projects rule): wraps the last two words of headings, paragraphs, list items and short labels
+// in a no-wrap span, so no line ends with a single word on its own (this also covers hyphenated words such as
+// "Out-of-State Families", where a non-breaking space alone would still let the line break at the hyphen). Pairs longer
+// than 28 characters are left alone so they can never overflow a 320px screen. Runs once on load and only touches the
+// last text node of each element, so links and inline tags keep working. Skips forms, tables, code and the cookie banner.
+---
+<script>
+  // home-b: also card titles/captions rendered as block spans, and the lead card heading and notes (outside its <form>).
+  const SEL = 'h1, h2, h3, h4, p, li, dd, figcaption, summary, blockquote, span.block, span.font-display, .lead-card > div > span, .lead-card > p';
+  const SKIP = 'form, table, pre, code, script, style, #cc-banner, [data-no-orphans], .nw';
+  const lastText = (el: Node): Text | null => {
+    for (let n = el.lastChild; n; n = n.previousSibling) {
+      if (n.nodeType === 3 && n.textContent!.trim()) return n as Text;
+      if (n.nodeType === 1) { const t = lastText(n); if (t) return t; }
+    }
+    return null;
+  };
+  const pairs: [HTMLElement, HTMLElement][] = [];
+  document.querySelectorAll<HTMLElement>(SEL).forEach((el) => {
+    if (el.closest(SKIP) || el.querySelector(SEL)) return;
+    if ((el.textContent || '').trim().split(/\s+/).length < 3) return;
+    const t = lastText(el);
+    if (!t || t.parentElement?.closest('.nw')) return;
+    // in a flex or grid box every text run becomes its own item, so a new span would open a gap: skip those
+    if (/flex|grid/.test(getComputedStyle(t.parentElement!).display)) return;
+    const m = t.textContent!.match(/^([\s\S]*?\s)(\S+\s+\S+)(\s*)$/);
+    if (!m || m[2].length > 28) return;
+    const span = document.createElement('span');
+    span.className = 'nw';
+    span.textContent = m[2];
+    t.replaceWith(document.createTextNode(m[1]), span, document.createTextNode(m[3]));
+    pairs.push([span, el]);
+  });
+  // A joined pair must never overflow its box (big headings on a 320px phone): it wraps normally when it doesn't fit.
+  // Re-checked on resize and rotation.
+  const fit = () => pairs.forEach(([span, el]) => {
+    span.style.whiteSpace = 'nowrap';
+    // inline elements report clientWidth 0, so measure against the nearest block container
+    let box: HTMLElement = el;
+    while (box.parentElement && getComputedStyle(box).display === 'inline') box = box.parentElement;
+    if (span.getBoundingClientRect().width > box.clientWidth) span.style.whiteSpace = 'normal';
+  });
+  fit();
+  let raf = 0;
+  addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); });
+</script>

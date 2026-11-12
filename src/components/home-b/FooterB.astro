@@ -1,0 +1,101 @@
+---
+// LOCAL PROPOSAL ONLY — home-b footer: live "depth" background and white logo, socials as a named row
+// above the bottom bar, no phone line.
+import { socials } from "../../data/socials";
+const locations = [
+  ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct/"],
+  ["Downtown Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct-2/"],
+  ["South Glastonbury", "1420 Main St", "/location/glastonbury-ct-3/"],
+  ["West Hartford", "1216 Farmington Ave", "/location/west-hartford-ct/"],
+  ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
+  ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
+];
+const cols = [
+  { h: "Programs", links: [
+    ["Intensive Outpatient (IOP)", "/programs/intensive-outpatient-program/"],
+    ["Partial Hospitalization (PHP)", "/programs/partial-hospitalization-program/"],
+    ["Medication Management", "/programs/medication-management/"],
+    ["Outpatient Therapy", "/programs/counseling/"],
+  ] },
+  { h: "What We Treat", links: [
+    ["Depression", "/what-we-treat/depression/"],
+    ["Anxiety", "/what-we-treat/anxiety/"],
+    ["Trauma & PTSD", "/what-we-treat/trauma-ptsd/"],
+    ["Substance Use", "/what-we-treat/substance-use-disorder/"],
+    ["ADHD", "/what-we-treat/adhd/"],
+  ] },
+  { h: "Treatments", links: [
+    ["TMS", "/treatment-methods/tms/"],
+    ["EMDR", "/treatment-methods/emdr/"],
+    ["GeneSight®", "/treatment-methods/genesight-testing/"],
+  ] },
+];
+---
+<footer class="ftr relative isolate overflow-hidden bg-ink text-white/80">
+  <div class="ftr-bg" aria-hidden="true"></div>
+
+  <!-- extra bottom room on phones so the floating form button never covers the legal links -->
+  <div class="mx-auto max-w-6xl px-5 pt-14 pb-28 md:pb-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div class="text-center md:text-left">
+        <a href="/" class="inline-block mb-5" aria-label="Hopewell Health Solutions — home">
+          <img src="/Assets/logo/hopewell-wave-logo-white.svg" alt="Hopewell Health Solutions" width="990" height="444" loading="lazy" decoding="async" class="mx-auto h-20 w-auto md:mx-0" />
+        </a>
+        <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
+      </div>
+      {cols.map((c) => (
+        <div class="text-center">
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">{c.h}</h4>
+          <ul class="space-y-2 text-sm">
+            {c.links.map(([label, href]) => <li><a href={href} class="hover:text-white transition">{label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="ftr-divider mt-12 pt-8">
+      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4 text-center">Our Connecticut Locations</h4>
+      <div class="mx-auto grid w-fit justify-items-center gap-x-12 gap-y-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
+        {locations.map(([city, addr, href]) => (
+          <a href={href} class="flex items-center gap-2 whitespace-nowrap hover:text-white transition"><span class="h-1 w-1 shrink-0 rounded-full bg-azul-light" aria-hidden="true"></span><span><span class="text-white">{city}</span> — {addr}</span></a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Follow Us: named row above the bottom bar -->
+    <div class="ftr-divider mt-10 pt-8">
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3">
+        {socials.map((s) => (
+          <li>
+            <a href={s.href} target="_blank" rel="noopener" aria-label={`${s.label} (opens in a new tab)`} class:list={["group inline-flex items-center gap-2 text-sm text-white/75 hover:text-white transition", s.small ? "[&>svg]:h-3.5 [&>svg]:w-3.5" : "[&>svg]:h-4 [&>svg]:w-4"]}><Fragment set:html={s.svg} /><span class="group-hover:underline underline-offset-4">{s.label.replace(" (Twitter)", "")}</span></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="ftr-divider mt-10 pt-8 grid items-center gap-4 text-xs text-white/60 text-center md:grid-cols-[1fr_auto_1fr] md:text-left">
+      <span>© 2026 Hopewell Health Solutions, LLC. All rights reserved.</span>
+      <a href="https://elev8.io" target="_blank" rel="noopener" aria-label="Website by elev8.io (opens in a new tab)" class="tracking-wide text-white/70 hover:text-white transition">by <strong class="font-bold text-white">elev8.io</strong></a>
+      <span class="flex flex-wrap justify-center gap-4 md:justify-end"><a href="/privacy/" class="hover:text-white">Privacy</a><a href="/hipaa-notice/" class="hover:text-white">HIPAA Notice</a><a href="/terms/" class="hover:text-white">Terms</a><a href="/accessibility/" class="hover:text-white">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Divider lines peak in the center and fade to both sides (elev8.io footer standard). */
+  .ftr-divider { position: relative; }
+  .ftr-divider::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .28) 50%, transparent); }
+
+  /* Depth (live): deep-navy diagonal gradient, blue glow top-right, darkening toward the bottom, bright rule on top. */
+  .ftr-bg {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 35%, rgb(0 6 16 / .55) 100%),
+      radial-gradient(60% 75% at 0% 100%, rgb(0 6 16 / .80), transparent 70%),
+      radial-gradient(45% 60% at 100% 0%, rgb(47 118 196 / .24), transparent 70%),
+      radial-gradient(50% 55% at 60% 115%, rgb(0 6 16 / .70), transparent 70%),
+      linear-gradient(160deg, #0b2f55 0%, #001d37 50%, #000d19 100%);
+  }
+  .ftr-bg::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: .65; background: linear-gradient(90deg, transparent, #2f76c4 50%, transparent); }
+</style>
+

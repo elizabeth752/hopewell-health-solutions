@@ -1,0 +1,81 @@
+---
+// Treatments — option B: TMS as a wide photo + navy split banner, then the other four as an open icon row split by hairlines.
+import Icon from "../Icon.astro";
+const treatments = [
+  { t: "EMDR", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", icon: "refresh" },
+  { t: "Therapeutic Treatments", d: "ART, the Gottman Method, mindfulness, yoga therapy & more.", href: "/treatment-methods/therapeutic-treatments/", icon: "heart-even" },
+  { t: "Neuropsychological Testing", d: "Comprehensive evaluation for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
+  { t: "ADHD Testing", d: "Thorough, compassionate assessment for children, teens & adults.", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
+];
+---
+<section class="bg-white scroll-mt-20">
+  <div class="mx-auto max-w-6xl px-5 py-16 lg:py-20">
+    <h2 class="font-display text-3xl sm:text-4xl text-ink text-balance">Advanced Treatments: TMS &amp; EMDR</h2>
+    <p class="mt-3 text-ink max-w-2xl text-pretty">When traditional therapy and medication aren’t enough on their own, we offer advanced, research-backed options most outpatient practices can’t — all under the same roof.</p>
+
+    <a href="/treatment-methods/tms/" class="hb-treat-b-tms hb-touch mt-10">
+      <span class="hb-treat-b-media"><img src="/Assets/TMS/2757534.webp" alt="" width="1536" height="1536" loading="lazy" decoding="async" /></span>
+      <span class="hb-treat-b-panel">
+        <span class="hb-treat-b-badge"><Icon name="brain" class="h-6 w-6" /></span>
+        <h3 class="mt-6 font-display text-3xl sm:text-4xl text-white leading-tight">TMS Therapy</h3>
+        <span class="mt-3 block text-white/80 leading-relaxed max-w-md text-pretty">FDA-cleared magnetic stimulation for treatment-resistant depression &amp; OCD. Drug-free, no downtime — for when medication and therapy haven’t been enough.</span>
+        <span class="hb-treat-b-cta mt-8">Learn about TMS <Icon name="arrow" class="h-4 w-4" /></span>
+      </span>
+    </a>
+
+    <ul class="hb-treat-b-row mt-8 list-none p-0">
+      {treatments.map((t) => (
+        <li>
+          <a href={t.href} class="hb-treat-b-item hb-touch">
+            <span class="hb-treat-b-icon"><Icon name={t.icon} class="h-5 w-5" /></span>
+            <h3 class="mt-4 font-display text-xl text-ink leading-snug text-balance hb-treat-b-title">{t.t}</h3>
+            <span class="mt-2 block text-sm text-ink leading-relaxed text-pretty">{t.d}</span>
+            <span class="hb-treat-b-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hb-treat-b-tms { display: grid; grid-template-columns: 1fr; overflow: hidden; border-radius: 28px; background: var(--color-ink); }
+  .hb-treat-b-tms:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 3px; }
+  .hb-treat-b-media { display: block; aspect-ratio: 16/10; overflow: hidden; }
+  .hb-treat-b-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .7s; }
+  .hb-treat-b-panel { position: relative; display: block; padding: 32px 28px 36px; background: radial-gradient(70% 80% at 100% 0%, rgba(182,134,60,.18), transparent 70%), linear-gradient(150deg, #265489, #001d37 70%); }
+  .hb-treat-b-badge { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,.12); color: var(--color-gold-light); transition: transform .3s, background .3s, color .3s; }
+  .hb-treat-b-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--color-gold-light); white-space: nowrap; }
+  .hb-treat-b-cta :global(svg) { transition: transform .25s; }
+  :is(.hb-treat-b-tms:hover, .hb-treat-b-tms.is-active) img { transform: scale(1.05); }
+  :is(.hb-treat-b-tms:hover, .hb-treat-b-tms.is-active) .hb-treat-b-badge { background: var(--color-gold-light); color: var(--color-ink); transform: rotate(-6deg) scale(1.06); }
+  :is(.hb-treat-b-tms:hover, .hb-treat-b-tms.is-active) .hb-treat-b-cta :global(svg) { transform: translateX(4px); }
+  @media (min-width: 768px) {
+    .hb-treat-b-tms { grid-template-columns: 5fr 6fr; }
+    .hb-treat-b-media { aspect-ratio: auto; min-height: 340px; }
+    .hb-treat-b-panel { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 48px 44px; }
+  }
+
+  .hb-treat-b-row { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--color-line); }
+  .hb-treat-b-item { position: relative; display: block; height: 100%; padding: 28px 56px 28px 4px; border-bottom: 1px solid var(--color-line); transition: background .3s; }
+  .hb-treat-b-item:focus-visible { outline: 2px solid var(--color-azul); outline-offset: -2px; }
+  .hb-treat-b-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--color-sage-light); color: var(--color-sage); transition: transform .3s, background .3s, color .3s; }
+  .hb-treat-b-title { transition: color .25s; }
+  .hb-treat-b-arrow { position: absolute; top: 28px; right: 8px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--color-line); color: var(--color-azul); transition: all .3s; }
+  :is(.hb-treat-b-item:hover, .hb-treat-b-item.is-active) { background: var(--color-crema); }
+  :is(.hb-treat-b-item:hover, .hb-treat-b-item.is-active) .hb-treat-b-icon { background: var(--color-sage); color: #fff; transform: rotate(-6deg) scale(1.06); }
+  :is(.hb-treat-b-item:hover, .hb-treat-b-item.is-active) .hb-treat-b-title { color: var(--color-azul); }
+  :is(.hb-treat-b-item:hover, .hb-treat-b-item.is-active) .hb-treat-b-arrow { background: var(--color-azul); border-color: var(--color-azul); color: #fff; transform: translateX(3px); }
+  @media (min-width: 640px) {
+    .hb-treat-b-row { grid-template-columns: 1fr 1fr; }
+    .hb-treat-b-row > li:nth-child(even) .hb-treat-b-item { border-left: 1px solid var(--color-line); }
+    .hb-treat-b-item { padding: 28px 60px 28px 24px; }
+  }
+  @media (min-width: 1024px) {
+    .hb-treat-b-row { grid-template-columns: repeat(4, 1fr); border-top: 0; }
+    .hb-treat-b-item { border-bottom: 0; padding: 24px 24px 64px; }
+    .hb-treat-b-row > li + li .hb-treat-b-item { border-left: 1px solid var(--color-line); }
+    .hb-treat-b-arrow { top: auto; bottom: 20px; right: auto; left: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hb-treat-b-tms *, .hb-treat-b-item, .hb-treat-b-item * { transition: none !important; } }
+</style>
