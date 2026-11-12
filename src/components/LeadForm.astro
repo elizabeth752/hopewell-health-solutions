@@ -11,7 +11,7 @@
 //   gclid + ValueTrack from the landing URL → paid_attribution[…]
 const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false } = Astro.props;
 const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCare","Evernorth","Harvard Pilgrim","Magellan","Meritain","Optum","TRICARE","UMR","UnitedHealthcare","VA Community Care","Other / Not sure"];
-const pad = compact ? "py-2.5" : "py-3";
+const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
 ---
 <div class="rounded-2xl bg-white shadow-xl border border-line p-6">
   <h2 class="font-display text-2xl text-ink">{heading}</h2>
@@ -28,7 +28,7 @@ const pad = compact ? "py-2.5" : "py-3";
     <!-- honeypot: bots fill this; humans never see it -->
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
     <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="consent" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
-    <button type="submit" class="w-full rounded-lg bg-azul py-3 font-semibold text-white hover:bg-azul-dark transition disabled:opacity-60">Verify My Insurance →</button>
+    <button type="submit" class="flex items-center justify-center w-full rounded-lg bg-azul h-[45px] font-semibold text-white hover:bg-azul-dark transition disabled:opacity-60">Verify My Insurance →</button>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
 </div>
