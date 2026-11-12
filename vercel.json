@@ -1,5 +1,18 @@
 {
   "trailingSlash": true,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": { "inc": ["SG", "DE", "IN", "CN", "JP", "AE", "HK", "KR"] }
+        }
+      ],
+      "mitigate": { "action": "deny" }
+    }
+  ],
   "redirects": [
     { "source": "/index/", "destination": "/", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
