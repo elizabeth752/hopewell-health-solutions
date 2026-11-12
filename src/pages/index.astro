@@ -1,4 +1,5 @@
 ---
+import { socials } from "../data/socials";
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -139,13 +140,7 @@ const orgSchema = {
     worstRating: "1",
   },
   sameAs: [
-    "https://www.instagram.com/hopewellhealthsolutions/",
-    "https://www.facebook.com/hopewellhealth/",
-    "https://x.com/hopewellHealthS",
-    "https://www.linkedin.com/company/hopewell-health-solutions-llc/",
-    "https://www.tiktok.com/@hopewellhs",
-    "https://co.pinterest.com/hopewellhs/",
-    "https://bsky.app/profile/hopewellhs.bsky.social",
+    ...socials.map((s) => s.href),
     "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012",
     "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396",
   ],

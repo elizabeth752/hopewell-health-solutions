@@ -1,6 +1,5 @@
 ---
-import LegitScriptSeal from "./LegitScriptSeal.astro";
-import BbbSeal from "./BbbSeal.astro";
+import { socials } from "../data/socials";
 const locations = [
   ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct/"],
   ["Downtown Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct-2/"],
@@ -8,10 +7,6 @@ const locations = [
   ["West Hartford", "1216 Farmington Ave", "/location/west-hartford-ct/"],
   ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
   ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
-];
-const D = "/Assets/Favicons/";
-const directories = [
-  { label: "Psychology Today", href: "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", icon: D + "PT.png" },
 ];
 const cols = [
   { h: "Programs", links: [
@@ -34,7 +29,8 @@ const cols = [
   ] },
 ];
 ---
-<footer class="bg-ink text-white/80">
+<footer class="ftr relative isolate overflow-hidden bg-ink text-white/80">
+  <div class="ftr-bg" aria-hidden="true"></div>
   <div class="mx-auto max-w-6xl px-5 py-14">
     <div class="grid gap-10 md:grid-cols-4">
       <div>
@@ -43,7 +39,16 @@ const cols = [
         </a>
         <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
         <a href="tel:8607351448" class="mt-4 inline-block font-display text-2xl text-white">(860) 735-1448</a>
-        <p class="text-xs mt-3">Joint Commission accredited · 4.8★ · Since 2013</p>
+        <div class="mt-6">
+          <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-3">Follow Us</h4>
+          <ul class="flex flex-wrap gap-1.5">
+            {socials.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener" aria-label={`${s.label} (opens in a new tab)`} title={s.label} class:list={["grid h-[30px] w-[30px] place-items-center rounded-full border border-white/30 text-white hover:bg-white hover:text-ink hover:border-white focus-visible:bg-white focus-visible:text-ink transition", s.small ? "[&>svg]:h-3 [&>svg]:w-3" : "[&>svg]:h-3.5 [&>svg]:w-3.5"]}><Fragment set:html={s.svg} /></a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       {cols.map((c) => (
         <div>
@@ -54,7 +59,7 @@ const cols = [
         </div>
       ))}
     </div>
-    <div class="mt-12 border-t border-white/15 pt-8">
+    <div class="ftr-divider mt-12 pt-8">
       <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Our Connecticut Locations</h4>
       <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm">
         {locations.map(([city, addr, href]) => (
@@ -62,25 +67,29 @@ const cols = [
         ))}
       </div>
     </div>
-    <div class="mt-10 border-t border-white/15 pt-8">
-      <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4">Find &amp; Review Us</h4>
-      <div class="flex flex-wrap items-center gap-3">
-        {directories.map((d) => d.href ? (
-          <a href={d.href} target="_blank" rel="noopener" aria-label={d.label} title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 hover:bg-white px-3 py-1.5 text-xs font-semibold text-ink transition">
-            <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
-          </a>
-        ) : (
-          <span title={d.label} class="inline-flex items-center gap-2 rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-ink">
-            <img src={d.icon} alt={d.label} width="16" height="16" loading="lazy" class="h-4 w-4 object-contain" />{d.label}
-          </span>
-        ))}
-        <LegitScriptSeal />
-        <BbbSeal />
-      </div>
-    </div>
-    <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+    <div class="ftr-divider mt-10 pt-8 grid items-center gap-4 text-xs text-white/60 text-center md:grid-cols-[1fr_auto_1fr] md:text-left">
       <span>© 2026 Hopewell Health Solutions, LLC. All rights reserved.</span>
-      <span class="flex gap-4"><a href="/privacy/" class="hover:text-white">Privacy</a><a href="/hipaa-notice/" class="hover:text-white">HIPAA Notice</a><a href="/terms/" class="hover:text-white">Terms</a><a href="/accessibility/" class="hover:text-white">Accessibility</a></span>
+      <a href="https://elev8.io" target="_blank" rel="noopener" aria-label="Website by elev8.io (opens in a new tab)" class="tracking-wide text-white/70 hover:text-white transition">by <strong class="font-bold text-white">elev8.io</strong></a>
+      <span class="flex flex-wrap justify-center gap-4 md:justify-end"><a href="/privacy/" class="hover:text-white">Privacy</a><a href="/hipaa-notice/" class="hover:text-white">HIPAA Notice</a><a href="/terms/" class="hover:text-white">Terms</a><a href="/accessibility/" class="hover:text-white">Accessibility</a></span>
     </div>
   </div>
 </footer>
+
+<style>
+  /* Divider lines peak in the center and fade to both sides (elev8.io footer standard). */
+  .ftr-divider { position: relative; }
+  .ftr-divider::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(255 255 255 / .28) 50%, transparent); }
+
+  /* Depth background: deep-navy diagonal gradient, blue glow top-right, darkening toward the bottom, bright rule on top. */
+  .ftr-bg {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      linear-gradient(180deg, transparent 35%, rgb(0 6 16 / .55) 100%),
+      radial-gradient(60% 75% at 0% 100%, rgb(0 6 16 / .80), transparent 70%),
+      radial-gradient(45% 60% at 100% 0%, rgb(47 118 196 / .24), transparent 70%),
+      radial-gradient(50% 55% at 60% 115%, rgb(0 6 16 / .70), transparent 70%),
+      linear-gradient(160deg, #0b2f55 0%, #001d37 50%, #000d19 100%);
+  }
+  .ftr-bg::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: .65; background: linear-gradient(90deg, transparent, #2f76c4 50%, transparent); }
+</style>
+
