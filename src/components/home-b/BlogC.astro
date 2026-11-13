@@ -7,6 +7,8 @@ import { providers } from "../../data/providers.js";
 
 const byId = (slug) => providers.find((p) => p.slug === slug);
 const blogTeasers = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1)).slice(0, 3);
+// Focal point for wide article photos whose subject sits off-center (the tall card crops the sides).
+const focus = { "/Assets/Blogs/baby-blues-vs-postpartum-depression-hero.webp": "72% 30%" };
 const fmt = (d) => new Date(`${d}T12:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 ---
 <section class="bg-crema">
@@ -22,7 +24,7 @@ const fmt = (d) => new Date(`${d}T12:00:00`).toLocaleDateString("en-US", { month
     <div class="mt-10 grid gap-5 md:grid-cols-3">
       {blogTeasers.map((p) => (
         <a href={`/post/${p.slug}/`} class="hb-blog-c-card hb-touch group">
-          {p.heroImage && <img src={p.heroImage} alt="" loading="lazy" class="hb-blog-c-img" />}
+          {p.heroImage && <img src={p.heroImage} alt="" loading="lazy" class="hb-blog-c-img" style={focus[p.heroImage] ? `object-position:${focus[p.heroImage]}` : undefined} />}
           <span class="hb-blog-c-cat">{p.category}</span>
           <div class="hb-blog-c-body">
             <time datetime={p.datePublished} class="text-xs text-white/85">{fmt(p.datePublished)}</time>

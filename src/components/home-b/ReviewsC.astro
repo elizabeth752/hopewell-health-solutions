@@ -1,5 +1,5 @@
 ---
-// Reviews — option C: centered heading over a staggered three-column "wall": tall blue featured quote, video + review, two reviews.
+// Reviews — option C: centered heading over an aligned three-column wall (equal tops and bottoms): blue featured quote, video + review, two reviews.
 const featured = { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." };
 const reviews = [
   { name: "Jake Sted", meta: "2 months ago", text: "Hopewell’s IOP program made a huge difference in my life. The groups were engaging, and the therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day." },
@@ -8,6 +8,16 @@ const reviews = [
 ];
 const initials = (n) => n.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + ".";
 const [r1, r2, r3] = reviews;
+// Patient stories (vertical videos from the testimonials page) + the two press videos from the original homepage.
+const stories = [
+  { id: "x6R6XOZmxUQ", title: "“They Understand What You’re Going Through”", sub: "Women’s Wellness IOP", thumb: "/Assets/testimonials/womens-wellness-connection-support.webp" },
+  { id: "S_CyYMDqEio", title: "“It Saved My Life”", sub: "Women’s Wellness IOP", thumb: "/Assets/testimonials/womens-wellness-works.webp" },
+  { id: "uIlSCS7clwE", title: "“You Have to Take That Step”", sub: "Evan · IOP", thumb: "/Assets/testimonials/evan-iop-experience.webp" },
+];
+const press = [
+  { id: "P3cmQMf3WoM", title: "Kara’s Cures: Teen Mental Health Crisis", sub: "WFSB Eyewitness News 3" },
+  { id: "uDy-K1dO0Fw", title: "CT LIVE!: Trauma in Women", sub: "NBC Connecticut" },
+];
 ---
 
 <section class="bg-crema">
@@ -20,16 +30,16 @@ const [r1, r2, r3] = reviews;
       </p>
     </div>
 
-    <div class="hb-reviews-c-grid mt-10 grid md:grid-cols-2 gap-5 items-start">
+    <div class="hb-reviews-c-grid mt-10 grid md:grid-cols-2 gap-5">
       <!-- column 1: featured -->
       <figure class="hb-reviews-c-feature">
         <span class="hb-reviews-c-mark font-display" aria-hidden="true">“</span>
-        <blockquote class="relative font-display text-2xl leading-snug text-white text-pretty">{featured.text}</blockquote>
-        <figcaption class="mt-8 pt-5 border-t border-white/20 text-sm"><span class="text-yellow-400" aria-hidden="true">★★★★★</span> <strong class="text-white">{initials(featured.name)}</strong> <span class="text-white/75">· {featured.meta}</span></figcaption>
+        <blockquote class="relative mb-8 font-display text-2xl leading-snug text-white text-pretty">{featured.text}</blockquote>
+        <figcaption class="mt-auto pt-5 border-t border-white/20 text-sm"><span class="text-yellow-400" aria-hidden="true">★★★★★</span> <strong class="text-white">{initials(featured.name)}</strong> <span class="text-white/75">· {featured.meta}</span></figcaption>
       </figure>
 
-      <!-- column 2 (widest): video + one review, nudged down for a staggered rhythm -->
-      <div class="grid gap-5 lg:mt-12">
+      <!-- column 2 (widest): video + one review -->
+      <div class="grid gap-5 lg:grid-rows-[auto_1fr]">
         <a href="/testimonials/#video" class="hb-reviews-c-video hb-touch">
           <span class="hb-reviews-c-thumb">
             <img src="/Assets/testimonials/teen-iop-take-back-my-life.webp" alt="Teen IOP Success Story video thumbnail" width="1600" height="900" loading="lazy" decoding="async" />
@@ -48,7 +58,7 @@ const [r1, r2, r3] = reviews;
       </div>
 
       <!-- column 3: two reviews -->
-      <div class="grid gap-5 md:col-span-2 md:grid-cols-2 lg:col-span-1 lg:grid-cols-1">
+      <div class="grid gap-5 md:col-span-2 md:grid-cols-2 lg:col-span-1 lg:grid-cols-1 lg:grid-rows-2">
         {[r2, r3].map((r) => (
           <figure class="hb-reviews-c-card">
             <div class="text-yellow-500 text-sm" aria-hidden="true">★★★★★</div>
@@ -57,6 +67,42 @@ const [r1, r2, r3] = reviews;
           </figure>
         ))}
       </div>
+    </div>
+
+    <!-- patient stories ("reels": big vertical cards with the quote over the video, a swipe row on phones) + press videos
+         as two wide cards; all play in place, no YouTube code until pressed -->
+    <div class="mt-14" data-yt-lite>
+      <h3 class="font-display text-2xl sm:text-3xl text-ink text-center text-balance">More Patient Stories</h3>
+        <p class="mt-2 text-ink text-center text-pretty">In their own words — real Hopewell clients on what changed for them.</p>
+        <ul class="hb-reels mt-8 list-none p-0">
+          {stories.map((v) => (
+            <li>
+              <button type="button" class="hb-reviews-c-yt hb-reviews-c-yt--tall hb-reel" data-yt={v.id} aria-label={`Play video: ${v.title} — ${v.sub}`}>
+                <img src={v.thumb} alt="" width="900" height="1600" loading="lazy" decoding="async" />
+                <span class="hb-reviews-c-yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
+                <span class="hb-reel-cap">
+                  <span class="block font-display text-xl text-white leading-snug text-balance">{v.title}</span>
+                  <span class="mt-1 block text-sm text-white/80">{v.sub}</span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+        <h3 class="mt-14 font-display text-2xl text-ink text-center text-balance">Hopewell in the Media</h3>
+        <ul class="mt-6 grid gap-5 md:grid-cols-2 list-none p-0">
+          {press.map((v) => (
+            <li class="overflow-hidden rounded-[20px] bg-white shadow-[0_10px_28px_rgba(0,29,55,.08)]">
+              <button type="button" class="hb-reviews-c-yt !rounded-none" data-yt={v.id} aria-label={`Play video: ${v.title} — ${v.sub}`}>
+                <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <span class="hb-reviews-c-yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
+              </button>
+              <div class="px-6 py-5">
+                <p class="font-display text-xl text-ink leading-snug text-balance">{v.title}</p>
+                <p class="mt-1 text-sm text-muted">{v.sub}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
     </div>
 
     <div class="text-center mt-10"><a href="/testimonials/" class="inline-flex items-center justify-center rounded-lg bg-azul px-7 h-[45px] font-semibold text-white hover:bg-azul-dark transition focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-azul-bright">Read more testimonials →</a></div>
@@ -70,7 +116,7 @@ const [r1, r2, r3] = reviews;
     font-size: .95rem; text-align: center;
   }
   .hb-reviews-c-feature {
-    position: relative; overflow: hidden; border-radius: 24px; padding: 56px 32px 30px;
+    display: flex; flex-direction: column; position: relative; overflow: hidden; border-radius: 24px; padding: 56px 32px 30px;
     background: linear-gradient(160deg, var(--color-azul), var(--color-azul-dark) 70%);
   }
   .hb-reviews-c-mark { position: absolute; top: -18px; right: 18px; font-size: 9rem; line-height: 1; color: var(--color-gold-light); opacity: .25; }
@@ -90,4 +136,41 @@ const [r1, r2, r3] = reviews;
   :is(.hb-reviews-c-video:hover, .hb-reviews-c-video.is-active) .hb-reviews-c-play { transform: scale(1.1); background: var(--color-azul); color: #fff; }
   .hb-reviews-c-video:focus-visible { outline: 3px solid var(--color-azul-bright); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) { .hb-reviews-c-video, .hb-reviews-c-thumb img, .hb-reviews-c-play { transition: none; } }
+  /* lite YouTube buttons: thumbnail + play; replaced by the player on press */
+  .hb-reviews-c-yt { position: relative; display: block; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: 14px; background: var(--color-ink); cursor: pointer; }
+  .hb-reviews-c-yt--tall { aspect-ratio: 9/16; }
+  .hb-reviews-c-yt img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .hb-reviews-c-yt :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .hb-reviews-c-yt-play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 999px; background: #fff; color: var(--color-azul); box-shadow: 0 8px 20px rgba(0,0,0,.28); transition: transform .3s, background .3s, color .3s; }
+  .hb-reviews-c-yt:hover img { transform: scale(1.04); }
+  .hb-reviews-c-yt:hover .hb-reviews-c-yt-play { transform: scale(1.1); background: var(--color-azul); color: #fff; }
+  .hb-reviews-c-yt:focus-visible { outline: 3px solid var(--color-azul-bright); outline-offset: 3px; }
+  /* patient stories as reels */
+  .hb-reels { display: grid; grid-auto-flow: column; grid-auto-columns: 72%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .hb-reels > li { scroll-snap-align: start; }
+  @media (min-width: 768px) { .hb-reels { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; max-width: 900px; margin-inline: auto; gap: 24px; } }
+  .hb-reel { border-radius: 22px; box-shadow: 0 14px 34px rgba(0,29,55,.16); }
+  .hb-reel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,29,55,.92) 5%, rgba(0,29,55,.35) 38%, transparent 60%); pointer-events: none; }
+  .hb-reel:has(iframe)::after { display: none; } /* no shade over the playing video */
+  .hb-reel .hb-reviews-c-yt-play { width: 64px; height: 64px; }
+  .hb-reel-cap { position: absolute; z-index: 1; left: 18px; right: 18px; bottom: 18px; text-align: left; }
 </style>
+
+<script>
+  // Press play: swap the thumbnail for the YouTube (no-cookie) player, scoped to this section.
+  document.querySelectorAll<HTMLElement>("[data-yt-lite] [data-yt]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const box = document.createElement("div");
+      box.className = btn.className;
+      for (const a of btn.getAttributeNames()) if (a.startsWith("data-astro-cid")) box.setAttribute(a, ""); // keep scoped styles
+      const f = document.createElement("iframe");
+      f.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0`;
+      f.title = btn.getAttribute("aria-label")!.replace("Play video: ", "");
+      f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+      f.allowFullscreen = true;
+      box.append(f);
+      btn.replaceWith(box); // an iframe can't live inside a <button>
+      f.focus();
+    }, { once: true });
+  });
+</script>

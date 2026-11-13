@@ -4,7 +4,7 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import FooterB from "../components/home-b/FooterB.astro";
 import Icon from "../components/Icon.astro";
-import FormLauncher from "../components/FormLauncher.astro";
+import LeadForm from "../components/LeadForm.astro";
 import NoOrphans from "../components/home-b/NoOrphans.astro";
 import AboutB from "../components/home-b/AboutB.astro";
 import ProgramsC from "../components/home-b/ProgramsC.astro";
@@ -19,13 +19,29 @@ import CtaC from "../components/home-b/CtaC.astro";
 import MediaStrip from "../components/MediaStrip.astro";
 import LegitScriptSeal from "../components/LegitScriptSeal.astro";
 import BbbSeal from "../components/BbbSeal.astro";
+import FormLauncher from "../components/FormLauncher.astro";
 
+// Rotating hero photos: real office, group and staff photos + the original site's group photo on green.
+const heroSlides = [
+  { src: "/Assets/home-b/hero-group-green.webp", pos: "center 30%", label: "Group of clients smiling together" },
+  { src: "/Assets/01team.webp", pos: "center 60%", label: "The Hopewell team on the dock" },
+  { src: "/Assets/locations/westbrook/therapy-room-garden.webp", pos: "center 50%", label: "A therapy room at our Westbrook office" },
+  { src: "/Assets/Team%20united.webp", pos: "center 35%", label: "Hopewell clinicians outside the office" },
+  { src: "/Assets/group%20photo-1746645330244.webp", pos: "center 45%", label: "A group session in progress" },
+  { src: "/Assets/hopewell-team.webp", pos: "center 45%", label: "The full Hopewell team" },
+  { src: "/Assets/locations/east-hampton/lobby.webp", pos: "center 55%", label: "The lobby at our East Hampton office" },
+  { src: "/Assets/locations/1420-main/1420-2.webp", pos: "center 55%", label: "The lobby at our South Glastonbury office" },
+  { src: "/Assets/home-b/tms-staff.webp", pos: "center 30%", label: "A Hopewell team member in the TMS chair" },
+  { src: "/Assets/Team%20together.webp", pos: "center 40%", label: "The Hopewell team in the garden" },
+  { src: "/Assets/locations/westbrook/therapy-room-shore.webp", pos: "center 55%", label: "A sunny therapy room at our Westbrook office" },
+  { src: "/Assets/locations/westbrook/waiting-room.webp", pos: "center 55%", label: "The waiting room at our Westbrook office" },
+];
 const trustMarks = [
   ["The Joint Commission — Gold Seal of Approval", "/Assets/home-b/joint-commission-seal.webp", 240, 240, "h-12 w-12"],
   ["Psychology Today Verified", "/Assets/home-b/psychology-today-verified.webp", 600, 179, "h-9 w-auto"],
 ];
 const usps = [
-  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Intensive Outpatient (IOP) & Partial Hospitalization (PHP) — for women, teens, tweens, first responders & substance use. Built for who you are." },
+  { icon: "sparkles", t: "Programs hospitals don’t offer", d: "Intensive Outpatient (IOP) & Partial Hospitalization (PHP) — including addiction IOP and PHP, plus programs for women, teens, tweens & first responders. Built for who you are." },
   { icon: "users", t: "Real, in-person care", d: "While others go all-virtual, our IOP, PHP, therapy and medication management happen face to face — human to human, with telehealth when you need it." },
   { icon: "dna", t: "GeneSight® genetic testing", d: "A simple cheek swab shows which medications fit your DNA — so we skip the trial-and-error." },
   { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough." },
@@ -61,30 +77,38 @@ const steps = [
     </div>
   </Header>
 
-  <!-- HERO — navy with ghost team photo, form on the right -->
-  <section class="hb-hero relative isolate overflow-hidden bg-ink text-white" data-hero-rotate>
-    <img src="/Assets/home-b/hero-couple.webp" alt="" aria-hidden="true" width="1536" height="768" class="hb-hero-photo" fetchpriority="high" data-hero-photo />
-    <div class="relative mx-auto max-w-6xl px-5 py-16 lg:py-24 ">
+  <!-- HERO — rotating photo-led banner (real office, group and staff photos), text left, appointment form right -->
+  <section class="hb-hero relative isolate overflow-hidden bg-ink text-white" data-hero-slides>
+    <div class="hb-hero-slides" aria-hidden="true">
+      {heroSlides.map((h, i) => (
+        <img src={h.src} alt="" width="1600" height="900" class:list={["hb-hero-slide", { "is-on": i === 0 }]} style={`object-position:${h.pos}`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" />
+      ))}
+    </div>
+    <div class="relative mx-auto max-w-6xl px-5 py-14 lg:py-20 grid lg:grid-cols-[1fr_minmax(0,500px)] gap-10 items-center">
       <div class="max-w-[600px]">
         <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.2rem] text-white leading-[1.08] text-balance"><span class="sm:whitespace-nowrap">Mental Health &amp; Psychiatry</span> <span class="sm:block">in Connecticut</span></h1>
         <p class="mt-4 font-display italic text-2xl sm:text-3xl text-gold-light leading-tight">There is hope to heal.</p>
-        <p class="mt-6 text-lg text-white/80 max-w-xl leading-relaxed text-pretty">Intensive programs, psychiatry, medication management and TMS — delivered in person by clinicians who know your name, in Glastonbury, West Hartford, East Hampton and Westbrook. For ages 4 and up, in person or by telehealth.</p>
+        <p class="mt-6 text-lg text-white/85 max-w-xl leading-relaxed text-pretty">Intensive programs, addiction treatment, psychiatry, medication management and TMS — delivered in person by clinicians who know your name, in Glastonbury, West Hartford, East Hampton and Westbrook. For ages 4 and up, in person or by telehealth.</p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-7 h-[45px] font-semibold text-white hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />Call (860) 735-1448</a>
-          <a href="#verify" class="inline-flex justify-center items-center rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition">Check Your Coverage</a>
           <span class="inline-flex items-center gap-2 text-sm text-white/85"><span class="grid h-6 w-6 place-items-center rounded-full bg-white"><img src="/Assets/home-b/google-g.svg" alt="Google" width="14" height="14" class="h-3.5 w-3.5" /></span><span class="text-yellow-400">★★★★★</span><strong class="text-white">4.8</strong> · 368 reviews</span>
         </div>
       </div>
+      <div id="verify" class="hidden lg:block w-full max-w-[500px] justify-self-end scroll-mt-32"><LeadForm variant="card" formId="hb-hero" /></div>
     </div>
   </section>
 
   <!-- TRUST BAR -->
   <section class="bg-white border-b border-line">
-    <div class="mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-      <p class="text-sm font-semibold text-muted">Accredited &amp; verified by</p>
-      {trustMarks.map(([alt, src, w, h, cls]) => <img src={src} alt={alt} width={w} height={h} loading="lazy" decoding="async" class={`${cls} object-contain`} />)}
+    <div class="hb-trust mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+      <p class="hb-trust-title text-sm font-semibold text-muted">Accredited &amp; verified by</p>
+      <img src={trustMarks[0][1]} alt={trustMarks[0][0]} width={trustMarks[0][2]} height={trustMarks[0][3]} loading="lazy" decoding="async" class="h-16 w-16 object-contain" />
       <LegitScriptSeal />
-      <BbbSeal />
+      <span class="hb-trust-br" aria-hidden="true"></span>
+      <img src={trustMarks[1][1]} alt={trustMarks[1][0]} width={trustMarks[1][2]} height={trustMarks[1][3]} loading="lazy" decoding="async" class={`hb-trust-pt ${trustMarks[1][4]} object-contain`} />
+      <span class="hidden sm:contents"><BbbSeal /></span>
+      <!-- phones: compact BBB mark (no rating panel) so the second row fits -->
+      <a href="https://www.bbb.org/us/ct/glastonbury/profile/mental-health-services/hopewell-health-solutions-llc-0111-87124396#sealclick" target="_blank" rel="nofollow noopener" class="sm:hidden shrink-0"><img src="/Assets/home-b/bbb-accredited-business.svg" alt="BBB Accredited Business" width="96" height="36" loading="lazy" decoding="async" class="hb-trust-bbb block h-10 w-auto" /></a>
     </div>
   </section>
 
@@ -226,6 +250,18 @@ const steps = [
 </Base>
 
 <style is:global>
+  /* trust bar: LegitScript seal shown large, next to the Joint Commission seal (client ask) */
+  .hb-trust a[href*="legitscript"] img { height: 72px; }
+  /* phones: title on its own line, then Joint Commission + LegitScript, then Psychology Today + BBB */
+  .hb-trust-br { display: none; }
+  @media (max-width: 639px) {
+    .hb-trust { column-gap: 32px; row-gap: 10px; }
+    .hb-trust-title { flex-basis: 100%; text-align: center; }
+    .hb-trust-br { display: block; flex-basis: 100%; height: 0; } /* own line: two row gaps = 20px */
+    /* +20px wider than their default size (client ask) */
+    .hb-trust-pt { width: 141px; height: auto; }
+    .hb-trust-bbb { width: 127px; height: auto; }
+  }
   /* home-b only: fully white header (top social bar included) */
   header.sticky { background: #fff !important; backdrop-filter: none !important; }
   .hb-tb-link { font-weight: 600; color: var(--color-gold-light); }
@@ -235,14 +271,12 @@ const steps = [
 
 <style>
   /* HERO */
-  .hb-hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right 25%; z-index: -2; }
-  /* desktop: rotated photos can cover only the right part of the hero; their left edge fades into the navy */
-  @media (min-width: 1024px) {
-    .hb-hero-photo { left: auto; right: 0; width: var(--hero-w, 100%); }
-    .hb-hero-photo.is-partial { -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%); mask-image: linear-gradient(90deg, transparent, #000 22%); }
-  }
-  .hb-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,29,55,.94) 0%, rgba(0,29,55,.85) 38%, rgba(0,29,55,.35) 62%, rgba(0,29,55,0) 80%); }
-  @media (max-width: 1023px) { .hb-hero::after { background: linear-gradient(180deg, rgba(0,29,55,.78), rgba(0,29,55,.92)); } }
+  .hb-hero-slides { position: absolute; inset: 0; z-index: -2; }
+  .hb-hero-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 1.2s ease, transform 7s ease-out; }
+  .hb-hero-slide.is-on { opacity: 1; transform: scale(1); }
+  .hb-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,29,55,.92) 0%, rgba(0,29,55,.78) 45%, rgba(0,29,55,.45) 100%); }
+  @media (max-width: 1023px) { .hb-hero::after { background: linear-gradient(180deg, rgba(0,29,55,.72), rgba(0,29,55,.9)); } }
+  @media (prefers-reduced-motion: reduce) { .hb-hero-slide { transition: none; transform: none; } }
 
   /* shared icon tile with tilt on hover (Lotus card idea) */
   .hb-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--color-azul-light); color: var(--color-azul); transition: transform .3s, background .3s, color .3s; }
@@ -286,35 +320,34 @@ const steps = [
 </style>
 
 <script>
-  // Hero photo rotation: each time the hero leaves the viewport, the next photo is swapped in behind the scenes,
-  // so visitors who scroll back up find a different photo. The next image is preloaded so the swap is instant.
-  // w = share of the hero width the photo covers on desktop (anchored right, left edge faded into the gradient);
-  // pos = object-position inside that box. Tuned per photo so faces always sit clear of the headline.
-  const HERO_PHOTOS = [
-    { src: "/Assets/home-b/hero-couple.webp", pos: "right 25%", w: "100%" },
-    { src: "/Assets/home-b/hero-two-teens.webp", pos: "60% 6%", w: "54%" },
-    { src: "/Assets/home-b/hero-teen.webp", pos: "center 22%", w: "64%" },
-    { src: "/Assets/home-b/hero-therapy-smile.webp", pos: "center 28%", w: "64%" },
-  ];
-  const hero = document.querySelector<HTMLElement>("[data-hero-rotate]");
-  const heroImg = hero?.querySelector<HTMLImageElement>("[data-hero-photo]");
-  if (hero && heroImg) {
-    let i = 0;
-    let seen = false;
-    const preload = (k: number) => { const im = new Image(); im.src = HERO_PHOTOS[k % HERO_PHOTOS.length].src; };
-    addEventListener("load", () => preload(1), { once: true });
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { seen = true; return; }
-      if (!seen) return;
-      seen = false;
-      i = (i + 1) % HERO_PHOTOS.length;
-      heroImg.src = HERO_PHOTOS[i].src;
-      heroImg.style.objectPosition = HERO_PHOTOS[i].pos;
-      hero.style.setProperty("--hero-w", HERO_PHOTOS[i].w);
-      heroImg.classList.toggle("is-partial", HERO_PHOTOS[i].w !== "100%");
-      preload(i + 1);
-    }).observe(hero);
+  // Hero slideshow: crossfades to the next photo every 6s (off for reduced motion).
+  // Later photos are lazy-loaded and warmed up one step ahead.
+  const hero = document.querySelector<HTMLElement>("[data-hero-slides]");
+  if (hero) {
+    const slides = [...hero.querySelectorAll<HTMLImageElement>(".hb-hero-slide")];
+    let i = 0, timer = 0;
+    const warm = (k: number) => { const im = slides[k % slides.length]; im.loading = "eager"; };
+    const show = (k: number) => {
+      i = (k + slides.length) % slides.length;
+      slides.forEach((im, n) => im.classList.toggle("is-on", n === i));
+      warm(i + 1);
+    };
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const play = () => { if (reduce) return; clearInterval(timer); timer = window.setInterval(() => show(i + 1), 6000); };
+    addEventListener("load", () => warm(1), { once: true });
+    play();
   }
+
+  // Desktop: "#verify" links scroll to the form in the hero (on phones the floating button's panel opens instead).
+  document.addEventListener("click", (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#verify"]');
+    if (!a || !matchMedia("(min-width: 1024px)").matches) return;
+    const target = document.getElementById("verify");
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(() => target.querySelector<HTMLInputElement>("input:not(.hidden)")?.focus({ preventScroll: true }), 500);
+  });
 
   // Touch has no hover: activate cards as they cross mid-screen.
   if (window.matchMedia("(hover: none)").matches) {
