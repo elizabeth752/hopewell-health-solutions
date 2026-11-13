@@ -41,7 +41,9 @@ const reviews = [
 const faqs = [
   [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at (860) 735-1448 or request an appointment online.`],
   ["Do you offer in-person and telehealth appointments?", "Yes — you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."],
-  ["What services are offered at this location?", "Outpatient therapy (individual, couples, and family), medication management, and our intensive programs. Specific services and providers vary by office — call us and we’ll match you to the right care and location."],
+  ["What services are offered at this location?", l.addiction
+    ? "Outpatient therapy (individual, couples, and family), medication management, our intensive programs, and addiction treatment, including our Addiction and Substance Use IOP. Specific services and providers vary by office — call us and we’ll match you to the right care and location."
+    : "Outpatient therapy (individual, couples, and family), medication management, and our intensive programs. Specific services and providers vary by office — call us and we’ll match you to the right care and location."],
   ["Do you take my insurance?", "We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit."],
   ["How do I book my first appointment?", "Call (860) 735-1448 or request an appointment online. Our team will help you choose the right provider, service, and location."],
 ];
@@ -236,7 +238,7 @@ const featureFirst = l.photos && l.photos.length % 2 === 1;
     </div>
   </section>
 
-  <ServicesGrid bg="crema" eyebrow="Care at this location" heading="Services & programs we offer" />
+  <ServicesGrid bg="crema" eyebrow="Care at this location" heading="Services & programs we offer" addiction={!!l.addiction} />
 
   <!-- OTHER LOCATIONS -->
   <section class="bg-white">
