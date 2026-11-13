@@ -93,7 +93,7 @@ const eventSchema = ev && {
 const featureFirst = l.photos && l.photos.length % 2 === 1;
 ---
 
-<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical}>
+<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry${l.addiction ? ", addiction treatment" : ""} & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
