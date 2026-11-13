@@ -101,11 +101,14 @@ const steps = [
   <!-- TRUST BAR -->
   <section class="bg-white border-b border-line">
     <div class="hb-trust mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-      <p class="text-sm font-semibold text-muted">Accredited &amp; verified by</p>
+      <p class="hb-trust-title text-sm font-semibold text-muted">Accredited &amp; verified by</p>
       <img src={trustMarks[0][1]} alt={trustMarks[0][0]} width={trustMarks[0][2]} height={trustMarks[0][3]} loading="lazy" decoding="async" class="h-16 w-16 object-contain" />
       <LegitScriptSeal />
-      <img src={trustMarks[1][1]} alt={trustMarks[1][0]} width={trustMarks[1][2]} height={trustMarks[1][3]} loading="lazy" decoding="async" class={`${trustMarks[1][4]} object-contain`} />
-      <BbbSeal />
+      <span class="hb-trust-br" aria-hidden="true"></span>
+      <img src={trustMarks[1][1]} alt={trustMarks[1][0]} width={trustMarks[1][2]} height={trustMarks[1][3]} loading="lazy" decoding="async" class={`hb-trust-pt ${trustMarks[1][4]} object-contain`} />
+      <span class="hidden sm:contents"><BbbSeal /></span>
+      <!-- phones: compact BBB mark (no rating panel) so the second row fits -->
+      <a href="https://www.bbb.org/us/ct/glastonbury/profile/mental-health-services/hopewell-health-solutions-llc-0111-87124396#sealclick" target="_blank" rel="nofollow noopener" class="sm:hidden shrink-0"><img src="/Assets/home-b/bbb-accredited-business.svg" alt="BBB Accredited Business" width="96" height="36" loading="lazy" decoding="async" class="hb-trust-bbb block h-10 w-auto" /></a>
     </div>
   </section>
 
@@ -249,6 +252,16 @@ const steps = [
 <style is:global>
   /* trust bar: LegitScript seal shown large, next to the Joint Commission seal (client ask) */
   .hb-trust a[href*="legitscript"] img { height: 72px; }
+  /* phones: title on its own line, then Joint Commission + LegitScript, then Psychology Today + BBB */
+  .hb-trust-br { display: none; }
+  @media (max-width: 639px) {
+    .hb-trust { column-gap: 32px; row-gap: 10px; }
+    .hb-trust-title { flex-basis: 100%; text-align: center; }
+    .hb-trust-br { display: block; flex-basis: 100%; height: 0; } /* own line: two row gaps = 20px */
+    /* +20px wider than their default size (client ask) */
+    .hb-trust-pt { width: 141px; height: auto; }
+    .hb-trust-bbb { width: 127px; height: auto; }
+  }
   /* home-b only: fully white header (top social bar included) */
   header.sticky { background: #fff !important; backdrop-filter: none !important; }
   .hb-tb-link { font-weight: 600; color: var(--color-gold-light); }
