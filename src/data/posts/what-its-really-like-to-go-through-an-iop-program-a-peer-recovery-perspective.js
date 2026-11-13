@@ -79,7 +79,7 @@ export default {
           p: "First Responder IOP serves current and retired police, fire, EMS, corrections, and 911 dispatch, meeting Monday through Thursday from 9 AM to noon for about eight weeks, built by first responders for first responders.",
         },
         {
-          p: "A separate Substance Use IOP runs a tighter schedule, three to five sessions a week for about six to eight weeks, built specifically around addiction recovery.",
+          p: "A separate Addiction and Substance Use IOP runs a tighter schedule, three to five sessions a week for about six to eight weeks, built specifically around addiction recovery.",
         },
       ],
     },
@@ -91,7 +91,7 @@ export default {
           p: "Across tracks, sessions blend Dialectical Behavior Therapy (DBT), Cognitive Behavioral Therapy (CBT), Interpersonal Therapy, mindfulness, and experiential work like art therapy, music therapy, and yoga therapy.",
         },
         {
-          p: "The Substance Use IOP adds relapse-prevention education, life-skills training, and Medication-Assisted Treatment (MAT) when it is part of someone's plan. Every track is run by a multidisciplinary team with ten to thirty years of experience.",
+          p: "The Addiction and Substance Use IOP adds relapse-prevention education, life-skills training, and Medication-Assisted Treatment (MAT) when it is part of someone's plan. Every track is run by a multidisciplinary team with ten to thirty years of experience.",
         },
       ],
     },
