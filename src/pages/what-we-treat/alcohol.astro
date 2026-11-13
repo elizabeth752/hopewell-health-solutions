@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import AddictionCare from "../../components/AddictionCare.astro";
 
 const heroUsps = [
   { icon: "shield", t: "Experienced, board-certified mental health specialists" },
@@ -71,8 +72,9 @@ const locations = [
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
 ];
 const faqs = [
-  ["What is alcohol dependence?", "Alcohol dependence — also known as alcohol use disorder (AUD) — is a chronic medical condition that affects how the brain regulates impulse control, reward pathways, and stress responses. Over time, alcohol use can become compulsive or difficult to control, even when it causes harm to health, relationships, or daily functioning. AUD can range from mild to severe and may include physical dependence, withdrawal symptoms, cravings, and increased tolerance. The condition is highly treatable with the right blend of medical, psychological, and behavioral support."],
-  ["Do you offer medication for alcohol dependence?", "When appropriate, our psychiatric team may recommend FDA-approved medications to reduce cravings, support abstinence, or ease withdrawal — alongside therapy and other support."],
+  ["What is alcohol addiction?", "Alcohol addiction, also called alcohol dependence or alcohol use disorder (AUD), is a chronic medical condition that affects how the brain regulates impulse control, reward pathways, and stress responses. Over time, alcohol use can become compulsive or difficult to control, even when it causes harm to health, relationships, or daily functioning. AUD can range from mild to severe and may include physical dependence, withdrawal symptoms, cravings, and increased tolerance. The condition is highly treatable with the right blend of medical, psychological, and behavioral support."],
+  ["Do you offer an addiction IOP or PHP for alcohol?", "Yes. Our Addiction and Substance Use IOP (Glastonbury and Westbrook) and our addiction PHP (Glastonbury) both treat alcohol addiction. Many clients step down into them after inpatient rehab or detox."],
+  ["Do you offer medication for alcohol addiction?", "When appropriate, our psychiatric team may recommend FDA-approved medications to reduce cravings, support abstinence, or ease withdrawal — alongside therapy and other support."],
   ["Do you provide detox or residential treatment?", "Hopewell Health Solutions is an outpatient practice. If a higher level of care such as detox or residential treatment is needed, our team helps coordinate that referral — and supports you when you step back down to outpatient care."],
   ["Is treatment in person or virtual?", "Both — in person at our Downtown Glastonbury and Westbrook offices or by secure telehealth, with evening and daytime scheduling options."],
   ["Will my insurance cover it?", "Most major PPO plans do. We’ll verify your benefits for free (we don’t accept Medicaid / HUSKY)."],
@@ -84,18 +86,18 @@ const faqSchema = {
 };
 ---
 
-<Base title="Alcohol Dependence (AUD) Treatment in CT | Hopewell Health Solutions" description="Alcohol dependence / alcohol use disorder (AUD) treatment at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based, integrated care. In person & telehealth, evening & daytime options.">
+<Base title="Alcohol Addiction Treatment in CT | Hopewell Health Solutions" description="Alcohol addiction treatment (alcohol use disorder, AUD) with addiction IOP and PHP at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based, integrated care. In person & telehealth, evening & daytime options.">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Alcohol Dependence</span></nav>
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Alcohol Addiction</span></nav>
       <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Alcohol Dependence Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Alcohol Dependence (AUD) Treatment in Connecticut</h1>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Alcohol Addiction Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Alcohol Addiction Treatment in Connecticut</h1>
           <p class="mt-3 font-display text-xl text-azul italic">Regain control. Rebuild stability. Begin lasting recovery.</p>
           <div class="mt-5 h-px w-16 bg-gold"></div>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
@@ -123,23 +125,25 @@ const faqSchema = {
   <!-- WHAT IS (image left / text right) -->
   <section class="bg-white">
     <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-      <img src="/Assets/couple%20hugging.webp" alt="Compassionate alcohol dependence treatment at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
+      <img src="/Assets/couple%20hugging.webp" alt="Compassionate alcohol addiction treatment at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A highly treatable condition</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is alcohol dependence?</h2>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is alcohol addiction?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">Alcohol dependence, also known as alcohol use disorder (AUD), is a chronic medical condition that affects how the brain regulates impulse control, reward pathways, and stress responses. Over time, alcohol use can become compulsive or difficult to control, even when it causes harm to health, relationships, or daily functioning.</p>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Alcohol addiction, also called alcohol dependence or alcohol use disorder (AUD), is a chronic medical condition that affects how the brain regulates impulse control, reward pathways, and stress responses. Over time, alcohol use can become compulsive or difficult to control, even when it causes harm to health, relationships, or daily functioning.</p>
         <p class="mt-4 text-ink leading-relaxed text-[17px]">AUD can range from mild to severe and may include physical dependence, withdrawal symptoms, cravings, and increased tolerance. The condition is highly treatable with the right blend of medical, psychological, and behavioral support — and our board-certified specialists offer personalized care to help you regain control and rebuild stability.</p>
       </div>
     </div>
   </section>
+
+  <AddictionCare condition="alcohol addiction" />
 
   <!-- WHAT TREATMENT INCLUDES -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Individualized to you</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What alcohol dependence treatment includes</h2>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What alcohol addiction treatment includes</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">We create individualized treatment plans based on each client’s level of use, withdrawal risk, mental health history, and personal goals.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -297,7 +301,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="bg-crema">
     <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">Alcohol dependence treatment — common questions</h2>
+      <h2 class="font-display text-3xl text-ink text-center">Alcohol addiction treatment: common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
           <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">

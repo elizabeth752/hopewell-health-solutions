@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import AddictionCare from "../../components/AddictionCare.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/what-we-treat/co-occurring/";
 
@@ -35,7 +36,7 @@ const seekHelp = [
 ];
 const toneMap = { azul: "bg-azul-light text-azul", gold: "bg-gold-light text-gold", sage: "bg-sage-light text-sage" };
 const approach = [
-  { icon: "link", tone: "azul", t: "Integrated dual-diagnosis care", d: "Mental health and substance use treated together by one coordinated team — because treating them separately rarely works. Our Substance Use IOP is built for exactly this.", href: "/programs/substance-use-iop/" },
+  { icon: "link", tone: "azul", t: "Integrated dual-diagnosis care", d: "Mental health and substance use treated together by one coordinated team — because treating them separately rarely works. Our Addiction and Substance Use IOP is built for exactly this.", href: "/programs/substance-use-iop/" },
   { icon: "pill", tone: "gold", t: "Medication management", d: "Psychiatric prescribing and, where appropriate, medication-assisted treatment — to stabilize mood, ease withdrawal, and reduce cravings.", href: "/programs/medication-management/" },
   { icon: "brain", tone: "sage", t: "Therapy for the whole person", d: "CBT, DBT, and trauma-informed care that address both the substance use and the underlying condition — anxiety, depression, or trauma.", href: "/programs/counseling/" },
   { icon: "calendar", tone: "azul", t: "Structured outpatient programs", d: "When you need more than weekly support, our IOP and PHP add several days a week of structured care — without putting life on hold.", href: "/programs/intensive-outpatient-program/" },
@@ -66,7 +67,7 @@ const faqs = [
   ["What is a co-occurring disorder?", "A co-occurring disorder — sometimes called a dual diagnosis — is when a person has both a mental health condition and a substance use disorder at the same time. The two are deeply connected: people often use alcohol or drugs to cope with depression, anxiety, or trauma, and substance use can in turn worsen those conditions. The result is a cycle that’s very hard to break when each problem is treated in isolation. Co-occurring disorders are common — and they are treatable."],
   ["What are the signs of a co-occurring disorder?", "Signs include having a mental health condition alongside drug or alcohol use; using substances to cope with anxiety, depression, or trauma; symptoms that worsen when you use or when you stop; mood swings, isolation, or trouble functioning; and relapse after treating only the substance use or only the mental health condition. Many people feel stuck in a cycle that talk therapy or substance treatment alone hasn’t resolved."],
   ["Why is it important to treat both conditions together?", "Because they fuel each other. Treating a substance use disorder without addressing the underlying depression, anxiety, or trauma — or treating the mental health condition while substance use continues — often leads to relapse and frustration. Integrated, dual-diagnosis treatment addresses both at once, with one coordinated team and one plan, which gives recovery a far better chance of lasting."],
-  ["How are co-occurring disorders treated?", "At Hopewell Health Solutions, co-occurring disorders are treated with integrated, dual-diagnosis care. That often combines our Substance Use IOP, medication management (including medication-assisted treatment where appropriate), and trauma-informed therapy such as CBT and DBT — all coordinated by the same team. When more support is needed, our IOP and PHP add structure. The goal is to treat the whole person, not one diagnosis at a time."],
+  ["How are co-occurring disorders treated?", "At Hopewell Health Solutions, co-occurring disorders are treated with integrated, dual-diagnosis care. That often combines our Addiction and Substance Use IOP or addiction PHP, medication management (including medication-assisted treatment where appropriate), and trauma-informed therapy such as CBT and DBT — all coordinated by the same team. When more support is needed, our IOP and PHP add structure. The goal is to treat the whole person, not one diagnosis at a time."],
   ["When should I seek help for a co-occurring disorder?", "Reach out when you’re managing both a mental health condition and substance use, when treating one problem hasn’t resolved the other, when you’ve relapsed after addressing only part of the picture, or when substances feel like the only way to cope. The sooner both conditions are treated together, the easier recovery becomes. If you ever feel unsafe, call or text 988, or call 911."],
 ];
 const faqSchema = {
@@ -76,7 +77,7 @@ const faqSchema = {
 };
 ---
 
-<Base title="Co-Occurring Disorders Treatment in CT | Hopewell Health Solutions" description="Co-occurring disorders (dual diagnosis) treatment at Hopewell Health Solutions in Glastonbury & Westbrook, CT — integrated care for mental health and substance use together. In person & telehealth." canonical={canonical}>
+<Base title="Co-Occurring Addiction & Mental Health Treatment in CT | Hopewell" description="Co-occurring addiction and mental health treatment (dual diagnosis) with addiction IOP and PHP at Hopewell Health Solutions in Glastonbury & Westbrook, CT — integrated care for mental health and substance use together. In person & telehealth." canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
@@ -86,9 +87,9 @@ const faqSchema = {
       <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Co-Occurring Disorders</span></nav>
       <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Co-Occurring Disorders Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Co-Occurring Disorders Treatment in Connecticut</h1>
-          <p class="mt-3 font-display text-xl text-azul italic">When mental health and substance use overlap, we treat both — together.</p>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Co-Occurring Addiction Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Co-Occurring Addiction &amp; Mental Health Treatment in Connecticut</h1>
+          <p class="mt-3 font-display text-xl text-azul italic">When addiction and mental health overlap, we treat both — together.</p>
           <div class="mt-5 h-px w-16 bg-gold"></div>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
             <span class="text-yellow-400 text-base leading-none">★★★★★</span>
@@ -125,6 +126,8 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  <AddictionCare condition="addiction and the mental health conditions that come with it" />
 
   <!-- SIGNS -->
   <section class="bg-crema">
@@ -273,7 +276,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="bg-crema">
     <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">Co-occurring disorders — common questions</h2>
+      <h2 class="font-display text-3xl text-ink text-center">Co-occurring addiction treatment: common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
           <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">

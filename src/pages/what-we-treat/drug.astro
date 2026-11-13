@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import AddictionCare from "../../components/AddictionCare.astro";
 
 const heroUsps = [
   { icon: "shield", t: "Compassionate, evidence-based treatment for substance use disorders" },
@@ -65,7 +66,8 @@ const locations = [
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
 ];
 const faqs = [
-  ["What are substance use disorders?", "Drug dependence, or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability. Substances that may lead to addiction include prescription medications, illicit drugs, cannabis, MDMA or hallucinogens, and synthetic or designer drugs. SUD often occurs alongside depression, anxiety, PTSD, or trauma, making integrated mental health treatment essential for long-term recovery."],
+  ["What is drug addiction?", "Drug addiction, also called drug dependence or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability. Substances that may lead to addiction include prescription medications, illicit drugs, cannabis, MDMA or hallucinogens, and synthetic or designer drugs. SUD often occurs alongside depression, anxiety, PTSD, or trauma, making integrated mental health treatment essential for long-term recovery."],
+  ["Do you offer an addiction IOP or PHP?", "Yes. Our Addiction and Substance Use IOP (Glastonbury and Westbrook) and our addiction PHP (Glastonbury) both treat drug addiction. Many clients step down into them after inpatient rehab or detox."],
   ["Do you offer medication-assisted treatment?", "When appropriate, our psychiatric team may recommend FDA-approved medications to reduce cravings, support abstinence, or ease withdrawal — alongside therapy and other support."],
   ["Do you provide detox or residential treatment?", "Hopewell Health Solutions is an outpatient practice. If a higher level of care such as detox or residential treatment is needed, our team helps coordinate that referral — and supports you when you step back down to outpatient care."],
   ["Is treatment in person or virtual?", "Both — in person at our Downtown Glastonbury and Westbrook offices or by secure telehealth, with evening and daytime scheduling options."],
@@ -78,18 +80,18 @@ const faqSchema = {
 };
 ---
 
-<Base title="Drug Dependence Treatment in CT | Hopewell Health Solutions" description="Drug dependence / substance use disorder treatment at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based, integrated care. In person & telehealth.">
+<Base title="Drug Addiction Treatment in CT | Hopewell Health Solutions" description="Drug addiction treatment with addiction IOP and PHP at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based, integrated care. In person & telehealth.">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Drug Dependence</span></nav>
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Drug Addiction</span></nav>
       <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Drug Dependence Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Drug Dependence Treatment in Connecticut</h1>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Drug Addiction Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Drug Addiction Treatment in Connecticut</h1>
           <p class="mt-3 font-display text-xl text-azul italic">Recovery is possible — with the right support.</p>
           <div class="mt-5 h-px w-16 bg-gold"></div>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
@@ -120,9 +122,9 @@ const faqSchema = {
       <img src="/Assets/guy%20thinking%20worried.webp" alt="Compassionate drug dependence treatment at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A path to lasting recovery</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What are substance use disorders?</h2>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is drug addiction?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">Drug dependence, or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability.</p>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Drug addiction, also called drug dependence or substance use disorder (SUD), is a chronic medical condition that affects the brain’s reward system, impulse control, and stress pathways. It can develop gradually or rapidly depending on the type of substance, frequency of use, and individual vulnerability.</p>
         <p class="mt-4 text-ink leading-relaxed text-[17px]">SUD often occurs alongside depression, anxiety, PTSD, or trauma, which is why integrated mental health treatment is essential for long-term recovery. Our board-certified mental health and addiction specialists provide compassionate, evidence-based care to help you regain stability and move toward lasting recovery — whether you’re seeking help for yourself or a loved one.</p>
         <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-muted">Substances that may lead to addiction</p>
         <div class="mt-3 flex flex-wrap gap-2">
@@ -132,12 +134,14 @@ const faqSchema = {
     </div>
   </section>
 
+  <AddictionCare condition="drug addiction" />
+
   <!-- WHAT TREATMENT INVOLVES -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Individualized & clinically guided</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What treatment for drug dependence involves</h2>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">What drug addiction treatment involves</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">Treatment plans are individualized and clinically guided — built around your substance use, withdrawal risk, mental health history, and personal goals.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -276,7 +280,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="bg-white">
     <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">Drug dependence treatment — common questions</h2>
+      <h2 class="font-display text-3xl text-ink text-center">Drug addiction treatment: common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
           <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">

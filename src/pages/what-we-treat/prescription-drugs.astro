@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import AddictionCare from "../../components/AddictionCare.astro";
 
 const heroUsps = [
   { icon: "shield", t: "Board-certified mental health & addiction specialists" },
@@ -65,8 +66,9 @@ const locations = [
   ["Westbrook", "70 Essex Road, Westbrook, CT 06498", "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus"],
 ];
 const faqs = [
-  ["What is prescription drug dependence?", "Prescription drug dependence occurs when medications meant to treat medical or mental health concerns become misused or relied upon in ways that impair daily functioning. This type of addiction can affect anyone and often develops unintentionally over time. Medications commonly associated with dependency include opioid pain relievers, benzodiazepines, stimulants, and sedatives or sleep medications — all of which can change the brain’s chemistry over time, leading to tolerance, cravings, or withdrawal symptoms that make it difficult to stop without professional help."],
-  ["How does Hopewell treat prescription drug dependence?", "We design each treatment plan around the client’s unique needs, medical history, and goals — combining a clinical intake and safety assessment, medication-assisted support when clinically indicated, individualized psychotherapy (CBT, DBT, MI, trauma-informed), group-based recovery support, family education, integrative wellness services, and coordinated transitions in care."],
+  ["What is prescription drug addiction?", "Prescription drug addiction, also called prescription drug dependence, occurs when medications meant to treat medical or mental health concerns become misused or relied upon in ways that impair daily functioning. This type of addiction can affect anyone and often develops unintentionally over time. Medications commonly associated with dependency include opioid pain relievers, benzodiazepines, stimulants, and sedatives or sleep medications — all of which can change the brain’s chemistry over time, leading to tolerance, cravings, or withdrawal symptoms that make it difficult to stop without professional help."],
+  ["How does Hopewell treat prescription drug addiction?", "We design each treatment plan around the client’s unique needs, medical history, and goals — combining a clinical intake and safety assessment, medication-assisted support when clinically indicated, individualized psychotherapy (CBT, DBT, MI, trauma-informed), group-based recovery support, family education, integrative wellness services, and coordinated transitions in care."],
+  ["Do you offer an addiction IOP or PHP?", "Yes. Our Addiction and Substance Use IOP (Glastonbury and Westbrook) and our addiction PHP (Glastonbury) both treat prescription drug addiction. Many clients step down into them after inpatient rehab or medical detox."],
   ["Do you provide detox or residential treatment?", "Hopewell Health Solutions is an outpatient practice. If a higher level of care such as detoxification or residential treatment is needed, our team coordinates that referral — and provides ongoing follow-up as you step back down to outpatient care."],
   ["Is treatment in person or virtual?", "Both — in person at our Downtown Glastonbury and Westbrook offices or by secure telehealth, scheduled around your life."],
   ["Will my insurance cover it?", "Most major PPO plans do. We’ll verify your benefits for free (we don’t accept Medicaid / HUSKY)."],
@@ -78,18 +80,18 @@ const faqSchema = {
 };
 ---
 
-<Base title="Prescription Drug Dependence Treatment in CT | Hopewell Health Solutions" description="Prescription drug dependence treatment at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based care for opioid, benzodiazepine & stimulant dependency. In person & telehealth.">
+<Base title="Prescription Drug Addiction Treatment in CT | Hopewell" description="Prescription drug addiction treatment with addiction IOP and PHP at Hopewell Health Solutions in Glastonbury & Westbrook, CT — compassionate, evidence-based care for opioid, benzodiazepine & stimulant dependency. In person & telehealth.">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Prescription Drug Dependence</span></nav>
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Prescription Drug Addiction</span></nav>
       <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Prescription Drug Dependence Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Prescription Drug Dependence Treatment in Connecticut</h1>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Prescription Drug Addiction Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Prescription Drug Addiction Treatment in Connecticut</h1>
           <p class="mt-3 font-display text-xl text-azul italic">Regain control — and rebuild your life.</p>
           <div class="mt-5 h-px w-16 bg-gold"></div>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
@@ -120,9 +122,9 @@ const faqSchema = {
       <img src="/Assets/guy%20thinking%20worried.webp" alt="Compassionate prescription drug dependence treatment at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">It can affect anyone</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is prescription drug dependence?</h2>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is prescription drug addiction?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">Prescription drug dependence occurs when medications meant to treat medical or mental health concerns become misused or relied upon in ways that impair daily functioning. This type of addiction can affect anyone and often develops unintentionally over time.</p>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Prescription drug addiction, also called prescription drug dependence, occurs when medications meant to treat medical or mental health concerns become misused or relied upon in ways that impair daily functioning. This type of addiction can affect anyone and often develops unintentionally over time.</p>
         <p class="mt-4 text-ink leading-relaxed text-[17px]">These medications can change the brain’s chemistry over time, leading to tolerance, cravings, or withdrawal symptoms that make it difficult to stop without professional help. Our board-certified mental health and addiction specialists provide compassionate, evidence-based care to help you regain control and rebuild your life.</p>
         <p class="mt-5 text-xs font-semibold uppercase tracking-[0.15em] text-muted">Medications commonly associated with dependency</p>
         <div class="mt-3 flex flex-wrap gap-2">
@@ -132,12 +134,14 @@ const faqSchema = {
     </div>
   </section>
 
+  <AddictionCare condition="prescription drug addiction" />
+
   <!-- HOW WE TREAT -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Safe, effective & individualized</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">How Hopewell treats prescription drug dependence</h2>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">How Hopewell treats prescription drug addiction</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">We design each treatment plan around the client’s unique needs, medical history, and goals — ensuring safe and effective recovery.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -275,7 +279,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="bg-white">
     <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">Prescription drug dependence — common questions</h2>
+      <h2 class="font-display text-3xl text-ink text-center">Prescription drug addiction: common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
           <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">

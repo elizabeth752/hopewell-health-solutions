@@ -32,6 +32,8 @@ export const locations = [
     name: "Downtown Glastonbury",
     city: "Glastonbury",
     street: "300 Hebron Ave, Suite 203",
+    // Addiction services (addiction IOP/PHP, SUD care) are only offered here and in Westbrook.
+    addiction: true,
     zip: "06033",
     // GBP: Hopewell Health Solutions - Downtown Glastonbury.
     phone: "+1-860-962-4486",
@@ -133,6 +135,7 @@ export const locations = [
     name: "Westbrook",
     city: "Westbrook",
     street: "70 Essex Road",
+    addiction: true,
     zip: "06498",
     // GBP: Hopewell Health Solutions - Westbrook.
     phone: "+1-860-846-7761",
