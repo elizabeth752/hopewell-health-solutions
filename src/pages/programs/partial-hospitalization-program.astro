@@ -11,6 +11,7 @@ const heroUsps = [
   { icon: "calendar", t: "6 structured hours a day, Monday through Friday. The highest level of outpatient care" },
   { icon: "sparkles", t: "Concierge, customizable care — you build the group schedule around your goals" },
   { icon: "dna", t: "GeneSight® genetic testing & expert medication management" },
+  { icon: "shield", t: "Addiction PHP for alcohol, drug & prescription drug addiction" },
   { icon: "swap", t: "A seamless step-down to IOP as you stabilize" },
 ];
 const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
@@ -29,7 +30,8 @@ const benefitsFor = [
 ];
 const whoFor = [
   "Individuals needing stabilization after a crisis",
-  "Those transitioning from inpatient hospitalization or residential treatment",
+  "Those transitioning from inpatient hospitalization, rehab, or residential treatment",
+  "Adults who need structured addiction treatment for alcohol, drug, or prescription drug use",
   "Adults struggling with depression, anxiety, trauma, or mood disorders",
   "Individuals at risk of relapse",
   "Those who need more support than weekly therapy can offer",
@@ -106,12 +108,12 @@ const faqs = [
   ["Do I stay overnight?", "No — PHP is a day program. You receive intensive care during the day and go home each night to sleep in your own bed."],
   ["How many hours a day is PHP?", "About six structured hours, Monday through Friday (roughly 9 AM–3:30 PM)."],
   ["Can I customize my schedule?", "Yes — one of the unique features of our PHP is a customizable approach that lets you build a tailored schedule for the group component, choosing the groups best aligned with your goals."],
-  ["Does PHP treat substance use and co-occurring disorders?", "Yes. PHP stabilizes symptoms of substance use and co-occurring disorders through evidence-based modalities, individualized plans, and specialized interventions — including MAT for opioid and alcohol dependence."],
+  ["Do you offer an addiction PHP?", "Yes. Our addiction PHP in Glastonbury stabilizes symptoms of substance use and co-occurring disorders through evidence-based modalities, individualized plans, and specialized interventions — including MAT for opioid and alcohol dependence."],
   ["Will my insurance cover it?", "Most major PPO plans cover PHP. We’ll verify your benefits for free, in minutes (we don’t accept Medicaid / HUSKY)."],
 ];
 ---
 
-<Base title="Partial Hospitalization (PHP) in CT | Hopewell Health Solutions" description="Partial hospitalization (PHP) at Hopewell Health Solutions, Glastonbury CT — 6 structured hours a day for depression, anxiety, trauma & co-occurring disorders. Most insurance accepted.">
+<Base title="Partial Hospitalization (PHP) in CT | Hopewell Health Solutions" description="Partial hospitalization (PHP) at Hopewell Health Solutions, Glastonbury CT — 6 structured hours a day for depression, anxiety, trauma, addiction & co-occurring disorders. Most insurance accepted.">
   <Header />
 
   <!-- HERO -->
@@ -253,6 +255,8 @@ const faqs = [
         <ul class="mt-5 space-y-2.5">
           {whoFor.map((w) => <li class="flex gap-3 text-ink"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span class="leading-snug">{w}</span></li>)}
         </ul>
+        <h3 class="mt-8 font-display text-2xl text-ink">Addiction PHP</h3>
+        <p class="mt-3 text-ink leading-relaxed text-pretty">Our addiction PHP treats alcohol, drug, and prescription drug addiction in Glastonbury, with SUD groups, MAT when it fits your plan, and care for co-occurring conditions. It is a common step-down after inpatient rehab or detox, and as you stabilize you move into our <a href="/programs/substance-use-iop/" class="text-azul font-semibold hover:text-azul-dark transition">Addiction and Substance Use IOP</a> in Glastonbury or Westbrook.</p>
       </div>
     </div>
   </section>
