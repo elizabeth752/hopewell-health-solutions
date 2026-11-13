@@ -78,7 +78,7 @@ const steps = [
   </Header>
 
   <!-- HERO — rotating photo-led banner (real office, group and staff photos), text left, appointment form right -->
-  <section class="hb-hero relative isolate overflow-hidden bg-ink text-white" data-hero-slides data-launcher-hide>
+  <section class="hb-hero relative isolate overflow-hidden bg-ink text-white" data-hero-slides>
     <div class="hb-hero-slides" aria-hidden="true">
       {heroSlides.map((h, i) => (
         <img src={h.src} alt="" width="1600" height="900" class:list={["hb-hero-slide", { "is-on": i === 0 }]} style={`object-position:${h.pos}`} loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} decoding="async" />
@@ -237,15 +237,6 @@ const steps = [
 
   <!-- FAQ — sticky numbered list -->
   <FaqB />
-
-  <!-- MOBILE-ONLY APPOINTMENT FORM (desktop has it in the hero; phones also get the floating blue button) -->
-  <section id="verify-mobile" class="lg:hidden bg-crema scroll-mt-28" data-launcher-hide>
-    <div class="mx-auto max-w-[500px] px-5 py-14">
-      <h2 class="font-display text-3xl text-ink text-balance">Request an Appointment</h2>
-      <p class="mt-3 text-ink text-pretty">Share a few details and our admissions team will call you back — we’ll check your insurance for free.</p>
-      <div class="mt-6"><LeadForm variant="card" formId="hb-mobile-end" /></div>
-    </div>
-  </section>
 
   <!-- FINAL CTA — inset panel + action card -->
   <CtaC />

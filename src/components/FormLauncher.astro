@@ -1,8 +1,8 @@
 ---
 // Floating "Check Your Coverage" launcher (bottom right, phones/tablets only — desktop keeps the form in the hero),
-// holding the lead form in a pop-up panel. It stays hidden while the hero banner is on screen so it never covers the
-// banner photos, then shows as a blue pill that shrinks to a circle after COLLAPSE_MS. Below lg, any link to #verify
-// opens the panel instead of jumping.
+// holding the lead form in a pop-up panel: a blue pill that shrinks to a circle after COLLAPSE_MS. It hides while any
+// [data-launcher-hide] block is on screen (none on the page = always visible). Below lg, any link to #verify opens
+// the panel instead of jumping.
 import LeadForm from "./LeadForm.astro";
 const LABEL = "Check Your Coverage";
 ---
@@ -117,8 +117,7 @@ const LABEL = "Check Your Coverage";
       returnFocus?.focus({ preventScroll: true });
     };
 
-    // Hidden while any [data-launcher-hide] block is on screen (the hero banner, so it never covers the photos,
-    // and the page's own form section, so the form isn't offered twice)
+    // Hidden while any [data-launcher-hide] block is on screen (e.g. a form already shown on the page)
     const hiders = [...document.querySelectorAll("[data-launcher-hide]")];
     const seen = new Set<Element>();
     const io = new IntersectionObserver((entries) => {
