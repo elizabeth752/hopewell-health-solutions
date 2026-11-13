@@ -103,10 +103,11 @@ const steps = [
 
   <!-- TRUST BAR -->
   <section class="bg-white border-b border-line">
-    <div class="mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+    <div class="hb-trust mx-auto max-w-6xl px-5 py-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
       <p class="text-sm font-semibold text-muted">Accredited &amp; verified by</p>
-      {trustMarks.map(([alt, src, w, h, cls]) => <img src={src} alt={alt} width={w} height={h} loading="lazy" decoding="async" class={`${cls} object-contain`} />)}
+      <img src={trustMarks[0][1]} alt={trustMarks[0][0]} width={trustMarks[0][2]} height={trustMarks[0][3]} loading="lazy" decoding="async" class="h-16 w-16 object-contain" />
       <LegitScriptSeal />
+      <img src={trustMarks[1][1]} alt={trustMarks[1][0]} width={trustMarks[1][2]} height={trustMarks[1][3]} loading="lazy" decoding="async" class={`${trustMarks[1][4]} object-contain`} />
       <BbbSeal />
     </div>
   </section>
@@ -258,6 +259,8 @@ const steps = [
 </Base>
 
 <style is:global>
+  /* trust bar: LegitScript seal shown large, next to the Joint Commission seal (client ask) */
+  .hb-trust a[href*="legitscript"] img { height: 72px; }
   /* home-b only: fully white header (top social bar included) */
   header.sticky { background: #fff !important; backdrop-filter: none !important; }
   .hb-tb-link { font-weight: 600; color: var(--color-gold-light); }
