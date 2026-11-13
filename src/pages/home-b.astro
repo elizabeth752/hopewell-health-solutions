@@ -96,9 +96,6 @@ const steps = [
       </div>
       <div id="verify" class="hidden lg:block w-full max-w-[500px] justify-self-end scroll-mt-32"><LeadForm variant="card" formId="hb-hero" /></div>
     </div>
-    <div class="hb-hero-dots" role="group" aria-label="Banner photos">
-      {heroSlides.map((h, i) => <button type="button" data-slide={i} aria-label={`Show photo ${i + 1}: ${h.label}`} aria-pressed={i === 0 ? "true" : "false"}></button>)}
-    </div>
   </section>
 
   <!-- TRUST BAR -->
@@ -275,11 +272,6 @@ const steps = [
   .hb-hero-slide.is-on { opacity: 1; transform: scale(1); }
   .hb-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0,29,55,.92) 0%, rgba(0,29,55,.78) 45%, rgba(0,29,55,.45) 100%); }
   @media (max-width: 1023px) { .hb-hero::after { background: linear-gradient(180deg, rgba(0,29,55,.72), rgba(0,29,55,.9)); } }
-  .hb-hero-dots { position: absolute; left: 50%; bottom: 14px; translate: -50% 0; display: flex; gap: 4px; }
-  .hb-hero-dots button { width: 24px; height: 24px; display: grid; place-items: center; }
-  .hb-hero-dots button::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.45); transition: width .3s, background .3s; }
-  .hb-hero-dots button[aria-pressed="true"]::before { width: 22px; background: var(--color-gold-light); }
-  .hb-hero-dots button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 999px; }
   @media (prefers-reduced-motion: reduce) { .hb-hero-slide { transition: none; transform: none; } }
 
   /* shared icon tile with tilt on hover (Lotus card idea) */
@@ -324,23 +316,20 @@ const steps = [
 </style>
 
 <script>
-  // Hero slideshow: crossfades to the next photo every 6s (off for reduced motion);
-  // the dots jump to a photo. Later photos are lazy-loaded and warmed up one step ahead.
+  // Hero slideshow: crossfades to the next photo every 6s (off for reduced motion).
+  // Later photos are lazy-loaded and warmed up one step ahead.
   const hero = document.querySelector<HTMLElement>("[data-hero-slides]");
   if (hero) {
     const slides = [...hero.querySelectorAll<HTMLImageElement>(".hb-hero-slide")];
-    const dots = [...hero.querySelectorAll<HTMLButtonElement>("[data-slide]")];
     let i = 0, timer = 0;
     const warm = (k: number) => { const im = slides[k % slides.length]; im.loading = "eager"; };
     const show = (k: number) => {
       i = (k + slides.length) % slides.length;
       slides.forEach((im, n) => im.classList.toggle("is-on", n === i));
-      dots.forEach((d, n) => d.setAttribute("aria-pressed", String(n === i)));
       warm(i + 1);
     };
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const play = () => { if (reduce) return; clearInterval(timer); timer = window.setInterval(() => show(i + 1), 6000); };
-    dots.forEach((d) => d.addEventListener("click", () => { show(Number(d.dataset.slide)); play(); }));
     addEventListener("load", () => warm(1), { once: true });
     play();
   }
