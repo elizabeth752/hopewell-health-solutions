@@ -6,6 +6,7 @@ import Icon from "../../components/Icon.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServicesGrid from "../../components/ServicesGrid.astro";
+import AddictionCare from "../../components/AddictionCare.astro";
 
 const heroUsps = [
   { icon: "shield", t: "A team of board-certified mental health specialists" },
@@ -64,6 +65,7 @@ const faqs = [
   ["What is S.U.D.?", "S.U.D. is a chronic disease characterized by compulsive drug or alcohol use despite negative consequences. It causes changes in brain function, particularly in areas responsible for decision-making, behavior control, and reward systems. Individuals with S.U.D. may lose control over their usage, develop a tolerance, and experience withdrawal symptoms when not using. S.U.D. is not just a physical dependence; it also includes emotional and psychological elements that require comprehensive treatment."],
   ["What are the signs of an S.U.D.?", "Signs of S.U.D. can vary depending on the specific drug or alcohol being used, but common indicators include cravings or a strong urge to use; needing more to achieve the same effect (tolerance); unsuccessful attempts to reduce or quit using; spending a significant amount of time obtaining, using, or recovering; neglecting work, school, or social responsibilities due to use; continuing to use despite awareness of the harm it’s causing; and withdrawal symptoms when not using."],
   ["What is S.U.D. treatment?", "The team at Hopewell Health Solutions offers S.U.D. treatment that is tailored to meet the unique needs of each individual, focusing on both short-term recovery and long-term relapse prevention. S.U.D. treatment aims to help patients not only achieve sobriety but also address the underlying causes of S.U.D., such as trauma, mental health issues, or chronic stress."],
+  ["Do you offer an addiction IOP or PHP?", "Yes. Our Addiction and Substance Use IOP meets in Glastonbury and Westbrook, and our addiction PHP meets in Glastonbury. Both include SUD groups, and both work as a step-down for people leaving inpatient rehab or detox."],
   ["How do I know that it’s time to seek S.U.D. treatment?", "It is important to seek S.U.D. treatment when drug or alcohol use starts to interfere with daily functioning, relationships, or health. Key indicators include an inability to stop using despite wanting to quit; use causing problems at work, school, or home; loss of interest in activities once enjoyed; using in risky situations such as driving; legal, financial, or health issues due to use; and isolation from loved ones. If any of these signs are present, you should seek treatment with the team at Hopewell Health Solutions. Early intervention can significantly improve long-term recovery. S.U.D. is a treatable condition, and with the right care, individuals can achieve lasting recovery and lead fulfilling lives."],
 ];
 const faqSchema = {
@@ -73,18 +75,18 @@ const faqSchema = {
 };
 ---
 
-<Base title="Substance Use Disorder (S.U.D.) Treatment in CT | Hopewell Health Solutions" description="Substance use disorder (S.U.D.) treatment at Hopewell Health Solutions in Glastonbury & Westbrook, CT — medical, psychological & therapeutic care for lasting recovery. In person & telehealth.">
+<Base title="Addiction & Substance Use Disorder Treatment in CT | Hopewell" description="Addiction and substance use disorder (S.U.D.) treatment, including addiction IOP and PHP, at Hopewell Health Solutions in Glastonbury & Westbrook, CT — medical, psychological & therapeutic care for lasting recovery. In person & telehealth.">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- HERO -->
   <section class="bg-crema">
     <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Substance Use Disorder</span></nav>
+      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/what-we-treat/" class="hover:text-azul">What We Treat</a> / <span class="text-ink">Addiction &amp; Substance Use Disorder</span></nav>
       <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
         <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">S.U.D. Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Substance Use Disorder (S.U.D.) Treatment in Connecticut</h1>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Addiction Treatment · Glastonbury &amp; Westbrook, CT · In person &amp; telehealth</p>
+          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Addiction &amp; Substance Use Disorder (S.U.D.) Treatment in Connecticut</h1>
           <p class="mt-3 font-display text-xl text-azul italic">Break free from dependency — and regain control of your life.</p>
           <div class="mt-5 h-px w-16 bg-gold"></div>
           <div class="mt-5 flex items-center gap-2.5 text-sm">
@@ -115,13 +117,15 @@ const faqSchema = {
       <img src="/Assets/Guy%20facing%20the%20horizon.webp" alt="A path to recovery from substance use disorder at Hopewell Health Solutions, Connecticut" loading="lazy" class="rounded-2xl w-full h-72 lg:h-96 object-cover" />
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A path to recovery</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is S.U.D.?</h2>
+        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">What is addiction (S.U.D.)?</h2>
         <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">Substance use disorder (S.U.D.) is a chronic condition that affects the brain and behavior, leading to an inability to control the use of drugs or alcohol despite harmful consequences. It causes changes in brain function — particularly in the areas responsible for decision-making, behavior control, and reward.</p>
+        <p class="mt-5 text-ink leading-relaxed text-[17px]">Addiction, known clinically as substance use disorder (S.U.D.), is a chronic condition that affects the brain and behavior, leading to an inability to control the use of drugs or alcohol despite harmful consequences. It causes changes in brain function — particularly in the areas responsible for decision-making, behavior control, and reward.</p>
         <p class="mt-4 text-ink leading-relaxed text-[17px]">It’s not just a physical dependence: S.U.D. also includes emotional and psychological elements that require comprehensive treatment. The team of board-certified mental health specialists at Hopewell Health Solutions offers S.U.D. treatment that provides a path to recovery through medical, psychological, and therapeutic interventions — allowing individuals to break free from their dependency and regain control of their lives.</p>
       </div>
     </div>
   </section>
+
+  <AddictionCare condition="addiction and substance use disorder" />
 
   <!-- SIGNS -->
   <section class="bg-crema">
@@ -147,7 +151,7 @@ const faqSchema = {
     <div class="mx-auto max-w-6xl px-5 py-16">
       <div class="text-center">
         <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">What S.U.D. treatment looks like here</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our approach to S.U.D. treatment</h2>
+        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our approach to addiction treatment</h2>
         <p class="mt-3 text-muted max-w-2xl mx-auto">Tailored to each individual — focused on both short-term recovery and long-term relapse prevention, while addressing the underlying causes such as trauma, mental health issues, or chronic stress.</p>
       </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -270,7 +274,7 @@ const faqSchema = {
   <!-- FAQ -->
   <section class="bg-crema">
     <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">S.U.D. treatment — common questions</h2>
+      <h2 class="font-display text-3xl text-ink text-center">Addiction &amp; S.U.D. treatment: common questions</h2>
       <div class="mt-8 space-y-3">
         {faqs.map(([q, a]) => (
           <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
