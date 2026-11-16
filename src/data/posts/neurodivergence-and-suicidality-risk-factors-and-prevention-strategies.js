@@ -45,7 +45,7 @@
 //   /treatment-methods/dbt/ · /treatment-methods/therapeutic-treatments/ (CBT + ART) ·
 //   /treatment-methods/emdr/ · /treatment-methods/genesight-testing/ · /treatment-methods/group-therapy/ ·
 //   /programs/intensive-outpatient-program/ · /programs/partial-hospitalization-program/ ·
-//   /programs/teen-tween-iop/ · /post/what-is-a-safety-plan-and-how-can-you-make-one/ (existing post on the
+//   /programs/teen-iop/ · /post/what-is-a-safety-plan-and-how-can-you-make-one/ (existing post on the
 //   general safety-plan concept this article adapts).
 export default {
   slug: "neurodivergence-and-suicidality-risk-factors-and-prevention-strategies",
@@ -244,7 +244,7 @@ export default {
           ],
         },
         {
-          p: 'At Hopewell Health Solutions, treatment is available at all levels without changing teams. We offer weekly counseling, an <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Program (IOP)</a>, and a <a href="/programs/partial-hospitalization-program/">Partial Hospitalization Program (PHP)</a>, with separate tracks for <a href="/programs/teen-tween-iop/">tweens, teens, and adults</a>.',
+          p: 'At Hopewell Health Solutions, treatment is available at all levels without changing teams. We offer weekly counseling, an <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Program (IOP)</a>, and a <a href="/programs/partial-hospitalization-program/">Partial Hospitalization Program (PHP)</a>, with separate tracks for <a href="/programs/teen-iop/">tweens, teens, and adults</a>.',
         },
       ],
     },

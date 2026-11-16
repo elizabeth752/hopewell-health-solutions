@@ -22,6 +22,8 @@ import NewsVideos from "../../components/programs/NewsVideos.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
 import { STORIES } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
+import "../../styles/pages/seo.css";
 import "../../styles/pages/programs.css";
 
 const P = "/Assets/hhs-2026/";
@@ -48,7 +50,7 @@ const interviews = [
   { id: "GJeVqHhooBA", t: "Mommy Monday: Helping Children", outlet: "WFSB Channel 3" },
   { id: "uDy-K1dO0Fw", t: "CT Live!: Trauma in Women", outlet: "NBC Connecticut" },
 ];
-const outcomes = ["Reduced symptoms of anxiety, depression &amp; emotional overwhelm", "Stronger coping strategies and emotional resilience", "Healthier communication and boundaries in relationships", "Greater self-awareness and increased confidence", "Decreased reliance on substances or harmful behaviors"];
+const outcomes = ["Working on symptoms of anxiety, depression &amp; emotional overwhelm", "Building coping strategies and emotional resilience", "Practicing healthier communication and boundaries in relationships", "Growing self-awareness and confidence", "Working toward less reliance on substances or harmful behaviors"];
 const modalities = [
   { t: "Dialectical Behavioral Therapy (DBT)", icon: "swap", href: "/treatment-methods/dbt/" },
   { t: "Cognitive Behavioral Therapy (CBT)", icon: "brain" },
@@ -64,18 +66,26 @@ const faqs: [string, string][] = [
   ["What’s the difference between IOP and PHP?", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> is more intensive (about six hours a day); IOP is part-time, so you can keep working, going to school, and caring for your family."],
   ["Can I keep working or going to school?", "Yes — choose a morning (9 AM–12 PM) or evening (5 PM–8 PM) track. Many participants also qualify for FMLA or CT Paid Leave."],
   ["Do you treat substance use too?", "Yes — it’s a co-occurring program. We treat mental health and substance use together, including <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-Assisted Treatment (MAT)</a>."],
-  ["Will my insurance cover it?", "We accept most major insurance plans. We’ll verify your benefits for free, in minutes."],
+  ["What are co-occurring disorders?", "Co-occurring disorders means having a mental health condition, like depression, anxiety or trauma, and a substance use disorder at the same time. Learn more about <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring disorders</a>."],
+  ["What is dual diagnosis treatment?", "Dual diagnosis treatment is care that addresses both conditions together, with one team, instead of treating one and referring out for the other."],
+  ["Why treat both at the same time?", "Each condition can make the other worse. Treating them together helps you understand the connection and build skills that support both."],
+  ["Do I need to be sober to start?", "Our admissions team will talk through where you are now. If you need detox or withdrawal care first, we’ll help you find it, then plan your start in the program."],
+  ["Do you offer medication-assisted treatment?", "Yes. <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>MAT</a> is available when it’s clinically appropriate, managed by our psychiatric team alongside therapy."],
+  ["How is this different from the Addiction IOP?", "This program is for adults whose mental health and substance use are closely connected. Our <a class='inl' href='/programs/addiction-iop/'>Addiction and Substance Use IOP</a> centers on alcohol and drug use. Our admissions team will help you choose."],
+  ["Is my information kept confidential?", "Yes. Your treatment is protected by federal privacy law, including stricter federal rules that apply to substance use treatment records."],
+  ["Will my family be involved?", "Only if you want them to be. Optional family therapy and psychoeducation are available."],
+  ["Will my insurance cover it?", "We accept most major commercial insurance plans. We’ll verify your benefits for free, in minutes. Hopewell does not accept Medicare or Medicaid."],
 ];
 const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzhg", "S_CyYMDqEio", "awy7nfDgC0k"].includes(v.yt));
 ---
 
-<Base title="Adult IOP in Glastonbury, CT | Hopewell Health Solutions" description="Adult Intensive Outpatient Program (IOP) in Glastonbury, CT — DBT-based, co-occurring care for anxiety, depression, trauma & substance use. Day & evening tracks. Most insurance accepted." image={P + "group-room-bright.webp"}>
+<Base title="Co-Occurring & Dual Diagnosis IOP in CT | Hopewell" description="Treat mental health and addiction together in one in-person adult IOP in Glastonbury, CT. Therapy, psychiatry and MAT in one team. Check coverage." image={P + "group-room-bright.webp"}>
   <Header />
   <main class="hw">
     <ServiceHero
-      crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Adult IOP" }]}
-      title="Adult Co-Occurring Intensive Outpatient Program (IOP)"
-      lede="Mental Health &amp; Psychiatry · Glastonbury, Westbrook &amp; West Hartford, CT. Structured, DBT-based care for adults 18+ who need more than weekly therapy, with mental health and substance use treated together."
+      crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Adult Co-Occurring IOP" }]}
+      title="Co-Occurring Disorders IOP for Adults in Connecticut"
+      lede="Adult Co-Occurring Intensive Outpatient Program (IOP) · Glastonbury &amp; Westbrook, CT. Co-occurring disorders treatment in Connecticut: structured, DBT-based care for adults 18+ who need more than weekly therapy, with mental health and addiction treated together by one team."
       bullets={heroUsps}
       facts={[{ icon: "calendar", text: "Mon–Thu · 3 hours a day" }, { icon: "clock", text: "Morning or evening track" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
       image={P + "group-room-bright.webp"}
@@ -115,6 +125,29 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
       </div>
     </Split>
 
+    <Prose startTone={1} blocks={[
+      { id: "who-its-for", h2: "Who the Co-Occurring Disorders IOP Is For",
+        paras: [
+          "This program is for adults 18 and older who are dealing with a mental health condition and drinking or drug use at the same time. Often the two feed each other: anxiety or depression leads to drinking or using to cope, and the substance use deepens the anxiety, depression or sleeplessness that started it. Trauma, mood instability and loneliness can sit underneath both.",
+          "Many people who come to us have been through treatment before that addressed only one side. A therapist worked on depression but never asked about alcohol, or an addiction program focused on staying sober without addressing the panic attacks that kept pulling them back. Dual diagnosis treatment in Connecticut works best when both are on the table from day one.",
+          "If your drinking or drug use is the main concern and mental health symptoms are less central, our <a class='inl' href='/programs/addiction-iop/'>addiction treatment IOP</a> may be a better fit. If symptoms make it hard to get through the day, a <a class='inl' href='/programs/partial-hospitalization-program/'>partial hospitalization program</a> offers more hours of care. Our admissions team helps you decide.",
+        ],
+        aside: { type: "points", title: "This program is often a fit when…", items: [["link", "Mental health and substance use feed each other"], ["refresh", "Past treatment addressed only one side"], ["calendar", "You need care that fits around work and family"], ["users", "You want one team, not separate providers"]] } },
+      { id: "one-team", h2: "Dual Diagnosis IOP in Connecticut: One Team, No Hand-Off",
+        paras: [
+          "In many systems, mental health and addiction are treated by different providers who rarely talk. You might see a psychiatrist in one office and attend substance use groups in another, repeating your story each time. In our co-occurring IOP, the same team — therapists, psychiatric providers and experiential therapists — plans and delivers care for both, in one building.",
+          "Your week combines group therapy grounded in DBT and CBT, relapse prevention and recovery planning, individual therapy, and psychiatric care with <a class='inl' href='/programs/medication-management/'>medication management</a>. When it’s clinically appropriate, <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>medication-assisted treatment (MAT)</a> is managed by the same psychiatric team. Optional family sessions help the people at home understand what you’re working on.",
+          "This page describes the program. To learn more about the conditions themselves, read about <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring mental health and substance use disorders</a>, or compare every level of care in our <a class='inl' href='/programs/intensive-outpatient-program/'>intensive outpatient programs overview</a>.",
+        ],
+        aside: { type: "img", src: P + "adult-evening-iop-group.webp", alt: "Adult co-occurring disorders IOP group room in Glastonbury, CT", cap: "Adult IOP group room" } },
+      { id: "where", h2: "Mental Health and Addiction Treatment in Glastonbury and Westbrook",
+        paras: [
+          "Morning (9 AM–12 PM) and evening (5–8 PM) tracks meet Monday through Thursday at our <a class='inl' href='/location/glastonbury-ct-2/'>Downtown Glastonbury office at 300 Hebron Ave</a>, and adult IOP and addiction care are also offered at our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a> on the shoreline. Most people keep working throughout, and many qualify for FMLA or CT Paid Leave.",
+          "When the program ends, care continues with the same team through <a class='inl' href='/programs/counseling/'>counseling</a> and medication management. To get started, call us or see <a class='inl' href='/admissions/'>how admissions works</a>. We’ll check your insurance for free before your first day.",
+        ],
+        aside: { type: "table", title: "Program at a glance", head: ["", "Co-Occurring IOP"], rows: [["Who", "Adults 18+"], ["Schedule", "Mon–Thu, 3 hours a day"], ["Tracks", "9 AM–12 PM or 5–8 PM"], ["Length", "Most attend 8–12 weeks"], ["Where", "300 Hebron Ave & Westbrook"]] } },
+    ]} />
+
     <Quote text="Caring for your mental health is an act of strength, not weakness. You’ve carried a lot — you don’t have to carry it alone." img={P + "team-lawn-small.webp"} />
 
     <IconCards heading="What makes our program unique?" lede="Why families choose Hopewell." items={unique} />
@@ -131,8 +164,8 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
     <Team heading="Your Adult IOP Care Team" lede="Clinicians, psychiatric providers, and experiential therapists who build a plan around your values and goals. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "katherine-salvador-pa-c", "tracy-sibley-pmhnp-bc-aprn", "chelsey-micciche-lpc", "kaitlyn-czapiga-lmsw", "sherrie-gaudet-lcsw", "jonathan-ficara-lcsw"]} tone="white" />
 
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our admissions team verifies your benefits at no cost — before you commit to anything." />
-    <Locations heading="Our Locations" lede="Adult IOP morning and evening tracks meet at our Downtown Glastonbury office, 300 Hebron Ave, and an adult IOP also meets at our Westbrook office. Therapy and medication management are available at all six Connecticut offices." current="glastonbury-ct-2" />
-    <Faq faqs={faqs} heading="Adult IOP — common questions" tone="white" />
+    <Locations heading="Where the Program Meets" lede="Adult IOP morning and evening tracks meet at our Downtown Glastonbury office, 300 Hebron Ave, and an adult IOP also meets at our Westbrook office. Therapy and medication management are available at all six Connecticut offices." current="glastonbury-ct-2" />
+    <Faq faqs={faqs} heading="Co-Occurring IOP — Common Questions" tone="white" />
     <OtherPrograms current="/programs/adult-mental-health-iop/" />
     <ClosingCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We’re accepting new clients, accept most major insurance, and offer flexible payment options." image={P + "php-group-room.webp"} />
   </main>

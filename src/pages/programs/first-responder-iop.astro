@@ -12,7 +12,6 @@ import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
-import ClosingCta from "../../components/hw/ClosingCta.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import Split from "../../components/programs/Split.astro";
 import Quote from "../../components/programs/Quote.astro";
@@ -20,9 +19,13 @@ import IconCards from "../../components/programs/IconCards.astro";
 import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
-import { STORIES } from "../../data/videos.js";
+import FinalCta from "../../components/programs/FinalCta.astro";
+import Prose from "../../components/seo/Prose.astro";
+import { VIDEOS } from "../../data/videos.js";
 import "../../styles/pages/programs.css";
+import "../../styles/pages/seo.css";
 
+const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
   "Designed by first responders, for first responders",
@@ -68,36 +71,75 @@ const team = [
   { n: "Tracy Sibley, PMHNP-BC, APRN", role: "Medication Management", href: "/provider/tracy-sibley-pmhnp-bc-aprn/", photo: TM + "tracy-sibley-pmhnp-bc-aprn.webp", d: "Tracy is a board-certified psychiatric mental health nurse practitioner at Hopewell Health Solutions in Glastonbury and West Hartford. She has served as a psychiatric nurse for eight years across acute care, residential, and substance-abuse settings, and provides compassionate medication management for children, teens, and adults." },
 ];
 const faqs: [string, string][] = [
-  ["Who is the First Responder IOP for?", "Current or retired first responders 18+ — police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers — managing trauma, burnout, acute stress, or PTSI."],
+  ["Who can join the First Responder IOP?", "Current or retired first responders 18+ — police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers — managing trauma, burnout, acute stress, or PTSI."],
+  ["Will my department find out?", "Your treatment is confidential and protected by privacy law. We don’t share information with your employer without your written permission."],
+  ["Will I be in groups with civilians?", "No. Groups are made up of other first responders."],
+  ["Can I keep working during the program?", "Many people do. Groups meet Monday–Thursday, 9:00 AM–12:00 PM, so talk with our admissions team about your shift schedule before you start, and we’ll look at what works. Many participants also use FMLA or CT Paid Leave."],
+  ["What does the program help with?", "Critical-incident stress, <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma and PTSD symptoms</a>, sleep problems, anxiety, depression, burnout and drinking to cope. Trauma from outside the job is treated too; see our <a class='inl' href='/programs/womens-trauma-iop/'>Women’s Trauma IOP</a> and <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
   ["What’s the schedule?", "Monday–Thursday, 9:00 AM–12:00 PM (three hours a day), for about 8 weeks at 300 Hebron Ave, Glastonbury, with ongoing progress evaluations."],
-  ["Is it confidential?", "Yes — we provide a safe, confidential space built specifically for first responders, led by clinicians who have served. Seeking support is a mark of strength, not weakness."],
-  ["How is it paid for?", "We accept most major insurance, and TRICARE East is accepted as a PPO plan. In some cases the State of Connecticut may compensate you directly while you’re in day treatment, and many qualify for FMLA or CT Paid Leave — our team handles the paperwork."],
+  ["Do I need a PTSD diagnosis?", "No. Our assessment looks at what you’re dealing with and recommends next steps."],
+  ["Is it confidential?", "Yes — we provide a safe, confidential space built specifically for first responders. Seeking support is a mark of strength, not weakness."],
+  ["Does insurance cover it?", "Most commercial plans cover IOP when medically necessary, and TRICARE (TRICARE East is accepted as a PPO plan) and VA Community Care are on our list. In some cases the State of Connecticut may compensate you directly while you’re in day treatment, and many qualify for FMLA or CT Paid Leave — our team handles the paperwork. We verify benefits for free; we don’t accept Medicare or Medicaid."],
+  ["Can my spouse or family get support?", "Yes. Optional family sessions and psychoeducation are part of the program (ask our <a class='inl' href='/admissions/'>admissions team</a> what’s available for spouses), so the people at home understand what you’re working on and how to support you."],
+  ["What if I’m in crisis right now?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room."],
 ];
-const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzhg", "awy7nfDgC0k"].includes(v.yt));
+const whoBlocks = [
+  { id: "who", h2: "First responder mental health treatment in Connecticut, built around the job",
+    paras: [
+      "The First Responder IOP is an intensive outpatient program in Connecticut for police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers — current or retired. It is for responders who are carrying more than they can put down at the end of a shift: critical-incident stress, PTSD symptoms, sleep that never feels like rest, burnout, or drinking more to cope.",
+      "Most responders who come to us have never been in a program like this. Many have spent years telling themselves it comes with the job. Some are worried about what a department, a union or a partner might think. Trauma that happens <a class='inl' href='/post/why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder/'>through the job</a> is different, and it carries <a class='inl' href='/post/trauma-and-first-responders-the-hidden-cost-of-heroism/'>a hidden cost</a>. Our program exists so you can get real treatment in a room where nobody needs the job explained to them, and where what you say stays confidential.",
+      "You do not need a PTSD diagnosis to start. After a confidential assessment, we recommend the level of care that fits — the First Responder IOP, <a class='inl' href='/programs/medication-management/'>medication management</a>, weekly <a class='inl' href='/programs/counseling/'>counseling</a>, or, when alcohol or drugs are part of the picture, our <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> or <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Co-Occurring IOP</a>.",
+    ],
+    aside: { type: "points", title: "Signs it may be time (non-diagnostic)", items: [["cloud", "Nightmares or calls that replay"], ["alert", "Always on edge, even off duty"], ["clock", "Sleep that never feels like rest"], ["swap", "Drinking more to wind down"], ["link", "Pulling away from family and friends"]] } },
+  { id: "confidential", h2: "Confidential care: what is and isn’t shared with your department",
+    paras: [
+      "Your treatment at Hopewell is confidential health care, protected by federal and state privacy law. We do not share information about your treatment with your employer, your department or your union without your written permission. If you choose to involve an employee assistance program or a department wellness contact, you decide what they receive.",
+      "Groups are made up only of other first responders, and the same confidentiality applies to everyone in the room. If you have questions about leave paperwork, FMLA or Connecticut Paid Leave, our team walks you through what each form does and doesn’t include before you sign anything.",
+    ],
+    aside: { type: "steps", title: "How confidentiality works", items: [["Your records stay with us", "Protected health information, not personnel files."], ["You give permission", "Nothing goes to your department without your written OK."], ["Leave paperwork", "We explain exactly what FMLA or Paid Leave forms include."]] } },
+];
+const stories = ["uIlSCS7clwE", "7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hykA"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "First Responder Intensive Outpatient Program (IOP)", url: SITE + "/programs/first-responder-iop/", description: "A confidential, in-person intensive outpatient program in Connecticut for police, firefighters, EMS, corrections officers and 9-1-1 dispatchers.", provider: { "@id": SITE + "/#organization" }, availableAtOrFrom: { "@id": SITE + "/location/glastonbury-ct-2/#clinic" } };
 ---
 
-<Base title="First Responder IOP in CT | Hopewell Health Solutions" description="A First Responder Intensive Outpatient Program at Hopewell Health Solutions, Glastonbury CT — designed by first responders, for first responders. Trauma, burnout & PTSI care. Mon–Thu, ~8 weeks. TRICARE East accepted as PPO." image="/Assets/service/first-responder-session.webp">
+<Base title="First Responder IOP in Connecticut | Police, Fire & EMS | Hopewell" description="A confidential, in-person IOP for Connecticut police, firefighters, EMS and dispatchers, with peers who understand the job. Check your coverage." image="/Assets/service/first-responder-session.webp">
   <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "First Responder" }]}
-      title="First Responder Intensive Outpatient Program (IOP)"
-      lede="First Responder IOP · Glastonbury, CT · Now enrolling. Designed by first responders, for first responders."
+      title="First Responder IOP in Connecticut"
+      lede="A confidential, in-person First Responder IOP in Connecticut for police, firefighters, EMS, corrections and 9-1-1 dispatchers, in groups only with other responders. Designed by first responders, for first responders."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "shield", text: "Confidential" }]}
       image={P + "php-group-room.webp"}
     >
       <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/chris-patenaude-pa/">Christopher Patenaude, PA</a></p>
     </ServiceHero>
+    <!-- 2. As featured in -->
     <Creds />
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
+    <!-- 3. Reviews -->
+    <Reviews heading="What Our IOP Clients Say" first={["IOP"]} tone="stone" />
+
+    <!-- 4. Who it's for -->
     <Split heading="Specialized care for those who answer the call" img="/Assets/service/first-responder-session.webp" alt="A police officer receiving one-on-one support at Hopewell Health Solutions' First Responder IOP">
       <p><strong>By those who serve, for those who serve.</strong> Our First Responder IOP is designed by first responders, for first responders. We understand the unique challenges of those who serve and protect — and we offer specialized care that supports both your mental health and your career longevity.</p>
       <p>In a safe, confidential space, you can process your experiences, learn coping strategies, and grow stronger — personally and professionally. Whether you’re stepping down from inpatient care, need more than weekly therapy, or are navigating work while managing your mental health, <strong>seeking support is a mark of strength.</strong></p>
     </Split>
+    <Prose blocks={whoBlocks} startTone={1} />
+    <IconCards heading="Is this program right for you?" lede="Make the right choice. For current or retired <strong>police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers.</strong> These experiences can lead to:" items={conditions} cols={3} />
+    <section class="section is-navy">
+      <div class="container">
+        <div class="sec-head"><h2>Why first responder mental health matters</h2><p class="lede"><strong style="color:#fff">It takes a toll.</strong> The stress of emergencies, trauma, and high-pressure situations often leads to PTSD, anxiety, and depression. A culture of openness makes all the difference.</p></div>
+        <ol class="pg-why">
+          {whyMatters.map(([t, d], i) => <li><span class="n">{i + 1}</span><span><strong set:html={t + "."} /> <Fragment set:html={d} /></span></li>)}
+        </ol>
+      </div>
+    </section>
 
-    <Quote text="Seeking support for your mental health is a mark of strength and self-awareness." img={P + "iop-group-room-lights.webp"} />
-
+    <!-- 5. What treatment includes -->
     <section class="section is-stone">
       <div class="container pg-two">
         <div>
@@ -113,25 +155,14 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
         </Schedule>
       </div>
     </section>
-
-    <section class="section is-navy">
-      <div class="container">
-        <div class="sec-head"><h2>Why first responder mental health matters</h2><p class="lede"><strong style="color:#fff">It takes a toll.</strong> The stress of emergencies, trauma, and high-pressure situations often leads to PTSD, anxiety, and depression. A culture of openness makes all the difference.</p></div>
-        <ol class="pg-why">
-          {whyMatters.map(([t, d], i) => <li><span class="n">{i + 1}</span><span><strong set:html={t + "."} /> <Fragment set:html={d} /></span></li>)}
-        </ol>
-      </div>
-    </section>
-
-    <IconCards heading="Is this program right for you?" lede="Make the right choice. For current or retired <strong>police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers.</strong> These experiences can lead to:" items={conditions} cols={3} />
-
     <IconCards heading="A multimodal treatment approach" lede="More than just talk therapy. We blend clinical therapy with creative and relational approaches to promote true mind–body healing." items={approach} tone="mist" />
-
     <ModalitiesOutcomes mHeading="Modalities used" modalities={modalities} oHeading="Post-traumatic growth" oLede="With the right support, first responders can move beyond survival toward growth — reclaiming the nervous system and finding:" outcomes={ptg} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; experiential therapies." tone="white" />
+    <Quote text="Seeking support for your mental health is a mark of strength and self-awareness." img={P + "iop-group-room-lights.webp"} />
 
-    <section class="section is-stone">
+    <!-- 6. Team -->
+    <section class="section is-white">
       <div class="container">
-        <div class="sec-head"><h2>Personal, proven, and built from the ground up</h2><p class="lede">Built by people who understand. Our program was created by people who understand exactly what you face.</p></div>
+        <div class="sec-head"><h2>Personal, and built from the ground up</h2><p class="lede">Built by people who understand. Our program was created by people who understand exactly what you face.</p></div>
         <div class="pg-people">
           {team.map((m) => (
             <a class="pg-person" href={m.href}>
@@ -143,16 +174,21 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
       </div>
     </section>
 
-    <VideoCarousel videos={stories} heading="Stories of Recovery, in Their Own Words" lede="Real conversations about asking for help. Hear more on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." />
+    <!-- 7. Testimonials -->
+    <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Stories of Recovery, in Their Own Words" lede="Real conversations about asking for help. Hear more on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> and read our article on <a class='inl' href='/post/first-responder-mental-health-when-you-need-help/'>first responder mental health</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews heading="What Our IOP Clients Say" first={["IOP"]} />
+    <!-- 8. Locations -->
+    <Locations heading="Where the First Responder IOP Meets" lede="The First Responder IOP is held at <a class='inl' href='/location/glastonbury-ct-2/'>300 Hebron Ave, Glastonbury</a> · plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
 
-    <Insurance heading="Most major insurance — TRICARE East accepted as PPO" lede="We accept most major insurance, and TRICARE East is accepted as a PPO plan. <strong>In some cases, the State of Connecticut may compensate you directly while you’re in day treatment</strong>, and many qualify for FMLA or CT Paid Leave. Our team guides you through the process and handles the paperwork." />
-    <Locations heading="Our Locations" lede="The First Responder IOP is held at 300 Hebron Ave, Glastonbury · plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
+    <!-- 9. Insurance & admissions -->
+    <Insurance heading="Insurance for first responders — TRICARE East accepted as PPO" lede="We accept most major commercial insurance, TRICARE (East accepted as a PPO plan) and VA Community Care. <strong>In some cases, the State of Connecticut may compensate you directly while you’re in day treatment</strong>, and many qualify for FMLA or CT Paid Leave. Our team handles the paperwork. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="First Responder IOP — common questions" tone="white" />
+
+    <!-- 11. Related + final CTA -->
     <OtherPrograms current="/programs/first-responder-iop/" />
-    <ClosingCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We walk alongside you with evidence-based tools, compassionate support, and space for real transformation — built by people who’ve been where you are. Not a substitute for inpatient or emergency psychiatric care. If you’re in crisis, call 9-1-1 or go to your nearest emergency room." image="/Assets/service/first-responder-how-it-works.webp" />
+    <FinalCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We walk alongside you with evidence-based tools, compassionate support, and space for real transformation — built by people who understand the job. Not a substitute for inpatient or emergency psychiatric care." />
   </main>
   <Footer />
 </Base>

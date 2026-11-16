@@ -23,6 +23,8 @@ import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.ast
 import NewsVideos from "../../components/programs/NewsVideos.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
 import { STORIES } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
+import "../../styles/pages/seo.css";
 import "../../styles/pages/programs.css";
 
 const P = "/Assets/hhs-2026/";
@@ -33,10 +35,13 @@ const heroUsps = [
   "8–12 weeks · <a class='inl' href='/treatment-methods/dbt/'>DBT</a>-based care from a multidisciplinary team",
 ];
 const tracks = [
-  { t: "Tween IOP", age: "Ages 8–12", sched: "Mon–Thu · 4:30–7:30 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-tween-iop/#tween", img: P + "tween-group-room.webp", bar: "#5c7c6b" },
-  { t: "Teen IOP", age: "Ages 13–17", sched: "Mon–Thu · 5:00–8:00 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-tween-iop/#teen", img: "/Assets/service/teen-iop.webp", bar: "#2f76c4" },
-  { t: "Women's Wellness IOP", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c" },
-  { t: "Adult Co-Occurring IOP", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: P + "group-room-bright.webp", bar: "#0b2f55" },
+  { t: "Adult Co-Occurring IOP", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: P + "adult-evening-iop-group.webp", bar: "#0b2f55" },
+  { t: "Addiction and Substance Use IOP", age: "Adults 18+", sched: "Several days a week", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: P + "iop-group-session.webp", bar: "#265489" },
+  { t: "Teen IOP", age: "Ages 13–17", sched: "Mon–Thu · 5:00–8:00 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-iop/", img: P + "teen-iop-outside.webp", bar: "#2f76c4" },
+  { t: "Tween IOP", age: "Ages 8–12", sched: "Mon–Thu · 4:30–7:30 PM", loc: "1420 Main St, Glastonbury", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", bar: "#5c7c6b" },
+  { t: "Women's Wellness IOP", age: "Women 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c" },
+  { t: "Women's Trauma IOP", age: "Women 18+", sched: "Mon–Thu · 5:00–8:00 PM", loc: "300 Hebron Ave, Glastonbury", href: "/programs/womens-trauma-iop/", img: P + "womens-trauma-iop-group-room.webp", bar: "#b6863c" },
+  { t: "First Responder IOP", age: "First responders", sched: "Mon–Thu · 9 AM–12 PM", loc: "300 Hebron Ave, Glastonbury", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#265489" },
 ];
 const whoBenefit = [
   "<a class='inl' href='/what-we-treat/depression/'>Depression</a> &amp; mood disorders",
@@ -49,7 +54,7 @@ const whoBenefit = [
   "<a class='inl' href='/what-we-treat/substance-use-disorder/'>Substance use &amp; addiction</a> (Adult)",
 ];
 const unique = [
-  { icon: "users", t: "Multidisciplinary team", d: "Board-certified psychiatrists, licensed counselors, psychologists, social workers &amp; expressive therapists — each with 10–30 years of experience." },
+  { icon: "users", t: "Multidisciplinary team", d: "Board-certified psychiatric providers, licensed counselors, psychologists, social workers &amp; expressive therapists — each with 10–30 years of experience." },
   { icon: "clipboard", t: "Customized care", d: "Individualized treatment plans tailored to each client’s specific needs and goals." },
   { icon: "heart", t: "Holistic approach", d: "Traditional psychotherapy blended with wellness-based interventions for emotional and physical well-being." },
   { icon: "shield", t: "Accredited &amp; licensed", d: "State-licensed and Joint Commission Accredited — the Gold Seal of Approval." },
@@ -71,18 +76,27 @@ const faqs: [string, string][] = [
   ["Who can benefit from an IOP?", "Individuals experiencing depression, anxiety, PTSD, self-injury or suicidal thoughts, school refusal, trauma, emotional dysregulation, or substance use. All programs are inclusive and affirming — we welcome everyone regardless of gender identity, sexual orientation, cultural background, or diagnosis."],
   ["What makes Hopewell Health Solutions’ IOPs unique?", "A multidisciplinary team with 10–30 years of experience, customized treatment plans, a holistic approach — and Joint Commission Accreditation, the Gold Seal of Approval."],
   ["Do you accept insurance for the IOP programs?", "Yes — we accept almost all private insurances for all of our IOP programs, and TRICARE East is accepted as a PPO plan. If you have Medicaid / HUSKY, our admissions team can point you to programs that take it."],
+  ["How many hours a week is IOP?", "Our IOPs meet about three hours a day, four days a week (Monday–Thursday), in day or evening tracks depending on the program. Your schedule is set during your assessment."],
+  ["How long does IOP last?", "Most of our IOPs run 8–12 weeks, depending on progress. Your care team reviews your plan regularly."],
+  ["What's the difference between IOP and PHP?", "PHP is more intensive and meets most of the day — about six hours, Monday through Friday. IOP meets fewer hours, so it fits around daily life. Some people start in the <a class='inl' href='/programs/partial-hospitalization-program/'>partial hospitalization program</a> and step down to IOP."],
+  ["What conditions does IOP treat?", "Depression, anxiety, trauma, mood disorders and co-occurring mental health and substance use. We also offer an <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> and specialty IOPs for teens, tweens, women and first responders."],
+  ["Can I work while in IOP?", "Yes, most people do. Morning (9 AM–12 PM), evening (5–8 PM) and after-school tracks are scheduled to make that easier."],
+  ["Is IOP in person or online?", "Our IOPs are built around in-person groups, which is a big part of what makes them work. Telehealth is available for some services when coming in isn’t possible."],
+  ["Does insurance cover IOP in Connecticut?", "Most commercial plans cover IOP when it’s medically necessary. We verify your benefits for free. We don’t accept Medicare or Medicaid. See <a class='inl' href='/rates-and-insurance-coverage/'>rates and insurance</a>."],
+  ["How much does IOP cost?", "It depends on your deductible, copay and coinsurance. We’ll explain your expected cost before you start."],
+  ["What happens after IOP?", "Many people step down to <a class='inl' href='/programs/counseling/'>counseling</a> and medication management with the same team, so care continues without a gap."],
   ["How do I get started?", "Call us or request a consultation online to schedule an in-person or telehealth evaluation with our intake team. We’ll help determine which IOP track is the right fit for you or your loved one."],
 ];
 const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxUQ", "S_CyYMDqEio", "vlKx8J6hykA"].includes(v.yt));
 ---
 
-<Base title="Intensive Outpatient Programs (IOP) in CT | Hopewell Health Solutions" description="Intensive Outpatient Programs (IOP) at Hopewell Health Solutions, Glastonbury CT — tween, teen, women's & adult tracks. DBT-based, day & evening. Joint Commission Accredited." image={P + "iop-group-room-lights.webp"}>
+<Base title="Intensive Outpatient Program (IOP) in CT | Hopewell" description="In-person IOP for adults, teens and women in Glastonbury, South Glastonbury and Westbrook, CT. Structured care that fits around work or school. Check coverage." image={P + "iop-group-room-lights.webp"}>
   <Header />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP" }]}
       title="Intensive Outpatient Programs (IOP) in Connecticut"
-      lede="Intensive Outpatient Programs · Glastonbury, CT · Day &amp; evening. Structured care for tweens, teens, women and adults who need more than weekly therapy, without an overnight stay."
+      lede="Intensive outpatient programs in Connecticut · Glastonbury, South Glastonbury &amp; Westbrook · Day &amp; evening. Structured care for tweens, teens, women and adults who need more than weekly therapy, without an overnight stay."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "calendar", text: "Mon–Thu · 8–12 weeks" }]}
       image={P + "iop-group-room-lights.webp"}
@@ -99,10 +113,10 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
     <section class="section is-mist" id="tracks">
       <div class="container">
         <div class="sec-head">
-          <h2>Choose your IOP track</h2>
-          <p class="lede">Find your fit. Four age-specific tracks, each meeting Monday–Thursday for 8–12 weeks. Not sure which fits? Our intake team will help you decide.</p>
+          <h2>Choose Your IOP Track</h2>
+          <p class="lede">Find your fit. Seven specialty tracks — for adults, addiction, teens, tweens, women and first responders — most meeting Monday–Thursday for 8–12 weeks. Not sure which fits? Our intake team will help you decide.</p>
         </div>
-        <div class="pc-grid cols-4">
+        <div class="pc-grid cols-4 iop-tracks">
           {tracks.map((tr) => (
             <a href={tr.href} class="pc" style={`--bar:${tr.bar}`}>
               <span class="pc-media"><img src={tr.img} alt="" width="1200" height="900" loading="lazy" /><span class="pc-title">{tr.t}</span></span>
@@ -120,6 +134,30 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
         </div>
       </div>
     </section>
+
+    <Prose startTone={0} blocks={[
+      { id: "who-iop-is-for", h2: "Who an Intensive Outpatient Program Is For",
+        paras: [
+          "An intensive outpatient program is a middle step: more support than a weekly therapy appointment, without leaving home or stepping away from your life for a hospital stay. People usually look for IOP when symptoms are starting to affect work, school or relationships, when weekly sessions aren’t enough to keep things steady, or when they’re stepping down from a hospital stay or a <a class='inl' href='/programs/partial-hospitalization-program/'>partial hospitalization program</a> and want structure while they rebuild routines.",
+          "At Hopewell, IOP is built for real schedules. Adults can choose a morning (9 AM–12 PM) or evening (5–8 PM) track, teens and tweens meet after school, and the program runs Monday through Thursday so Fridays and weekends stay open for work, family and rest. Most people keep their job or stay in school throughout treatment.",
+          "If you’re not sure IOP is the right level, that’s what the assessment is for. Our admissions team looks at your symptoms, safety, schedule and goals, then recommends a starting point, which might be IOP, PHP or weekly <a class='inl' href='/programs/counseling/'>counseling</a>. You can compare every option on our <a class='inl' href='/programs/'>programs page</a>.",
+        ],
+        aside: { type: "points", title: "IOP is often a fit when…", items: [["refresh", "Weekly therapy isn’t enough anymore"], ["alert", "Symptoms affect work, school or relationships"], ["home", "You’re stepping down from a hospital stay or PHP"], ["calendar", "You need care that fits around daily life"]] } },
+      { id: "iop-for-depression", h2: "IOP for Depression in Connecticut",
+        paras: [
+          "Depression is one of the most common reasons people join an IOP at Hopewell. When low mood, exhaustion, hopelessness or loss of interest start to crowd out daily life — and weekly therapy hasn’t been enough to turn things around — an intensive outpatient program adds the structure and skills practice that can help you regain momentum.",
+          "In IOP for depression, you build skills in small groups using DBT and CBT, practice them between sessions, and work one-on-one with a clinician. When medication is part of your plan, our psychiatric providers manage it alongside therapy through <a class='inl' href='/programs/medication-management/'>medication management</a>, and <a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight® testing</a> can help guide medication choices.",
+          "For depression that hasn’t responded to medication and therapy, Hopewell also offers <a class='inl' href='/treatment-methods/tms/'>TMS therapy</a> in Glastonbury. Learn more about <a class='inl' href='/what-we-treat/depression/'>depression treatment</a>, including care for postpartum depression.",
+        ],
+        aside: { type: "img", src: P + "iop-room-group-photo.webp", alt: "An intensive outpatient program group room in Glastonbury, CT", cap: "Group room at 300 Hebron Ave" } },
+      { id: "what-iop-includes", h2: "What Our IOP Includes",
+        paras: [
+          "Every Hopewell IOP combines group therapy, individual sessions and psychiatric care, coordinated by one multidisciplinary team. Groups are small and clinician-led and use dialectical behavior therapy (DBT), cognitive behavioral therapy (CBT), interpersonal therapy and mindfulness, with expressive therapies such as art, music and yoga built into the week.",
+          "Psychiatric evaluation and <a class='inl' href='/programs/medication-management/'>medication management</a> are available inside the program, so therapy and medication are planned together. In the teen and tween tracks, family involvement is encouraged, with parent sessions and school coordination. Adults working on drinking or drug use can join the <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Co-Occurring IOP</a> or the <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> at our 300 Hebron Ave and Westbrook offices.",
+          "When IOP ends, care doesn’t stop. Most people step down to weekly counseling and medication management with the same team, so there’s no gap between programs.",
+        ],
+        aside: { type: "table", title: "IOP at a glance", head: ["", "Hopewell IOP"], rows: [["Schedule", "About 3 hours a day, Mon–Thu"], ["Tracks", "Morning, evening & after school"], ["Length", "Most programs run 8–12 weeks"], ["Format", "In person, telehealth for some services"], ["Where", "300 Hebron Ave, 1420 Main St & Westbrook"]] } },
+    ]} />
 
     <section class="section is-white">
       <div class="container pg-two">
@@ -146,7 +184,7 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
     <Team heading="Meet Your IOP Team" lede="Board-certified psychiatric providers, licensed counselors, psychologists, social workers and expressive therapists. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "eric-schwartz-psy-d-abpp", "tracy-sibley-pmhnp-bc-aprn", "chelsey-micciche-lpc", "kaitlyn-czapiga-lmsw", "viviana-alvarado-lpc-a", "traci-schneider-maatc-lpc-a-atr-p"]} tone="white" />
 
     <Insurance heading="Almost all private insurance — TRICARE East accepted as PPO" lede="We accept almost all private insurance plans for our IOP programs, and TRICARE East is accepted as a PPO plan. Our admissions team verifies your benefits at no cost — before you commit to anything." />
-    <Locations heading="Our Locations" lede="Adult &amp; Women’s tracks at 300 Hebron Ave · Tween &amp; Teen tracks at 1420 Main St, Glastonbury · Adult and Women’s Wellness IOP also at our Westbrook office. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
+    <Locations heading="IOP Locations Near You" lede="Adult &amp; Women’s tracks at 300 Hebron Ave · Tween &amp; Teen tracks at 1420 Main St, Glastonbury · Adult and Women’s Wellness IOP also at our Westbrook office. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
     <Faq faqs={faqs} heading="IOP — common questions" tone="white" />
     <OtherPrograms current="/programs/intensive-outpatient-program/" />
     <ClosingCta heading="Find the right IOP track" lede="Call us or request a consultation and our intake team will help determine which IOP is the right fit for you or your loved one — in person or by telehealth." image={P + "group-room-feelings-wheel.webp"} />

@@ -258,3 +258,77 @@
 .hw .pr-card.is-feature .pr-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 1080px) { .hw .pr-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .pr-card.is-feature { flex-direction: column; } .hw .pr-card.is-feature .pr-media { aspect-ratio: 16/9; border-right: 0; border-bottom: 5px solid var(--bar-c); } .hw .pr-card.is-feature .pr-icon { left: 20px; right: auto; bottom: -24px; } .hw .pr-card.is-feature .pr-body { padding: 34px 22px 22px; } .hw .pr-card.is-feature .pr-facts { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .hw .pr-grid { grid-template-columns: 1fr; } }
+
+/* ===== Program briefs: Women's Wellness / Women's Trauma / First Responder / Medication Management / Counseling (2026-11-16) ===== */
+.hw .pgx-final { background: linear-gradient(150deg, var(--hw-navy), var(--hw-night)); color: #dce6f1; }
+.hw .pgx-final h2 { color: #fff; }
+.hw .pgx-final .lede { margin-top: 14px; color: #dce6f1; }
+.hw .pgx-final-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hw .pgx-crisis { margin-top: 16px; font-size: 15px; color: #b9cbe0; }
+.hw .pgx-crisis a { color: #fff; font-weight: 800; }
+@media (max-width: 999px) { .hw .pgx-final-grid { grid-template-columns: 1fr; } }
+.hw .pgx-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hw .pgx-cmp { position: relative; padding: 26px 22px 22px; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .pgx-cmp::before { content: ""; position: absolute; top: 0; left: 22px; right: 22px; height: 5px; border-radius: 0 0 4px 4px; background: var(--c, var(--hw-bright)); }
+.hw .pgx-cmp.is-here { background: var(--hw-mist); border-color: transparent; }
+.hw .pgx-cmp h3 { font-size: 20px; }
+.hw .pgx-cmp small { display: block; margin-top: 2px; font-family: var(--hw-head); font-weight: 800; font-size: 12.5px; color: var(--c, var(--hw-bright)); }
+.hw .pgx-cmp ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 7px; }
+.hw .pgx-cmp li { display: flex; gap: 8px; font-size: 15px; line-height: 1.5; }
+.hw .pgx-cmp li svg { color: var(--c, var(--hw-bright)); flex: none; margin-top: 3px; }
+@media (max-width: 760px) { .hw .pgx-compare { grid-template-columns: 1fr; } }
+
+/* ===== fork: addiction / teen / tween pages (2026-11-16) ===== */
+.hw .ad-signs h3 { font-size: 20px; margin-bottom: 12px; }
+.hw .ad-beh { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hw .ad-beh-card { display: grid; gap: 10px; align-content: start; padding: 24px; border-radius: 20px; background: var(--hw-stone); }
+.hw .ad-beh-card h3 { font-size: 19px; }
+.hw .ad-beh-card p { font-size: 15.5px; line-height: 1.6; }
+.hw .ad-shore { display: grid; gap: 14px; }
+.hw .ad-shore img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 22px; }
+.hw .ad-shore-towns { padding: 18px 20px; border-radius: 18px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .ad-shore-towns strong { font-family: var(--hw-head); font-size: 15px; color: var(--hw-navy); }
+.hw .ad-shore-towns ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; }
+.hw .ad-shore-towns li { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--hw-body); }
+.hw .ad-shore-towns svg { color: var(--hw-bright); }
+.hw .ty-age { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.hw .ty-age-card { position: relative; padding: 26px 22px 22px; border-radius: 20px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .ty-age-card::before { content: ""; position: absolute; top: 0; left: 22px; right: 22px; height: 5px; border-radius: 0 0 4px 4px; background: var(--bar, var(--hw-bright)); }
+.hw .ty-age-card.is-here { background: var(--hw-navy); color: #dce6f1; border-color: var(--hw-navy); }
+.hw .ty-age-card.is-here h3, .hw .ty-age-card.is-here strong { color: #fff; }
+.hw .ty-age-card strong { display: block; font-family: var(--hw-head); font-size: 28px; font-weight: 800; color: var(--hw-navy); line-height: 1; }
+.hw .ty-age-card h3 { margin-top: 10px; font-size: 18px; }
+.hw .ty-age-card p { margin-top: 6px; font-size: 15px; line-height: 1.55; }
+.hw .ty-age-card.is-here .inl { color: var(--hw-sky); }
+@media (max-width: 899px) { .hw .ad-beh, .hw .ty-age { grid-template-columns: 1fr; } }
+
+/* ===== Programs hub brief (2026-11-16) ===== */
+.hw .ph-quick { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.hw .ph-quick a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 14px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 14.5px; text-decoration: none; transition: background .2s; }
+.hw .ph-quick a:hover { background: rgba(255,255,255,.2); }
+.hw .ph-quick svg { color: var(--hw-sky); }
+.hw .ph-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 22px; margin: 0 0 28px; border-bottom: 1px solid var(--hw-line); }
+.hw .ph-filter > span { font-family: var(--hw-head); font-weight: 800; font-size: 14px; color: var(--hw-navy); margin-right: 4px; }
+.hw .ph-f { padding: 10px 0; border: 0; background: none; font-family: var(--hw-head); font-size: 14.5px; font-weight: 700; color: var(--hw-slate); cursor: pointer; box-shadow: inset 0 -3px 0 transparent; }
+.hw .ph-f.is-on { color: var(--hw-navy); box-shadow: inset 0 -3px 0 var(--hw-bright); }
+.hw .ph-group { margin-top: 30px; scroll-margin-top: 130px; }
+.hw .ph-group[hidden], .hw .ph-card[hidden] { display: none; }
+.hw .ph-gh { display: flex; align-items: center; gap: 12px; font-size: 21px; margin-bottom: 14px; }
+.hw .ph-gh span { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--hw-navy); color: #fff; }
+.hw .ph-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hw .ph-card { display: grid; grid-template-columns: 132px minmax(0, 1fr); overflow: hidden; border-radius: 20px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .ph-media img { width: 100%; height: 100%; object-fit: cover; }
+.hw .ph-body { padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.hw .ph-body h4 { font-family: var(--hw-head); font-size: 17.5px; line-height: 1.25; }
+.hw .ph-body h4 a { color: var(--hw-navy); text-decoration: none; }
+.hw .ph-body h4 a:hover { color: var(--hw-blue); text-decoration: underline; }
+.hw .ph-who { font-size: 14px; font-weight: 600; color: var(--hw-slate); }
+.hw .ph-facts { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 3px; }
+.hw .ph-facts li { display: flex; gap: 6px; align-items: flex-start; font-size: 13px; font-weight: 700; color: var(--hw-blue); }
+.hw .ph-facts svg { flex: none; margin-top: 2px; }
+.hw .ph-d { font-size: 14.5px; line-height: 1.55; color: var(--hw-body); }
+.hw .ph-empty { margin-top: 20px; padding: 16px 18px; border-radius: 14px; background: var(--hw-mist); }
+.hw .ph-signs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.hw .ph-signs li { display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--hw-line); font-size: 15.5px; font-weight: 600; color: var(--hw-navy); }
+@media (max-width: 1100px) { .hw .ph-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .ph-signs { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .hw .ph-cards, .hw .ph-signs { grid-template-columns: 1fr; } .hw .ph-card { grid-template-columns: 100px minmax(0, 1fr); } }

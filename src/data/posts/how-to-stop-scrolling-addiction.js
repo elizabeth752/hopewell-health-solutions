@@ -53,7 +53,7 @@
 //   /treatment-methods/therapeutic-treatments/ (CBT), /treatment-methods/dbt/,
 //   /treatment-methods/emdr/ — the modalities named in the treatment section.
 //   /programs/intensive-outpatient-program/, /programs/partial-hospitalization-
-//   program/, /programs/teen-tween-iop/ — the levels of care named in the
+//   program/, /programs/teen-iop/ — the levels of care named in the
 //   closing section.
 export default {
   slug: "how-to-stop-scrolling-addiction",
@@ -202,7 +202,7 @@ export default {
           p: "At Hopewell Health Solutions, our clinicians use CBT, <a href=\"/treatment-methods/dbt/\">Dialectical Behavior Therapy (DBT)</a>, <a href=\"/treatment-methods/emdr/\">Eye Movement Desensitization and Reprocessing (EMDR)</a>, and Accelerated Resolution Therapy (ART) to treat scrolling addiction and the causes that sit deeper beneath.",
         },
         {
-          p: "Care is available at every level. We have weekly counseling, an <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Program (IOP)</a> with day and evening tracks, and a <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program (PHP)</a>. <a href=\"/programs/teen-tween-iop/\">Teen and tween IOPs</a> serve ages 8 through 18, with families included in the work to ensure comprehensive healing.",
+          p: "Care is available at every level. We have weekly counseling, an <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Program (IOP)</a> with day and evening tracks, and a <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program (PHP)</a>. <a href=\"/programs/teen-iop/\">Teen and tween IOPs</a> serve ages 8 through 18, with families included in the work to ensure comprehensive healing.",
         },
       ],
     },

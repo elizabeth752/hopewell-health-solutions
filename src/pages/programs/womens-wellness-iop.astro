@@ -1,7 +1,10 @@
 ---
-// Women's Wellness IOP — 2026 redesign (Corner Canyon layout). All live copy kept.
-// KB updates: Westbrook also runs Women's Wellness IOP (opened 2026-09-28); the unsourced "best IOP in the area" tag is
-// dropped; insurance wording made positive.
+// Women's Wellness IOP — built to "Hopewell Programs Page: Content Brief" → Women's Wellness IOP (2026-11-16).
+// Standard program-page order: hero + form · as featured in · reviews · who it's for · what treatment includes ·
+// team · testimonials · locations · insurance & admissions · FAQ · related programs + final CTA.
+// Owns: women's iop connecticut, mental health iop shoreline connecticut, postpartum (iop/depression) ct,
+// women's therapy westbrook ct. Trauma terms belong to /programs/womens-trauma-iop/.
+// All earlier live copy kept (incl. the "When we invest in women" quote). [confirm] items written neutrally.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -14,8 +17,8 @@ import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
-import ClosingCta from "../../components/hw/ClosingCta.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
+import Prose from "../../components/seo/Prose.astro";
 import Split from "../../components/programs/Split.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
@@ -24,15 +27,19 @@ import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.ast
 import NewsVideos from "../../components/programs/NewsVideos.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
-import { STORIES } from "../../data/videos.js";
+import FinalCta from "../../components/programs/FinalCta.astro";
+import { VIDEOS } from "../../data/videos.js";
 import "../../styles/pages/programs.css";
+import "../../styles/pages/seo.css";
 
+const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
+const W = "/Assets/locations/westbrook/";
 const heroUsps = [
   "A program for women, designed by women",
-  "Trauma-informed — <a class='inl' href='/treatment-methods/dbt/'>DBT</a>, <a class='inl' href='/treatment-methods/emdr/'>EMDR</a>, somatic &amp; TF-CBT",
-  "8–12 weeks · day (9 AM–12 PM) or evening (5–8 PM), Mon–Thu",
-  "Woman-led practice · in-person &amp; virtual · FMLA/CT Paid Leave help",
+  "Anxiety, depression, burnout, <a class='inl' href='/what-we-treat/depression/'>postpartum mood changes</a> &amp; life transitions",
+  "8–12 weeks · morning or evening groups, Mon–Thu",
+  "Westbrook &amp; Glastonbury · in person, with virtual options",
 ];
 const stats = [
   ["1 in 5", "women experience a mental health condition each year"],
@@ -73,37 +80,98 @@ const modalities = [
   { t: "Trauma-Informed Care", icon: "shield" },
 ];
 const whyHopewell = [
-  { icon: "heart", t: "A woman-led practice", d: "Compassionate, evidence-based care in a welcoming environment — with a strong focus on connection, collaboration, and real results." },
+  { icon: "heart", t: "A woman-led practice", d: "Compassionate, evidence-based care in a welcoming environment — with a strong focus on connection and collaboration." },
   { icon: "users", t: "Tailored to you", d: "<a class='inl' href='/programs/counseling/'>Individual therapy</a>, <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, or the Women’s Wellness IOP — we meet you where you are. You’re never just a number; your healing matters to us." },
 ];
-const faqs: [string, string][] = [
-  ["Who is the Women’s Wellness IOP for?", "Women experiencing emotional burnout, anxiety, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of trauma. The program is open to all who identify as women, from all backgrounds."],
-  ["What’s the schedule?", "8–12 weeks at 300 Hebron Ave, Suite 212, Glastonbury. Flexible options — Monday–Thursday 9 AM–12 PM or 5–8 PM — so you can get intensive support while keeping your daily responsibilities. A Women’s Wellness IOP group also meets at our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a>."],
-  ["What approaches does the program use?", "It’s trauma-informed and evidence-based: <a class='inl' href='/treatment-methods/dbt/'>DBT</a>, <a class='inl' href='/treatment-methods/emdr/'>EMDR</a>, somatic therapies, and Trauma-Focused CBT (TF-CBT), plus expressive arts, journaling, yoga-inspired movement, time in nature, and animal-assisted support."],
-  ["Do I need a referral, and is it covered?", "No referral needed. We accept most major insurances — TRICARE East is accepted as a PPO plan — and many participants qualify for Connecticut Paid Leave or FMLA. We’ll verify your benefits for free."],
+
+// Who it's for — long-form blocks (brief: anxiety, depression, burnout, postpartum & perinatal, life transitions, relationship stress).
+const whoBlocks = [
+  { id: "who", h2: "Who the Women’s Wellness IOP in Connecticut is for",
+    paras: [
+      "The Women’s Wellness IOP is an intensive outpatient program for adult women who need more support than a weekly therapy hour can give, but who want to keep living at home, working and caring for the people who count on them. It is one of the few women’s IOP options in Connecticut built entirely around a women-only group, and it now runs on the shoreline in Westbrook as well as in Glastonbury.",
+      "Women come to the program for many reasons. Some have lived with <a class='inl' href='/what-we-treat/anxiety/'>anxiety</a> (and wondered <a class='inl' href='/post/what-are-the-levels-of-anxiety-and-when-do-you-need-more-than-therapy/'>when anxiety needs more than therapy</a>) or <a class='inl' href='/what-we-treat/depression/'>depression</a> for years and are tired of managing it alone. Some are running on empty from <a class='inl' href='/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/'>burnout at work</a> or at home. Others are in the middle of a big change — a new baby, a divorce, an empty nest, a loss, a diagnosis, a move — and feel like they have lost their footing.",
+      "You do not need a specific diagnosis to start. Our admissions team talks with you about what is going on and, after an assessment, recommends the level of care that fits. If the Women’s Wellness IOP isn’t the right starting point, we’ll explain why and point you to the option that is, whether that is <a class='inl' href='/programs/counseling/'>weekly counseling</a>, <a class='inl' href='/programs/medication-management/'>medication management</a> or a more intensive program.",
+    ],
+    aside: { type: "points", title: "Signs this program may help (non-diagnostic)", items: [["cloud", "Low mood, worry or irritability that won’t lift"], ["clock", "Feeling stretched thin by work, parenting or caregiving"], ["heart", "Mood changes during pregnancy or after a baby"], ["refresh", "A life transition that has shaken your sense of self"], ["users", "Relationship stress that keeps coming back"]] } },
+  { id: "postpartum", h2: "Postpartum and perinatal support for new and expecting mothers",
+    paras: [
+      "Pregnancy and the first year with a baby can bring mood changes that are far bigger than the “baby blues.” Many women feel anxious, numb, tearful or angry, struggle to sleep even when the baby sleeps, or have frightening intrusive thoughts — and then feel ashamed for not enjoying a time they were told would be happy. These experiences are common and treatable, and you deserve support for them.",
+      "Within the Women’s Wellness IOP, our clinicians support women through postpartum and perinatal mood changes with group and individual therapy, and with medication management from our psychiatric providers when it’s needed. Being in a group of other women who understand makes it easier to say out loud what you have been carrying.",
+      "If you are not sure whether what you are feeling is “normal,” our articles on <a class='inl' href='/post/baby-blues-vs-postpartum-depression-how-to-tell-the-difference/'>baby blues vs. postpartum depression</a>, <a class='inl' href='/post/postpartum-anxiety-symptoms-how-long-it-lasts-and-treatment/'>postpartum anxiety</a>, <a class='inl' href='/post/postpartum-ocd-and-intrusive-thoughts-what-they-mean-and-how-theyre-treated/'>postpartum OCD and intrusive thoughts</a> and <a class='inl' href='/post/postpartum-rage-why-it-happens-and-when-to-get-help/'>postpartum rage</a> are a good place to start. You can also simply call — we’ll help you sort out what kind of care fits.",
+    ],
+    aside: { type: "img", src: W + "therapy-room-garden.webp", alt: "A bright therapy room at the Westbrook office where women meet for postpartum support", cap: "Westbrook therapy room" } },
 ];
-const stories = STORIES.filter((v) => ["x6R6XOZmxUQ", "S_CyYMDqEio", "vlKx8J6hykA", "uIlSCS7clwE"].includes(v.yt));
+
+// What treatment includes — long-form.
+const includesBlocks = [
+  { id: "holistic", h2: "Evidence-based therapy, with whole-person approaches alongside it",
+    paras: [
+      "The core of the Women’s Wellness IOP is evidence-based treatment: <a class='inl' href='/treatment-methods/dbt/'>DBT skills</a> for managing strong emotions, process groups where you talk through what is happening in your life, and individual check-ins with a clinician who knows your goals. When trauma is part of your story, trauma-informed methods such as <a class='inl' href='/treatment-methods/emdr/'>EMDR</a> and Trauma-Focused CBT are woven in.",
+      "Alongside that work, the program encourages whole-person approaches that help women reconnect with their bodies and slow down: expressive arts, guided journaling, mindfulness, yoga-inspired movement and time outdoors. Blue Green therapy — spending intentional time in nature and near water — is an approach we encourage on the shoreline, not a separate service. Our <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a> page explains these approaches in more detail.",
+    ],
+    aside: { type: "steps", title: "A typical program day", items: [["Check-in", "How you’re arriving today, in a small women-only group."], ["Skills group", "A DBT skill you practise in the room and take home."], ["Process group", "Space to talk through what’s happening in your life."], ["Wellness & reflection", "Expressive arts, journaling, movement or mindfulness."]] } },
+];
+
+// Westbrook launch (brief).
+const westbrookBlocks = [
+  { id: "westbrook", h2: "Women’s therapy in Westbrook, CT, on the Connecticut shoreline",
+    paras: [
+      "The Women’s Wellness IOP was the first program at our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a> at 70 Essex Road, which opened on September 28, 2026. It brings in-person women’s mental health care to the shoreline, so women from Westbrook, Old Saybrook, Clinton, Niantic, Madison, Guilford and Branford no longer have to drive to Hartford County for an intensive program.",
+      "We welcomed the community to an open house in October, and a second women’s group is planned as the program grows. The Westbrook office also offers 1:1 therapy and medication management, so women can step down to <a class='inl' href='/programs/counseling/'>weekly therapy</a> with the same team after the program ends.",
+    ],
+    aside: { type: "img", src: W + "therapy-room-shore.webp", alt: "A therapy room with shoreline artwork at Hopewell's Westbrook office", cap: "Westbrook office · 70 Essex Road" } },
+];
+
+const faqs: [string, string][] = [
+  ["What is Women’s Wellness IOP?", "An intensive outpatient program for adult women, meeting several times a week in a women-only group, while you keep up with work and family."],
+  ["Who is the Women’s Wellness IOP for?", "Women dealing with anxiety, depression, burnout, postpartum mood changes or major life transitions who need more than weekly therapy — as well as emotional burnout, stress, relationship challenges, low self-esteem, or the lingering effects of trauma. The program is open to all who identify as women, from all backgrounds."],
+  ["Do you treat postpartum depression?", "Yes. Our clinicians support women through postpartum and perinatal mood changes, with therapy and <a class='inl' href='/programs/medication-management/'>medication management</a> when needed."],
+  ["How is it different from Women’s Trauma IOP?", "Women’s Wellness focuses on mood, anxiety and life transitions. The <a class='inl' href='/programs/womens-trauma-iop/'>Women’s Trauma IOP</a> focuses on healing from past trauma."],
+  ["Why a women-only group?", "Many women find it easier to talk openly with other women who share similar experiences."],
+  ["Where is it offered?", "At our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a> on the Connecticut shoreline and at 300 Hebron Ave, Suite 212, in Glastonbury. We serve women from Niantic, Branford, Madison, Guilford and nearby towns, with virtual options when coming in isn’t possible."],
+  ["What’s the schedule?", "The program runs 8–12 weeks, Monday–Thursday. In Glastonbury, groups meet 9 AM–12 PM or 5–8 PM. Our admissions team will confirm the current Westbrook group times when you call. It’s built to fit around work and family."],
+  ["Can I bring my baby?", "Please call our admissions team to talk through childcare and infant questions before you start, so we can plan a schedule that works for you."],
+  ["What approaches does the program use?", "It’s trauma-informed and evidence-based: <a class='inl' href='/treatment-methods/dbt/'>DBT</a>, <a class='inl' href='/treatment-methods/emdr/'>EMDR</a>, somatic therapies, and Trauma-Focused CBT (TF-CBT), plus expressive arts, journaling, yoga-inspired movement, time in nature, and animal-assisted support."],
+  ["Does insurance cover it?", "Most commercial plans cover IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many participants also qualify for Connecticut Paid Leave or FMLA. We verify benefits for free; we don’t accept Medicare or Medicaid."],
+  ["Do I need a referral?", "No referral is needed to call us. Our admissions team will let you know if your plan requires one."],
+  ["Can I see a psychiatrist too?", "Yes. <a class='inl' href='/programs/medication-management/'>Medication management</a> is available at Westbrook and at all of our offices."],
+];
+const stories = ["eX6WO-MRdPs", "x6R6XOZmxUQ", "S_CyYMDqEio"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Women’s Wellness Intensive Outpatient Program (IOP)", url: SITE + "/programs/womens-wellness-iop/",
+  description: "A women-only intensive outpatient program in Westbrook and Glastonbury, CT for anxiety, depression, burnout, postpartum mood changes and life transitions.",
+  provider: { "@id": SITE + "/#organization" }, availableAtOrFrom: [{ "@id": SITE + "/location/westbrook-ct/#clinic" }, { "@id": SITE + "/location/glastonbury-ct-2/#clinic" }] };
 ---
 
-<Base title="Women's Wellness IOP in CT | Hopewell Health Solutions" description="A trauma-informed Women's Wellness Intensive Outpatient Program at Hopewell Health Solutions, Glastonbury CT — DBT, EMDR & somatic therapy. Day & evening, 8–12 weeks. A program for women, by women." image={P + "group-room-bright.webp"}>
+<Base title="Women's Wellness IOP in Westbrook & Glastonbury, CT | Hopewell" description="An in-person IOP just for women in Westbrook, CT: support for anxiety, depression, postpartum and life transitions, in a group of women. Check coverage." image={W + "therapy-room-shore.webp"}>
   <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(svc)} />
   <main class="hw">
+    <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Wellness" }]}
-      title="Women's Wellness Intensive Outpatient Program (IOP)"
-      lede="Women's Wellness IOP · Glastonbury, CT · Day &amp; evening. A program for women, designed by women."
+      title="Women's Wellness IOP in Connecticut"
+      lede="An in-person women’s IOP in Connecticut, now in Westbrook and Glastonbury: support for anxiety, depression, burnout, postpartum mood changes and life transitions, in a group of women who understand. A program for women, designed by women."
       bullets={heroUsps}
-      facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Glastonbury & Westbrook" }]}
-      image={P + "group-room-bright.webp"}
+      facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Westbrook & Glastonbury" }]}
+      image={W + "therapy-room-shore.webp"}
     >
       <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
-    <Creds />
 
-    <Split heading="We understand the load women carry" img="/Assets/service/womens-wellness.webp" alt="Women supporting each other in Hopewell's Women's Wellness IOP" img2={P + "group-room-bright.webp"} alt2="A calm group room for the Women's Wellness IOP">
+    <!-- 2. As featured in -->
+    <Creds />
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+
+    <!-- 3. Google reviews -->
+    <Reviews heading="What Women Say About Hopewell" first={["Women’s Wellness IOP", "IOP"]} tone="stone" />
+
+    <!-- 4. Who this program is for -->
+    <Split heading="We understand the load women carry" img={W + "therapy-room-sage.webp"} alt="A calm therapy room at the Westbrook office for the Women's Wellness IOP" img2={P + "group-room-bright.webp"} alt2="A bright group room for the Women's Wellness IOP in Glastonbury">
       <p><strong>A space to pause, process &amp; heal.</strong> Between work, parenting, caregiving, relationships, health concerns, and the constant pressure to “hold it all together,” it’s easy to lose your sense of self. That’s why we created the Women’s Wellness IOP — a supportive, structured space where women can pause, process, and begin to heal.</p>
       <p>This 8–12 week program is for women experiencing emotional burnout, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>. Whether you’re overwhelmed, disconnected, or simply ready to prioritize yourself — you don’t have to do it alone.</p>
     </Split>
+
+    <Prose blocks={whoBlocks} startTone={1} />
 
     <section class="section is-mist">
       <div class="container">
@@ -118,49 +186,66 @@ const stories = STORIES.filter((v) => ["x6R6XOZmxUQ", "S_CyYMDqEio", "vlKx8J6hyk
       </div>
     </section>
 
-    <Split heading="Is this program right for me?" img="/Assets/girl%20thinking%20worried.webp" alt="A woman reflecting on whether the Women's Wellness IOP is right for her" reverse>
+    <Split heading="Is this program right for me?" img={W + "sitting-room.webp"} alt="A quiet sitting room at the Westbrook office" reverse>
       <p><strong>The space &amp; support you’ve been looking for.</strong> You may be so used to functioning on autopilot that you’ve stopped checking in with yourself. Consider:</p>
       <CheckList items={questions} icon="heart" />
       <p>If any of these resonate, this program may offer the space and support you’ve been looking for. <a class="inl" href="/admissions/">Take our quick screening</a>.</p>
     </Split>
 
-    <section class="section is-stone">
-      <div class="container pg-two">
-        <div>
-          <h2>What our program offers</h2>
-          <p class="lede"><strong>More than just talk therapy.</strong> A trauma-informed, immersive experience designed to help women heal from past and ongoing trauma. You’ll engage in process-based group therapy, individual support, psychoeducation, and wellness activities — expressive arts, guided journaling, yoga-inspired movement, time in nature, somatic therapy, and animal-assisted support — to reconnect with your body, reduce stress, and rebuild trust.</p>
-          <p class="lede">It’s grounded in evidence-based treatment: DBT, EMDR, somatic therapies, and Trauma-Focused CBT, with optional medication management, on-call services, and family involvement when helpful.</p>
-          <CheckList items={includes} cols={2} />
-        </div>
-        <Schedule title="Flexible schedule" stat="3 h" note="a day · Monday–Thursday · 8–12 weeks" days={[3, 3, 3, 3, 0, 0, 0]} tone={1} icon="heart" tracks={[["Day", "9 AM–12 PM"], ["Evening", "5–8 PM"]]}>
-          <p>Monday–Thursday, <strong>9 AM–12 PM</strong> or <strong>5–8 PM</strong> · 300 Hebron Ave, Suite 212, Glastonbury.</p>
-        </Schedule>
-      </div>
-    </section>
-
     <IconCards heading="Even if you’re telling yourself…" lede="You deserve help." items={beliefs.map((b, i) => ({ icon: ["alert", "users", "clock", "shield"][i], t: b, d: "" }))} tone="white">
       <p class="sec-foot">You don’t have to wait until things get worse. Wellness isn’t about comparison — it’s about taking care of yourself because you’re worth it. You’ve carried a lot. You don’t have to carry it alone.</p>
     </IconCards>
 
+    <section class="section is-stone" id="compare">
+      <div class="container">
+        <div class="sec-head"><h2>Women’s Wellness IOP or Women’s Trauma IOP?</h2><p class="lede">Both are women-only intensive outpatient programs, but they focus on different needs. Women’s Wellness is for mood, anxiety, burnout and life transitions; the <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> is for healing from past trauma and PTSD symptoms. If you aren’t sure, our assessment helps you choose.</p></div>
+        <div class="pgx-compare">
+          <div class="pgx-cmp is-here" style="--c:#b6863c"><small>You’re here</small><h3>Women’s Wellness IOP</h3><ul><li><Icon name="check" class="h-4 w-4" />Anxiety, depression and burnout</li><li><Icon name="check" class="h-4 w-4" />Postpartum and perinatal mood changes</li><li><Icon name="check" class="h-4 w-4" />Life transitions and relationship stress</li><li><Icon name="check" class="h-4 w-4" />Westbrook &amp; Glastonbury, mornings or evenings</li></ul></div>
+          <div class="pgx-cmp" style="--c:#5c7c6b"><small>Trauma focus</small><h3><a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a></h3><ul><li><Icon name="check" class="h-4 w-4" />Healing from past trauma and abuse</li><li><Icon name="check" class="h-4 w-4" />PTSD symptoms, nightmares and panic</li><li><Icon name="check" class="h-4 w-4" />Safety, choice and pace set with you</li><li><Icon name="check" class="h-4 w-4" />Evening group in Glastonbury</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. What treatment includes -->
+    <section class="section is-white">
+      <div class="container pg-two">
+        <div>
+          <h2>What our program offers</h2>
+          <p class="lede"><strong>More than just talk therapy.</strong> A trauma-informed, immersive experience designed to help women heal from past and ongoing stress and trauma. You’ll engage in process-based group therapy, individual support, psychoeducation, and wellness activities — expressive arts, guided journaling, yoga-inspired movement, time in nature, somatic therapy, and animal-assisted support — to reconnect with your body, reduce stress, and rebuild trust.</p>
+          <p class="lede">It’s grounded in evidence-based treatment: DBT, EMDR, somatic therapies, and Trauma-Focused CBT, with optional medication management, on-call services, and family involvement when helpful.</p>
+          <CheckList items={includes} cols={2} />
+        </div>
+        <Schedule title="Flexible schedule" stat="3 h" note="a day · Monday–Thursday · 8–12 weeks" days={[3, 3, 3, 3, 0, 0, 0]} tone={1} icon="heart" tracks={[["Morning group", "9 AM–12 PM"], ["Evening group", "5–8 PM"]]}>
+          <p>Glastonbury: Monday–Thursday, <strong>9 AM–12 PM</strong> or <strong>5–8 PM</strong> · 300 Hebron Ave, Suite 212. Westbrook group times confirmed when you call.</p>
+        </Schedule>
+      </div>
+    </section>
+
+    <Prose blocks={includesBlocks} startTone={1} />
+    <ModalitiesOutcomes modalities={modalities} outcomes={outcomes} oHeading="What we work on together" note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." tone="white" />
     <Quote text="When we invest in women, we invest in our future." cite="Dr. Kristine Schlichting, Founder" img={P + "group-room-bright.webp"} />
+    <Prose blocks={westbrookBlocks} startTone={1} />
 
-    <ModalitiesOutcomes modalities={modalities} outcomes={outcomes} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." />
-
-    <VideoCarousel videos={stories} heading="Women’s Wellness Stories, in Their Own Words" lede="Women who went through the program share what changed. More conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." />
-
-    <NewsVideos heading="Trauma in women" lede="As seen on NBC Connecticut. Connecticut’s news outlets turn to our clinicians to talk about women’s mental health and trauma. Watch our team on CT Live! discuss why so many women carry trauma — and how the right support changes everything." videos={[{ id: "uDy-K1dO0Fw", t: "CT Live!: Trauma in Women — Hopewell Health Solutions", outlet: "NBC Connecticut" }]} />
-
+    <!-- 6. Meet the team -->
+    <Team heading="A Woman-Led Care Team" lede="Compassionate, evidence-based care from clinicians who understand the load women carry, including our Westbrook team lead. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["kaitlyn-czapiga-lmsw", "teesha-huertas-lcsw", "christina-lindsay-pmhnp-bc-aprn", "linda-scillia-pmhnp-bc-aprn", "chelsey-micciche-lpc", "traci-schneider-maatc-lpc-a-atr-p", "dori-bessette-crail-lmft"]} tone="white" />
     <IconCards heading="Care that sees the whole you" lede="Why Hopewell Health Solutions." items={whyHopewell} cols={2} tone="stone" />
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews heading="What Our IOP Clients Say" first={["Women’s Wellness IOP", "IOP"]} />
-    <Team heading="A Woman-Led Care Team" lede="Compassionate, evidence-based care from clinicians who understand the load women carry. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "christina-lindsay-pmhnp-bc-aprn", "linda-scillia-pmhnp-bc-aprn", "chelsey-micciche-lpc", "kaitlyn-czapiga-lmsw", "traci-schneider-maatc-lpc-a-atr-p", "dori-bessette-crail-lmft"]} tone="stone" />
+    <!-- 7. Testimonials matched to this program -->
+    <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Women’s Wellness Stories, in Their Own Words" lede="Women who went through the program share what changed. More conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
+    <NewsVideos heading="Trauma in women" lede="As seen on NBC Connecticut. Connecticut’s news outlets turn to our clinicians to talk about women’s mental health and trauma. Watch our team on CT Live! discuss why so many women carry trauma — and how the right support makes a difference." videos={[{ id: "uDy-K1dO0Fw", t: "CT Live!: Trauma in Women — Hopewell Health Solutions", outlet: "NBC Connecticut" }]} />
 
-    <Insurance heading="Most major insurance — TRICARE East accepted as PPO" lede="We accept most major insurances, and TRICARE East is accepted as a PPO plan. Many participants also qualify for <strong>Connecticut Paid Leave or FMLA</strong>. Our team verifies your benefits at no cost — before you commit to anything." tone="white" />
-    <Locations heading="Our Locations" lede="The Women’s Wellness IOP is held at 300 Hebron Ave, Suite 212, Glastonbury (morning and evening), and at our Westbrook office, 70 Essex Road · plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
+    <!-- 8. Locations -->
+    <Locations heading="Where the Women’s Wellness IOP Meets" lede="Women’s Wellness IOP groups meet at our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a>, 70 Essex Road, and at <a class='inl' href='/location/glastonbury-ct-2/'>300 Hebron Ave, Suite 212, Glastonbury</a> (morning and evening). We serve women from Niantic, Branford, Madison, Guilford and across the shoreline, plus virtual visits statewide." current="westbrook-ct" />
+
+    <!-- 9. Insurance and admissions -->
+    <Insurance heading="Insurance for the Women’s Wellness IOP" lede="We accept most major commercial insurances, and TRICARE East is accepted as a PPO plan. Many participants also qualify for <strong>Connecticut Paid Leave or FMLA</strong>. Our team verifies your benefits at no cost — before you commit to anything. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="Women’s Wellness IOP — common questions" tone="white" />
+
+    <!-- 11. Related programs + final CTA -->
     <OtherPrograms current="/programs/womens-wellness-iop/" />
-    <ClosingCta heading="Ready to take the first step?" lede="Prioritizing your mental health is one of the most powerful, loving choices you can make for yourself. If you’re ready to stop surviving and start healing, we’re here to help." image={P + "group-room-bright.webp"} />
+    <FinalCta heading="Ready to take the first step?" lede="Prioritizing your mental health is one of the most powerful, loving choices you can make for yourself. If you’re ready to stop surviving and start healing, we’re here to help." />
   </main>
   <Footer />
 </Base>

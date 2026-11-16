@@ -1,0 +1,212 @@
+---
+// Tween IOP (8–12) — built 2026-11-16 to the "Tween IOP (8–12)" content brief (Programs Page Content Brief doc).
+// Brief: "tween iop connecticut" fell out of the top 100. Cause found: the tween content was merged into
+// /programs/teen-iop/ in the June rebuild and /programs/tween-iop/ + /tween-iop/ 301'd there, so no page was
+// about tweens alone. This page restores a dedicated URL (old redirects now point here).
+// Owns "tween iop connecticut", "child iop ct / iop for kids connecticut", "child anxiety treatment ct".
+// Facts from the former page: Mon–Thu 4:30–7:30 PM, 1420 Main St Suite 114 (South Glastonbury), 8–12 weeks, parents
+// weekly, Parent Support Group Tue + Parent Night Thu. The brief names East Hampton; the client-confirmed office list
+// puts Teen & Tween IOP at 1420 Main St only, so that is what the page says.
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import ServiceHero from "../../components/hw/ServiceHero.astro";
+import Creds from "../../components/hw/Creds.astro";
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import Insurance from "../../components/hw/Insurance.astro";
+import Locations from "../../components/hw/Locations.astro";
+import Team from "../../components/hw/Team.astro";
+import Faq from "../../components/hw/Faq.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import Split from "../../components/programs/Split.astro";
+import CheckList from "../../components/programs/CheckList.astro";
+import IconCards from "../../components/programs/IconCards.astro";
+import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.astro";
+import NewsVideos from "../../components/programs/NewsVideos.astro";
+import Schedule from "../../components/programs/Schedule.astro";
+import OtherPrograms from "../../components/programs/OtherPrograms.astro";
+import { VIDEOS } from "../../data/videos.js";
+import "../../styles/pages/programs.css";
+
+const SITE = "https://www.hopewellhealthsolutions.com";
+const P = "/Assets/hhs-2026/";
+const heroUsps = [
+  "For kids ages 8–12 — all are welcome here",
+  "<a class='inl' href='/treatment-methods/dbt/'>DBT</a>/CBT-based, 8–12 weeks · Mon–Thu, 4:30–7:30 PM",
+  "Parents attend weekly — skills carry into the home",
+  "Joint Commission Accredited — the Gold Seal of Approval",
+];
+const why = [
+  { icon: "sparkles", t: "Built for younger kids", d: "Activities, language and pacing that fit 8- to 12-year-olds, not a teen program scaled down." },
+  { icon: "users", t: "Age-matched groups", d: "Kids work alongside peers their own age, so it feels safe to share and practice." },
+  { icon: "heart", t: "Parents are part of treatment", d: "You learn the same skills, so what your child practices in group continues at home." },
+];
+const signs = [
+  "Big emotions or outbursts that are hard to calm",
+  "School refusal, or stomachaches and tears every school morning",
+  "Anxiety that stops everyday activities, like sleepovers, sports or school",
+  "Low mood, irritability or losing interest in play",
+  "Gaming or screen time taking over, with meltdowns when it ends",
+  "Trouble with friends, bullying, or feeling left out",
+];
+const includes = [
+  "Age-appropriate group therapy (ages 8–12)",
+  "Individual therapy",
+  "Play-based and skills-based approaches",
+  "8–12 week DBT/CBT-based curriculum",
+  "Parent sessions — parents attend once to twice a week",
+  "Psychiatry &amp; optional <a class='inl' href='/programs/medication-management/'>medication management</a> if needed",
+  "Experiential therapies — art, movement-based &amp; animal-assisted",
+  "Parent Support Group (Tuesdays) &amp; Parent Night (Thursdays)",
+];
+const work = [
+  { icon: "chat", t: "Naming feelings", d: "Words and tools for what’s going on inside, so feelings don’t come out as meltdowns." },
+  { icon: "compass", t: "Coping skills", d: "Calm-down strategies kids can use at school, at bedtime and in the car." },
+  { icon: "cloud", t: "Anxiety &amp; frustration", d: "Facing worries step by step instead of avoiding them." },
+  { icon: "users", t: "Getting along", d: "Friendship, sharing and repair skills for school and home." },
+];
+const outcomes = ["Emotional regulation", "Resiliency", "Healthy coping skills", "Self-discovery"];
+const modalities = [
+  { t: "Dialectical Behavior Therapy (DBT)", icon: "swap", href: "/treatment-methods/dbt/" },
+  { t: "Cognitive Behavioral Therapy (CBT)", icon: "brain" },
+  { t: "Play-based therapy", icon: "sparkles" },
+  { t: "Art Therapy", icon: "heart" },
+  { t: "Mindfulness", icon: "cloud" },
+  { t: "Trauma-Informed Care", icon: "shield" },
+];
+// Verbatim tween-track testimonials from the former Teen & Tween page.
+const family = [
+  { n: "M.L.", t: "Parent (and therapist)", q: "Our daughter attends Hopewell IOP (tween group) and I am truly impressed. Jackie and Kate are fantastic clinicians who always have the children’s best interest in mind. I myself am a therapist and have worked in IOP/PHP for years — I’ve found this organization’s IOP to be the best in CT." },
+  { n: "S.R.", t: "Tween IOP student", q: "I really like the staff members and I feel safe when I sit with them and comfortable telling them things. I really like Kate — she brings good energy to IOP. IOP has helped me learn how to deal with my anxiety and what to do when I feel upset." },
+];
+const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
+const tours = ["loSaQbRc-oE", "awy7nfDgC0k"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const news = [{ id: "GJeVqHhooBA", t: "Helping Children & Teens With Mental Health", outlet: "WFSB Channel 3" }];
+const faqs: [string, string][] = [
+  ["What is a tween IOP?", "A tween intensive outpatient program is a structured, after-school program for children 8–12 that meets several times a week, while your child lives at home and stays in school."],
+  ["Isn’t my child too young for IOP?", "Some children need more than weekly therapy. Our tween groups are designed for this age, with activities and language that fit younger kids, and parents are part of the work."],
+  ["How are parents involved?", "Parent involvement is required. Parents attend once to twice a week to learn the skills being taught and get regular updates from the care team. We also host a Parent Support Group on Tuesdays and Parent Night on Thursdays. Your support at home is part of the plan."],
+  ["What does my child work on?", "Naming and managing feelings, coping skills, handling anxiety and frustration, and getting along at school and home. Read how <a class='inl' href='/post/how-tween-anxiety-is-treated-in-an-intensive-outpatient-program-iop/'>tween anxiety is treated in an IOP</a>."],
+  ["Will my child miss school?", "No. Tween groups meet Monday–Thursday from 4:30 to 7:30 PM, after the school day, so most children don’t miss class."],
+  ["Where is the Tween IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>, 1420 Main St, Suite 114, Glastonbury."],
+  ["What if my child is older than 12?", "Our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a> serves ages 13–17."],
+  ["What if my child is younger than 8?", "We offer <a class='inl' href='/programs/counseling/'>counseling</a>, play therapy and <a class='inl' href='/programs/medication-management/'>medication management</a> for younger children."],
+  ["Does insurance cover a tween IOP?", "Most commercial plans do when medically necessary, and TRICARE East is accepted as a PPO plan. We verify benefits for free. We don’t accept Medicaid (HUSKY)."],
+  ["What if my child is in crisis?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room. IOP is not an emergency service."],
+];
+const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Tween IOP (ages 8–12)", url: SITE + "/programs/tween-iop/",
+  description: "In-person intensive outpatient program for children 8–12 in Glastonbury, CT, with parent sessions and after-school hours.",
+  audience: { "@type": "PeopleAudience", suggestedMinAge: 8, suggestedMaxAge: 12 }, provider: { "@id": SITE + "/#organization" },
+  availableAtOrFrom: { "@id": SITE + "/location/glastonbury-ct-3/#clinic" } };
+---
+
+<Base title="Tween IOP for Kids Ages 8–12 in Connecticut | Hopewell" description="An in-person intensive outpatient program for children 8–12 in Glastonbury, CT, with parent sessions built in. After-school hours. Check coverage." image={P + "sg-tween-group-room.webp"}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
+  <main class="hw">
+    <ServiceHero
+      crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Tween IOP" }]}
+      title="Tween IOP in Connecticut for Kids Ages 8–12"
+      lede="Hopewell’s tween IOP is an in-person intensive outpatient program in Glastonbury, CT for kids ages 8–12 who need more than weekly therapy. Children meet after school in age-matched groups, keep going to class and live at home, and parents are part of every step. Now accepting new patients."
+      bullets={heroUsps}
+      facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "calendar", text: "Mon–Thu · 4:30–7:30 PM" }]}
+      image={P + "sg-tween-group-room.webp"}
+    >
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+    </ServiceHero>
+    <Creds />
+
+    <Split heading="Why a tween IOP?" img={P + "sg-tween-group-room.webp"} alt="The tween IOP group room at our South Glastonbury office in Connecticut" img2="/Assets/service/tween-iop.webp" alt2="Kids in Hopewell Health Solutions' tween IOP">
+      <p><strong>Kids 8–12 need different care than teens.</strong> A 9-year-old with school anxiety doesn’t need the same group as a 16-year-old, so our tween IOP is its own program: age-matched groups, play- and skills-based activities, and parents as part of treatment from day one.</p>
+      <p>Since COVID-19, we’ve seen exponential levels of <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">depression</a>, school refusal, and maladaptive behaviors in children — leaving families stuck and frustrated and kids very vulnerable. Hopewell’s tween IOP was created so parents and children can receive evidence-based treatment early, before struggles harden into patterns.</p>
+      <p>The program runs Monday–Thursday at our 1420 Main St, Glastonbury location, for 8–12 weeks. Parents attend once to twice a week to learn the skills being taught — so the skills integrate at home, where they matter most. Read <a class="inl" href="/post/top-5-reasons-to-engage-in-hopewell-health-solutions-tween-iop/">five reasons families choose our tween IOP</a>.</p>
+    </Split>
+
+    <IconCards heading="What makes a child IOP different" lede="An IOP for kids works only if it’s built for kids. Here’s how our tween program is designed around children ages 8–12." items={why} cols={3} tone="mist" />
+
+    <section class="section is-white" id="signs">
+      <div class="container pg-two">
+        <div>
+          <h2>Signs your child may need more support</h2>
+          <p class="lede" style="margin-top:16px">Children don’t always have the words to say they’re struggling. More often it shows up as behavior: tears every school morning, meltdowns over small things, or a child who used to love soccer suddenly refusing to go. These signs aren’t a diagnosis. They’re a reason to talk with someone about whether a child IOP could help.</p>
+          <p class="lede">If your child talks about hurting themselves, call or text 988, call 911, or go to the nearest emergency room. For everything else, our admissions team can listen to what you’re seeing and recommend a starting point. Our <a class="inl" href="/post/quick-parenting-tips-for-managing-a-childs-anxiety/">parenting tips for a child’s anxiety</a> and <a class="inl" href="/post/beyond-game-night-adding-more-fun-into-family-time/">ideas for screen-free family time</a> are good places to start.</p>
+        </div>
+        <div class="pg-panel ad-signs"><h3>What parents often notice (non-diagnostic)</h3><CheckList items={signs} /></div>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="program">
+      <div class="container">
+        <div class="sec-head"><h2>What the tween IOP includes</h2><p class="lede">Child anxiety treatment and support for low mood work best when the whole family is involved. Our tween IOP combines age-appropriate groups and individual therapy with parent sessions and, when needed, psychiatric care.</p></div>
+        <div class="pg-two">
+          <div><CheckList items={includes} cols={2} /><p class="sec-foot">Wondering about attention or learning? We also offer <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> for children, and our <a class="inl" href="/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/">parent’s guide to 504 plans</a> explains school accommodations.</p></div>
+          <Schedule title="Tween IOP week" stat="3 h" note="after school · Monday–Thursday · 8–12 weeks" days={[3, 3, 3, 3, 0, 0, 0]} tone={1} icon="sun" tracks={[["Tweens (8–12)", "4:30–7:30 PM · Suite 114"], ["Parents", "Support Group Tuesdays · Parent Night Thursdays"]]} />
+        </div>
+      </div>
+    </section>
+
+    <IconCards heading="What your child works on" lede="Groups are small, clinician-led and hands-on. Over 8–12 weeks, children practice skills they can use the same day." items={work} tone="white" />
+
+    <section class="section is-mist" id="ages">
+      <div class="container">
+        <div class="sec-head"><h2>The right program for every age</h2><p class="lede">Our groups are age-matched, so every child is with peers at the same stage. If your child is younger or older than 8–12, there’s a program built for them.</p></div>
+        <div class="ty-age">
+          <div class="ty-age-card" style="--bar:#5c7c6b"><strong>4–7</strong><h3>Counseling &amp; play therapy</h3><p>Individual and family support for younger children. See <a class="inl" href="/programs/counseling/">counseling at Hopewell</a>.</p></div>
+          <div class="ty-age-card is-here"><strong>8–12</strong><h3>Tween IOP</h3><p>You’re here: age-matched groups, Mon–Thu, 4:30–7:30 PM, with parents built in.</p></div>
+          <div class="ty-age-card" style="--bar:#2f76c4"><strong>13–17</strong><h3>Teen IOP</h3><p>Teen-only groups after school. Learn about our <a class="inl" href="/programs/teen-iop/">teen IOP</a>, or compare levels on our <a class="inl" href="/programs/intensive-outpatient-program/">IOP overview</a>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <VideoCarousel videos={tours} mode="grid" tone="navy" heading="Take a Look Inside" lede="Our clinicians show the comfy chairs, cozy blankets and thoughtful touches that make the teen and tween IOP space feel safe for kids. Read <a class='inl' href='/post/why-is-hopewell-health-solutions-tween-iop-great-for-depression/'>why our tween IOP helps with depression</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
+
+    <NewsVideos heading="Helping children, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on children’s mental health and what parents can do at home." videos={news} tone="white" />
+
+    <ModalitiesOutcomes modalities={modalities} oHeading="Skills your child will build" oLede="During the 8–12 week group IOP, your child works with a board-certified, multidisciplinary team — psychologists, psychiatric providers, and therapists — to strengthen:" outcomes={outcomes} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." tone="stone" />
+
+    <section class="section is-white">
+      <div class="container">
+        <div class="sec-head"><h2>What Tween IOP Families Say</h2><p class="lede">In their own words, from a parent and a tween. Initials only.</p></div>
+        <div class="pg-testi">
+          {family.map((r) => (
+            <figure class="rv">
+              <svg class="rv-quote" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
+              <blockquote class="rv-text">“{r.q}”</blockquote>
+              <figcaption class="rv-who"><span class="rv-avatar">{ini(r.n)}</span><span class="rv-name"><strong>{r.n}</strong>{r.t}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-stone">
+      <div class="container pg-cta-split">
+        <div class="pg-cta-box">
+          <span class="usp-icon"><Icon name="clipboard" class="h-6 w-6" /></span>
+          <h3>What kind of treatment does my child need?</h3>
+          <p>Answer a few quick questions, or call our admissions team, to see whether your child could benefit from an IOP at Hopewell Health Solutions.</p>
+          <a href="/admissions/" class="btn btn-blue">Go to the screening form<Icon name="arrow" /></a>
+        </div>
+        <div class="pg-cta-box">
+          <span class="usp-icon" style="background:#fff;color:var(--hw-blue)"><Icon name="link" class="h-6 w-6" /></span>
+          <h3>Referring a child?</h3>
+          <p>Pediatricians, school staff and therapists can refer to our tween IOP in minutes. Our admissions team will follow up with the family.</p>
+          <a href="/admissions/" class="btn btn-ghost">Start a referral<Icon name="arrow" /></a>
+        </div>
+      </div>
+    </section>
+
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+    <Reviews heading="What Our Clients Say on Google" tone="stone" first={["IOP"]} />
+    <Team heading="Your Child’s Care Team" lede="Psychologists, psychiatric providers and therapists with 10–30 years of experience with children and adolescents. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["jackie-plagesse-lmfta", "kate-henneberry-lmfta", "viviana-alvarado-lpc-a", "eric-schwartz-psy-d-abpp", "linda-scillia-pmhnp-bc-aprn", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d"]} tone="white" />
+    <Insurance heading="Does insurance cover a tween IOP?" lede="Most commercial plans cover a tween IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost — before you commit to anything. We don’t accept Medicaid (HUSKY)." />
+    <Locations heading="Where the Tween IOP Meets" lede="The tween IOP is held at 1420 Main St, Suite 114, Glastonbury — our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
+    <Faq faqs={faqs} heading="Tween IOP: common questions" tone="white" />
+    <OtherPrograms current="/programs/tween-iop/" />
+    <ClosingCta heading="All are welcome here" lede="It takes a village to raise kids these days. Let us be part of yours. Reach out to Hopewell Health Solutions — confidentially, with no pressure — and we’ll help you find the right next step for your child." />
+  </main>
+  <Footer />
+</Base>

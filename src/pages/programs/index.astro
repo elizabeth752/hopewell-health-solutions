@@ -1,214 +1,239 @@
 ---
-// Programs hub — 2026 redesign, Corner Canyon content-rich hub pattern (user, 2026-11-16: "we need content for SEO").
-// All live copy kept; each program now explained (who it's for, schedule, what happens), plus a comparison table,
-// a typical IOP day, "not sure which program" and a fuller FAQ.
-// Adds a "where each program meets" office grid from the client-confirmed program locations (2026-11-16) and a hub FAQ.
+// /programs/ hub — rebuilt to "Hopewell Programs Page: Content Brief" › Programs hub (2026-11-16).
+// Owns: "iop programs in ct", "php vs iop / iop vs php", "signs you need iop / when to go to iop", "does insurance cover
+// iop ct" (FAQ), "addiction treatment programs ct"; supports "outpatient mental health ct". Single-program terms stay on
+// the program pages. Locations follow src/data/locations.js offers (client-confirmed in the Website Updates doc), which
+// overrides the brief's "confirm" rows. Compliance: addiction wording, no outcome/"best" claims, no coverage promise,
+// initials-only reviews, real photos only.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
-import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
-import ClosingCta from "../../components/hw/ClosingCta.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
-import { STORIES } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
+import { VIDEOS } from "../../data/videos.js";
+import { PHONE } from "../../data/site.js";
 import "../../styles/pages/programs.css";
 import "../../styles/pages/hubs.css";
+import "../../styles/pages/seo.css";
 
-const canonical = "https://www.hopewellhealthsolutions.com/programs/";
+const SITE = "https://www.hopewellhealthsolutions.com";
+const canonical = SITE + "/programs/";
 const P = "/Assets/hhs-2026/";
-const iop = [
-  { t: "Intensive Outpatient Program (IOP)", d: "Structured therapy several days a week, while you live at home, work, and parent.", href: "/programs/intensive-outpatient-program/", img: P + "iop-group-room-lights.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"], ["users", "Tweens, teens, women & adults"]] },
-  { t: "Adult Co-Occurring IOP", d: "IOP for adults facing mental health and co-occurring substance use, together.", href: "/programs/adult-mental-health-iop/", img: P + "php-group-room.webp", bar: "#0b2f55", facts: [["clock", "9 AM–12 PM or 5–8 PM"], ["pin", "300 Hebron Ave & Westbrook"]] },
-  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the whole family involved.", href: "/programs/teen-tween-iop/", img: P + "tween-group-room.webp", bar: "#5c7c6b", facts: [["calendar", "After school, Mon–Thu"], ["pin", "1420 Main St, South Glastonbury"]] },
-  { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group.", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c", facts: [["clock", "Morning or evening"], ["pin", "300 Hebron Ave & Westbrook"]] },
-  { t: "Women’s Trauma IOP", d: "A women-only group built specifically around trauma and healing.", href: "/programs/womens-trauma-iop/", img: "/Assets/service/trauma-informed-group.webp", bar: "#b6863c", facts: [["clock", "Mon–Thu · 5–8 PM"], ["pin", "300 Hebron Ave"]] },
-  { t: "First Responder IOP", d: "Specialized care for police, fire, EMS & dispatch — with people who get it.", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#265489", facts: [["clock", "Mon–Thu · 9 AM–12 PM"], ["shield", "Confidential"]] },
-  { t: "Addiction and Substance Use IOP", d: "Addiction treatment with SUD groups and dual-diagnosis care, and a step-down after rehab. In Glastonbury and Westbrook.", href: "/programs/addiction-iop/", img: P + "iop-group-session.webp", bar: "#0b2f55", facts: [["refresh", "Step-down after rehab"], ["pin", "300 Hebron Ave & Westbrook"]] },
+
+// Program finder: grouped by who it's for. loc = filter keys (gl = Glastonbury offices, wb = Westbrook, eh = East
+// Hampton, wh = West Hartford). Locations from locations.js offers.
+const ALL = ["gl", "wb", "eh", "wh"];
+const groups = [
+  { id: "adults", t: "Adults", icon: "users", items: [
+    { t: "IOP Overview", href: "/programs/intensive-outpatient-program/", img: P + "iop-group-room-lights.webp", who: "Anyone comparing Hopewell’s intensive outpatient programs", level: "IOP · about 3 hours a day", where: "300 Hebron Ave, 1420 Main St (teens) & Westbrook", loc: ["gl", "wb"],
+      d: `Structured therapy several days a week, while you live at home, work, and parent. Start with our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs in Connecticut</a> to compare every IOP track.` },
+    { t: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", img: P + "adult-evening-iop-group.webp", who: "Adults with mental health symptoms and substance use together", level: "IOP · morning or evening", where: "300 Hebron Ave & Westbrook", loc: ["gl", "wb"],
+      d: `IOP for adults facing mental health and co-occurring substance use, together. Morning (9 AM–12 PM) and evening (5–8 PM) tracks fit around work and family. See the <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>.` },
+    { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", who: "Adults who need daily structured treatment", level: "PHP · highest outpatient level", where: "300 Hebron Ave, Glastonbury", loc: ["gl"],
+      d: `Full-day treatment — the highest level of outpatient care, without an inpatient stay. About six structured hours a day, Monday through Friday. Learn about the <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>.` },
+  ] },
+  { id: "addiction", t: "Addiction", icon: "link", items: [
+    { t: "Addiction and Substance Use IOP", href: "/programs/addiction-iop/", img: P + "iop-group-session.webp", who: "Adults with alcohol or drug use; MAT available", level: "IOP", where: "300 Hebron Ave & Westbrook", loc: ["gl", "wb"],
+      d: `Addiction treatment with SUD groups and dual-diagnosis care, and a step-down after rehab, with <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a> when it fits. See the <a class="inl" href="/programs/addiction-iop/">addiction IOP</a>.` },
+  ] },
+  { id: "teens", t: "Teens & children", icon: "sparkles", items: [
+    { t: "Teen IOP (13–17)", href: "/programs/teen-iop/", img: P + "teen-iop-outside.webp", who: "Teens 13–17, with family involvement", level: "IOP · after school", where: "1420 Main St, South Glastonbury", loc: ["gl"],
+      d: `After-school groups for teenagers working through anxiety, depression, school refusal or self-harm, with family sessions and school coordination. Read about the <a class="inl" href="/programs/teen-iop/">teen IOP</a>.` },
+    { t: "Tween IOP (8–12)", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", who: "Children 8–12, with parent involvement", level: "IOP · after school", where: "1420 Main St, South Glastonbury", loc: ["gl"],
+      d: `Age-matched groups for younger kids, built around play, skills and parent coaching. Explore the <a class="inl" href="/programs/tween-iop/">tween IOP</a>.` },
+  ] },
+  { id: "women", t: "Women", icon: "heart", items: [
+    { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", who: "Adult women: anxiety, depression, life transitions, postpartum", level: "IOP · morning or evening", where: "300 Hebron Ave & Westbrook", loc: ["gl", "wb"],
+      d: `Trauma-informed, DBT-based care in a women-only group, for burnout, anxiety and the weight of caring for everyone else. See the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP in Connecticut</a>.` },
+    { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", img: P + "womens-trauma-iop-group-room.webp", who: "Adult women healing from trauma", level: "IOP · evenings", where: "300 Hebron Ave, Glastonbury", loc: ["gl"],
+      d: `A women-only group built specifically around trauma and healing, with EMDR, somatic approaches and trauma-focused CBT. Learn about our <a class="inl" href="/programs/womens-trauma-iop/">women’s trauma IOP</a>.` },
+  ] },
+  { id: "first-responders", t: "First responders", icon: "shield", items: [
+    { t: "First Responder IOP", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", who: "Police, fire, EMS, dispatch and other first responders", level: "IOP · Mon–Thu mornings", where: "300 Hebron Ave, Glastonbury", loc: ["gl"],
+      d: `Specialized care for police, fire, EMS & dispatch — with people who get it, and clinicians who understand the culture, confidentiality and schedules involved. See the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.` },
+  ] },
+  { id: "psychiatry", t: "Psychiatry, TMS & testing", icon: "pill", items: [
+    { t: "Medication Management", href: "/programs/medication-management/", img: P + "south-glastonbury-med-waiting-room.webp", who: "Children, teens and adults needing psychiatric evaluation or medication", level: "Outpatient", where: "All six offices", loc: ALL,
+      d: `Expert psychiatric prescribing for ages 4 and up — thoughtful, never one-size-fits-all, with <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> available. See <a class="inl" href="/programs/medication-management/">medication management</a>.` },
+    { t: "Counseling", href: "/programs/counseling/", img: P + "westbrook-counseling-office.webp", who: "Individual, group, family and DBT therapy; play therapy for kids", level: "Outpatient", where: "All six offices + telehealth", loc: ALL,
+      d: `Weekly or twice-weekly sessions with a licensed therapist, in person at all six offices or by telehealth. Explore <a class="inl" href="/programs/counseling/">counseling at Hopewell</a>.` },
+    { t: "TMS Therapy", href: "/treatment-methods/tms/", img: P + "tms-neurostar-device.webp", who: "Adults whose depression hasn’t responded to medication and therapy", level: "Outpatient treatment", where: "Glastonbury", loc: ["gl"],
+      d: `FDA-cleared, drug-free NeuroStar® treatment for depression. Learn about <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>.` },
+    { t: "ADHD & Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-office.webp", who: "Children, teens and adults seeking answers about attention, learning or memory", level: "Evaluation", where: "Ask our team", loc: [],
+      d: `Thorough evaluations that turn into a clear plan: <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.` },
+  ] },
 ];
-const more = [
-  { t: "Partial Hospitalization (PHP)", d: "Full-day treatment — the highest level of outpatient care, without an inpatient stay.", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", bar: "#265489", facts: [["clock", "About 6 hours a day, Mon–Fri"], ["pin", "300 Hebron Ave"]] },
-  { t: "Medication Management", d: "Expert psychiatric prescribing for ages 4 and up — thoughtful, never one-size-fits-all.", href: "/programs/medication-management/", img: "/Assets/hhs-2026/westbrook-therapy-office.webp", bar: "#5c7c6b", facts: [["pill", "Ages 4 and up"], ["pin", "All six offices"]] },
-  { t: "Counseling", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", img: P + "westbrook-counseling-office.webp", bar: "#2f76c4", facts: [["users", "Individual, couples & family"], ["pin", "All six offices"]] },
+const allItems = groups.flatMap((g) => g.items);
+
+// Which level of care do I need?
+const levelRows = [
+  ["<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a>", "About 6 hours a day, Monday–Friday", "Symptoms make it hard to get through the day; stepping down from a hospital stay", "Set with your care team"],
+  ["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a>", "About 3 hours a day, Monday–Thursday, day or evening", "Weekly therapy isn’t enough, but you can keep up with work, school or family", "Most IOPs run 8–12 weeks"],
+  ["<a class='inl' href='/programs/counseling/'>Outpatient</a>", "Weekly or twice-weekly sessions", "Ongoing support, or the step after IOP or PHP", "As long as it helps"],
+];
+const signs = [
+  ["refresh", "Weekly therapy isn’t enough to keep symptoms in check"],
+  ["alert", "Anxiety, depression or mood swings are affecting work, school or relationships"],
+  ["link", "Drinking or drug use is getting harder to control, or is tangled up with how you feel"],
+  ["home", "You’re leaving a hospital stay, detox or residential program and need a next step"],
+  ["users", "Your teen is missing school, withdrawing, or struggling more than weekly sessions can address"],
+  ["compass", "You’re not sure what level you need. Our assessment helps you decide."],
 ];
 
-// Rich program write-ups (facts from each program page). Images are unique per card.
-const details = {
-  "/programs/intensive-outpatient-program/": { img: P + "iop-group-room-lights.webp", more: `Our IOPs meet about three hours a day, four days a week (Monday through Thursday), in day or evening tracks, for 8–12 weeks. Days blend DBT skills groups, process groups and individual check-ins, so you build skills while living at home. Learn about the <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`, fit: ["Weekly therapy isn’t enough", "You need structure but can keep working or in school", "You’re stepping down from PHP or inpatient care"] },
-  "/programs/adult-mental-health-iop/": { img: P + "adult-evening-iop-group.webp", more: `For adults living with depression, anxiety, trauma or mood disorders, often alongside drinking or drug use. Morning (9 AM–12 PM) and evening (5–8 PM) tracks fit around work and family. See the <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>.`, fit: ["Adults 18+", "Mental health and substance use together", "Day or evening schedules"] },
-  "/programs/teen-tween-iop/": { img: P + "teen-iop-outside.webp", more: `Tweens (ages 8–12) and teens (13–17) meet after school in age-matched groups at our South Glastonbury office, with family sessions and school coordination built in. Read about the <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a>.`, fit: ["Anxiety, depression or school refusal", "Kids who need more than weekly therapy", "Families who want to be part of the work"] },
-  "/programs/womens-wellness-iop/": { img: P + "group-room-bright.webp", more: `A women-only group grounded in DBT and trauma-informed care, for emotional burnout, anxiety, life transitions and the weight of caring for everyone else. Morning and evening groups at 300 Hebron Ave and Westbrook. Explore the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>.`, fit: ["Burnout, stress and anxiety", "Life transitions and postpartum changes", "Women who want a women-only space"] },
-  "/programs/womens-trauma-iop/": { img: "/Assets/service/trauma-informed-group.webp", more: `Built around trauma and healing, with EMDR, somatic approaches and trauma-focused CBT in a women-only evening group. Learn about the <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>.`, fit: ["Past or ongoing trauma", "PTSD symptoms", "Women who want trauma-specific care"] },
-  "/programs/first-responder-iop/": { img: "/Assets/service/first-responder-session.webp", more: `For police, fire, EMS and dispatch carrying the weight of the job, with clinicians who understand the culture, confidentiality and schedules involved. See the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.`, fit: ["Critical-incident stress and PTSD", "Sleep, anger or drinking that’s changed", "Confidential, peer-informed care"] },
-  "/programs/addiction-iop/": { img: P + "iop-group-session.webp", more: `SUD groups, individual therapy and medication support, including <a class="inl" href="/treatment-methods/medication-assisted-treatment/">MAT</a> when it fits, with mental health care alongside it. A step-down for people leaving detox or residential rehab, and a fit for working adults facing problem drinking. See the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>.`, fit: ["Alcohol, drug or prescription drug addiction", "Step-down after rehab", "Co-occurring depression, anxiety or trauma"] },
-  "/programs/partial-hospitalization-program/": { img: P + "php-group-room.webp", more: `About six structured hours a day, Monday through Friday, at 300 Hebron Ave in Glastonbury, with psychiatry, group and individual therapy. It’s the highest level of outpatient care, without an overnight stay. Learn about the <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>.`, fit: ["Symptoms that make daily life hard to manage", "Stepping down from a hospital stay", "Needing more than IOP right now"] },
-  "/programs/medication-management/": { img: P + "south-glastonbury-waiting-room.webp", more: `Board-certified psychiatric nurse practitioners and physician assistants build personalized medication plans and follow up closely, with <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> available. See <a class="inl" href="/programs/medication-management/">medication management</a>.`, fit: ["Ages 4 and up", "Starting or adjusting psychiatric medication", "Pairing medication with therapy"] },
-  "/programs/counseling/": { img: P + "east-hampton-therapy-office.webp", more: `Weekly or twice-weekly sessions with a licensed therapist, in person at all six offices or by telehealth, for individuals, couples and families. Explore <a class="inl" href="/programs/counseling/">counseling at Hopewell</a>.`, fit: ["Individual, couples and family therapy", "Ongoing support after a program", "In person or telehealth"] },
-};
-const compareRows = [
-  ["Counseling", "Children, teens, adults, couples & families", "Weekly or twice weekly", "All six offices + telehealth", "/programs/counseling/"],
-  ["Medication Management", "Ages 4 and up", "Regular follow-ups", "All six offices + telehealth", "/programs/medication-management/"],
-  ["Adult IOP", "Adults 18+", "3 h a day, Mon–Thu, day or evening", "300 Hebron Ave & Westbrook", "/programs/adult-mental-health-iop/"],
-  ["Addiction and Substance Use IOP", "Adults with addiction or co-occurring conditions", "3 h a day, several days a week", "300 Hebron Ave & Westbrook", "/programs/addiction-iop/"],
-  ["Women’s Wellness IOP", "Women", "Morning or evening, Mon–Thu", "300 Hebron Ave & Westbrook", "/programs/womens-wellness-iop/"],
-  ["Women’s Trauma IOP", "Women healing from trauma", "Evenings, Mon–Thu, 5–8 PM", "300 Hebron Ave", "/programs/womens-trauma-iop/"],
-  ["Teen & Tween IOP", "Ages 8–17", "After school, Mon–Thu", "1420 Main St, South Glastonbury", "/programs/teen-tween-iop/"],
-  ["First Responder IOP", "Police, fire, EMS & dispatch", "Mon–Thu, 9 AM–12 PM", "Ask our team", "/programs/first-responder-iop/"],
-  ["Partial Hospitalization (PHP)", "Teens and adults needing full-day care", "About 6 h a day, Mon–Fri", "300 Hebron Ave", "/programs/partial-hospitalization-program/"],
+const prose = [
+  { id: "level-of-care", h2: "Which Level of Care Do I Need? IOP vs. PHP vs. Outpatient",
+    paras: [
+      "Mental health and addiction treatment comes in levels, and the right one depends on how much support you need right now — not on how serious your problem “sounds.” At Hopewell Health Solutions, the three outpatient levels are partial hospitalization (PHP), intensive outpatient programs (IOP) and weekly outpatient care. You live at home at every level and go home each day.",
+      `The difference comes down to hours and structure. <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> is the most intensive: about six structured hours a day, Monday through Friday, with group therapy, individual sessions and psychiatric care. An <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> meets about three hours a day, four days a week, in morning, evening or after-school tracks, so most people keep working or going to school. Weekly <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> are the lightest level and the usual next step after a program.`,
+      "Many people move between levels. Someone might start in PHP after a hospital stay, step down to IOP as daily life gets steadier, and then continue with a therapist and prescriber they already know. Because every level is run by the same Connecticut team, nothing restarts when you step up or down.",
+    ],
+    h3s: [{ h3: "Signs a higher level of care may help", paras: ["The list below isn’t a diagnosis. It describes common reasons people look for IOP or PHP. If several feel familiar, a short conversation with our admissions team is a good next step."] }],
+    aside: { type: "table", title: "PHP vs. IOP vs. outpatient", head: ["Level", "Time", "Often a fit when…", "Length"], rows: levelRows } },
 ];
-const row = (href) => compareRows.find((r) => r[4] === href);
-const icons = { "/programs/intensive-outpatient-program/": "calendar", "/programs/adult-mental-health-iop/": "users", "/programs/teen-tween-iop/": "sparkles", "/programs/womens-wellness-iop/": "heart", "/programs/womens-trauma-iop/": "shield", "/programs/first-responder-iop/": "shield", "/programs/addiction-iop/": "link", "/programs/partial-hospitalization-program/": "sun", "/programs/medication-management/": "pill", "/programs/counseling/": "chat" };
+const prose2 = [
+  { id: "program-week", h2: "What a Program Week Looks Like",
+    paras: [
+      "Every program follows its own plan, but most IOP days move through the same rhythm. Groups are small and clinician-led, and nothing is shared outside the room. A typical day opens with a check-in, moves into a skills group — often DBT skills such as mindfulness, distress tolerance and emotion regulation — and then a process group where you talk through what’s happening in your life with peers who get it.",
+      "Individual time is built in. You meet one-on-one with your clinician, and psychiatric providers see you for evaluations and medication follow-ups when medication is part of your plan. In the teen and tween programs, family sessions and school coordination are part of the week, so parents know how to help at home.",
+      "Our programs are built around in-person care — real rooms, real groups and clinicians who know your name — with telehealth for some services when coming in isn’t possible. PHP follows the same approach across a longer day, adding more group, individual and psychiatric time.",
+    ],
+    aside: { type: "img", src: P + "group-room-feelings-wheel.webp", alt: "One of Hopewell’s IOP programs in CT: a group room in Glastonbury", cap: "A Hopewell group room" } },
+];
+
 const day = [
   ["sun", "Check-in", "Each group opens with a check-in so your clinician knows how you’re doing today."],
   ["compass", "Skills group", "Learn and practice DBT skills: mindfulness, distress tolerance, emotion regulation."],
   ["users", "Process group", "Talk through what’s happening in your life with peers who get it."],
   ["clipboard", "Individual time", "One-on-one check-ins, and medication follow-ups with your prescriber when needed."],
 ];
-const continuum = [
-  { t: "Outpatient Therapy", d: "Weekly individual, couples &amp; family sessions", stat: "Weekly", days: [1, 0, 0, 0, 0, 0, 0], tone: 1, icon: "chat" },
-  { t: "Intensive Outpatient (IOP)", d: "3 hrs/day · 4 days/week · day or evening", stat: "3 h", days: [3, 3, 3, 3, 0, 0, 0], tone: 2, icon: "calendar" },
-  { t: "Partial Hospitalization (PHP)", d: "Full-day care — highest outpatient level", stat: "6 h", days: [6, 6, 6, 6, 6, 0, 0], tone: 3, icon: "sun" },
-];
-// Client-confirmed program locations (Google Doc "Hopewell Website Updates", 2026-11-16).
-const where = [
-  { name: "Downtown Glastonbury", addr: "300 Hebron Ave", slug: "glastonbury-ct-2", add: true, items: ["<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a>", "<a class='inl' href='/programs/adult-mental-health-iop/'>Adult IOP</a> &amp; <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a>", "<a class='inl' href='/programs/womens-wellness-iop/'>Women’s Wellness IOP</a> (morning &amp; evening)", "Therapy &amp; medication management"] },
-  { name: "South Glastonbury", addr: "1420 Main St", slug: "glastonbury-ct-3", items: ["<a class='inl' href='/programs/teen-tween-iop/'>Tween &amp; Teen IOP</a>", "Therapy &amp; medication management"] },
-  { name: "Westbrook", addr: "70 Essex Rd", slug: "westbrook-ct", add: true, items: ["Adult IOP &amp; addiction IOP", "Women’s Wellness IOP", "Therapy &amp; medication management"] },
-  { name: "West Hartford", addr: "1216 Farmington Ave", slug: "west-hartford-ct", items: ["<a class='inl' href='/programs/counseling/'>Therapy</a> &amp; <a class='inl' href='/programs/medication-management/'>medication management</a>"] },
-  { name: "East Hampton", addr: "151 E. High St", slug: "east-hampton-ct", items: ["Therapy &amp; medication management"] },
-  { name: "Glastonbury (Pratt St)", addr: "33 Pratt St", slug: "glastonbury-ct", items: ["Therapy &amp; medication management"] },
-];
+
+// Testimonials matched to programs: adult IOP, IOP & recovery, parent/teen, Women's Wellness.
+const matched = ["uIlSCS7clwE", "7ISgjKEBoZo", "awy7nfDgC0k", "eX6WO-MRdPs"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+
+// FAQ — the brief's 14 questions; bracketed facts written neutrally or from confirmed site copy.
 const faqs: [string, string][] = [
-  ["Which program is right for me?", "It depends on how much support you need right now. Weekly <a class='inl' href='/programs/counseling/'>counseling</a> is the starting point for many people; an <a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> adds about three hours a day, four days a week; and <a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> is about six hours a day, Monday through Friday. Our team will help you find the right level of care."],
-  ["Can I move between programs?", "Yes. You can step up when you need more support, or step down as you heal, without ever switching teams."],
-  ["Do you treat children and teens?", "Yes. We care for ages 4 and up, and our <a class='inl' href='/programs/teen-tween-iop/'>Teen &amp; Tween IOP</a> serves ages 8–17 after school."],
-  ["How long do the IOPs last?", "Most of our intensive outpatient programs run 8–12 weeks, about three hours a day, four days a week. Your team reviews progress along the way and plans your step-down to weekly care."],
-  ["Can I keep working or going to school?", "Yes. That’s what IOP is designed for. Morning and evening tracks, and after-school groups for tweens and teens, let you get intensive support while keeping up with work, school and family."],
-  ["Is there a program just for women?", "Yes. The <a class='inl' href='/programs/womens-wellness-iop/'>Women’s Wellness IOP</a> meets mornings and evenings at 300 Hebron Ave and in Westbrook, and the <a class='inl' href='/programs/womens-trauma-iop/'>Women’s Trauma IOP</a> focuses on healing from trauma."],
-  ["Do you take insurance?", "We’re in-network with most major plans, including Aetna, Anthem, Blue Cross Blue Shield, Cigna, ConnectiCare, Harvard Pilgrim, Optum, TRICARE and UnitedHealthcare, and we verify your benefits for free. See <a class='inl' href='/rates-and-insurance-coverage/'>rates &amp; insurance</a>."],
-  ["Where are addiction services offered?", "Addiction treatment, including the <a class='inl' href='/programs/addiction-iop/'>Addiction and Substance Use IOP</a>, is offered at our Downtown Glastonbury office (300 Hebron Ave) and our Westbrook office."],
+  ["What’s the difference between IOP and PHP?", `Both are structured outpatient programs, and you go home every day. <a class="inl" href="/programs/partial-hospitalization-program/">PHP (partial hospitalization)</a> is the most intensive, meeting most of the day — about six hours, Monday through Friday. An <a class="inl" href="/programs/intensive-outpatient-program/">IOP (intensive outpatient program)</a> meets about three hours a day, four days a week, so it’s easier to fit around work or school.`],
+  ["How do I know if I need IOP?", "IOP can help when weekly therapy isn’t enough, symptoms are getting in the way of work, school or relationships, or you’re stepping down from a hospital stay or PHP. Our admissions team will walk you through an assessment to find the right fit."],
+  ["What if I’m not sure which program is right for me?", "You don’t have to choose before you call. Tell us what’s going on, and our assessment will recommend a program and location. If a different level of care fits better, we’ll help you find it."],
+  ["Can I move between programs?", "Yes. Many people step down from PHP to IOP, then to counseling and medication management as they progress. Your care team plans each step with you, without ever switching teams."],
+  ["Do you have programs for addiction?", `Yes. Our <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> treats alcohol and drug use, and our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a> treats mental health and substance use together. <a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment (MAT)</a> is available. Addiction care is offered at our 300 Hebron Ave (Glastonbury) and Westbrook offices.`],
+  ["Do you have programs for teens and children?", `Yes. Our <a class="inl" href="/programs/teen-iop/">Teen IOP</a> serves ages 13–17 and our <a class="inl" href="/programs/tween-iop/">Tween IOP</a> serves ages 8–12, both with family involvement. We also offer counseling, play therapy and medication management for younger children, ages 4 and up.`],
+  ["Are there programs just for women?", `Yes. The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> supports women facing anxiety, depression, postpartum challenges and life transitions. The <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> focuses on healing from trauma in a women-only group.`],
+  ["Do you have a program for first responders?", `Yes. Our <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> is built for police, firefighters, EMS, dispatchers and others facing job-related stress and trauma, in a group with peers who understand the work.`],
+  ["Can I keep working or going to school during treatment?", "With IOP, usually yes. Morning and evening tracks, and after-school groups for tweens and teens, let many people keep working or attending school. PHP takes most of the day, so most people take time off."],
+  ["Are programs in person or online?", "Our programs are built around in-person care, with groups and clinicians you meet face to face. Telehealth is available for some services when coming in isn’t possible."],
+  ["How long do programs last?", "It depends on your needs and progress. Most of our intensive outpatient programs run 8–12 weeks, and PHP length is set with your care team. Your team reviews your plan regularly and plans your step-down to weekly care."],
+  ["Does insurance cover IOP and PHP?", `Most commercial plans cover IOP and PHP when medically necessary. We verify your benefits for free before you start. Hopewell does not accept Medicare or Medicaid. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance</a>.`],
+  ["How much does IOP cost?", `Your cost depends on your plan’s deductible, copay and coinsurance. We’ll check your benefits and explain what you can expect to pay before you begin. Read <a class="inl" href="/admissions/">how admissions works</a>.`],
+  ["Which locations offer which programs?", `Programs differ by location. PHP, adult IOP, addiction IOP and the Women’s Wellness, Women’s Trauma and First Responder IOPs meet at 300 Hebron Ave in Glastonbury; the Teen &amp; Tween IOP meets at 1420 Main St in South Glastonbury; Westbrook offers adult IOP, addiction IOP and the Women’s Wellness IOP; and every office offers therapy and medication management. See <a class="inl" href="/locations/">all locations</a>.`],
 ];
-const stories = STORIES.slice(0, 6);
-const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Mental health and addiction programs at Hopewell Health Solutions", itemListElement: [...iop, ...more].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.t, url: "https://www.hopewellhealthsolutions.com" + c.href })) };
+
+const medicalWebPage = {
+  "@context": "https://schema.org", "@type": "MedicalWebPage", "@id": canonical + "#webpage", url: canonical,
+  name: "Mental Health & Addiction Treatment Programs in Connecticut", description: "Compare in-person IOP, PHP and outpatient programs for adults, teens and women at Hopewell Health Solutions in Connecticut.",
+  about: [{ "@type": "MedicalTherapy", name: "Intensive outpatient program" }, { "@type": "MedicalTherapy", name: "Partial hospitalization program" }, { "@type": "MedicalCondition", name: "Substance use disorder" }],
+  publisher: { "@type": "MedicalOrganization", "@id": SITE + "/#organization", name: "Hopewell Health Solutions" },
+};
+const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Mental health and addiction treatment programs at Hopewell Health Solutions", itemListElement: allItems.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.t, url: SITE + c.href })) };
 ---
-<Base title="Mental Health Programs in CT | Hopewell Health Solutions" description="Mental health programs at Hopewell Health Solutions in Connecticut — IOP, PHP, medication management & counseling for children, teens & adults, including specialized women's, teen, first responder & addiction programs. In person & telehealth." canonical={canonical} image={P + "php-group-room.webp"}>
+<Base title="IOP, PHP & Addiction Programs in Connecticut | Hopewell" description="Compare in-person IOP, PHP and outpatient programs for adults, teens and women in Glastonbury, Westbrook, East Hampton and West Hartford, CT. Check coverage." canonical={canonical} image={P + "php-group-room.webp"}>
   <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(medicalWebPage)} />
   <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
   <main class="hw">
+    <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs" }]}
-      title="Mental Health Programs in Connecticut"
-      lede="A full continuum of care. From weekly counseling to intensive day programs, Hopewell Health Solutions offers a full continuum of outpatient care — so you can step up when you need more support, or step down as you heal, without ever switching teams. Care for children, teens, and adults, in person across Connecticut and by telehealth."
-      bullets={["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> tracks for tweens, teens, women, adults &amp; first responders", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> — full-day care without an inpatient stay", "<a class='inl' href='/programs/addiction-iop/'>Addiction treatment</a> in Glastonbury &amp; Westbrook", "<a class='inl' href='/programs/counseling/'>Counseling</a> &amp; <a class='inl' href='/programs/medication-management/'>medication management</a> at all six offices"]}
+      title="Mental Health &amp; Addiction Treatment Programs in Connecticut"
+      lede="In-person IOP, PHP and outpatient care for adults, teens and children, with programs in Glastonbury, Westbrook, East Hampton and West Hartford."
+      bullets={["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> tracks for tweens, teens, women, adults &amp; first responders", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> — full-day care without an inpatient stay", "<a class='inl' href='/programs/addiction-iop/'>Addiction IOP</a> in Glastonbury &amp; Westbrook", "<a class='inl' href='/programs/counseling/'>Counseling</a> &amp; <a class='inl' href='/programs/medication-management/'>medication management</a> at all six offices"]}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Six Connecticut offices" }]}
-      image={P + "php-group-room.webp"}
-    />
+      image={P + "iop-group-room-lights.webp"}
+      keepFormMobile
+    >
+      <nav class="ph-quick" aria-label="Jump to programs">
+        <a href="#adults"><Icon name="users" class="h-4 w-4" />For me</a>
+        <a href="#teens"><Icon name="sparkles" class="h-4 w-4" />For my teen or child</a>
+        <a href="#addiction"><Icon name="link" class="h-4 w-4" />Drinking or drug use</a>
+        <a href="#unsure"><Icon name="compass" class="h-4 w-4" />Not sure yet</a>
+      </nav>
+    </ServiceHero>
+
+    <!-- 2. As featured in -->
     <Creds />
+    <MediaStrip bg="white" />
 
-    <section class="section is-white" id="iop">
+    <!-- 3. Google reviews -->
+    <Reviews heading="What Our Program Clients Say" tone="stone" first={["IOP", "Women’s Wellness IOP"]} />
+
+    <!-- 4. Find your program -->
+    <section class="section is-white" id="find">
       <div class="container">
-        <div class="sec-head"><h2>IOP — built for who you are</h2><p class="lede">Intensive Outpatient Programs. Structured group and individual therapy several days a week — including programs designed around specific people and needs.</p></div>
-        <div class="pr-grid">
-          {iop.map((c, k) => { const x = details[c.href]; const feat = k === 0; return (
-                <article class:list={["pr-card", feat && "is-feature"]} style={`--bar-c:${c.bar ?? "#2f76c4"}`}>
-                  <a class="pr-media" href={c.href} tabindex="-1" aria-hidden="true"><img src={x.img} alt="" width="1200" height="900" loading="lazy" /><span class="pr-icon"><Icon name={icons[c.href] ?? "heart"} class="h-6 w-6" /></span></a>
-                  <div class="pr-body">
-                    <h3><a href={c.href}>{c.t}</a></h3>
-                    <p class="pr-lede">{c.d}</p>
-                    {row(c.href) && <ul class="pr-facts"><li><Icon name="calendar" class="h-4 w-4" />{row(c.href)[2]}</li><li><Icon name="pin" class="h-4 w-4" />{row(c.href)[3]}</li><li><Icon name="users" class="h-4 w-4" />{row(c.href)[1]}</li></ul>}
-                    <p class="pr-more" set:html={x.more} />
-                    <div class="pr-fit"><strong>A good fit for</strong><ul>{x.fit.map((f) => <li><Icon name="check" class="h-4 w-4" />{f}</li>)}</ul></div>
-                    <a class="btn btn-navy pr-btn" href={c.href}>Explore {c.t.replace(/ \(.*\)/, "")}<Icon name="arrow" /></a>
+        <div class="sec-head">
+          <h2>Find Your Program: IOP Programs in CT, PHP and Outpatient Care</h2>
+          <p class="lede">A full continuum of care. From weekly counseling to intensive day programs, Hopewell Health Solutions offers a full continuum of outpatient care — so you can step up when you need more support, or step down as you heal, without ever switching teams. Care for children, teens, and adults, in person across Connecticut and by telehealth. Pick who the care is for, or filter by the office closest to you.</p>
+        </div>
+        <div class="ph-filter" role="toolbar" aria-label="Filter programs by location">
+          <span>Show programs in:</span>
+          {[["all", "All locations"], ["gl", "Glastonbury"], ["wb", "Westbrook"], ["eh", "East Hampton"], ["wh", "West Hartford"]].map(([k, l], i) => <button type="button" class:list={["ph-f", i === 0 && "is-on"]} data-f={k} aria-pressed={i === 0 ? "true" : "false"}>{l}</button>)}
+        </div>
+        {groups.map((g) => (
+          <div class="ph-group" id={g.id}>
+            <h3 class="ph-gh"><span><Icon name={g.icon} class="h-5 w-5" /></span>{g.t}</h3>
+            <div class="ph-cards">
+              {g.items.map((c) => (
+                <article class="ph-card" data-loc={c.loc.join(" ")}>
+                  <a class="ph-media" href={c.href} tabindex="-1" aria-hidden="true"><img src={c.img} alt="" width="1200" height="900" loading="lazy" /></a>
+                  <div class="ph-body">
+                    <h4><a href={c.href}>{c.t}</a></h4>
+                    <p class="ph-who">{c.who}</p>
+                    <ul class="ph-facts"><li><Icon name="calendar" class="h-4 w-4" />{c.level}</li><li><Icon name="pin" class="h-4 w-4" />{c.where}</li></ul>
+                    <p class="ph-d" set:html={c.d} />
                   </div>
                 </article>
-          ); })}
-        </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        <p class="ph-empty" hidden>No program in this group meets at that office. Choose “All locations,” or <a class="inl" href={PHONE.href}>call us</a> and we’ll find the closest option.</p>
+        <p class="sec-foot">Also available: <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>, care for behavioral addictions such as video game and screen addiction, and <a class="inl" href="/treatment-methods/">evidence-based therapies</a> like DBT and EMDR inside every program.</p>
       </div>
     </section>
 
-    <section class="section is-mist" id="more">
+    <!-- 5. Which level of care do I need? -->
+    <Prose blocks={prose} startTone={1} />
+    <section class="section is-stone ph-signs-sec" style="padding-top:0">
       <div class="container">
-        <div class="sec-head"><h2>Beyond IOP</h2><p class="lede">More levels of care. Whether you need more structure or a lighter touch, there’s a right level of care here.</p></div>
-        <div class="pr-grid is-3">
-          {more.map((c) => { const x = details[c.href]; const feat = false; return (
-                <article class:list={["pr-card", feat && "is-feature"]} style={`--bar-c:${c.bar ?? "#2f76c4"}`}>
-                  <a class="pr-media" href={c.href} tabindex="-1" aria-hidden="true"><img src={x.img} alt="" width="1200" height="900" loading="lazy" /><span class="pr-icon"><Icon name={icons[c.href] ?? "heart"} class="h-6 w-6" /></span></a>
-                  <div class="pr-body">
-                    <h3><a href={c.href}>{c.t}</a></h3>
-                    <p class="pr-lede">{c.d}</p>
-                    {row(c.href) && <ul class="pr-facts"><li><Icon name="calendar" class="h-4 w-4" />{row(c.href)[2]}</li><li><Icon name="pin" class="h-4 w-4" />{row(c.href)[3]}</li><li><Icon name="users" class="h-4 w-4" />{row(c.href)[1]}</li></ul>}
-                    <p class="pr-more" set:html={x.more} />
-                    <div class="pr-fit"><strong>A good fit for</strong><ul>{x.fit.map((f) => <li><Icon name="check" class="h-4 w-4" />{f}</li>)}</ul></div>
-                    <a class="btn btn-navy pr-btn" href={c.href}>Explore {c.t.replace(/ \(.*\)/, "")}<Icon name="arrow" /></a>
-                  </div>
-                </article>
-          ); })}
-        </div>
+        <ul class="ph-signs">{signs.map(([icon, t]) => <li><span class="icon-badge"><Icon name={icon} /></span><span>{t}</span></li>)}</ul>
       </div>
     </section>
 
-    <section class="section is-stone" id="compare">
+    <!-- 6. What a program week looks like -->
+    <Prose blocks={prose2} startTone={0} />
+    <section class="section is-white" style="padding-top:0">
       <div class="container">
-        <div class="sec-head"><h2>Compare our programs</h2><p class="lede">Who each program is for, how often it meets, and where. Every office offers therapy and medication management; addiction treatment is offered at 300 Hebron Ave in Glastonbury and in Westbrook.</p></div>
-        <div class="hb-table-wrap">
-          <table class="hb-table">
-            <thead><tr><th scope="col">Program</th><th scope="col">Who it’s for</th><th scope="col">Schedule</th><th scope="col">Where</th></tr></thead>
-            <tbody>{compareRows.map(([t, w, sch, loc, href]) => <tr><th scope="row"><a class="inl" href={href}>{t}</a></th><td>{w}</td><td>{sch}</td><td>{loc}</td></tr>)}</tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section is-white" id="day">
-      <div class="container">
-        <div class="sec-head"><h2>What a day in IOP looks like</h2><p class="lede">Every program follows its own plan, but most IOP days move through the same rhythm. Groups are small and clinician-led, and nothing is shared outside the room.</p></div>
         <ol class="step-grid">
           {day.map(([icon, t, d], i) => <li class="step"><span class="step-dot"><Icon name={icon} /></span><span class="step-num">Part {i + 1}</span><h3>{t}</h3><p>{d}</p>{i < day.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
         </ol>
       </div>
     </section>
 
-    <section class="section is-white" id="continuum">
-      <div class="container">
-        <div class="sec-head"><h2>Your continuum of care</h2><p class="lede">Move up or down as you heal — one team, one coordinated plan.</p></div>
-        <div class="levels-grid">
-          {continuum.map((c, i) => (
-            <article class={`level-card lv-${c.tone}`}>
-              <div class="level-head">
-                <div class="level-title"><span class="level-icon"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span><h3>{c.t}</h3></div>
-                <p class="level-stat"><strong>{c.stat}</strong><span set:html={c.d} /></p>
-                <div class="week" aria-hidden="true">
-                  {["M", "T", "W", "T", "F", "S", "S"].map((d, j) => <span class="week-day"><span class="week-track"><span class="week-fill" style={`--h:${(c.days[j] / 6) * 100}%`}></span></span><span class="week-label">{d}</span></span>)}
-                </div>
-              </div>
-              {i < continuum.length - 1 && <span class="level-next" aria-hidden="true"><Icon name="arrow" class="h-5 w-5" /></span>}
-            </article>
-          ))}
-        </div>
-        <p class="levels-key"><span class="key-swatch"></span>Hours of care each day in a typical week</p>
-      </div>
-    </section>
+    <!-- 7. Programs by location -->
+    <Locations heading="Programs by Location" lede="Every office offers therapy and medication management. PHP, adult IOP, addiction IOP and the Women’s Wellness IOP meet at 300 Hebron Ave in Glastonbury; the Teen &amp; Tween IOP meets at 1420 Main St in South Glastonbury; Westbrook offers adult IOP, addiction IOP and the Women’s Wellness IOP. We also serve the shoreline, including Niantic, Branford, Madison and Guilford." tone="mist" />
 
-    <section class="section is-stone" id="where">
-      <div class="container">
-        <div class="sec-head"><h2>Where Each Program Meets</h2><p class="lede">Every office offers therapy and medication management. Day programs meet at the offices below; gold offices also offer addiction treatment.</p></div>
-        <div class="pg-where">
-          {where.map((o) => (
-            <article class:list={["pg-office", o.add && "is-add"]}>
-              <header><Icon name="pin" class="h-5 w-5" /><div><h3><a href={`/location/${o.slug}/`}>{o.name}</a></h3><span>{o.addr}</span></div></header>
-              <ul>{o.items.map((t) => <li><Icon name="check" class="h-4 w-4" /><span set:html={t} /></li>)}</ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- 8. Testimonials matched to programs -->
+    <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Each Program" lede="Clients share what our programs were like, labeled by program: adult IOP, IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
 
+    <!-- Not sure which program fits? -->
     <section class="section is-white" id="unsure">
       <div class="container">
         <div class="hb-unsure">
@@ -218,22 +243,52 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
             <h2>Not sure which program fits?</h2>
             <p>That’s normal, and you don’t have to decide alone. A clinical assessment looks at your symptoms, safety, schedule and goals, and our team recommends a starting level of care. If it isn’t the right fit later, you can step up or down without switching teams.</p>
             <p>We’ll also check your insurance for free before you start. See <a class="inl" href="/admissions/">how admissions works</a> or read <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.</p>
-            <div class="hb-unsure-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#verify" class="btn btn-ghost only-d">Verify my insurance</a><a href="#verify-m" class="btn btn-ghost only-m">Verify my insurance</a></div>
+            <div class="hb-unsure-ctas"><a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a><a href="#verify-ins" class="btn btn-ghost">Verify my insurance</a></div>
           </div>
         </div>
       </div>
     </section>
 
-    <VideoCarousel videos={stories} heading="Stories of Hope, in Their Own Words" lede="Clients share what our programs were like. Hear the full conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." />
+    <!-- 9. Insurance and admissions -->
+    <Insurance heading="Insurance and Admissions" lede="Three steps: call or send the form, we check your insurance for free, then an assessment and a start date. We’re in-network with most major commercial plans. Hopewell does not accept Medicare or Medicaid, and verifying benefits doesn’t guarantee coverage. See <a class='inl' href='/rates-and-insurance-coverage/'>rates &amp; insurance</a>." mobileForm={false} />
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews heading="What Our Clients Say" tone="stone" />
-    <Team tone="white" />
+    <!-- 10. FAQ -->
+    <Faq faqs={faqs} heading="Questions About Choosing a Program" tone="stone" />
 
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost — before you commit to anything. See <a class='inl' href='/rates-and-insurance-coverage/'>rates &amp; insurance</a>." />
-    <Locations />
-    <Faq faqs={faqs} heading="Programs — common questions" tone="white" />
-    <ClosingCta heading="Not sure which program fits?" lede="Tell us what’s going on, and our Connecticut team will help you find the right level of care — confidentially, with no pressure." image={P + "group-room-bright.webp"} imageAlt="A group room at Hopewell Health Solutions" />
+    <!-- 11. Final call to action -->
+    <section class="section fc-band">
+      <div class="container fc-grid">
+        <div>
+          <h2>Not Sure Which Program Fits? Start Here.</h2>
+          <p class="lede">Tell us what’s going on, and our Connecticut team will help you find the right level of care — confidentially, with no pressure. Forms sent after hours are answered the next business day.</p>
+          <a href={PHONE.href} class="btn btn-blue" style="margin-top:22px"><Icon name="phone" />Call {PHONE.display}</a>
+          <p class="fc-crisis">In crisis? Call or text <a href="tel:988">988</a>, or call 911. Everything you share with us is confidential.</p>
+        </div>
+        <div class="fc-form"><LeadForm heading="Check your coverage" sub="Free, confidential insurance check." formId="hhs-final" /></div>
+      </div>
+    </section>
   </main>
+  <a href="#verify" class="hw-sticky-cta" aria-label="Check your coverage"><Icon name="shield" class="h-5 w-5" />Check coverage</a>
   <Footer />
 </Base>
+
+<script>
+  const btns = document.querySelectorAll<HTMLButtonElement>(".ph-f");
+  const cards = document.querySelectorAll<HTMLElement>(".ph-card");
+  const groupsEl = document.querySelectorAll<HTMLElement>(".ph-group");
+  const empty = document.querySelector<HTMLElement>(".ph-empty");
+  btns.forEach((b) => b.addEventListener("click", () => {
+    const f = b.dataset.f!;
+    btns.forEach((x) => { x.classList.toggle("is-on", x === b); x.setAttribute("aria-pressed", String(x === b)); });
+    cards.forEach((c) => { c.hidden = f !== "all" && !(c.dataset.loc || "").split(" ").includes(f); });
+    let any = false;
+    groupsEl.forEach((g) => { const vis = [...g.querySelectorAll<HTMLElement>(".ph-card")].some((c) => !c.hidden); g.hidden = !vis; any = any || vis; });
+    if (empty) empty.hidden = any;
+  }));
+  const sticky = document.querySelector<HTMLElement>(".hw-sticky-cta");
+  if (sticky && "IntersectionObserver" in window) {
+    const vis = new Set();
+    const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target))); sticky.classList.toggle("is-hidden", vis.size > 0); });
+    document.querySelectorAll(".lead-card, .fc-form").forEach((f) => io.observe(f));
+  }
+</script>

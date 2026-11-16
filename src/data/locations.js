@@ -210,7 +210,7 @@ export const OFFERS = {
   php: { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", icon: "sun" },
   iop: { t: "Adult IOP", href: "/programs/adult-mental-health-iop/", icon: "calendar" },
   womens: { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", icon: "heart" },
-  "teen-tween": { t: "Tween & Teen IOP", href: "/programs/teen-tween-iop/", icon: "sparkles" },
+  "teen-tween": { t: "Tween & Teen IOP", href: "/programs/teen-iop/", icon: "sparkles" },
   therapy: { t: "1:1 Therapy", href: "/programs/counseling/", icon: "chat" },
   meds: { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
   addiction: { t: "Addiction Treatment", href: "/programs/addiction-iop/", icon: "link" },

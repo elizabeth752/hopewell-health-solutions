@@ -26,7 +26,7 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
 
   {mode === "grid" && !few && (
     <div class="container">
-      <button type="button" class="vc-card vc-feature" data-yt={videos[0].yt} data-title={videos[0].title} aria-label={`Play: ${videos[0].title}`}>
+      <button type="button" class="vc-card vc-feature" data-yt={videos[0].yt} data-title={videos[0].title} data-vertical={videos[0].vertical ? "1" : undefined} aria-label={`Play: ${videos[0].title}`}>
         <span class="vc-poster"><img src={`/Assets/videos/${videos[0].img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{videos[0].len}</span></span>
         <span class="vc-body"><span class="vc-type">{videos[0].type}</span><span class="vc-name">{videos[0].name}</span><span class="vc-desc">{videos[0].desc}</span></span>
       </button>
@@ -38,7 +38,7 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
       <ul class="vc-track">
         {loop.map((v, i) => (
           <li aria-hidden={i >= videos.length ? "true" : undefined}>
-            <button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} aria-label={`Play: ${v.title}`} tabindex={i >= videos.length ? -1 : undefined}>
+            <button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} data-vertical={v.vertical ? "1" : undefined} aria-label={`Play: ${v.title}`} tabindex={i >= videos.length ? -1 : undefined}>
               <span class="vc-poster"><img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{v.len}</span></span>
               <span class="vc-body"><span class="vc-type">{v.type}</span><span class="vc-name">{v.name}</span><span class="vc-desc">{v.desc}</span></span>
             </button>
@@ -49,7 +49,7 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
   ) : (
     <div class="container"><ul class:list={["vc-grid", few && `is-${videos.length}`]}>
       {loop.map((v) => (
-        <li><button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} aria-label={`Play: ${v.title}`}>
+        <li><button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} data-vertical={v.vertical ? "1" : undefined} aria-label={`Play: ${v.title}`}>
           <span class="vc-poster"><img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{v.len}</span></span>
           <span class="vc-body"><span class="vc-type">{v.type}</span><span class="vc-name">{v.name}</span><span class="vc-desc">{v.desc}</span></span>
         </button></li>
@@ -74,11 +74,12 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
     dlg.addEventListener("cancel", () => frame.replaceChildren());
     document.querySelectorAll<HTMLButtonElement>(".vc-card").forEach((btn) => btn.addEventListener("click", () => {
       const f = document.createElement("iframe");
-      f.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0`;
+      f.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
       f.title = btn.dataset.title ?? "Hopewell video";
       f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
       f.allowFullscreen = true;
       frame.replaceChildren(f);
+      dlg.classList.toggle("is-vertical", btn.dataset.vertical === "1");
       dlg.showModal();
     }));
   });

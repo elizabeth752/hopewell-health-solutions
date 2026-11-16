@@ -25,6 +25,8 @@ import NewsVideos from "../../components/programs/NewsVideos.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
 import { STORIES } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
+import "../../styles/pages/seo.css";
 import "../../styles/pages/programs.css";
 
 const P = "/Assets/hhs-2026/";
@@ -38,7 +40,7 @@ const heroUsps = [
 const benefitsFor = [
   "Anyone needing more therapeutic support than once-weekly therapy provides",
   "People leaving residential treatment who want a structured, flexible next step in recovery",
-  "Those who need an alternative treatment approach while living in a sober-living home",
+  "Those who need an alternative treatment approach while living in supportive accommodations",
 ];
 const whoFor = [
   "Individuals needing stabilization after a crisis",
@@ -85,7 +87,7 @@ const unique = [
   { icon: "swap", t: "A true step-down / step-up partner", d: "Move seamlessly between PHP and IOP as your needs change — one team, one continuous plan." },
   { icon: "dna", t: "GeneSight® &amp; expert med management", d: "Genetic testing matches medications to your DNA, guided by experienced psychiatric providers." },
 ];
-const outcomes = ["Rapid stabilization and a renewed sense of safety", "Stronger coping skills and emotional regulation", "Improved overall quality of life", "Successful community reintegration &amp; long-term recovery"];
+const outcomes = ["Working toward stabilization and a renewed sense of safety", "Building coping skills and emotional regulation", "Working toward a better quality of life", "Preparing to return to work, school and community"];
 const modalities = [
   { t: "Dialectical Behavioral Therapy (DBT)", icon: "swap", href: "/treatment-methods/dbt/" },
   { t: "Cognitive Behavioral Therapy (CBT)", icon: "brain" },
@@ -102,18 +104,25 @@ const faqs: [string, string][] = [
   ["How many hours a day is PHP?", "About six structured hours, Monday through Friday (roughly 9 AM–3:30 PM)."],
   ["Can I customize my schedule?", "Yes — one of the unique features of our PHP is a customizable approach that lets you build a tailored schedule for the group component, choosing the groups best aligned with your goals."],
   ["Do you offer an addiction PHP?", "Yes. Our addiction PHP in Glastonbury stabilizes symptoms of substance use and co-occurring disorders through evidence-based modalities, individualized plans, and specialized interventions — including <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>MAT</a> for opioid and alcohol dependence."],
-  ["Will my insurance cover it?", "Most major PPO plans cover PHP. We’ll verify your benefits for free, in minutes, and if you have Medicaid / HUSKY, our team can point you to programs that take it."],
+  ["What is a partial hospitalization program?", "PHP is the most intensive level of outpatient care. You attend treatment most of the day and go home each evening, so you get hospital-level structure without an overnight stay."],
+  ["How long does PHP last?", "It depends on your needs and progress. Your care team reviews your plan regularly, and most people step down to <a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> as they progress."],
+  ["What conditions does PHP treat?", "Depression, anxiety, trauma, bipolar and mood disorders, and mental health alongside substance use. See <a class='inl' href='/programs/adult-mental-health-iop/'>co-occurring care</a> and our <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> for the next step after PHP."],
+  ["Is PHP the same as inpatient treatment?", "No. You sleep at home. If you need 24-hour care or are in immediate danger, call or text 988, call 911, or go to the nearest emergency room."],
+  ["Can I work while in PHP?", "Most people take time off work or school during PHP because it runs most of the day. Ask our admissions team about leave paperwork; see <a class='inl' href='/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/'>which programs are eligible for CT Paid Leave or FMLA</a>."],
+  ["Will my insurance cover it?", "Most commercial plans cover PHP when it’s medically necessary. We’ll verify your benefits for free, in minutes. Hopewell does not accept Medicare or Medicaid (HUSKY); if that’s your coverage, our team can point you to programs that take it."],
+  ["Do I need a referral for PHP?", "You can call us directly, and we also accept referrals from hospitals, doctors and therapists. Our admissions team will tell you if your plan requires one."],
+  ["What happens after PHP?", "Most people step down to IOP, then to <a class='inl' href='/programs/counseling/'>counseling</a> and <a class='inl' href='/programs/medication-management/'>medication management</a> with the same team."],
 ];
 const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE", "S_CyYMDqEio"].includes(v.yt));
 ---
 
-<Base title="Partial Hospitalization (PHP) in CT | Hopewell Health Solutions" description="Partial hospitalization (PHP) at Hopewell Health Solutions, Glastonbury CT — 6 structured hours a day for depression, anxiety, trauma, addiction & co-occurring disorders. Most insurance accepted." image={P + "php-group-room.webp"}>
+<Base title="Partial Hospitalization Program (PHP) in CT | Hopewell" description="Full-day, in-person PHP in Glastonbury, CT for adults who need more support than IOP, without an overnight stay. Check your coverage today." image={P + "php-group-room.webp"}>
   <Header />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "PHP" }]}
       title="Partial Hospitalization Program (PHP) in Connecticut"
-      lede="Recovery within reach · Partial Hospitalization Program · Glastonbury, CT. Full-day care at our Downtown Glastonbury office, 300 Hebron Ave, without an overnight stay."
+      lede="Recovery within reach · Partial hospitalization program in Connecticut · Glastonbury, CT. Full-day care at our Downtown Glastonbury office, 300 Hebron Ave, without an overnight stay."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "clock", text: "Mon–Fri · about 9 AM–3:30 PM" }]}
       image={P + "php-group-room.webp"}
@@ -129,8 +138,31 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
     <Split heading="The benefits of PHP" img="/Assets/service/php-benefits.webp" alt="A supportive partial hospitalization group at Hopewell Health Solutions" reverse tone="stone">
       <p><strong>A comprehensive approach.</strong> PHP is beneficial for:</p>
       <CheckList items={benefitsFor} />
-      <p>This goal-oriented program focuses on <strong>rapid stabilization, enhancing coping skills, and improving overall quality of life.</strong></p>
+      <p>This goal-oriented program focuses on <strong>stabilization, enhancing coping skills, and improving overall quality of life.</strong></p>
     </Split>
+
+    <Prose startTone={0} blocks={[
+      { id: "who-php-is-for", h2: "Who a Partial Hospitalization Program Is For",
+        paras: [
+          "A partial hospitalization program is for adults whose symptoms are making it hard to get through the day, when weekly therapy or an <a class='inl' href='/programs/intensive-outpatient-program/'>intensive outpatient program</a> hasn’t been enough, or when they’re stepping down from a hospital stay, detox or residential treatment and need daily structure to keep steady. You get full days of treatment, then sleep at home each night.",
+          "Referring clinicians often recommend PHP after a crisis, when someone is safe enough to be at home but needs more than a few hours of care a week. Families look for it when a loved one is struggling to work, eat, sleep or function, and outpatient care isn’t holding. Our admissions team can talk through whether PHP, IOP or another level fits.",
+          "PHP is not emergency or 24-hour care. If you or someone you love is in immediate danger, call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room.",
+        ],
+        aside: { type: "points", title: "PHP is often a fit when…", items: [["alert", "Symptoms make daily life hard to manage"], ["refresh", "IOP or weekly therapy hasn’t been enough"], ["home", "You’re stepping down from a hospital stay or rehab"], ["shield", "You’re safe at home but need daily structure"]] } },
+      { id: "php-depression-anxiety", h2: "PHP for Depression and Anxiety in Glastonbury, CT",
+        paras: [
+          "Depression and anxiety are among the most common reasons adults join our partial hospitalization program in Glastonbury. When low mood, panic, constant worry or exhaustion take over, a full day of structure — groups, individual therapy and psychiatric care in one place — can help you stabilize faster than a weekly appointment allows.",
+          "Your day blends DBT and CBT skills groups, process groups and creative or holistic groups, with one-on-one sessions and psychiatric evaluation built in. Psychiatric providers manage medication alongside therapy, and <a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight® testing</a> can help guide medication choices. Learn more about <a class='inl' href='/what-we-treat/depression/'>depression treatment</a> and <a class='inl' href='/what-we-treat/anxiety/'>anxiety treatment</a>.",
+          "PHP also treats trauma, bipolar and other mood disorders, and mental health alongside substance use, with <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>medication-assisted treatment (MAT)</a> available when it fits your plan.",
+        ],
+        aside: { type: "img", src: P + "php-group-room.webp", alt: "The partial hospitalization program group room at 300 Hebron Ave in Glastonbury, CT", cap: "PHP group room, 300 Hebron Ave" } },
+      { id: "after-php", h2: "After PHP: Stepping Down to IOP",
+        paras: [
+          "PHP is designed to be a bridge, not a destination. As symptoms settle, your care team plans a step-down to an IOP, which meets about three hours a day, four days a week, so you can start returning to work, school and family routines with support still in place.",
+          "Because PHP, IOP, counseling and medication management are all run by the same Connecticut team, nothing restarts when you step down. Your therapist, prescriber and treatment plan carry forward. You can compare every level of care on our <a class='inl' href='/programs/'>programs page</a>, or see the <a class='inl' href='/location/glastonbury-ct-2/'>Downtown Glastonbury office</a> where PHP meets.",
+        ],
+        aside: { type: "table", title: "PHP vs. IOP", head: ["", "PHP", "IOP"], rows: [["Hours", "About 6 a day", "About 3 a day"], ["Days", "Mon–Fri", "Mon–Thu"], ["Best for", "Daily structure, stabilizing", "Building skills around work or school"], ["Where", "300 Hebron Ave", "300 Hebron Ave, 1420 Main St & Westbrook"], ["Next step", "IOP", "Counseling & medication management"]] } },
+    ]} />
 
     <IconCards heading="A multimodal treatment approach" lede="Specialized treatment &amp; interventions. Hopewell Health Solutions’ PHP offers <strong>6 structured hours of treatment daily, Monday through Friday.</strong> Through evidence-based modalities, individualized plans, and specialized interventions, our PHP stabilizes symptoms of substance use and co-occurring disorders — while promoting successful community reintegration and long-term recovery. A unique feature: a customizable approach that lets you build a tailored schedule for the group component of PHP." items={approach} cols={2} />
 
@@ -184,7 +216,7 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
     <Team heading="Your PHP Care Team" lede="Clinicians, psychiatric providers, and experiential therapists who work as one team. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "tracy-sibley-pmhnp-bc-aprn", "katherine-salvador-pa-c", "chris-patenaude-pa", "chelsey-micciche-lpc", "sherrie-gaudet-lcsw", "kelvin-young-cpsrp"]} tone="white" />
 
     <Insurance heading="Comprehensive coverage options" lede="We accept most major PPO plans. If you have specific questions about your coverage, contact us — our team verifies your benefits at no cost, before you commit to anything." />
-    <Locations heading="Our Locations" lede="PHP is held at our Downtown Glastonbury office, 300 Hebron Ave. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · Fax (860) 781-8588 · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
+    <Locations heading="Where PHP Meets" lede="PHP is held at our Downtown Glastonbury office, 300 Hebron Ave. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · Fax (860) 781-8588 · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
     <Faq faqs={faqs} heading="PHP — common questions" tone="white" />
 
     <section class="section is-stone">

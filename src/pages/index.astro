@@ -59,7 +59,7 @@ const helps = [
   { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction IOP", icon: "link", bar: "#0b2f55",
     html: `Our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> treats addiction with <a class="inl" href="/what-we-treat/co-occurring/">co-occurring mental health and addiction</a> care alongside it, including step-down care after rehab, at 300 Hebron Ave and Westbrook.` },
   { q: "“My teen or tween is struggling.”", t: "Teen & Tween IOP", icon: "sparkles", bar: "#5c7c6b",
-    html: `After-school groups for ages 8–17, with the family part of the work. Learn about our <a class="inl" href="/programs/teen-tween-iop/">teen and tween IOP</a>.` },
+    html: `After-school groups for ages 8–17, with the family part of the work. Learn about our <a class="inl" href="/programs/teen-iop/">teen and tween IOP</a>.` },
   { q: "“I’m carrying too much, and I want women who get it.”", t: "Women’s Wellness IOP", icon: "heart", bar: "#b6863c",
     html: `A women-only group, mornings or evenings, for burnout, anxiety and life transitions. See the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>.` },
   { q: "“The job is following me home.”", t: "First Responder IOP", icon: "shield", bar: "#265489",
@@ -122,7 +122,7 @@ const faqGroups = [
   ["Programs and care", [
     ["What’s the difference between IOP and PHP?", `Both are structured outpatient programs where you go home each day. The <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> is the more intensive level, with more hours each day. An <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> meets for fewer hours a week, so it’s easier to fit around work or school. Your assessment helps decide which fits.`],
     ["Do you treat addiction?", `Yes. We offer an <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> for adults, care for co-occurring mental health and substance use, and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>. Addiction care is offered at our 300 Hebron Ave (Glastonbury) and Westbrook offices.`],
-    ["What ages do you see?", `We care for children, teens and adults, ages 4 and up. We run separate <a class="inl" href="/programs/teen-tween-iop/">teen and tween IOPs</a>, and adult programs for ages 18 and up.`],
+    ["What ages do you see?", `We care for children, teens and adults, ages 4 and up. We run separate <a class="inl" href="/programs/teen-iop/">teen and tween IOPs</a>, and adult programs for ages 18 and up.`],
     ["Do you offer psychiatry and medication management?", `Yes. Our psychiatric providers offer evaluations and ongoing <a class="inl" href="/programs/medication-management/">medication management</a>, and we also offer <a class="inl" href="/treatment-methods/tms/">TMS</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">ADHD and neuropsychological testing</a>.`],
   ]],
   ["Locations and visits", [
@@ -204,17 +204,19 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <Creds />
   <MediaStrip bg="white" />
 
-  <!-- 3. Google reviews -->
-  <Reviews />
-
   <!-- 4. What we help with -->
   <section class="section is-stone" id="programs">
     <div class="container">
-      <div class="sec-head">
-        <h2>What We Help With</h2>
-        <p class="lede">Hopewell treats the conditions we see most — depression, anxiety, trauma, addiction, ADHD and more — for children, teens and adults across Connecticut. Start with what’s going on, and we’ll match you to the right program. See <a class="inl" href="/what-we-treat/">everything we treat</a> or <a class="inl" href="/programs/">all programs</a>.</p>
-      </div>
-      <div class="wh-grid">
+      <div class="wh-top">
+        <div class="sec-head" style="margin:0">
+          <h2>What We Help With</h2>
+          <p class="lede">Hopewell treats the conditions we see most — depression, anxiety, trauma, addiction, ADHD and more — for children, teens and adults across Connecticut. Start with what’s going on, and we’ll match you to the right program. See <a class="inl" href="/what-we-treat/">everything we treat</a> or <a class="inl" href="/programs/">all programs</a>.</p>
+          <ul class="wh-legend">
+            <li><Icon name="users" class="h-5 w-5" />Children, teens and adults, ages 4 and up</li>
+            <li><Icon name="refresh" class="h-5 w-5" />Step up or down in care with the same team</li>
+            <li><Icon name="link" class="h-5 w-5" />Mental health and addiction treated together</li>
+          </ul>
+        </div>
         <figure class="wh-wheel">
           <svg viewBox="0 0 340 340" role="img" aria-label="Conditions we treat: depression, anxiety, trauma and PTSD, addiction, ADHD, bipolar disorder, OCD and co-occurring disorders">
             {wheel.map(([t, href, c], i) => { const s = seg(i, wheel.length); return (
@@ -229,7 +231,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
           </svg>
           <figcaption>Tap a condition to learn how we treat it.</figcaption>
         </figure>
-        <div class="wh-cards">
+      </div>
+      <div class="wh-cards">
           {helps.map((h) => (
             <div class="wh-card" style={`--bar-c:${h.bar}`}>
               <span class="wh-icon"><Icon name={h.icon} class="h-5 w-5" /></span>
@@ -237,6 +240,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
             </div>
           ))}
         </div>
+
       </div>
     </div>
   </section>
@@ -256,7 +260,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
           </ul>
         </div>
         {tour && (
-          <button type="button" class="vc-card ip-video" data-yt={tour.yt} data-title={tour.title} aria-label={`Play: ${tour.title}`}>
+          <button type="button" class="vc-card ip-video" data-yt={tour.yt} data-title={tour.title} data-vertical={tour.vertical ? "1" : undefined} aria-label={`Play: ${tour.title}`}>
             <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
             <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
           </button>
@@ -313,6 +317,9 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
       </ul>
     </div>
   </section>
+
+  <!-- Google reviews (last, above the FAQ) -->
+  <Reviews tone="white" />
 
   <!-- 10. FAQ (4 groups, 12 questions) -->
   <section class="section is-stone" id="faq">

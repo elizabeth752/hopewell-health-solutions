@@ -4,7 +4,11 @@
 // alongside "substance use", highlight step-down care after rehab and the SUD groups patients value, and speak to
 // working adults, functioning alcoholism, problem drinking, adult substance use and co-occurring disorders. Addiction
 // services only at 300 Hebron Ave (Downtown Glastonbury) and Westbrook. Unsourced "best IOP" tag dropped; insurance
-// wording positive. URL unchanged.
+// wording positive.
+// 2026-11-16: rebuilt to the "Addiction and Substance Use IOP" content brief (Programs Page Content Brief doc):
+// URL /programs/addiction-iop/ (301 from /programs/substance-use-iop/), brief H1/title/meta, signs, substances &
+// behaviors, Westbrook + shoreline, supportive accommodations, family, 14-question FAQ. Brief [confirm] items written
+// neutrally (detox policy, accommodations details, Westbrook start date).
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -81,26 +85,52 @@ const sudGroups = [
   { icon: "compass", t: "Life-skills group", d: "Stress management, communication, and goal-setting for life in recovery." },
   { icon: "users", t: "Peer support &amp; process group", d: "Shared experience and accountability with others working toward the same goal." },
 ];
-const outcomes = ["Regain control of your life", "Lasting recovery &amp; sobriety", "Healthier coping mechanisms", "A strong, sober support system"];
+const outcomes = ["Regain a sense of control", "Work toward lasting recovery", "Healthier coping mechanisms", "A stronger support system"];
+const signs = [
+  "You drink or use more, or for longer, than you meant to",
+  "You’ve tried to cut back and it hasn’t stuck",
+  "Cravings, hangovers or withdrawal are getting in the way of work",
+  "People close to you have said they’re worried",
+  "You’re hiding how much you drink or use",
+  "Drinking or drug use is how you cope with stress, anxiety or low mood",
+];
+const behaviors = [
+  { icon: "bolt", t: "Porn addiction", d: `Compulsive use that harms relationships or mood. Read <a class="inl" href="/post/is-porn-addiction-really-a-problem-why-it-might-be-impacting-your-life-more-than-you-think/">why porn addiction may be affecting your life</a> and <a class="inl" href="/post/does-porn-cause-anxiety-understanding-the-possible-connection/">the link between porn and anxiety</a>.` },
+  { icon: "refresh", t: "Scrolling and screen addiction", d: `Hours lost to phones and feeds that crowd out sleep, work and people. See <a class="inl" href="/post/how-to-stop-scrolling-addiction/">how to stop scrolling addiction</a>.` },
+  { icon: "sparkles", t: "Video game addiction", d: `Gaming that takes over school, work or family life. For younger people, see our <a class="inl" href="/programs/teen-iop/">teen IOP</a> and <a class="inl" href="/programs/tween-iop/">tween IOP</a>.` },
+];
+const shoreline = ["Westbrook", "Old Saybrook", "Clinton", "Madison", "Guilford", "Branford", "Niantic"];
 const faqs: [string, string][] = [
   ["What is an addiction IOP?", "An addiction intensive outpatient program is a structured yet flexible program for addiction and substance use disorders — a higher level of care than weekly outpatient therapy, but without an overnight stay. You receive intensive support several times a week while living at home and keeping up with work, school, and family."],
-  ["How often will I attend, and for how long?", "Typically three to five sessions a week, each lasting a few hours. The program generally spans six to eight weeks, adjusted to your needs."],
+  ["How often will I attend, and for how long?", "Typically three to five sessions a week, each lasting a few hours. The program generally spans six to eight weeks, adjusted to your needs. Your plan is reviewed regularly, and care continues with <a class='inl' href='/programs/counseling/'>outpatient counseling</a> after the IOP. Compare levels of care on our <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
   ["Can I step down to the addiction IOP after rehab?", "Yes. Many clients join the addiction IOP right after inpatient rehab or detox, or step down from our addiction PHP as they stabilize. It keeps the structure and support in place while you return to daily life, and our team coordinates the handoff with your previous provider."],
   ["Where is the addiction IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-2/'>Downtown Glastonbury office</a> (300 Hebron Avenue) and our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a> (70 Essex Road), with telehealth available."],
   ["Is IOP right for me, or do I need inpatient?", "IOP is ideal if you’re ready to commit to recovery but don’t need 24/7 supervision. If you’re experiencing severe withdrawal, need medical detox, or require round-the-clock care, an inpatient program may fit better — our specialists assess to recommend the right level."],
   ["What substances do you treat?", "<a class='inl' href='/what-we-treat/alcohol/'>Alcohol</a>, <a class='inl' href='/what-we-treat/prescription-drugs/'>prescription medications</a>, opioids, stimulants, and other illicit substances — including <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring mental health conditions</a>."],
-  ["Will my insurance cover it?", "We accept most major PPO plans, and TRICARE East is accepted as a PPO plan. We’ll verify your benefits for free, and if you have Medicaid / HUSKY, our team can point you to programs that take it."],
+  ["Do I need detox first?", "If you need medical detox, our team will help you find it and plan your next step with us. Our assessment looks at withdrawal risk so you start at the safe level of care."],
+  ["Do you offer medication-assisted treatment (MAT)?", "Yes. <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-assisted treatment (MAT)</a> is available when appropriate, combined with counseling, through our psychiatric providers and <a class='inl' href='/programs/medication-management/'>medication management</a>."],
+  ["What if I also have depression or anxiety?", "Our <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Co-Occurring IOP</a> treats mental health and addiction together, and the addiction IOP team works with you on both. Learn more about <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring disorders</a>."],
+  ["Can I keep working during treatment?", "Yes. The addiction IOP is built to fit around work and family, with groups a few hours at a time several days a week."],
+  ["Is treatment confidential?", "Yes. Substance use treatment records are protected by strict federal privacy rules, and everything you share with our team stays confidential."],
+  ["Does insurance cover addiction treatment?", "Most commercial plans cover addiction IOP when medically necessary, and TRICARE East is accepted as a PPO plan. We verify your benefits for free before you start. We don’t accept Medicare or Medicaid (HUSKY); if that’s your coverage, our team can point you to programs that take it. See <a class='inl' href='/rates-and-insurance-coverage/'>rates and insurance</a>."],
+  ["Do you offer housing during treatment?", "We can connect you with supportive accommodations near our offices while you attend treatment. Ask our admissions team about current options."],
+  ["How can I help a family member?", "Call us with them or on their behalf. We’ll explain the options, how to start the conversation, and what the first steps look like. Our <a class='inl' href='/admissions/'>admissions team</a> talks with families every day."],
 ];
-const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE", "awy7nfDgC0k"].includes(v.yt));
+const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Addiction IOP (Addiction and Substance Use Intensive Outpatient Program)", url: "https://www.hopewellhealthsolutions.com/programs/addiction-iop/",
+  description: "In-person addiction IOP for alcohol and drug use in Glastonbury and Westbrook, CT, with group therapy, individual counseling, relapse prevention, psychiatric care and MAT when appropriate.",
+  relevantSpecialty: "Addiction", provider: { "@id": "https://www.hopewellhealthsolutions.com/#organization" },
+  availableAtOrFrom: [{ "@id": "https://www.hopewellhealthsolutions.com/location/glastonbury-ct-2/#clinic" }, { "@id": "https://www.hopewellhealthsolutions.com/location/westbrook-ct/#clinic" }] };
+const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].includes(v.yt)).sort((a, b) => (a.yt === "7ISgjKEBoZo" ? -1 : b.yt === "7ISgjKEBoZo" ? 1 : 0));
 ---
 
-<Base title="Addiction and Substance Use IOP in CT | Hopewell Health Solutions" description="Addiction and Substance Use IOP at Hopewell Health Solutions in Glastonbury & Westbrook, CT. Addiction treatment with SUD groups, CBT/DBT and relapse prevention, and a step-down after rehab. 6–8 weeks." image={P + "iop-group-room-lights.webp"}>
+<Base title="Addiction IOP in Connecticut | Alcohol & Drug Treatment | Hopewell" description="In-person addiction IOP in Glastonbury and Westbrook, CT for alcohol and drug use, with therapy, psychiatry and MAT. Keep working while you recover. Check coverage." image={P + "iop-group-room-lights.webp"}>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceLd)} />
   <Header />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Addiction and Substance Use IOP" }]}
-      title="Addiction and Substance Use IOP in Connecticut"
-      lede="Addiction Treatment · Glastonbury &amp; Westbrook, CT · Live at home. Addiction treatment that fits around your life."
+      title="Addiction IOP in Connecticut: Outpatient Treatment for Alcohol and Drug Use"
+      lede="Our addiction IOP is an in-person intensive outpatient program for alcohol and drug use at 300 Hebron Ave in Glastonbury and in Westbrook, CT. You get group therapy, individual counseling, psychiatric care and MAT when appropriate, while you live at home and keep working. Addiction treatment that fits around your life."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "300 Hebron Ave & Westbrook" }]}
       image={P + "iop-group-room-lights.webp"}
@@ -112,6 +142,17 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
       <p>Unlike inpatient rehab, IOP delivers structured care multiple times a week while you maintain work, school, and family — providing intensive support while building independence and accountability. We support recovery from:</p>
       <CheckList items={substances} cols={2} icon="shield" />
     </Split>
+
+    <section class="section is-mist" id="signs">
+      <div class="container pg-two">
+        <div>
+          <h2>Signs it may be time for an addiction IOP</h2>
+          <p class="lede" style="margin-top:16px">There’s no single moment when drinking or drug use “counts” as a problem. Most people who call us describe a slow shift: alcohol or drugs became the way to unwind, then the way to get through the day, and now cutting back feels harder than it should. If any of these sound familiar, it’s worth a conversation. This isn’t a diagnosis; it’s a starting point.</p>
+          <p class="lede">An outpatient alcohol and drug treatment program like this one sits between weekly therapy and inpatient rehab. You come in for structured treatment several days a week, then go home to your own bed, your family and your job. Our assessment helps decide whether IOP, <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization (PHP)</a> or another level of care is the right fit.</p>
+        </div>
+        <div class="pg-panel ad-signs"><h3>Common signs (non-diagnostic)</h3><CheckList items={signs} /></div>
+      </div>
+    </section>
 
     <section class="section is-navy">
       <div class="container pg-two">
@@ -161,6 +202,44 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
     <IconCards heading="The benefits of an addiction IOP" lede="Why it works." items={benefits} cols={3} />
 
     <ModalitiesOutcomes mHeading="Modalities used" modalities={modalities} outcomes={outcomes} note="Plus <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-Assisted Treatment (MAT)</a> &amp; <a class='inl' href='/programs/adult-mental-health-iop/'>co-occurring care</a> when needed." />
+
+    <section class="section is-white" id="behaviors">
+      <div class="container">
+        <div class="sec-head"><h2>Behavioral addictions we also treat</h2><p class="lede">Addiction isn’t only about alcohol and drugs. Some of the people we see are struggling with behaviors that work the same way in the brain: the urge, the short relief, the regret and the cycle starting again. The same skills used in the addiction IOP — understanding triggers, managing cravings and building other ways to cope — help here too, and our team can match you to individual therapy, group work or a higher level of care.</p></div>
+        <div class="ad-beh">
+          {behaviors.map((b) => <div class="ad-beh-card"><span class="pg-mod-icon"><Icon name={b.icon} class="h-5 w-5" /></span><h3>{b.t}</h3><p set:html={b.d} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="westbrook">
+      <div class="container pg-two">
+        <div>
+          <h2>Addiction treatment in Westbrook and along the shoreline</h2>
+          <p class="lede" style="margin-top:16px">Our Westbrook office at 70 Essex Road opened in September 2026 to bring in-person care closer to shoreline families. Alongside the Women’s Wellness IOP and an adult IOP, Westbrook is one of the two Hopewell offices that offer addiction treatment, so people living along the shoreline don’t have to drive to Hartford County for an IOP. Ask our admissions team which addiction services are running in Westbrook when you call.</p>
+          <p class="lede">Clients come to Westbrook from Old Saybrook, Clinton, Madison, Guilford, Branford and Niantic. Our other addiction IOP location is <a class="inl" href="/location/glastonbury-ct-2/">300 Hebron Ave in Glastonbury</a>, our main hub for adult IOP and PHP, which serves Hartford County. See the <a class="inl" href="/location/westbrook-ct/">Westbrook office</a> page for hours, photos and directions.</p>
+        </div>
+        <div class="ad-shore">
+          <img src="/Assets/locations/westbrook/exterior.webp" alt="Hopewell Health Solutions addiction IOP office at 70 Essex Road in Westbrook, CT" width="1200" height="900" loading="lazy" />
+          <div class="ad-shore-towns"><strong>Shoreline towns we serve</strong><ul>{shoreline.map((t) => <li><Icon name="pin" class="h-4 w-4" />{t}</li>)}</ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-white" id="support">
+      <div class="container pg-two">
+        <div class="pg-panel">
+          <span class="pg-mod-icon"><Icon name="home" class="h-5 w-5" /></span>
+          <h3>Supportive accommodations</h3>
+          <p>Some people need a stable place to stay while they attend treatment, especially after rehab. We can connect you with supportive accommodations near our offices, so you can focus on recovery and still get to group each day. Ask our admissions team about current options and availability.</p>
+        </div>
+        <div class="pg-panel">
+          <span class="pg-mod-icon"><Icon name="users" class="h-5 w-5" /></span>
+          <h3>Help for families</h3>
+          <p>Watching someone you love struggle with alcohol or drugs is exhausting, and it’s hard to know what to say. You can call us with them or on their behalf. We’ll explain the options, how to start the conversation, and what the first steps look like. Read about <a class="inl" href="/post/signs-of-addiction-in-women/">signs of addiction in women</a> and <a class="inl" href="/post/are-you-a-high-functioning-alcoholic/">high-functioning alcoholism</a>.</p>
+        </div>
+      </div>
+    </section>
 
     <Quote text="Recovery is possible — and you don’t have to do it alone. There is hope to heal." img={P + "php-group-room.webp"} />
 

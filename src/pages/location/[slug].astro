@@ -20,6 +20,7 @@ import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
+import { clinicalRoster, rosterByLocation } from "../../data/clinicalRoster.js";
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
@@ -89,17 +90,8 @@ const intro = {
 };
 const items = offers.map((k) => ({ t: OFFERS[k].t, href: OFFERS[k].href, ...card[k] }));
 
-// Clinicians who work at this office (same roster as /about-us/team/).
-const glast = ["jonathan-ficara-lcsw", "madeline-blinderman-lpc-a", "eunice-rivera-miranda-ph-d", "meagan-carr-ph-d", "dashelle-barco-lpc", "viviana-alvarado-lpc-a", "dori-bessette-crail-lmft"];
-const prescribers = ["tracy-sibley-pmhnp-bc-aprn", "christina-lindsay-pmhnp-bc-aprn", "linda-scillia-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "ana-arroyo-aprn-pmhnp-bc", "chris-patenaude-pa", "katherine-salvador-pa-c"];
-const roster = {
-  "glastonbury-ct": glast,
-  "glastonbury-ct-2": ["teesha-huertas-lcsw", ...prescribers.slice(0, 6)],
-  "glastonbury-ct-3": glast,
-  "westbrook-ct": ["kaitlyn-czapiga-lmsw", "jackie-plagesse-lmfta", "noah-mccarter-lpc-a", "jeff-rapp-lmsw", "kate-henneberry-lmfta"],
-  "east-hampton-ct": ["erin-kruse-lmsw", "kate-henneberry-lmfta", "mariah-thomas-lmsw", "ashley-singh-psy-d"],
-  "west-hartford-ct": ["kimberly-devine-lcsw", "eric-schwartz-psy-d-abpp", "christina-coelho-lmsw", "amenah-thomas-lpc-a"],
-};
+// Clinical staff at this office, from the client PDF (same roster as /about-us/team/). No medical staff here.
+const teamSlugs = clinicalRoster[rosterByLocation[l.slug]] ?? [];
 
 
 const faqs = [
@@ -251,13 +243,13 @@ const eventSchema = ev && {
     </section>
 
     <!-- Care team -->
-    <div class:list={[l.slug !== "glastonbury-ct" && "ab-team-solo"]}>
+    <div class="ab-team-solo">
       <Team
-        heading="Experienced, compassionate clinicians"
-        lede="Our psychiatrists, nurse practitioners, psychologists, and licensed therapists work as one team across all of our Connecticut offices. We’ll match you to the provider who best fits your needs and goals."
+        heading={`Clinicians at our ${l.city} office`}
+        lede={`The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`}
         tone="white"
-        slugs={roster[l.slug]}
-        feature={l.slug === "glastonbury-ct" ? "kristine-a-schlichting-ph-d" : null}
+        slugs={teamSlugs}
+        feature={null}
       />
     </div>
 

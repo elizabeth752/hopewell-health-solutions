@@ -189,7 +189,7 @@ export const QUIZZES = {
     bands: [
       [1, "A few changes to keep an eye on", "A change or two can be part of growing up, but trust your instincts. <a class=\"inl\" href=\"/programs/counseling/\">Child and family counseling</a> is a good place to start talking."],
       [3, "Several warning signs", "Several warning signs together are worth a professional assessment. Our clinicians work with children from age 4 and with the whole family."],
-      [8, "Many warning signs", "Many warning signs, or signs that last despite weekly therapy, often mean a child needs more support. Learn about our after-school <a class=\"inl\" href=\"/programs/teen-tween-iop/\">Tween &amp; Teen IOP</a> at 1420 Main St in South Glastonbury."],
+      [8, "Many warning signs", "Many warning signs, or signs that last despite weekly therapy, often mean a child needs more support. Learn about our after-school <a class=\"inl\" href=\"/programs/teen-iop/\">Tween &amp; Teen IOP</a> at 1420 Main St in South Glastonbury."],
     ],
   },
   behavior: {

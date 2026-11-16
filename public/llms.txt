@@ -5,7 +5,7 @@
 ## Programs
 - [Intensive Outpatient Program (IOP)](https://www.hopewellhealthsolutions.com/programs/intensive-outpatient-program/)
 - [Adult Co-Occurring IOP](https://www.hopewellhealthsolutions.com/programs/adult-mental-health-iop/)
-- [Teen & Tween IOP (ages 8–18)](https://www.hopewellhealthsolutions.com/programs/teen-tween-iop/)
+- [Teen & Tween IOP (ages 8–18)](https://www.hopewellhealthsolutions.com/programs/teen-iop/)
 - [Women's Wellness IOP](https://www.hopewellhealthsolutions.com/programs/womens-wellness-iop/)
 - [Women's Trauma IOP](https://www.hopewellhealthsolutions.com/programs/womens-trauma-iop/)
 - [First Responder IOP](https://www.hopewellhealthsolutions.com/programs/first-responder-iop/)

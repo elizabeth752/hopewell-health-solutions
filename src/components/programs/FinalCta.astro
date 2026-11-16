@@ -1,0 +1,19 @@
+---
+// Final call to action for program pages (program brief rule 11): heading + lede, phone, 988 line and the short
+// coverage form. Navy band so it reads as the end of the page.
+import Icon from "../Icon.astro";
+import LeadForm from "../LeadForm.astro";
+interface Props { heading?: string; lede?: string; formId?: string }
+const { heading = "Talk to Our Admissions Team", lede = "Reach out today and a real person will help you figure out the next step — confidentially, with no pressure.", formId = "hhs-final" } = Astro.props;
+---
+<section class="section pgx-final">
+  <div class="container pgx-final-grid">
+    <div>
+      <h2 set:html={heading} />
+      <p class="lede" set:html={lede} />
+      <a href="tel:8607351448" class="btn btn-blue" style="margin-top:22px"><Icon name="phone" />Call (860) 735-1448</a>
+      <p class="pgx-crisis">In crisis? Call or text <a href="tel:988">988</a>, or call 911. Forms sent after hours are answered the next business day.</p>
+    </div>
+    <div><LeadForm heading="Check your coverage" sub="Free, confidential insurance check." formId={formId} /></div>
+  </div>
+</section>
