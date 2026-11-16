@@ -3,7 +3,7 @@
 // the office's Google Map (lazy iframe from locations.js), care type, name, address, Get directions + Office details.
 // Self-moving carousel (scroll-snap, autoplay every 4.5 s, pauses on hover/focus/touch, off for reduced motion) with
 // arrows, and text tabs to filter All / Mental health / Addiction care. `current` puts that office first.
-import { locations } from "../../data/locations.js";
+import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import Icon from "../Icon.astro";
 interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone" }
 const { heading = "Care Near You, Across Central Connecticut", lede = "Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT — serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.", current, tone = "mist" } = Astro.props;
@@ -11,7 +11,7 @@ const P = "/Assets/hhs-2026/";
 const photo = {
   "glastonbury-ct": "/Assets/locations/glastonbury/exterior.webp",
   "glastonbury-ct-2": P + "downtown-glastonbury-sign.webp",
-  "glastonbury-ct-3": P + "south-glastonbury-office.webp",
+  "glastonbury-ct-3": P + "sg-front-desk.webp",
   "west-hartford-ct": P + "west-hartford-office.webp",
   "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp",
   "westbrook-ct": P + "westbrook-sign.webp",
@@ -37,14 +37,12 @@ const nAdd = list.filter((l) => l.addiction).length;
       {[...ordered, ...ordered].map((l, k) => (
         <li class="lc" data-add={l.addiction ? "1" : "0"} aria-hidden={k >= ordered.length ? "true" : undefined}>
           <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /><span class:list={["lc-n", l.addiction && "is-add"]}>{l.n}</span></div>
-          <div class="lc-map">
-            {l.map ? <iframe src={l.map} title={`Map of Hopewell Health Solutions ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe> : <span class="lc-map-ph"><Icon name="pin" class="h-6 w-6" /></span>}
-            <a class="lc-map-big" href={mapsHref(l)} target="_blank" rel="noopener">View larger map <Icon name="arrow" class="h-3.5 w-3.5" /></a>
-          </div>
+
           <div class="lc-body">
             <span class:list={["lc-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health care"}</span>
             <h3><a href={`/location/${l.slug}/`}>{l.name}</a></h3>
             <p class="lc-addr">{l.street}, {l.city}, CT {l.zip}</p>
+            <ul class="lc-svc">{OFFER_ORDER.filter((k) => l.offers?.includes(k)).map((k) => <li><a href={OFFERS[k].href}>{OFFERS[k].t}</a></li>)}</ul>
             <div class="lc-ctas">
               <a class="btn btn-navy" href={mapsHref(l)} target="_blank" rel="noopener"><Icon name="compass" />Get directions</a>
               <a class="btn btn-outline" href={`/location/${l.slug}/`}>Office details</a>

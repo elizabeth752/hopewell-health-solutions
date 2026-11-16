@@ -58,7 +58,7 @@ const groups = [
   { key: "addiction", name: "Addiction treatment", note: "At 300 Hebron Ave (Glastonbury) and Westbrook", icon: "link", tone: "t-gold", items: [
     { t: "Medication-Assisted Treatment (MAT)", href: "/treatment-methods/medication-assisted-treatment/", img: B + "psychiatric-medications-for-addiction-how-they-support-recovery.webp",
       d: "FDA-approved medications plus counseling for opioid and alcohol use disorders.",
-      more: `MAT pairs medications that ease cravings and withdrawal with counseling, inside the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a>. It’s medically supervised and offered at our Downtown Glastonbury and Westbrook offices. Learn about <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a>.`,
+      more: `MAT pairs medications that ease cravings and withdrawal with counseling, inside the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>. It’s medically supervised and offered at our Downtown Glastonbury and Westbrook offices. Learn about <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a>.`,
       helps: ["Opioid use disorder", "Alcohol use disorder", "Step-down care after detox or rehab"] },
   ] },
   { key: "testing", name: "Testing & evaluation", note: "Get the full picture", icon: "clipboard", tone: "t-sage", items: [
@@ -96,7 +96,7 @@ const faqs = [
   ["Do I have to talk about my trauma in detail for EMDR?", `No. <a class="inl" href="/treatment-methods/emdr/">EMDR</a> is structured so you don’t have to retell every detail. Your therapist helps you build calming skills first and moves at a pace you can manage.`],
   ["Can my child be tested for ADHD or learning differences?", `Yes. We offer <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> for children, teens and adults, with recommendations you can share with schools.`],
   ["Can treatments be combined?", `Often, yes. Many plans combine therapy such as <a class="inl" href="/treatment-methods/dbt/">DBT</a> or <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> with <a class="inl" href="/programs/medication-management/">medication management</a>, and sometimes TMS or GeneSight® testing. One team coordinates everything.`],
-  ["Where is addiction treatment offered?", `Addiction treatment, including <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> and our <a class="inl" href="/programs/substance-use-iop/">addiction IOP</a>, is offered at our Downtown Glastonbury (300 Hebron Ave) and Westbrook offices.`],
+  ["Where is addiction treatment offered?", `Addiction treatment, including <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> and our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a>, is offered at our Downtown Glastonbury (300 Hebron Ave) and Westbrook offices.`],
 ];
 const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: groups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---

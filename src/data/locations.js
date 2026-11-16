@@ -77,6 +77,13 @@ export const locations = [
     // Photos supplied by TJ (client), 2026-10-02.
     photoDir: "/Assets/locations/1420-main",
     photos: [
+      ["sg-front-desk.webp", "Front desk and waiting area at the South Glastonbury office"],
+      ["sg-reception.webp", "Welcome window and reception at the South Glastonbury office"],
+      ["sg-waiting-room.webp", "Waiting room at the South Glastonbury office"],
+      ["sg-tween-group-room.webp", "Tween and teen IOP group room at the South Glastonbury office"],
+      ["sg-therapy-office.webp", "Individual therapy office at the South Glastonbury office"],
+      ["sg-green-room.webp", "Therapy room with a green wall at the South Glastonbury office"],
+      ["sg-family-room.webp", "Family therapy room at the South Glastonbury office"],
       ["1420-2.webp", "Reception and front desk at the South Glastonbury office"],
       ["1420-1.webp", "Hopewell Health Solutions sign at 1420 Main Street in South Glastonbury"],
       ["1420-3.webp", "Welcome window at the South Glastonbury office"],
@@ -206,6 +213,6 @@ export const OFFERS = {
   "teen-tween": { t: "Tween & Teen IOP", href: "/programs/teen-tween-iop/", icon: "sparkles" },
   therapy: { t: "1:1 Therapy", href: "/programs/counseling/", icon: "chat" },
   meds: { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
-  addiction: { t: "Addiction Treatment", href: "/programs/substance-use-iop/", icon: "link" },
+  addiction: { t: "Addiction Treatment", href: "/programs/addiction-iop/", icon: "link" },
 };
 export const OFFER_ORDER = ["php", "iop", "womens", "teen-tween", "therapy", "meds", "addiction"];

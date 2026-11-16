@@ -849,3 +849,73 @@
 @keyframes hw-rv { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 9px)); } }
 @media (max-width: 640px) { .hw .rv-loop .rv { flex-basis: 290px; } }
 @media (prefers-reduced-motion: reduce) { .hw .rv-loop { overflow-x: auto; } .hw .rv-loop-track { animation: none; } }
+.hw .lc-svc { list-style: none; margin: 4px 0 0; padding: 10px 0 0; border-top: 1px solid var(--hw-line); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.hw .lc-svc li { position: relative; padding-left: 14px; font-size: 13.5px; font-weight: 600; }
+.hw .lc-svc li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--hw-bright); }
+.hw .lc-svc a { color: var(--hw-navy); text-decoration: none; }
+.hw .lc-svc a:hover { color: var(--hw-blue); text-decoration: underline; }
+/* Location cards: photo only (no map), taller photo */
+.hw .lc-photo { height: 230px; }
+/* No decorative circle arcs (user 2026-11-16) */
+.hw .closing-arc, .hw .vc-arcs { display: none; }
+/* Reviews: cards stretch to the score panel height, link under the row */
+.hw .rv-layout { align-items: stretch; }
+.hw .rv-loop { justify-content: space-between; }
+.hw .rv-loop-track { flex: 1; align-items: stretch; }
+.hw .rv-loop .rv { height: auto; }
+.hw .rv-loop .rv-more { margin: 0 0 0 auto; }
+
+/* ===== Homepage brief (2026-11-16) ===== */
+@media (max-width: 999px) { .hw .hero-form.is-keep { display: block; } .hw .ins-form.is-keep { display: block; } }
+/* What we help with: conditions wheel + problem-led cards */
+.hw .wh-grid { display: grid; grid-template-columns: 0.8fr 1.6fr; gap: clamp(24px, 4vw, 48px); align-items: start; }
+.hw .wh-wheel { margin: 0; position: sticky; top: 130px; padding: 22px; border-radius: 28px; background: #fff; border: 1px solid var(--hw-line); box-shadow: 0 18px 40px rgba(0,29,55,.08); }
+.hw .wh-wheel svg { width: 100%; height: auto; display: block; }
+.hw .wh-seg { transition: transform .2s, opacity .2s; transform-origin: 170px 170px; }
+.hw .wh-wheel a:hover .wh-seg, .hw .wh-wheel a:focus .wh-seg { transform: scale(1.04); opacity: .92; }
+.hw .wh-wheel figcaption { margin-top: 10px; text-align: center; font-size: 13.5px; font-weight: 600; color: var(--hw-slate); }
+.hw .wh-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.hw .wh-card { position: relative; display: grid; gap: 10px; align-content: start; padding: 24px 20px 20px; border-radius: 20px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .wh-card::before { content: ""; position: absolute; top: 0; left: 20px; right: 20px; height: 5px; border-radius: 0 0 4px 4px; background: var(--bar-c); }
+.hw .wh-icon { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--bar-c) 12%, white); color: var(--bar-c); }
+.hw .wh-q { font-family: var(--hw-head); font-weight: 700; font-size: 15px; line-height: 1.35; color: var(--hw-slate); font-style: italic; }
+.hw .wh-card h3 { font-size: 18.5px; margin-top: 4px; }
+.hw .wh-d { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--hw-body); }
+@media (max-width: 1180px) { .hw .wh-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 999px) { .hw .wh-grid { grid-template-columns: 1fr; } .hw .wh-wheel { position: static; max-width: 420px; margin: 0 auto; } }
+@media (max-width: 600px) { .hw .wh-cards { grid-template-columns: 1fr; } }
+/* Why in-person */
+.hw .ip-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 4vw, 52px); align-items: center; }
+.hw .ip-points { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; }
+.hw .ip-points li { display: flex; align-items: flex-start; gap: 10px; font-family: var(--hw-head); font-weight: 700; font-size: 15.5px; color: var(--hw-navy); }
+.hw .ip-points svg { color: var(--hw-bright); flex: none; margin-top: 2px; }
+@media (max-width: 999px) { .hw .ip-grid { grid-template-columns: 1fr; } .hw .ip-points { grid-template-columns: 1fr; } }
+/* Admissions steps + note */
+.hw .ad-steps { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+.hw .ad-steps li { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 18px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .ad-steps li > span:last-child { display: grid; gap: 2px; font-size: 15.5px; color: var(--hw-slate); }
+.hw .ad-steps strong { font-family: var(--hw-head); font-size: 18px; color: var(--hw-navy); }
+.hw .ad-note { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--hw-mist); font-size: 15px; color: var(--hw-body); }
+.hw .ad-note svg { color: var(--hw-blue); flex: none; margin-top: 2px; }
+/* Team teaser */
+.hw .tt-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.hw .tt-grid .tm-card { aspect-ratio: 4 / 5; }
+@media (max-width: 999px) { .hw .tt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .hw .tt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* FAQ groups */
+.hw .faq-groups { display: grid; gap: 26px; }
+.hw .faq-gh { font-size: 16px; color: var(--hw-blue); margin-bottom: 10px; }
+/* Final CTA with short form */
+.hw .fc-band { background: linear-gradient(150deg, var(--hw-navy), var(--hw-night)); color: #dce6f1; }
+.hw .fc-band h2 { color: #fff; }
+.hw .fc-band .lede { margin-top: 14px; color: #dce6f1; }
+.hw .fc-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hw .fc-crisis { margin-top: 16px; font-size: 15px; color: #b9cbe0; }
+.hw .fc-crisis a { color: #fff; font-weight: 800; }
+@media (max-width: 999px) { .hw .fc-grid { grid-template-columns: 1fr; } }
+/* Sticky mobile "Check coverage" */
+.hw-sticky-cta { display: none; }
+@media (max-width: 767px) {
+  .hw-sticky-cta { position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 50; display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 20px; border-radius: 999px; background: var(--hw-bright); color: #fff; font-family: var(--hw-head); font-weight: 800; font-size: 15px; text-decoration: none; box-shadow: 0 10px 28px rgba(0,29,55,.35); transition: opacity .2s, transform .2s; }
+  .hw-sticky-cta.is-hidden { opacity: 0; transform: translateY(20px); pointer-events: none; }
+}

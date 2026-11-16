@@ -2,6 +2,18 @@
 // video's thumbnail (public/Assets/videos/). Descriptions summarise the YouTube description; never put words in a
 // speaker's mouth.
 export const VIDEOS = [
+  { yt: "7ISgjKEBoZo", img: "story-138-days", name: "138 days sober", type: "IOP client story", program: "addiction", date: "2026-08-04", duration: "PT2M52S", len: "2:52",
+    title: "138 Days Sober | How IOP Helped Me Build a New Life",
+    desc: "An IOP graduate shares the tools, confidence and support she found in treatment, in her own words." },
+  { yt: "eX6WO-MRdPs", img: "story-sisterhood", name: "“I found my sisterhood”", type: "Women’s Wellness IOP client story", program: "womens", date: "2026-08-04", duration: "PT0M59S", len: "0:59",
+    title: "\"I Found My Sisterhood\" | Women's Wellness IOP Testimonial",
+    desc: "A Women’s Wellness IOP participant on finding healing and a sense of sisterhood with other women." },
+  { yt: "ZsyYzk9epww", img: "tour-welcome", name: "Welcome to Hopewell", type: "Tour", program: "tour", date: "2026-04-01", duration: "PT0M16S", len: "0:16",
+    title: "Welcome to Hopewell Health Solutions",
+    desc: "A quick tour of our Glastonbury spaces, designed with comfort, safety and healing in mind." },
+  { yt: "loSaQbRc-oE", img: "tour-teen-tween", name: "Teen & Tween IOP tour", type: "Tour", program: "tour", date: "2026-03-06", duration: "PT0M34S", len: "0:34",
+    title: "Teen and Tween IOP tour",
+    desc: "Our clinicians show the thoughtful touches that make our teen and tween IOP space feel safe and welcoming." },
   { yt: "1NnnRKONzhg", img: "podcast-ep2-luke", name: "Luke’s story", type: "Podcast · Episode 2", date: "2026-10-20", duration: "PT24M31S", len: "24:31",
     title: "Hope, Health and Healing | Episode 2: Luke’s Powerful Story of Recovery",
     desc: "Luke shares his personal story of recovery: the challenges he faced, what helped, and what recovery means to him today." },
@@ -32,6 +44,7 @@ export const VIDEOS = [
 ];
 // Client stories only: the podcast has its own section and page (user, 2026-11-16).
 export const STORIES = VIDEOS.filter((v) => v.type.includes("client story"));
+export const TOURS = VIDEOS.filter((v) => v.type === "Tour");
 export const PODCAST = VIDEOS.filter((v) => v.type.startsWith("Podcast"));
 export const videoSchema = (v, site) => ({
   "@context": "https://schema.org", "@type": "VideoObject", name: v.title, description: v.desc,

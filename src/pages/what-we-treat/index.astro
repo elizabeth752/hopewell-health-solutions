@@ -69,7 +69,7 @@ const groups = [
 const substanceUse = [
   { t: "Addiction & Substance Use Disorder", href: "/what-we-treat/substance-use-disorder/", img: "/Assets/AdobeStock_413328337-1747245457937.webp", icon: "pill", bar: "#0b2f55",
     d: "Addiction treatment, from our addiction PHP and IOP to ongoing outpatient care.",
-    more: `Our <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> combines SUD groups, individual therapy and medication support, with step-down care for people leaving rehab.` },
+    more: `Our <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> combines SUD groups, individual therapy and medication support, with step-down care for people leaving rehab.` },
   { t: "Alcohol Addiction", href: "/what-we-treat/alcohol/", img: B + "are-you-a-high-functioning-alcoholic.webp", icon: "swap", bar: "#b6863c",
     d: "Compassionate alcohol addiction treatment, from stabilization to recovery.",
     more: `For problem drinking and functioning alcoholism, with day and evening schedules that fit working adults.` },
@@ -88,7 +88,7 @@ const who = [
   { icon: "compass", t: "Adults", d: `Day and evening care that fits around work and parenting, from weekly <a class="inl" href="/programs/counseling/">counseling</a> to the <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>.`, bar: "#0b2f55" },
   { icon: "heart", t: "Women", d: `Women-only groups in the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, plus care for postpartum depression and anxiety.`, bar: "#b6863c" },
   { icon: "shield", t: "First responders", d: `A <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> for police, fire, EMS and dispatch, with clinicians who understand the job.`, bar: "#265489" },
-  { icon: "link", t: "People facing addiction", d: `The <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave in Glastonbury and in Westbrook, including step-down care after rehab.`, bar: "#5c7c6b" },
+  { icon: "link", t: "People facing addiction", d: `The <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave in Glastonbury and in Westbrook, including step-down care after rehab.`, bar: "#5c7c6b" },
 ];
 const approaches = [
   { icon: "chat", t: "Evidence-based therapy", d: `CBT, <a class="inl" href="/treatment-methods/dbt/">DBT</a>, <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, accelerated resolution therapy, play therapy and the Gottman Method for couples.` },
@@ -101,7 +101,7 @@ const approaches = [
 const faqs = [
   ["Do I need a diagnosis to reach out?", `No. You don’t need a diagnosis to reach out. Tell us what’s going on, and our Connecticut team will help you find the right care. If an evaluation would help, we offer <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`],
   ["What ages do you treat?", `We care for clients aged 4 and older. Children and teens can start with <a class="inl" href="/programs/counseling/">counseling</a> or <a class="inl" href="/programs/medication-management/">medication management</a>, and our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> serves ages 8–17 after school.`],
-  ["Where do you offer addiction treatment?", `Addiction treatment, including our <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> and addiction PHP, is offered in person at our Downtown Glastonbury office (300 Hebron Avenue) and our Westbrook office (70 Essex Road), with telehealth available. Mental health care is offered at all six offices.`],
+  ["Where do you offer addiction treatment?", `Addiction treatment, including our <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> and addiction PHP, is offered in person at our Downtown Glastonbury office (300 Hebron Avenue) and our Westbrook office (70 Essex Road), with telehealth available. Mental health care is offered at all six offices.`],
   ["Do you treat more than one condition at a time?", `Yes. Many people live with more than one condition, such as depression with anxiety, or addiction with trauma. Our <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a> care treats them together, with one team and one plan.`],
   ["How do I know which level of care I need?", `It depends on how much your symptoms affect daily life. Weekly <a class="inl" href="/programs/counseling/">counseling</a> fits many people; the <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> adds about three hours a day, four days a week; and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> offers about six hours a day, Monday through Friday. A clinical assessment helps match you to the right level.`],
   ["Do you offer telehealth?", `Yes. Our care happens in person across our Connecticut offices, with telehealth when you need it.`],
@@ -164,7 +164,7 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
     <section class="section is-navy" id="addiction">
       <svg class="hero-arcs" style="left:auto;right:-380px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
       <div class="container">
-        <div class="sec-head"><h2>Addiction treatment</h2><p class="lede">Addiction treatment in Glastonbury and Westbrook, with the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, step-down care after rehab, and integrated care that treats substance use alongside the mental health conditions that so often go with it.</p></div>
+        <div class="sec-head"><h2>Addiction treatment</h2><p class="lede">Addiction treatment in Glastonbury and Westbrook, with the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, step-down care after rehab, and integrated care that treats substance use alongside the mental health conditions that so often go with it.</p></div>
         <div class="wt-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
           {substanceUse.map((c) => (
             <a href={c.href} class="wt-card" style={`--bar:${c.bar}`}>

@@ -7,7 +7,7 @@
 
 const FREQ = [["Not at all", 0], ["Several days", 1], ["More than half the days", 2], ["Nearly every day", 3]];
 const YESNO = [["No", 0], ["Yes", 1]];
-const ADDICTION_IOP = `<a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a>`;
+const ADDICTION_IOP = `<a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>`;
 
 export const QUIZZES = {
   anxiety: {
