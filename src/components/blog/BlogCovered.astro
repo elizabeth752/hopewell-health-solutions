@@ -1,0 +1,17 @@
+---
+// Insurance strip inside a post (Corner Canyon BlogCovered): the plans Hopewell is in-network with, scrolling, linking
+// to the free benefits check. Same logos as the sitewide Insurance section.
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/home-b/insurance/bcbs.svg"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["ConnectiCare","/Assets/home-b/insurance/connecticare.svg"],["Harvard Pilgrim","/Assets/home-b/insurance/harvard-pilgrim.svg"],
+  ["Optum","/Assets/home-b/insurance/optum.svg"],["TRICARE","/Assets/Insurance/TRICARE.webp"],
+  ["UMR","/Assets/home-b/insurance/umr.svg"],["UnitedHealthcare","/Assets/home-b/insurance/unitedhealthcare.svg"],
+];
+---
+<aside class="bcv" data-no-tts aria-label="Insurance we accept">
+  <div class="bcv-head"><strong>In-network with most major plans</strong><a class="inl" href="/admissions/#verify">Check my coverage for free</a></div>
+  <div class="marquee"><div class="marquee-track">
+    {[0, 1].map((k) => insurers.map(([n, src]) => <span class="payer" aria-hidden={k === 1 ? "true" : undefined}><img src={src} alt={k === 0 ? n : ""} width="140" height="36" loading="lazy" /></span>))}
+  </div></div>
+</aside>

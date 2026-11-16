@@ -1,30 +1,23 @@
 ---
-// Closing call to action above the footer: navy panel with a real team photo, phone, insurance button, trust marks and
-// the crisis line.
+// Closing call to action (Corner Canyon pattern): stone band, heading + lede + crisis line on the left, call and
+// insurance buttons on the right. `image`/`imageAlt` are accepted for older callers but no longer shown.
 import Icon from "../Icon.astro";
-import { PHONE, GOOGLE } from "../../data/site.js";
+import { PHONE } from "../../data/site.js";
 interface Props { heading?: string; lede?: string; image?: string; imageAlt?: string; verifyHref?: string }
-const { heading = "You Don’t Have to Do This Alone.", lede = "Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. There is hope to heal, and it can start right now.", image = "/Assets/hhs-2026/team-celebrating-outside.webp", imageAlt = "The Hopewell Health Solutions team", verifyHref = "#verify" } = Astro.props;
+const { heading = "You Don’t Have to Do This Alone.", lede = "Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. There is hope to heal, and it can start right now.", verifyHref = "#verify" } = Astro.props;
 ---
-<section class="cta-band">
-  <div class="container">
-    <div class="cta-card">
-      <div class="cta-copy">
-        <h2>{heading}</h2>
-        <p class="lede" set:html={lede} />
-        <div class="cta-actions">
-          <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
-          <a href={verifyHref} class="btn btn-ghost only-d">Verify your insurance</a>
-          <a href="#verify-m" class="btn btn-ghost only-m">Verify your insurance</a>
-        </div>
-        <ul class="cta-trust">
-          <li><img src="/Assets/home-b/joint-commission-seal.webp" alt="" width="40" height="40" />Joint Commission accredited</li>
-          <li><img src="/Assets/home-b/google-g.svg" alt="" width="22" height="22" />{GOOGLE.rating} on Google · {GOOGLE.count} reviews</li>
-          <li><Icon name="shield" class="h-5 w-5" />Free, confidential insurance check</li>
-        </ul>
-        <p class="cta-crisis">In a crisis? Call or text <a href="tel:988">988</a>, or call 911.</p>
-      </div>
-      <div class="cta-media"><img src={image} alt={imageAlt} width="1680" height="1260" loading="lazy" /></div>
+<section class="section is-stone closing">
+  <svg class="closing-arc" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="190" /><circle cx="200" cy="200" r="130" /></svg>
+  <div class="container closing-grid">
+    <div>
+      <h2>{heading}</h2>
+      <p class="lede" set:html={lede} />
+      <p class="closing-crisis">In crisis? Call or text <a href="tel:988">988</a> or call <a href="tel:911">911</a>.</p>
+    </div>
+    <div class="closing-ctas">
+      <a href={PHONE.href} class="btn btn-navy"><Icon name="phone" />Call {PHONE.display}</a>
+      <a href={verifyHref} class="btn btn-outline only-d">Verify my insurance</a>
+      <a href={verifyHref === "#verify" ? "#verify-m" : verifyHref} class="btn btn-outline only-m">Verify my insurance</a>
     </div>
   </div>
 </section>

@@ -1,19 +1,54 @@
 ---
-// Week-at-a-glance card (Corner Canyon level card): coloured head with the stat and a 7-day chart, body slot below.
+// Weekly timetable card: a real Mon–Sun grid on a 7 AM–9 PM axis, with one coloured block per track at its actual
+// hours (parsed from `tracks` / `note`), plus a legend. Same props as before, so every program page keeps working.
 import Icon from "../Icon.astro";
 interface Props { title: string; stat: string; note: string; days: number[]; max?: number; icon?: string; tone?: 1 | 2 | 3; tracks?: [string, string][] }
-const { title, stat, note, days, max = 6, icon = "calendar", tone = 2, tracks = [] } = Astro.props;
+const { title, stat, note, days, icon = "calendar", tracks = [] } = Astro.props;
+const START = 7, END = 21, SPAN = END - START;
+const parse = (txt = "") => {
+  const m = txt.replace(/\s+/g, " ").match(/(\d{1,2})(?::(\d\d))?\s*(AM|PM)?\s*[–-]\s*(\d{1,2})(?::(\d\d))?\s*(AM|PM)/i);
+  if (!m) return null;
+  const to24 = (h, min, mer) => { let x = +h % 12 + (+(min || 0)) / 60; if (/pm/i.test(mer)) x += 12; return x; };
+  const endMer = m[6]; let s = to24(m[1], m[2], m[3] || endMer); const e = to24(m[4], m[5], endMer);
+  if (!m[3] && s > e) s -= 12; // "11–2 PM"
+  return [s, e];
+};
+const fmt = (h) => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); const t = ((hh + 11) % 12) + 1; return `${t}${mm ? ":" + String(mm).padStart(2, "0") : ""} ${hh >= 12 ? "PM" : "AM"}`; };
+const COLORS = ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55"];
+let blocks = tracks.map(([a, b], i) => { const r = parse(b) || parse(a); return r ? { label: a, sub: b, s: r[0], e: r[1], c: COLORS[i % COLORS.length] } : null; }).filter(Boolean);
+if (!blocks.length) {
+  const r = parse(note); const hours = Math.max(...days);
+  blocks = [{ label: title, sub: note, s: r ? r[0] : 9, e: r ? r[1] : 9 + hours, c: COLORS[0] }];
+}
+const active = days.map((d) => d > 0);
+const nDays = active.filter(Boolean).length;
+const weeks = (note.match(/(\d+\s*[–-]\s*\d+|about \d+|\d+)\s*weeks?/i) || [])[0];
+const ticks = [8, 12, 16, 20];
+const pct = (h) => ((h - START) / SPAN) * 100;
 ---
-<article class={`level-card lv-${tone} pg-sched`}>
-  <div class="level-head">
-    <div class="level-title"><span class="level-icon"><Icon name={icon} class="h-[22px] w-[22px]" /></span><h3>{title}</h3></div>
-    <p class="level-stat"><strong>{stat}</strong><span>{note}</span></p>
-    <div class="week" aria-hidden="true">
-      {["M", "T", "W", "T", "F", "S", "S"].map((d, j) => (
-        <span class="week-day"><span class="week-track"><span class="week-fill" style={`--h:${(days[j] / max) * 100}%`}></span></span><span class="week-label">{d}</span></span>
-      ))}
-    </div>
+<article class="ts">
+  <header class="ts-head">
+    <div class="ts-title"><span class="ts-icon"><Icon name={icon} class="h-5 w-5" /></span><h3>{title}</h3></div>
+    <ul class="ts-stats">
+      <li><strong>{stat}</strong><span>{stat.includes("min") ? "per session" : "a day"}</span></li>
+      <li><strong>{nDays}</strong><span>{nDays === 1 ? "day a week" : "days a week"}</span></li>
+      {weeks && <li><strong>{weeks.replace(/\s*weeks?/i, "")}</strong><span>weeks</span></li>}
+    </ul>
+  </header>
+  <div class="ts-grid" role="img" aria-label={`${title}: ${blocks.map((b) => `${b.label} ${fmt(b.s)} to ${fmt(b.e)}`).join(", ")}, ${nDays} days a week`}>
+    <div class="ts-axis">{ticks.map((t) => <span style={`top:${pct(t)}%`}>{fmt(t).replace(":00", "").replace(" ", "")}</span>)}</div>
+    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d, j) => (
+      <div class:list={["ts-day", !active[j] && "is-off"]}>
+        <span class="ts-dname">{d}</span>
+        <div class="ts-col">
+          {ticks.map((t) => <i class="ts-line" style={`top:${pct(t)}%`}></i>)}
+          {active[j] && blocks.map((b) => <span class="ts-block" style={`top:${pct(b.s)}%;height:${pct(b.e) - pct(b.s)}%;--c:${b.c}`}></span>)}
+        </div>
+      </div>
+    ))}
   </div>
-  {tracks.length > 0 && <ul class="pg-tracks">{tracks.map(([a, b]) => <li><Icon name="clock" class="h-5 w-5" /><span><strong>{a}</strong>{b}</span></li>)}</ul>}
-  <div class="level-body"><slot /></div>
+  <ul class="ts-legend">
+    {blocks.map((b) => <li><i style={`background:${b.c}`}></i><span><strong>{b.label}</strong>{fmt(b.s)}–{fmt(b.e)}{b.sub && !/^\s*\d/.test(b.sub) && b.sub !== b.label ? ` · ${b.sub.replace(/^[^·]*\d\s*(AM|PM)\s*·?\s*/i, "")}` : ""}</span></li>)}
+  </ul>
+  <div class="ts-body"><slot /></div>
 </article>

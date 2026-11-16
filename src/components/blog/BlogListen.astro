@@ -1,0 +1,65 @@
+---
+// "Listen to this article" (ported from Corner Canyon). Hopewell has no recorded audio, so this
+// reads the article aloud with the browser's own speech engine: no third-party service, nothing
+// sent anywhere. Reads headings, paragraphs and list items in .bp-content, skipping the inserted
+// blocks ([data-no-tts]). Hidden when the browser has no speech support.
+interface Props { minutes: number }
+const { minutes } = Astro.props;
+---
+<div class="bl" hidden data-bl>
+  <button type="button" class="bl-play" aria-label="Listen to this article" data-bl-play>
+    <svg class="bl-i-play" width="18" height="18" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="currentColor" /></svg>
+    <svg class="bl-i-pause" width="18" height="18" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z" fill="currentColor" /></svg>
+  </button>
+  <div class="bl-copy">
+    <strong>Listen to this article</strong>
+    <span><span data-bl-state>{minutes} min listen</span> · read aloud by your browser</span>
+  </div>
+  <div class="bl-bar" aria-hidden="true"><span data-bl-progress></span></div>
+  <button type="button" class="bl-speed" data-bl-speed aria-label="Playback speed">1x</button>
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>("[data-bl]");
+  const synth = window.speechSynthesis;
+  if (box && synth && "SpeechSynthesisUtterance" in window) {
+    box.hidden = false;
+    const playBtn = box.querySelector<HTMLButtonElement>("[data-bl-play]")!;
+    const speedBtn = box.querySelector<HTMLButtonElement>("[data-bl-speed]")!;
+    const state = box.querySelector<HTMLElement>("[data-bl-state]")!;
+    const bar = box.querySelector<HTMLElement>("[data-bl-progress]")!;
+    const initial = state.textContent;
+    const speeds = [1, 1.25, 1.5, 0.75];
+    let rate = 1, idx = 0, playing = false, started = false;
+    const chunks: string[] = [];
+    document.querySelectorAll<HTMLElement>(".bp-content h2, .bp-content h3, .bp-content p, .bp-content li").forEach((el) => {
+      if (el.closest("[data-no-tts]")) return;
+      const t = (el.innerText || "").replace(/\s*\[\d+(?:[,–-]\s*\d+)*\]/g, "").replace(/\s+/g, " ").trim();
+      if (!t) return;
+      // Chrome stops long utterances, so split long paragraphs into sentences.
+      if (t.length < 220) chunks.push(t); else chunks.push(...(t.match(/[^.!?]+[.!?]+["”’)]*\s*|[^.!?]+$/g) ?? [t]).map((s) => s.trim()).filter(Boolean));
+    });
+    const voice = () => synth.getVoices().find((v) => /en-US/i.test(v.lang) && /natural|google|samantha|aria|jenny/i.test(v.name)) ?? synth.getVoices().find((v) => /^en/i.test(v.lang));
+    const speak = () => {
+      if (idx >= chunks.length) { stop(true); return; }
+      const u = new SpeechSynthesisUtterance(chunks[idx]);
+      const v = voice(); if (v) u.voice = v;
+      u.rate = rate; u.lang = "en-US";
+      u.onend = () => { if (!playing) return; idx++; bar.style.width = `${(idx / chunks.length) * 100}%`; speak(); };
+      synth.speak(u);
+    };
+    const set = (on: boolean) => { playing = on; box.classList.toggle("is-playing", on); playBtn.setAttribute("aria-label", on ? "Pause" : "Listen to this article"); state.textContent = on ? "Playing" : started ? "Paused" : initial; };
+    const stop = (done = false) => { synth.cancel(); set(false); if (done) { idx = 0; started = false; bar.style.width = "0"; state.textContent = initial; } };
+    playBtn.addEventListener("click", () => {
+      if (playing) { playing = false; synth.cancel(); set(false); return; }
+      started = true; set(true); synth.cancel(); speak();
+    });
+    speedBtn.addEventListener("click", () => {
+      rate = speeds[(speeds.indexOf(rate) + 1) % speeds.length];
+      speedBtn.textContent = `${rate}x`;
+      if (playing) { synth.cancel(); playing = true; speak(); }
+    });
+    window.addEventListener("pagehide", () => synth.cancel());
+  }
+</script>
+

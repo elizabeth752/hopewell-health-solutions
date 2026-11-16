@@ -1,0 +1,16 @@
+---
+// Helpful closing (Corner Canyon BlogClosing, Hopewell facts): what to have ready for the first call, then one button.
+import { PHONE } from "../../data/site.js";
+const items = [
+  "Your insurance card (front and back), plus your full name and date of birth",
+  "What’s been happening: symptoms, any diagnoses and treatment you’ve had before",
+  "The medications you take now, and any recent alcohol or drug use",
+  "Which office or schedule works for you (day, evening or telehealth)",
+];
+---
+<aside class="bcl" data-no-tts>
+  <strong class="bcl-h">Ready to talk? Have these handy</strong>
+  <ul>{items.map((t) => <li><span class="sv-tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>{t}</li>)}</ul>
+  <p>A real person answers, helps you choose the right level of care, and checks your benefits for free.</p>
+  <div class="bcl-ctas"><a href={PHONE.href} class="btn btn-blue">Call {PHONE.display}</a><a href="/admissions/#verify" class="btn btn-outline">Verify my insurance</a></div>
+</aside>

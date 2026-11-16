@@ -1,0 +1,88 @@
+---
+// "Find your next step" (Corner Canyon BlogQuiz, Hopewell version): three routing questions, then a matched program and
+// the offices that offer it (locations.js `offers`; addiction only at 300 Hebron Ave + Westbrook). Not a self-assessment;
+// answers stay in the browser.
+import { PHONE } from "../../data/site.js";
+import { locations, OFFERS } from "../../data/locations.js";
+const Q = [
+  { k: "sub", q: "What would you like help with?", o: [["mood", "Depression or anxiety"], ["trauma", "Trauma or PTSD"], ["addiction", "Alcohol or drug use"], ["child", "My child or teen"], ["adhd", "ADHD or a diagnosis"], ["unsure", "I’m not sure yet"]] },
+  { k: "care", q: "What kind of support are you looking for?", o: [["unsure", "I’m not sure yet"], ["therapy", "Weekly therapy"], ["meds", "Medication / psychiatry"], ["iop", "A few hours a day (IOP)"], ["php", "A full-day program (PHP)"]] },
+  { k: "where", q: "Where would you like to be seen?", o: [["glastonbury", "Glastonbury area"], ["hartford", "West Hartford"], ["hampton", "East Hampton"], ["shore", "Westbrook / the shoreline"], ["tele", "Telehealth is fine"]] },
+];
+// Office data handed to the browser: slug, name, city, offers.
+const OFF = locations.map((l) => ({ s: l.slug, n: l.name, c: `${l.street}, ${l.city}`, o: l.offers || [] }));
+const PROG = Object.fromEntries(Object.entries(OFFERS).map(([k, v]) => [k, [v.t, v.href]]));
+---
+<aside class="ns" data-ns data-no-tts aria-label="Find your next step" data-off={JSON.stringify(OFF)} data-prog={JSON.stringify(PROG)}>
+  <div class="ns-head">
+    <strong>Find your next step</strong>
+    <span class="ns-note">Three questions, about 20 seconds. This isn’t a diagnosis, and your answers stay on this page.</span>
+  </div>
+  {Q.map((s, i) => (
+    <fieldset class="ns-step" data-step={i} hidden={i > 0}>
+      <legend><span class="ns-n">{i + 1} of 3</span>{s.q}</legend>
+      <div class="ns-opts">
+        {s.o.map(([v, l]) => <label class="ns-opt"><input type="radio" name={`ns-${s.k}`} value={v} data-k={s.k} /><span>{l}</span></label>)}
+      </div>
+      {i > 0 && <button type="button" class="ns-back" data-back>&larr; Back</button>}
+    </fieldset>
+  ))}
+  <div class="ns-result" data-result hidden aria-live="polite">
+    <a class="ns-prog" data-prog-link href="/programs/"><strong data-prog-name>Our programs</strong><span data-prog-body></span></a>
+    <p class="ns-where" data-where></p>
+    <p class="ns-ins">We’re in-network with most major plans. Share your insurance card and we’ll check your benefits for free, usually within minutes.</p>
+    <div class="ns-ctas">
+      <a href="/admissions/#verify" class="btn btn-blue">Verify my insurance</a>
+      <a href={PHONE.href} class="btn btn-ghost">Call {PHONE.display}</a>
+    </div>
+    <button type="button" class="ns-back" data-restart>Start over</button>
+  </div>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-ns]").forEach((root) => {
+    const OFF: { s: string; n: string; c: string; o: string[] }[] = JSON.parse(root.dataset.off || "[]");
+    const PROG: Record<string, [string, string]> = JSON.parse(root.dataset.prog || "{}");
+    const BODY: Record<string, string> = {
+      therapy: "One-on-one sessions with a licensed therapist, in person or by telehealth.",
+      meds: "Psychiatric medication management for ages 4 and up, with board-certified prescribers.",
+      iop: "Structured group and individual therapy about three hours a day, four days a week, day or evening.",
+      php: "Full-day treatment, about six hours a day, Monday through Friday.",
+      addiction: "Addiction and Substance Use IOP, with mental health care alongside it and step-down care after rehab.",
+      "teen-tween": "After-school IOP for ages 8–17, with the family part of the work.",
+      womens: "Trauma-informed, DBT-based groups for women, morning and evening.",
+    };
+    const NEAR: Record<string, string[]> = { glastonbury: ["glastonbury-ct-2", "glastonbury-ct", "glastonbury-ct-3"], hartford: ["west-hartford-ct"], hampton: ["east-hampton-ct"], shore: ["westbrook-ct"], tele: [] };
+    const steps = [...root.querySelectorAll<HTMLFieldSetElement>("[data-step]")];
+    const result = root.querySelector<HTMLElement>("[data-result]")!;
+    const ans: Record<string, string> = {};
+    let at = 0;
+    const show = (i: number) => { steps.forEach((s, j) => (s.hidden = j !== i)); result.hidden = i < steps.length; };
+    root.querySelectorAll<HTMLInputElement>("input[type=radio]").forEach((inp) => inp.addEventListener("change", () => {
+      ans[inp.dataset.k!] = inp.value;
+      at = Math.min(at + 1, steps.length);
+      if (at === steps.length) render();
+      show(at);
+    }));
+    root.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => { at = Math.max(0, at - 1); show(at); }));
+    root.querySelector("[data-restart]")!.addEventListener("click", () => { at = 0; root.querySelectorAll<HTMLInputElement>("input").forEach((i) => (i.checked = false)); show(0); });
+    function render() {
+      let key = ans.care === "unsure" ? "therapy" : ans.care;
+      if (ans.sub === "addiction") key = "addiction";
+      else if (ans.sub === "child" && (ans.care === "iop" || ans.care === "php" || ans.care === "unsure")) key = "teen-tween";
+      else if (ans.sub === "adhd" && ans.care === "unsure") key = "meds";
+      const [name, href] = PROG[key] || ["Our programs", "/programs/"];
+      const link = root.querySelector<HTMLAnchorElement>("[data-prog-link]")!;
+      link.href = href;
+      root.querySelector("[data-prog-name]")!.textContent = key === "addiction" ? "Addiction and Substance Use IOP" : name;
+      root.querySelector("[data-prog-body]")!.textContent = BODY[key] || "";
+      const offering = OFF.filter((o) => o.o.includes(key));
+      const near = offering.filter((o) => (NEAR[ans.where] || []).includes(o.s));
+      const list = (near.length ? near : offering).map((o) => `${o.n} (${o.c})`);
+      const where = root.querySelector<HTMLElement>("[data-where]")!;
+      if (ans.where === "tele" && (key === "therapy" || key === "meds")) where.textContent = "Available by telehealth, or in person at all six offices.";
+      else if (!offering.length) where.textContent = "Our admissions team will match you to the right office.";
+      else where.textContent = `${near.length ? "Closest office" + (list.length > 1 ? "s" : "") : "Offered at"}: ${list.join(" · ")}`;
+    }
+  });
+</script>

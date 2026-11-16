@@ -1,0 +1,39 @@
+---
+// Care options carousel (Corner Canyon BlogPrograms, Hopewell version): real program photos, where each meets, and a
+// link to the page. The program that fits the post goes first. Desktop scrolls sideways with arrow buttons; phones
+// get compact stacked rows (no swipe pager).
+interface Props { first?: string; heading?: string }
+const { first, heading = "Explore care at Hopewell" } = Astro.props;
+const P = "/Assets/hhs-2026/";
+const LIST = [
+  { k: "iop", t: "Adult IOP", d: "About three hours a day, four days a week, day or evening.", where: "300 Hebron Ave & Westbrook", img: P + "iop-room-group-photo.webp", href: "/programs/adult-mental-health-iop/" },
+  { k: "php", t: "Partial Hospitalization (PHP)", d: "About six hours a day, Monday through Friday.", where: "300 Hebron Ave, Glastonbury", img: P + "php-group-room.webp", href: "/programs/partial-hospitalization-program/" },
+  { k: "addiction", t: "Addiction and Substance Use IOP", d: "Addiction care with mental health alongside it, including step-down after rehab.", where: "300 Hebron Ave & Westbrook", img: P + "iop-group-session.webp", href: "/programs/substance-use-iop/" },
+  { k: "womens", t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based groups for women, morning and evening.", where: "300 Hebron Ave & Westbrook", img: P + "group-room-bright.webp", href: "/programs/womens-wellness-iop/" },
+  { k: "teen", t: "Tween & Teen IOP", d: "After-school support for ages 8–17, with the family in the work.", where: "1420 Main St, South Glastonbury", img: P + "teen-iop-outside.webp", href: "/programs/teen-tween-iop/" },
+  { k: "responder", t: "First Responder IOP", d: "For police, fire, EMS and dispatch, with clinicians who understand the job.", where: "Glastonbury", img: "/Assets/service/first-responder-session.webp", href: "/programs/first-responder-iop/" },
+  { k: "meds", t: "Medication Management", d: "Psychiatric prescribing for ages 4 and up.", where: "All six offices & telehealth", img: P + "south-glastonbury-med-waiting-room.webp", href: "/programs/medication-management/" },
+  { k: "therapy", t: "Counseling", d: "Individual and family therapy, in person or by telehealth.", where: "All six offices & telehealth", img: P + "westbrook-therapy-office.webp", href: "/programs/counseling/" },
+];
+const list = [...LIST].sort((a, b) => (a.k === first ? -1 : b.k === first ? 1 : 0));
+---
+<aside class="bpg" data-bpg data-no-tts aria-label={heading}>
+  <div class="bpg-head">
+    <strong>{heading}</strong>
+    <div class="bpg-nav"><button type="button" data-dir="-1" aria-label="Previous programs">&larr;</button><button type="button" data-dir="1" aria-label="More programs">&rarr;</button></div>
+  </div>
+  <ul class="bpg-track">
+    {list.map((p) => (
+      <li><a class="bpg-card" href={p.href}>
+        <img src={p.img} alt="" width="600" height="400" loading="lazy" />
+        <span class="bpg-body"><strong>{p.t}</strong><span>{p.d}</span><small>{p.where}</small></span>
+      </a></li>
+    ))}
+  </ul>
+</aside>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-bpg]").forEach((r) => {
+    const t = r.querySelector<HTMLElement>(".bpg-track")!;
+    r.querySelectorAll<HTMLButtonElement>("[data-dir]").forEach((b) => b.addEventListener("click", () => t.scrollBy({ left: Number(b.dataset.dir) * t.clientWidth * 0.8, behavior: "smooth" })));
+  });
+</script>

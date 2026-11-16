@@ -1,0 +1,24 @@
+---
+// Video inside a post (Corner Canyon BlogVideo): a Hopewell video matched to the topic (clinician tip, client story or
+// podcast episode), branded poster, privacy-enhanced YouTube player that loads only on play.
+interface Props { v: { yt: string; img: string; name: string; type: string; desc: string; len: string; title: string } }
+const { v } = Astro.props;
+---
+<aside class="bvd" data-no-tts>
+  <button type="button" class="bvd-media" data-bvd={v.yt} data-title={v.title} aria-label={`Play: ${v.title}`}>
+    <img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" />
+    <span class="bvd-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span>
+    <span class="bvd-len">{v.len}</span>
+  </button>
+  <div class="bvd-copy"><small>{v.type}</small><strong>{v.name}</strong><span>{v.desc}</span></div>
+</aside>
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-bvd]").forEach((b) => b.addEventListener("click", () => {
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${b.dataset.bvd}?autoplay=1&rel=0`;
+    f.title = b.dataset.title ?? "Hopewell video";
+    f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    b.replaceWith(f);
+  }));
+</script>

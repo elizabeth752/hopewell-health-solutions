@@ -5,6 +5,15 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import "../../styles/pages/blog.css";
+import BlogListen from "../../components/blog/BlogListen.astro";
+import BlogSelfCheck from "../../components/blog/BlogSelfCheck.astro";
+import BlogNextStep from "../../components/blog/BlogNextStep.astro";
+import BlogPrograms from "../../components/blog/BlogPrograms.astro";
+import BlogCovered from "../../components/blog/BlogCovered.astro";
+import BlogVideo from "../../components/blog/BlogVideo.astro";
+import BlogClosing from "../../components/blog/BlogClosing.astro";
+import { quizFor } from "../../data/quizzes.js";
+import { VIDEOS } from "../../data/videos.js";
 import { posts, relatedPosts } from "../../data/posts.js";
 import { providers } from "../../data/providers.js";
 
@@ -271,6 +280,26 @@ const PROGRAM_LINKS = {
 };
 const progLinks = PROGRAM_LINKS[post.category] || PROGRAM_LINKS["Mental Health"];
 const progSentence = progLinks.map(([t, h]) => `<a class="inl" href="${h}">${t.replace(/&/g, "&amp;")}</a>`);
+// --- Corner Canyon blog pieces (2026-11-16): listen bar, topic self-check, video, care options, insurance strip,
+// next-step finder, closing checklist. Placed between the article's own sections; the article text is unchanged.
+const quiz = quizFor(post);
+const vid = (yt) => VIDEOS.find((v) => v.yt === yt);
+const VIDEO_FOR = { anxiety: "cb3SsebwGiA", behavior: "cb3SsebwGiA", depression: "aff5Xfy9CfE", teen: "awy7nfDgC0k", adhd: "LInMQYyZSmY", alcohol: "1NnnRKONzhg", drugs: "1NnnRKONzhg", trauma: "uIlSCS7clwE", postpartum: "S_CyYMDqEio", burnout: "vlKx8J6hykA" };
+const VIDEO_CAT = { "Women's Mental Health": "x6R6XOZmxUQ", "Teens & Families": "awy7nfDgC0k", "Intensive Outpatient (IOP)": "vlKx8J6hykA", "Levels of Care": "vlKx8J6hykA", "Addiction & Recovery": "1NnnRKONzhg", "Therapy Approaches": "aff5Xfy9CfE" };
+const video = vid(VIDEO_FOR[quiz] || VIDEO_CAT[post.category] || "aff5Xfy9CfE");
+const FIRST = { alcohol: "addiction", drugs: "addiction", postpartum: "womens", teen: "teen", adhd: "meds", depression: "therapy", anxiety: "therapy", burnout: "iop", behavior: "therapy" };
+const FIRST_CAT = { "Intensive Outpatient (IOP)": "iop", "Levels of Care": "php", "Medication & Psychiatry": "meds", "Women's Mental Health": "womens", "Teens & Families": "teen", "Addiction & Recovery": "addiction" };
+const firstProg = /first-responder|heroism/.test(post.slug) ? "responder" : FIRST[quiz] || FIRST_CAT[post.category] || "therapy";
+// Article split into chunks at each H2 so the pieces can sit between sections.
+const chunks = bodyHtml ? bodyHtml.split(/(?=<h2 id=)/).filter((c) => c.trim()) : (post.sections || []).map((_, i) => i);
+const total = chunks.length;
+const at = (f) => Math.min(total - 1, Math.max(0, Math.floor(total * f)));
+const slots = {};
+const put = (i, k) => { (slots[i] = slots[i] || []).push(k); };
+if (quiz) put(at(0.3), "quiz");
+if (video) put(at(0.5), "video");
+put(at(0.65), "programs");
+put(at(0.85), "covered");
 const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c || "").length % 5];
 
 ---
@@ -319,31 +348,52 @@ const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c
   <section class="section is-white bp-body-sec">
     <div class="container bp-layout">
       <article>
+        {tocItems.length > 1 && (
+          <details class="bp-toc-m">
+            <summary>Table of contents</summary>
+            <ol>{tocItems.map((t) => <li><a href={`#${t.id}`}>{t.text}</a></li>)}</ol>
+          </details>
+        )}
         {post.heroImage && (
           <figure class="bp-feature"><img src={post.heroImage} alt={post.heroAlt || post.title} width="1024" height="576" fetchpriority="high" decoding="async" /></figure>
         )}
         {post.intro && <p class="post-intro">{post.intro}</p>}
 
-        {bodyHtml
-          ? <div class="post-body" set:html={bodyHtml} />
-          : (post.sections || []).map((s, i) => (
-            <div id={s.id} class="post-sec">
-              <h2>{s.h2}</h2>
-              <div class="post-sec-blocks">
-                {s.blocks.map((b) => (
-                  b.p ? <p set:html={b.p} />
-                  : b.h3 ? <h3>{b.h3}</h3>
-                  : b.ul ? <ul>{b.ul.map((li) => <li><span set:html={li} /></li>)}</ul>
-                  : b.img ? <figure class="post-sec-fig"><img class="is-graphic" src={b.img} alt={b.alt || ""} loading="lazy" /></figure>
-                  : b.note ? <p class="post-note">{b.note}</p>
-                  : null
-                ))}
-                {inlineAfter[i] && (
-                  <figure class="post-sec-fig"><img src={inlineAfter[i].src} alt={inlineAfter[i].alt} loading="lazy" decoding="async" /></figure>
-                )}
-              </div>
-            </div>
-          ))}
+        <BlogListen minutes={readMin} />
+        <div class="bp-content">
+        {chunks.map((c, i) => (
+          <Fragment>
+            {bodyHtml
+              ? <div class="post-body" set:html={c} />
+              : (() => { const sec = post.sections[c]; return (
+                <div id={sec.id} class="post-sec">
+                  <h2>{sec.h2}</h2>
+                  <div class="post-sec-blocks">
+                    {sec.blocks.map((b) => (
+                      b.p ? <p set:html={b.p} />
+                      : b.h3 ? <h3>{b.h3}</h3>
+                      : b.ul ? <ul>{b.ul.map((li) => <li><span set:html={li} /></li>)}</ul>
+                      : b.img ? <figure class="post-sec-fig"><img class="is-graphic" src={b.img} alt={b.alt || ""} loading="lazy" /></figure>
+                      : b.note ? <p class="post-note">{b.note}</p>
+                      : null
+                    ))}
+                    {inlineAfter[c] && (
+                      <figure class="post-sec-fig"><img src={inlineAfter[c].src} alt={inlineAfter[c].alt} loading="lazy" decoding="async" /></figure>
+                    )}
+                  </div>
+                </div>
+              ); })()}
+            {(slots[i] || []).map((k) => (
+              k === "quiz" ? <BlogSelfCheck quiz={quiz} />
+              : k === "video" ? <BlogVideo v={video} />
+              : k === "programs" ? <BlogPrograms first={firstProg} />
+              : <BlogCovered />
+            ))}
+          </Fragment>
+        ))}
+        </div>
+
+        <BlogNextStep />
 
         {hasSources && (
           <div id="sources" class="bp-sources">
@@ -356,12 +406,21 @@ const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c
 
         <p class="bp-programs"><strong>Getting help at Hopewell:</strong> learn about {progSentence.map((l, i) => <Fragment>{i > 0 && (i === progSentence.length - 1 ? ", and " : ", ")}<Fragment set:html={l} /></Fragment>)}, or call <a class="inl" href="tel:8607351448">(860) 735-1448</a> to talk with our admissions team.</p>
 
+        <BlogClosing />
+
         <div class="bp-share">
           <span>Share:</span>
           <a href={share.facebook} target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.8-.1-1.6-.15-2.4-.15-2.4 0-4.05 1.45-4.05 4.15v2.3H7.5V13h2.75v8h3.25Z"/></svg></a>
           <a href={share.twitter} target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
           <a href={share.linkedin} target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.6 4.1 5.5 3 5.5S1 4.6 1 3.5 1.9 1.5 3 1.5s1.98.9 1.98 2ZM1.25 8.25h3.5V22h-3.5V8.25ZM8 8.25h3.35v1.88h.05c.47-.88 1.6-1.8 3.3-1.8 3.53 0 4.18 2.32 4.18 5.34V22h-3.5v-5.7c0-1.36-.02-3.1-1.9-3.1-1.9 0-2.18 1.48-2.18 3v5.8H8V8.25Z"/></svg></a>
+          <a href={`mailto:?subject=${enc(post.title)}&body=${enc(canonical)}`} aria-label="Share by email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18v12H3zM3 6l9 7 9-7"/></svg></a>
+          <a href={`sms:?&body=${enc(post.title)}%20${enc(canonical)}`} aria-label="Share by text message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></a>
           <button type="button" data-copy-link aria-label="Copy link"><Icon name="link" class="h-4 w-4" /></button>
+        </div>
+
+        <div class="bp-notes">
+          <p><Icon name="shield" class="h-[18px] w-[18px]" />This article is for general education and doesn’t replace an individual medical or clinical evaluation. A conversation with our team is the fastest way to know what applies to you.</p>
+          <p><Icon name="phone" class="h-[18px] w-[18px]" />If you or someone you care about is in immediate danger, call 911. For a mental health or suicide crisis, call or text 988.</p>
         </div>
 
         {author && (
