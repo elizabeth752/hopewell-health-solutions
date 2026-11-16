@@ -1,6 +1,9 @@
 ---
-// What We Treat hub — 2026 redesign (Corner Canyon layout system). Title, meta, canonical, H1 and all card copy kept from
-// the previous hub; photo condition cards, levels of care, and a short FAQ (facts from the site) added.
+// What We Treat hub — Corner Canyon's conditions-hub pattern (user, 2026-11-16: "that is not how we did design for
+// Corner, you know that we need content for SEO"). Title, meta, canonical, H1 and every sentence of the previous hub
+// and the live /what-we-treat/ page are kept; added: grouped "areas of expertise" with each condition explained (what it
+// is, common signs, how we treat it), who we help, how we treat, testing, "not sure of your diagnosis", and a fuller FAQ.
+// Facts come from the condition pages and the client knowledge base only. No team photos on condition cards.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -17,33 +20,95 @@ import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { LEVELS } from "../../components/conditions/catalog.js";
 import { STORIES } from "../../data/videos.js";
 import "../../styles/pages/conditions.css";
+import "../../styles/pages/hubs.css";
 
-const canonical = "https://www.hopewellhealthsolutions.com/what-we-treat/";
+const SITE = "https://www.hopewellhealthsolutions.com";
+const canonical = `${SITE}/what-we-treat/`;
 const P = "/Assets/hhs-2026/";
+const B = "/Assets/Blogs/";
 
-const mentalHealth = [
-  { t: "Depression", d: "More than sadness — therapy, medication & TMS for lasting relief.", href: "/what-we-treat/depression/", icon: "cloud", img: "/Assets/Blogs/addiction-treatment-and-the-brain-how-therapy-and-medication-can-help-rewire-your-mind.webp", bar: "#2f76c4" },
-  { t: "Anxiety", d: "CBT, exposure therapy & skills for panic, social anxiety, GAD and more.", href: "/what-we-treat/anxiety/", icon: "alert", img: "/Assets/Blogs/silent-panic-attacks-what-they-are-and-when-to-seek-treatment-hero.webp", bar: "#b6863c" },
-  { t: "Trauma & PTSD", d: "EMDR, ART & CPT, plus Women’s Trauma and First Responder programs.", href: "/what-we-treat/trauma-ptsd/", icon: "heart", img: "/Assets/service/what-is-trauma-ptsd.webp", bar: "#5c7c6b" },
-  { t: "ADHD", d: "Comprehensive testing and treatment for children, teens & adults.", href: "/what-we-treat/adhd/", icon: "bolt", img: "/Assets/service/what-is-adhd.webp", bar: "#265489" },
-  { t: "OCD", d: "ERP therapy, medication, and TMS — FDA-cleared for OCD.", href: "/what-we-treat/ocd/", icon: "refresh", img: "/Assets/Blogs/postpartum-ocd-intrusive-thoughts-hero.webp", bar: "#2f76c4" },
-  { t: "Bipolar Disorder", d: "Expert medication management and therapy for lasting stability.", href: "/what-we-treat/bipolar/", icon: "swap", img: "/Assets/Blogs/mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it.webp", bar: "#b6863c" },
-  { t: "Co-Occurring Disorders", d: "Integrated, dual-diagnosis care — mental health and substance use together.", href: "/what-we-treat/co-occurring/", icon: "link", img: "/Assets/service/co-occurring.webp", bar: "#5c7c6b" },
+// Each condition: the previous hub's card line (d) + a fuller description + common signs + how we treat it.
+const groups = [
+  { key: "mood", name: "Mood", note: "Depression & bipolar disorder", icon: "cloud", tone: "t-blue", items: [
+    { t: "Depression", href: "/what-we-treat/depression/", img: B + "addiction-treatment-and-the-brain-how-therapy-and-medication-can-help-rewire-your-mind.webp",
+      d: "More than sadness — therapy, medication & TMS for lasting relief.",
+      more: `Depression can drain your energy, sleep, appetite and the things that used to bring you joy, and it often lasts longer than people expect. We combine therapy, careful <a class="inl" href="/programs/medication-management/">medication management</a> and, when medication hasn’t been enough, <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>. Learn about our <a class="inl" href="/what-we-treat/depression/">depression treatment</a>, including care for postpartum depression.`,
+      signs: ["Low mood or emptiness most days", "Loss of interest, energy or motivation", "Changes in sleep, appetite or concentration"] },
+    { t: "Bipolar Disorder", href: "/what-we-treat/bipolar/", img: B + "mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it.webp",
+      d: "Expert medication management and therapy for lasting stability.",
+      more: `Bipolar disorder brings shifts between depression and periods of elevated or irritable mood that affect sleep, judgment and relationships. Our prescribers build a steady medication plan while therapy and DBT skills help you spot early warning signs. Read about our <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder treatment</a>.`,
+      signs: ["Periods of unusually high energy or little need for sleep", "Episodes of depression in between", "Mood shifts that strain work or relationships"] },
+  ] },
+  { key: "anxiety", name: "Anxiety & OCD", note: "Worry, panic and intrusive thoughts", icon: "alert", tone: "t-sky", items: [
+    { t: "Anxiety", href: "/what-we-treat/anxiety/", img: B + "silent-panic-attacks-what-they-are-and-when-to-seek-treatment-hero.webp",
+      d: "CBT, exposure therapy & skills for panic, social anxiety, GAD and more.",
+      more: `Anxiety becomes a problem when worry or panic starts deciding what you do and avoid. We treat generalized anxiety, panic attacks, social anxiety and anxiety in children and teens with CBT, exposure work and practical coping skills, plus medication when it helps. See our <a class="inl" href="/what-we-treat/anxiety/">anxiety treatment</a>.`,
+      signs: ["Constant worry that’s hard to switch off", "Panic attacks, racing heart or shortness of breath", "Avoiding places, people or tasks"] },
+    { t: "OCD", href: "/what-we-treat/ocd/", img: B + "postpartum-ocd-intrusive-thoughts-hero.webp",
+      d: "ERP therapy, medication, and TMS — FDA-cleared for OCD.",
+      more: `Obsessive-compulsive disorder traps people in unwanted, intrusive thoughts and the rituals used to quiet them. Exposure and response prevention (ERP) is the core of our care, alongside medication and TMS, which is FDA-cleared for OCD. Learn about our <a class="inl" href="/what-we-treat/ocd/">OCD treatment</a>.`,
+      signs: ["Intrusive, unwanted thoughts or images", "Checking, cleaning, counting or reassurance-seeking", "Rituals that take up time and cause distress"] },
+  ] },
+  { key: "trauma", name: "Trauma & Attention", note: "Trauma, PTSD and ADHD", icon: "heart", tone: "t-gold", items: [
+    { t: "Trauma & PTSD", href: "/what-we-treat/trauma-ptsd/", img: B + "how-to-know-if-youre-experiencing-trauma.webp",
+      d: "EMDR, ART & CPT, plus Women’s Trauma and First Responder programs.",
+      more: `Trauma can show up long after the event, as nightmares, being on edge, shutting down or feeling unsafe. Our clinicians use <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, accelerated resolution therapy (ART) and cognitive processing therapy, and we run the <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> and <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>. See our <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD treatment</a>.`,
+      signs: ["Flashbacks, nightmares or intrusive memories", "Feeling on edge, jumpy or numb", "Avoiding reminders of what happened"] },
+    { t: "ADHD", href: "/what-we-treat/adhd/", img: B + "secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations.webp",
+      d: "Comprehensive testing and treatment for children, teens & adults.",
+      more: `ADHD affects focus, organization, impulse control and emotions at school, at work and at home. A clear diagnosis comes first, through <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>, then a plan that can include medication, skills coaching and support for parents and schools. Learn about our <a class="inl" href="/what-we-treat/adhd/">ADHD treatment</a>.`,
+      signs: ["Trouble focusing or finishing tasks", "Restlessness, impulsivity or interrupting", "Disorganization, lateness or forgetfulness"] },
+  ] },
+  { key: "co-occurring", name: "Co-occurring", note: "Mental health and substance use together", icon: "link", tone: "t-sage", items: [
+    { t: "Co-Occurring Disorders", href: "/what-we-treat/co-occurring/", img: B + "the-connection-between-trauma-and-addiction.webp",
+      d: "Integrated, dual-diagnosis care — mental health and substance use together.",
+      more: `Depression, anxiety or trauma often travel with drinking or drug use, and treating one without the other rarely holds. Our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a> treats both with one team and one plan. Read about <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorder treatment</a>.`,
+      signs: ["Using alcohol or drugs to cope with feelings", "Mental health symptoms that worsen with use", "Past treatment that addressed only one side"] },
+  ] },
 ];
 const substanceUse = [
-  { t: "Addiction & Substance Use Disorder", d: "Addiction treatment, from our addiction PHP and IOP to ongoing outpatient care.", href: "/what-we-treat/substance-use-disorder/", icon: "pill", img: "/Assets/AdobeStock_413328337-1747245457937.webp", bar: "#0b2f55" },
-  { t: "Alcohol Addiction", d: "Compassionate alcohol addiction treatment, from stabilization to recovery.", href: "/what-we-treat/alcohol/", icon: "swap", img: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp", bar: "#b6863c" },
-  { t: "Drug Addiction", d: "Evidence-based drug addiction treatment and care for the roots beneath it.", href: "/what-we-treat/drug/", icon: "bolt", img: "/Assets/Blogs/the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives.webp", bar: "#2f76c4" },
-  { t: "Prescription Drug Addiction", d: "Specialized treatment for prescription drug addiction.", href: "/what-we-treat/prescription-drugs/", icon: "clipboard", img: "/Assets/Blogs/finding-the-path-to-recovery-substance-use-disorder-iop-at-hopewell-health-solutions.webp", bar: "#5c7c6b" },
+  { t: "Addiction & Substance Use Disorder", href: "/what-we-treat/substance-use-disorder/", img: "/Assets/AdobeStock_413328337-1747245457937.webp", icon: "pill", bar: "#0b2f55",
+    d: "Addiction treatment, from our addiction PHP and IOP to ongoing outpatient care.",
+    more: `Our <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> combines SUD groups, individual therapy and medication support, with step-down care for people leaving rehab.` },
+  { t: "Alcohol Addiction", href: "/what-we-treat/alcohol/", img: B + "are-you-a-high-functioning-alcoholic.webp", icon: "swap", bar: "#b6863c",
+    d: "Compassionate alcohol addiction treatment, from stabilization to recovery.",
+    more: `For problem drinking and functioning alcoholism, with day and evening schedules that fit working adults.` },
+  { t: "Drug Addiction", href: "/what-we-treat/drug/", img: B + "the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives.webp", icon: "bolt", bar: "#2f76c4",
+    d: "Evidence-based drug addiction treatment and care for the roots beneath it.",
+    more: `Group and individual therapy that treats drug use together with the anxiety, trauma or depression underneath it.` },
+  { t: "Prescription Drug Addiction", href: "/what-we-treat/prescription-drugs/", img: B + "finding-the-path-to-recovery-substance-use-disorder-iop-at-hopewell-health-solutions.webp", icon: "clipboard", bar: "#5c7c6b",
+    d: "Specialized treatment for prescription drug addiction.",
+    more: `Including <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a> for opioid and alcohol use disorders.` },
+];
+const allConditions = [...groups.flatMap((g) => g.items), ...substanceUse];
+
+const who = [
+  { icon: "sparkles", t: "Children (ages 4+)", d: `Play-based therapy, parent guidance and careful <a class="inl" href="/programs/medication-management/">medication management</a> for young children with anxiety, ADHD or mood concerns.`, bar: "#5c7c6b" },
+  { icon: "users", t: "Tweens & teens", d: `After-school support in our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a>, with the family woven into the work, plus individual and family counseling.`, bar: "#2f76c4" },
+  { icon: "compass", t: "Adults", d: `Day and evening care that fits around work and parenting, from weekly <a class="inl" href="/programs/counseling/">counseling</a> to the <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>.`, bar: "#0b2f55" },
+  { icon: "heart", t: "Women", d: `Women-only groups in the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, plus care for postpartum depression and anxiety.`, bar: "#b6863c" },
+  { icon: "shield", t: "First responders", d: `A <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> for police, fire, EMS and dispatch, with clinicians who understand the job.`, bar: "#265489" },
+  { icon: "link", t: "People facing addiction", d: `The <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave in Glastonbury and in Westbrook, including step-down care after rehab.`, bar: "#5c7c6b" },
+];
+const approaches = [
+  { icon: "chat", t: "Evidence-based therapy", d: `CBT, <a class="inl" href="/treatment-methods/dbt/">DBT</a>, <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, accelerated resolution therapy, play therapy and the Gottman Method for couples.` },
+  { icon: "users", t: "Group therapy", d: `Small, clinician-led <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> where you practice skills in real time and learn you are not alone.` },
+  { icon: "pill", t: "Psychiatry & medication", d: `Board-certified prescribers who build personalized plans, never one-size-fits-all, for ages 4 and up.` },
+  { icon: "brain", t: "TMS therapy", d: `FDA-cleared <a class="inl" href="/treatment-methods/tms/">TMS</a> for treatment-resistant depression and OCD, with no downtime.` },
+  { icon: "dna", t: "GeneSight® testing", d: `A cheek-swab <a class="inl" href="/treatment-methods/genesight-testing/">genetic test</a> that shows how your body may respond to common medications.` },
+  { icon: "heart", t: "Mind-body care", d: `Mindfulness, yoga therapy and other <a class="inl" href="/treatment-methods/therapeutic-treatments/">therapeutic treatments</a> that support whole-person healing.` },
 ];
 const faqs = [
   ["Do I need a diagnosis to reach out?", `No. You don’t need a diagnosis to reach out. Tell us what’s going on, and our Connecticut team will help you find the right care. If an evaluation would help, we offer <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`],
   ["What ages do you treat?", `We care for clients aged 4 and older. Children and teens can start with <a class="inl" href="/programs/counseling/">counseling</a> or <a class="inl" href="/programs/medication-management/">medication management</a>, and our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> serves ages 8–17 after school.`],
   ["Where do you offer addiction treatment?", `Addiction treatment, including our <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> and addiction PHP, is offered in person at our Downtown Glastonbury office (300 Hebron Avenue) and our Westbrook office (70 Essex Road), with telehealth available. Mental health care is offered at all six offices.`],
   ["Do you treat more than one condition at a time?", `Yes. Many people live with more than one condition, such as depression with anxiety, or addiction with trauma. Our <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a> care treats them together, with one team and one plan.`],
+  ["How do I know which level of care I need?", `It depends on how much your symptoms affect daily life. Weekly <a class="inl" href="/programs/counseling/">counseling</a> fits many people; the <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> adds about three hours a day, four days a week; and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> offers about six hours a day, Monday through Friday. A clinical assessment helps match you to the right level.`],
+  ["Do you offer telehealth?", `Yes. Our care happens in person across our Connecticut offices, with telehealth when you need it.`],
+  ["What if medication and therapy haven’t worked before?", `Tell us what you’ve tried. Options like <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression and OCD, and <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> to guide medication choices, are available under the same roof.`],
+  ["Do you take my insurance?", `We’re in-network with most major plans, including Aetna, Anthem, Blue Cross Blue Shield, Cigna, ConnectiCare, Harvard Pilgrim, Optum, TRICARE and UnitedHealthcare. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a>, or ask us to check your benefits for free.`],
 ];
-const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&") } })) };
-const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Conditions treated at Hopewell Health Solutions", itemListElement: [...mentalHealth, ...substanceUse].map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.t, url: "https://www.hopewellhealthsolutions.com" + c.href })) };
+const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Conditions treated at Hopewell Health Solutions", itemListElement: allConditions.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.t, url: SITE + c.href })) };
 ---
 <Base title="Conditions We Treat in CT | Hopewell Health Solutions" description="The mental health conditions and addictions treated at Hopewell Health Solutions in Connecticut — depression, anxiety, trauma & PTSD, ADHD, OCD, bipolar, co-occurring & more. In person & telehealth." canonical={canonical} image={P + "iop-clinicians-group-room.webp"}>
   <Header />
@@ -55,24 +120,43 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
       lede="From depression and anxiety to trauma, ADHD, and substance use, the board-certified team at Hopewell Health Solutions treats the full range of mental health and co-occurring conditions — for children, teens, and adults — in person across Connecticut and by telehealth."
       bullets={["For ages 4 and up", "<a class='inl' href='#mental-health'>Mental health conditions</a>", "<a class='inl' href='#addiction'>Addiction treatment</a> in Glastonbury &amp; Westbrook", "In person or by telehealth"]}
       image={P + "iop-clinicians-group-room.webp"}
-    />
+    >
+      <ul class="hb-jump">
+        {groups.map((g) => <li><a href={`#${g.key}`}><Icon name={g.icon} class="h-[18px] w-[18px]" />{g.name}</a></li>)}
+        <li><a href="#addiction"><Icon name="pill" class="h-[18px] w-[18px]" />Addiction</a></li>
+        <li><a href="#unsure"><Icon name="compass" class="h-[18px] w-[18px]" />Not sure yet?</a></li>
+      </ul>
+    </ServiceHero>
     <Creds />
 
-    <section class="section is-white" id="mental-health">
+    <section class="section is-stone" id="mental-health">
       <div class="container">
-        <div class="sec-head"><h2>Mental health conditions</h2><p class="lede">Evidence-based, compassionate care — therapy, medication management, and advanced options like TMS — tailored to each person.</p></div>
-        <div class="wt-grid">
-          {mentalHealth.map((c) => (
-            <a href={c.href} class="wt-card" style={`--bar:${c.bar}`}>
-              <span class="wt-media"><img src={c.img} alt="" width="1200" height="800" loading="lazy" /><span class="wt-icon"><Icon name={c.icon} class="h-6 w-6" /></span></span>
-              <span class="wt-body"><h3>{c.t}</h3><p>{c.d}</p><span class="wt-go">Explore {c.t} treatment <Icon name="arrow" class="h-4 w-4" /></span></span>
-            </a>
+        <div class="sec-head">
+          <h2>Mental health conditions</h2>
+          <p class="lede">Evidence-based, compassionate care — therapy, medication management, and advanced options like TMS — tailored to each person. Find your concern below: what it is, the signs people often notice first, and how our Connecticut team treats it.</p>
+        </div>
+        <div class="hb-groups">
+          {groups.map((g) => (
+            <section class:list={["hb-group", g.tone]} id={g.key} aria-labelledby={`h-${g.key}`}>
+              <div class="hb-group-head"><span class="hb-group-icon"><Icon name={g.icon} /></span><div><h3 id={`h-${g.key}`}>{g.name}</h3><small>{g.note}</small></div></div>
+              <div class="hb-cards">
+                {g.items.map((c) => (
+                  <article class="hb-card">
+                    <img src={c.img} alt={`${c.t} treatment at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
+                    <div>
+                      <h4><a href={c.href}>{c.t}</a></h4>
+                      <p>{c.d}</p>
+                      <p set:html={c.more} />
+                      <ul class="hb-signs" aria-label={`Common signs of ${c.t}`}>
+                        <li><strong>Common signs:</strong></li>
+                        {c.signs.map((s) => <li><Icon name="check" />{s}</li>)}
+                      </ul>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
           ))}
-          <a href="/admissions/" class="tm-all" style="aspect-ratio:auto;min-height:260px">
-            <span class="tm-all-go"><Icon name="arrow" class="h-5 w-5" /></span>
-            <strong>Not sure what you’re dealing with?</strong>
-            <span>You don’t need a diagnosis to reach out. See how admissions works, or call (860) 735-1448.</span>
-          </a>
         </div>
       </div>
     </section>
@@ -85,11 +169,59 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
           {substanceUse.map((c) => (
             <a href={c.href} class="wt-card" style={`--bar:${c.bar}`}>
               <span class="wt-media"><img src={c.img} alt="" width="1200" height="800" loading="lazy" /><span class="wt-icon"><Icon name={c.icon} class="h-6 w-6" /></span></span>
-              <span class="wt-body"><h3>{c.t}</h3><p>{c.d}</p><span class="wt-go">Learn more <Icon name="arrow" class="h-4 w-4" /></span></span>
+              <span class="wt-body"><h3>{c.t}</h3><p>{c.d}</p><p set:html={c.more.replace(/<a [^>]*>|<\/a>/g, "")} /><span class="wt-go">Learn more <Icon name="arrow" class="h-4 w-4" /></span></span>
             </a>
           ))}
         </div>
+        <div class="hb-split" style="margin-top:36px">
+          <div class="on-dark">
+            <h3 style="color:#fff;font-size:24px">Addiction care built for working adults</h3>
+            <p style="margin-top:12px">Many people we see are still working, parenting and showing up, while drinking or using more than they want to. Our addiction care meets you there, with day and evening groups, SUD groups clients tell us they value, and mental health treatment alongside it. Learn about <a class="inl" href="/what-we-treat/alcohol/">alcohol addiction</a>, <a class="inl" href="/what-we-treat/drug/">drug addiction</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>.</p>
+          </div>
+          <ul class="hb-check">
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>Problem drinking and functioning alcoholism</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>Step-down care after detox or residential rehab</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment (MAT)</a> when it fits</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>Co-occurring depression, anxiety and trauma treated together</li>
+          </ul>
+        </div>
         <p class="cd-add-note"><Icon name="pin" class="h-5 w-5" />Addiction treatment is offered in person at our Downtown Glastonbury office (300 Hebron Avenue) and our Westbrook office (70 Essex Road), with telehealth available.</p>
+      </div>
+    </section>
+
+    <section class="section is-white" id="who">
+      <div class="container">
+        <div class="sec-head"><h2>Who we help</h2><p class="lede">Hopewell treats clients aged 4 and older, with programs shaped around who you are and where you are in life.</p></div>
+        <div class="hb-tiles">
+          {who.map((w) => <div class="hb-tile" style={`--bar:${w.bar}`}><span class="hb-tile-icon"><Icon name={w.icon} /></span><h3>{w.t}</h3><p set:html={w.d} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="approach">
+      <div class="container">
+        <div class="sec-head"><h2>How we treat: therapy first, medication second</h2><p class="lede">Our board-certified specialists take a multidisciplinary approach. Most plans combine therapy, skills and, when it helps, medication, coordinated by one team across our <a class="inl" href="/treatment-methods/">treatment methods</a>.</p></div>
+        <div class="hb-tiles">
+          {approaches.map((a, i) => <div class:list={["hb-tile", i === 0 && "is-dark"]}><span class="hb-tile-icon"><Icon name={a.icon} /></span><h3>{a.t}</h3><p set:html={a.d} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-white" id="testing">
+      <div class="container hb-split">
+        <div class="hb-photo">
+          <img src={P + "tx-east-hampton-play-room.webp"} alt="A testing and therapy room at Hopewell's East Hampton office" width="1200" height="900" loading="lazy" />
+        </div>
+        <div>
+          <h2>Getting to the root, with testing and evaluation</h2>
+          <p class="lede" style="margin-top:14px">An accurate picture is where good treatment begins. When symptoms overlap, or past treatment hasn’t helped, testing gives you and your clinicians a clear place to start.</p>
+          <ul class="hb-check">
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/treatment-methods/neuropsychological-testing/">Neuropsychological testing</a> of attention, memory and learning</span></li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> for children, teens and adults</span></li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> to guide medication choices</span></li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>A clinical assessment to match you to the right level of care</span></li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -110,6 +242,21 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
           ))}
         </div>
         <p class="levels-key"><span class="key-swatch"></span>Hours of care each day in a typical week (outpatient shown as one weekly session)</p>
+      </div>
+    </section>
+
+    <section class="section is-white" id="unsure">
+      <div class="container">
+        <div class="hb-unsure">
+          <div class="hb-unsure-media"><img src={P + "south-glastonbury-waiting-room.webp"} alt="The waiting room at Hopewell's South Glastonbury office" width="1200" height="900" loading="lazy" /></div>
+          <div class="hb-unsure-copy">
+            <span class="hb-unsure-icon"><Icon name="compass" /></span>
+            <h2>Not sure what you’re dealing with?</h2>
+            <p>You don’t need a diagnosis to reach out. Many people call us knowing only that something isn’t right: they can’t sleep, they’re snapping at the people they love, or the things that used to work have stopped working. That’s okay.</p>
+            <p>Tell us what’s going on. Our team will listen, check your insurance for free, and help you find the right starting point, whether that’s <a class="inl" href="/programs/counseling/">counseling</a>, an evaluation, or an <a class="inl" href="/programs/intensive-outpatient-program/">intensive program</a>. See <a class="inl" href="/admissions/">how admissions works</a>.</p>
+            <div class="hb-unsure-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#verify" class="btn btn-ghost only-d">Verify my insurance</a><a href="#verify-m" class="btn btn-ghost only-m">Verify my insurance</a></div>
+          </div>
+        </div>
       </div>
     </section>
 

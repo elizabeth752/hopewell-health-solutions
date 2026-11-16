@@ -817,3 +817,13 @@
 @media (max-width: 560px) { .hw .pk { padding: 20px 16px 16px; gap: 12px; grid-template-columns: 40px 1fr; } .hw .pk p { font-size: 15px; } }
 @media (min-width: 1100px) { .hw .pk-grid:has(> .pk:nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); } .hw .pk-grid:has(> .pk:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 700px) and (max-width: 1099px) { .hw .pk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Program cards v2 (user 2026-11-16 "fix these cards"): straight inset band, icon stacked above the title so text
+   uses the full width, 4 cards = 2×2. */
+.hw .pk { position: relative; grid-template-columns: 1fr; gap: 14px; padding: 28px 24px 24px; background-image: none; }
+.hw .pk::before { content: ""; position: absolute; top: 0; left: 24px; right: 24px; height: 5px; border-radius: 0 0 4px 4px; background: var(--bar-c); }
+.hw .pk-icon { width: 46px; height: 46px; background: color-mix(in srgb, var(--bar-c) 12%, white); color: var(--bar-c); }
+.hw .pk h3 { font-size: 19.5px; }
+.hw .pk p { font-size: 15.5px; }
+@media (min-width: 1100px) { .hw .pk-grid:has(> .pk:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 700px) { .hw .pk-grid:has(> .pk:nth-child(4):last-child) .pk { grid-template-columns: 46px 1fr; column-gap: 16px; } }

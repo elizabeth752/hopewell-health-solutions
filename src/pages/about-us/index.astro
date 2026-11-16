@@ -1,6 +1,7 @@
 ---
 // About — 2026 redesign. All copy kept; "superior" (unsourced superlative, KB §1) now reads "multidisciplinary".
 import "../../styles/pages/about.css";
+import "../../styles/pages/hubs.css";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -8,13 +9,13 @@ import Icon from "../../components/Icon.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
-import ProgramCards from "../../components/hw/ProgramCards.astro";
 import Team from "../../components/hw/Team.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
+import Faq from "../../components/hw/Faq.astro";
 import { STORIES } from "../../data/videos.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/about-us/";
@@ -29,9 +30,48 @@ const offer = [
   { t: "Therapy that works", d: "DBT, CBT, play therapy, solution-focused therapy, the Gottman Method for couples, and trauma-informed care.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["brain", "Individual, couples & family"]] },
   { t: "Therapeutic & mind-body treatments", d: "Accelerated Resolution Therapy (ART), mindfulness, yoga therapy, and other wellness-based methods.", href: "/treatment-methods/therapeutic-treatments/", img: P + "group-room-bright.webp", bar: "#5c7c6b", facts: [["heart", "ART, mindfulness, yoga therapy"]] },
   { t: "EMDR & eye-movement therapy", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", img: "/Assets/service/trauma-informed-individual.webp", bar: "#b6863c", facts: [["refresh", "Trauma-focused"]] },
-  { t: "Medication management", d: "Personalized psychiatric medication plans that help clients flourish — for ages 4 and up.", href: "/programs/medication-management/", img: P + "providers-together.webp", bar: "#265489", facts: [["pill", "Ages 4 and up"]] },
+  { t: "Medication management", d: "Personalized psychiatric medication plans that help clients flourish — for ages 4 and up.", href: "/programs/medication-management/", img: P + "south-glastonbury-waiting-room.webp", bar: "#265489", facts: [["pill", "Ages 4 and up"]] },
   { t: "Intensive Outpatient Program", d: "Structured group and individual support several days a week, without putting life on hold.", href: "/programs/intensive-outpatient-program/", img: P + "adult-evening-iop-group.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"]] },
-  { t: "Neuropsychological testing", d: "Comprehensive neuropsychological testing for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", img: "/Assets/service/adhd-assessment.webp", bar: "#b6863c", facts: [["clipboard", "Testing & diagnosis"]] },
+  { t: "Neuropsychological testing", d: "Comprehensive neuropsychological testing for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-play-room.webp", bar: "#b6863c", facts: [["clipboard", "Testing & diagnosis"]] },
+];
+
+// Corner Canyon hub pattern (user, 2026-11-16: "we need content for SEO"): fuller offer cards, milestones, how we work,
+// who we serve, accreditation and an About FAQ. Facts from the site and the client knowledge base only.
+const offerMore = {
+  "/programs/counseling/": "Weekly sessions with a licensed therapist for individuals, couples and families, at all six offices or by telehealth.",
+  "/treatment-methods/therapeutic-treatments/": "Whole-person approaches that work alongside talk therapy, from ART for trauma to mindfulness and yoga therapy for stress.",
+  "/treatment-methods/emdr/": "A structured trauma therapy that helps distressing memories lose their charge, used across our trauma programs.",
+  "/programs/medication-management/": "Board-certified prescribers build personalized plans and follow up closely, with GeneSight® testing available.",
+  "/programs/intensive-outpatient-program/": "Tracks for tweens, teens, women, adults, first responders and addiction, about three hours a day, four days a week.",
+  "/treatment-methods/neuropsychological-testing/": "Detailed evaluation of attention, memory and learning, with a written report and clear next steps.",
+};
+const milestones = [
+  ["2013", "Hopewell Health Solutions is founded in Glastonbury by Dr. Kristine Schlichting."],
+  ["50+", "Licensed clinicians today: psychologists, prescribers, social workers and counselors."],
+  ["2026", "LegitScript certification for addiction treatment, alongside Joint Commission accreditation."],
+  ["Sept 2026", "Our Westbrook office opens on the shoreline, the sixth Hopewell location."],
+];
+const how = [
+  { icon: "chat", t: "Therapy first", d: "Most plans start with evidence-based therapy such as CBT, DBT and EMDR, because skills are what last." },
+  { icon: "pill", t: "Medication second", d: "When medication helps, our prescribers build a careful, personalized plan, never one-size-fits-all." },
+  { icon: "sparkles", t: "Transformation third", d: "The goal is a life that feels like yours again: confidence, clarity and the conviction to keep going." },
+  { icon: "users", t: "In person, with telehealth", d: "While others go all-virtual, our programs happen face to face, with telehealth when you need it." },
+];
+const serve = [
+  { icon: "sparkles", t: "Children & families", d: `Play therapy, parent guidance and <a class="inl" href="/programs/medication-management/">medication management</a> from age 4.` },
+  { icon: "users", t: "Tweens & teens", d: `After-school support in the <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a>.` },
+  { icon: "heart", t: "Women", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>.` },
+  { icon: "shield", t: "First responders", d: `A dedicated <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.` },
+  { icon: "compass", t: "Adults", d: `Day and evening care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>.` },
+  { icon: "link", t: "People facing addiction", d: `The <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave and Westbrook.` },
+];
+const faqs = [
+  ["Who founded Hopewell Health Solutions?", `Hopewell was founded in Glastonbury in 2013 by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting, PhD</a>, a licensed psychologist who still leads the practice as Director.`],
+  ["Where are your offices?", `Six Connecticut offices: three in Glastonbury (Pratt St, 300 Hebron Ave and 1420 Main St), plus West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">all locations</a>.`],
+  ["Is Hopewell accredited?", `Yes. Hopewell is accredited by The Joint Commission, holds LegitScript certification for addiction treatment, and is a BBB Accredited Business.`],
+  ["What ages do you see?", `We care for clients aged 4 and older, from young children and teens to adults.`],
+  ["Do you offer telehealth?", `Yes. Care happens in person across our Connecticut offices, with telehealth when you need it.`],
+  ["Are you hiring?", `We’re always glad to meet clinicians who share our approach. See <a class="inl" href="/about-us/careers/">careers at Hopewell</a>.`],
 ];
 const org = {
   "@context": "https://schema.org", "@type": "AboutPage", url: canonical, name: "About Hopewell Health Solutions",
@@ -85,7 +125,37 @@ const org = {
     <section class="section is-mist" id="offer">
       <div class="container">
         <div class="sec-head"><h2>What we offer</h2><p class="lede">From talk therapy to advanced treatments, everything is coordinated by one team — and tailored to each client. See <a class="inl" href="/programs/">all programs</a> and <a class="inl" href="/what-we-treat/">what we treat</a>.</p></div>
-        <ProgramCards items={offer} cols={3} />
+        <div class="hb-groups"><section class="hb-group t-blue"><div class="hb-group-head"><span class="hb-group-icon"><Icon name="heart" /></span><div><h3>Care under one roof</h3><small>Therapy, psychiatry, intensive programs and testing</small></div></div>
+          <div class="hb-cards">
+            {offer.map((c) => (
+              <article class="hb-card">
+                <img src={c.img} alt={`${c.t} at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
+                <div><h4><a href={c.href}>{c.t}</a></h4><p>{c.d}</p><p>{offerMore[c.href]}</p></div>
+              </article>
+            ))}
+          </div>
+        </section></div>
+      </div>
+    </section>
+
+    <section class="section is-white" id="how">
+      <div class="container">
+        <div class="sec-head"><h2>How we work</h2><p class="lede">Our mantra is simple, and it shapes every treatment plan we build.</p></div>
+        <div class="hb-tiles cols-4">{how.map((h, i) => <div class:list={["hb-tile", i === 0 && "is-dark"]}><span class="hb-tile-icon"><Icon name={h.icon} /></span><h3>{h.t}</h3><p>{h.d}</p></div>)}</div>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="story">
+      <div class="container">
+        <div class="sec-head"><h2>Our story</h2><p class="lede">From one Glastonbury office to six across Connecticut, Hopewell has grown around a single idea: there is hope to heal.</p></div>
+        <ul class="hb-timeline">{milestones.map(([n, t]) => <li><strong>{n}</strong><span>{t}</span></li>)}</ul>
+      </div>
+    </section>
+
+    <section class="section is-white" id="serve">
+      <div class="container">
+        <div class="sec-head"><h2>Who we serve</h2><p class="lede">Programs shaped around who you are, for clients aged 4 and older.</p></div>
+        <div class="hb-tiles">{serve.map((w) => <div class="hb-tile"><span class="hb-tile-icon"><Icon name={w.icon} /></span><h3>{w.t}</h3><p set:html={w.d} /></div>)}</div>
       </div>
     </section>
 
@@ -97,6 +167,7 @@ const org = {
     <Reviews tone="stone" />
     <Insurance tone="white" />
     <Locations />
+    <Faq faqs={faqs} heading="About Hopewell — common questions" tone="white" />
     <ClosingCta heading="Ready to Discover Your Path to Healing?" lede="Schedule an in-person or virtual mental health evaluation today — call our office or get in touch with our experts, confidentially and with no pressure."/>
   </main>
   <Footer />

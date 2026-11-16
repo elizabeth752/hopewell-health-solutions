@@ -13,7 +13,7 @@ const ICONS = [
   [/genesight/, "dna"], [/testing/, "clipboard"], [/group-therapy/, "users"], [/medication-assisted/, "pill"], [/therapeutic/, "heart"],
 ];
 const iconFor = (p) => p.icon ?? ICONS.find(([re]) => re.test(p.href))?.[1] ?? "heart";
-const anchor = (t) => t.replace(/\s*\(.*?\)/, "").replace(/^Adult /, "adult ").replace(/^(?!TMS|DBT|EMDR|ADHD|PHP|IOP)([A-Z])/, (m) => m.toLowerCase());
+const anchor = (t) => t.replace(/\s*\(.*?\)/, "");
 ---
 <div class="pk-grid">
   {items.map((p) => (

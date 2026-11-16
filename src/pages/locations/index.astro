@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import "../../styles/pages/about.css";
+import "../../styles/pages/hubs.css";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
 import Reviews from "../../components/hw/Reviews.astro";
@@ -59,6 +60,21 @@ const officePhoto = {
   "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp",
   "westbrook-ct": "/Assets/locations/westbrook/exterior.webp",
 };
+// Office guide by need (client-confirmed services, Google Doc 2026-11-16) — Corner Canyon hub pattern, more SEO copy.
+const guide = [
+  { icon: "link", t: "Addiction treatment", bar: "#b6863c", d: `The <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> and MAT are offered at <a class="inl" href="/location/glastonbury-ct-2/">Downtown Glastonbury (300 Hebron Ave)</a> and <a class="inl" href="/location/westbrook-ct/">Westbrook (70 Essex Rd)</a>.` },
+  { icon: "sun", t: "Full-day care (PHP)", bar: "#0b2f55", d: `Our <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a> meets about six hours a day, Monday through Friday, at 300 Hebron Ave in Glastonbury.` },
+  { icon: "users", t: "Tweens & teens", bar: "#5c7c6b", d: `The <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> meets after school at our <a class="inl" href="/location/glastonbury-ct-3/">South Glastonbury office (1420 Main St)</a>.` },
+  { icon: "heart", t: "Women’s programs", bar: "#b6863c", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> runs morning and evening groups at 300 Hebron Ave and in Westbrook.` },
+  { icon: "compass", t: "The shoreline", bar: "#2f76c4", d: `Our <a class="inl" href="/location/westbrook-ct/">Westbrook office</a> serves Old Saybrook, Clinton, Madison, Guilford, Branford and nearby shoreline towns with adult IOP, Women’s Wellness IOP, therapy and medication management.` },
+  { icon: "pin", t: "Greater Hartford & Middlesex", bar: "#265489", d: `Weekly therapy and medication management close to home at <a class="inl" href="/location/west-hartford-ct/">West Hartford</a>, <a class="inl" href="/location/east-hampton-ct/">East Hampton</a> and our <a class="inl" href="/location/glastonbury-ct/">Pratt Street office in Glastonbury</a>.` },
+];
+const visit = [
+  ["phone", "Before you come", "We confirm your appointment, check your insurance for free and tell you which office and suite to come to."],
+  ["pin", "Arriving", "We’ll tell you where to park when we confirm your appointment. Arrive a few minutes early for your first visit."],
+  ["clipboard", "Checking in", "Our front desk team welcomes you and walks you through any paperwork."],
+  ["users", "Your first session", "Your clinician meets you, shows you the room or group space, and talks through what comes next."],
+];
 const bars = ["#2f76c4", "#b6863c", "#5c7c6b", "#265489", "#2f76c4", "#b6863c"];
 const allServices = [
   { t: "Intensive Outpatient Program", href: "/programs/intensive-outpatient-program/", icon: "users" },
@@ -84,6 +100,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
 <Base title="Our Connecticut Locations | Hopewell Health Solutions" description="Hopewell Health Solutions has six mental health & psychiatry offices across Connecticut — three in Glastonbury, plus West Hartford, East Hampton & Westbrook — with telehealth statewide. Most PPOs accepted." canonical={canonical} image={P + "downtown-glastonbury-sign.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Locations" }]}
@@ -182,6 +199,24 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
     <Locations heading="Find the office nearest you" lede="Every pin is a Hopewell office. Gold pins also offer addiction treatment. Tap a pin or an office for hours, photos and directions." tone="white" />
 
     <!-- Areas served -->
+    <section class="section is-white" id="choose">
+      <div class="container">
+        <div class="sec-head"><h2>Which office is right for you?</h2><p class="lede">Every office offers 1:1 therapy and medication management, in person and by telehealth. Some programs meet only at certain offices, so here’s where to go for what you need.</p></div>
+        <div class="hb-tiles">
+          {guide.map((g) => <div class="hb-tile" style={`--bar:${g.bar}`}><span class="hb-tile-icon"><Icon name={g.icon} /></span><h3>{g.t}</h3><p set:html={g.d} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="visit">
+      <div class="container">
+        <div class="sec-head"><h2>What to expect when you visit</h2><p class="lede">Comfortable, private offices that feel more like a living room than a clinic, and a team that walks you through every step. Read more about <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.</p></div>
+        <ol class="step-grid">
+          {visit.map(([icon, t, d], i) => <li class="step"><span class="step-dot"><Icon name={icon} /></span><span class="step-num">Step {i + 1}</span><h3>{t}</h3><p>{d}</p>{i < visit.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
+        </ol>
+      </div>
+    </section>
+
     <section class="section is-mist" id="areas">
       <div class="container ab-areas">
         <div>
@@ -224,7 +259,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
     <!-- Services -->
     <section class="section is-white" id="services">
       <div class="container">
-        <div class="sec-head"><h2>Services &amp; programs across our offices</h2><p class="lede">Addiction services are offered at our Downtown Glastonbury and Westbrook offices.</p></div>
+        <div class="sec-head"><h2>Services &amp; programs across our offices</h2><p class="lede">Outpatient therapy and medication management are available across our offices, and our intensive programs (IOP/PHP) and specialized treatments (TMS and testing) are offered at select locations. Addiction services are offered at our Downtown Glastonbury and Westbrook offices.</p></div>
         <div class="ab-svc">
           {allServices.map((s) => <a href={s.href} class:list={[s.addiction && "is-add"]}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-5 w-5" /></a>)}
         </div>

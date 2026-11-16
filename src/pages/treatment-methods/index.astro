@@ -1,5 +1,6 @@
 ---
-// Treatments hub — 2026 redesign. Live copy kept; all nine treatment pages now listed (DBT, Group Therapy, GeneSight and
+// Treatments hub — 2026 redesign, Corner Canyon content-rich hub pattern (user, 2026-11-16: "we need content for SEO").
+// Live copy kept; all nine treatment pages now listed (DBT, Group Therapy, GeneSight and
 // MAT were missing from the old hub), grouped as treatments and testing.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -7,7 +8,6 @@ import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
-import ProgramCards from "../../components/hw/ProgramCards.astro";
 import Team from "../../components/hw/Team.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
@@ -17,12 +17,67 @@ import ClosingCta from "../../components/hw/ClosingCta.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import { TREATMENTS } from "../../components/tx/treatments.js";
 import "../../styles/pages/treatments.css";
+import "../../styles/pages/hubs.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/treatment-methods/";
 const P = "/Assets/hhs-2026/";
 const testingHrefs = ["/treatment-methods/genesight-testing/", "/treatment-methods/neuropsychological-testing/", "/treatment-methods/adhd-testing/"];
 const advanced = TREATMENTS.filter((t) => !testingHrefs.includes(t.href));
 const testing = TREATMENTS.filter((t) => testingHrefs.includes(t.href));
+
+const B = "/Assets/Blogs/";
+const groups = [
+  { key: "advanced", name: "Advanced & brain-based treatments", note: "When medication and therapy aren’t enough on their own", icon: "brain", tone: "t-blue", items: [
+    { t: "TMS Therapy", href: "/treatment-methods/tms/", img: P + "tms-neurostar-session.webp",
+      d: "FDA-cleared magnetic stimulation for treatment-resistant depression and OCD — drug-free, with no downtime.",
+      more: `Transcranial magnetic stimulation uses focused magnetic pulses to activate areas of the brain involved in mood. Sessions happen in our NeuroStar® chair while you’re awake, and you can drive yourself home and return to your day. Learn more about <a class="inl" href="/treatment-methods/tms/">TMS therapy in Connecticut</a>.`,
+      helps: ["Depression that hasn’t responded to medication", "OCD", "People who want a drug-free option"] },
+    { t: "GeneSight® Testing", href: "/treatment-methods/genesight-testing/", img: B + "exploring-genesight-testing-personalizing-mental-health-treatment-at-hopewell-health-solutions.webp",
+      d: "A cheek-swab pharmacogenomic test that helps reduce medication trial-and-error.",
+      more: `A simple cheek swab shows how your genes may affect the way you process common psychiatric medications. Your prescriber uses the report, alongside your history, to choose and dose medication more confidently. Read about <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a>.`,
+      helps: ["Medications that caused side effects", "Several medications tried without relief", "Families planning care for a child or teen"] },
+  ] },
+  { key: "therapy", name: "Therapy approaches", note: "Evidence-based therapy, individually and in groups", icon: "chat", tone: "t-sky", items: [
+    { t: "EMDR", href: "/treatment-methods/emdr/", img: P + "tx-westbrook-office-2.webp",
+      d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.",
+      more: `Eye Movement Desensitization and Reprocessing helps the brain reprocess distressing memories so they lose their charge. It’s structured, it doesn’t require retelling every detail, and it’s part of our trauma care across programs. Learn about <a class="inl" href="/treatment-methods/emdr/">EMDR therapy</a>.`,
+      helps: ["Trauma and PTSD", "Distressing or intrusive memories", "Anxiety rooted in past experiences"] },
+    { t: "Dialectical Behavior Therapy (DBT)", href: "/treatment-methods/dbt/", img: P + "tx-group-room-2.webp",
+      d: "Four core skills for intense emotions, distress and relationships.",
+      more: `DBT teaches mindfulness, distress tolerance, emotion regulation and interpersonal effectiveness, practical skills you use the same day. It’s the backbone of our intensive outpatient programs. See how <a class="inl" href="/treatment-methods/dbt/">DBT at Hopewell</a> works.`,
+      helps: ["Emotions that feel too big to manage", "Self-harm urges or impulsive behavior", "Conflict in close relationships"] },
+    { t: "Group Therapy", href: "/treatment-methods/group-therapy/", img: P + "group-room-feelings-wheel.webp",
+      d: "Therapist-led process, skills and support groups in a confidential setting.",
+      more: `Small, clinician-led groups where you practice new skills in real time, hear how others handle similar challenges, and learn you are not alone. Groups run at the heart of our IOP and PHP. Read about <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a>.`,
+      helps: ["Isolation and loneliness", "Practicing coping skills with peers", "Social anxiety"] },
+    { t: "HHS Therapeutic Treatments", href: "/treatment-methods/therapeutic-treatments/", img: P + "tx-team-with-therapy-dog.webp",
+      d: "ART, the Gottman Method, mindfulness, yoga therapy and other mind-body approaches.",
+      more: `Accelerated resolution therapy (ART), the Gottman Method for couples, play therapy for children, mindfulness and yoga therapy round out care with whole-person approaches. Explore our <a class="inl" href="/treatment-methods/therapeutic-treatments/">therapeutic treatments</a>.`,
+      helps: ["Couples and family stress", "Children who express feelings through play", "Stress, burnout and body-based symptoms"] },
+  ] },
+  { key: "addiction", name: "Addiction treatment", note: "At 300 Hebron Ave (Glastonbury) and Westbrook", icon: "link", tone: "t-gold", items: [
+    { t: "Medication-Assisted Treatment (MAT)", href: "/treatment-methods/medication-assisted-treatment/", img: B + "psychiatric-medications-for-addiction-how-they-support-recovery.webp",
+      d: "FDA-approved medications plus counseling for opioid and alcohol use disorders.",
+      more: `MAT pairs medications that ease cravings and withdrawal with counseling, inside the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a>. It’s medically supervised and offered at our Downtown Glastonbury and Westbrook offices. Learn about <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a>.`,
+      helps: ["Opioid use disorder", "Alcohol use disorder", "Step-down care after detox or rehab"] },
+  ] },
+  { key: "testing", name: "Testing & evaluation", note: "Get the full picture", icon: "clipboard", tone: "t-sage", items: [
+    { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-play-room.webp",
+      d: "Comprehensive evaluation for clarity, diagnosis, and a real plan.",
+      more: `Comprehensive evaluation of attention, memory, and learning — for clarity, diagnosis, and a real plan. A detailed look at language and emotional functioning too, with a written report and clear recommendations for home, school or work. See <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.`,
+      helps: ["Learning or memory concerns", "Questions about autism or ADHD", "School accommodations and 504 plans"] },
+    { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", img: P + "tx-east-hampton-office.webp",
+      d: "Thorough, compassionate assessment for children, teens & adults.",
+      more: `Thorough, compassionate assessment for children, teens, and adults. Interviews, rating scales and testing that separate ADHD from anxiety, depression or learning differences, so treatment fits. Learn about <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`,
+      helps: ["Focus and attention concerns", "Adults who suspect lifelong ADHD", "Kids struggling at school"] },
+  ] },
+];
+const steps = [
+  ["phone", "Reach out", "Call or request a confidential callback. We check your insurance for free."],
+  ["clipboard", "Assessment", "A clinician learns your symptoms, history and goals, and what you’ve already tried."],
+  ["compass", "Your plan", "We recommend a mix of therapy, medication and, when it helps, an advanced treatment or testing."],
+  ["refresh", "Adjust as you heal", "Your team reviews progress and steps care up or down, without switching providers."],
+];
 const compare = [
   ["brain", "TMS", "Depression or OCD that hasn’t responded to medication and therapy", "/treatment-methods/tms/"],
   ["refresh", "EMDR", "Trauma, PTSD and distressing memories", "/treatment-methods/emdr/"],
@@ -37,9 +92,13 @@ const faqs = [
   ["Which treatment is right for me?", `Most people start with an assessment. Our team looks at your symptoms, history and goals, then recommends a plan — often a mix of therapy, <a class="inl" href="/programs/medication-management/">medication management</a> and, when helpful, an advanced option like <a class="inl" href="/treatment-methods/tms/">TMS</a>. Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> to start.`],
   ["Do you offer telehealth?", "Many therapies are available in person and by telehealth. TMS, testing sessions and our intensive programs happen in person at our Connecticut offices."],
   ["Is treatment covered by insurance?", `We’re in-network with most major PPO plans and verify your benefits at no cost before you commit. See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>.`],
+  ["How long does TMS take?", `A typical course of <a class="inl" href="/treatment-methods/tms/">TMS</a> runs several weeks of short, daily weekday sessions. Your clinician will walk you through your schedule at the consultation.`],
+  ["Do I have to talk about my trauma in detail for EMDR?", `No. <a class="inl" href="/treatment-methods/emdr/">EMDR</a> is structured so you don’t have to retell every detail. Your therapist helps you build calming skills first and moves at a pace you can manage.`],
+  ["Can my child be tested for ADHD or learning differences?", `Yes. We offer <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> for children, teens and adults, with recommendations you can share with schools.`],
+  ["Can treatments be combined?", `Often, yes. Many plans combine therapy such as <a class="inl" href="/treatment-methods/dbt/">DBT</a> or <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> with <a class="inl" href="/programs/medication-management/">medication management</a>, and sometimes TMS or GeneSight® testing. One team coordinates everything.`],
   ["Where is addiction treatment offered?", `Addiction treatment, including <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> and our <a class="inl" href="/programs/substance-use-iop/">addiction IOP</a>, is offered at our Downtown Glastonbury (300 Hebron Ave) and Westbrook offices.`],
 ];
-const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: TREATMENTS.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
+const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: groups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---
 
 <Base title="Treatments & Therapies in CT | Hopewell Health Solutions" description="Advanced, evidence-based treatments at Hopewell Health Solutions in Connecticut — TMS, EMDR, therapeutic treatments, and neuropsychological & ADHD testing. In person & telehealth." canonical={canonical} image={P + "group-room-bright.webp"}>
@@ -56,17 +115,55 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
     />
     <Creds />
 
-    <section class="section is-white">
+    <section class="section is-stone" id="treatments">
       <div class="container">
-        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own — evidence-based options that help the brain and body heal.</p></div>
-        <ProgramCards items={advanced} cols={3} />
+        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own — evidence-based options that help the brain and body heal. Below, each treatment explained: what it is, who it helps, and where to learn more.</p></div>
+        <div class="hb-groups">
+          {groups.map((g) => (
+            <section class:list={["hb-group", g.tone]} id={g.key} aria-labelledby={`h-${g.key}`}>
+              <div class="hb-group-head"><span class="hb-group-icon"><Icon name={g.icon} /></span><div><h3 id={`h-${g.key}`}>{g.name}</h3><small>{g.note}</small></div></div>
+              {g.key === "testing" && <p style="padding:18px 24px 0;font-size:16px">An accurate diagnosis is where good treatment begins. Our testing clarifies what’s going on — and what to do about it.</p>}
+              <div class="hb-cards">
+                {g.items.map((c) => (
+                  <article class="hb-card">
+                    <img src={c.img} alt={`${c.t} at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
+                    <div>
+                      <h4><a href={c.href}>{c.t}</a></h4>
+                      <p>{c.d}</p>
+                      <p set:html={c.more} />
+                      <ul class="hb-signs" aria-label={`Who ${c.t} helps`}><li><strong>Often helps with:</strong></li>{c.helps.map((h) => <li><Icon name="check" />{h}</li>)}</ul>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
     </section>
 
-    <section class="section is-stone">
+    <section class="section is-white" id="plan">
       <div class="container">
-        <div class="sec-head"><h2>Get the full picture</h2><p class="lede">An accurate diagnosis is where good treatment begins. Our testing clarifies what’s going on — and what to do about it.</p></div>
-        <ProgramCards items={testing} cols={3} />
+        <div class="sec-head"><h2>How we build your treatment plan</h2><p class="lede">Therapy first, medication second, transformation third. Every plan starts with listening, and most combine more than one approach, coordinated by one team.</p></div>
+        <ol class="step-grid">
+          {steps.map(([icon, t, d], i) => <li class="step"><span class="step-dot"><Icon name={icon} /></span><span class="step-num">Step {i + 1}</span><h3>{t}</h3><p>{d}</p>{i < steps.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="where">
+      <div class="container hb-split">
+        <div class="hb-photo"><img src={P + "tms-neurostar-room.webp"} alt="The NeuroStar TMS device and treatment room at Hopewell Health Solutions" width="1200" height="1600" loading="lazy" style="aspect-ratio:4/3.4;object-position:center 30%" /></div>
+        <div>
+          <h2>Treatment inside our programs, or on its own</h2>
+          <p class="lede" style="margin-top:14px">Many of these treatments are woven into our programs. DBT, group therapy and EMDR are part of the <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> and <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>; others, like TMS and testing, can be scheduled on their own alongside weekly <a class="inl" href="/programs/counseling/">counseling</a>.</p>
+          <ul class="hb-check">
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>Clients aged 4 and up, depending on the treatment</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>In person across our Connecticut offices, with telehealth for many therapies</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>MAT and addiction care at 300 Hebron Ave (Glastonbury) and Westbrook</li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span>Your prescriber, therapist and testing clinician share one plan</li>
+          </ul>
+        </div>
       </div>
     </section>
 

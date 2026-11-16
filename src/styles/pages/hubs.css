@@ -1,0 +1,99 @@
+/* Hub pages (What We Treat, Treatments, Programs, Locations, About) — Corner Canyon's content-rich hub pattern in
+   Hopewell's brand. Scoped under .hw. 2026-11-16. */
+
+/* Jump list in the hero (plain list of in-page links, not pills) */
+.hw .hb-jump { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 22px; max-width: 620px; }
+.hw .hb-jump a { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.16); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 15px; text-decoration: none; }
+.hw .hb-jump a:hover { color: var(--hw-sky); }
+.hw .hb-jump svg { color: var(--hw-sky); flex: none; }
+
+/* Grouped areas of expertise */
+.hw .hb-groups { display: grid; gap: 22px; }
+.hw .hb-group { border-radius: 26px; background: #fff; border: 1px solid var(--hw-line); overflow: hidden; scroll-margin-top: 130px; }
+.hw .hb-group-head { display: flex; align-items: center; gap: 16px; padding: 18px 24px; background: var(--tone, var(--hw-navy)); color: #fff; }
+.hw .hb-group-head h3 { color: #fff; font-size: 22px; }
+.hw .hb-group-head small { display: block; margin-top: 2px; font-size: 14px; color: rgba(255,255,255,.8); }
+.hw .hb-group-icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.16); flex: none; }
+.hw .hb-group-icon svg { width: 22px; height: 22px; }
+.hw .hb-group.t-sky .hb-group-head { --tone: var(--hw-bright); }
+.hw .hb-group.t-gold .hb-group-head { --tone: var(--hw-gold); }
+.hw .hb-group.t-sage .hb-group-head { --tone: var(--hw-sage); }
+.hw .hb-group.t-blue .hb-group-head { --tone: var(--hw-blue); }
+.hw .hb-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.hw .hb-card { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; padding: 22px 24px; border-top: 1px solid var(--hw-line); }
+.hw .hb-cards > .hb-card:nth-child(n) { border-right: 1px solid var(--hw-line); }
+.hw .hb-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 18px; }
+.hw .hb-card h4 { font-family: var(--hw-head); font-size: 20px; font-weight: 800; color: var(--hw-navy); margin: 0 0 6px; }
+.hw .hb-card h4 a { color: inherit; text-decoration: none; }
+.hw .hb-card h4 a:hover { color: var(--hw-blue); }
+.hw .hb-card p { font-size: 15.5px; line-height: 1.6; color: var(--hw-body); }
+.hw .hb-card p + p { margin-top: 8px; }
+.hw .hb-signs { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 5px; }
+.hw .hb-signs li { display: flex; gap: 8px; align-items: flex-start; font-size: 14.5px; line-height: 1.45; color: var(--hw-slate); }
+.hw .hb-signs svg { width: 16px; height: 16px; flex: none; margin-top: 2px; color: var(--hw-bright); }
+.hw .hb-signs strong { color: var(--hw-navy); font-family: var(--hw-head); }
+@media (max-width: 640px) {
+  .hw .hb-cards { grid-template-columns: 1fr; }
+  .hw .hb-card { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 16px; }
+  .hw .hb-card img { width: 84px; height: 84px; border-radius: 14px; }
+  .hw .hb-card h4 { font-size: 17.5px; }
+}
+
+/* Feature tiles (who we help, approaches, testing) */
+.hw .hb-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hw .hb-tiles.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hw .hb-tiles.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hw .hb-tile { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 22px; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); background-image: linear-gradient(var(--bar, var(--hw-bright)), var(--bar, var(--hw-bright))); background-size: 100% 5px; background-repeat: no-repeat; }
+.hw .is-white .hb-tile { background-color: var(--hw-stone); border-color: transparent; }
+.hw .hb-tile-icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: var(--hw-mist); color: var(--bar, var(--hw-blue)); }
+.hw .hb-tile-icon svg { width: 22px; height: 22px; }
+.hw .hb-tile h3 { font-size: 19px; margin-top: 4px; }
+.hw .hb-tile p { font-size: 15.5px; line-height: 1.6; }
+.hw .hb-tile .hb-meta { margin-top: auto; padding-top: 8px; font-family: var(--hw-head); font-size: 13.5px; font-weight: 700; color: var(--hw-slate); }
+.hw .hb-tile.is-dark { background-color: var(--hw-navy); color: #dce6f1; border-color: var(--hw-navy); }
+.hw .hb-tile.is-dark h3 { color: #fff; }
+.hw .hb-tile.is-dark .hb-tile-icon { background: rgba(255,255,255,.12); color: var(--hw-sky); }
+.hw .hb-tile.is-dark .inl { color: var(--hw-sky); text-decoration: none; }
+@media (max-width: 1080px) { .hw .hb-tiles, .hw .hb-tiles.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .hw .hb-tiles, .hw .hb-tiles.cols-4, .hw .hb-tiles.cols-2 { grid-template-columns: 1fr; gap: 10px; } .hw .hb-tile { padding: 16px 18px; } }
+
+/* Photo + copy split with a checklist */
+.hw .hb-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
+.hw .hb-split.is-flip > :first-child { order: 2; }
+.hw .hb-split .lede + p, .hw .hb-split p + p { margin-top: 14px; }
+.hw .hb-photo { position: relative; }
+.hw .hb-photo img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: 26px; }
+.hw .hb-photo img.hb-inset { position: absolute; width: 44%; aspect-ratio: 1; right: -12px; bottom: -22px; border: 6px solid #fff; border-radius: 22px; box-shadow: 0 18px 40px rgba(0,29,55,.2); }
+.hw .hb-check { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+.hw .hb-check li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; }
+.hw .hb-check .sv-tick { margin-top: 1px; }
+.hw .is-navy .hb-check li { color: #dce6f1; }
+@media (max-width: 999px) { .hw .hb-split { grid-template-columns: 1fr; } .hw .hb-split.is-flip > :first-child { order: 0; } .hw .hb-photo img.hb-inset { display: none; } }
+
+/* Not sure where to start */
+.hw .hb-unsure { display: grid; grid-template-columns: 1fr 1.1fr; overflow: hidden; border-radius: 30px; background: var(--hw-navy); color: #dce6f1; box-shadow: 0 30px 70px rgba(0,29,55,.22); }
+.hw .hb-unsure-media { position: relative; min-height: 340px; }
+.hw .hb-unsure-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hw .hb-unsure-copy { padding: clamp(28px, 4vw, 52px); display: grid; gap: 14px; align-content: center; }
+.hw .hb-unsure-copy h2 { color: #fff; }
+.hw .hb-unsure-copy .inl { color: var(--hw-sky); text-decoration: none; }
+.hw .hb-unsure-icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(156,195,234,.18); color: var(--hw-sky); }
+.hw .hb-unsure-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+@media (max-width: 899px) { .hw .hb-unsure { grid-template-columns: 1fr; } .hw .hb-unsure-media { min-height: 220px; } }
+
+/* Comparison table (programs / locations) */
+.hw .hb-table-wrap { overflow-x: auto; border-radius: 22px; border: 1px solid var(--hw-line); background: #fff; }
+.hw .hb-table { width: 100%; border-collapse: collapse; min-width: 720px; font-size: 15px; }
+.hw .hb-table th, .hw .hb-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--hw-line); vertical-align: top; }
+.hw .hb-table thead th { background: var(--hw-navy); color: #fff; font-family: var(--hw-head); font-weight: 800; font-size: 14px; }
+.hw .hb-table tbody th { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
+.hw .hb-table tbody tr:nth-child(even) { background: var(--hw-stone); }
+.hw .hb-table td svg { color: var(--hw-bright); width: 18px; height: 18px; }
+
+/* Values / timeline (about) */
+.hw .hb-timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.hw .hb-timeline li { padding: 22px; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .hb-timeline strong { display: block; font-family: var(--hw-head); font-size: 30px; font-weight: 800; color: var(--hw-blue); line-height: 1; }
+.hw .hb-timeline span { display: block; margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--hw-body); }
+@media (max-width: 999px) { .hw .hb-timeline { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .hw .hb-timeline { grid-template-columns: 1fr; } }
