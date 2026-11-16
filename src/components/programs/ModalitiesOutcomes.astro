@@ -1,0 +1,22 @@
+---
+// Modalities (icon tiles) beside outcomes ("What you can expect") on a navy panel.
+import Icon from "../Icon.astro";
+interface Props { mHeading?: string; modalities: { t: string; icon: string; href?: string }[]; oHeading?: string; outcomes: string[]; note?: string; oLede?: string; tone?: "white" | "stone" | "mist" }
+const { oLede, mHeading = "Modalities used in our IOP", modalities, oHeading = "What you can expect", outcomes, note, tone = "stone" } = Astro.props;
+---
+<section class={`section is-${tone}`}>
+  <div class="container pg-mo">
+    <div>
+      <h2 set:html={mHeading} />
+      <ul class="pg-mods">
+        {modalities.map((m) => <li><span class="pg-mod-icon"><Icon name={m.icon} class="h-5 w-5" /></span>{m.href ? <a class="inl" href={m.href} set:html={m.t} /> : <span set:html={m.t} />}</li>)}
+      </ul>
+      {note && <p class="pg-note" set:html={note} />}
+    </div>
+    <div class="pg-out">
+      <h2 set:html={oHeading} />
+      {oLede && <p class="pg-out-lede" set:html={oLede} />}
+      <ul>{outcomes.map((o) => <li><span class="pg-out-icon"><Icon name="shield" class="h-5 w-5" /></span><span set:html={o} /></li>)}</ul>
+    </div>
+  </div>
+</section>

@@ -12,7 +12,7 @@ import LeadForm from "../components/LeadForm.astro";
 import MediaStrip from "../components/MediaStrip.astro";
 import Creds from "../components/hw/Creds.astro";
 import Team from "../components/hw/Team.astro";
-import ProgramCards from "../components/hw/ProgramCards.astro";
+import ProgramExplorer from "../components/hw/ProgramExplorer.astro";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import Reviews from "../components/hw/Reviews.astro";
 import Insurance from "../components/hw/Insurance.astro";
@@ -26,8 +26,10 @@ import { locations as offices } from "../data/locations.js";
 
 const P = "/Assets/hhs-2026/";
 const heroSlides = [
+  [P + "team-with-dr-k-lawn.webp", "Dr. Kristine Schlichting with the Hopewell team outside the office", "center 35%"],
   [P + "team-celebrating-outside.webp", "The Hopewell team celebrating together outside the office", "center 45%"],
   [P + "iop-clinicians-group-room.webp", "Hopewell IOP clinicians in a group therapy room", "center 40%"],
+  [P + "teen-iop-outside.webp", "Teens from our Teen IOP outside the Glastonbury office", "center 60%"],
   [P + "team-outside-with-therapy-dog.webp", "Hopewell staff outside with the office therapy dog", "center 40%"],
   [P + "womens-trauma-iop-group-room.webp", "Clinicians in the Women's Trauma IOP group room", "center 45%"],
   [P + "iop-team-hallway.webp", "The Hopewell IOP team at the Glastonbury office", "center 40%"],
@@ -38,7 +40,7 @@ const C = "/Assets/credibility/";
 const usps = [
   { icon: "users", t: "Real, in-person care", d: "While others go all-virtual, our IOP, PHP, therapy and medication management happen face to face — human to human, with telehealth when you need it." },
   { icon: "dna", t: "GeneSight® genetic testing", d: "A simple cheek swab shows which medications fit your DNA — so we skip the trial-and-error.", href: "/treatment-methods/genesight-testing/" },
-  { icon: "brain", t: "TMS for treatment-resistant depression", d: "FDA-cleared, drug-free, no downtime — for when medication and therapy haven’t been enough.", href: "/treatment-methods/tms/" },
+  { icon: "link", t: "Addiction care, with mental health alongside it", d: "Our Addiction and Substance Use IOP treats addiction and co-occurring mental health together at 300 Hebron Ave in Glastonbury and in Westbrook, including step-down care after rehab.", href: "/programs/substance-use-iop/" },
 ];
 const stats = [
   ["14", "Years serving Central Connecticut", "calendar"],
@@ -55,20 +57,25 @@ const levels = [
     html: `Full-day care — highest outpatient level. Our <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a> is for when weekly therapy simply isn’t enough.` },
 ];
 const programs = [
-  { t: "Adult IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: P + "adult-evening-iop-group.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"], ["users", "Adults 18+"]] },
-  { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", img: P + "womens-wellness-team.webp", bar: "#b6863c", facts: [["heart", "Women-only groups"], ["pin", "Glastonbury & Westbrook"]] },
-  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-tween-iop/", img: P + "tween-group-room.webp", bar: "#5c7c6b", facts: [["calendar", "After school"], ["users", "Tweens 8–12 · teens 13–17"]] },
-  { t: "Addiction IOP", d: "Addiction treatment with mental health care alongside it, at our Downtown Glastonbury and Westbrook offices.", href: "/programs/substance-use-iop/", img: P + "iop-group-session.webp", bar: "#0b2f55", facts: [["link", "Co-occurring care"], ["pin", "Glastonbury & Westbrook"]] },
-  { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", bar: "#265489", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
-  { t: "First Responder IOP", d: "A program built for police, fire, EMS and dispatch, with clinicians who understand the job.", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#b6863c", facts: [["shield", "Police, fire, EMS, dispatch"], ["users", "Peer-informed groups"]] },
-  { t: "Medication Management", d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", href: "/programs/medication-management/", img: P + "providers-together.webp", bar: "#5c7c6b", facts: [["pill", "Ages 4 and up"], ["dna", "GeneSight® testing available"]] },
-  { t: "Counseling", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["users", "Individual, couples & family"], ["compass", "In person or telehealth"]] },
+  // Photos per the client doc (Task 2): real rooms/people that match each service; no group photo for medication
+  // management, no group-looking image for counseling, no team photo for Women's Wellness.
+  { t: "Adult IOP", icon: "users", group: "Intensive programs", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: P + "iop-room-group-photo.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"], ["pin", "300 Hebron Ave & Westbrook"]] },
+  { t: "Partial Hospitalization (PHP)", icon: "sun", group: "Intensive programs", d: "Full-day treatment for when weekly therapy simply isn’t enough.", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", bar: "#265489", facts: [["clock", "About 6 hours a day, Mon–Fri"], ["pin", "300 Hebron Ave, Glastonbury"]] },
+  { t: "Addiction & Substance Use IOP", icon: "link", group: "Intensive programs", d: "Addiction treatment with mental health care alongside it, including step-down care after rehab, at our 300 Hebron Ave (Glastonbury) and Westbrook offices.", href: "/programs/substance-use-iop/", img: P + "iop-group-session.webp", bar: "#0b2f55", facts: [["link", "Co-occurring care"], ["pin", "300 Hebron Ave & Westbrook"]] },
+  { t: "Women’s Wellness IOP", icon: "heart", group: "Intensive programs", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c", facts: [["clock", "Morning & evening groups"], ["pin", "300 Hebron Ave & Westbrook"]] },
+  { t: "Teen & Tween IOP", icon: "sparkles", group: "Intensive programs", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-tween-iop/", img: P + "teen-iop-outside.webp", bar: "#5c7c6b", facts: [["calendar", "After school"], ["pin", "1420 Main St, South Glastonbury"]] },
+  { t: "First Responder IOP", icon: "shield", group: "Intensive programs", d: "A program built for police, fire, EMS and dispatch, with clinicians who understand the job.", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#b6863c", facts: [["shield", "Police, fire, EMS, dispatch"], ["users", "Peer-informed groups"]] },
+  { t: "Medication Management", icon: "pill", group: "Ongoing care", d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", href: "/programs/medication-management/", img: P + "south-glastonbury-med-waiting-room.webp", bar: "#5c7c6b", facts: [["pill", "Ages 4 and up"], ["pin", "All six offices"]] },
+  { t: "Counseling", icon: "chat", group: "Ongoing care", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["users", "Individual & family therapy"], ["pin", "All six offices"]] },
+  { t: "TMS Therapy", icon: "brain", group: "Ongoing care", d: "FDA-cleared magnetic stimulation for treatment-resistant depression & OCD.", href: "/treatment-methods/tms/", img: P + "tms-chair.webp", bar: "#265489", facts: [["brain", "Drug-free, no downtime"], ["calendar", "Short daily sessions"]] },
 ];
 const treatments = [
   { t: "EMDR", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", icon: "refresh" },
+  { t: "DBT", d: "Skills for emotional regulation, distress tolerance and relationships, at the core of our IOPs.", href: "/treatment-methods/dbt/", icon: "compass" },
   { t: "Therapeutic Treatments", d: "ART, the Gottman Method, mindfulness, yoga therapy & more.", href: "/treatment-methods/therapeutic-treatments/", icon: "heart" },
-  { t: "Neuropsychological Testing", d: "Comprehensive evaluation for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
-  { t: "ADHD Testing", d: "Thorough, compassionate assessment for children, teens & adults.", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
+  { t: "TMS Therapy", d: "FDA-cleared magnetic stimulation for treatment-resistant depression & OCD.", href: "/treatment-methods/tms/", icon: "brain" },
+  { t: "GeneSight® Testing", d: "A simple cheek swab shows which medications fit your DNA.", href: "/treatment-methods/genesight-testing/", icon: "dna" },
+  { t: "Neuropsychological & ADHD Testing", d: "Comprehensive evaluation for clarity, diagnosis, and a real plan — for children, teens & adults.", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
 ];
 const conditions = [
   { t: "Depression", icon: "cloud", href: "/what-we-treat/depression/", d: "depression treatment" },
@@ -216,14 +223,14 @@ const orgSchema = {
     <svg class="hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /><circle cx="400" cy="400" r="210" /></svg>
     <div class="container hero-grid">
       <div>
-        <h1>Mental Health &amp; Psychiatry in Connecticut</h1>
+        <h1>Mental Health, Addiction &amp; Psychiatry Care in Connecticut</h1>
         <p class="hero-tag">There is hope to heal.</p>
         <a class="hero-rating" href="/testimonials/"><span class="g"><img src="/Assets/home-b/google-g.svg" alt="" width="16" height="16" /></span><span class="stars" aria-hidden="true">★★★★★</span><span>4.8 on Google · 368 reviews</span></a>
         <p class="lede">Outpatient mental-health and addiction care from a Connecticut team you can meet in person, delivered by clinicians who know your name.</p>
         <ul class="hero-bullets">
           <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/intensive-outpatient-program/">Intensive programs</a> (IOP &amp; PHP)</span></li>
           <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Psychiatry &amp; <a class="inl" href="/programs/medication-management/">medication management</a></span></li>
-          <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/treatment-methods/tms/">TMS</a> &amp; GeneSight® testing</span></li>
+          <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/substance-use-iop/">Addiction &amp; substance use IOP</a></span></li>
           <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Ages 4 and up, in person or by telehealth</span></li>
         </ul>
         <div class="hero-ctas">
@@ -314,6 +321,39 @@ const orgSchema = {
     </div>
   </section>
 
+  <!-- Experience Hopewell: concierge-level care, from arrival to the rooms (client doc Task 3) -->
+  <section class="section is-white" id="experience">
+    <div class="container">
+      <div class="xp-head">
+        <div class="sec-head" style="margin:0">
+          <h2>Experience Hopewell</h2>
+          <p class="lede">Personal, concierge-level care starts before you walk through the door. An admissions coordinator guides you from your first call to your first session, and our team welcomes you in person, shows you around, and makes sure you know exactly what comes next.</p>
+        </div>
+        <ul class="xp-points">
+          <li><Icon name="phone" class="h-5 w-5" />One coordinator from first call to first session</li>
+          <li><Icon name="shield" class="h-5 w-5" />Free insurance check before you start</li>
+          <li><Icon name="users" class="h-5 w-5" />The same team as you step up or down in care</li>
+        </ul>
+      </div>
+      <ol class="xp-steps">
+        {[
+          [P + "downtown-glastonbury-entrance.webp", "The entrance to our Downtown Glastonbury office", "You arrive", "Before your first visit we confirm your appointment, your insurance and which office to come to."],
+          [P + "east-hampton-front-office.webp", "The front office at our East Hampton location", "A warm check-in", "Our front desk team greets you and walks you through any paperwork, so nothing feels rushed."],
+          [P + "south-glastonbury-med-waiting-room.webp", "The waiting room at our South Glastonbury office", "A calm place to wait", "Comfortable, private waiting rooms, more like a living room than a clinic."],
+          [P + "group-room-bright.webp", "A Hopewell group therapy room", "Shown around", "You’re welcomed by your clinician and shown the rooms and group spaces where you’ll meet."],
+        ].map(([img, alt, t, d], i) => (
+          <li class="xp-step">
+            <img src={img} alt={alt} width="1200" height="900" loading="lazy" />
+            <span class="xp-dot"><Icon name={["pin", "clipboard", "home", "users"][i]} class="h-5 w-5" /></span>
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="sec-foot">Want to know more before you visit? Read <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a> or <a class="inl" href="/locations/">find the office nearest you</a>.</p>
+    </div>
+  </section>
+
   <!-- 5. Levels of care + programs -->
   <section id="programs" class="section is-mist">
     <div class="container">
@@ -339,7 +379,7 @@ const orgSchema = {
         ))}
       </div>
       <p class="levels-key"><span class="key-swatch"></span>Hours of care each day in a typical week (outpatient shown as one weekly session)</p>
-      <div style="margin-top:34px"><ProgramCards items={programs} /></div>
+      <div style="margin-top:40px"><ProgramExplorer items={programs} /></div>
     </div>
   </section>
 
@@ -348,15 +388,15 @@ const orgSchema = {
     <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
     <div class="container">
       <div class="sec-head">
-        <h2>Advanced Treatments: TMS &amp; EMDR</h2>
+        <h2>Evidence-Based Therapies &amp; Advanced Treatments</h2>
         <p class="lede">When traditional therapy and medication aren’t enough on their own, we offer the kind of advanced, research-backed options most outpatient practices can’t — all under the same roof, coordinated by the same team.</p>
       </div>
       <div class="adv-layout">
-        <a class="adv-feature" href="/treatment-methods/tms/">
-          <img src={P + "tms-chair.webp"} alt="The TMS therapy chair at Hopewell Health Solutions" width="1200" height="1600" loading="lazy" style="object-position:center 35%" />
-          <span class="adv-tag">FDA-cleared</span>
-          <h3>TMS Therapy</h3>
-          <p>FDA-cleared magnetic stimulation for treatment-resistant depression &amp; OCD.</p>
+        <a class="adv-feature" href="/treatment-methods/group-therapy/">
+          <img src={P + "group-room-feelings-wheel.webp"} alt="A Hopewell group therapy room" width="1200" height="900" loading="lazy" style="object-position:center 40%" />
+          <span class="adv-tag">At the heart of our programs</span>
+          <h3>Group Therapy</h3>
+          <p>Small, clinician-led groups where you practice new skills in real time and learn you’re not alone.</p>
         </a>
         <div class="adv-list">
           {treatments.map((t) => (
@@ -408,7 +448,7 @@ const orgSchema = {
   </section>
 
   <!-- 10. Client stories: self-moving video carousel -->
-  <VideoCarousel videos={STORIES} heading="Stories of Hope, in Their Own Words" lede="Hopewell clients and their families share what treatment was like, in their own words. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
+  <VideoCarousel videos={STORIES} heading="Stories of Hope, in Their Own Words" lede="Hopewell clients and their families share what treatment was like, in their own words. See more on our <a class='inl' href='/testimonials/'>testimonials page</a>." />
 
   <!-- Press, right above the reviews -->
   <MediaStrip bg="white" />
@@ -416,24 +456,8 @@ const orgSchema = {
   <!-- 11. Reviews -->
   <Reviews />
 
-  <!-- 12. Podcast -->
-  <section class="section is-mist" id="podcast">
-    <div class="container pod">
-      <div class="pod-art"><img src={P + "team-outside-with-therapy-dog.webp"} alt="The Hopewell team outside the Glastonbury office" width="1680" height="1260" loading="lazy" style="object-position:center 40%" /></div>
-      <div>
-        <h2>Hope, Health &amp; Healing: The Hopewell Podcast</h2>
-        <p class="lede" style="margin-top:14px">Real conversations about recovery, mental health and asking for help, hosted by Hopewell’s TJ Aitken, CPSRP. New episodes share honest stories from people who have been through treatment. <a class="inl" href="/podcast/">See all episodes</a>.</p>
-        <ul class="pod-eps">
-          {PODCAST.map((v) => (
-            <li><button type="button" class="pod-ep vc-card" data-yt={v.yt} data-title={v.title} aria-label={`Play: ${v.title}`} style="box-shadow:none;flex-direction:row;display:grid">
-              <img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" />
-              <span><small>{v.type} · {v.len}</small><strong>{v.name}</strong><span>{v.desc}</span></span>
-            </button></li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
+  <!-- 12. Podcast: two big episode cards -->
+  <VideoCarousel videos={PODCAST} mode="grid" tone="stone" id="podcast" heading="Hope, Health &amp; Healing: The Hopewell Podcast" lede="Real conversations about recovery, mental health and asking for help, hosted by Hopewell’s TJ Aitken, CPSRP. Each episode shares an honest story from someone who has been through treatment." link={{ href: "/podcast/", label: "See all episodes" }} />
 
   <!-- 13. Insurance (phones: the one form sits right above it) -->
   <Insurance />

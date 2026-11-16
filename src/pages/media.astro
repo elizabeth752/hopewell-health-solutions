@@ -4,6 +4,12 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import MediaStrip from "../components/MediaStrip.astro";
+import "../styles/pages/about.css";
+import ServiceHero from "../components/hw/ServiceHero.astro";
+import VideoCarousel from "../components/hw/VideoCarousel.astro";
+import ClosingCta from "../components/hw/ClosingCta.astro";
+import Insurance from "../components/hw/Insurance.astro";
+import { VIDEOS } from "../data/videos.js";
 
 const videos = [
   { id: "aff5Xfy9CfE", t: "The Loneliness Crisis in Adults", outlet: "Hopewell Health Solutions" },
@@ -20,79 +26,58 @@ const press = [
   { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
   { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
 ];
+const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("Podcast") || v.type.startsWith("Clinician")));
+
 ---
 
 <Base title="In the News & Media | Hopewell Health Solutions" description="Hopewell Health Solutions in the news — featured on WFSB Eyewitness News, FOX61, the Hartford Courant & Hartford Business Journal for behavioral health and teen mental health in Connecticut.">
   <Header />
+  <main class="hw">
+    <ServiceHero
+      crumbs={[{ label: "Media" }]}
+      title="Hopewell Health Solutions in the Media"
+      lede="Connecticut’s news outlets turn to our clinicians for expertise on teen mental health, women’s wellness, and the future of outpatient care. Here’s where you’ve seen us."
+      bullets={["WFSB Eyewitness News 3 &amp; NBC Connecticut", "FOX61 &amp; the Hartford Courant", "Hartford Business Journal", "The <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>"]}
+      image="/Assets/hhs-2026/iop-team-hallway.webp"
+      form={false}
+    />
+    <MediaStrip showLink={false} />
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-4xl px-5 py-16 text-center">
-      <nav class="text-xs text-muted mb-5"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Media</span></nav>
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">In the news</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink">Hopewell Health Solutions in the Media</h1>
-      <div class="mx-auto mt-5 h-px w-16 bg-gold"></div>
-      <p class="mt-5 text-lg text-muted">Connecticut’s news outlets turn to our clinicians for expertise on teen mental health, women’s wellness, and the future of outpatient care. Here’s where you’ve seen us.</p>
-    </div>
-  </section>
-
-  <MediaStrip showLink={false} />
-
-  <!-- VIDEOS -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-5 py-16">
-      <div class="text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Watch</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Interviews &amp; TV segments</h2>
+    <!-- TV segments -->
+    <section class="section is-white" id="watch">
+      <div class="container">
+        <div class="sec-head"><h2>Interviews &amp; TV segments</h2><p class="lede">Press play to watch our clinicians on Connecticut TV.</p></div>
+        <div class="ab-tv">
+          {videos.map((v) => (
+            <button type="button" class="vc-card" data-yt={v.id} data-title={v.t} aria-label={`Play: ${v.t}`}>
+              <span class="vc-poster"><img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+              <span class="ab-tv-body"><small>{v.outlet}</small><strong>{v.t}</strong></span>
+            </button>
+          ))}
+        </div>
       </div>
-      <div class="mt-10 grid md:grid-cols-3 gap-6">
-        {videos.map((v) => (
-          <figure>
-            <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-              <iframe class="h-full w-full" src={`https://www.youtube.com/embed/${v.id}`} title={v.t} loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <figcaption class="mt-3"><span class="text-xs font-semibold uppercase tracking-wide text-azul">{v.outlet}</span><p class="font-display text-lg text-ink leading-tight">{v.t}</p></figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PRESS ARTICLES -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16">
-      <div class="text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Read</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Press &amp; features</h2>
+    <!-- Press -->
+    <section class="section is-stone" id="press">
+      <div class="container">
+        <div class="sec-head"><h2>Press &amp; features</h2></div>
+        <div class="ab-press">
+          {press.map((p) => (
+            <a href={p.href} target="_blank" rel="noopener">
+              <span class="ab-press-top">{p.logo ? <img src={p.logo} alt={p.outlet} loading="lazy" /> : <b>{p.outlet}</b>}<span>{p.date}</span></span>
+              <strong>{p.title}</strong>
+              <em>Read the feature <Icon name="arrow" class="h-4 w-4" /></em>
+            </a>
+          ))}
+        </div>
       </div>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {press.map((p) => (
-          <a href={p.href} target="_blank" rel="noopener" class="group rounded-2xl bg-white border border-line p-6 hover:border-azul hover:shadow-lg transition flex flex-col">
-            <div class="flex items-center justify-between gap-3 min-h-[2rem]">
-              {p.logo
-                ? <img src={p.logo} alt={p.outlet} loading="lazy" class="h-7 w-auto max-w-[60%] object-contain" />
-                : <span class="text-xs font-semibold uppercase tracking-wide text-gold">{p.outlet}</span>}
-              <span class="text-xs text-muted shrink-0">{p.date}</span>
-            </div>
-            <p class="mt-4 font-display text-xl text-ink leading-snug flex-1 group-hover:text-azul transition">{p.title}</p>
-            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-azul">Read the feature <Icon name="arrow" class="h-4 w-4" /></span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="bg-azul text-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">Trusted by Connecticut — and here for you</h2>
-      <p class="mt-4 text-white/85 text-lg">The same team the news turns to is ready to help you or your loved one heal.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="/#verify" class="inline-flex items-center justify-center rounded-lg bg-white px-7 h-[45px] font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
-        <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-      </div>
-    </div>
-  </section>
+    <VideoCarousel videos={more} mode="grid" heading="More From the Hopewell Team" lede="Our podcast and short videos from Hopewell clinicians." link={{ href: "/podcast/", label: "All podcast episodes" }} />
 
+    <Insurance tone="white" />
+    <ClosingCta heading="Trusted by Connecticut — and here for you" lede="The same team the news turns to is ready to help you or your loved one heal." verifyHref="/admissions/#verify" />
+  </main>
   <Footer />
 </Base>

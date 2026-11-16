@@ -5,6 +5,8 @@
 export const locations = [
   {
     slug: "glastonbury-ct",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["therapy", "meds"],
     name: "Glastonbury (Pratt St)",
     city: "Glastonbury",
     street: "33 Pratt St",
@@ -29,6 +31,8 @@ export const locations = [
   },
   {
     slug: "glastonbury-ct-2",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["php", "iop", "womens", "therapy", "meds", "addiction"],
     name: "Downtown Glastonbury",
     city: "Glastonbury",
     street: "300 Hebron Ave, Suite 203",
@@ -55,6 +59,8 @@ export const locations = [
   },
   {
     slug: "glastonbury-ct-3",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["teen-tween", "therapy", "meds"],
     name: "South Glastonbury",
     city: "South Glastonbury",
     street: "1420 Main St, Suite 124",
@@ -84,6 +90,8 @@ export const locations = [
   },
   {
     slug: "west-hartford-ct",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["therapy", "meds"],
     name: "West Hartford",
     city: "West Hartford",
     street: "1216 Farmington Ave, Suite 301",
@@ -108,6 +116,8 @@ export const locations = [
   },
   {
     slug: "east-hampton-ct",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["therapy", "meds"],
     name: "East Hampton",
     city: "East Hampton",
     street: "151 E. High St",
@@ -132,6 +142,8 @@ export const locations = [
   },
   {
     slug: "westbrook-ct",
+    // Services at this office, confirmed by the client ("Hopewell Website Updates" doc, 2026-11-16). Keys: see OFFERS.
+    offers: ["iop", "womens", "therapy", "meds", "addiction"],
     name: "Westbrook",
     city: "Westbrook",
     street: "70 Essex Road",
@@ -182,3 +194,15 @@ export const locations = [
     },
   },
 ];
+
+// Service keys used by `offers` above → label + program page. Addiction treatment only at 300 Hebron + Westbrook.
+export const OFFERS = {
+  php: { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", icon: "sun" },
+  iop: { t: "Adult IOP", href: "/programs/adult-mental-health-iop/", icon: "calendar" },
+  womens: { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", icon: "heart" },
+  "teen-tween": { t: "Tween & Teen IOP", href: "/programs/teen-tween-iop/", icon: "sparkles" },
+  therapy: { t: "1:1 Therapy", href: "/programs/counseling/", icon: "chat" },
+  meds: { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
+  addiction: { t: "Addiction Treatment", href: "/programs/substance-use-iop/", icon: "link" },
+};
+export const OFFER_ORDER = ["php", "iop", "womens", "teen-tween", "therapy", "meds", "addiction"];

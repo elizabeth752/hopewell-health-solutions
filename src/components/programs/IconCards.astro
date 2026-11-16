@@ -1,0 +1,22 @@
+---
+// Coloured icon cards (Corner Canyon USP tones): first card navy, then stone / mist / gold tints.
+import Icon from "../Icon.astro";
+interface Item { icon: string; t: string; d: string }
+interface Props { heading: string; lede?: string; items: Item[]; tone?: "white" | "stone" | "mist"; cols?: 2 | 3 | 4; id?: string }
+const { heading, lede, items, tone = "white", cols = 4, id } = Astro.props;
+---
+<section class={`section is-${tone}`} id={id}>
+  <div class="container">
+    <div class="sec-head"><h2 set:html={heading} />{lede && <p class="lede" set:html={lede} />}</div>
+    <div class={`pg-cards cols-${cols}`}>
+      {items.map((u, i) => (
+        <div class={`pg-card t-${i % 4}`}>
+          <span class="pg-card-icon"><Icon name={u.icon} class="h-6 w-6" /></span>
+          <h3 set:html={u.t} />
+          <p set:html={u.d} />
+        </div>
+      ))}
+    </div>
+    <slot />
+  </div>
+</section>

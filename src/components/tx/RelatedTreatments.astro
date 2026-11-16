@@ -1,0 +1,15 @@
+---
+// Related treatments for the treatment-methods pages: photo cards (ProgramCards) linking the other treatments.
+// `current` = the page's href, left out of the list. Replaces the old ServicesGrid cross-link block.
+import ProgramCards from "../hw/ProgramCards.astro";
+import { TREATMENTS } from "./treatments.js";
+interface Props { current?: string; heading?: string; lede?: string; tone?: "white" | "stone" | "mist" }
+const { current, heading = "More Treatments at Hopewell", lede = "Every treatment is coordinated by the same Connecticut team, so you can combine what helps.", tone = "stone" } = Astro.props;
+const items = TREATMENTS.filter((t) => t.href !== current).slice(0, 4);
+---
+<section class={`section is-${tone}`}>
+  <div class="container">
+    <div class="sec-head"><h2>{heading}</h2><p class="lede" set:html={lede + ` See <a class="inl" href="/treatment-methods/">all treatments and testing</a>.`} /></div>
+    <ProgramCards items={items} />
+  </div>
+</section>

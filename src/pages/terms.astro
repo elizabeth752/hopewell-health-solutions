@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import LegalLayout from "../components/legal/LegalLayout.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/terms/";
 const updated = "June 19, 2026";
@@ -21,20 +22,9 @@ const reviewRules = [
 <Base title="Terms & Conditions | Hopewell Health Solutions" description="The terms and conditions governing your use of the Hopewell Health Solutions website, including disclaimers, acceptable use, and contact information." canonical={canonical}>
   <Header />
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-3xl px-5 pt-8 pb-14">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Terms &amp; Conditions</span></nav>
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">The fine print</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Terms &amp; Conditions</h1>
-      <div class="mt-5 h-px w-16 bg-gold"></div>
-      <p class="mt-5 text-muted text-sm">Last updated: {updated}</p>
-    </div>
-  </section>
+  <main class="hw">
+  <LegalLayout title="Terms &amp; Conditions" crumb="Terms &amp; Conditions" lede="The terms and conditions governing your use of the Hopewell Health Solutions website, including disclaimers, acceptable use, and contact information." dateLabel="Last updated" date={updated}>
 
-  <!-- BODY -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 space-y-10 text-ink leading-relaxed text-[17px]">
 
       <p>Hopewell Health Solutions (“we,” “us,” or “our”) provides this website (“Site”) to you conditioned on your acceptance, without modification, of the terms, conditions, and notices contained here. By using this Site, you agree to these terms, conditions, and notices.</p>
 
@@ -90,8 +80,9 @@ const reviewRules = [
         <p>Questions about these terms? Contact us by phone at <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a> or by mail at 1216 Farmington Ave., Suite 301, West Hartford, CT 06107.</p>
       </div>
 
-    </div>
-  </section>
+    
+  </LegalLayout>
+  </main>
 
   <Footer />
 </Base>

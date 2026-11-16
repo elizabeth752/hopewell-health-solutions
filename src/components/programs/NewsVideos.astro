@@ -1,0 +1,21 @@
+---
+// "In the news" interview videos: YouTube thumbnail cards that open the shared .vc-dialog player
+// (VideoCarousel on the same page provides the dialog). No player JS loads until someone presses play.
+interface V { id: string; t: string; outlet: string }
+interface Props { heading: string; lede?: string; videos: V[]; tone?: "white" | "stone" | "mist"; link?: boolean }
+const { heading, lede, videos, tone = "white", link = true } = Astro.props;
+const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg>';
+---
+<section class={`section is-${tone}`}>
+  <div class="container">
+    <div class="vc-head"><div class="sec-head" style="margin:0"><h2 set:html={heading} />{lede && <p class="lede" set:html={lede} />}</div>{link && <a href="/media/" class="vc-all">See all press &amp; interviews <span aria-hidden="true">&rarr;</span></a>}</div>
+    <ul class={`vc-grid pg-news n-${videos.length}`}>
+      {videos.map((v) => (
+        <li><button type="button" class="vc-card" data-yt={v.id} data-title={v.t} aria-label={`Play: ${v.t}`}>
+          <span class="vc-poster"><img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" /><span class="vc-play" set:html={play} /></span>
+          <span class="vc-body"><span class="vc-type">{v.outlet}</span><span class="vc-name">{v.t}</span></span>
+        </button></li>
+      ))}
+    </ul>
+  </div>
+</section>

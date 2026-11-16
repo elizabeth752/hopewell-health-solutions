@@ -1,28 +1,49 @@
 ---
+// Rates & Insurance Coverage — 2026 redesign. All live copy kept verbatim; logos sit bare on the page (no tiles).
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
+import LeadForm from "../components/LeadForm.astro";
+import ServiceHero from "../components/hw/ServiceHero.astro";
+import Creds from "../components/hw/Creds.astro";
+import Reviews from "../components/hw/Reviews.astro";
+import Faq from "../components/hw/Faq.astro";
+import ClosingCta from "../components/hw/ClosingCta.astro";
+import "../styles/pages/admissions.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/rates-and-insurance-coverage/";
 
-// In-network carriers (verbatim from the live page); logo where we have one, else text chip.
+// In-network carriers (verbatim from the live page).
 const inNetwork = [
   ["Aetna", "/Assets/Insurance/AETNA.webp"],
   ["Anthem", "/Assets/Insurance/Anthem.webp"],
-  ["Blue Cross / Blue Shield", "/Assets/Insurance/BCBS.webp"],
+  ["Blue Cross / Blue Shield", "/Assets/home-b/insurance/bcbs.svg"],
   ["Cigna", "/Assets/Insurance/CIGNA.webp"],
-  ["Optum", "/Assets/Insurance/Optum.webp"],
-  ["UnitedHealthcare", "/Assets/Insurance/UnitedHealthcare.webp"],
+  ["Optum", "/Assets/home-b/insurance/optum.svg"],
+  ["UnitedHealthcare", "/Assets/home-b/insurance/unitedhealthcare.svg"],
   ["TRICARE", "/Assets/Insurance/TRICARE.webp"],
   ["Magellan", "/Assets/Insurance/Magellan%20Health.webp"],
-  ["UMR", "/Assets/Insurance/URM.webp"],
+  ["UMR", "/Assets/home-b/insurance/umr.svg"],
   ["VA Community Care", "/Assets/Insurance/VA%20Community%20Care.webp"],
-  ["ConnectiCare", "/Assets/ConnnectiCare.webp"],
-  ["Harvard Pilgrim", "/Assets/Harvard%20Pilgrim.webp"],
+  ["ConnectiCare", "/Assets/home-b/insurance/connecticare.svg"],
+  ["Harvard Pilgrim", "/Assets/home-b/insurance/harvard-pilgrim.svg"],
 ];
 const textOnly = ["United", "Meritain", "Evernorth"]; // named in-network, no logo on file
-
+const details = [
+  { icon: "phone", h: "Rates", bar: "#2f76c4", html: `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. Telehealth sessions available.` },
+  { icon: "clipboard", h: "Payment", bar: "#b6863c", html: "Cash, check, and all major credit cards accepted for payment." },
+  { icon: "calendar", h: "Cancellation Policy", bar: "#5c7c6b", html: "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session." },
+  { icon: "shield", h: "Your responsibility", bar: "#0b2f55", html: "Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account." },
+];
+// Every answer restates this page's own facts.
+const faqs = [
+  ["Is Hopewell Health Solutions in-network with my insurance?", `We are in network with most insurances, including plans that are out of state: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans.`],
+  ["How much do sessions cost?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. We’ll verify your benefits for free so you know your coverage before you start.`],
+  ["What forms of payment do you accept?", "Cash, check, and all major credit cards accepted for payment."],
+  ["What is the cancellation policy?", "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session."],
+  ["Is insurance accepted for IOP, medication management and counseling?", `Yes. Hopewell Health Solutions provides <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a>, <a class="inl" href="/programs/medication-management/">med management</a> and <a class="inl" href="/programs/counseling/">counseling</a> services throughout Connecticut, and we check your benefits for each before you begin.`],
+];
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
@@ -35,69 +56,54 @@ const schema = {
 <Base title="Rates & Insurance Coverage | Hopewell Health Solutions" description="Hopewell Health Solutions is in-network with most major insurance carriers — Anthem, Aetna, Cigna, Optum, United, TRICARE and more. See our rates, payment, and insurance coverage for IOP, medication management, and counseling in Connecticut." canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <main class="hw">
+    <ServiceHero
+      crumbs={[{ label: "Admissions", href: "/admissions/" }, { label: "Rates & Insurance Coverage" }]}
+      title="Rates and Insurance Coverage"
+      lede="Hopewell Health Solutions provides IOP, med management and counseling services throughout Connecticut. Following are our rates and insurance coverage information for our services."
+      bullets={["In-network with most major carriers", "Plans from out of state accepted", "Telehealth sessions available", "Free, confidential benefits check"]}
+      image="/Assets/hhs-2026/downtown-glastonbury-entrance.webp"
+    />
+    <Creds />
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-4xl px-5 pt-8 pb-14">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Rates &amp; Insurance Coverage</span></nav>
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Admissions</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Rates and Insurance Coverage</h1>
-      <div class="mt-5 h-px w-16 bg-gold"></div>
-      <p class="mt-5 text-lg text-muted">Hopewell Health Solutions provides IOP, med management and counseling services throughout Connecticut. Following are our rates and insurance coverage information for our services.</p>
-    </div>
-  </section>
+    <div class="mobile-verify is-white" id="verify-m"><div class="container"><LeadForm variant="card" formId="hhs-mobile" /></div></div>
 
-  <!-- INSURANCE LOGOS -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-5xl px-5 py-14">
-      <div class="text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Insurance coverage</p>
-        <h2 class="mt-2 font-display text-3xl text-ink">We’re in-network with most major carriers</h2>
-        <p class="mx-auto mt-3 max-w-2xl text-muted">We accept most insurance carriers — please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
+    <!-- Insurance logos -->
+    <section class="section is-white" id="insurance">
+      <div class="container">
+        <div class="sec-head">
+          <h2>We’re in-network with most major carriers</h2>
+          <p class="lede">We accept most insurance carriers — please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
+        </div>
+        <div class="rt-logos">
+          {inNetwork.map(([name, src]) => <img src={src} alt={name} width="160" height="46" loading="lazy" />)}
+        </div>
+        <ul class="rt-also" aria-label="Also in network" style="list-style:none;padding:0">
+          {textOnly.map((n) => <li><Icon name="check" class="h-4 w-4" />{n}</li>)}
+        </ul>
+        <p class="lede" style="margin-top:22px">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="inl">860-735-1448</a> to inquire about other insurance plans.</p>
       </div>
-      <div class="mt-9 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
-        {inNetwork.map(([name, src]) => <img src={src} alt={name} loading="lazy" class="h-10 w-full object-contain" />)}
-      </div>
-      <div class="mt-5 flex flex-wrap justify-center gap-2">
-        {textOnly.map((n) => <span class="rounded-full bg-crema border border-line px-3 py-1 text-sm font-semibold text-ink">{n}</span>)}
-      </div>
-      <p class="mt-8 text-center text-muted">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="text-azul font-semibold">860-735-1448</a> to inquire about other insurance plans.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- DETAILS -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-3xl px-5 py-16 grid gap-5 sm:grid-cols-2">
-      <div class="rounded-2xl bg-white border border-line p-6">
-        <div class="flex items-center gap-2 text-azul"><Icon name="phone" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Rates</h2></div>
-        <p class="mt-3 text-ink leading-relaxed">Please call the office for rates: <a href="tel:8607351448" class="text-azul font-semibold">860-735-1448</a>. Telehealth sessions available.</p>
+    <!-- Details -->
+    <section class="section is-stone">
+      <div class="container">
+        <div class="sec-head"><h2>Rates, payment &amp; policies</h2></div>
+        <div class="rt-cards">
+          {details.map((d) => (
+            <article class="rt-card" style={`--bar:${d.bar}`}>
+              <span class="icon-badge"><Icon name={d.icon} /></span>
+              <h2>{d.h}</h2>
+              <p set:html={d.html} />
+            </article>
+          ))}
+        </div>
       </div>
-      <div class="rounded-2xl bg-white border border-line p-6">
-        <div class="flex items-center gap-2 text-azul"><Icon name="clipboard" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Payment</h2></div>
-        <p class="mt-3 text-ink leading-relaxed">Cash, check, and all major credit cards accepted for payment.</p>
-      </div>
-      <div class="rounded-2xl bg-white border border-line p-6">
-        <div class="flex items-center gap-2 text-azul"><Icon name="calendar" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Cancellation Policy</h2></div>
-        <p class="mt-3 text-ink leading-relaxed">If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session.</p>
-      </div>
-      <div class="rounded-2xl bg-white border border-line p-6">
-        <div class="flex items-center gap-2 text-azul"><Icon name="shield" class="h-5 w-5" /><h2 class="font-display text-xl text-ink">Your responsibility</h2></div>
-        <p class="mt-3 text-ink leading-relaxed">Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="bg-azul text-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">Questions about coverage?</h2>
-      <p class="mt-4 text-white/85 text-lg">Our team will verify your benefits and walk you through your options — no pressure.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-white px-7 h-[45px] font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <a href="mailto:hhs4help@gmail.com" class="inline-flex justify-center items-center gap-2 rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition">hhs4help@gmail.com</a>
-      </div>
-    </div>
-  </section>
-
+    <Reviews />
+    <Faq faqs={faqs} heading="Insurance & Payment Questions" tone="stone" />
+    <ClosingCta heading="Questions about coverage?" lede="Our team will verify your benefits and walk you through your options — no pressure. Prefer email? Write to <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
+  </main>
   <Footer />
 </Base>

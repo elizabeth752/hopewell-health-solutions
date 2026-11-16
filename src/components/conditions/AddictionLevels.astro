@@ -1,0 +1,39 @@
+---
+// Addiction levels-of-care band for the addiction cluster pages, in the 2026 design (same copy as AddictionCare.astro,
+// with "Addiction IOP" wording per the KB). Addiction services are only offered at Downtown Glastonbury (300 Hebron Ave)
+// and Westbrook (70 Essex Road) — keep it that way. PHP and IOP cards carry a week chart of care hours.
+import Icon from "../Icon.astro";
+const { condition = "addiction" } = Astro.props;
+const levels = [
+  { icon: "calendar", t: "Addiction PHP", d: "Six structured hours of treatment a day, Monday to Friday, at our Glastonbury office, for when you need more support than weekly therapy.", href: "/programs/partial-hospitalization-program/", stat: "6 h", note: "a day · Mon–Fri · Glastonbury", days: [6, 6, 6, 6, 6, 0, 0] },
+  { icon: "users", t: "Addiction and Substance Use IOP", d: "Our Addiction and Substance Use IOP meets 3 to 5 times a week in Glastonbury and Westbrook, built around SUD groups, CBT, DBT, and relapse prevention.", href: "/programs/substance-use-iop/", stat: "3–5×", note: "a week · Glastonbury & Westbrook", days: [3, 3, 3, 3, 3, 0, 0], opt: [3, 4] },
+  { icon: "refresh", t: "Step-down after rehab", d: "Coming home from inpatient rehab or detox? Step down into our addiction PHP or IOP and keep the structure you worked for.", href: "/programs/substance-use-iop/" },
+  { icon: "pill", t: "Ongoing outpatient care", d: "Individual therapy, psychiatric medication management, and MAT when it fits your plan, to protect recovery long term.", href: "/treatment-methods/medication-assisted-treatment/" },
+];
+---
+<section class="section is-navy cd-add" id="addiction-levels">
+  <svg class="hero-arcs" style="left:auto;right:-380px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
+  <div class="container">
+    <div class="sec-head">
+      <h2>Addiction treatment at every level of care</h2>
+      <p class="lede">Treatment for {condition} is matched to how much support you need right now, and changes as you get stronger, with one team the whole way through.</p>
+    </div>
+    <div class="cd-add-grid">
+      {levels.map((l) => (
+        <a href={l.href} class:list={["cd-add-card", l.days && "has-week"]}>
+          <span class="cd-add-icon"><Icon name={l.icon} class="h-6 w-6" /></span>
+          <h3>{l.t}</h3>
+          {l.days && (
+            <span class="cd-add-week" aria-hidden="true">
+              <span class="cd-add-stat"><strong>{l.stat}</strong>{l.note}</span>
+              <span class="week">{["M","T","W","T","F","S","S"].map((d, j) => <span class="week-day"><span class="week-track"><span class:list={["week-fill", l.opt?.includes(j) && "is-opt"]} style={`--h:${(l.days[j] / 6) * 100}%`}></span></span><span class="week-label">{d}</span></span>)}</span>
+            </span>
+          )}
+          <p>{l.d}</p>
+          <span class="cd-add-go">Learn more about {l.t} <Icon name="arrow" class="h-4 w-4" /></span>
+        </a>
+      ))}
+    </div>
+    <p class="cd-add-note"><Icon name="pin" class="h-5 w-5" />Addiction treatment is offered in person at our Downtown Glastonbury office (300 Hebron Avenue) and our Westbrook office (70 Essex Road), with telehealth available.</p>
+  </div>
+</section>

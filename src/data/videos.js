@@ -30,7 +30,8 @@ export const VIDEOS = [
     title: "A lesson from Viviana on anchoring",
     desc: "A simple technique to stay grounded and present in moments of stress or overwhelm." },
 ];
-export const STORIES = VIDEOS.filter((v) => !v.type.startsWith("Clinician") && !v.type.startsWith("Dr."));
+// Client stories only: the podcast has its own section and page (user, 2026-11-16).
+export const STORIES = VIDEOS.filter((v) => v.type.includes("client story"));
 export const PODCAST = VIDEOS.filter((v) => v.type.startsWith("Podcast"));
 export const videoSchema = (v, site) => ({
   "@context": "https://schema.org", "@type": "VideoObject", name: v.title, description: v.desc,

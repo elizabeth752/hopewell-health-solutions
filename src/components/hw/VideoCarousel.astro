@@ -7,7 +7,8 @@ import { SITE } from "../../data/site.js";
 interface Props { videos?: typeof VIDEOS; heading?: string; lede?: string; mode?: "marquee" | "grid"; tone?: "navy" | "white" | "stone"; link?: { href: string; label: string } | null; id?: string }
 const { videos = VIDEOS, heading = "Stories of hope, in their own words", lede, mode = "marquee", tone = "navy", link = { href: "/testimonials/", label: "All client stories" }, id } = Astro.props;
 const schema = videos.map((v) => videoSchema(v, SITE));
-const loop = mode === "marquee" ? [...videos, ...videos] : videos.slice(1);
+const few = mode === "grid" && videos.length <= 3; // 2–3 videos: equal cards side by side, no featured row
+const loop = mode === "marquee" ? [...videos, ...videos] : few ? videos : videos.slice(1);
 const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg>';
 ---
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -23,7 +24,7 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
     </div>
   </div>
 
-  {mode === "grid" && (
+  {mode === "grid" && !few && (
     <div class="container">
       <button type="button" class="vc-card vc-feature" data-yt={videos[0].yt} data-title={videos[0].title} aria-label={`Play: ${videos[0].title}`}>
         <span class="vc-poster"><img src={`/Assets/videos/${videos[0].img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{videos[0].len}</span></span>
@@ -46,7 +47,7 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
       </ul>
     </div>
   ) : (
-    <div class="container"><ul class="vc-grid">
+    <div class="container"><ul class:list={["vc-grid", few && `is-${videos.length}`]}>
       {loop.map((v) => (
         <li><button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} aria-label={`Play: ${v.title}`}>
           <span class="vc-poster"><img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{v.len}</span></span>

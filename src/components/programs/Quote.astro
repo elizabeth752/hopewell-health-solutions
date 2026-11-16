@@ -1,0 +1,13 @@
+---
+// Quote band: one line of page copy over a real photo with a navy scrim.
+interface Props { text: string; img?: string; cite?: string }
+const { text, img = "/Assets/hhs-2026/full-team-lawn.webp", cite } = Astro.props;
+---
+<section class="pg-quote">
+  <img src={img} alt="" aria-hidden="true" width="1680" height="1260" loading="lazy" />
+  <div class="container">
+    <svg class="pg-quote-mark" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
+    <p set:html={text} />
+    {cite && <span class="pg-quote-cite">{cite}</span>}
+  </div>
+</section>

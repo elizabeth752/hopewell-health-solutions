@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import LegalLayout from "../components/legal/LegalLayout.astro";
 import Icon from "../components/Icon.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/accessibility/";
@@ -19,20 +20,9 @@ const measures = [
 <Base title="Accessibility Statement | Hopewell Health Solutions" description="Hopewell Health Solutions is committed to digital accessibility and aims to conform with WCAG 2.2 Level AA. Learn what we do and how to report an accessibility barrier." canonical={canonical}>
   <Header />
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-3xl px-5 pt-8 pb-14">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Accessibility</span></nav>
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">We value digital inclusion</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Accessibility Statement</h1>
-      <div class="mt-5 h-px w-16 bg-gold"></div>
-      <p class="mt-5 text-muted text-sm">Last reviewed: {updated}</p>
-    </div>
-  </section>
+  <main class="hw">
+  <LegalLayout title="Accessibility Statement" crumb="Accessibility" lede="Hopewell Health Solutions is committed to digital accessibility and aims to conform with WCAG 2.2 Level AA." dateLabel="Last reviewed" date={updated}>
 
-  <!-- BODY -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 space-y-12">
 
       <div class="space-y-4 text-ink leading-relaxed text-[17px]">
         <h2 class="font-display text-2xl sm:text-3xl text-ink">Our commitment</h2>
@@ -76,8 +66,9 @@ const measures = [
 
       <p class="text-sm text-muted leading-relaxed border-t border-line pt-8">This website is not a substitute for emergency care. If you are in crisis, call or text <strong>988</strong> (Suicide &amp; Crisis Lifeline), or call <strong>911</strong>.</p>
 
-    </div>
-  </section>
+    
+  </LegalLayout>
+  </main>
 
   <Footer />
 </Base>

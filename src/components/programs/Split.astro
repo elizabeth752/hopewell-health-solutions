@@ -1,0 +1,18 @@
+---
+// Text + photo section (Corner Canyon split). Photo gets an arc corner; `reverse` puts the photo on the right.
+// `img2` adds a second photo for a two-photo stack. Body goes in the default slot.
+interface Props { heading: string; img: string; alt: string; img2?: string; alt2?: string; reverse?: boolean; tone?: "white" | "stone" | "mist"; id?: string; pos?: string }
+const { heading, img, alt, img2, alt2 = "", reverse = false, tone = "white", id, pos = "center" } = Astro.props;
+---
+<section class={`section is-${tone}`} id={id}>
+  <div class:list={["container pg-split", reverse && "is-rev"]}>
+    <div class:list={["pg-media", img2 && "has-two"]}>
+      <img src={img} alt={alt} width="1200" height="900" loading="lazy" style={`object-position:${pos}`} />
+      {img2 && <img src={img2} alt={alt2} width="1200" height="900" loading="lazy" />}
+    </div>
+    <div class="pg-copy">
+      <h2 set:html={heading} />
+      <slot />
+    </div>
+  </div>
+</section>

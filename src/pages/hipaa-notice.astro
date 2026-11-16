@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import LegalLayout from "../components/legal/LegalLayout.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/hipaa-notice/";
 const effective = "June 20, 2026";
@@ -44,20 +45,9 @@ const rights = [
 <Base title="HIPAA Notice of Privacy Practices | Hopewell Health Solutions" description="How Hopewell Health Solutions may use and disclose your protected health information, your privacy rights under HIPAA and 42 CFR Part 2, and how to exercise them." canonical={canonical}>
   <Header />
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-3xl px-5 pt-8 pb-14">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <span class="text-ink">Notice of Privacy Practices</span></nav>
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Your health information rights</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">HIPAA Notice of Privacy Practices</h1>
-      <div class="mt-5 h-px w-16 bg-gold"></div>
-      <p class="mt-5 text-muted text-sm">Effective date: {effective}</p>
-    </div>
-  </section>
+  <main class="hw">
+  <LegalLayout title="HIPAA Notice of Privacy Practices" crumb="Notice of Privacy Practices" lede="How medical information about you may be used and disclosed, and how you can get access to this information." dateLabel="Effective date" date={effective}>
 
-  <!-- BODY -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 space-y-10 text-ink leading-relaxed text-[17px]">
 
       <!-- Federally required header statement -->
       <p class="rounded-2xl bg-azul-light/40 border border-azul/30 p-6 font-semibold text-[16px] uppercase tracking-wide leading-relaxed">
@@ -137,8 +127,9 @@ const rights = [
         <p class="text-[15px] text-muted">For information about how we handle data collected through this website, see our <a href="/privacy/" class="text-azul font-semibold">Privacy Policy</a>.</p>
       </div>
 
-    </div>
-  </section>
+    
+  </LegalLayout>
+  </main>
 
   <Footer />
 </Base>

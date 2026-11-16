@@ -1,0 +1,30 @@
+---
+// Cross-links: the other programs as photo cards, plus conditions & treatments as an inline sentence (keeps the
+// internal links the old ServicesGrid carried).
+import ProgramCards from "../hw/ProgramCards.astro";
+interface Props { current?: string; heading?: string; tone?: "white" | "stone" | "mist"; addiction?: boolean }
+const { current, heading = "Explore Our Other Programs", tone = "mist", addiction = true } = Astro.props;
+const P = "/Assets/hhs-2026/";
+const all = [
+  { t: "Intensive Outpatient (IOP)", d: "Structured therapy 3–4 days a week, day or evening, for adults, women, teens and tweens.", href: "/programs/intensive-outpatient-program/", img: P + "iop-group-room-lights.webp", bar: "#2f76c4" },
+  { t: "Adult Co-Occurring IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: P + "group-room-bright.webp", bar: "#2f76c4" },
+  { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c" },
+  { t: "Women’s Trauma IOP", d: "A supportive, women-only space to heal from trauma with EMDR, DBT and somatic care.", href: "/programs/womens-trauma-iop/", img: "/Assets/service/trauma-informed-group.webp", bar: "#b6863c" },
+  { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-tween-iop/", img: P + "tween-group-room.webp", bar: "#5c7c6b" },
+  { t: "First Responder IOP", d: "A program built for police, fire, EMS and dispatch, with clinicians who understand the job.", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#b6863c" },
+  { t: "Addiction & Substance Use IOP", d: "Addiction treatment with mental health care alongside it, at our Downtown Glastonbury and Westbrook offices.", href: "/programs/substance-use-iop/", img: P + "iop-group-session.webp", bar: "#0b2f55" },
+  { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", bar: "#265489" },
+  { t: "Medication Management", d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", href: "/programs/medication-management/", img: "/Assets/hhs-2026/westbrook-therapy-office.webp", bar: "#5c7c6b" },
+  { t: "Counseling", d: "Individual, couples & family counseling, in person or by telehealth.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp", bar: "#2f76c4" },
+];
+const items = all.filter((p) => p.href !== current).filter((p) => addiction || !/substance-use/.test(p.href)).slice(0, 8);
+---
+<section class={`section is-${tone}`}>
+  <div class="container">
+    <div class="sec-head">
+      <h2>{heading}</h2>
+      <p class="lede">We also treat a wide range of conditions with advanced options under one roof: <a class="inl" href="/treatment-methods/tms/">TMS</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>, <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>{addiction && <Fragment>, and <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a></Fragment>}.</p>
+    </div>
+    <ProgramCards items={items} />
+  </div>
+</section>

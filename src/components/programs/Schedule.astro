@@ -1,0 +1,19 @@
+---
+// Week-at-a-glance card (Corner Canyon level card): coloured head with the stat and a 7-day chart, body slot below.
+import Icon from "../Icon.astro";
+interface Props { title: string; stat: string; note: string; days: number[]; max?: number; icon?: string; tone?: 1 | 2 | 3; tracks?: [string, string][] }
+const { title, stat, note, days, max = 6, icon = "calendar", tone = 2, tracks = [] } = Astro.props;
+---
+<article class={`level-card lv-${tone} pg-sched`}>
+  <div class="level-head">
+    <div class="level-title"><span class="level-icon"><Icon name={icon} class="h-[22px] w-[22px]" /></span><h3>{title}</h3></div>
+    <p class="level-stat"><strong>{stat}</strong><span>{note}</span></p>
+    <div class="week" aria-hidden="true">
+      {["M", "T", "W", "T", "F", "S", "S"].map((d, j) => (
+        <span class="week-day"><span class="week-track"><span class="week-fill" style={`--h:${(days[j] / max) * 100}%`}></span></span><span class="week-label">{d}</span></span>
+      ))}
+    </div>
+  </div>
+  {tracks.length > 0 && <ul class="pg-tracks">{tracks.map(([a, b]) => <li><Icon name="clock" class="h-5 w-5" /><span><strong>{a}</strong>{b}</span></li>)}</ul>}
+  <div class="level-body"><slot /></div>
+</article>

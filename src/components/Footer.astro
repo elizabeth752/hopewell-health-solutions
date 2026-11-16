@@ -4,6 +4,8 @@
 import { socials } from "../data/socials";
 import { locations } from "../data/locations.js";
 import Icon from "./Icon.astro";
+import LegitScriptSeal from "./LegitScriptSeal.astro";
+import BbbSeal from "./BbbSeal.astro";
 
 const cols = [
   { h: "Programs", links: [
@@ -70,6 +72,19 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     </div>
   </div>
 
+  <!-- Trust marks on every page (client doc Task 13: LegitScript seal visible sitewide, beside the Joint Commission and BBB) -->
+  <div class="hw-f-wrap">
+    <div class="hw-trust">
+      <span class="hw-foot-h" style="margin:0">Accredited &amp; certified</span>
+      <ul>
+        <li class="hw-trust-light"><img src="/Assets/home-b/joint-commission-seal.webp" alt="The Joint Commission — Gold Seal of Approval" width="240" height="240" loading="lazy" /></li>
+        <li class="hw-trust-light"><LegitScriptSeal /></li>
+        <li class="hw-trust-light hw-trust-wide"><BbbSeal /></li>
+        <li class="hw-trust-light hw-trust-wide"><img src="/Assets/home-b/psychology-today-verified.webp" alt="Psychology Today Verified" width="300" height="80" loading="lazy" /></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="hw-f-wrap">
     <div class="hw-footer-bar">
       <span>© 2026 Hopewell Health Solutions, LLC. All rights reserved.</span>
@@ -103,6 +118,11 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
   .hw-footer .hw-place-name { font-family: var(--hw-head); font-size: 16.5px; font-weight: 800; color: #fff; line-height: 1.3; }
   .hw-place-addr { font-size: 15px; line-height: 1.5; }
   .hw-footer .hw-place-link { justify-self: start; margin-top: 4px; font-family: var(--hw-head); font-size: 14px; font-weight: 700; color: #fff; text-decoration: underline; text-decoration-color: var(--hw-sky); text-underline-offset: 4px; }
+  .hw-trust { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; padding: 0 0 28px; }
+  .hw-trust ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .hw-trust-light { height: 64px; padding: 6px 12px; border-radius: 14px; background: #fff; display: flex; align-items: center; }
+  .hw-trust-light img { height: 50px; width: auto; }
+  .hw-trust-wide img { height: 40px; }
   .hw-footer-bar { padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; font-size: 14px; color: #9fb4cc; }
   .hw-legal { display: flex; flex-wrap: wrap; gap: 18px; }
   .hw-legal a { text-decoration: underline !important; text-underline-offset: 3px; }

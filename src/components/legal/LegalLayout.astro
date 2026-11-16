@@ -1,0 +1,43 @@
+---
+// Shell for the legal pages (Privacy, Terms, HIPAA Notice, Accessibility): navy ServiceHero without a form, then the
+// client's wording verbatim in a readable column with a sticky contents list that highlights the current section.
+// Section ids are built from the H2 text at build time so the contents links work without JavaScript.
+import ServiceHero from "../hw/ServiceHero.astro";
+import ClosingCta from "../hw/ClosingCta.astro";
+import "../../styles/pages/admissions.css";
+interface Props { title: string; crumb: string; lede: string; dateLabel: string; date: string; image?: string }
+const { title, crumb, lede, dateLabel, date, image = "/Assets/hhs-2026/downtown-glastonbury-entrance.webp" } = Astro.props;
+const raw = await Astro.slots.render("default");
+const slug = (s) => s.toLowerCase().replace(/<[^>]+>/g, "").replace(/&[a-z#0-9]+;/gi, " ").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const toc = [];
+const html = raw.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_m, attrs, inner) => {
+  const text = inner.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "’").trim();
+  const id = slug(text);
+  toc.push({ id, text });
+  return `<h2${attrs.replace(/\sid="[^"]*"/, "")} id="${id}">${inner}</h2>`;
+});
+---
+<ServiceHero crumbs={[{ label: crumb }]} title={title} lede={lede} facts={[{ icon: "calendar", text: `${dateLabel}: ${date}` }]} image={image} form={false} />
+<section class="section is-white lg-sec">
+  <div class="container lg-grid">
+    <aside class="lg-toc" aria-label="On this page">
+      <p class="lg-toc-h">On this page</p>
+      <ol>{toc.map((t) => <li><a href={`#${t.id}`}>{t.text}</a></li>)}</ol>
+      <div class="lg-help">
+        <strong>Questions?</strong>
+        <span>Call <a class="inl" href="tel:8607351448">(860) 735-1448</a></span>
+      </div>
+    </aside>
+    <div class="lg-body" set:html={html} />
+  </div>
+</section>
+<ClosingCta verifyHref="/admissions/#verify" />
+<script>
+  const links = [...document.querySelectorAll<HTMLAnchorElement>(".lg-toc a[href^='#']")];
+  const heads = links.map((a) => document.getElementById(a.hash.slice(1))).filter(Boolean) as HTMLElement[];
+  if (heads.length && "IntersectionObserver" in window) {
+    const on = (id: string) => links.forEach((a) => a.classList.toggle("is-on", a.hash === "#" + id));
+    const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) on(e.target.id); }); }, { rootMargin: "-20% 0px -70% 0px" });
+    heads.forEach((h) => io.observe(h));
+  }
+</script>

@@ -1,51 +1,113 @@
 ---
+// Location page — 2026 redesign (Corner Canyon layout, Hopewell brand). Keeps the title, meta description, canonical,
+// H1, MedicalClinic + Event schema, map embed, hours, areas served, services and FAQ. Adds a real-photo gallery,
+// programs offered at Downtown Glastonbury and Westbrook (KB: client asked for offerings by location), the clinicians
+// who work at the office (team roster), FAQPage schema, and the form in the hero (desktop) / above insurance (phones).
+import "../../styles/pages/about.css";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import OpenHouse from "../../components/OpenHouse.astro";
-import ServicesGrid from "../../components/ServicesGrid.astro";
-import { locations } from "../../data/locations.js";
+import ServiceHero from "../../components/hw/ServiceHero.astro";
+import Creds from "../../components/hw/Creds.astro";
+import ProgramCards from "../../components/hw/ProgramCards.astro";
+import Team from "../../components/hw/Team.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import Insurance from "../../components/hw/Insurance.astro";
+import Locations from "../../components/hw/Locations.astro";
+import Faq from "../../components/hw/Faq.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
 }
 const { l } = Astro.props;
-const others = locations.filter((x) => x.slug !== l.slug);
 const fullAddress = `${l.street}, ${l.city}, CT ${l.zip}`;
 const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Hopewell Health Solutions " + fullAddress)}`;
 const canonical = `https://www.hopewellhealthsolutions.com/location/${l.slug}/`;
+const P = "/Assets/hhs-2026/";
 
-const googleG = '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+const offers = OFFER_ORDER.filter((k) => l.offers?.includes(k));
+const offerNames = offers.map((k) => OFFERS[k].t);
+const listText = (a) => a.length > 1 ? a.slice(0, -1).join(", ") + " & " + a[a.length - 1] : a[0];
 const heroUsps = [
-  { icon: "users", t: "Outpatient therapy, psychiatry & intensive programs" },
-  { icon: "calendar", t: "Daytime & evening appointments" },
-  { icon: "compass", t: "In person at this office or by secure telehealth" },
-  { icon: "shield", t: "Joint Commission accredited · most major PPOs" },
+  `At this office: ${listText(offerNames).replace(/&/g, "&amp;")}`,
+  "Daytime &amp; evening appointments",
+  "In person at this office or by secure telehealth",
+  "Joint Commission accredited · most major PPOs",
 ];
-const insurers = [
-  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
-  ["Blue Cross Blue Shield","/Assets/Insurance/BCBS.webp"],["Cigna","/Assets/Insurance/CIGNA.webp"],
-  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/Insurance/Optum.webp"],
-  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/Insurance/URM.webp"],
-  ["UnitedHealthcare","/Assets/Insurance/UnitedHealthcare.webp"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
-  ["ConnectiCare","/Assets/ConnnectiCare.webp"],["Harvard Pilgrim","/Assets/Harvard%20Pilgrim.webp"],
+
+// Gallery: the office's own photos (locations.js) plus real photos from the client's Drive (no AI images).
+const extra = {
+  "glastonbury-ct-2": [
+    [P + "downtown-glastonbury-entrance.webp", "The walkway to our Downtown Glastonbury office at 300 Hebron Avenue", "Entrance"],
+    [P + "php-group-room.webp", "The PHP group room at our Downtown Glastonbury office", "PHP group room"],
+    [P + "iop-group-room-lights.webp", "An IOP group room with string lights and comfortable seating", "IOP group room"],
+    [P + "group-room-bright.webp", "A bright group therapy room with armchairs", "Group room"],
+    [P + "tms-chair.webp", "The TMS therapy chair at our Downtown Glastonbury office", "TMS room"],
+  ],
+  "glastonbury-ct-3": [
+    [P + "south-glastonbury-office.webp", "The South Glastonbury office building at 1420 Main Street", "Building"],
+    [P + "south-glastonbury-waiting-room.webp", "The medication management waiting room in South Glastonbury", "Waiting room"],
+    [P + "tween-group-room.webp", "The tween group room in South Glastonbury", "Tween group room"],
+  ],
+  "west-hartford-ct": [[P + "west-hartford-office.webp", "The West Hartford office on Farmington Avenue", "Building"]],
+  "east-hampton-ct": [[P + "east-hampton-waiting-room.webp", "The main waiting room at our East Hampton office", "Waiting room"]],
+  "westbrook-ct": [
+    [P + "westbrook-sign.webp", "The Hopewell Health Solutions sign at 70 Essex Road, Westbrook", "Sign"],
+    [P + "westbrook-therapy-office.webp", "A therapy office at our Westbrook location", "Therapy office"],
+  ],
+};
+const LABELS = [["aerial", "Aerial view"], ["sign-entrance", "Entrance sign"], ["sign", "Sign"], ["exterior", "Building"], ["building", "Building"], ["campus", "Campus"], ["front", "Front"], ["entry", "Entry porch"], ["entrance", "Entrance"], ["street", "Street view"], ["lobby", "Lobby"], ["waiting", "Waiting room"], ["sitting", "Sitting room"], ["therapy", "Therapy room"], ["couch", "Therapy space"], ["office", "Office"]];
+const label = (file) => (LABELS.find(([k]) => file.includes(k)) || [, "Office"])[1];
+const gallery = [
+  ...(l.photos || []).map(([f, alt]) => [`${l.photoDir}/${f}`, alt, label(f)]),
+  ...(extra[l.slug] || []),
 ];
-const reviews = [
-  { n: "Emily Ross", t: "8 months ago", q: "This is the best therapy place I have ever been to. All the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
-  { n: "Jake Sted", t: "2 months ago", q: "The therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day. Hopewell made a huge difference in my life." },
-  { n: "Joana Yoo", t: "10 months ago", q: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
-];
+const heroImg = l.photos?.length ? `${l.photoDir}/${l.photos.find(([f]) => f.includes("exterior"))?.[0] ?? l.photos[0][0]}` : P + "iop-clinicians-group-room.webp";
+
+// Programs & services at this office: exactly the client-confirmed list (locations.js `offers`, 2026-11-16).
+const card = {
+  php: { d: "Full-day treatment for when weekly therapy simply isn’t enough.", img: P + "php-group-room.webp", bar: "#265489", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
+  iop: { d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", img: P + "adult-evening-iop-group.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
+  womens: { d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", img: P + (l.slug === "westbrook-ct" ? "womens-wellness-team-2.webp" : "womens-wellness-team.webp"), bar: "#b6863c", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : "Adult women"]] },
+  "teen-tween": { d: "After-school support for ages 8–18, with the family woven into the work.", img: P + "tween-group-room.webp", bar: "#5c7c6b", facts: [["calendar", "After school"], ["users", "Tweens 8–12 · teens 13–17"]] },
+  therapy: { d: "One-on-one sessions with a licensed therapist, in person at this office or by telehealth.", img: gallery.find(([src]) => /therapy|office|couch|sitting/.test(src))?.[0] ?? P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["users", "Individual sessions"], ["compass", "In person or telehealth"]] },
+  meds: { d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", img: P + "providers-together.webp", bar: "#5c7c6b", facts: [["pill", l.slug === "westbrook-ct" ? "Including MAT" : "Ages 4 and up"], ["compass", "In person or telehealth"]] },
+  addiction: { d: "Addiction treatment with mental health care alongside it, in our addiction IOP.", img: P + "iop-group-session.webp", bar: "#0b2f55", facts: [["link", "Co-occurring care"], ["pin", l.name]] },
+};
+const intro = {
+  "glastonbury-ct": "Our Pratt Street office offers 1:1 therapy and medication management in a warm, house-style setting.",
+  "glastonbury-ct-2": "300 Hebron Avenue is Hopewell’s main hub for intensive programs: PHP, adult IOP and our Women’s Wellness IOP (morning and evening), plus therapy and medication management — and addiction treatment with mental health care alongside it.",
+  "glastonbury-ct-3": "Our 1420 Main Street office is home to the Tween & Teen IOP, plus 1:1 therapy and medication management.",
+  "west-hartford-ct": "Our West Hartford office offers 1:1 therapy and medication management.",
+  "east-hampton-ct": "Our East Hampton office offers 1:1 therapy and medication management.",
+  "westbrook-ct": "Our Westbrook office offers an adult IOP and our Women’s Wellness IOP, plus 1:1 therapy and medication management — and addiction treatment.",
+};
+const items = offers.map((k) => ({ t: OFFERS[k].t, href: OFFERS[k].href, ...card[k] }));
+
+// Clinicians who work at this office (same roster as /about-us/team/).
+const glast = ["jonathan-ficara-lcsw", "madeline-blinderman-lpc-a", "eunice-rivera-miranda-ph-d", "meagan-carr-ph-d", "dashelle-barco-lpc", "viviana-alvarado-lpc-a", "dori-bessette-crail-lmft"];
+const prescribers = ["tracy-sibley-pmhnp-bc-aprn", "christina-lindsay-pmhnp-bc-aprn", "linda-scillia-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "ana-arroyo-aprn-pmhnp-bc", "chris-patenaude-pa", "katherine-salvador-pa-c"];
+const roster = {
+  "glastonbury-ct": glast,
+  "glastonbury-ct-2": ["teesha-huertas-lcsw", ...prescribers.slice(0, 6)],
+  "glastonbury-ct-3": glast,
+  "westbrook-ct": ["kaitlyn-czapiga-lmsw", "jackie-plagesse-lmfta", "noah-mccarter-lpc-a", "jeff-rapp-lmsw", "kate-henneberry-lmfta"],
+  "east-hampton-ct": ["erin-kruse-lmsw", "kate-henneberry-lmfta", "mariah-thomas-lmsw", "ashley-singh-psy-d"],
+  "west-hartford-ct": ["kimberly-devine-lcsw", "eric-schwartz-psy-d-abpp", "christina-coelho-lmsw", "amenah-thomas-lpc-a"],
+};
+
+
 const faqs = [
-  [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at (860) 735-1448 or request an appointment online.`],
+  [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online.`],
   ["Do you offer in-person and telehealth appointments?", "Yes — you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."],
-  ["What services are offered at this location?", l.addiction
-    ? "Outpatient therapy (individual, couples, and family), medication management, our intensive programs, and addiction treatment, including our Addiction and Substance Use IOP. Specific services and providers vary by office — call us and we’ll match you to the right care and location."
-    : "Outpatient therapy (individual, couples, and family), medication management, and our intensive programs. Specific services and providers vary by office — call us and we’ll match you to the right care and location."],
-  ["Do you take my insurance?", "We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit."],
-  ["How do I book my first appointment?", "Call (860) 735-1448 or request an appointment online. Our team will help you choose the right provider, service, and location."],
+  ["What services are offered at this location?", `At our ${l.name} office we offer ${listText(offers.map((k) => `<a class="inl" href="${OFFERS[k].href}">${OFFERS[k].t}</a>`))}${l.addiction ? "" : ". Addiction treatment is offered at our <a class=\"inl\" href=\"/location/glastonbury-ct-2/\">Downtown Glastonbury</a> and <a class=\"inl\" href=\"/location/westbrook-ct/\">Westbrook</a> offices"}. Providers vary by office — call us and we’ll match you to the right care and location.`],
+  ["Do you take my insurance?", `We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit. See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>.`],
+  ["How do I book my first appointment?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online. Our team will help you choose the right provider, service, and location.`],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -54,6 +116,7 @@ const schema = {
   url: canonical,
   ...(l.phone ? { telephone: l.phone } : {}),
   email: "hhs4help@gmail.com",
+  image: gallery.slice(0, 3).map(([src]) => "https://www.hopewellhealthsolutions.com" + src),
   address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
   geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
   parentOrganization: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
@@ -89,207 +152,119 @@ const eventSchema = ev && {
   organizer: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
   url: `${canonical}#${ev.id}`,
 };
-// An odd photo count leaves a hole in the grid, so the first photo spans two columns.
-const featureFirst = l.photos && l.photos.length % 2 === 1;
 ---
 
-<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — outpatient therapy, psychiatry${l.addiction ? ", addiction treatment" : ""} & intensive programs at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical}>
+<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — ${listText(offerNames.map((n) => n.replace(/ \(PHP\)/, "")))} at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical} image={gallery[0]?.[0]}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
+  <main class="hw">
+    <ServiceHero
+      crumbs={[{ label: "Locations", href: "/locations/" }, { label: l.name }]}
+      title={`Mental Health &amp; Psychiatry — ${l.name}`}
+      lede={`Compassionate, evidence-based care — close to home, at ${fullAddress}.`}
+      bullets={heroUsps}
+      facts={[{ icon: "clock", text: l.hours ?? "Daytime & evening appointments" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
+      image={heroImg}
+      imagePos="center 45%"
+    >
+      <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" /><a class="inl" href={directions} target="_blank" rel="noopener">Get directions to {l.name}</a></p>
+    </ServiceHero>
 
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/locations/" class="hover:text-azul">Locations</a> / <span class="text-ink">{l.name}</span></nav>
-      <div class="grid lg:grid-cols-[1fr_390px] gap-12 items-start">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Hopewell Health Solutions · {l.name}, CT</p>
-          <h1 class="mt-4 font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Mental Health &amp; Psychiatry — {l.name}</h1>
-          <p class="mt-3 font-display text-xl text-azul italic">Compassionate, evidence-based care — close to home.</p>
-          <div class="mt-5 h-px w-16 bg-gold"></div>
-          <div class="mt-5 flex items-center gap-2.5 text-sm">
-            <span class="text-yellow-400 text-base leading-none">★★★★★</span>
-            <span class="font-semibold text-ink">4.8</span>
-            <span class="text-muted">· 368 Google reviews</span>
-          </div>
-          <ul class="mt-6 space-y-3">
-            {heroUsps.map((u) => (
-              <li class="flex gap-3 text-ink"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name={u.icon} class="h-4 w-4" /></span><span class="leading-snug pt-0.5">{u.t}</span></li>
-            ))}
+    <Creds />
+
+    {ev && <OpenHouse ev={ev} l={l} directions={directions} />}
+
+    <!-- Visit us: map + office details -->
+    <section class="section is-white" id="visit">
+      <div class="container ab-visit">
+        <div class="ab-map"><iframe src={l.map} title={`Map — Hopewell Health Solutions, ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <div class="ab-details">
+          <h2>The {l.name} office</h2>
+          <p>{l.blurb}</p>
+          <ul class="ab-facts">
+            <li><span class="ab-ico"><Icon name="pin" class="h-5 w-5" /></span><span><strong>Address</strong>{fullAddress}</span></li>
+            <li><span class="ab-ico"><Icon name="phone" class="h-5 w-5" /></span><span><strong>Phone</strong><a href="tel:8607351448">(860) 735-1448</a></span></li>
+            <li><span class="ab-ico"><Icon name="calendar" class="h-5 w-5" /></span><span><strong>Hours</strong>{l.hours ?? "By appointment — daytime & evening availability"}</span></li>
           </ul>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2.5 rounded-lg border border-azul px-8 h-[45px] text-lg font-semibold text-azul hover:bg-azul-light transition"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
-            <a href={directions} target="_blank" rel="noopener" class="inline-flex justify-center items-center gap-2.5 rounded-lg bg-azul-bright px-8 h-[45px] text-lg font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="pin" class="h-5 w-5" />Get directions</a>
+          <a href={directions} target="_blank" rel="noopener" class="btn btn-blue"><Icon name="pin" />Get directions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery: one photo at a time, thumbnails to pick from -->
+    {gallery.length > 0 && (
+      <section class="section is-stone" id="photos">
+        <div class="container gal" data-gallery>
+          <div>
+            <h2>Inside our {l.name} office</h2>
+            <p class="lede" style="margin-top:14px">Real photos of the rooms where therapy, groups and psychiatric care happen at {l.street}. Prefer to meet from home? <a class="inl" href="/programs/counseling/">Telehealth counseling</a> is available statewide.</p>
+            <div class="gal-thumbs">
+              {gallery.slice(0, 9).map(([src, , lab], i) => (
+                <button type="button" class:list={["gal-thumb", i === 0 && "is-active"]} aria-label={`Show photo: ${lab}`} aria-pressed={i === 0 ? "true" : "false"}><img src={src} alt="" width="240" height="160" loading="lazy" /><span>{lab}</span></button>
+              ))}
+            </div>
+          </div>
+          <div class="gal-stage">
+            {gallery.slice(0, 9).map(([src, alt], i) => <img class:list={["gal-slide", i === 0 && "is-active"]} src={src} alt={alt} width="1200" height="900" loading="lazy" />)}
           </div>
         </div>
-        <div id="verify" class="lg:sticky lg:top-28 scroll-mt-28"><LeadForm heading={`Book at our ${l.name} office`} sub="Free, confidential. We’ll verify your benefits and match you to the right provider." /></div>
-      </div>
-    </div>
-  </section>
-
-  {ev && <OpenHouse ev={ev} l={l} directions={directions} />}
-
-  <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-
-  <!-- MAP & GETTING HERE -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-      <div class="overflow-hidden rounded-2xl border border-line">
-        <iframe src={l.map} title={`Map — Hopewell Health Solutions, ${l.name}`} class="h-80 lg:h-96 w-full border-0 grayscale-[0.15]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      </div>
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Visit us</p>
-        <h2 class="mt-3 font-display text-3xl sm:text-4xl text-ink">The {l.name} office</h2>
-        <div class="mt-4 h-px w-16 bg-azul/40"></div>
-        <p class="mt-5 text-ink leading-relaxed text-[17px]">{l.blurb}</p>
-        <div class="mt-6 space-y-3 text-ink">
-          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Address:</span> {fullAddress}</span></p>
-          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="phone" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Phone:</span> <a href="tel:8607351448" class="text-azul font-semibold">(860) 735-1448</a></span></p>
-          <p class="flex items-start gap-3"><span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-azul-light text-azul"><Icon name="calendar" class="h-5 w-5" /></span><span class="pt-1.5"><span class="font-semibold">Hours:</span> {l.hours ?? "By appointment — daytime & evening availability"}</span></p>
-        </div>
-        <a href={directions} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">Get directions <Icon name="arrow" class="h-4 w-4" /></a>
-      </div>
-    </div>
-    {l.photos && (
-      <div class="mx-auto max-w-6xl px-5 pb-16">
-        <div class="text-center">
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">A look inside</p>
-          <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Inside our {l.name} office</h2>
-        </div>
-        <div class="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4">
-          {l.photos.map(([file, alt], i) => (
-            <img src={`${l.photoDir}/${file}`} alt={alt} loading="lazy" class:list={["w-full h-56 lg:h-64 object-cover rounded-2xl border border-line", featureFirst && i === 0 && "col-span-2"]} />
-          ))}
-        </div>
-      </div>
+      </section>
     )}
-  </section>
 
-  <!-- AREAS SERVED -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-5xl px-5 py-16 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care for the community</p>
-      <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Areas we serve from {l.city}</h2>
-      <p class="mt-3 text-muted max-w-2xl mx-auto">Clients travel to our {l.city} office from across the surrounding towns — and telehealth is available statewide.</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-2">
-        {l.areas.map((a) => <span class="rounded-full bg-white border border-line px-4 py-2 text-sm font-semibold text-ink">{a}</span>)}
-      </div>
-    </div>
-  </section>
-
-  <!-- CARE TEAM -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-5xl px-5 py-16 grid md:grid-cols-[1fr_auto] gap-8 items-center">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Meet your care team</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Experienced, compassionate clinicians</h2>
-        <p class="mt-4 text-ink leading-relaxed text-[17px] max-w-xl">Our psychiatrists, nurse practitioners, psychologists, and licensed therapists work as one team across all of our Connecticut offices. We’ll match you to the provider who best fits your needs and goals.</p>
-      </div>
-      <a href="/about-us/team/" class="inline-flex justify-center items-center gap-2 rounded-lg border border-azul px-7 h-[45px] font-semibold text-azul hover:bg-azul-light transition shrink-0">Meet the team <Icon name="arrow" class="h-4 w-4" /></a>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-6xl px-5 py-16">
-      <div class="text-center">
-        <div class="inline-flex items-center gap-3 rounded-full bg-white border border-line px-5 py-2.5 shadow-sm">
-          <span class="h-6 w-6 inline-block" set:html={googleG} />
-          <span class="font-display text-2xl text-ink leading-none">4.8</span>
-          <span class="text-yellow-400 text-lg leading-none">★★★★★</span>
-          <span class="text-sm text-muted">368 Google reviews</span>
-        </div>
-        <p class="mt-3 text-muted">Clients describe feeling genuinely heard · As featured on Eyewitness News 3</p>
-      </div>
-      <div class="mt-10 grid md:grid-cols-3 gap-6">
-        {reviews.map((r) => (
-          <figure class="rounded-2xl bg-white border border-line p-7 shadow-sm flex flex-col">
-            <div class="flex items-center justify-between">
-              <span class="text-yellow-400 text-lg">★★★★★</span>
-              <span class="h-5 w-5 inline-block opacity-90" set:html={googleG} />
+    {l.slug === "westbrook-ct" && (
+      <section class="section is-white" id="westbrook">
+        <div class="container ab-story">
+          <figure class="ab-story-media" style="margin:0"><img src="/Assets/locations/westbrook/therapy-room-shore.webp" alt="A sunny therapy room at our Westbrook office" width="1200" height="900" loading="lazy" /></figure>
+          <div class="ab-copy">
+            <h2>Mental health &amp; addiction care on the Connecticut shoreline</h2>
+            <div style="margin-top:18px">
+              <p>Hopewell Westbrook opened on September 28, 2026, bringing the same team-based care our Glastonbury offices are known for to the shoreline. We started with our <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, <a class="inl" href="/programs/medication-management/">psychiatric medication management</a> and <a class="inl" href="/programs/counseling/">1:1 therapy</a>, and added a co-ed <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> in October.</p>
+              <p>Westbrook is one of two Hopewell offices that offer <a class="inl" href="/programs/substance-use-iop/">addiction treatment</a>, with mental health care alongside it, so people on the shoreline no longer have to drive to Hartford County for an intensive program. Medication management here includes medication-assisted treatment (MAT).</p>
+              <p>The office sits on Essex Road, minutes from I-95, and serves Westbrook, Old Saybrook, Clinton, Essex, Madison, Deep River, Old Lyme and Killingworth, with clients also coming from Guilford, Branford and Niantic. The local clinical team is led by <a class="inl" href="/provider/kaitlyn-czapiga-lmsw/">Kaitlyn Czapiga, LMSW</a>, Clinical Team Lead for Westbrook.</p>
             </div>
-            <blockquote class="mt-4 text-ink leading-relaxed text-[15px] flex-1">“{r.q}”</blockquote>
-            <figcaption class="mt-5 flex items-center gap-3 border-t border-line pt-4">
-              <span class="grid h-10 w-10 place-items-center rounded-full bg-azul-light text-azul font-semibold">{r.n.charAt(0).toUpperCase()}</span>
-              <span><span class="block text-sm font-semibold text-ink">{r.n.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + "."}</span><span class="block text-xs text-muted">{r.t}</span></span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- INSURANCE -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-5 py-16 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">Insurance accepted</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Most major PPO plans accepted</h2>
-        <p class="mt-3 text-muted max-w-xl">We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — before you commit to anything.</p>
-        <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {insurers.map(([name, img]) => (
-            <div class="rounded-xl bg-white border border-line p-4 flex items-center justify-center h-20"><img src={img} alt={name} loading="lazy" class="max-h-12 max-w-[85%] object-contain" /></div>
-          ))}
+          </div>
         </div>
-        <p class="mt-4 text-sm text-muted text-center sm:text-left">+ most major PPOs</p>
+      </section>
+    )}
+
+    <!-- Programs & services at this office (client-confirmed list) -->
+    <section class="section is-mist" id="services">
+      <div class="container">
+        <div class="sec-head"><h2>Services &amp; programs we offer</h2><p class="lede">{intro[l.slug]} Compare <a class="inl" href="/locations/#compare">which office offers what</a>.</p></div>
+        <ProgramCards items={items} cols={items.length > 3 ? 4 : 3} />
       </div>
-      <div class="lg:sticky lg:top-28"><LeadForm heading="Check your coverage" sub="Free, confidential. Takes 2 minutes — we’ll call you back with a full benefits breakdown." /></div>
+    </section>
+
+    <!-- Areas served -->
+    <section class="section is-stone" id="areas">
+      <div class="container ab-areas">
+        <div>
+          <h2>Areas we serve from {l.city}</h2>
+          <p class="lede" style="margin-top:14px">Clients travel to our {l.city} office from across the surrounding towns — and telehealth is available statewide.</p>
+        </div>
+        <ul class="ab-towns">{l.areas.map((a) => <li><Icon name="pin" class="h-4 w-4" />{a}</li>)}</ul>
+      </div>
+    </section>
+
+    <!-- Care team -->
+    <div class:list={[l.slug !== "glastonbury-ct" && "ab-team-solo"]}>
+      <Team
+        heading="Experienced, compassionate clinicians"
+        lede="Our psychiatrists, nurse practitioners, psychologists, and licensed therapists work as one team across all of our Connecticut offices. We’ll match you to the provider who best fits your needs and goals."
+        tone="white"
+        slugs={roster[l.slug]}
+        feature={l.slug === "glastonbury-ct" ? "kristine-a-schlichting-ph-d" : null}
+      />
     </div>
-  </section>
 
-  <ServicesGrid bg="crema" eyebrow="Care at this location" heading="Services & programs we offer" addiction={!!l.addiction} />
-
-  <!-- OTHER LOCATIONS -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-5 py-16">
-      <div class="text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Care across Connecticut</p>
-        <h2 class="mt-2 font-display text-3xl sm:text-4xl text-ink">Our other locations</h2>
-      </div>
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {others.map((o) => (
-          <a href={`/location/${o.slug}/`} class="group flex gap-3 rounded-2xl bg-crema border border-line p-5 hover:border-azul hover:shadow-sm transition">
-            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
-            <div>
-              <h3 class="font-display text-lg text-ink leading-tight group-hover:text-azul transition">{o.name}</h3>
-              <p class="mt-1 text-sm text-muted">{o.street}, {o.city}, CT {o.zip}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-3xl px-5 py-16">
-      <h2 class="font-display text-3xl text-ink text-center">{l.city} office — common questions</h2>
-      <div class="mt-8 space-y-3">
-        {faqs.map(([q, a]) => (
-          <details class="group rounded-xl bg-white border border-azul/30 p-5 open:border-azul open:bg-azul-light/30 hover:border-azul transition">
-            <summary class="flex justify-between items-center cursor-pointer font-display text-lg text-ink list-none">{q}<span class="text-azul text-xl group-open:rotate-45 transition">+</span></summary>
-            <p class="mt-3 text-ink leading-relaxed">{a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-azul text-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">Get started at {l.name}</h2>
-      <p class="mt-4 text-white/85 text-lg">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you book at our {l.name} office or by telehealth.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="#verify" class="inline-flex items-center justify-center rounded-lg bg-white px-7 h-[45px] font-semibold text-azul hover:bg-crema transition">Verify Your Insurance</a>
-        <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <a href={directions} target="_blank" rel="noopener" class="inline-flex justify-center items-center gap-2 rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition"><Icon name="pin" class="h-4 w-4" />Get directions</a>
-      </div>
-      <p class="mt-6 text-xs text-white/60">Not a substitute for emergency care. If you’re in crisis, call or text 988, or call 911.</p>
-    </div>
-  </section>
-
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+    <Reviews tone="stone" />
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost — before you commit to anything." />
+    <Locations heading="Our other locations" lede="Care across Connecticut: six offices from Hartford County to the shoreline, plus telehealth statewide." current={l.slug} />
+    <Faq faqs={faqs} heading={`${l.city} office — common questions`} tone="white" />
+    <ClosingCta heading={`Get started at ${l.name}`} lede={`Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you book at our ${l.name} office or by telehealth.`} image={gallery[0]?.[0] ?? undefined} imageAlt={`Hopewell Health Solutions ${l.name}`} />
+  </main>
   <Footer />
   {ev && (
     <script>
@@ -297,4 +272,17 @@ const featureFirst = l.photos && l.photos.length % 2 === 1;
       if (el && new Date() > new Date(el.dataset.eventEnd!)) el.remove();
     </script>
   )}
+  <script>
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((g) => {
+      const thumbs = [...g.querySelectorAll<HTMLButtonElement>(".gal-thumb")];
+      const imgs = [...g.querySelectorAll<HTMLElement>(".gal-slide")];
+      let i = 0, hold = false;
+      const pick = (n: number) => { thumbs[i].classList.remove("is-active"); thumbs[i].setAttribute("aria-pressed", "false"); imgs[i].classList.remove("is-active"); i = (n + imgs.length) % imgs.length; thumbs[i].classList.add("is-active"); thumbs[i].setAttribute("aria-pressed", "true"); imgs[i].classList.add("is-active"); };
+      thumbs.forEach((t, n) => t.addEventListener("click", () => pick(n)));
+      g.addEventListener("mouseenter", () => (hold = true)); g.addEventListener("mouseleave", () => (hold = false));
+      g.addEventListener("focusin", () => (hold = true)); g.addEventListener("focusout", () => (hold = false));
+      if (!reduce && imgs.length > 1) setInterval(() => { if (!hold && !document.hidden) pick(i + 1); }, 5000);
+    });
+  </script>
 </Base>

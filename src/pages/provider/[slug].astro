@@ -3,7 +3,10 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import ServicesGrid from "../../components/ServicesGrid.astro";
+import "../../styles/pages/about.css";
+import Insurance from "../../components/hw/Insurance.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import { providers } from "../../data/providers.js";
 
 export function getStaticPaths() {
@@ -28,69 +31,114 @@ const schema = {
   ...(p.bio ? { description: p.bio.replace(/\s+/g, " ") } : {}),
   ...(photo && !p.photoPlaceholder ? { image: `https://www.hopewellhealthsolutions.com${photo}` } : {}),
 };
+const first = p.name.split(",")[0];
+const SITE = "https://www.hopewellhealthsolutions.com";
+const crumbs = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+  { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
+  { "@type": "ListItem", position: 2, name: "Our Team", item: SITE + "/about-us/team/" },
+  { "@type": "ListItem", position: 3, name: p.name, item: `${SITE}/provider/${p.slug}/` },
+] };
+const pos = p.photoPos ? p.photoPos.replace(/^object-\[|\]$/g, "").replace(/_/g, " ") : "top";
+const services = [
+  { t: "Intensive Outpatient Program", href: "/programs/intensive-outpatient-program/", icon: "users" },
+  { t: "Medication Management", href: "/programs/medication-management/", icon: "pill" },
+  { t: "Counseling", href: "/programs/counseling/", icon: "heart" },
+  { t: "HHS Therapeutic Treatments", href: "/treatment-methods/therapeutic-treatments/", icon: "refresh" },
+  { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", icon: "clipboard" },
+  { t: "Addiction Treatment (S.U.D.)", href: "/what-we-treat/substance-use-disorder/", icon: "swap" },
+  { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", icon: "bolt" },
+  { t: "TMS", href: "/treatment-methods/tms/", icon: "brain" },
+  { t: "Alcohol Addiction Treatment", href: "/what-we-treat/alcohol/", icon: "shield" },
+  { t: "Drug Addiction Treatment", href: "/what-we-treat/drug/", icon: "compass" },
+  { t: "Prescription Drug Addiction Treatment", href: "/what-we-treat/prescription-drugs/", icon: "alert" },
+];
+
 ---
 
-<Base title={`${p.name} | Hopewell Health Solutions`} description={metaDesc}>
+<Base title={`${p.name} | Hopewell Health Solutions`} description={metaDesc} image={photo && !p.photoPlaceholder ? photo : undefined}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-
-  <!-- HERO -->
-  <section class="bg-crema">
-    <div class="mx-auto max-w-5xl px-5 pt-8 pb-16">
-      <nav class="text-xs text-muted mb-6"><a href="/" class="hover:text-azul">Home</a> / <a href="/about-us/team/" class="hover:text-azul">Our Team</a> / <span class="text-ink">{p.name}</span></nav>
-      <div class="grid md:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start">
-        {photo
-          ? <img src={photo} alt={p.name} class={`w-full max-w-[300px] mx-auto md:mx-0 aspect-square rounded-2xl object-cover ${p.photoPos || "object-top"} shadow-sm md:sticky md:top-24 md:self-start`} />
-          : <div class="w-full max-w-[300px] mx-auto md:mx-0 aspect-square grid place-items-center rounded-2xl bg-azul-light md:sticky md:top-24 md:self-start"><span class="font-display text-6xl text-azul">{initials}</span></div>}
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+  <main class="hw">
+    <section class="pf-hero">
+      <svg class="hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /><circle cx="400" cy="400" r="210" /></svg>
+      <div class="container pf-grid">
+        <div class="pf-photo">
+          {photo
+            ? <img src={photo} alt={p.name} width="600" height="750" style={`object-position:${pos}`} fetchpriority="high" />
+            : <span class="ab-init" aria-hidden="true">{initials}</span>}
+        </div>
         <div>
-          {p.prescribes && <span class="inline-flex items-center gap-1.5 rounded-full bg-azul-light px-3 py-1 text-xs font-semibold text-azul"><Icon name="pill" class="h-3.5 w-3.5" />Prescribing provider</span>}
-          <h1 class="mt-3 font-display text-3xl sm:text-4xl text-ink leading-tight">{p.name}</h1>
-          <p class="mt-2 text-sm font-semibold uppercase tracking-wide text-azul">{p.role}</p>
-          <div class="mt-5 h-px w-16 bg-gold"></div>
-          {p.quote && <p class="mt-5 font-display text-lg text-azul italic leading-snug">{p.quote}</p>}
-          {bioParas.length > 0
-            ? <div class="mt-5 space-y-4">{bioParas.map((para) => <p class="text-ink leading-relaxed text-[17px]">{para}</p>)}</div>
-            : <p class="mt-5 text-muted leading-relaxed text-[17px]">Full bio coming soon. Reach out and our team will be glad to tell you more about {p.name.split(",")[0]} and how they can help.</p>}
-          {p.education && <p class="mt-5 text-sm text-muted"><span class="font-semibold text-ink">Education:</span> {p.education}</p>}
-          <div class="mt-7 flex flex-wrap gap-3">
-            <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-6 h-[45px] text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-            <a href="/admissions/" class="inline-flex justify-center items-center gap-2 rounded-lg border border-azul px-6 h-[45px] text-sm font-semibold text-azul hover:bg-azul-light transition">Request an appointment</a>
+          <nav class="sv-crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/about-us/team/">Our Team</a></li><li><span aria-current="page">{p.name}</span></li></ol></nav>
+          <h1>{p.name}</h1>
+          <p class="pf-role">{p.role}</p>
+          {p.quote && <p class="pf-quote">{p.quote}</p>}
+          <ul class="pf-meta">
+            {p.prescribes && <li><span class="ab-ico"><Icon name="pill" class="h-[18px] w-[18px]" /></span><span><strong>Prescribing provider</strong> · psychiatric medication management</span></li>}
+            {p.education && <li><span class="ab-ico"><Icon name="clipboard" class="h-[18px] w-[18px]" /></span><span><strong>Education:</strong> {p.education}</span></li>}
+            <li><span class="ab-ico"><Icon name="pin" class="h-[18px] w-[18px]" /></span><span>Hopewell Health Solutions · <a class="inl" href="/locations/">Connecticut offices</a> &amp; telehealth</span></li>
+          </ul>
+          <div class="sv-ctas">
+            <a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a>
+            <a href="#book" class="btn btn-ghost">Request an appointment</a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {p.focus && p.focus.length > 0 && (
-    <section class="bg-white">
-      <div class="mx-auto max-w-5xl px-5 py-16">
-        <p class="text-xs font-semibold uppercase tracking-[0.15em] text-azul">Areas of focus</p>
-        <h2 class="mt-2 font-display text-3xl text-ink">How {p.name.split(",")[0]} can help</h2>
-        <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {p.focus.map((f) => (
-            <div class="flex items-start gap-3 rounded-xl bg-crema border border-line p-4">
-              <span class="text-azul mt-0.5 shrink-0"><Icon name="shield" class="h-5 w-5" /></span>
-              <span class="text-ink leading-snug font-semibold text-sm">{f}</span>
+    <section class="section is-white" id="about">
+      <div class="container pf-body">
+        <div class="ab-copy">
+          <h2>About {first}</h2>
+          <div style="margin-top:18px">
+            {bioParas.length > 0
+              ? bioParas.map((para) => <p>{para}</p>)
+              : <p>Full bio coming soon. Reach out and our team will be glad to tell you more about {first} and how they can help.</p>}
+          </div>
+        </div>
+        <aside class="pf-aside">
+          {p.focus && p.focus.length > 0 && (
+            <div class="pf-card">
+              <h2>How {first} can help</h2>
+              <ul class="pf-focus">{p.focus.map((f) => <li><Icon name="check" class="h-[18px] w-[18px]" />{f}</li>)}</ul>
             </div>
-          ))}
+          )}
+          <div class="pf-card is-navy" id="book">
+            <h2>Ready to connect with {first}?</h2>
+            <p style="margin-top:8px;font-size:16px">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you get started.</p>
+            <a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a>
+            <a href="/about-us/team/" class="btn btn-ghost">Meet the full team</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section is-stone" id="request">
+      <div class="container ins-grid">
+        <div>
+          <h2>Request an appointment</h2>
+          <p class="lede" style="margin-top:14px">Tell us who to call back. We’ll verify your insurance for free and help you book with {first} or the clinician who best fits your needs, in person or by telehealth.</p>
+          <ul class="ab-checks">
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Free, confidential insurance check</span></li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Daytime &amp; evening appointments</span></li>
+            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Six <a class="inl" href="/locations/">Connecticut offices</a> plus telehealth</span></li>
+          </ul>
+        </div>
+        <div id="verify"><span id="verify-m"></span><LeadForm variant="card" formId="hhs-provider" /></div>
+      </div>
+    </section>
+
+    <section class="section is-white" id="services">
+      <div class="container">
+        <div class="sec-head"><h2>Conditions &amp; Treatments</h2><p class="lede">Explore the programs and treatments our team offers.</p></div>
+        <div class="ab-svc">
+          {services.map((s) => <a href={s.href}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-5 w-5" /></a>)}
         </div>
       </div>
     </section>
-  )}
 
-  <ServicesGrid bg={p.focus && p.focus.length > 0 ? "crema" : "white"} />
-
-  <!-- CTA -->
-  <section class="bg-azul text-white">
-    <div class="mx-auto max-w-3xl px-5 py-16 text-center">
-      <h2 class="font-display text-3xl sm:text-4xl text-white">Ready to connect with {p.name.split(",")[0]}?</h2>
-      <p class="mt-4 text-white/85 text-lg">Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you get started.</p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-white px-7 h-[45px] font-semibold text-azul hover:bg-crema transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <a href="/about-us/team/" class="inline-flex justify-center items-center gap-2 rounded-lg border border-white/60 px-7 h-[45px] font-semibold text-white hover:bg-white/10 transition">Meet the full team</a>
-      </div>
-    </div>
-  </section>
-
+    <Insurance mobileForm={false} />
+    <ClosingCta heading={`Ready to connect with ${first}?`} lede="Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you get started." />
+  </main>
   <Footer />
 </Base>

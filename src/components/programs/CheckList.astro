@@ -1,0 +1,9 @@
+---
+// Bulleted list with check ticks (Corner Canyon bullets). Items may contain inline links.
+import Icon from "../Icon.astro";
+interface Props { items: string[]; cols?: 1 | 2; icon?: string }
+const { items, cols = 1, icon = "check" } = Astro.props;
+---
+<ul class={`pg-list cols-${cols}`}>
+  {items.map((t) => <li><span class="pg-tick"><Icon name={icon} class="h-4 w-4" /></span><span set:html={t} /></li>)}
+</ul>

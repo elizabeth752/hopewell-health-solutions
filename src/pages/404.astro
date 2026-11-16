@@ -2,7 +2,17 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
+import Icon from "../components/Icon.astro";
+import ServiceHero from "../components/hw/ServiceHero.astro";
+import "../styles/pages/admissions.css";
+const links = [
+  ["home", "Go home", "Start at the homepage", "/"],
+  ["sparkles", "Programs", "IOP, PHP, counseling & more", "/programs/"],
+  ["heart", "What we treat", "Depression, anxiety, addiction & more", "/what-we-treat/"],
+  ["brain", "Treatments", "TMS, EMDR, testing", "/treatment-methods/"],
+  ["pin", "Locations", "Six Connecticut offices", "/locations/"],
+  ["shield", "Admissions", "Verify your insurance", "/admissions/"],
+];
 ---
 
 <Base
@@ -12,18 +22,14 @@ import Footer from "../components/Footer.astro";
   robots="noindex, follow"
 >
   <Header />
-  <main class="bg-crema">
-    <section class="mx-auto max-w-3xl px-5 py-24 text-center">
-      <p class="text-xs font-semibold uppercase tracking-[0.15em] text-gold">404</p>
-      <h1 class="mt-3 font-display text-4xl sm:text-5xl text-ink">Page not found</h1>
-      <p class="mt-4 text-lg text-muted">
-        This page doesn’t exist or may have moved. Use the links below to get where you need to go.
-      </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/" class="inline-flex items-center justify-center rounded-lg bg-azul px-6 h-[45px] font-semibold text-white hover:bg-azul-dark transition">Go home</a>
-        <a href="/programs/" class="inline-flex items-center justify-center rounded-lg border border-azul px-6 h-[45px] font-semibold text-azul hover:bg-azul-light transition">Programs</a>
-        <a href="/admissions/" class="inline-flex items-center justify-center rounded-lg border border-azul px-6 h-[45px] font-semibold text-azul hover:bg-azul-light transition">Admissions</a>
-        <a href="tel:8607351448" class="inline-flex items-center justify-center rounded-lg border border-line px-6 h-[45px] font-semibold text-ink hover:bg-white transition">(860) 735-1448</a>
+  <main class="hw">
+    <ServiceHero crumbs={[{ label: "Page not found" }]} title="Page not found" lede="This page doesn’t exist or may have moved. Use the links below to get where you need to go." image="/Assets/hhs-2026/downtown-glastonbury-entrance.webp" form={false} />
+    <section class="section is-stone">
+      <div class="container">
+        <div class="nf-links">
+          {links.map(([icon, t, d, href]) => <a href={href}><span class="icon-badge"><Icon name={icon} /></span><span>{t}<small>{d}</small></span></a>)}
+        </div>
+        <p class="lede" style="margin-top:26px">Prefer to talk? Call <a class="inl" href="tel:8607351448">(860) 735-1448</a>.</p>
       </div>
     </section>
   </main>
