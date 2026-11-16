@@ -9,6 +9,9 @@ import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { providers } from "../../data/providers.js";
+import Prose from "../../components/seo/Prose.astro";
+import Faq from "../../components/hw/Faq.astro";
+import "../../styles/pages/seo.css";
 
 const TM = "/Assets/Team%20Members/";
 const initials = (name) => {
@@ -66,12 +69,62 @@ const services = [
   { t: "Drug Addiction Treatment", href: "/what-we-treat/drug/", icon: "compass" },
   { t: "Prescription Drug Addiction Treatment", href: "/what-we-treat/prescription-drugs/", icon: "alert" },
 ];
+// Long-form SEO copy (2026-11-16). Primary keyword: "therapists and psychiatric providers in Glastonbury, CT";
+// variants: psychiatric nurse practitioner Glastonbury, psychologist West Hartford, therapist Westbrook CT.
+// Facts from providers.js (roles, credentials, counts) and the site. Hopewell's prescribers are PMHNPs and PAs.
+const nPrescribers = providers.filter((p) => p.prescribes && !p.hideFromTeam).length;
+const blocks = [
+  { id: "our-team", h2: "Therapists and psychiatric providers in Glastonbury, CT and beyond",
+    paras: [
+      `Hopewell Health Solutions brings therapists, psychiatric nurse practitioners, physician assistants and psychologists together in one practice, so the people treating you talk to each other. Our team of 50+ clinicians works from six offices: three in Glastonbury (Pratt St, Hebron Ave and Main St in South Glastonbury), plus West Hartford, East Hampton and Westbrook.`,
+      `Every profile on this page links to a full bio with credentials, education and areas of focus. Licensed clinical social workers (LCSW, LMSW), professional counselors (LPC, LPC-A), marriage and family therapists (LMFT, LMFT-A), psychologists and board-certified prescribers each bring different training, and we match clients to the clinician whose experience fits what they are facing.`,
+      `Our approach is the same across the team: therapy first, medication second, transformation third. That means evidence-based therapy such as <a class="inl" href="/treatment-methods/dbt/">DBT</a>, CBT and <a class="inl" href="/treatment-methods/emdr/">EMDR</a> at the centre of care, with <a class="inl" href="/programs/medication-management/">medication management</a> added when it helps.`,
+    ],
+    aside: { type: "points", title: "Our team at a glance", items: [["users", "50+ clinicians across six offices"], ["pill", `${nPrescribers} board-certified prescribers`], ["brain", "Psychologists &amp; a neuropsychologist"], ["heart", "Therapists for ages 4 and up"]] } },
+  { id: "leadership-team", h2: "Leadership and clinical team leads",
+    paras: [
+      `Hopewell was founded by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting</a>, a licensed psychologist who earned her doctorate and master’s in psychology at the University of Connecticut. Clinic Director <a class="inl" href="/provider/teesha-huertas-lcsw/">Teesha Huertas, LCSW</a> oversees clinical care, Executive Director Colleen Callaway manages operations, and TJ Aitken, CPSRP leads business development and hosts the <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a>.`,
+      `Team leads keep care consistent from office to office, including <a class="inl" href="/provider/kaitlyn-czapiga-lmsw/">Kaitlyn Czapiga, LMSW</a>, Clinical Team Lead in Westbrook, and Chelsey Micciche, LPC, Team Lead for therapy. Clinical leadership also includes board-certified prescriber Tracy Sibley, PMHNP-BC, and Dr. Eric Schwartz, a licensed psychologist board certified in clinical child and adolescent psychology.`,
+    ] },
+  { id: "prescribers", h2: "Psychiatric nurse practitioners and physician assistants",
+    paras: [
+      `Our medical staff are board-certified psychiatric mental health nurse practitioners (PMHNP-BC, APRN) and physician assistants (PA-C). They evaluate symptoms, prescribe and adjust psychiatric medication, and follow up closely, for children from age 4, teens and adults. Medication management is offered at all six offices, in person or by telehealth.`,
+      `Prescribers work alongside each client’s therapist and program team. When it helps, they use <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® genetic testing</a> to guide medication choices, and they coordinate <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression and OCD. At our 300 Hebron Ave and Westbrook offices, prescribers also provide <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a> as part of addiction care.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/south-glastonbury-med-waiting-room.webp", alt: "The waiting room at Hopewell's South Glastonbury office", cap: "South Glastonbury office" } },
+  { id: "psychologists", h2: "Psychologists and testing specialists",
+    paras: [
+      `Hopewell’s psychologists provide therapy for children, teens and adults, and lead our testing services. <a class="inl" href="/provider/laura-miller-ph-d/">Dr. Laura Miller</a> leads our <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>, and our psychologists also provide <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> for children and adults.`,
+      `Testing gives families a clearer diagnosis and a practical plan. Because results stay inside the same practice, they can shape therapy, school accommodations and medication decisions without starting over somewhere new.`,
+    ] },
+  { id: "by-location", h2: "Therapists near you: Glastonbury, West Hartford, East Hampton and Westbrook",
+    paras: [
+      `Our clinical staff are listed above by office so you can find a therapist near you. The largest group works from our three Glastonbury offices, which also host our intensive programs: PHP, adult IOP and the Women’s Wellness IOP at <a class="inl" href="/location/glastonbury-ct-2/">300 Hebron Ave</a>, and the Teen &amp; Tween IOP at <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St in South Glastonbury</a>.`,
+      `In <a class="inl" href="/location/west-hartford-ct/">West Hartford</a> and <a class="inl" href="/location/east-hampton-ct/">East Hampton</a>, clinicians offer one-on-one therapy and medication management. Our <a class="inl" href="/location/westbrook-ct/">Westbrook</a> team, which opened in September 2026, runs an adult IOP and the Women’s Wellness IOP alongside therapy and medication management, and offers addiction treatment.`,
+      `Some clinicians see clients at more than one office, and many also offer telehealth. When you call, our admissions team will match you with someone at the office and time that works for you.`,
+    ],
+    aside: { type: "table", title: "Clinicians by office", head: ["Office", "Services"], rows: [["Glastonbury (3)", "Therapy, meds, PHP, IOPs"], ["West Hartford", "Therapy &amp; meds"], ["East Hampton", "Therapy &amp; meds"], ["Westbrook", "Therapy, meds, IOPs, addiction care"]] } },
+  { id: "choosing", h2: "How we match you with the right clinician",
+    paras: [
+      `You don’t have to choose a clinician on your own. When you reach out, our admissions team asks about what you’re facing, your schedule, your insurance and which office is closest. After a clinical assessment, we recommend a level of care and a clinician whose focus areas fit, whether that is anxiety, depression, trauma, addiction, ADHD or something else.`,
+      `If you already know who you’d like to see, mention their name when you call. And if the fit isn’t right after a few sessions, tell us; changing clinicians is a normal part of finding the right relationship. Read <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.`,
+    ],
+    aside: { type: "steps", title: "Getting matched", items: [["Call or request a callback", "(860) 735-1448"], ["Free insurance check", "Before your first visit"], ["Clinical assessment", "To recommend a level of care"], ["Meet your clinician", "In person or by telehealth"]] } },
+];
+const faqs = [
+  ["Does Hopewell have psychiatrists?", `Our prescribers are board-certified psychiatric mental health nurse practitioners and physician assistants. They provide psychiatric evaluation and <a class="inl" href="/programs/medication-management/">medication management</a> for ages 4 and up.`],
+  ["Can I choose my therapist?", "Yes. If you have someone in mind, ask for them by name when you call. Otherwise our admissions team will match you based on your needs, schedule and office."],
+  ["Do your clinicians see children?", `Yes. We care for clients aged 4 and older, and our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> serves ages 8–17 after school.`],
+  ["Which therapists offer telehealth?", "Many of our clinicians offer telehealth as well as in-person sessions. Ask our admissions team when you call."],
+  ["Do your clinicians treat addiction?", `Yes. Addiction treatment, including the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> and MAT, is offered at our 300 Hebron Ave office in Glastonbury and in Westbrook.`],
+  ["How do I book with a specific clinician?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a callback and mention the clinician’s name.`],
+];
 const short = (r) => r.replace(/^Board-Certified /, "");
 const tones = ["is-white", "is-stone"];
 
 ---
 
-<Base title="Our Clinical Team | Hopewell Health Solutions" description="Meet the clinical team at Hopewell Health Solutions — board-certified psychiatrists, nurse practitioners, psychologists, counselors & social workers across Glastonbury, Westbrook & West Hartford, CT." image="/Assets/hopewell-team.webp">
+<Base title="Therapists & Psychiatric Providers in Glastonbury, CT | Our Team | Hopewell Health Solutions" description="Meet the clinical team at Hopewell Health Solutions — board-certified psychiatric nurse practitioners and physician assistants, psychologists, counselors & social workers across Glastonbury, Westbrook & West Hartford, CT." image="/Assets/hopewell-team.webp">
   <Header />
   <main class="hw">
     <ServiceHero
@@ -113,6 +166,9 @@ const tones = ["is-white", "is-stone"];
     ))}
 
     
+
+    <Prose blocks={blocks} />
+    <Faq faqs={faqs} heading="Our team — common questions" tone="white" />
 
     <!-- Conditions & treatments -->
     <section class="section is-white" id="services">

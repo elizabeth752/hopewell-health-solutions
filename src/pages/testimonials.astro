@@ -14,6 +14,54 @@ import ClosingCta from "../components/hw/ClosingCta.astro";
 import { STORIES, PODCAST } from "../data/videos.js";
 import { GBPS, GOOGLE } from "../data/site.js";
 import { locations } from "../data/locations.js";
+import Prose from "../components/seo/Prose.astro";
+import Faq from "../components/hw/Faq.astro";
+import "../styles/pages/seo.css";
+// Long-form SEO copy (2026-11-16). Primary keyword: "Hopewell Health Solutions reviews"; variants: IOP reviews
+// Connecticut, Women's Wellness IOP reviews, Glastonbury therapist reviews. Themes and short quotes come only from the
+// verbatim reviews and video descriptions on this page; reviewers shown by initials only.
+const blocks = [
+  { id: "reviews-overview", h2: "Hopewell Health Solutions reviews: what clients say",
+    paras: [
+      `Hopewell Health Solutions holds a ${GOOGLE.rating}-star rating from ${GOOGLE.count} Google reviews. The reviews on this page are copied word for word from Google and shown with initials only, to protect each reviewer’s privacy. Read together, they describe the same things again and again: clinicians who take time to understand each person, groups that feel engaging rather than clinical, and staff who are professional, friendly and easy to talk to.`,
+      `Clients write about very different kinds of care. Some describe our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>; one says the IOP program “made a huge difference” and helped them “develop real tools I use every day.” Others describe individual therapy and <a class="inl" href="/programs/medication-management/">medication management</a> with a specific prescriber or therapist. Many describe moving from one level of care to another, which is exactly how our continuum is designed to work.`,
+      `Reviews are only one part of choosing a provider, but they are a useful window into what it feels like to walk through our doors. You can read every review on our Google Business Profiles, linked below for each office.`,
+    ],
+    aside: { type: "points", title: "Themes in our reviews", items: [["users", "Engaging, supportive groups"], ["heart", "Clinicians who take time to understand you"], ["clock", "Flexibility and extra support when needed"], ["shield", "Professional, friendly staff"]] } },
+  { id: "iop-reviews", h2: "IOP reviews from Connecticut clients",
+    paras: [
+      `Many of our reviews come from people who completed an intensive outpatient program. Our IOPs meet about three hours a day, Monday through Thursday, in day or evening tracks, so clients can keep up with work, school and family while getting more support than weekly therapy can offer. One graduate describes the IOP as “pivotal to my healing journey and my life in general.”`,
+      `Video stories add more detail. Evan shares how weekly therapy wasn’t giving him the deeper care he needed, and how at Hopewell he was able to believe that people wanted to help him. In the Teen IOP story, Eli talks about the 1:1 support he received, how the program helped him build relationships, and how his performance at school improved.`,
+      `If you’re considering a program, our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> and <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> pages explain who each one is for, and <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">what to expect on your first day of IOP</a> walks through the first session.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/iop-group-room-lights.webp", alt: "An IOP group room at Hopewell Health Solutions", cap: "An IOP group room, Glastonbury" } },
+  { id: "womens-wellness-reviews", h2: "Women’s Wellness IOP reviews",
+    paras: [
+      `Women who have completed our <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> often describe the connection with other women as the turning point. One reviewer writes that she started in the Women’s Wellness IOP, that the clinicians “actually care about you,” and that she continued with individual therapy and medication management afterwards.`,
+      `In our video stories, one attendee explains how the program taught her to know herself, and how the connection to other women made a real difference in her world. Another describes the Women’s Wellness IOP as “one of the best things I’ve ever done for myself.” The program runs in morning and evening groups at 300 Hebron Ave in Glastonbury and in Westbrook.`,
+      `Women healing from trauma can also join our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, a women-only group built around trauma and healing.`,
+    ] },
+  { id: "provider-reviews", h2: "Reviews of our therapists and psychiatric providers",
+    paras: [
+      `Several reviews name individual clinicians. Clients describe a physician assistant who was “extremely accommodating” and took time to meet without making them feel rushed, a therapist who “asks the right questions and listens with care,” and a psychiatric nurse practitioner who is “so patient, understanding, and always very supportive.”`,
+      `Those reviews reflect how our <a class="inl" href="/about-us/team/">clinical team</a> works: board-certified prescribers who follow up closely, and therapists trained in approaches like <a class="inl" href="/treatment-methods/dbt/">DBT</a>, CBT and <a class="inl" href="/treatment-methods/emdr/">EMDR</a>. You can read each clinician’s full profile on our team page before you book.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/westbrook-therapy-office.webp", alt: "A private therapy office at Hopewell Health Solutions", cap: "A therapy office, Westbrook" } },
+  { id: "reviews-by-office", h2: "Read our Google reviews by office",
+    paras: [
+      `Hopewell has six Connecticut offices, and reviews are collected on each office’s Google Business Profile. Our <a class="inl" href="/location/glastonbury-ct-2/">Downtown Glastonbury office at 300 Hebron Ave</a> holds most of our reviews, and you can also read reviews for <a class="inl" href="/location/east-hampton-ct/">East Hampton</a> and our newest office in <a class="inl" href="/location/westbrook-ct/">Westbrook</a>.`,
+      `If Hopewell has helped you or someone you love, a Google review helps other people find care. Please share only what you are comfortable with; you never need to include details about your treatment.`,
+    ],
+    aside: { type: "points", title: "Google profiles", items: GBPS.map((g) => ["pin", `<a href="${g.url}" target="_blank" rel="noopener">${g.loc}</a> · ${g.num ? g.num + " ★ · " : ""}${g.meta}`]) } },
+];
+const faqs = [
+  ["What is Hopewell Health Solutions’ Google rating?", `Hopewell holds a ${GOOGLE.rating}-star rating from ${GOOGLE.count} Google reviews.`],
+  ["Are the reviews on this page real?", "Yes. Every review is copied word for word from our Google Business Profiles. We show initials only to protect reviewers’ privacy."],
+  ["Why do reviews show initials instead of names?", "Mental health care is personal. Showing initials only protects the people who took time to share their experience."],
+  ["Where can I read more Hopewell reviews?", "On each office’s Google Business Profile, linked in the reviews section on this page."],
+  ["Can I watch video testimonials?", `Yes. The video stories on this page come from our YouTube channel, and our <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a> has full-length conversations about recovery.`],
+  ["How do I start care at Hopewell?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll verify your insurance for free and help you find the right level of care.`],
+];
 
 const canonical = "https://www.hopewellhealthsolutions.com/testimonials/";
 
@@ -76,7 +124,7 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
 
 ---
 
-<Base title="Testimonials & Reviews | Hopewell Health Solutions" description="Hear from Hopewell Health Solutions clients — video testimonials and real Google reviews about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical} image="/Assets/videos/teen-iop-story.webp">
+<Base title="Hopewell Health Solutions Reviews & Testimonials | IOP & Therapy in CT" description="Hear from Hopewell Health Solutions clients — video testimonials and real Google reviews about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical} image="/Assets/videos/teen-iop-story.webp">
   <Header />
   <main class="hw">
     <ServiceHero
@@ -145,6 +193,8 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
       </div>
     </section>
 
+    <Prose blocks={blocks} />
+    <Faq faqs={faqs} heading="Reviews &amp; testimonials — common questions" tone="white" />
     <Insurance />
     <Locations heading="We’re Close to You in Connecticut" lede="We believe that everyone should have access to quality mental health and addiction care. We have six centers across Connecticut to ensure that more people can join our programs in the moments they most need. Visit us in person, or join our programs virtually via one of our centers:" />
     <ClosingCta heading="Write Your Own Recovery Story With Us" lede="These testimonials are just a few of the wonderful things people have to say about Hopewell Health Solutions. We’re constantly humbled and honored to play a role in people’s well-being, and we aim to continue helping the most people in the most effective ways. We encourage anyone who needs support with their mental health to contact our <a class='inl' href='/admissions/'>admissions team</a>. Every recovery story starts with a phone call. <strong style='color:#fff'>There is always hope. Find yours with us.</strong>" />

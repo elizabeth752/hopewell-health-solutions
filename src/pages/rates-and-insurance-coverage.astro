@@ -11,6 +11,8 @@ import Reviews from "../components/hw/Reviews.astro";
 import Faq from "../components/hw/Faq.astro";
 import ClosingCta from "../components/hw/ClosingCta.astro";
 import "../styles/pages/admissions.css";
+import "../styles/pages/seo.css";
+import Prose from "../components/seo/Prose.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/rates-and-insurance-coverage/";
 
@@ -36,8 +38,46 @@ const details = [
   { icon: "calendar", h: "Cancellation Policy", bar: "#5c7c6b", html: "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session." },
   { icon: "shield", h: "Your responsibility", bar: "#0b2f55", html: "Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account." },
 ];
+// Long-form SEO copy (2026-11-16). Primary keyword: "does insurance cover IOP in Connecticut"; variants: IOP cost CT,
+// mental health insurance coverage Connecticut, therapy covered by insurance. No prices or coverage guarantees: rates
+// are by phone and every plan is verified individually (site copy).
+const blocks = [
+  { id: "does-insurance-cover-iop", h2: "Does insurance cover IOP in Connecticut?",
+    paras: [
+      `In most cases, yes. Commercial health plans generally include behavioral health benefits, and intensive outpatient programs (IOP), partial hospitalization (PHP), therapy and psychiatric medication management are usually billed as covered mental health services. Hopewell Health Solutions is in network with most major carriers, including plans that are out of state, so many clients use their insurance for every part of their care.`,
+      `What you pay depends on your specific plan: your deductible, copay or coinsurance, whether a service needs prior authorization, and how many visits your plan allows. That is why we don’t quote a single price. Instead, our admissions team verifies your benefits for free before you start, so you know what your plan covers for the program you are considering.`,
+      `If you want to understand the numbers in more detail, our article <a class="inl" href="/post/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance/">How much does IOP cost in Connecticut?</a> explains how insurance applies to intensive programs, and <a class="inl" href="/post/php-vs-iop-which-level-of-care-is-right-for-you/">PHP vs. IOP</a> explains the difference between the two levels of care.`,
+    ],
+    aside: { type: "steps", title: "How we check your coverage", items: [["Share your plan", "Call or request a callback with your card"], ["We verify benefits", "Free and confidential"], ["You know your costs", "Before your first session"]] } },
+  { id: "coverage-by-service", h2: "Insurance coverage for therapy, IOP, PHP and medication management",
+    paras: [
+      `Hopewell offers a full continuum of outpatient care, and each level is billed a little differently. Weekly <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> are typically billed per visit. Our <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> meets about three hours a day, Monday through Thursday, and our <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> runs about six hours a day, Monday through Friday; both are billed as program days, and some plans ask for authorization before they begin.`,
+      `Specialized services are verified one by one. Plans may ask for records of earlier treatment before approving <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression, and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> coverage varies by plan. coverage for <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> also differs from plan to plan. We check each one with your carrier before anything is scheduled.`,
+      `For addiction care, the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> are offered at our 300 Hebron Ave office in Glastonbury and in Westbrook, and are verified the same way.`,
+    ],
+    aside: { type: "table", title: "What we verify for you", head: ["Service", "How it’s billed"], rows: [["Counseling", "Per session"], ["Medication management", "Per visit"], ["IOP", "Per program day"], ["PHP", "Per program day"], ["TMS &amp; testing", "Verified individually"]] } },
+  { id: "understanding-costs", h2: "Understanding your out-of-pocket costs",
+    paras: [
+      `Three terms decide most of what you pay. Your <strong>deductible</strong> is the amount you pay before your plan starts sharing costs. A <strong>copay</strong> is a set amount per visit or program day, and <strong>coinsurance</strong> is a percentage of the cost after your deductible is met. Your <strong>out-of-pocket maximum</strong> caps what you pay in a plan year.`,
+      `Intensive programs involve more visits in a short time, so it is common to reach a deductible or out-of-pocket maximum faster in IOP or PHP than in weekly therapy. When we verify your benefits, we look at where you are in your plan year so the estimate reflects your situation.`,
+      `Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account. If anything is unclear, ask us: our team would rather walk through it with you before you start than surprise you later.`,
+    ],
+    aside: { type: "points", title: "Questions to ask your plan", items: [["clipboard", "What is my behavioral health deductible?"], ["calendar", "Is prior authorization needed for IOP or PHP?"], ["shield", "Is Hopewell in network for my plan?"], ["refresh", "How many visits are covered per year?"]] } },
+  { id: "tricare-va", h2: "TRICARE, VA Community Care and out-of-state plans",
+    paras: [
+      `We accept TRICARE and VA Community Care, which matters to many of the veterans, service members and military families we serve, as well as first responders in our <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>. We are also in network with many plans that are issued outside Connecticut, which helps students and families who carry coverage from another state.`,
+      `If your carrier isn’t listed, please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans. Our team can check your benefits and, if needed, point you to programs that accept your plan.`,
+    ] },
+  { id: "time-off", h2: "Paying for care while you take time off",
+    paras: [
+      `Many people in IOP or PHP keep working, especially in our evening tracks. For those who need time away, some of our programs can support a leave of absence. Our article <a class="inl" href="/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/">What programs at Hopewell are eligible for CT Paid Leave or FMLA?</a> explains how it works, and our <a class="inl" href="/admissions/">admissions team</a> can help with the paperwork questions that come up.`,
+      `Telehealth sessions are available for counseling and medication management, which can also make care easier to fit around work, school and family.`,
+    ] },
+];
 // Every answer restates this page's own facts.
 const faqs = [
+  ["Does insurance cover IOP in Connecticut?", `Most commercial plans include behavioral health benefits that cover intensive outpatient programs. Coverage, copays and authorization rules vary by plan, so we verify your benefits for free before you start. Read <a class="inl" href="/post/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance/">how much IOP costs in Connecticut</a>.`],
+  ["Do you accept TRICARE and VA Community Care?", "Yes. We accept TRICARE and VA Community Care, along with most major commercial carriers."],
   ["Is Hopewell Health Solutions in-network with my insurance?", `We are in network with most insurances, including plans that are out of state: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans.`],
   ["How much do sessions cost?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. We’ll verify your benefits for free so you know your coverage before you start.`],
   ["What forms of payment do you accept?", "Cash, check, and all major credit cards accepted for payment."],
@@ -53,7 +93,7 @@ const schema = {
 };
 ---
 
-<Base title="Rates & Insurance Coverage | Hopewell Health Solutions" description="Hopewell Health Solutions is in-network with most major insurance carriers — Anthem, Aetna, Cigna, Optum, United, TRICARE and more. See our rates, payment, and insurance coverage for IOP, medication management, and counseling in Connecticut." canonical={canonical}>
+<Base title="Rates & Insurance Coverage for IOP, Therapy & Psychiatry in CT | Hopewell Health Solutions" description="Hopewell Health Solutions is in-network with most major insurance carriers — Anthem, Aetna, Cigna, Optum, United, TRICARE and more. See our rates, payment, and insurance coverage for IOP, medication management, and counseling in Connecticut." canonical={canonical}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -101,6 +141,7 @@ const schema = {
       </div>
     </section>
 
+    <Prose blocks={blocks} />
     <Reviews />
     <Faq faqs={faqs} heading="Insurance & Payment Questions" tone="stone" />
     <ClosingCta heading="Questions about coverage?" lede="Our team will verify your benefits and walk you through your options — no pressure. Prefer email? Write to <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />

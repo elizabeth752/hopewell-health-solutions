@@ -12,6 +12,9 @@ import ClosingCta from "../components/hw/ClosingCta.astro";
 import { VIDEOS, PODCAST } from "../data/videos.js";
 import { providers } from "../data/providers.js";
 import { SITE } from "../data/site.js";
+import Prose from "../components/seo/Prose.astro";
+import Insurance from "../components/hw/Insurance.astro";
+import "../styles/pages/seo.css";
 
 const tj = providers.find((p) => p.slug === "tj-aitken-cpsrp");
 const tips = VIDEOS.filter((v) => v.type.startsWith("Clinician") || v.type.startsWith("Dr."));
@@ -22,14 +25,59 @@ const series = {
   author: { "@type": "Organization", name: "Hopewell Health Solutions", url: SITE + "/" },
   hasPart: PODCAST.map((v, i) => ({ "@type": "PodcastEpisode", name: v.title, episodeNumber: PODCAST.length - i, datePublished: v.date, timeRequired: v.duration, url: `https://www.youtube.com/watch?v=${v.yt}`, description: v.desc })),
 };
+// Long-form SEO copy (2026-11-16). Primary keyword: "mental health and recovery podcast"; variants: addiction recovery
+// podcast Connecticut, IOP stories, Hope Health and Healing podcast. Episode facts only from the YouTube descriptions.
+const blocks = [
+  { id: "about-podcast", h2: "A mental health and recovery podcast from Connecticut",
+    paras: [
+      `Hope, Health &amp; Healing is the mental health and recovery podcast from Hopewell Health Solutions, an outpatient mental health, addiction and psychiatry practice with six offices in Connecticut. Each episode is an honest conversation with someone who has been through treatment, about what life looked like before they asked for help, what treatment was really like, and what recovery means to them now.`,
+      `The series exists for one reason: stories have the power to inspire hope, break stigma and remind people that they are not alone. If you are wondering whether an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> is for you, supporting a loved one through addiction or depression, or simply looking for hope, hearing someone describe the same doubts you have can make the next step feel possible.`,
+      `Episodes run about 25 minutes, are free to watch and are published on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>. You can watch every episode right here on this page.`,
+    ],
+    aside: { type: "points", title: "At a glance", items: [["play", "Real stories of treatment and recovery"], ["clock", "About 25 minutes per episode"], ["users", "Hosted by TJ Aitken, CPSRP"], ["heart", "Free to watch, no sign-up"]] } },
+  { id: "episode-1", h2: "Episode 1: “The help I didn’t know I needed”",
+    paras: [
+      `In the first episode, Evan shares his journey of healing through Intensive Outpatient Programming (IOP). Like many people, Evan wasn’t sure treatment was for him. What he found instead was support, connection and the tools he needed to begin rebuilding his life.`,
+      `In an honest conversation, he opens up about his struggles, what led him to seek help, and why IOP became the help he didn’t know he needed. It is a useful listen for anyone weighing whether to start a program, and it pairs well with our articles on <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">what to expect on your first day of IOP</a> and <a class="inl" href="/post/breaking-through-resistance-overcoming-the-challenges-of-starting-iop/">overcoming resistance to starting IOP</a>.`,
+      `Evan’s experience reflects how our <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> works: structured groups and individual support about three hours a day, Monday through Thursday, in day or evening tracks, so people can keep working and living at home while they get intensive care.`,
+    ],
+    aside: { type: "img", src: "/Assets/videos/podcast-ep1-evan.webp", alt: "Hope, Health and Healing podcast Episode 1 cover", cap: "Episode 1 · 26 minutes" } },
+  { id: "episode-2", h2: "Episode 2: Luke’s story of addiction recovery",
+    paras: [
+      `In Episode 2, Luke shares his personal story of recovery. Through honesty, courage and vulnerability, he talks about his journey, the challenges he has faced, and what recovery means to him today. Every recovery journey is different, but every story has the power to inspire hope.`,
+      `If you or someone you love is struggling with alcohol or drugs, Luke’s story is a reminder that recovery is possible. Hopewell’s <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> treats addiction and mental health together at our 300 Hebron Ave office in Glastonbury and in Westbrook, including step-down care for people leaving detox or residential rehab.`,
+      `For more on the recovery side of the conversation, read <a class="inl" href="/post/what-its-really-like-to-go-through-an-iop-program-a-peer-recovery-perspective/">what IOP is really like from a peer recovery perspective</a> and <a class="inl" href="/post/the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives/">how substance use disorder therapy programs help</a>.`,
+    ],
+    aside: { type: "img", src: "/Assets/videos/podcast-ep2-luke.webp", alt: "Hope, Health and Healing podcast Episode 2 cover", cap: "Episode 2 · 24 minutes" } },
+  { id: "host", h2: "Meet the host: TJ Aitken, CPSRP",
+    paras: [
+      `Hope, Health &amp; Healing is hosted by TJ Aitken, Hopewell’s Director of Business Development. A person in long-term recovery, TJ brings both lived experience and professional expertise to his work. As a Certified Peer Support and Recovery Professional (CPSRP) and Recovery Coach Professional, he has spent the past 10 years working in the substance use field, supporting individuals and families through compassionate, recovery-oriented care.`,
+      `That background shapes the show. Conversations are relaxed, respectful and focused on the guest’s own words, the way a peer conversation in recovery feels. Read <a class="inl" href="/provider/tj-aitken-cpsrp/">TJ’s full profile</a> or meet the rest of <a class="inl" href="/about-us/team/">our team</a>.`,
+    ] },
+  { id: "clinician-videos", h2: "Short mental health videos from our clinicians",
+    paras: [
+      `Alongside the podcast, Hopewell clinicians share short, practical videos. In “A lesson from Viviana on anchoring,” clinician Viviana walks through anchoring, a simple technique to help you stay grounded and present in moments of stress or overwhelm. It is a tool you can try during your day when anxiety or racing thoughts show up.`,
+      `In “3 Clinical Strategies for Supporting Neurodivergent Tweens,” Viviana shares approaches for children with ADHD, autism and other neurodivergent presentations: creating structure and predictability, strengthening emotional regulation, and building on each child’s strengths. Parents of tweens may also find our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> page helpful.`,
+      `In “The Loneliness Crisis in Adults,” Dr. Kristine Schlichting explains why <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> can be such a powerful part of healing: clients realize they’re not alone, learn from others and practise new skills in real time. You can watch all three videos further down this page.`,
+    ],
+    aside: { type: "points", title: "Clinician videos", items: [["compass", "Anchoring — a grounding skill for stress"], ["sparkles", "3 strategies for neurodivergent tweens"], ["users", "Dr. K on the loneliness crisis and group therapy"]] } },
+  { id: "why-stories", h2: "Why recovery stories help break stigma",
+    paras: [
+      `Stigma keeps many people from asking for help. Hearing someone describe depression, anxiety or addiction in their own words, and hearing what changed for them, can make it easier to talk about your own experience. That is especially true for people who feel they “should” be able to handle things alone.`,
+      `Stories also help families. Parents, partners and friends often don’t know what treatment involves or how to support someone through it. Listening together can open a conversation that is otherwise hard to start. Our guide to <a class="inl" href="/post/how-to-recognize-when-its-time-to-see-a-therapist/">recognizing when it’s time to see a therapist</a> is another good place to begin.`,
+      `If an episode resonates with you, you don’t have to decide on a program alone. Our admissions team can talk through what you’re facing, check your insurance for free and recommend a starting level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>.`,
+    ] },
+];
 const faqs = [
+  ["How long are the podcast episodes?", "Each Hope, Health & Healing episode runs about 25 minutes. Episode 1 is 26 minutes and Episode 2 is 24 minutes."],
+  ["How often are new episodes released?", `New episodes are added to the Hopewell Health Solutions YouTube channel. Subscribe there to be notified, or check back on this page.`],
   ["What is the Hope, Health & Healing podcast?", `It’s a Hopewell Health Solutions series of honest conversations about mental health, addiction and recovery. Each episode features someone sharing their own story, hosted by <a class="inl" href="/provider/tj-aitken-cpsrp/">TJ Aitken, CPSRP</a>, our Director of Business Development and a person in long-term recovery.`],
   ["Where can I watch or listen?", `Every episode is on this page and on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>, where you can subscribe for new episodes.`],
   ["Are the guests real Hopewell clients?", `Yes. Guests choose to share their own experiences, such as Evan’s time in our <a class="inl" href="/programs/intensive-outpatient-program/">Intensive Outpatient Program</a>. Every recovery is different, and their stories are their own.`],
   ["I relate to an episode. How do I get help?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll verify your insurance for free and help you find the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization</a>. If you are in crisis, call or text 988.`],
 ];
 ---
-<Base title="Hope, Health & Healing Podcast | Hopewell Health Solutions" description="Watch Hope, Health & Healing, the Hopewell Health Solutions podcast: real stories of mental health treatment, IOP and addiction recovery from Connecticut, hosted by TJ Aitken, CPSRP." canonical={SITE + "/podcast/"} image="/Assets/videos/podcast-ep2-luke.webp">
+<Base title="Hope, Health & Healing: Mental Health & Recovery Podcast | Hopewell Health Solutions" description="Watch Hope, Health & Healing, the Hopewell Health Solutions podcast: real stories of mental health treatment, IOP and addiction recovery from Connecticut, hosted by TJ Aitken, CPSRP." canonical={SITE + "/podcast/"} image="/Assets/videos/podcast-ep2-luke.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(series)} />
   <main class="hw">
@@ -72,7 +120,9 @@ const faqs = [
 
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Short Videos From Our Clinicians" lede="Quick, practical skills from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={null} />
 
+    <Prose blocks={blocks} />
     <Faq faqs={faqs} heading="Podcast Questions" tone="white" />
+    <Insurance heading="Ready to talk to someone? We’ll check your coverage" />
     <ClosingCta verifyHref="/admissions/#verify" />
   </main>
   <Footer />

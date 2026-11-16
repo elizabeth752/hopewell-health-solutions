@@ -10,6 +10,64 @@ import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import ClosingCta from "../components/hw/ClosingCta.astro";
 import Insurance from "../components/hw/Insurance.astro";
 import { VIDEOS } from "../data/videos.js";
+import Prose from "../components/seo/Prose.astro";
+import Faq from "../components/hw/Faq.astro";
+import "../styles/pages/seo.css";
+const POSTERS = { "uDy-K1dO0Fw": "news-ct-live-trauma-in-women", "GJeVqHhooBA": "news-wfsb-helping-children", "P3cmQMf3WoM": "news-teen-mental-health", "aff5Xfy9CfE": "loneliness-crisis" };
+// Long-form SEO copy (2026-11-16). Primary keyword: "Hopewell Health Solutions in the news"; variants: Connecticut
+// mental health expert interviews, Dr. Kristine Schlichting media. Facts only from each feature's headline/outlet.
+const blocks = [
+  { id: "in-the-news", h2: "Hopewell Health Solutions in the news",
+    paras: [
+      `Connecticut reporters and TV producers regularly ask Hopewell Health Solutions clinicians to explain what is happening in mental health and what families can do about it. Our team has appeared on WFSB Eyewitness News 3, NBC Connecticut’s CT Live!, FOX61 and Great Day Connecticut, and the practice has been covered by the Hartford Courant and the Hartford Business Journal.`,
+      `The topics reflect the work we do every day: teen mental health, women’s mental health and trauma, support for new moms, and the role of intensive outpatient care in Connecticut. Each segment and article on this page links to the original source, and you can watch the TV interviews right here.`,
+      `If you saw one of our clinicians on the news and want to talk to someone about yourself or a loved one, our admissions team can help you find the right next step, from <a class="inl" href="/programs/counseling/">counseling</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`,
+    ],
+    aside: { type: "points", title: "Where you’ve seen us", items: [["play", "WFSB Eyewitness News 3"], ["play", "NBC Connecticut · CT Live!"], ["play", "FOX61"], ["clipboard", "Hartford Courant"], ["clipboard", "Hartford Business Journal"]] } },
+  { id: "iop-clinic", h2: "Hartford Courant: Glastonbury’s first privately owned IOP clinic",
+    paras: [
+      `In February 2023, the Hartford Courant covered the opening of Hopewell as the first privately owned IOP mental health clinic in Glastonbury. The story marked a step in the practice’s growth from outpatient therapy and psychiatry into structured intensive programs.`,
+      `Today those programs include the adult <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, the <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a>, the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> and a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>, across six Connecticut offices.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/iop-group-room-lights.webp", alt: "An IOP group room at Hopewell Health Solutions in Glastonbury", cap: "An IOP group room in Glastonbury" } },
+  { id: "dr-k", h2: "Dr. Kristine Schlichting in the media",
+    paras: [
+      `Hopewell’s founder and director, <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting</a>, was recognized by the Hartford Business Journal as a leader in behavioral health. A licensed psychologist, she has “broken the box” of traditional talk therapy to build a model of active, dynamic care grounded in neuroscience.`,
+      `She has appeared on WFSB’s Mommy Monday to talk about helping children with their mental health, on Great Day Connecticut to discuss the teen mental health crisis, and on NBC Connecticut’s CT Live! to explain why so many women carry trauma and how the right support helps. FOX61 featured her work helping teen girls and new moms find support.`,
+      `Those conversations connect to our care for <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD</a>, our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> and our support for <a class="inl" href="/post/baby-blues-vs-postpartum-depression-how-to-tell-the-difference/">postpartum depression</a>.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/dr-k-hhs-sign.webp", alt: "Dr. Kristine Schlichting with a Hopewell Health Solutions banner", cap: "Dr. Kristine Schlichting, Founder &amp; Director" } },
+  { id: "women-trauma", h2: "NBC Connecticut CT Live!: trauma in women",
+    paras: [
+      `On NBC Connecticut’s CT Live!, our team discussed why so many women carry trauma and how the right support changes things. The segment is a clear, compassionate introduction to how trauma can show up in daily life, long after the events themselves, through anxiety, low mood, exhaustion or difficulty trusting others.`,
+      `At Hopewell, women can heal in a women-only group in our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, built around trauma and healing, with EMDR, somatic approaches and trauma-focused CBT. The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> supports women dealing with burnout, anxiety, life transitions and postpartum changes, in morning and evening groups.`,
+      `If you want to understand more first, read <a class="inl" href="/post/how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing/">how women’s trauma differs from men’s and how group therapy helps</a>.`,
+    ],
+    aside: { type: "img", src: "/Assets/videos/news-ct-live-trauma-in-women.webp", alt: "CT Live! Trauma in Women segment poster", cap: "NBC Connecticut · CT Live!" } },
+  { id: "teen-mental-health", h2: "Teen mental health on WFSB",
+    paras: [
+      `In February 2023, WFSB’s Kara’s Cures featured Hopewell in two segments: one on the teen mental health crisis and one on how parents can help improve their teen’s mental health. Both are practical, parent-facing conversations about what to watch for and how to respond.`,
+      `For parents who want to go further, our free <a class="inl" href="/handouts/">mental health handouts</a> cover anxiety, school refusal and self-harm, and our blog explains <a class="inl" href="/post/how-the-world-of-social-media-affects-teens/">how social media affects teens</a> and <a class="inl" href="/post/guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health/">what teen counseling involves</a>.`,
+    ] },
+  { id: "why-media", h2: "Why our clinicians talk to Connecticut media",
+    paras: [
+      `Most people never see the inside of a therapy room or an intensive program until they need one. When our clinicians speak on the news, the goal is simple: to give people accurate, practical information about mental health, and to make it a little easier to ask for help.`,
+      `That same goal drives our <a class="inl" href="/blog/">blog</a>, our free <a class="inl" href="/handouts/">handouts for parents and kids</a> and the <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a>. Every piece is written or reviewed by Hopewell clinicians, so what you read and watch reflects how we actually care for people across our six Connecticut offices.`,
+    ] },
+  { id: "holistic", h2: "Holistic psychology and spiritual care",
+    paras: [
+      `IssueWire featured <a class="inl" href="/provider/bido-aguessy-psy-d-lpc-a/">Dr. Bido Aguessy</a>, a clinical psychologist and spiritual care specialist at Hopewell, for holistic approaches in psychology and spiritual care. It reflects a wider part of how we work: alongside evidence-based therapies like DBT and EMDR, our team offers mind-body approaches such as mindfulness and yoga therapy.`,
+      `You can read more about those methods on our <a class="inl" href="/treatment-methods/therapeutic-treatments/">therapeutic treatments</a> page.`,
+    ] },
+];
+const faqs = [
+  ["Where has Hopewell Health Solutions been featured?", "On WFSB Eyewitness News 3, NBC Connecticut (CT Live!), FOX61 and Great Day Connecticut, and in the Hartford Courant, the Hartford Business Journal and IssueWire."],
+  ["Who are Hopewell’s media spokespeople?", `Most interviews feature our founder and director, <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting</a>. Other clinicians contribute videos and articles on the <a class="inl" href="/blog/">Hopewell blog</a>.`],
+  ["How can journalists reach Hopewell?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and ask for a media contact.`],
+  ["Does Hopewell have a podcast?", `Yes. <a class="inl" href="/podcast/">Hope, Health &amp; Healing</a> shares real stories of treatment and recovery, hosted by TJ Aitken, CPSRP.`],
+  ["I saw a segment and want help. Where do I start?", `Call us or request a confidential callback. We’ll verify your insurance for free and recommend a starting level of care. See <a class="inl" href="/admissions/">how admissions works</a>.`],
+  ["Can I share these videos?", "Yes. The TV segments link to the original outlets and our own videos are on the Hopewell Health Solutions YouTube channel."],
+];
 
 const videos = [
   { id: "aff5Xfy9CfE", t: "The Loneliness Crisis in Adults", outlet: "Hopewell Health Solutions" },
@@ -30,7 +88,7 @@ const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("
 
 ---
 
-<Base title="In the News & Media | Hopewell Health Solutions" description="Hopewell Health Solutions in the news — featured on WFSB Eyewitness News, FOX61, the Hartford Courant & Hartford Business Journal for behavioral health and teen mental health in Connecticut.">
+<Base title="Hopewell Health Solutions in the News | Media & Interviews" description="Hopewell Health Solutions in the news — featured on WFSB Eyewitness News, FOX61, the Hartford Courant & Hartford Business Journal for behavioral health and teen mental health in Connecticut.">
   <Header />
   <main class="hw">
     <ServiceHero
@@ -50,7 +108,7 @@ const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("
         <div class="ab-tv">
           {videos.map((v) => (
             <button type="button" class="vc-card" data-yt={v.id} data-title={v.t} aria-label={`Play: ${v.t}`}>
-              <span class="vc-poster"><img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+              <span class="vc-poster"><img src={POSTERS[v.id] ? `/Assets/videos/${POSTERS[v.id]}.webp` : `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
               <span class="ab-tv-body"><small>{v.outlet}</small><strong>{v.t}</strong></span>
             </button>
           ))}
@@ -74,6 +132,8 @@ const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("
       </div>
     </section>
 
+    <Prose blocks={blocks} />
+    <Faq faqs={faqs} heading="Media &amp; press — common questions" tone="stone" />
     <VideoCarousel videos={more} mode="grid" heading="More From the Hopewell Team" lede="Our podcast and short videos from Hopewell clinicians." link={{ href: "/podcast/", label: "All podcast episodes" }} />
 
     <Insurance tone="white" />

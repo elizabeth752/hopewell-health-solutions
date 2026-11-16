@@ -6,6 +6,11 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
+import Prose from "../../components/seo/Prose.astro";
+import Faq from "../../components/hw/Faq.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import Locations from "../../components/hw/Locations.astro";
+import "../../styles/pages/seo.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/about-us/careers/";
 const P = "/Assets/hhs-2026/";
@@ -16,6 +21,65 @@ const why = [
   { icon: "compass", t: "In-person, relationship-based care", d: "We believe in showing up in person. You'll do meaningful, hands-on clinical work — not just screens." },
   { icon: "sparkles", t: "Room to grow", d: "A growing practice across multiple Connecticut locations means real opportunity to advance and specialize." },
 ];
+// Long-form SEO copy (2026-11-16). Primary keyword: "mental health jobs in Connecticut"; variants: therapist jobs in
+// Glastonbury CT, psychiatric nurse practitioner jobs CT, IOP clinician jobs. Facts only from the site, providers.js,
+// locations.js and the knowledge base — no salaries, benefits or perks are stated because none are published.
+const blocks = [
+  { id: "about-the-work", h2: "Mental health jobs in Connecticut, built around in-person care",
+    paras: [
+      `Hopewell Health Solutions is an outpatient mental health, addiction and psychiatry practice with six offices across Connecticut: three in Glastonbury, plus West Hartford, East Hampton and Westbrook. If you are looking for mental health jobs in Connecticut where the work happens face to face, with clients you get to know over weeks and months, that is what our clinicians do every day. Our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>, <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> are delivered in person, with telehealth when a client needs it.`,
+      `We care for clients aged 4 and older, so clinicians here work with children and families, teens and tweens, women, adults and first responders. That range means a therapist in Glastonbury might lead a skills group in the morning, see individual clients in the afternoon and coordinate with a prescriber before the evening IOP track begins. It is varied, hands-on clinical work, and it is supported by a team that talks to each other.`,
+      `Our approach is summed up in a line you will hear around the office: therapy first, medication second, transformation third. Clinicians use evidence-based methods, including <a class="inl" href="/treatment-methods/dbt/">dialectical behavior therapy (DBT)</a>, CBT, <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, accelerated resolution therapy and the Gottman Method, alongside mind-body approaches such as mindfulness and yoga therapy.`,
+    ],
+    aside: { type: "points", title: "Where you could work", items: [["pin", "Glastonbury — 33 Pratt St"], ["pin", "Downtown Glastonbury — 300 Hebron Ave"], ["pin", "South Glastonbury — 1420 Main St"], ["pin", "West Hartford — 1216 Farmington Ave"], ["pin", "East Hampton — 151 E. High St"], ["pin", "Westbrook — 70 Essex Rd"]] } },
+  { id: "clinical-roles", h2: "Therapist and clinician jobs in Glastonbury and across CT",
+    paras: [
+      `Most of our licensed clinicians are LCSWs, LPCs, LMFTs and their associates (LMSW, LPC-A, LMFT-A). Therapist jobs in Glastonbury and our other offices typically combine individual therapy with group work in one of our intensive programs. Associates practise alongside experienced licensed clinicians and team leads, which is one reason the practice describes itself as collaborative and close-knit.`,
+      `Group work is a large part of the job. Our IOPs run about three hours a day, Monday through Thursday, in day and evening tracks, and they are built around DBT skills groups, process groups and individual check-ins. Specialty programs mean you can focus your clinical interests: the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, the <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, the <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a>, the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> and the <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a>, which runs at 300 Hebron Ave and in Westbrook.`,
+    ],
+    h3s: [
+      { h3: "IOP and PHP clinician jobs", paras: [`IOP and PHP clinicians and group facilitators guide clients through structured days. In the PHP, that is about six hours of programming a day, Monday through Friday, at our 300 Hebron Ave office, with psychiatry, group and individual therapy. Clinicians who enjoy intensive, team-based care tend to thrive here.`] },
+      { h3: "Addiction and recovery roles", paras: [`Addiction work at Hopewell treats substance use and mental health together, including step-down care for people leaving rehab. Peer support and recovery professionals (CPSRP) work alongside clinicians in this area. Learn more about our <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a>.`] },
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/iop-group-room-lights.webp", alt: "An IOP group room at Hopewell Health Solutions", cap: "An IOP group room, Downtown Glastonbury" } },
+  { id: "prescriber-roles", h2: "Psychiatric nurse practitioner and PA jobs in Connecticut",
+    paras: [
+      `Our prescribers are board-certified psychiatric mental health nurse practitioners (PMHNP-BC) and physician assistants. They build personalized psychiatric plans for clients from age 4 up, follow up closely and work hand in hand with each client’s therapist and program team. Medication management is offered at all six offices, in person or by telehealth.`,
+      `Prescribers here have tools that many outpatient practices do not: <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® genetic testing</a> to guide medication choices, <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression and OCD, and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a> for addiction at our two addiction-treatment offices. If you are looking for psychiatric nurse practitioner jobs in Connecticut where prescribing is one part of a coordinated plan, we would like to hear from you.`,
+    ],
+    aside: { type: "points", title: "What prescribers work with", items: [["pill", "Medication management, ages 4 and up"], ["dna", "GeneSight® genetic testing"], ["brain", "NeuroStar® TMS"], ["link", "MAT at 300 Hebron Ave &amp; Westbrook"], ["users", "IOP &amp; PHP teams"]] } },
+  { id: "psychology-roles", h2: "Psychologist and testing roles",
+    paras: [
+      `Licensed psychologists and neuropsychologists at Hopewell provide therapy and comprehensive evaluations. Our <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> services give children, teens and adults clarity about a diagnosis and a real plan afterwards, and the results feed straight into therapy and medication decisions made by the same practice.`,
+      `Because the practice runs a full continuum of care, a testing recommendation can turn into a counseling referral, an IOP placement or a medication evaluation without sending the family somewhere new. Psychologists who value that kind of follow-through often find it a rewarding place to practise.`,
+    ] },
+  { id: "support-roles", h2: "Admissions, intake and client-support jobs",
+    paras: [
+      `Behind every first appointment is an admissions team. Admissions and intake staff answer calls, verify insurance benefits, schedule assessments and help families understand which level of care fits. It is the first experience many people have of Hopewell, and it is an important job: reaching out is often the hardest part for someone who is struggling.`,
+      `Client-support staff keep our offices running, from the front desk to scheduling and billing. If you are organized, calm under pressure and kind on the phone, these roles are a meaningful way to work in mental health without a clinical license. Read about <a class="inl" href="/admissions/">how admissions works</a> to see what the role supports.`,
+    ],
+    aside: { type: "steps", title: "How a new client starts", items: [["Reach out", "A call or callback request"], ["Verify insurance", "Benefits checked for free"], ["Assessment", "Matched to the right level of care"], ["Begin care", "With the same team as care changes"]] } },
+  { id: "who-you-help", h2: "Who you would help",
+    paras: [
+      `Hopewell clinicians treat the conditions people most often bring to an outpatient practice: <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD</a>, <a class="inl" href="/what-we-treat/adhd/">ADHD</a>, <a class="inl" href="/what-we-treat/ocd/">OCD</a>, <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder</a> and <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a>. At our two addiction-treatment offices, the team also treats alcohol, drug and prescription drug addiction with mental health care alongside it.`,
+      `Clients come from across Hartford and Middlesex Counties and the shoreline, and many are in the middle of busy lives: working adults, parents, students and first responders. Day and evening tracks exist so they can get intensive support without stepping away from everything else, and our clinicians build schedules and plans with that in mind.`,
+      `The work is personal. Clinicians here know their clients by name, and the same team stays with a client as they step up or down between levels of care. If continuity of care matters to you as a clinician, it is built into how the practice runs.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/westbrook-therapy-office.webp", alt: "A therapy office at Hopewell's Westbrook location", cap: "A therapy office, Westbrook" } },
+  { id: "how-to-apply", h2: "How to apply to Hopewell Health Solutions",
+    paras: [
+      `There is no long application portal. Call us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> and tell us a little about yourself: your license or role, the kind of work you want to do and which office is closest to you. Even if you don’t see your exact role listed, reach out.`,
+      `Before you call, it can help to <a class="inl" href="/about-us/team/">meet the team</a>, read <a class="inl" href="/about-us/">about our practice</a> and browse the <a class="inl" href="/blog/">Hopewell blog</a>, where our clinicians write about their work. Our newest office is in <a class="inl" href="/location/westbrook-ct/">Westbrook</a>, which opened in September 2026 with Women’s Wellness IOP, medication management and individual therapy, and an adult IOP that followed in October.`,
+    ] },
+];
+const faqs = [
+  ["What kinds of mental health jobs does Hopewell hire for?", `We regularly welcome psychiatric nurse practitioners and physician assistants, licensed psychologists and neuropsychologists, licensed clinicians (LCSW, LPC, LMFT and associates), IOP and PHP group facilitators, and admissions, intake and client-support staff.`],
+  ["Where are the jobs located?", `Across our six Connecticut offices: three in Glastonbury (33 Pratt St, 300 Hebron Ave and 1420 Main St in South Glastonbury), plus West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">all locations</a>.`],
+  ["Do you hire associate-level clinicians?", `Yes. Our team includes LMSWs, LPC-As and LMFT-As who practise alongside licensed clinicians and team leads. You can see current team members on <a class="inl" href="/about-us/team/">our team page</a>.`],
+  ["Is the work in person or remote?", `Our programs and most sessions are in person, which is central to how we work. Telehealth is offered when a client needs it.`],
+  ["Do clinicians work in group programs?", `Many do. Our intensive outpatient programs meet about three hours a day, Monday through Thursday, in day and evening tracks, and the PHP runs about six hours a day, Monday through Friday.`],
+  ["How do I apply?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and tell us about yourself. Even if your exact role isn’t listed, we’re glad to connect.`],
+];
 const roles = [
   ["pill", "Psychiatric Nurse Practitioners (PMHNP) & Physician Assistants"],
   ["brain", "Licensed Psychologists & Neuropsychologists"],
@@ -25,7 +89,7 @@ const roles = [
 ];
 ---
 
-<Base title="Careers | Hopewell Health Solutions" description="Join the team at Hopewell Health Solutions — a growing Connecticut mental-health & psychiatry practice. We're always interested in compassionate clinicians, prescribers, and support staff who believe in in-person, relationship-based care." canonical={canonical} image={P + "team-celebrating-outside.webp"}>
+<Base title="Mental Health Jobs in Connecticut | Careers at Hopewell Health Solutions" description="Join the team at Hopewell Health Solutions — a growing Connecticut mental-health & psychiatry practice. We're always interested in compassionate clinicians, prescribers, and support staff who believe in in-person, relationship-based care." canonical={canonical} image={P + "team-celebrating-outside.webp"}>
   <Header />
   <main class="hw">
     <ServiceHero
@@ -67,21 +131,10 @@ const roles = [
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="container">
-        <div class="cta-card">
-          <div class="cta-copy">
-            <h2>Let's talk</h2>
-            <p class="lede">Even if you don't see your exact role listed, reach out — we're always glad to connect with great people who share our commitment to care. Call us and tell us a little about yourself.</p>
-            <div class="cta-actions">
-              <a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a>
-              <a href="/about-us/team/" class="btn btn-ghost">Meet the team</a>
-            </div>
-          </div>
-          <div class="cta-media"><img src={P + "full-team-lawn.webp"} alt="The Hopewell Health Solutions team" width="1680" height="1260" loading="lazy" /></div>
-        </div>
-      </div>
-    </section>
+    <Prose blocks={blocks} />
+    <Locations heading="Six Connecticut offices" lede="Our clinicians work across Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook." />
+    <Faq faqs={faqs} heading="Careers at Hopewell — common questions" tone="white" />
+    <ClosingCta heading="Let's talk" lede="Even if you don't see your exact role listed, reach out — we're always glad to connect with great people who share our commitment to care. Call us and tell us a little about yourself." verifyHref="/admissions/#verify" />
   </main>
   <Footer />
 </Base>

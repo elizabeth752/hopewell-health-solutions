@@ -13,6 +13,8 @@ import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import "../../styles/pages/admissions.css";
+import "../../styles/pages/seo.css";
+import Prose from "../../components/seo/Prose.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/admissions/";
 const P = "/Assets/hhs-2026/";
@@ -29,8 +31,50 @@ const expect = [
   { icon: "clipboard", t: "A thorough assessment", d: "A clinical assessment matches you with the right clinician and the right level of care." },
   { icon: "compass", t: "A plan built around you", d: "You’ll start at the level that fits — and we adjust the plan as you heal." },
 ];
+// Long-form SEO copy (2026-11-16). Primary keyword: "how to start IOP / mental health intake in Connecticut";
+// variants: mental health admissions CT, how to start therapy, intake assessment. Facts from the site and KB.
+const blocks = [
+  { id: "how-to-start", h2: "How to start IOP or mental health treatment in Connecticut",
+    paras: [
+      `Starting mental health treatment can feel like a lot to figure out: which kind of program you need, whether insurance covers it, and how to fit it around work, school and family. At Hopewell Health Solutions, you don’t have to work any of that out alone. One call to <a class="inl" href="tel:8607351448">(860) 735-1448</a> connects you with our admissions team, who guide you from your first question to your first session.`,
+      `The process is the same whether you are looking for weekly <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> or a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a>. We listen to what is going on, verify your insurance benefits for free, complete a clinical assessment and recommend the level of care that fits. If you are unsure whether you need IOP at all, that is exactly what the assessment is for.`,
+      `You can reach out for yourself or for someone you love, and you don’t need a referral or a diagnosis first. We care for clients aged 4 and older, in person at six Connecticut offices or by telehealth.`,
+    ],
+    aside: { type: "points", title: "Before you call", items: [["clipboard", "Your insurance card, if you have one"], ["pill", "A list of current medications"], ["calendar", "Days and times that work for you"], ["pin", "Which office is closest"]] } },
+  { id: "levels-of-care", h2: "Which level of care is right for you?",
+    paras: [
+      `Hopewell offers a full continuum of outpatient care, so admissions is really about finding the right starting point. Weekly therapy works well for many people. When symptoms are getting in the way of work, school or relationships, or weekly sessions aren’t enough, an IOP adds structure: about three hours a day, Monday through Thursday, in day or evening tracks, for 8–12 weeks.`,
+      `When more support is needed, the PHP provides about six hours of programming a day, Monday through Friday, at our 300 Hebron Ave office in Glastonbury, without an overnight stay. The same team stays with you as you step up or down, so you never have to start over with new clinicians. Our articles on <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">IOP vs. outpatient therapy</a> and <a class="inl" href="/post/php-vs-iop-which-level-of-care-is-right-for-you/">PHP vs. IOP</a> explain the differences in more detail.`,
+    ],
+    aside: { type: "table", title: "Levels of care at Hopewell", head: ["Level", "Typical schedule"], rows: [["Counseling", "Weekly sessions"], ["Medication management", "Regular follow-ups"], ["IOP", "~3 h/day, Mon–Thu, 8–12 weeks"], ["PHP", "~6 h/day, Mon–Fri"]] } },
+  { id: "intake", h2: "What happens at your intake assessment",
+    paras: [
+      `Your intake is a conversation with a clinician about what brought you in: your symptoms, how long they have been going on, what you have tried before, any medications, and what you want to change. It helps us understand the whole picture, including any substance use, safety concerns or other conditions, so we can recommend a plan that fits.`,
+      `At the end, you’ll know which level of care we recommend and why, who your clinician will be, and when you can start. If medication may help, we can schedule an evaluation with one of our board-certified psychiatric nurse practitioners or physician assistants. If testing would bring clarity, we may suggest <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological</a> or <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`,
+      `For your first group day, our guide to <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">what to expect on your first day of IOP</a> explains how the day flows, from check-in to skills group.`,
+    ],
+    aside: { type: "img", src: "/Assets/hhs-2026/east-hampton-front-office.webp", alt: "The front office at Hopewell's East Hampton location", cap: "Front office, East Hampton" } },
+  { id: "teens", h2: "Admissions for children, teens and tweens",
+    paras: [
+      `Parents and guardians can call on behalf of a child. We see children from age 4 for counseling and medication management, and our <a class="inl" href="/programs/teen-tween-iop/">Teen &amp; Tween IOP</a> serves tweens (8–12) and teens (13–17) in after-school groups at our South Glastonbury office, with family sessions and school coordination built in.`,
+      `If you’re not sure whether your child needs more than weekly therapy, read <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">signs your teen needs more than weekly therapy</a>, or download our free <a class="inl" href="/handouts/">handouts for parents</a> on anxiety, self-harm and school refusal.`,
+    ] },
+  { id: "addiction-admissions", h2: "Starting addiction treatment or stepping down from rehab",
+    paras: [
+      `Our <a class="inl" href="/programs/substance-use-iop/">Addiction and Substance Use IOP</a> treats addiction and mental health together at our 300 Hebron Ave office in Glastonbury and in Westbrook. It is designed for working adults facing problem drinking or drug use, and as a step-down for people leaving detox or residential rehab who want structured support close to home.`,
+      `If you’re being discharged from a hospital or residential program, call us before discharge if you can; we can often coordinate the transition so there is no gap in care. <a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment (MAT)</a> is available at both addiction-treatment offices when it fits your plan.`,
+    ],
+    aside: { type: "points", title: "Addiction care offices", items: [["pin", "300 Hebron Ave, Suite 203, Glastonbury"], ["pin", "70 Essex Road, Westbrook"], ["link", "Mental health care alongside addiction care"]] } },
+  { id: "work-school", h2: "Keeping up with work and school during treatment",
+    paras: [
+      `Most people in our programs keep working or going to school. Evening IOP tracks and after-school groups exist for exactly that reason. If you need time away, some programs may be eligible for CT Paid Leave or FMLA; read <a class="inl" href="/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/">which programs are eligible</a>, and ask our team about paperwork.`,
+      `Our offices are open Monday through Thursday, 9:00 AM–8:00 PM, and Friday, 9:00 AM–5:00 PM. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a> for payment details.`,
+    ] },
+];
 // Answers use facts already published on this site (programs, rates, locations pages).
 const faqs = [
+  ["How quickly can I start IOP?", "Timing depends on your assessment, insurance and the program’s schedule. Call us and our admissions team will tell you the soonest start date for the program that fits."],
+  ["What should I bring to my first appointment?", "Bring your insurance card if you have one and a list of any medications you take. If you have records from other providers, bring those too."],
   ["How do I start treatment at Hopewell Health Solutions?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We verify your insurance for free, complete a clinical assessment, and match you to the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`],
   ["Do I need a referral or a diagnosis to reach out?", `No. You don’t need a diagnosis or all the answers to reach out. Call us, and we’ll help you understand the options and figure out the right next step.`],
   ["Which insurance plans do you accept?", `We’re in-network with most major PPO plans, including Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, TRICARE, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a>.`],
@@ -40,7 +84,7 @@ const faqs = [
 ];
 ---
 
-<Base title="Admissions — Get Started | Hopewell Health Solutions" description="Getting started at Hopewell Health Solutions in Connecticut is simple. Verify your insurance, learn what to expect, and reach our team — confidentially, with no pressure. In person & telehealth." canonical={canonical}>
+<Base title="Admissions: How to Start IOP & Mental Health Care in CT | Hopewell Health Solutions" description="Getting started at Hopewell Health Solutions in Connecticut is simple. Verify your insurance, learn what to expect, and reach our team — confidentially, with no pressure. In person & telehealth." canonical={canonical}>
   <Header />
   <main class="hw">
     <ServiceHero
@@ -124,6 +168,7 @@ const faqs = [
       </div>
     </section>
 
+    <Prose blocks={blocks} startTone={1} />
     <Reviews tone="stone" />
     <Locations tone="white" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
     <Faq faqs={faqs} heading="Admissions Questions" tone="stone" />
