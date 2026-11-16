@@ -1,11 +1,12 @@
 ---
 // Insurance: copy + plan table on the left, how-it-works steps on the right, payer logo marquee below.
-// On phones the page's one form sits right above this section (mobileForm), never inside it.
+// Subpages (default form=true): the callback form sits in the right column on desktop (user, 2026-11-16) and the
+// how-it-works steps move under the plan table. On phones the page's one form sits right above this section (mobileForm).
 import LeadForm from "../LeadForm.astro";
 import Icon from "../Icon.astro";
 import { PHONE } from "../../data/site.js";
-interface Props { heading?: string; lede?: string; mobileForm?: boolean; tone?: "stone" | "white" }
-const { heading = "Comprehensive Coverage Options", lede = "We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you — free, in minutes.", mobileForm = true, tone = "stone" } = Astro.props;
+interface Props { heading?: string; lede?: string; mobileForm?: boolean; tone?: "stone" | "white"; form?: boolean }
+const { heading = "Comprehensive Coverage Options", lede = "We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you — free, in minutes.", mobileForm = true, tone = "stone", form = true } = Astro.props;
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
   ["Blue Cross Blue Shield","/Assets/home-b/insurance/bcbs.svg"],["Cigna","/Assets/Insurance/CIGNA.webp"],
@@ -31,13 +32,18 @@ const steps = [
         <div class="plan-row"><span>TRICARE &amp; VA Community Care</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />Accepted</span></div>
         <div class="plan-row"><span>Not sure what your plan covers?</span><span class="plan-status is-info"><Icon name="shield" class="h-4 w-4" />Free check</span></div>
       </div>
+      {form && <ol class="ins-mini">{steps.map(([icon, t], i) => <li><span><Icon name={icon} class="h-4 w-4" /></span>{t}</li>)}</ol>}
       <p>See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>, or call <a class="inl" href={PHONE.href}>{PHONE.display}</a>.</p>
     </div>
-    <ol class="ins-steps">
+    {form ? (
+      <div class="ins-form" id="verify-ins"><LeadForm variant="card" formId="hhs-ins" /></div>
+    ) : (
+      <ol class="ins-steps">
       {steps.map(([icon, t, d], i) => (
         <li><span class="ins-step-dot"><Icon name={icon} class="h-6 w-6" /></span><span><span class="step-num">Step {i + 1}</span><strong>{t}</strong><span>{d}</span></span></li>
       ))}
-    </ol>
+      </ol>
+    )}
   </div>
   <div class="container payers">
     <div class="marquee" aria-label="Insurance plans we accept">

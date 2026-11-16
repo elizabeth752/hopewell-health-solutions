@@ -21,10 +21,10 @@ const list = [...REVIEWS].sort((a, b) => (first.includes(b.tag) ? 1 : 0) - (firs
           {GBPS.map((g) => <li><a href={g.url} target="_blank" rel="noopener noreferrer"><span>{g.loc}</span><small>{g.num ? `${g.num} ★ · ${g.meta}` : g.meta}</small><b aria-hidden="true">&rarr;</b></a></li>)}
         </ul>
       </div>
-      <div class="rv-slider" data-reviews>
-        <div class="rv-track" tabindex="0" aria-label="Google reviews">
-          {list.map((r) => (
-            <figure class="rv">
+      <div class="rv-loop" data-reviews>
+        <div class="rv-loop-track">
+          {[...list, ...list].map((r, k) => (
+            <figure class="rv" aria-hidden={k >= list.length ? "true" : undefined}>
               <svg class="rv-quote" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
               <span class="rv-stars" aria-label="5 stars">★★★★★</span>
               <blockquote class="rv-text">“{r.text}”</blockquote>
@@ -32,30 +32,9 @@ const list = [...REVIEWS].sort((a, b) => (first.includes(b.tag) ? 1 : 0) - (firs
             </figure>
           ))}
         </div>
-        <div class="rv-nav">
-          <button type="button" class="rv-btn" data-dir="-1" aria-label="Previous review"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-          <button type="button" class="rv-btn" data-dir="1" aria-label="Next review"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <span class="rv-dots" aria-hidden="true">{list.map((_, i) => <i class:list={[i === 0 && "is-on"]}></i>)}</span>
-          <a class="inl rv-more" href="/testimonials/">Read more testimonials</a>
-        </div>
+        <a class="inl rv-more" href="/testimonials/">Read more testimonials</a>
       </div>
     </div>
   </div>
 </section>
-<script>
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  document.querySelectorAll<HTMLElement>("[data-reviews]").forEach((s) => {
-    const track = s.querySelector<HTMLElement>(".rv-track")!;
-    const cards = [...track.children] as HTMLElement[];
-    const dots = [...s.querySelectorAll<HTMLElement>(".rv-dots i")];
-    let hold = false;
-    const step = () => cards[0].offsetWidth + 18;
-    const idx = () => Math.round(track.scrollLeft / step());
-    const go = (n: number) => { const max = cards.length - 1; const t = n > max ? 0 : n < 0 ? max : n; track.scrollTo({ left: t * step(), behavior: reduce ? "auto" : "smooth" }); };
-    s.querySelectorAll<HTMLButtonElement>(".rv-btn").forEach((b) => b.addEventListener("click", () => go(idx() + Number(b.dataset.dir))));
-    track.addEventListener("scroll", () => { const k = idx(); dots.forEach((d, j) => d.classList.toggle("is-on", j === k)); }, { passive: true });
-    s.addEventListener("mouseenter", () => (hold = true)); s.addEventListener("mouseleave", () => (hold = false));
-    s.addEventListener("focusin", () => (hold = true)); s.addEventListener("focusout", () => (hold = false));
-    if (!reduce) setInterval(() => { if (!hold && !document.hidden) { const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; go(end ? 0 : idx() + 1); } }, 6000);
-  });
-</script>
+

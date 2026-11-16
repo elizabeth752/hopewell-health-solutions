@@ -835,3 +835,17 @@
 @keyframes hw-lc { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 9px)); } }
 @media (max-width: 640px) { .hw .lc { flex-basis: 290px; } }
 @media (prefers-reduced-motion: reduce) { .hw .lc-wrap { overflow-x: auto; } .hw .lc-track { animation: none; } }
+/* Insurance section form (subpages) */
+.hw .ins-form .lead-card { box-shadow: 0 24px 54px rgba(0,29,55,.14); }
+.hw .ins-mini { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; counter-reset: s; }
+.hw .ins-mini li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--hw-head); font-weight: 700; font-size: 14.5px; color: var(--hw-navy); }
+.hw .ins-mini span { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--hw-navy); color: #fff; }
+/* Reviews: continuous self-moving loop (pauses on hover/focus) */
+.hw .rv-loop { min-width: 0; overflow: hidden; display: flex; flex-direction: column; gap: 14px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.hw .rv-loop-track { display: flex; gap: 18px; width: max-content; animation: hw-rv 60s linear infinite; padding: 2px 0 6px; }
+.hw .rv-loop:hover .rv-loop-track, .hw .rv-loop:focus-within .rv-loop-track { animation-play-state: paused; }
+.hw .rv-loop .rv { flex: 0 0 380px; }
+.hw .rv-loop .rv-more { align-self: flex-end; margin-right: 4%; }
+@keyframes hw-rv { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 9px)); } }
+@media (max-width: 640px) { .hw .rv-loop .rv { flex-basis: 290px; } }
+@media (prefers-reduced-motion: reduce) { .hw .rv-loop { overflow-x: auto; } .hw .rv-loop-track { animation: none; } }
