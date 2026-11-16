@@ -941,3 +941,8 @@
 }
 /* Sitewide alignment rule (user 2026-11-16 "align everything"): cards never lift out of their row on hover. */
 .hw .pc:hover, .hw .prog:hover, .hw .path:hover, .hw .bc:hover, .hw .pr-card:hover, .hw .tm-card:hover, .hw .vc-card:hover, .hw .ba-feature:hover, .hw .pod-ep:hover, .hw .usp-card:hover { transform: none !important; }
+/* Location cards: equal height, buttons on one line at the bottom */
+.hw .lc-track { align-items: stretch; }
+.hw .lc { height: auto; }
+.hw .lc-body { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.hw .lc-ctas { margin-top: auto; padding-top: 10px; }

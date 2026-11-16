@@ -11,6 +11,7 @@ import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
+import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import Split from "../../components/programs/Split.astro";
@@ -64,12 +65,6 @@ const modalities = [
   { t: "Psychoeducation", icon: "clipboard" },
 ];
 const ptg = ["Greater appreciation of life", "Improved relationships", "Renewed strength &amp; purpose", "New interests &amp; outlooks", "Reduced anxiety, depression &amp; emotional overwhelm", "Reduced hypervigilance &amp; distressing memories", "Decreased reliance on substances or harmful behaviors"];
-const TM = "/Assets/Team%20Members/";
-const team = [
-  { n: "Christopher Patenaude, PA", role: "Medication Management", href: "/provider/chris-patenaude-pa/", photo: TM + "chris-patenaude-pa.webp", d: "Christopher is a board-certified physician assistant specializing in outpatient psychiatry at Hopewell Health Solutions in Glastonbury and West Hartford. A graduate of Bay Path University, he provides compassionate, evidence-based care for adults with conditions such as ADHD, bipolar disorder, and treatment-resistant depression. He values open communication and collaboration, helping patients build confidence and balance in their mental health journey." },
-  { n: "Sherrie Gaudet, LCSW, LADC", role: "Licensed Clinical Social Worker & Addiction Counselor", href: "/provider/sherrie-gaudet-lcsw/", photo: TM + "sherrie-gaudet-lcsw.webp", d: "Sherrie is a holistic, integrative LCSW and Licensed Drug and Alcohol Counselor with more than 23 years of experience across community mental health, correctional settings, and outpatient care. She specializes in trauma, anxiety, depression, and complex co-occurring concerns, blending CBT, DBT, and trauma-informed care with a grounded, strength-based approach." },
-  { n: "Tracy Sibley, PMHNP-BC, APRN", role: "Medication Management", href: "/provider/tracy-sibley-pmhnp-bc-aprn/", photo: TM + "tracy-sibley-pmhnp-bc-aprn.webp", d: "Tracy is a board-certified psychiatric mental health nurse practitioner at Hopewell Health Solutions in Glastonbury and West Hartford. She has served as a psychiatric nurse for eight years across acute care, residential, and substance-abuse settings, and provides compassionate medication management for children, teens, and adults." },
-];
 const faqs: [string, string][] = [
   ["Who can join the First Responder IOP?", "Current or retired first responders 18+ — police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers — managing trauma, burnout, acute stress, or PTSI."],
   ["Will my department find out?", "Your treatment is confidential and protected by privacy law. We don’t share information with your employer without your written permission."],
@@ -148,9 +143,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
             {groupTopics.map(([t, d], i) => <div class={`pg-card t-${(i + 1) % 4}`} style="padding:20px"><h3 style="margin-top:0">{t}</h3><p>{d}</p></div>)}
           </div>
         </div>
-        <Schedule title="First Responder IOP week" stat="3 h" note="a day · Monday–Thursday · 9:00 AM–12:00 PM" days={[3, 3, 3, 3, 0, 0, 0]} tone={3} icon="shield" tracks={[["About 8 weeks", "With ongoing progress evaluations"], ["300 Hebron Ave, Glastonbury", "Plus virtual visits statewide"]]}>
-          <img src="/Assets/service/first-responder-how-it-works.webp" alt="A police officer in a one-on-one therapy session at Hopewell Health Solutions" width="1200" height="800" loading="lazy" style="width:100%;border-radius:16px;aspect-ratio:16/10;object-fit:cover" />
-        </Schedule>
+        <Schedule title="First Responder IOP week" stat="3 h" note="a day · Monday–Thursday · 9:00 AM–12:00 PM" days={[3, 3, 3, 3, 0, 0, 0]} tone={3} icon="shield" tracks={[["About 8 weeks", "With ongoing progress evaluations"], ["300 Hebron Ave, Glastonbury", "Plus virtual visits statewide"]]} />
       </div>
     </section>
     <IconCards heading="A multimodal treatment approach" lede="More than just talk therapy. We blend clinical therapy with creative and relational approaches to promote true mind–body healing." items={approach} tone="mist" />
@@ -158,19 +151,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Quote text="Seeking support for your mental health is a mark of strength and self-awareness." img={P + "iop-group-room-lights.webp"} />
 
     <!-- 6. Team -->
-    <section class="section is-white">
-      <div class="container">
-        <div class="sec-head"><h2>Personal, and built from the ground up</h2><p class="lede">Built by people who understand. Our program was created by people who understand exactly what you face.</p></div>
-        <div class="pg-people">
-          {team.map((m) => (
-            <a class="pg-person" href={m.href}>
-              <img src={m.photo} alt={m.n} width="600" height="600" loading="lazy" />
-              <div class="pg-person-body"><span class="pg-person-role">{m.role}</span><h3>{m.n}</h3><p>{m.d}</p></div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Team heading="Personal, and built from the ground up" lede="Built by people who understand. Our program was created by people who understand exactly what you face: psychiatric providers and trauma-informed clinicians." slugs={["chris-patenaude-pa", "sherrie-gaudet-lcsw", "tracy-sibley-pmhnp-bc-aprn", "teesha-huertas-lcsw", "joanne-malinka-lcsw", "kaitlyn-czapiga-lmsw"]} tone="white" />
 
     <!-- 7. Testimonials -->
     <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Stories of Recovery, in Their Own Words" lede="Real conversations about asking for help. Hear more on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> and read our article on <a class='inl' href='/post/first-responder-mental-health-when-you-need-help/'>first responder mental health</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />

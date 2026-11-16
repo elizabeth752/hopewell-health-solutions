@@ -81,7 +81,7 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
 
 <Base title="Co-Occurring & Dual Diagnosis IOP in CT | Hopewell" description="Treat mental health and addiction together in one in-person adult IOP in Glastonbury, CT. Therapy, psychiatry and MAT in one team. Check coverage." image={P + "group-room-bright.webp"}>
   <Header />
-  <main class="hw">
+  <main class="hw" data-pgx>
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Adult Co-Occurring IOP" }]}
       title="Co-Occurring Disorders IOP for Adults in Connecticut"
@@ -116,7 +116,7 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
       </div>
     </section>
 
-    <Split heading="Supporting both mental health &amp; substance-use recovery" img={P + "group-room-feelings-wheel.webp"} alt="Co-occurring mental health and substance use care at Hopewell" reverse>
+    <Split heading="Supporting both mental health &amp; substance-use recovery" img={P + "iop-clinicians-group-room.webp"} alt="Hopewell clinicians who provide co-occurring mental health and addiction care" reverse>
       <p><strong>Struggling with unhealthy coping?</strong> While our focus is mental health, we recognize how closely substance use and emotional pain are linked. For clients struggling with unhealthy coping mechanisms, we offer:</p>
       <CheckList items={sudSupport} />
       <div class="pg-panel">
@@ -159,13 +159,13 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
     <NewsVideos heading="See Hopewell Health Solutions" lede="In the room &amp; in the news." videos={interviews} />
 
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews heading="What Our IOP Clients Say" tone="stone" first={["IOP", "Women’s Wellness IOP"]} />
 
     <Team heading="Your Adult IOP Care Team" lede="Clinicians, psychiatric providers, and experiential therapists who build a plan around your values and goals. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "katherine-salvador-pa-c", "tracy-sibley-pmhnp-bc-aprn", "chelsey-micciche-lpc", "kaitlyn-czapiga-lmsw", "sherrie-gaudet-lcsw", "jonathan-ficara-lcsw"]} tone="white" />
 
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our admissions team verifies your benefits at no cost — before you commit to anything." />
     <Locations heading="Where the Program Meets" lede="Adult IOP morning and evening tracks meet at our Downtown Glastonbury office, 300 Hebron Ave, and an adult IOP also meets at our Westbrook office. Therapy and medication management are available at all six Connecticut offices." current="glastonbury-ct-2" />
-    <Faq faqs={faqs} heading="Co-Occurring IOP — Common Questions" tone="white" />
+    <Reviews heading="What Our IOP Clients Say" tone="white" first={["IOP", "Women’s Wellness IOP"]} />
+    <Faq faqs={faqs} heading="Co-Occurring IOP — Common Questions" tone="stone" />
     <OtherPrograms current="/programs/adult-mental-health-iop/" />
     <ClosingCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We’re accepting new clients, accept most major insurance, and offer flexible payment options." image={P + "php-group-room.webp"} />
   </main>
