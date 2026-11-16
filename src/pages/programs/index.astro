@@ -62,6 +62,8 @@ const compareRows = [
   ["First Responder IOP", "Police, fire, EMS & dispatch", "Mon–Thu, 9 AM–12 PM", "Ask our team", "/programs/first-responder-iop/"],
   ["Partial Hospitalization (PHP)", "Teens and adults needing full-day care", "About 6 h a day, Mon–Fri", "300 Hebron Ave", "/programs/partial-hospitalization-program/"],
 ];
+const row = (href) => compareRows.find((r) => r[4] === href);
+const icons = { "/programs/intensive-outpatient-program/": "calendar", "/programs/adult-mental-health-iop/": "users", "/programs/teen-tween-iop/": "sparkles", "/programs/womens-wellness-iop/": "heart", "/programs/womens-trauma-iop/": "shield", "/programs/first-responder-iop/": "shield", "/programs/substance-use-iop/": "link", "/programs/partial-hospitalization-program/": "sun", "/programs/medication-management/": "pill", "/programs/counseling/": "chat" };
 const day = [
   ["sun", "Check-in", "Each group opens with a check-in so your clinician knows how you’re doing today."],
   ["compass", "Skills group", "Learn and practice DBT skills: mindfulness, distress tolerance, emotion regulation."],
@@ -112,23 +114,20 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
     <section class="section is-white" id="iop">
       <div class="container">
         <div class="sec-head"><h2>IOP — built for who you are</h2><p class="lede">Intensive Outpatient Programs. Structured group and individual therapy several days a week — including programs designed around specific people and needs.</p></div>
-        <div class="hb-groups">
-          <section class="hb-group t-sky" aria-labelledby="h-iop-list">
-            <div class="hb-group-head"><span class="hb-group-icon"><Icon name="calendar" /></span><div><h3 id="h-iop-list">Intensive outpatient programs</h3><small>About 3 hours a day, several days a week</small></div></div>
-            <div class="hb-cards">
-              {iop.map((c) => { const x = details[c.href]; return (
-                <article class="hb-card">
-                  <img src={x.img} alt={`${c.t} at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
-                  <div>
-                    <h4><a href={c.href}>{c.t}</a></h4>
-                    <p>{c.d}</p>
-                    <p set:html={x.more} />
-                    <ul class="hb-signs"><li><strong>A good fit for:</strong></li>{x.fit.map((f) => <li><Icon name="check" />{f}</li>)}</ul>
+        <div class="pr-grid">
+          {iop.map((c, k) => { const x = details[c.href]; const feat = k === 0; return (
+                <article class:list={["pr-card", feat && "is-feature"]} style={`--bar-c:${c.bar ?? "#2f76c4"}`}>
+                  <a class="pr-media" href={c.href} tabindex="-1" aria-hidden="true"><img src={x.img} alt="" width="1200" height="900" loading="lazy" /><span class="pr-icon"><Icon name={icons[c.href] ?? "heart"} class="h-6 w-6" /></span></a>
+                  <div class="pr-body">
+                    <h3><a href={c.href}>{c.t}</a></h3>
+                    <p class="pr-lede">{c.d}</p>
+                    {row(c.href) && <ul class="pr-facts"><li><Icon name="calendar" class="h-4 w-4" />{row(c.href)[2]}</li><li><Icon name="pin" class="h-4 w-4" />{row(c.href)[3]}</li><li><Icon name="users" class="h-4 w-4" />{row(c.href)[1]}</li></ul>}
+                    <p class="pr-more" set:html={x.more} />
+                    <div class="pr-fit"><strong>A good fit for</strong><ul>{x.fit.map((f) => <li><Icon name="check" class="h-4 w-4" />{f}</li>)}</ul></div>
+                    <a class="btn btn-navy pr-btn" href={c.href}>Explore {c.t.replace(/ \(.*\)/, "")}<Icon name="arrow" /></a>
                   </div>
                 </article>
-              ); })}
-            </div>
-          </section>
+          ); })}
         </div>
       </div>
     </section>
@@ -136,23 +135,20 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
     <section class="section is-mist" id="more">
       <div class="container">
         <div class="sec-head"><h2>Beyond IOP</h2><p class="lede">More levels of care. Whether you need more structure or a lighter touch, there’s a right level of care here.</p></div>
-        <div class="hb-groups">
-          <section class="hb-group t-blue" aria-labelledby="h-more-list">
-            <div class="hb-group-head"><span class="hb-group-icon"><Icon name="sun" /></span><div><h3 id="h-more-list">More and lighter levels of care</h3><small>Full-day treatment, psychiatry and weekly therapy</small></div></div>
-            <div class="hb-cards">
-              {more.map((c) => { const x = details[c.href]; return (
-                <article class="hb-card">
-                  <img src={x.img} alt={`${c.t} at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
-                  <div>
-                    <h4><a href={c.href}>{c.t}</a></h4>
-                    <p>{c.d}</p>
-                    <p set:html={x.more} />
-                    <ul class="hb-signs"><li><strong>A good fit for:</strong></li>{x.fit.map((f) => <li><Icon name="check" />{f}</li>)}</ul>
+        <div class="pr-grid is-3">
+          {more.map((c) => { const x = details[c.href]; const feat = false; return (
+                <article class:list={["pr-card", feat && "is-feature"]} style={`--bar-c:${c.bar ?? "#2f76c4"}`}>
+                  <a class="pr-media" href={c.href} tabindex="-1" aria-hidden="true"><img src={x.img} alt="" width="1200" height="900" loading="lazy" /><span class="pr-icon"><Icon name={icons[c.href] ?? "heart"} class="h-6 w-6" /></span></a>
+                  <div class="pr-body">
+                    <h3><a href={c.href}>{c.t}</a></h3>
+                    <p class="pr-lede">{c.d}</p>
+                    {row(c.href) && <ul class="pr-facts"><li><Icon name="calendar" class="h-4 w-4" />{row(c.href)[2]}</li><li><Icon name="pin" class="h-4 w-4" />{row(c.href)[3]}</li><li><Icon name="users" class="h-4 w-4" />{row(c.href)[1]}</li></ul>}
+                    <p class="pr-more" set:html={x.more} />
+                    <div class="pr-fit"><strong>A good fit for</strong><ul>{x.fit.map((f) => <li><Icon name="check" class="h-4 w-4" />{f}</li>)}</ul></div>
+                    <a class="btn btn-navy pr-btn" href={c.href}>Explore {c.t.replace(/ \(.*\)/, "")}<Icon name="arrow" /></a>
                   </div>
                 </article>
-              ); })}
-            </div>
-          </section>
+          ); })}
         </div>
       </div>
     </section>
