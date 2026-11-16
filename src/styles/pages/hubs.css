@@ -97,3 +97,10 @@
 .hw .hb-timeline span { display: block; margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--hw-body); }
 @media (max-width: 999px) { .hw .hb-timeline { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .hw .hb-timeline { grid-template-columns: 1fr; } }
+/* Two cards per row max so copy has room (3-up squeezed text into narrow columns) */
+.hw .hb-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hw .hb-cards > .hb-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.hw .hb-card { grid-template-columns: 132px minmax(0, 1fr); }
+.hw .hb-card img { width: 132px; height: 132px; }
+@media (max-width: 899px) { .hw .hb-cards { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hw .hb-card { grid-template-columns: 84px minmax(0, 1fr); } .hw .hb-card img { width: 84px; height: 84px; } }
