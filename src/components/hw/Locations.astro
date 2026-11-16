@@ -1,6 +1,8 @@
 ---
-// Locations: a Connecticut map drawn from each office's real coordinates (numbered pins) beside compact office cards with
-// photos. Gold pins = offices that also offer addiction treatment (locations.js `addiction`). `current` highlights one.
+// Locations — "map per office" carousel (user mockup, 2026-11-16): one card per office with its photo + number badge,
+// the office's Google Map (lazy iframe from locations.js), care type, name, address, Get directions + Office details.
+// Self-moving carousel (scroll-snap, autoplay every 4.5 s, pauses on hover/focus/touch, off for reduced motion) with
+// arrows, and text tabs to filter All / Mental health / Addiction care. `current` puts that office first.
 import { locations } from "../../data/locations.js";
 import Icon from "../Icon.astro";
 interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone" }
@@ -14,49 +16,73 @@ const photo = {
   "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp",
   "westbrook-ct": P + "westbrook-sign.webp",
 };
-// Connecticut outline projected to a 400×306 box.
-const proj = (lng, lat) => [((lng + 73.75) / 1.98) * 400, ((42.07 - lat) / 1.13) * 306];
-const outline = [[-73.49,42.05],[-71.80,42.02],[-71.80,41.33],[-71.86,41.32],[-72.10,41.31],[-72.38,41.27],[-72.55,41.26],[-72.90,41.25],[-73.10,41.16],[-73.40,41.08],[-73.66,40.99],[-73.73,41.10],[-73.48,41.21],[-73.55,41.29],[-73.52,41.66]].map(([a, b]) => proj(a, b).map((n) => n.toFixed(1)).join(",")).join(" ");
-// Pins: the three Glastonbury offices sit within a mile of each other, so they fan out slightly to stay readable.
-const nudge = { "glastonbury-ct": [-6, -5], "glastonbury-ct-2": [7, -1], "glastonbury-ct-3": [1, 7] };
-const pins = locations.map((l, i) => { const [x, y] = proj(l.lng, l.lat); const [dx, dy] = nudge[l.slug] || [0, 0]; return { ...l, n: i + 1, x: x + dx, y: y + dy }; });
-// Town labels kept clear of the office pins.
-const towns = [["Middletown",-72.65,41.56],["New Haven",-72.93,41.31],["Colchester",-72.33,41.575],["Clinton",-72.53,41.279],["New Britain",-72.78,41.66]].map(([t, a, b]) => ({ t, xy: proj(a, b) }));
+const list = locations.map((l, i) => ({ ...l, n: i + 1 }));
+const ordered = current ? [...list.filter((l) => l.slug === current), ...list.filter((l) => l.slug !== current)] : list;
 const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${l.street}, ${l.city}, CT ${l.zip}`)}`;
+const nAdd = list.filter((l) => l.addiction).length;
 ---
 <section class={`section is-${tone}`} id="locations">
   <div class="container">
-    <div class="sec-head"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
-    <div class="lx-grid">
-      <figure class="lx-map">
-        <svg viewBox="128 22 210 228" role="img" aria-label="Map of Connecticut with Hopewell's six offices: three in Glastonbury, plus West Hartford, East Hampton and Westbrook">
-          <polygon points={outline} fill="#fff" stroke="#265489" stroke-opacity=".3" stroke-width="2" stroke-linejoin="round" />
-          <text x="150" y="246" font-size="6.5" fill="#265489" fill-opacity=".5" font-weight="700" letter-spacing="2" font-family="Urbanist, sans-serif">LONG ISLAND SOUND</text>
-          {towns.map((t) => <g><circle cx={t.xy[0]} cy={t.xy[1]} r="1.4" fill="#5a6b7a" fill-opacity=".55" /><text x={t.xy[0] - 3} y={t.xy[1] + 2} text-anchor="end" font-size="5" fill="#5a6b7a" font-family="Urbanist, sans-serif">{t.t}</text></g>)}
-          {pins.map((p) => (
-            <a href={`/location/${p.slug}/`} aria-label={p.name}>
-              <g class:list={["lx-pin", current === p.slug && "is-current"]}>
-                <circle cx={p.x} cy={p.y} r="6.2" fill={p.addiction ? "#b6863c" : "#2f76c4"} stroke="#fff" stroke-width="1.2" />
-                <text x={p.x} y={p.y + 2.2} text-anchor="middle" font-size="6.4" font-weight="800" fill="#fff" font-family="Urbanist, sans-serif">{p.n}</text>
-              </g>
-            </a>
-          ))}
-        </svg>
-        <figcaption><span><i style="background:#2f76c4"></i>Mental health care</span><span><i style="background:#b6863c"></i>Mental health &amp; addiction care</span></figcaption>
-      </figure>
-      <ol class="lx-list">
-        {pins.map((p) => (
-          <li class:list={["lx", current === p.slug && "is-current"]}>
-            <img src={photo[p.slug]} alt={`Hopewell Health Solutions ${p.name} office`} width="1200" height="900" loading="lazy" />
-            <div class="lx-body">
-              <span class:list={["lx-n", p.addiction && "is-add"]}>{p.n}</span>
-              <h3><a href={`/location/${p.slug}/`}>{p.name}</a></h3>
-              <p class="lx-addr">{p.street}, {p.city}, CT {p.zip}</p>
-              <p class="lx-links"><a class="inl" href={`/location/${p.slug}/`}>Office details</a><a class="inl" href={mapsHref(p)} target="_blank" rel="noopener">Directions</a></p>
+    <div class="lc-head">
+      <div class="sec-head" style="margin:0"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
+      <div class="lc-tabs" role="toolbar" aria-label="Filter offices">
+        <button type="button" class="lc-tab is-on" data-f="all" aria-pressed="true">All offices <span>{list.length}</span></button>
+        <button type="button" class="lc-tab" data-f="mh" aria-pressed="false">Mental health <span>{list.length}</span></button>
+        <button type="button" class="lc-tab" data-f="add" aria-pressed="false">Addiction care <span>{nAdd}</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="lc-wrap" data-lc>
+    <ul class="lc-track" tabindex="0" aria-label="Hopewell offices">
+      {ordered.map((l) => (
+        <li class="lc" data-add={l.addiction ? "1" : "0"}>
+          <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /><span class:list={["lc-n", l.addiction && "is-add"]}>{l.n}</span></div>
+          <div class="lc-map">
+            {l.map ? <iframe src={l.map} title={`Map of Hopewell Health Solutions ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe> : <span class="lc-map-ph"><Icon name="pin" class="h-6 w-6" /></span>}
+            <a class="lc-map-big" href={mapsHref(l)} target="_blank" rel="noopener">View larger map <Icon name="arrow" class="h-3.5 w-3.5" /></a>
+          </div>
+          <div class="lc-body">
+            <span class:list={["lc-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health care"}</span>
+            <h3><a href={`/location/${l.slug}/`}>{l.name}</a></h3>
+            <p class="lc-addr">{l.street}, {l.city}, CT {l.zip}</p>
+            <div class="lc-ctas">
+              <a class="btn btn-navy" href={mapsHref(l)} target="_blank" rel="noopener"><Icon name="compass" />Get directions</a>
+              <a class="btn btn-outline" href={`/location/${l.slug}/`}>Office details</a>
             </div>
-          </li>
-        ))}
-      </ol>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="container lc-nav">
+      <button type="button" class="rv-btn" data-dir="-1" aria-label="Previous office"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <button type="button" class="rv-btn" data-dir="1" aria-label="Next office"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <a class="inl" href="/locations/">Compare all offices</a>
     </div>
   </div>
 </section>
+
+<script>
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll<HTMLElement>("[data-lc]").forEach((w) => {
+    const sec = w.closest("section")!;
+    const track = w.querySelector<HTMLElement>(".lc-track")!;
+    const cards = () => [...track.children].filter((c) => !(c as HTMLElement).hidden) as HTMLElement[];
+    let hold = false;
+    const step = () => (cards()[0]?.offsetWidth ?? 300) + 18;
+    const go = (dir: number) => {
+      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      if (dir > 0 && end) track.scrollTo({ left: 0, behavior: reduce ? "auto" : "smooth" });
+      else if (dir < 0 && track.scrollLeft <= 4) track.scrollTo({ left: track.scrollWidth, behavior: reduce ? "auto" : "smooth" });
+      else track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" });
+    };
+    w.querySelectorAll<HTMLButtonElement>(".rv-btn").forEach((b) => b.addEventListener("click", () => go(Number(b.dataset.dir))));
+    ["mouseenter", "focusin", "touchstart"].forEach((e) => w.addEventListener(e, () => (hold = true), { passive: true }));
+    ["mouseleave", "focusout"].forEach((e) => w.addEventListener(e, () => (hold = false)));
+    if (!reduce) setInterval(() => { if (!hold && !document.hidden && track.scrollWidth > track.clientWidth + 4) go(1); }, 4500);
+    sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((t) => t.addEventListener("click", () => {
+      sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((x) => { x.classList.toggle("is-on", x === t); x.setAttribute("aria-pressed", String(x === t)); });
+      [...track.children].forEach((c) => { (c as HTMLElement).hidden = t.dataset.f === "add" && (c as HTMLElement).dataset.add !== "1"; });
+      track.scrollTo({ left: 0 });
+    }));
+  });
+</script>
