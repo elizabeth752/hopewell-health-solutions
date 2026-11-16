@@ -1,108 +1,151 @@
 ---
-// Blog hub — 2026 redesign. Every post keeps its stock hero photo (user, 2026-11-16: "keep the stock photos").
-// Featured latest post, category filter as plain text tabs (no pills), every post on one page (no pagination).
+// Blog archive (/blog/) — Corner Canyon's archive pattern in Hopewell's brand (user, 2026-11-16: "the blog archive
+// should look like corners"): white hero with the latest article featured on a pastel card, accreditation band,
+// "Find what you're looking for" topic tab bar (text tabs with icon + count, not pills), card grid, then FAQ,
+// insurance, reviews, locations and the closing CTA. Cards keep each post's stock photo (user: "keep the stock photos").
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import ServiceHero from "../../components/hw/ServiceHero.astro";
-import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import Creds from "../../components/hw/Creds.astro";
+import Faq from "../../components/hw/Faq.astro";
+import Insurance from "../../components/hw/Insurance.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import Locations from "../../components/hw/Locations.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { posts } from "../../data/posts.js";
 import { providers } from "../../data/providers.js";
-import { VIDEOS } from "../../data/videos.js";
+import { PHONE } from "../../data/site.js";
 import "../../styles/pages/blog.css";
 
 const SITE = "https://www.hopewellhealthsolutions.com";
-const canonical = `${SITE}/blog/`;
+const URL = `${SITE}/blog/`;
 const byId = (slug) => providers.find((p) => p.slug === slug);
 const photo = (p) => (p && p.photo && !p.photoPlaceholder ? `/Assets/Team%20Members/${p.photo}.webp` : null);
 const fmt = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+const slugify = (s) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// Category look: icon + pastel panel + ink colour (CC's CATS map, Hopewell palette).
+const CATS = {
+  "Mental Health": { icon: "brain", pastel: "#e7eef5", ink: "#265489" },
+  "Teens & Families": { icon: "users", pastel: "#e4ece6", ink: "#3f6150" },
+  "Intensive Outpatient (IOP)": { icon: "calendar", pastel: "#e7eef5", ink: "#1f5fa8" },
+  "Medication & Psychiatry": { icon: "pill", pastel: "#f3e8d2", ink: "#7a5a22" },
+  "Women's Mental Health": { icon: "heart", pastel: "#f6e6e9", ink: "#8a3a4c" },
+  "Addiction & Recovery": { icon: "link", pastel: "#e3e8ef", ink: "#0b2f55" },
+  "Trauma & PTSD": { icon: "shield", pastel: "#ece7f3", ink: "#5a4a82" },
+  "Therapy Approaches": { icon: "chat", pastel: "#e4ece6", ink: "#3f6150" },
+  "Levels of Care": { icon: "compass", pastel: "#f3e8d2", ink: "#7a5a22" },
+  "Treatment & Access": { icon: "clipboard", pastel: "#e7eef5", ink: "#265489" },
+  "Inclusive Care": { icon: "sparkles", pastel: "#ece7f3", ink: "#5a4a82" },
+  "Meet the Team": { icon: "users", pastel: "#f5f2eb", ink: "#0b2f55" },
+};
+const cat = (c) => CATS[c] ?? { icon: "sparkles", pastel: "#e7eef5", ink: "#265489" };
 
 const sorted = [...posts].sort((a, b) => (a.datePublished < b.datePublished ? 1 : -1));
-const [featured, ...rest] = sorted;
-const categories = Array.from(new Set(sorted.map((p) => p.category))).sort();
-const count = (c) => rest.filter((p) => p.category === c).length;
-const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][categories.indexOf(c) % 5];
-const fa = featured ? byId(featured.authorSlug) : null;
+const featured = sorted[0];
+const fc = cat(featured.category);
+const fa = byId(featured.authorSlug);
+const order = Object.keys(CATS);
+const counts = Object.fromEntries(order.map((c) => [c, sorted.filter((p) => p.category === c).length]));
 
-const ld = {
-  "@context": "https://schema.org", "@type": "Blog", name: "The Hopewell Blog", url: canonical,
-  publisher: { "@type": "Organization", name: "Hopewell Health Solutions", url: SITE + "/" },
-  blogPost: sorted.slice(0, 20).map((p) => ({ "@type": "BlogPosting", headline: p.title, url: `${SITE}/post/${p.slug}/`, datePublished: p.datePublished, image: SITE + p.heroImage })),
-};
+const TITLE = "Mental Health Blog & Resources | Hopewell Health Solutions";
+const DESCRIPTION = "Evidence-based articles on mental health, treatment, and recovery — written and clinically reviewed by the licensed clinicians at Hopewell Health Solutions in Connecticut.";
+const faqs = [
+  ["Who writes and reviews these articles?", `Each article names its author, a licensed clinician on the <a class="inl" href="/about-us/team/">Hopewell team</a>, with a link to their profile and credentials.`],
+  ["Is the blog a substitute for medical advice?", "The articles are general information about mental health and treatment. They can’t diagnose you or replace care from a licensed provider who knows your history."],
+  ["Are the self-checks in the articles a diagnosis?", `No. The short self-checks are screening tools, not a diagnosis. Your answers stay in your browser. If a result concerns you, <a class="inl" href="tel:8607351448">call our team</a> to talk it through.`],
+  ["What should I do if I need help now?", `If you’re in crisis, call or text 988, or call 911. To talk about treatment, call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or <a class="inl" href="/admissions/#verify">check your insurance</a>.`],
+];
+const ld = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", "@id": `${URL}#webpage`, url: URL, name: "The Hopewell Blog", description: DESCRIPTION,
+    publisher: { "@type": "Organization", name: "Hopewell Health Solutions", url: SITE + "/" },
+    mainEntity: { "@type": "ItemList", numberOfItems: sorted.length, itemListElement: sorted.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}/post/${p.slug}/`, name: p.title })) } },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` }, { "@type": "ListItem", position: 2, name: "Blog", item: URL }] },
+];
 ---
-
-<Base title="Mental Health Blog & Resources | Hopewell Health Solutions" description="Evidence-based articles on mental health, treatment, and recovery — written and clinically reviewed by the licensed clinicians at Hopewell Health Solutions in Connecticut." canonical={canonical}>
+<Base title={TITLE} description={DESCRIPTION} canonical={URL} image={featured.heroImage}>
   <Header />
-  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  {ld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "Blog" }]}
-      title="The Hopewell Blog"
-      lede="Practical, evidence-based guidance on mental health, treatment, and recovery — written and clinically reviewed by our Connecticut team."
-      bullets={["Written by Hopewell clinicians", "Clinically reviewed", "Depression, anxiety, addiction, teens &amp; more", `${sorted.length} articles`]}
-      image="/Assets/hhs-2026/group-room-feelings-wheel.webp"
-      form={false}
-    />
-
-    {featured && (
-      <section class="section is-white" style="padding-bottom:0">
-        <div class="container">
-          <a class="bh-feature" href={`/post/${featured.slug}/`}>
-            <span class="bh-feature-media">{featured.heroImage && <img src={featured.heroImage} alt="" width="1024" height="640" />}</span>
-            <span class="bh-feature-copy">
-              <span class="bh-latest">Latest article · {featured.category}</span>
-              <h2>{featured.title}</h2>
-              <p>{featured.excerpt}</p>
-              {fa && <span class="bh-by">{photo(fa) && <img src={photo(fa)} alt="" width="44" height="44" />}<span><strong>{fa.name}</strong>{fmt(featured.datePublished)}</span></span>}
-              <span class="bh-read">Read article <Icon name="arrow" class="h-4 w-4" /></span>
-            </span>
-          </a>
+    <section class="ba-hero">
+      <div class="container ba-hero-grid">
+        <div class="ba-hero-copy">
+          <h1>The Hopewell Blog</h1>
+          <p class="lede">Practical, evidence-based guidance on mental health, treatment, and recovery — written and clinically reviewed by our Connecticut team. Learn more about our <a class="inl" href="/programs/">mental health and addiction programs</a>.</p>
+          <ul class="ba-points">
+            <li><Icon name="users" class="h-[17px] w-[17px]" />Written by Hopewell clinicians</li>
+            <li><Icon name="clipboard" class="h-[17px] w-[17px]" />Research sources cited</li>
+            <li><Icon name="shield" class="h-[17px] w-[17px]" />Free to read, no sign-up</li>
+          </ul>
+          <div class="ba-ctas">
+            <a href="#articles" class="btn btn-navy">Browse {sorted.length} articles</a>
+            <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
+          </div>
         </div>
-      </section>
-    )}
-
-    <section class="section is-white" id="articles">
-      <div class="container">
-        <div class="sec-head"><h2>Browse articles by topic</h2><p class="lede">Choose a topic, or explore our <a class="inl" href="/handouts/">free downloadable handouts</a> and the <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a>.</p></div>
-        <div class="bh-filter" role="group" aria-label="Filter articles by topic">
-          <button type="button" data-filter="all" class="is-on" aria-pressed="true">All<small>{rest.length}</small></button>
-          {categories.filter((c) => count(c) > 0).map((c) => <button type="button" data-filter={c} aria-pressed="false">{c}<small>{count(c)}</small></button>)}
-        </div>
-        <div class="bh-grid">
-          {rest.map((p) => {
-            const a = byId(p.authorSlug);
-            return (
-              <a href={`/post/${p.slug}/`} class="bh-card" data-category={p.category} style={`--bar:${barFor(p.category)}`}>
-                <span class="bh-card-media">{p.heroImage && <img src={p.heroImage} alt="" width="640" height="400" loading="lazy" />}</span>
-                <span class="bh-card-body">
-                  <span class="bh-cat">{p.category}</span>
-                  <h3>{p.title}</h3>
-                  <p>{p.excerpt}</p>
-                  <span class="bh-meta">{photo(a) && <img src={photo(a)} alt="" width="28" height="28" loading="lazy" />}{a?.name} · {fmt(p.datePublished)}</span>
-                </span>
-              </a>
-            );
-          })}
-        </div>
-        <p class="bh-count">{sorted.length} {sorted.length === 1 ? "article" : "articles"} · more on the way</p>
+        <a href={`/post/${featured.slug}/`} class="ba-feature" style={`background:${fc.pastel}`}>
+          {featured.heroImage && <img class="ba-feature-img" src={featured.heroImage} alt="" width="1024" height="640" fetchpriority="high" />}
+          <span class="ba-feature-top" style={`color:${fc.ink}`}><span><Icon name={fc.icon} class="h-[15px] w-[15px]" />{featured.category}</span><span><Icon name="star" class="h-[15px] w-[15px]" />Latest article</span></span>
+          <strong>{featured.title}</strong>
+          <span class="ba-feature-d">{featured.excerpt}</span>
+          <span class="ba-feature-meta">{photo(fa) && <img src={photo(fa)} width="64" height="64" alt="" />}<span>{fa?.name ?? "Hopewell Health Solutions"}</span><span aria-hidden="true">·</span><span>{fmt(featured.datePublished)}</span><span class="ba-feature-go" aria-hidden="true"><Icon name="arrow" class="h-[18px] w-[18px]" /></span></span>
+        </a>
       </div>
     </section>
 
-    <VideoCarousel videos={VIDEOS.filter((v) => v.type.startsWith("Podcast"))} mode="grid" tone="navy" heading="Listen: Hope, Health &amp; Healing" lede="Real stories of treatment and recovery from the Hopewell podcast." link={{ href: "/podcast/", label: "All podcast episodes" }} />
+    <Creds />
 
+    <section id="articles" class="section is-white">
+      <div class="container">
+        <h2 style="margin-bottom:18px">Find what you’re looking for</h2>
+        <div class="ba-filters" role="toolbar" aria-label="Filter articles by topic">
+          <button type="button" class="ba-filter is-on" data-f="all" aria-pressed="true">All articles <span class="ba-count">{sorted.length}</span></button>
+          {order.filter((c) => counts[c]).map((c) => (
+            <button type="button" class="ba-filter" data-f={slugify(c)} id={slugify(c)} aria-pressed="false"><Icon name={cat(c).icon} class="h-[15px] w-[15px]" />{c} <span class="ba-count">{counts[c]}</span></button>
+          ))}
+        </div>
+        <ul class="ba-grid">
+          {sorted.map((p) => {
+            const c = cat(p.category); const a = byId(p.authorSlug);
+            return (
+              <li data-cat={slugify(p.category)}>
+                <a href={`/post/${p.slug}/`} class="bc">
+                  <span class="bc-art" style={`background:${c.pastel};color:${c.ink}`}>
+                    {p.heroImage && <img src={p.heroImage} alt="" width="640" height="400" loading="lazy" />}
+                    <span class="bc-ico"><Icon name={c.icon} class="h-6 w-6" /></span>
+                  </span>
+                  <span class="bc-body">
+                    <span class="bc-cat" style={`color:${c.ink}`}>{p.category}</span>
+                    <span class="bc-title">{p.title}</span>
+                    <span class="bc-desc">{p.excerpt}</span>
+                    <span class="bc-meta">{photo(a) && <img src={photo(a)} width="64" height="64" alt="" loading="lazy" />}<span>{a?.name ?? "Hopewell Health Solutions"}</span><span class="bc-dot" aria-hidden="true">·</span><span>{fmt(p.datePublished)}</span></span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+        <p class="sec-foot">Looking for something to share with your family? Explore our <a class="inl" href="/handouts/">free downloadable handouts</a>, or listen to the <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a>.</p>
+      </div>
+    </section>
+
+    <Faq faqs={faqs} heading="Questions about the Hopewell blog" tone="stone" />
+    <Insurance tone="white" />
+    <Reviews tone="stone" />
+    <Locations />
     <ClosingCta verifyHref="/admissions/#verify" />
   </main>
   <Footer />
 </Base>
 
 <script>
-  const btns = [...document.querySelectorAll<HTMLButtonElement>(".bh-filter button")];
-  const cards = [...document.querySelectorAll<HTMLElement>(".bh-card")];
-  btns.forEach((b) => b.addEventListener("click", () => {
-    const f = b.dataset.filter;
-    btns.forEach((x) => { const on = x === b; x.classList.toggle("is-on", on); x.setAttribute("aria-pressed", String(on)); });
-    cards.forEach((c) => { c.hidden = !(f === "all" || c.dataset.category === f); });
-  }));
+  const buttons = document.querySelectorAll<HTMLButtonElement>(".ba-filter");
+  const items = document.querySelectorAll<HTMLLIElement>(".ba-grid li");
+  const apply = (f: string) => {
+    buttons.forEach((b) => { b.classList.toggle("is-on", b.dataset.f === f); b.setAttribute("aria-pressed", String(b.dataset.f === f)); });
+    items.forEach((li) => { li.hidden = f !== "all" && li.dataset.cat !== f; });
+  };
+  buttons.forEach((b) => b.addEventListener("click", () => { apply(b.dataset.f!); history.replaceState(null, "", b.dataset.f === "all" ? location.pathname : `#${b.dataset.f}`); }));
+  const h = location.hash.slice(1);
+  if (h && [...buttons].some((b) => b.dataset.f === h)) apply(h);
 </script>
