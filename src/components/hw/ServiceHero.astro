@@ -1,0 +1,35 @@
+---
+// Hero for every inner page (Corner Canyon ServiceHero): breadcrumbs, H1, lede, bullet points with check icons, quick
+// facts, call button; the callback form on the right (desktop). A real photo sits behind a navy scrim (the client likes
+// photos). Emits BreadcrumbList schema. On phones the form hides; pages put <Insurance mobileForm> lower down
+// (or pass keepFormMobile when they have no insurance section).
+import Icon from "../Icon.astro";
+import LeadForm from "../LeadForm.astro";
+import { PHONE, SITE } from "../../data/site.js";
+interface Crumb { label: string; href?: string }
+interface Props { crumbs: Crumb[]; title: string; lede: string; bullets?: string[]; facts?: { icon: string; text: string }[]; image?: string; imagePos?: string; form?: boolean; keepFormMobile?: boolean }
+const { crumbs, title, lede, bullets = [], facts = [], image = "/Assets/hhs-2026/iop-clinicians-group-room.webp", imagePos = "center", form = true, keepFormMobile = false } = Astro.props;
+const all = [{ label: "Home", href: "/" }, ...crumbs];
+const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: all.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, ...(c.href ? { item: SITE + c.href } : { item: SITE + Astro.url.pathname }) })) };
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+<section class:list={["sv-hero", !form && "is-solo"]}>
+  <img class="sv-bg" src={image} alt="" width="1680" height="1260" style={`object-position:${imagePos}`} fetchpriority="high" />
+  <div class="sv-scrim" aria-hidden="true"></div>
+  <svg class="hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /><circle cx="400" cy="400" r="210" /></svg>
+  <div class="container sv-grid">
+    <div class="sv-copy">
+      <nav class="sv-crumbs" aria-label="Breadcrumb"><ol>{all.map((c, i) => <li>{c.href && i < all.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}</ol></nav>
+      <h1 set:html={title} />
+      <p class="lede" set:html={lede} />
+      {bullets.length > 0 && <ul class="sv-bullets">{bullets.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}</ul>}
+      {facts.length > 0 && <ul class="sv-facts">{facts.map((f) => <li><Icon name={f.icon} class="h-[18px] w-[18px]" />{f.text}</li>)}</ul>}
+      <div class="sv-ctas">
+        <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
+        {form ? <a href="#verify-m" class="btn btn-ghost only-m">Verify my insurance</a> : <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>}
+      </div>
+      <slot />
+    </div>
+    {form && <div class:list={["sv-form", keepFormMobile && "is-keep"]} id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>}
+  </div>
+</section>

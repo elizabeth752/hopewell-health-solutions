@@ -1,0 +1,50 @@
+---
+// Google reviews button, fixed bottom-left on every page (Corner Canyon / Red Rock pattern). Hover or focus opens the
+// Hopewell Google Business Profiles. Only the Downtown Glastonbury profile shows a number (never invent one).
+// Tablet and desktop only.
+import { GOOGLE, GBPS } from "../../data/site.js";
+const LAST = `${Math.round((parseFloat(GOOGLE.rating) % 1 || 1) * 100)}%`;
+const STAR = "M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z";
+const G = '<svg width="26" height="26" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18A13.98 13.98 0 0 1 10.94 24c0-1.45.25-2.86.7-4.18v-5.7H4.34A21.99 21.99 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>';
+---
+<div class="hw-gfab">
+  <div class="hw-gfab-panel" role="group" aria-label="Google reviews">
+    <span class="hw-gfab-title">Google reviews</span>
+    {GBPS.map((p) => (
+      <a href={p.url} target="_blank" rel="noopener noreferrer" class="hw-gfab-row">
+        {p.num ? <span class="hw-gfab-num">{p.num}</span> : <span class="hw-gfab-num is-g" set:html={G} />}
+        <span class="hw-gfab-meta"><span class="hw-gfab-loc">{p.loc}</span><span class="hw-gfab-sub">{p.num && <span class="hw-gfab-stars" aria-hidden="true">{[0,1,2,3,4].map((i) => <svg width="11" height="11" viewBox="0 0 24 24" fill={i < 4 ? "#F4B400" : "url(#hw-gfab-part)"}><path d={STAR} /></svg>)}</span>}{p.meta}</span></span>
+        <span class="hw-gfab-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    ))}
+  </div>
+  <a href={GBPS[0].url} target="_blank" rel="noopener noreferrer" class="hw-gfab-btn" aria-label={`Google reviews: ${GOOGLE.rating} out of 5 from ${GOOGLE.count} reviews`}>
+    <span class="hw-gfab-g" set:html={G} />
+    <span class="hw-gfab-sum">
+      <span class="hw-gfab-stars" aria-hidden="true">{[0,1,2,3,4].map((i) => <svg width="14" height="14" viewBox="0 0 24 24" fill={i < 4 ? "#F4B400" : "url(#hw-gfab-part)"}>{i === 4 && <defs><linearGradient id="hw-gfab-part"><stop offset={LAST} stop-color="#F4B400" /><stop offset={LAST} stop-color="#D5D8DE" /></linearGradient></defs>}<path d={STAR} /></svg>)}</span>
+      <span class="hw-gfab-sum-t"><b>{GOOGLE.rating}</b> · {GOOGLE.count} Google reviews</span>
+    </span>
+  </a>
+</div>
+<style>
+  .hw-gfab { display: none; position: fixed; right: 20px; bottom: 20px; z-index: 45; flex-direction: column; align-items: flex-end; gap: 10px; font-family: var(--hw-head); }
+  @media (min-width: 768px) { .hw-gfab { display: flex; } }
+  @media print { .hw-gfab { display: none; } }
+  .hw-gfab-btn { height: 56px; padding: 0 18px 0 8px; gap: 10px; border-radius: 999px; background: #fff; display: inline-flex; align-items: center; text-decoration: none; box-shadow: 0 10px 28px rgba(0,29,55,.26); transition: transform .16s ease; }
+  .hw-gfab-g { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+  .hw-gfab-sum { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .hw-gfab-stars { display: inline-flex; gap: 1px; }
+  .hw-gfab-sum-t { font-size: 12.5px; color: #3b4a5a; white-space: nowrap; }
+  .hw-gfab-sum-t b { font-size: 13.5px; color: var(--hw-navy); }
+  .hw-gfab:hover .hw-gfab-btn, .hw-gfab:focus-within .hw-gfab-btn { transform: scale(1.05); }
+  .hw-gfab-panel { width: 280px; background: #fff; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 16px 40px rgba(0,29,55,.26); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .18s, transform .18s, visibility .18s; position: relative; }
+  .hw-gfab-panel::after { content: ""; position: absolute; left: 0; right: 0; bottom: -12px; height: 12px; }
+  .hw-gfab:hover .hw-gfab-panel, .hw-gfab:focus-within .hw-gfab-panel { opacity: 1; visibility: visible; transform: none; }
+  .hw-gfab-title { font-size: 13px; font-weight: 800; color: var(--hw-navy); padding: 0 6px 6px; }
+  .hw-gfab-row { display: flex; align-items: center; gap: 10px; padding: 8px 6px; border-radius: 10px; text-decoration: none; color: var(--hw-navy); }
+  .hw-gfab-row:hover { background: var(--hw-stone); }
+  .hw-gfab-num { font-weight: 800; font-size: 22px; line-height: 1; width: 36px; display: inline-flex; justify-content: center; }
+  .hw-gfab-meta { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .hw-gfab-loc { font-size: 13.5px; font-weight: 700; }
+  .hw-gfab-sub { font-size: 12px; color: var(--hw-slate); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+</style>

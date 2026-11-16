@@ -1,0 +1,47 @@
+---
+// Team section: founder feature card + portrait tiles (name and role over the photo) + a "meet everyone" tile.
+// Pass `slugs` (providers.js) to choose who shows; default = founder + prescribers + psychologists from the homepage.
+import { providers } from "../../data/providers.js";
+import Icon from "../Icon.astro";
+interface Props { heading?: string; lede?: string; slugs?: string[]; feature?: string | null; tone?: "white" | "stone" }
+const { heading = "Meet the People Who’ll Walk Beside You", lede = "A diverse, board-certified team of 50+ licensed clinicians across Connecticut — prescribers, psychologists, and therapists. Real credentials. Real names. Real relationships.", slugs = ["tracy-sibley-pmhnp-bc-aprn", "christina-lindsay-pmhnp-bc-aprn", "chris-patenaude-pa", "eric-schwartz-psy-d-abpp", "laura-miller-ph-d", "teesha-huertas-lcsw", "ashley-singh-psy-d"], feature = "kristine-a-schlichting-ph-d", tone = "stone" } = Astro.props;
+const by = (s) => providers.find((p) => p.slug === s);
+const img = (p) => `/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`;
+const f = feature ? by(feature) : null;
+const people = slugs.map(by).filter((p) => p && p.photo && !p.photoPlaceholder);
+const short = (r) => r.replace(/^Board-Certified /, "").replace(/ · .*/, "");
+const excerpt = f ? f.bio.split("\n\n")[0].split(/(?<=\.)\s/).slice(0, 2).join(" ") : "";
+const count = providers.length;
+---
+<section class={`section is-${tone}`} id="team">
+  <div class="container">
+    <div class="sec-head"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
+    <div class="tm-grid">
+      {f && (
+        <a class="tm-feature" href={`/provider/${f.slug}/`}>
+          <img src={img(f)} alt={f.name} width="600" height="750" loading="lazy" />
+          <div class="tm-feature-copy">
+            <span class="tm-role">{f.role}</span>
+            <h3>{f.name}</h3>
+            <p>{excerpt}</p>
+            <span class="tm-link">Read Dr. Schlichting’s profile <Icon name="arrow" class="h-4 w-4" /></span>
+          </div>
+        </a>
+      )}
+      <ul class="tm-people">
+        {people.map((p) => (
+          <li><a class="tm-card" href={`/provider/${p.slug}/`}>
+            <img src={img(p)} alt={p.name} width="600" height="750" loading="lazy" />
+            <span class="tm-cap"><strong>{p.name}</strong><span>{short(p.role)}</span></span>
+          </a></li>
+        ))}
+        <li><a class="tm-all" href="/about-us/team/">
+          <span class="tm-all-n">{count}</span>
+          <strong>Meet our full team</strong>
+          <span>Prescribers, psychologists, therapists and leadership across six offices</span>
+          <span class="tm-all-go"><Icon name="arrow" class="h-5 w-5" /></span>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+// FAQ: sticky heading column + accordion, FAQPage schema (links stripped). Answers are HTML with inline links.
+import Icon from "../Icon.astro";
+import { PHONE } from "../../data/site.js";
+interface Props { faqs: [string, string][]; heading?: string; lede?: string; tone?: "stone" | "white"; schema?: boolean }
+const { faqs, heading = "Frequently Asked Questions", lede = `Still have a question? Call <a class="inl" href="${PHONE.href}">${PHONE.display}</a>.`, tone = "stone", schema = true } = Astro.props;
+const strip = (h) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&nbsp;/g, " ");
+const ld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: strip(a) } })) };
+---
+{schema && <script type="application/ld+json" set:html={JSON.stringify(ld)} />}
+<section class={`section ${tone === "white" ? "is-white" : "is-stone"}`} id="faq">
+  <div class="container faq-grid">
+    <div class="faq-head"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
+    <div class="faq-list">
+      {faqs.map(([q, a], i) => (
+        <details class="faq" open={i === 0}><summary>{q}<Icon name="plus" /></summary><div class="faq-a" set:html={a} /></details>
+      ))}
+    </div>
+  </div>
+</section>

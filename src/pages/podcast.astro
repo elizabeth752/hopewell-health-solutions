@@ -1,0 +1,79 @@
+---
+// Hope, Health & Healing — Hopewell's podcast (YouTube channel @hopewellhealthsolutions2285). New page, 2026-11-16.
+// Episode facts come from each YouTube description; nothing is quoted that the guests didn't say.
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import ServiceHero from "../components/hw/ServiceHero.astro";
+import VideoCarousel from "../components/hw/VideoCarousel.astro";
+import Faq from "../components/hw/Faq.astro";
+import ClosingCta from "../components/hw/ClosingCta.astro";
+import { VIDEOS, PODCAST } from "../data/videos.js";
+import { providers } from "../data/providers.js";
+import { SITE } from "../data/site.js";
+
+const tj = providers.find((p) => p.slug === "tj-aitken-cpsrp");
+const tips = VIDEOS.filter((v) => v.type.startsWith("Clinician") || v.type.startsWith("Dr."));
+const series = {
+  "@context": "https://schema.org", "@type": "PodcastSeries", name: "Hope, Health & Healing", url: SITE + "/podcast/",
+  description: "A Hopewell Health Solutions series sharing real stories of mental health treatment and recovery, hosted by TJ Aitken, CPSRP.",
+  webFeed: "https://www.youtube.com/@hopewellhealthsolutions2285",
+  author: { "@type": "Organization", name: "Hopewell Health Solutions", url: SITE + "/" },
+  hasPart: PODCAST.map((v, i) => ({ "@type": "PodcastEpisode", name: v.title, episodeNumber: PODCAST.length - i, datePublished: v.date, timeRequired: v.duration, url: `https://www.youtube.com/watch?v=${v.yt}`, description: v.desc })),
+};
+const faqs = [
+  ["What is the Hope, Health & Healing podcast?", `It’s a Hopewell Health Solutions series of honest conversations about mental health, addiction and recovery. Each episode features someone sharing their own story, hosted by <a class="inl" href="/provider/tj-aitken-cpsrp/">TJ Aitken, CPSRP</a>, our Director of Business Development and a person in long-term recovery.`],
+  ["Where can I watch or listen?", `Every episode is on this page and on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>, where you can subscribe for new episodes.`],
+  ["Are the guests real Hopewell clients?", `Yes. Guests choose to share their own experiences, such as Evan’s time in our <a class="inl" href="/programs/intensive-outpatient-program/">Intensive Outpatient Program</a>. Every recovery is different, and their stories are their own.`],
+  ["I relate to an episode. How do I get help?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll verify your insurance for free and help you find the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization</a>. If you are in crisis, call or text 988.`],
+];
+---
+<Base title="Hope, Health & Healing Podcast | Hopewell Health Solutions" description="Watch Hope, Health & Healing, the Hopewell Health Solutions podcast: real stories of mental health treatment, IOP and addiction recovery from Connecticut, hosted by TJ Aitken, CPSRP." canonical={SITE + "/podcast/"} image="/Assets/videos/podcast-ep2-luke.webp">
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(series)} />
+  <main class="hw">
+    <ServiceHero
+      crumbs={[{ label: "Resources", href: "/blog/" }, { label: "Podcast" }]}
+      title="Hope, Health &amp; Healing: The Hopewell Podcast"
+      lede="Real conversations about mental health, addiction and recovery, from people who have walked the road themselves. Hosted by Hopewell’s TJ Aitken, CPSRP."
+      bullets={["Honest stories from people in recovery", "Life in our <a class='inl' href='/programs/intensive-outpatient-program/'>Intensive Outpatient Program</a>", "New episodes on our YouTube channel", "Free to watch, no sign-up"]}
+      facts={[{ icon: "play", text: `${PODCAST.length} episodes` }, { icon: "clock", text: "About 25 minutes each" }]}
+      image="/Assets/hhs-2026/iop-team-hallway.webp"
+      form={false}
+    />
+
+    <VideoCarousel videos={PODCAST} mode="grid" tone="white" heading="All Episodes" lede="Press play on any episode. Newest first." link={{ href: "https://www.youtube.com/@hopewellhealthsolutions2285", label: "Subscribe on YouTube" }} id="episodes" />
+
+    <section class="section is-stone">
+      <div class="container split">
+        <div>
+          <h2>About the Show</h2>
+          <p class="lede" style="margin-top:16px">Hope, Health &amp; Healing is a Hopewell Health Solutions series dedicated to sharing real stories, meaningful conversations, and the power of recovery. Every recovery journey is different, but every story has the power to inspire hope, break stigma, and remind someone that they are not alone.</p>
+          <ul class="sv-bullets" style="grid-template-columns:1fr;margin-top:22px">
+            <li style="color:var(--hw-body)"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Episode 1: Evan on the <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> and the help he didn’t know he needed</span></li>
+            <li style="color:var(--hw-body)"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Episode 2: Luke’s story of <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction recovery</a></span></li>
+            <li style="color:var(--hw-body)"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>More episodes coming to the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">YouTube channel</a></span></li>
+          </ul>
+        </div>
+        {tj && (
+          <a class="tm-feature" href={`/provider/${tj.slug}/`} style="max-width:460px;justify-self:end">
+            <img src={`/Assets/Team%20Members/${tj.photo}.webp`} alt={tj.name} width="600" height="750" loading="lazy" />
+            <div class="tm-feature-copy">
+              <span class="tm-role">Your host · {tj.role}</span>
+              <h3>{tj.name}</h3>
+              <p>{tj.bio.split("\n\n")[0].split(/(?<=\.)\s/).slice(0, 2).join(" ")}</p>
+              <span class="tm-link">Read TJ’s profile <Icon name="arrow" class="h-4 w-4" /></span>
+            </div>
+          </a>
+        )}
+      </div>
+    </section>
+
+    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Short Videos From Our Clinicians" lede="Quick, practical skills from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={null} />
+
+    <Faq faqs={faqs} heading="Podcast Questions" tone="white" />
+    <ClosingCta verifyHref="/admissions/#verify" />
+  </main>
+  <Footer />
+</Base>
