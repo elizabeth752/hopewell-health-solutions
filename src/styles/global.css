@@ -84,3 +84,45 @@
     font-weight: 400; /* Baskervville ships a single weight */
   }
 }
+
+/* ------------------------------------------------------------------
+   2026 redesign ("Shoreline") — shared pieces used by every page.
+   Pill buttons, inline links inside sentences, arch photo frames and
+   section spacing. Brand tokens above stay the single colour source.
+------------------------------------------------------------------- */
+@theme {
+  --color-mist: #eef3f8;        /* very light blue section background */
+  --color-sand: #efe7d8;        /* warm card tint */
+  --color-night: #0a2540;       /* navy band background, a touch lighter than ink */
+}
+
+@layer components {
+  .wrap { margin-inline: auto; width: 100%; max-width: 76rem; padding-inline: 1.25rem; }
+  .sec { padding-block: 4.5rem; }
+  @media (max-width: 999px) { .sec { padding-block: 3.25rem; } }
+
+  .h-xl { font-family: var(--font-display); font-size: clamp(2.35rem, 4.6vw, 3.9rem); line-height: 1.04; letter-spacing: -0.01em; text-wrap: balance; }
+  .h-lg { font-family: var(--font-display); font-size: clamp(1.9rem, 3.2vw, 2.75rem); line-height: 1.1; text-wrap: balance; }
+  .h-md { font-family: var(--font-display); font-size: clamp(1.35rem, 2vw, 1.6rem); line-height: 1.2; }
+  .lede { font-size: 1.125rem; line-height: 1.7; color: color-mix(in srgb, var(--color-ink) 82%, white); }
+  .copy { font-size: 1.0625rem; line-height: 1.75; color: color-mix(in srgb, var(--color-ink) 82%, white); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 48px; padding-inline: 1.6rem; border-radius: 999px; font-weight: 700; font-size: .95rem; transition: background-color .2s, color .2s, border-color .2s, transform .2s; white-space: nowrap; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--color-azul-bright); color: #fff; }
+  .btn-primary:hover { background: var(--color-azul); }
+  .btn-ghost { border: 1.5px solid var(--color-azul); color: var(--color-azul); }
+  .btn-ghost:hover { background: var(--color-azul-light); }
+  .btn-light { background: #fff; color: var(--color-azul); }
+  .btn-light:hover { background: var(--color-crema); }
+  .btn-line-light { border: 1.5px solid rgb(255 255 255 / .6); color: #fff; }
+  .btn-line-light:hover { background: rgb(255 255 255 / .1); }
+
+  /* Interlinks live inside the sentence: underlined brand blue. */
+  .ilink { color: var(--color-azul); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--color-azul) 45%, transparent); }
+  .ilink:hover { text-decoration-color: currentColor; }
+  .on-dark .ilink { color: #fff; text-decoration-color: rgb(255 255 255 / .5); }
+
+  .arch { border-radius: 999px 999px 1.5rem 1.5rem; overflow: hidden; }
+  .card { border-radius: 1.5rem; background: #fff; border: 1px solid var(--color-line); }
+}

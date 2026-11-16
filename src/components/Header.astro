@@ -69,42 +69,43 @@ const menu = [
   ]},
 ];
 
+const path = Astro.url.pathname;
+const isActive = (m) => path.startsWith(m.href) && m.href !== "/" || m.children.some((c) => path === c.href.split("#")[0]);
 ---
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
-  <!-- top bar -->
-  <div class="bg-ink text-white text-xs">
-    <!-- optional page override: <div slot="topbar">…</div>; default = social links -->
+<header class="hdr sticky top-0 z-40">
+  <!-- utility bar -->
+  <div class="bg-night text-white/80 text-[13px]">
     <slot name="topbar">
-    <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-end gap-4">
-      <div class="flex items-center gap-2">
-        <span class="hidden sm:inline text-white/55 mr-1">Follow us</span>
+    <div class="wrap flex h-9 items-center justify-between gap-4">
+      <p class="hidden md:flex items-center gap-2"><Icon name="pin" class="h-3.5 w-3.5 text-azul-light" />Six offices across Glastonbury, West Hartford, East Hampton &amp; Westbrook, CT</p>
+      <div class="flex items-center gap-1.5 ml-auto">
         {socials.map((s) => (
-          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label} class:list={["grid h-6 w-6 place-items-center rounded-full border border-white/40 text-white hover:bg-white hover:text-ink hover:border-white transition", s.small ? "[&>svg]:h-[11px] [&>svg]:w-[11px]" : "[&>svg]:h-3 [&>svg]:w-3"]}><Fragment set:html={s.svg} /></a>
+          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label} class:list={["grid h-6 w-6 place-items-center rounded-full text-white/75 hover:bg-white hover:text-ink transition", s.small ? "[&>svg]:h-[11px] [&>svg]:w-[11px]" : "[&>svg]:h-3 [&>svg]:w-3"]}><Fragment set:html={s.svg} /></a>
         ))}
       </div>
     </div>
     </slot>
   </div>
 
-  <!-- main nav -->
-  <div class="mx-auto max-w-6xl px-5">
-    <div class="flex items-center justify-between py-3.5 gap-4">
+  <!-- main bar -->
+  <div class="bg-white/95 backdrop-blur border-b border-line">
+    <div class="wrap flex h-[76px] items-center justify-between gap-4">
       <a href="/" class="shrink-0" aria-label="Hopewell Health Solutions — home">
-        <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" class="h-12 sm:h-14 w-auto" />
+        <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" class="h-11 sm:h-[52px] w-auto" />
       </a>
 
-      <!-- desktop nav -->
-      <nav class="hidden lg:flex items-center gap-x-5">
+      <nav class="hidden lg:flex items-center gap-x-1" aria-label="Main">
         {menu.map((m) => (
           <div class="relative group">
-            <a href={m.href} class="flex items-center gap-1 text-sm font-semibold text-ink hover:text-azul transition py-2">
-              {m.label}<Icon name="arrow" class="h-3 w-3 rotate-90 opacity-60 transition group-hover:translate-y-0.5" />
+            <a href={m.href} class:list={["flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-semibold transition", isActive(m) ? "text-azul bg-azul-light" : "text-ink hover:text-azul hover:bg-azul-light/60"]}>
+              {m.label}<svg viewBox="0 0 24 24" class="h-3.5 w-3.5 opacity-60 transition group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </a>
-            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
-              <div class="w-64 rounded-2xl border border-line bg-white shadow-xl p-2">
-                <ul>
+            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
+              <div class:list={["rounded-3xl border border-line bg-white p-3 shadow-[0_24px_60px_-20px_rgba(0,29,55,.35)]", m.children.length > 6 ? "w-[34rem]" : "w-72"]}>
+                <a href={m.href} class="mb-1 flex items-center justify-between rounded-2xl bg-crema px-4 py-3 font-display text-lg text-ink hover:text-azul transition">{m.label}<Icon name="arrow" class="h-4 w-4 text-azul" /></a>
+                <ul class:list={["grid gap-0.5", m.children.length > 6 && "grid-cols-2"]}>
                   {m.children.map((c) => (
-                    <li><a href={c.href} class="block rounded-lg px-3 py-2 text-sm font-medium text-ink hover:bg-crema hover:text-azul transition">{c.label}</a></li>
+                    <li><a href={c.href} class="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[14px] font-medium text-ink hover:bg-azul-light hover:text-azul transition"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-azul/40"></span>{c.label}</a></li>
                   ))}
                 </ul>
               </div>
@@ -114,29 +115,28 @@ const menu = [
       </nav>
 
       <div class="flex items-center gap-2 shrink-0">
-        <a href="tel:8607351448" class="hidden xl:inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-5 h-[45px] text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <!-- mobile/tablet call icon (full button shows from xl up) -->
-        <a href="tel:8607351448" class="xl:hidden grid h-[45px] w-[45px] place-items-center rounded-lg bg-azul-bright text-white" aria-label="Call us"><Icon name="phone" class="h-5 w-5" /></a>
-        <!-- mobile toggle -->
-        <button id="mobileToggle" class="lg:hidden grid h-[45px] w-[45px] place-items-center rounded-lg border border-line text-ink" aria-label="Open menu" aria-expanded="false">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <a href="tel:8607351448" class="btn btn-primary hidden xl:inline-flex"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+        <a href="tel:8607351448" class="xl:hidden grid h-12 w-12 place-items-center rounded-full bg-azul-bright text-white" aria-label="Call us"><Icon name="phone" class="h-5 w-5" /></a>
+        <button id="mobileToggle" class="lg:hidden grid h-12 w-12 place-items-center rounded-full border border-line text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- mobile panel -->
-  <div id="mobilePanel" class="hidden lg:hidden border-t border-line bg-white max-h-[80vh] overflow-y-auto">
-    <div class="mx-auto max-w-6xl px-5 py-5 space-y-5">
+  <!-- mobile panel: accordions, every link kept -->
+  <div id="mobilePanel" class="hidden lg:hidden border-b border-line bg-white max-h-[78vh] overflow-y-auto">
+    <div class="wrap py-4">
       {menu.map((m) => (
-        <div>
-          <a href={m.href} class="block text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-2">{m.label}</a>
-          <ul class="space-y-0.5">
-            {m.children.map((c) => <li><a href={c.href} class="block py-1.5 text-sm font-semibold text-ink">{c.label}</a></li>)}
+        <details class="group border-b border-line">
+          <summary class="flex cursor-pointer list-none items-center justify-between py-3.5 font-display text-lg text-ink">{m.label}<svg viewBox="0 0 24 24" class="h-4 w-4 text-azul transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <ul class="grid grid-cols-1 gap-0.5 pb-3 sm:grid-cols-2">
+            <li><a href={m.href} class="block rounded-xl bg-crema px-3 py-2 text-[15px] font-semibold text-azul">All {m.label}</a></li>
+            {m.children.map((c) => <li><a href={c.href} class="block rounded-xl px-3 py-2 text-[15px] font-medium text-ink">{c.label}</a></li>)}
           </ul>
-        </div>
+        </details>
       ))}
-      <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-5 h-[45px] text-sm font-semibold text-white"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      <a href="tel:8607351448" class="btn btn-primary mt-5 w-full"><Icon name="phone" class="h-4 w-4" />Call (860) 735-1448</a>
     </div>
   </div>
 </header>
