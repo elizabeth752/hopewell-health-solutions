@@ -31,7 +31,7 @@ const CATS = {
   "Teens & Families": { icon: "users", pastel: "#e4ece6", ink: "#3f6150" },
   "Intensive Outpatient (IOP)": { icon: "calendar", pastel: "#e7eef5", ink: "#1f5fa8" },
   "Medication & Psychiatry": { icon: "pill", pastel: "#f3e8d2", ink: "#7a5a22" },
-  "Women's Mental Health": { icon: "heart", pastel: "#f6e6e9", ink: "#8a3a4c" },
+  "Women's Mental Health": { icon: "heart", pastel: "#f3e8d2", ink: "#7a5a22" },
   "Addiction & Recovery": { icon: "link", pastel: "#e3e8ef", ink: "#0b2f55" },
   "Trauma & PTSD": { icon: "shield", pastel: "#ece7f3", ink: "#5a4a82" },
   "Therapy Approaches": { icon: "chat", pastel: "#e4ece6", ink: "#3f6150" },
@@ -83,7 +83,7 @@ const ld = [
             <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
           </div>
         </div>
-        <a href={`/post/${featured.slug}/`} class="ba-feature" style={`background:${fc.pastel}`}>
+        <a href={`/post/${featured.slug}/`} class="ba-feature">
           {featured.heroImage && <img class="ba-feature-img" src={featured.heroImage} alt="" width="1024" height="640" fetchpriority="high" />}
           <span class="ba-feature-top" style={`color:${fc.ink}`}><span><Icon name={fc.icon} class="h-[15px] w-[15px]" />{featured.category}</span><span><Icon name="star" class="h-[15px] w-[15px]" />Latest article</span></span>
           <strong>{featured.title}</strong>

@@ -337,3 +337,16 @@
 }
 .hw .bc-meta span:last-child, .hw .ba-feature-meta span:nth-last-child(2) { white-space: nowrap; }
 .hw .bc-meta > span:nth-child(2) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Blog hero in colour (user: "the hero needs some color, not white"): navy like the other heroes, white feature card. */
+.hw .ba-hero { position: relative; overflow: hidden; background: linear-gradient(150deg, var(--hw-navy) 0%, var(--hw-night) 100%); color: #dce6f1; padding: clamp(36px, 5vw, 64px) 0 clamp(44px, 5vw, 72px); }
+.hw .ba-hero::before { content: ""; position: absolute; width: 760px; height: 760px; left: -340px; bottom: -420px; border-radius: 50%; border: 2px solid rgba(156,195,234,.2); box-shadow: 0 0 0 90px rgba(156,195,234,.04); pointer-events: none; }
+.hw .ba-hero > .container { position: relative; }
+.hw .ba-hero h1 { color: #fff; }
+.hw .ba-hero .lede { color: #dce6f1; }
+.hw .ba-hero .inl { color: #fff; text-decoration-color: var(--hw-bright); }
+.hw .ba-points { color: #fff; }
+.hw .ba-points svg { color: var(--hw-sky); }
+.hw .ba-hero .btn-navy { background: #fff; color: var(--hw-navy) !important; }
+.hw .ba-hero .btn-navy:hover { background: var(--hw-sky-soft); }
+.hw .ba-feature { background: #fff; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
