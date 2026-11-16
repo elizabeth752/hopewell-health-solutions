@@ -1,20 +1,15 @@
 ---
+// Corner Canyon footer pattern in Hopewell colours: brand + link columns, a "Find us" band with every office,
+// then the legal bar. Links are the same as the previous footer.
 import { socials } from "../data/socials";
+import { locations } from "../data/locations.js";
 import Icon from "./Icon.astro";
-// `above` = background colour of the section right above, so the wave blends in.
-const { above = "#ffffff" } = Astro.props;
-const locations = [
-  ["Glastonbury", "33 Pratt St", "/location/glastonbury-ct/"],
-  ["Downtown Glastonbury", "300 Hebron Ave", "/location/glastonbury-ct-2/"],
-  ["South Glastonbury", "1420 Main St", "/location/glastonbury-ct-3/"],
-  ["West Hartford", "1216 Farmington Ave", "/location/west-hartford-ct/"],
-  ["East Hampton", "151 E. High St", "/location/east-hampton-ct/"],
-  ["Westbrook", "70 Essex Rd", "/location/westbrook-ct/"],
-];
+
 const cols = [
   { h: "Programs", links: [
     ["Intensive Outpatient (IOP)", "/programs/intensive-outpatient-program/"],
     ["Partial Hospitalization (PHP)", "/programs/partial-hospitalization-program/"],
+    ["Addiction IOP", "/programs/substance-use-iop/"],
     ["Medication Management", "/programs/medication-management/"],
     ["Outpatient Therapy", "/programs/counseling/"],
   ] },
@@ -25,60 +20,101 @@ const cols = [
     ["Addiction Treatment", "/what-we-treat/substance-use-disorder/"],
     ["ADHD", "/what-we-treat/adhd/"],
   ] },
-  { h: "Treatments", links: [
+  { h: "Treatments & More", links: [
     ["TMS", "/treatment-methods/tms/"],
     ["EMDR", "/treatment-methods/emdr/"],
     ["GeneSight®", "/treatment-methods/genesight-testing/"],
+    ["Our Team", "/about-us/team/"],
+    ["Blog", "/blog/"],
   ] },
 ];
+const careAt = (l) => (l.addiction ? "Mental health & addiction care" : "Mental health care");
+const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${l.street}, ${l.city}, CT ${l.zip}`)}`;
 ---
-<footer class="relative isolate overflow-hidden bg-night text-white/80">
-  <!-- wave top, echoes the logo -->
-  <svg class="block w-full h-10 sm:h-14" style={`color:${above}`} viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 0h1440v34c-120 26-240 40-360 30S840 22 720 30 480 74 360 72 120 40 0 30Z"/></svg>
-  <div class="wrap pt-10 pb-12">
-    <!-- call strip -->
-    <div class="grid gap-6 rounded-[2rem] bg-white/[.06] p-6 sm:p-8 ring-1 ring-white/10 lg:grid-cols-[1fr_auto] lg:items-center">
-      <div class="flex items-center gap-5">
-        <img src="/Assets/logo/hopewell-wave-logo-white.svg" alt="Hopewell Health Solutions" width="990" height="444" loading="lazy" decoding="async" class="h-16 w-auto shrink-0" />
-        <p class="text-[15px] leading-relaxed max-w-md">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
-      </div>
-      <a href="tel:8607351448" class="btn btn-light h-14 text-lg"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
-    </div>
-
-    <div class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-      <div>
-        <h4 class="font-display text-xl text-white">Our Connecticut Locations</h4>
-        <ul class="mt-4 space-y-3 text-[15px]">
-          {locations.map(([city, addr, href]) => (
-            <li><a href={href} class="flex gap-3 hover:text-white transition"><Icon name="pin" class="mt-0.5 h-4 w-4 shrink-0 text-azul-light" /><span><span class="font-semibold text-white">{city}</span><br />{addr}</span></a></li>
+<footer class="hw-footer">
+  <svg class="hw-footer-arc" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="290" fill="none" stroke="currentColor" stroke-width="2" /><circle cx="300" cy="300" r="210" fill="none" stroke="currentColor" stroke-width="2" /></svg>
+  <div class="hw-f-wrap">
+    <div class="hw-footer-grid">
+      <div class="hw-footer-brand">
+        <a href="/" aria-label="Hopewell Health Solutions — home"><img src="/Assets/logo/hopewell-wave-logo-white.svg" alt="Hopewell Health Solutions" width="990" height="444" loading="lazy" decoding="async" /></a>
+        <p>Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
+        <a href="tel:8607351448" class="hw-f-phone"><Icon name="phone" class="h-5 w-5" />(860) 735-1448</a>
+        <ul class="hw-social">
+          {socials.map((s) => (
+            <li><a href={s.href} target="_blank" rel="noopener" aria-label={`${s.label} (opens in a new tab)`} title={s.label}><Fragment set:html={s.svg} /></a></li>
           ))}
         </ul>
       </div>
       {cols.map((c) => (
-        <div>
-          <h4 class="font-display text-xl text-white">{c.h}</h4>
-          <ul class="mt-4 space-y-2.5 text-[15px]">
-            {c.links.map(([label, href]) => <li><a href={href} class="hover:text-white transition">{label}</a></li>)}
-          </ul>
+        <div class="hw-footer-col">
+          <p class="hw-foot-h">{c.h}</p>
+          <ul>{c.links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}</ul>
         </div>
       ))}
     </div>
+  </div>
 
-    <div class="mt-10 flex flex-wrap items-center gap-4">
-      <h4 class="text-sm font-semibold text-white">Follow Us</h4>
-      <ul class="flex flex-wrap gap-1.5">
-        {socials.map((s) => (
-          <li>
-            <a href={s.href} target="_blank" rel="noopener" aria-label={`${s.label} (opens in a new tab)`} title={s.label} class:list={["grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink transition", s.small ? "[&>svg]:h-3 [&>svg]:w-3" : "[&>svg]:h-3.5 [&>svg]:w-3.5"]}><Fragment set:html={s.svg} /></a>
-          </li>
+  <div class="hw-f-wrap hw-find">
+    <div class="hw-find-inner">
+      <p class="hw-foot-h">Find us: six Connecticut offices</p>
+      <div class="hw-find-grid">
+        {locations.map((l) => (
+          <address class="hw-place">
+            <span class="hw-place-care">{careAt(l)}</span>
+            <a href={`/location/${l.slug}/`} class="hw-place-name">{l.name}</a>
+            <span class="hw-place-addr">{l.street}<br />{l.city}, CT {l.zip}</span>
+            <a class="hw-place-link" href={mapsHref(l)} target="_blank" rel="noopener">Get directions</a>
+          </address>
         ))}
-      </ul>
+      </div>
     </div>
+  </div>
 
-    <div class="mt-10 border-t border-white/10 pt-7 grid items-center gap-4 text-xs text-white/60 text-center md:grid-cols-[1fr_auto_1fr] md:text-left">
+  <div class="hw-f-wrap">
+    <div class="hw-footer-bar">
       <span>© 2026 Hopewell Health Solutions, LLC. All rights reserved.</span>
-      <a href="https://elev8.io" target="_blank" rel="noopener" aria-label="Website by elev8.io (opens in a new tab)" class="tracking-wide text-white/70 hover:text-white transition">by <strong class="font-bold text-white">elev8.io</strong></a>
-      <span class="flex flex-wrap justify-center gap-4 md:justify-end"><a href="/privacy/" class="hover:text-white">Privacy</a><a href="/hipaa-notice/" class="hover:text-white">HIPAA Notice</a><a href="/terms/" class="hover:text-white">Terms</a><a href="/accessibility/" class="hover:text-white">Accessibility</a></span>
+      <span class="hw-legal"><a href="/privacy/">Privacy</a><a href="/hipaa-notice/">HIPAA Notice</a><a href="/terms/">Terms</a><a href="/accessibility/">Accessibility</a></span>
+      <a href="https://elev8.io" target="_blank" rel="noopener" aria-label="Website by elev8.io (opens in a new tab)">by <strong>elev8.io</strong></a>
     </div>
   </div>
 </footer>
+
+<style>
+  .hw-footer { position: relative; overflow: hidden; background: var(--hw-night); color: #c3d2e2; padding: clamp(56px, 7vw, 80px) 0 28px; font-size: 16px; }
+  .hw-f-wrap { position: relative; max-width: 1240px; margin: 0 auto; padding: 0 var(--hw-gutter); }
+  .hw-footer-arc { position: absolute; right: -220px; top: -160px; width: 600px; color: rgba(156,195,234,.14); pointer-events: none; }
+  .hw-footer a { color: #e7eef5; text-decoration: none; }
+  .hw-footer a:hover { color: var(--hw-sky); text-decoration: underline; }
+  .hw-footer-grid { display: grid; gap: 36px; grid-template-columns: 1.4fr repeat(3, 1fr); padding-bottom: clamp(36px, 5vw, 52px); }
+  .hw-footer-brand img { width: 180px; height: auto; margin-bottom: 18px; }
+  .hw-footer-brand p { line-height: 1.7; max-width: 34ch; }
+  .hw-f-phone { display: inline-flex; align-items: center; gap: 10px; margin-top: 16px; font-family: var(--hw-head); font-size: 22px; font-weight: 800; color: #fff !important; }
+  .hw-social { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .hw-social a { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.08); color: #fff; }
+  .hw-social a:hover { background: rgba(255,255,255,.18); }
+  .hw-social :global(svg) { width: 15px; height: 15px; }
+  .hw-foot-h { font-family: var(--hw-head); font-size: 15.5px; font-weight: 800; color: #fff; margin: 0 0 14px; }
+  .hw-footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .hw-find { padding-bottom: clamp(30px, 4vw, 44px); }
+  .hw-find-inner { padding-top: clamp(26px, 3.4vw, 34px); border-top: 1px solid rgba(255,255,255,.14); }
+  .hw-find-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 28px; }
+  .hw-place { font-style: normal; display: grid; gap: 3px; align-content: start; padding-left: 16px; border-left: 2px solid rgba(156,195,234,.35); }
+  .hw-place-care { font-family: var(--hw-head); font-size: 12.5px; font-weight: 700; color: var(--hw-sky); }
+  .hw-footer .hw-place-name { font-family: var(--hw-head); font-size: 16.5px; font-weight: 800; color: #fff; line-height: 1.3; }
+  .hw-place-addr { font-size: 15px; line-height: 1.5; }
+  .hw-footer .hw-place-link { justify-self: start; margin-top: 4px; font-family: var(--hw-head); font-size: 14px; font-weight: 700; color: #fff; text-decoration: underline; text-decoration-color: var(--hw-sky); text-underline-offset: 4px; }
+  .hw-footer-bar { padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; font-size: 14px; color: #9fb4cc; }
+  .hw-legal { display: flex; flex-wrap: wrap; gap: 18px; }
+  .hw-legal a { text-decoration: underline !important; text-underline-offset: 3px; }
+  @media (max-width: 900px) {
+    .hw-footer-grid { grid-template-columns: 1fr 1fr; }
+    .hw-footer-brand { grid-column: 1 / -1; }
+    .hw-find-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .hw-footer { padding-top: 40px; font-size: 15px; }
+    .hw-footer-grid { gap: 24px; }
+    .hw-find-grid { grid-template-columns: 1fr; gap: 14px; }
+    .hw-footer-bar { font-size: 12.5px; }
+  }
+</style>

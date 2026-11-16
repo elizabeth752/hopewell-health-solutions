@@ -2,8 +2,7 @@
 import Icon from "./Icon.astro";
 import { socials } from "../data/socials";
 
-// Full ideal IA. Live pages resolve; unbuilt ones 404 until shipped (intentional
-// — lets us navigate/visualize the whole sitemap as we build it out).
+// Corner Canyon header pattern in Hopewell colours. Every menu link is unchanged from the live site.
 const menu = [
   { label: "Programs", href: "/programs/", children: [
     { label: "IOP Overview", href: "/programs/intensive-outpatient-program/" },
@@ -68,84 +67,121 @@ const menu = [
     { label: "For Families", href: "/admissions/#for-families" },
   ]},
 ];
-
 const path = Astro.url.pathname;
-const isActive = (m) => path.startsWith(m.href) && m.href !== "/" || m.children.some((c) => path === c.href.split("#")[0]);
+const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.some((c) => path === c.href.split("#")[0]);
 ---
-<header class="hdr sticky top-0 z-40">
-  <!-- utility bar -->
-  <div class="bg-night text-white/80 text-[13px]">
-    <slot name="topbar">
-    <div class="wrap flex h-9 items-center justify-between gap-4">
-      <p class="hidden md:flex items-center gap-2"><Icon name="pin" class="h-3.5 w-3.5 text-azul-light" />Six offices across Glastonbury, West Hartford, East Hampton &amp; Westbrook, CT</p>
-      <div class="flex items-center gap-1.5 ml-auto">
+<header class="hw-header">
+  <div class="hw-top">
+    <div class="hw-top-in">
+      <p>Mental health &amp; psychiatry in Connecticut · In crisis? Call or text <a href="tel:988">988</a></p>
+      <ul class="hw-top-social">
         {socials.map((s) => (
-          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label} class:list={["grid h-6 w-6 place-items-center rounded-full text-white/75 hover:bg-white hover:text-ink transition", s.small ? "[&>svg]:h-[11px] [&>svg]:w-[11px]" : "[&>svg]:h-3 [&>svg]:w-3"]}><Fragment set:html={s.svg} /></a>
+          <li><a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label}><Fragment set:html={s.svg} /></a></li>
         ))}
-      </div>
-    </div>
-    </slot>
-  </div>
-
-  <!-- main bar -->
-  <div class="bg-white/95 backdrop-blur border-b border-line">
-    <div class="wrap flex h-[76px] items-center justify-between gap-4">
-      <a href="/" class="shrink-0" aria-label="Hopewell Health Solutions — home">
-        <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" class="h-11 sm:h-[52px] w-auto" />
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-x-1" aria-label="Main">
-        {menu.map((m) => (
-          <div class="relative group">
-            <a href={m.href} class:list={["flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-semibold transition", isActive(m) ? "text-azul bg-azul-light" : "text-ink hover:text-azul hover:bg-azul-light/60"]}>
-              {m.label}<svg viewBox="0 0 24 24" class="h-3.5 w-3.5 opacity-60 transition group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-            </a>
-            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
-              <div class:list={["rounded-3xl border border-line bg-white p-3 shadow-[0_24px_60px_-20px_rgba(0,29,55,.35)]", m.children.length > 6 ? "w-[34rem]" : "w-72"]}>
-                <a href={m.href} class="mb-1 flex items-center justify-between rounded-2xl bg-crema px-4 py-3 font-display text-lg text-ink hover:text-azul transition">{m.label}<Icon name="arrow" class="h-4 w-4 text-azul" /></a>
-                <ul class:list={["grid gap-0.5", m.children.length > 6 && "grid-cols-2"]}>
-                  {m.children.map((c) => (
-                    <li><a href={c.href} class="flex items-center gap-2 rounded-xl px-4 py-2.5 text-[14px] font-medium text-ink hover:bg-azul-light hover:text-azul transition"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-azul/40"></span>{c.label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </nav>
-
-      <div class="flex items-center gap-2 shrink-0">
-        <a href="tel:8607351448" class="btn btn-primary hidden xl:inline-flex"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <a href="tel:8607351448" class="xl:hidden grid h-12 w-12 place-items-center rounded-full bg-azul-bright text-white" aria-label="Call us"><Icon name="phone" class="h-5 w-5" /></a>
-        <button id="mobileToggle" class="lg:hidden grid h-12 w-12 place-items-center rounded-full border border-line text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
-        </button>
-      </div>
+      </ul>
     </div>
   </div>
-
-  <!-- mobile panel: accordions, every link kept -->
-  <div id="mobilePanel" class="hidden lg:hidden border-b border-line bg-white max-h-[78vh] overflow-y-auto">
-    <div class="wrap py-4">
+  <div class="hw-bar">
+    <a href="/" class="hw-logo" aria-label="Hopewell Health Solutions — home">
+      <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" />
+    </a>
+    <nav class="hw-nav" id="hwNav" aria-label="Main" data-open="false">
       {menu.map((m) => (
-        <details class="group border-b border-line">
-          <summary class="flex cursor-pointer list-none items-center justify-between py-3.5 font-display text-lg text-ink">{m.label}<svg viewBox="0 0 24 24" class="h-4 w-4 text-azul transition group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <ul class="grid grid-cols-1 gap-0.5 pb-3 sm:grid-cols-2">
-            <li><a href={m.href} class="block rounded-xl bg-crema px-3 py-2 text-[15px] font-semibold text-azul">All {m.label}</a></li>
-            {m.children.map((c) => <li><a href={c.href} class="block rounded-xl px-3 py-2 text-[15px] font-medium text-ink">{c.label}</a></li>)}
-          </ul>
-        </details>
+        <div class:list={["hw-drop", m.align === "right" && "is-right"]} data-expanded="false">
+          <a href={m.href} class:list={["hw-nav-top", isActive(m) && "is-active"]}>{m.label}<Icon name="chevron" class="hw-caret" /></a>
+          <div class:list={["hw-panel", m.children.length > 6 && "is-cols"]}>
+            {m.children.map((c) => <a href={c.href}>{c.label}</a>)}
+            <a href={m.href} class="hw-panel-all">All {m.label.toLowerCase()}</a>
+          </div>
+        </div>
       ))}
-      <a href="tel:8607351448" class="btn btn-primary mt-5 w-full"><Icon name="phone" class="h-4 w-4" />Call (860) 735-1448</a>
+      <div class="hw-nav-actions">
+        <a href="tel:8607351448" class="hw-call"><Icon name="phone" class="h-[18px] w-[18px]" /><span>(860) 735-1448</span></a>
+        <a href="/admissions/#verify" class="btn btn-navy hw-verify">Verify my insurance</a>
+      </div>
+    </nav>
+    <div class="hw-mobile-actions">
+      <a href="tel:8607351448" class="hw-mcall" aria-label="Call (860) 735-1448"><Icon name="phone" class="h-5 w-5" /></a>
+      <button class="hw-menu-btn" id="hwMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="hwNav"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
+<style>
+  .hw-header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--hw-line); font-family: var(--hw-head); }
+  .hw-top { background: var(--hw-night); color: #c3d2e2; font-size: 13.5px; }
+  .hw-top-in, .hw-bar { max-width: 1240px; margin: 0 auto; padding: 0 var(--hw-gutter); }
+  .hw-top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 36px; }
+  .hw-top a { color: #fff; font-weight: 700; }
+  .hw-top-social { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
+  .hw-top-social a { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #c3d2e2; }
+  .hw-top-social a:hover { background: #fff; color: var(--hw-night); }
+  .hw-top-social :global(svg) { width: 12px; height: 12px; }
+  .hw-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 10px; padding-bottom: 10px; }
+  .hw-logo img { width: 128px; height: auto; display: block; }
+  .hw-nav { display: flex; align-items: center; gap: 20px; font-size: 15px; font-weight: 600; }
+  .hw-nav-top { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; color: var(--hw-navy); text-decoration: none; white-space: nowrap; }
+  .hw-nav-top:hover, .hw-nav-top.is-active { color: var(--hw-bright); }
+  .hw-nav-top :global(.hw-caret) { width: 15px; height: 15px; transition: transform .16s ease; }
+  .hw-drop { position: relative; }
+  .hw-panel { display: none; }
+  .hw-panel a { display: block; padding: 9px 14px; border-radius: 10px; color: var(--hw-navy); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .hw-panel a:hover { background: var(--hw-stone); color: var(--hw-blue); }
+  .hw-panel .hw-panel-all { font-weight: 700; color: var(--hw-blue); text-decoration: underline; text-decoration-color: var(--hw-sky); text-underline-offset: 3px; }
+  .hw-nav-actions { display: flex; align-items: center; gap: 16px; margin-left: 4px; }
+  .hw-call { display: inline-flex; align-items: center; gap: 8px; color: var(--hw-navy); font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .hw-verify { min-height: 46px !important; padding: 0 20px !important; font-size: 14.5px !important; }
+  .hw-mobile-actions { display: none; }
+
+  @media (min-width: 1281px) {
+    .hw-drop:hover .hw-panel, .hw-drop:focus-within .hw-panel {
+      display: block; position: absolute; top: 100%; left: -14px; min-width: 270px; padding: 8px;
+      background: #fff; border: 1px solid var(--hw-line); border-radius: 16px; box-shadow: 0 18px 40px rgba(0,29,55,.14);
+    }
+    .hw-drop.is-right:hover .hw-panel, .hw-drop.is-right:focus-within .hw-panel { left: auto; right: -14px; }
+    .hw-drop:hover .hw-panel.is-cols, .hw-drop:focus-within .hw-panel.is-cols { display: grid; grid-template-columns: repeat(2, minmax(250px, 1fr)); column-gap: 4px; }
+    .hw-panel.is-cols .hw-panel-all { grid-column: 1 / -1; margin-top: 4px; border-top: 1px solid var(--hw-line); border-radius: 0; padding-top: 12px; }
+    .hw-drop:hover :global(.hw-caret) { transform: rotate(180deg); }
+  }
+  @media (min-width: 1281px) and (max-width: 1500px) {
+    .hw-nav { gap: 12px; font-size: 14px; }
+    .hw-call span { display: none; }
+  }
+  @media (max-width: 1280px) {
+    .hw-top-in p { font-size: 12.5px; }
+    .hw-top-social { display: none; }
+    .hw-logo img { width: 112px; }
+    .hw-mobile-actions { display: flex; align-items: center; gap: 10px; }
+    .hw-mcall { width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: var(--hw-bright); color: #fff; }
+    .hw-menu-btn { width: 44px; height: 44px; border-radius: 12px; border: 1.5px solid var(--hw-navy); background: transparent; display: grid; place-content: center; gap: 4px; cursor: pointer; }
+    .hw-menu-btn span { display: block; width: 18px; height: 2px; background: var(--hw-navy); border-radius: 2px; transition: transform .2s, opacity .2s; }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .hw-nav { display: none; }
+    .hw-nav[data-open="true"] { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - 120px); overflow-y: auto; background: #fff; border-bottom: 1px solid var(--hw-line); padding: 8px var(--hw-gutter) 24px; font-size: 17px; }
+    .hw-nav[data-open="true"] .hw-nav-top { justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--hw-line); }
+    .hw-drop[data-expanded="true"] .hw-panel { display: block; padding: 6px 0 10px 12px; }
+    .hw-drop[data-expanded="true"] :global(.hw-caret) { transform: rotate(180deg); }
+    .hw-nav-actions { flex-direction: column; align-items: stretch; margin: 18px 0 0; gap: 12px; }
+    .hw-call { justify-content: center; min-height: 52px; border: 2px solid var(--hw-navy); border-radius: 999px; }
+    .hw-bar { position: relative; }
+  }
+</style>
+
 <script>
-  const btn = document.getElementById("mobileToggle");
-  const panel = document.getElementById("mobilePanel");
+  const btn = document.getElementById("hwMenuBtn");
+  const nav = document.getElementById("hwNav");
   btn?.addEventListener("click", () => {
-    const open = panel?.classList.toggle("hidden") === false;
+    const open = nav?.dataset.open !== "true";
+    if (nav) nav.dataset.open = String(open);
     btn.setAttribute("aria-expanded", String(open));
+  });
+  // Phone menu: the first tap on a top item opens its list; a second tap follows the link.
+  document.querySelectorAll<HTMLElement>(".hw-drop").forEach((d) => {
+    d.querySelector(".hw-nav-top")?.addEventListener("click", (e) => {
+      if (window.matchMedia("(min-width: 1281px)").matches) return;
+      if (d.dataset.expanded !== "true") { e.preventDefault(); d.dataset.expanded = "true"; }
+    });
   });
 </script>

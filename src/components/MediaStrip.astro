@@ -27,12 +27,12 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
       <div class="ms-track flex w-max">
         <ul class="flex shrink-0 items-center">
           {logos.map(([name, src]) => (
-            <li class="shrink-0"><img src={src} alt={name} width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+            <li class="shrink-0"><img src={src} alt={name} width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-10 lg:h-12 w-auto object-contain" /></li>
           ))}
         </ul>
         <ul class="flex shrink-0 items-center" aria-hidden="true">
           {logos.map(([, src]) => (
-            <li class="shrink-0"><img src={src} alt="" width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+            <li class="shrink-0"><img src={src} alt="" width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-10 lg:h-12 w-auto object-contain" /></li>
           ))}
         </ul>
       </div>
