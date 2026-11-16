@@ -36,7 +36,7 @@ const nAdd = list.filter((l) => l.addiction).length;
     <ul class="lc-track" aria-label="Hopewell offices">
       {[...ordered, ...ordered].map((l, k) => (
         <li class="lc" data-add={l.addiction ? "1" : "0"} aria-hidden={k >= ordered.length ? "true" : undefined}>
-          <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /><span class:list={["lc-n", l.addiction && "is-add"]}>{l.n}</span></div>
+          <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /></div>
 
           <div class="lc-body">
             <span class:list={["lc-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health care"}</span>
