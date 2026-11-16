@@ -939,3 +939,5 @@
   .hw .ins-form { display: flex; }
   .hw .ins-form .lead-card { height: 100%; display: flex; flex-direction: column; justify-content: center; }
 }
+/* Sitewide alignment rule (user 2026-11-16 "align everything"): cards never lift out of their row on hover. */
+.hw .pc:hover, .hw .prog:hover, .hw .path:hover, .hw .bc:hover, .hw .pr-card:hover, .hw .tm-card:hover, .hw .vc-card:hover, .hw .ba-feature:hover, .hw .pod-ep:hover, .hw .usp-card:hover { transform: none !important; }

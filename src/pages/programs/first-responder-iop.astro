@@ -105,7 +105,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 <Base title="First Responder IOP in Connecticut | Police, Fire & EMS | Hopewell" description="A confidential, in-person IOP for Connecticut police, firefighters, EMS and dispatchers, with peers who understand the job. Check your coverage." image="/Assets/service/first-responder-session.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(svc)} />
-  <main class="hw">
+  <main class="hw" data-pgx>
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "First Responder" }]}
       title="First Responder IOP in Connecticut"
@@ -120,8 +120,6 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Creds />
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
-    <!-- 3. Reviews -->
-    <Reviews heading="What Our IOP Clients Say" first={["IOP"]} tone="stone" />
 
     <!-- 4. Who it's for -->
     <Split heading="Specialized care for those who answer the call" img="/Assets/service/first-responder-session.webp" alt="A police officer receiving one-on-one support at Hopewell Health Solutions' First Responder IOP">
@@ -182,6 +180,9 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
     <!-- 9. Insurance & admissions -->
     <Insurance heading="Insurance for first responders — TRICARE East accepted as PPO" lede="We accept most major commercial insurance, TRICARE (East accepted as a PPO plan) and VA Community Care. <strong>In some cases, the State of Connecticut may compensate you directly while you’re in day treatment</strong>, and many qualify for FMLA or CT Paid Leave. Our team handles the paperwork. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- Reviews sit last, right above the FAQ (coordinator, 2026-11-16) -->
+    <Reviews heading="What Our IOP Clients Say" first={["IOP"]} tone="stone" />
 
     <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="First Responder IOP — common questions" tone="white" />

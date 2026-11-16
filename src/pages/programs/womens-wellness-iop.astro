@@ -145,7 +145,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 <Base title="Women's Wellness IOP in Westbrook & Glastonbury, CT | Hopewell" description="An in-person IOP just for women in Westbrook, CT: support for anxiety, depression, postpartum and life transitions, in a group of women. Check coverage." image={W + "therapy-room-shore.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(svc)} />
-  <main class="hw">
+  <main class="hw" data-pgx>
     <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Wellness" }]}
@@ -162,8 +162,6 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Creds />
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
-    <!-- 3. Google reviews -->
-    <Reviews heading="What Women Say About Hopewell" first={["Women’s Wellness IOP", "IOP"]} tone="stone" />
 
     <!-- 4. Who this program is for -->
     <Split heading="We understand the load women carry" img={W + "therapy-room-sage.webp"} alt="A calm therapy room at the Westbrook office for the Women's Wellness IOP" img2={P + "group-room-bright.webp"} alt2="A bright group room for the Women's Wellness IOP in Glastonbury">
@@ -239,6 +237,9 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
     <!-- 9. Insurance and admissions -->
     <Insurance heading="Insurance for the Women’s Wellness IOP" lede="We accept most major commercial insurances, and TRICARE East is accepted as a PPO plan. Many participants also qualify for <strong>Connecticut Paid Leave or FMLA</strong>. Our team verifies your benefits at no cost — before you commit to anything. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- Reviews sit last, right above the FAQ (coordinator, 2026-11-16) -->
+    <Reviews heading="What Women Say About Hopewell" first={["Women’s Wellness IOP", "IOP"]} tone="stone" />
 
     <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="Women’s Wellness IOP — common questions" tone="white" />

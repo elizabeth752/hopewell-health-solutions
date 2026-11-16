@@ -104,7 +104,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 <Base title="Women's Trauma IOP in Connecticut | Trauma-Informed Care | Hopewell" description="A women-only, trauma-informed intensive outpatient program in Connecticut. Heal from past trauma and PTSD with a team you meet in person. Check coverage." image={P + "iop-group-room-lights.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(svc)} />
-  <main class="hw">
+  <main class="hw" data-pgx>
     <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Trauma" }]}
@@ -121,8 +121,6 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Creds />
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
-    <!-- 3. Reviews -->
-    <Reviews heading="What Women Say About Hopewell" tone="stone" first={["Women’s Wellness IOP", "IOP"]} />
 
     <!-- 4. Who it's for -->
     <Split heading="What is trauma?" img={P + "iop-group-room-lights.webp"} alt="A calm Hopewell group room for women's trauma recovery" img2="/Assets/girl%20thinking%20worried.webp" alt2="Understanding trauma and its lasting effects" reverse tone="white">
@@ -162,6 +160,9 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
     <!-- 9. Insurance & admissions -->
     <Insurance heading="Insurance for women’s trauma treatment" lede="The Women’s Trauma IOP is covered by most major commercial insurance plans when medically necessary. Our team verifies your benefits at no cost — before you commit to anything. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- Reviews sit last, right above the FAQ (coordinator, 2026-11-16) -->
+    <Reviews heading="What Women Say About Hopewell" tone="stone" first={["Women’s Wellness IOP", "IOP"]} />
 
     <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="Women’s Trauma IOP — common questions" tone="white" />

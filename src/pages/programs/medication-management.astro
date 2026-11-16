@@ -106,7 +106,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 <Base title="Psychiatrist & Medication Management in CT | Hopewell" description="Psychiatric evaluations and medication management for children, teens and adults in Glastonbury, Westbrook and nearby CT towns. In person or telehealth. Check coverage." image="/Assets/hhs-2026/westbrook-therapy-office.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(svc)} />
-  <main class="hw">
+  <main class="hw" data-pgx>
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Medication Management" }]}
       title="Psychiatry &amp; Medication Management in Connecticut"
@@ -119,8 +119,6 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Creds />
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
-    <!-- 3. Reviews -->
-    <Reviews heading="What Our Clients Say" tone="stone" first={["Medication management"]} />
 
     <!-- 4. Who it's for -->
     <Split heading="What is medication management?" img={P + "westbrook-therapy-office.webp"} alt="A private office for medication management at our Westbrook location" img2={P + "east-hampton-waiting-room.webp"} alt2="The waiting room at our East Hampton office">
@@ -182,6 +180,9 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
     <!-- 9. Insurance -->
     <Insurance heading="Insurance for psychiatry visits" lede="Most commercial plans cover psychiatric evaluations and medication management. Our team verifies your benefits at no cost, before you commit to anything. Hopewell doesn’t accept Medicare or Medicaid." />
+
+    <!-- Reviews sit last, right above the FAQ (coordinator, 2026-11-16) -->
+    <Reviews heading="What Our Clients Say" tone="stone" first={["Medication management"]} />
 
     <!-- 10. FAQ -->
     <Faq faqs={faqs} heading="Psychiatry &amp; medication management — common questions" tone="white" />

@@ -332,3 +332,32 @@
 .hw .ph-signs li { display: flex; gap: 12px; align-items: center; padding: 16px 18px; border-radius: 16px; background: #fff; border: 1px solid var(--hw-line); font-size: 15.5px; font-weight: 600; color: var(--hw-navy); }
 @media (max-width: 1100px) { .hw .ph-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .ph-signs { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .hw .ph-cards, .hw .ph-signs { grid-template-columns: 1fr; } .hw .ph-card { grid-template-columns: 100px minmax(0, 1fr); } }
+.hw .ph-body h4 { font-weight: 800; }
+.hw .ph-quick { gap: 8px; }
+.hw .ph-quick a { padding: 9px 13px; font-size: 14px; }
+/* Align rule: a 5-card 3-column grid centres its last row (no lone orphan) — 6-track grid, cards span 2. */
+@media (min-width: 761px) {
+  .hw .pg-cards.cols-3:has(> :nth-child(5):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .hw .pg-cards.cols-3:has(> :nth-child(5):last-child) > * { grid-column: span 2; }
+  .hw .pg-cards.cols-3:has(> :nth-child(5):last-child) > :nth-child(4) { grid-column: 2 / span 2; }
+}
+/* Align rule on these five pages (main[data-pgx]): side-by-side columns share top and bottom edges. */
+@media (min-width: 1000px) {
+  .hw[data-pgx] .sp-grid:not(.is-solo) { align-items: stretch; }
+  .hw[data-pgx] .sp-aside { position: static; display: flex; flex-direction: column; }
+  .hw[data-pgx] .sp-aside > .sp-card { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .hw[data-pgx] .sp-aside > figure { flex: 1; display: flex; flex-direction: column; margin: 0; }
+  .hw[data-pgx] .sp-aside > figure img { flex: 1; min-height: 0; height: 100%; aspect-ratio: auto; object-fit: cover; }
+  .hw[data-pgx] .pg-split { align-items: stretch; }
+  .hw[data-pgx] .pg-split .pg-copy { align-self: center; }
+  .hw[data-pgx] .pg-media { display: flex; }
+  .hw[data-pgx] .pg-media > img { height: 100%; min-height: 360px; aspect-ratio: auto; }
+  .hw[data-pgx] .pg-media.has-two { display: grid; align-items: stretch; }
+  .hw[data-pgx] .pg-media.has-two img, .hw[data-pgx] .pg-media.has-two img + img { aspect-ratio: auto; height: 100%; min-height: 360px; }
+  .hw[data-pgx] .pg-two { align-items: stretch; }
+}
+@media (min-width: 1000px) {
+  .hw[data-pgx] .pg-mo { align-items: stretch; }
+  .hw[data-pgx] .pg-out { display: flex; flex-direction: column; justify-content: center; }
+  .hw[data-pgx] .sp-aside > .sp-card ul, .hw[data-pgx] .sp-aside > .sp-card ol { flex: 1; justify-content: space-evenly; }
+}

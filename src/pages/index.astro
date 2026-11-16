@@ -15,6 +15,7 @@ import MediaStrip from "../components/MediaStrip.astro";
 import Creds from "../components/hw/Creds.astro";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import Reviews from "../components/hw/Reviews.astro";
+import Team from "../components/hw/Team.astro";
 import Locations from "../components/hw/Locations.astro";
 import { VIDEOS, videoSchema } from "../data/videos.js";
 import { providers } from "../data/providers.js";
@@ -303,20 +304,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
     </div>
   </section>
 
-  <!-- 9. Meet the team -->
-  <section class="section is-white" id="team">
-    <div class="container">
-      <div class="vc-head">
-        <div class="sec-head" style="margin:0"><h2>Meet the People Who’ll Walk Beside You</h2><p class="lede">Prescribers, psychologists and therapists across six Connecticut offices. <a class="inl" href="/about-us/team/">Meet our clinicians</a>.</p></div>
-        <a class="vc-all" href="/about-us/team/">Meet our full team <span aria-hidden="true">&rarr;</span></a>
-      </div>
-      <ul class="tt-grid">
-        {team.map((p) => (
-          <li><a class="tm-card" href={`/provider/${p.slug}/`}><img src={`/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`} alt={p.name} width="600" height="750" loading="lazy" /><span class="tm-cap"><strong>{p.name}</strong><span>{shortRole(p.role)}</span></span></a></li>
-        ))}
-      </ul>
-    </div>
-  </section>
+  <!-- 9. Meet the team (shared component, same on every page) -->
+  <Team />
 
   <!-- Google reviews (last, above the FAQ) -->
   <Reviews tone="white" />
