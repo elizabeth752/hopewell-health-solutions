@@ -233,6 +233,9 @@ const eventSchema = ev && {
       <div class="container">
         <div class="sec-head"><h2>Services &amp; programs we offer</h2><p class="lede">{intro[l.slug]} Compare <a class="inl" href="/locations/#compare">which office offers what</a>.</p></div>
         <ProgramCards items={items} cols={items.length > 3 ? 4 : 3} />
+        {/* Cross-links carried over from the live page's Conditions & Treatments grid (2026-11-16 SEO audit). Phrased
+            Hopewell-wide so no service is claimed for an office that doesn't offer it. */}
+        <p class="sec-foot">Across our Connecticut offices, Hopewell also offers <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.{l.addiction && <Fragment> This office also provides <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>.</Fragment>}</p>
       </div>
     </section>
 

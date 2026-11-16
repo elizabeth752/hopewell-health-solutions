@@ -11,5 +11,7 @@ const items = TREATMENTS.filter((t) => t.href !== current).slice(0, 4);
   <div class="container">
     <div class="sec-head"><h2>{heading}</h2><p class="lede" set:html={lede + ` See <a class="inl" href="/treatment-methods/">all treatments and testing</a>.`} /></div>
     <ProgramCards items={items} />
+    {/* Conditions & treatments cross-links carried over from the live ServicesGrid (SEO interlinking, 2026-11-16 audit). */}
+    <p class="sec-foot">We also treat <a class="inl" href="/what-we-treat/">a wide range of conditions</a> under one roof, with <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>, plus <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>. Ready to start? See <a class="inl" href="/admissions/">how admissions works</a>.</p>
   </div>
 </section>
