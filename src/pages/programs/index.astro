@@ -98,7 +98,10 @@ const levels = [
 ];
 
 // Programs × offices matrix (locations.js offers; trauma + first responder from their program pages).
-const offices = locations.map((l) => ({ slug: l.slug, name: l.name.replace("Glastonbury (Pratt St)", "Pratt St, Glastonbury"), offers: l.offers || [] }));
+const offices = locations.map((l) => ({ slug: l.slug, name: l.name.replace("Glastonbury (Pratt St)", "Pratt St, Glastonbury"), offers: l.offers || [], street: l.street, city: l.city }));
+const officePhoto = { "glastonbury-ct": "/Assets/locations/glastonbury/exterior.webp", "glastonbury-ct-2": "/Assets/hhs-2026/downtown-glastonbury-sign.webp", "glastonbury-ct-3": "/Assets/hhs-2026/sg-front-desk.webp", "west-hartford-ct": "/Assets/hhs-2026/west-hartford-office.webp", "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp", "westbrook-ct": "/Assets/hhs-2026/westbrook-sign.webp" };
+const progIcon = { "Partial Hospitalization (PHP)": "sun", "Adult Co-Occurring IOP": "users", "Addiction IOP": "link", "Women’s Wellness IOP": "heart", "Women’s Trauma IOP": "shield", "First Responder IOP": "shield", "Teen IOP & Tween IOP": "sparkles", "Counseling": "chat", "Medication Management": "pill" };
+const progColor = { "Partial Hospitalization (PHP)": "#265489", "Adult Co-Occurring IOP": "#2f76c4", "Addiction IOP": "#0b2f55", "Women’s Wellness IOP": "#b6863c", "Women’s Trauma IOP": "#b6863c", "First Responder IOP": "#265489", "Teen IOP & Tween IOP": "#5c7c6b", "Counseling": "#5a6b7a", "Medication Management": "#5a6b7a" };
 const matrix = [
   { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", key: "php" },
   { t: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", key: "iop" },
@@ -309,26 +312,23 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
           <h2>Which Office Offers Which Program</h2>
           <p class="lede">Every office offers therapy and medication management. Intensive programs meet at 300 Hebron Ave in Glastonbury, 1420 Main St in South Glastonbury and in Westbrook. We also serve the shoreline, including Niantic, Branford, Madison and Guilford.</p>
         </div>
-        <div class="ph-filter" role="toolbar" aria-label="Filter by location">
-          <span>Show programs in:</span>
-          {[["all", "All locations"], ["gl", "Glastonbury"], ["wb", "Westbrook"], ["eh", "East Hampton"], ["wh", "West Hartford"]].map(([k, l], i) => <button type="button" class:list={["ph-f", i === 0 && "is-on"]} data-f={k} data-cols={k === "all" ? "" : fkey[k].join(" ")} aria-pressed={i === 0 ? "true" : "false"}>{l}</button>)}
-        </div>
-        <div class="ph-mx-wrap">
-          <table class="ph-mx">
-            <thead><tr><th scope="col">Program</th>{offices.map((o) => <th scope="col" data-col={o.slug}><a href={`/location/${o.slug}/`}>{o.name}</a></th>)}</tr></thead>
-            <tbody>
-              {matrix.map((r) => (
-                <tr data-at={offices.filter((_, k) => r.at[k]).map((o) => o.slug).join(" ")}>
-                  <th scope="row"><a href={r.href}>{r.t}</a></th>
-                  {r.at.map((on, k) => <td data-col={offices[k].slug}>{on ? <span class="ph-yes"><Icon name="check" class="h-4 w-4" /><span class="sr-only">Offered</span></span> : <span class="ph-no" aria-label="Not offered">–</span>}</td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div class="po-grid">
+          {[...offices.map((o, k) => ({ o, k, n: matrix.filter((r) => r.at[k] && !["Counseling", "Medication Management"].includes(r.t)).length }))].sort((x, y) => (y.n > 0 ? 1 : 0) - (x.n > 0 ? 1 : 0)).map(({ o, k }) => { const progs = matrix.filter((r) => r.at[k]); const intensive = progs.filter((r) => !["Counseling", "Medication Management"].includes(r.t)); return (
+            <article class:list={["po-card", intensive.length === 0 && "is-compact"]}>
+              <a class="po-photo" href={`/location/${o.slug}/`} tabindex="-1" aria-hidden="true"><img src={officePhoto[o.slug]} alt="" width="1200" height="900" loading="lazy" />{intensive.length > 0 && <span class="po-count"><strong>{intensive.length}</strong> intensive {intensive.length === 1 ? "program" : "programs"}</span>}</a>
+              <div class="po-body">
+                <h3><a href={`/location/${o.slug}/`}>{o.name}</a></h3>
+                <p class="po-addr"><Icon name="pin" class="h-4 w-4" />{o.street}, {o.city}</p>
+                <ul class="po-list">
+                  {progs.map((r) => <li class:list={[intensive.includes(r) && "is-int"]}><span class="po-ic" style={`--c:${progColor[r.t] ?? "#2f76c4"}`}><Icon name={progIcon[r.t] ?? "check"} class="h-4 w-4" /></span><a href={r.href}>{r.t}</a></li>)}
+                </ul>
+                <a class="po-link inl" href={`/location/${o.slug}/`}>Visit the {o.name} office</a>
+              </div>
+            </article>
+          ); })}
         </div>
       </div>
     </section>
-    <Locations heading="Programs by Location" lede="See each office’s photos, address and programs. Programs differ by location; our admissions team will point you to the closest office that offers the care you need." tone="white" />
 
     <!-- 7. Testimonials matched to programs -->
     <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Each Program" lede="Clients share what our programs were like, labeled by program: adult IOP, IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
