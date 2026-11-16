@@ -170,6 +170,9 @@ export const locations = [
       ["therapy-room-garden.webp", "Bright therapy room with plants in Westbrook"],
       ["therapy-room-sage.webp", "Therapy room with a green sofa in Westbrook"],
       ["office.webp", "Clinician office and seating area in Westbrook"],
+      ["beach-walk.webp", "A walk on the beach near our Westbrook office"],
+      ["beach-group.webp", "The shoreline near our Westbrook office"],
+      ["beach-pier.webp", "A walk out on the pier along the Westbrook shore"],
       ["sitting-room.webp", "Sitting room with a window view in Westbrook"],
     ],
     // Open house, transcribed from the client's flyer ("Open House Invite - version 1").

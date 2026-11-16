@@ -719,3 +719,8 @@
   .hw .xp-step img { grid-row: span 3; aspect-ratio: 1; border-radius: 16px !important; }
   .hw .xp-dot { display: none; } .hw .xp-step h3 { margin-top: 0; font-size: 17px; }
 }
+
+/* Hero: the original Hopewell site's signature tagline (serif italic), lighter scrim so the photos show (client doc Task 1) */
+.hw .hero-tag { font-family: "Baskervville", Georgia, serif; font-weight: 400; font-size: clamp(28px, 2.8vw, 40px); color: #fff; letter-spacing: 0; }
+.hw .hero-tag em { font-style: italic; color: var(--hw-sky-soft); }
+@media (min-width: 1000px) { .hw .hero-scrim { background: linear-gradient(90deg, rgba(0,29,55,.9) 0%, rgba(0,29,55,.72) 42%, rgba(0,29,55,.2) 100%); } .hw .hero { min-height: 720px; display: flex; align-items: center; } .hw .hero > .container { width: 100%; } }
