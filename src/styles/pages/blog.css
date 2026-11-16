@@ -277,3 +277,6 @@
 .hw .bp-notes { display: grid; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--hw-line); }
 .hw .bp-notes p { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; line-height: 1.55; color: var(--hw-slate); }
 .hw .bp-notes svg { flex: none; margin-top: 2px; color: var(--hw-bright); }
+/* The scrolling insurance strip is max-content wide: keep the article column from growing past the screen. */
+.hw .bp-layout > article, .hw .bp-content, .hw .bcv, .hw .bpg { min-width: 0; }
+@media (max-width: 1080px) { .hw .bp-layout { grid-template-columns: minmax(0, 1fr); } }
