@@ -185,3 +185,31 @@
 .hw .tx-venn > div:first-child { padding: 18% 30% 18% 12%; }
 .hw .tx-venn > div:nth-child(2) { padding: 18% 12% 18% 30%; }
 .hw .tx-venn b { top: 22%; }
+
+/* TMS results: rings + device photo (2026-11-16) */
+.hw .tms-res { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: clamp(28px, 4vw, 56px); align-items: center; }
+.hw .tms-perks { list-style: none; margin: 0 0 26px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
+.hw .tms-perks li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--hw-head); font-weight: 700; color: #fff; }
+.hw .tms-perks svg { color: var(--hw-sky); }
+.hw .tms-rings { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hw .tms-ring { position: relative; margin: 0; display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 18px; padding: 20px; border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+.hw .tms-ring svg { width: 120px; height: 120px; }
+.hw .tms-ring strong { position: absolute; left: 20px; top: 50%; width: 120px; transform: translateY(-50%); text-align: center; font-family: var(--hw-head); font-size: 32px; font-weight: 800; color: #fff; }
+.hw .tms-ring strong em { font-style: normal; font-size: 18px; color: var(--hw-sky); }
+.hw .tms-ring figcaption { font-size: 15.5px; line-height: 1.5; color: #dce6f1; }
+.hw .tms-res-photo { margin: 0; position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
+.hw .tms-res-photo img { width: 100%; aspect-ratio: 3 / 3.6; object-fit: cover; display: block; }
+.hw .tms-res-photo figcaption { position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 999px; background: #fff; font-family: var(--hw-head); font-size: 13px; font-weight: 700; color: var(--hw-navy); }
+@media (max-width: 999px) { .hw .tms-res { grid-template-columns: 1fr; } .hw .tms-res-photo img { aspect-ratio: 16 / 10; } }
+@media (max-width: 640px) { .hw .tms-rings { grid-template-columns: 1fr; } .hw .tms-ring { grid-template-columns: 96px 1fr; } .hw .tms-ring svg { width: 96px; height: 96px; } .hw .tms-ring strong { width: 96px; font-size: 26px; } }
+
+/* TMS schedule: stat tiles across, course chart full width */
+.hw .tms-sched { display: grid; gap: 28px; }
+.hw .tms-sched > div:first-child { display: grid; gap: 14px; }
+.hw .tms-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.hw .tms-facts .tx-fact { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 18px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .tms-facts .tx-fact > span:last-child { display: grid; gap: 2px; }
+.hw .tms-facts strong { font-family: var(--hw-head); font-size: 15px; color: var(--hw-slate); font-weight: 700; }
+.hw .tms-facts .tx-fact > span:last-child > span { font-family: var(--hw-head); font-size: 20px; font-weight: 800; color: var(--hw-navy); line-height: 1.2; }
+.hw .tms-sched .tx-course { max-width: none; width: 100%; }
+@media (max-width: 760px) { .hw .tms-facts { grid-template-columns: 1fr; } }

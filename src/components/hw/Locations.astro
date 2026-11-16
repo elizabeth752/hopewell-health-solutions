@@ -33,9 +33,9 @@ const nAdd = list.filter((l) => l.addiction).length;
     </div>
   </div>
   <div class="lc-wrap" data-lc>
-    <ul class="lc-track" tabindex="0" aria-label="Hopewell offices">
-      {ordered.map((l) => (
-        <li class="lc" data-add={l.addiction ? "1" : "0"}>
+    <ul class="lc-track" aria-label="Hopewell offices">
+      {[...ordered, ...ordered].map((l, k) => (
+        <li class="lc" data-add={l.addiction ? "1" : "0"} aria-hidden={k >= ordered.length ? "true" : undefined}>
           <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /><span class:list={["lc-n", l.addiction && "is-add"]}>{l.n}</span></div>
           <div class="lc-map">
             {l.map ? <iframe src={l.map} title={`Map of Hopewell Health Solutions ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1"></iframe> : <span class="lc-map-ph"><Icon name="pin" class="h-6 w-6" /></span>}
@@ -53,36 +53,22 @@ const nAdd = list.filter((l) => l.addiction).length;
         </li>
       ))}
     </ul>
-    <div class="container lc-nav">
-      <button type="button" class="rv-btn" data-dir="-1" aria-label="Previous office"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-      <button type="button" class="rv-btn" data-dir="1" aria-label="Next office"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      <a class="inl" href="/locations/">Compare all offices</a>
-    </div>
+    <div class="container lc-nav"><a class="inl" href="/locations/">Compare all offices</a></div>
   </div>
 </section>
 
 <script>
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Continuous self-moving loop (CSS animation on a doubled list); pauses on hover/focus via CSS. Tabs filter both halves.
   document.querySelectorAll<HTMLElement>("[data-lc]").forEach((w) => {
     const sec = w.closest("section")!;
     const track = w.querySelector<HTMLElement>(".lc-track")!;
-    const cards = () => [...track.children].filter((c) => !(c as HTMLElement).hidden) as HTMLElement[];
-    let hold = false;
-    const step = () => (cards()[0]?.offsetWidth ?? 300) + 18;
-    const go = (dir: number) => {
-      const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
-      if (dir > 0 && end) track.scrollTo({ left: 0, behavior: reduce ? "auto" : "smooth" });
-      else if (dir < 0 && track.scrollLeft <= 4) track.scrollTo({ left: track.scrollWidth, behavior: reduce ? "auto" : "smooth" });
-      else track.scrollBy({ left: dir * step(), behavior: reduce ? "auto" : "smooth" });
-    };
-    w.querySelectorAll<HTMLButtonElement>(".rv-btn").forEach((b) => b.addEventListener("click", () => go(Number(b.dataset.dir))));
-    ["mouseenter", "focusin", "touchstart"].forEach((e) => w.addEventListener(e, () => (hold = true), { passive: true }));
-    ["mouseleave", "focusout"].forEach((e) => w.addEventListener(e, () => (hold = false)));
-    if (!reduce) setInterval(() => { if (!hold && !document.hidden && track.scrollWidth > track.clientWidth + 4) go(1); }, 4500);
+    const n = track.children.length / 2;
+    const setSpeed = () => { const vis = [...track.children].filter((c) => !(c as HTMLElement).hidden).length / 2; track.style.animationDuration = `${Math.max(vis, 2) * 9}s`; };
+    setSpeed();
     sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((t) => t.addEventListener("click", () => {
       sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((x) => { x.classList.toggle("is-on", x === t); x.setAttribute("aria-pressed", String(x === t)); });
       [...track.children].forEach((c) => { (c as HTMLElement).hidden = t.dataset.f === "add" && (c as HTMLElement).dataset.add !== "1"; });
-      track.scrollTo({ left: 0 });
+      setSpeed(); track.style.animation = "none"; void track.offsetWidth; track.style.animation = "";
     }));
   });
 </script>

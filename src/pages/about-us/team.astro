@@ -112,21 +112,7 @@ const tones = ["is-white", "is-stone"];
       </section>
     ))}
 
-    <!-- Press & features -->
-    <section class="section is-mist" id="press">
-      <div class="container">
-        <div class="sec-head"><h2>Press &amp; features</h2><p class="lede">Our clinicians are featured across Connecticut. See <a class="inl" href="/media/">all press &amp; interviews</a>.</p></div>
-        <div class="ab-press">
-          {press.map((p) => (
-            <a href={p.href} target="_blank" rel="noopener">
-              <span class="ab-press-top"><img src={p.logo} alt={p.outlet} loading="lazy" /><span>{p.date}</span></span>
-              <strong>{p.title}</strong>
-              <em>Read the feature <Icon name="arrow" class="h-4 w-4" /></em>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Conditions & treatments -->
     <section class="section is-white" id="services">

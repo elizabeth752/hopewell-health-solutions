@@ -145,29 +145,42 @@ const schema = {
       </div>
     </section>
 
-    <!-- Results -->
+    <!-- Results: ring charts beside the real NeuroStar device -->
     <section class="section is-navy">
       <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
-      <div class="container">
-        <div class="sec-head"><h2>Real, measurable relief</h2><p class="lede">Proven results from NeuroStar® Advanced TMS — FDA-cleared, with no downtime, drug-free &amp; non-invasive.</p></div>
-        <div class="tx-stats" style="--cols:2">
-          <div class="tx-stat"><strong>83<em>%</em></strong><span>of patients who completed TMS experienced relief from depression</span></div>
-          <div class="tx-stat"><strong>62<em>%</em></strong><span>achieved full remission — complete relief from depression</span></div>
+      <div class="container tms-res">
+        <div>
+          <div class="sec-head"><h2>Real, measurable relief</h2><p class="lede">Evidence-based results from NeuroStar® Advanced TMS — FDA-cleared, with no downtime, drug-free &amp; non-invasive.</p></div>
+          <ul class="tms-perks">
+            <li><Icon name="shield" class="h-5 w-5" />FDA-cleared</li>
+            <li><Icon name="clock" class="h-5 w-5" />No downtime</li>
+            <li><Icon name="pill" class="h-5 w-5" />Drug-free</li>
+            <li><Icon name="heart" class="h-5 w-5" />Non-invasive</li>
+          </ul>
+          <div class="tms-rings">
+            {[[83, "of patients who completed TMS experienced relief from depression"], [62, "achieved full remission — complete relief from depression"]].map(([n, t], i) => (
+              <figure class="tms-ring">
+                <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="12" /><circle cx="60" cy="60" r="50" fill="none" stroke={i ? "#b6863c" : "#9cc3ea"} stroke-width="12" stroke-linecap="round" stroke-dasharray={`${(n / 100) * 314.16} 314.16`} transform="rotate(-90 60 60)" /></svg>
+                <strong>{n}<em>%</em></strong>
+                <figcaption>{t}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <p class="tx-source">Source: NeuroStar® published clinical data.</p>
         </div>
-        <p class="tx-source">Source: NeuroStar® published clinical data.</p>
+        <figure class="tms-res-photo"><img src={P + "tms-neurostar-chair.webp"} alt="The NeuroStar Advanced Therapy system at Hopewell Health Solutions" width="1200" height="1600" loading="lazy" /><figcaption>NeuroStar® Advanced Therapy · Glastonbury</figcaption></figure>
       </div>
     </section>
 
     <!-- Schedule -->
     <section class="section is-stone">
-      <div class="container tx-split">
+      <div class="container tms-sched">
         <div>
           <h2>Your TMS schedule</h2>
           <p class="lede" style="margin-top:14px">A full course of NeuroStar® Advanced TMS is delivered in short, consistent sessions — right here at our Glastonbury office.</p>
-          <div class="tx-facts3" style="grid-template-columns:1fr">
+          <div class="tms-facts">
             {expect.map(([icon, t, d]) => <div class="tx-fact"><span class="icon-badge"><Icon name={icon} /></span><span><strong>{t}</strong><span>{d}</span></span></div>)}
           </div>
-          <img src="/Assets/TMS/neurostar-tms.webp" alt="NeuroStar Advanced TMS at Hopewell Health Solutions — treatment frequency, duration & session length" loading="lazy" style="margin-top:18px;width:100%;border-radius:18px;border:1px solid var(--hw-line)" />
         </div>
         <div class="tx-course" aria-label="A typical TMS course: five sessions a week for six to nine weeks">
           <div class="tx-course-grid" aria-hidden="true">
@@ -192,21 +205,7 @@ const schema = {
       </div>
     </section>
 
-    <!-- Press -->
-    <section class="section is-stone">
-      <div class="container">
-        <div class="sec-head"><h2>Press &amp; features</h2><p class="lede">Our clinicians, featured across Connecticut. <a class="inl" href="/media/">See all press &amp; interviews</a>.</p></div>
-        <div class="tx-cards">
-          {press.map((p) => (
-            <a href={p.href} target="_blank" rel="noopener" class="tx-card" style="text-decoration:none">
-              <span style="display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:34px"><img src={p.logo} alt={p.outlet} loading="lazy" style="height:28px;width:auto;max-width:60%;object-fit:contain" /><small style="color:var(--hw-slate);font-size:13px">{p.date}</small></span>
-              <h3>{p.title}</h3>
-              <span class="pc-go" style="font-family:var(--hw-head);font-weight:800;color:var(--hw-blue);display:inline-flex;gap:6px;align-items:center">Read the feature <Icon name="arrow" class="h-4 w-4" /></span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+    
 
     <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
     <Reviews tone="stone" />

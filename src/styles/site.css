@@ -827,3 +827,11 @@
 .hw .pk p { font-size: 15.5px; }
 @media (min-width: 1100px) { .hw .pk-grid:has(> .pk:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 700px) { .hw .pk-grid:has(> .pk:nth-child(4):last-child) .pk { grid-template-columns: 46px 1fr; column-gap: 16px; } }
+/* Locations: continuous loop */
+.hw .lc-wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.hw .lc-track { overflow: visible; width: max-content; scroll-snap-type: none; padding: 6px 0 22px; animation: hw-lc 54s linear infinite; }
+.hw .lc { flex: 0 0 370px; }
+.hw .lc-wrap:hover .lc-track, .hw .lc-wrap:focus-within .lc-track { animation-play-state: paused; }
+@keyframes hw-lc { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 9px)); } }
+@media (max-width: 640px) { .hw .lc { flex-basis: 290px; } }
+@media (prefers-reduced-motion: reduce) { .hw .lc-wrap { overflow-x: auto; } .hw .lc-track { animation: none; } }
