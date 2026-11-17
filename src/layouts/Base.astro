@@ -78,5 +78,30 @@ const ogUrl = canonicalHref;
     <EventPopup />
     <WestbrookLauncher />
     <GoogleBadge />
-  </body>
+  <script>
+  // Phones: condition/treatment cards show the summary first, the rest opens with "Read more" (text stays in the HTML).
+  document.querySelectorAll<HTMLElement>(".wq-card").forEach((card) => {
+    if (!card.querySelector(":scope > p:not(.wq-line):not(.wq-meta)")) return;
+    card.classList.add("has-more");
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "wq-more"; b.textContent = "Read more"; b.setAttribute("aria-expanded", "false");
+    b.addEventListener("click", () => { const open = card.classList.toggle("is-open"); b.textContent = open ? "Show less" : "Read more"; b.setAttribute("aria-expanded", String(open)); });
+    const meta = card.querySelector(":scope > .wq-meta");
+    meta ? card.insertBefore(b, meta) : card.append(b);
+  });
+</script>
+<script>
+  // Phones hide the hero form (one form sits above insurance), so "#verify" links jump to whichever form is visible.
+  document.addEventListener("click", (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#verify"], a[href$="/#verify"]');
+    if (!a || (a.pathname !== location.pathname && !a.getAttribute("href")!.startsWith("#"))) return;
+    const t = document.getElementById("verify");
+    if (t && t.offsetParent) return;
+    const alt = [...document.querySelectorAll<HTMLElement>(".lead-card")].find((el) => el.offsetParent);
+    if (!alt) return;
+    e.preventDefault();
+    alt.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+</script>
+</body>
 </html>

@@ -213,7 +213,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
           {heroSlides.map(([, label], i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo: ${label}`}></button>)}
         </div>
       </div>
-      <div class="hero-form is-keep" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
+      <div class="hero-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
     </div>
   </section>
 
@@ -390,7 +390,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   if (!reduce && slides.length > 1) setInterval(() => { if (!document.hidden) show(cur + 1); }, 6000);
   // Sticky mobile button hides while a form is on screen.
   const sticky = document.querySelector<HTMLElement>(".hw-sticky-cta");
-  const forms = document.querySelectorAll(".lead-card");
+  // Hidden while a form or the hero buttons are on screen (they overlapped on phones).
+  const forms = document.querySelectorAll(".lead-card, .hero-ctas");
   if (sticky && "IntersectionObserver" in window) {
     const vis = new Set();
     const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target))); sticky.classList.toggle("is-hidden", vis.size > 0); });

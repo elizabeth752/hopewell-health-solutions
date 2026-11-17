@@ -521,3 +521,16 @@
 .hw .ph-panel.is-on { animation: ph-in .5s ease; }
 @keyframes ph-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hw .ph-tab.is-auto::after, .hw .ph-panel.is-on { animation: none; } }
+
+/* Phones (2026-11-17): the weekly timetable stacks per program instead of scrolling sideways. */
+@media (max-width: 760px) {
+  .hw .ph-tt { overflow-x: visible; padding: 12px; gap: 10px; }
+  .hw .ph-tt-row { min-width: 0; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+  .hw .ph-tt-row > .ph-tt-lab { grid-column: 1 / -1; padding: 8px 10px; }
+  .hw .ph-tt-row > .ph-tt-hrs { grid-column: 1 / -1; padding: 0 2px; font-size: 13px; }
+  .hw .ph-tt-headrow > .ph-tt-lab, .hw .ph-tt-headrow > .ph-tt-hrs { display: none; }
+  .hw .ph-tt-headrow { font-size: 11px; }
+  .hw .ph-tt-headrow > span { padding: 2px 0; }
+  .hw .ph-tt-cell { min-height: 40px; padding: 4px 2px; border-radius: 8px; font-size: 10.5px; }
+  .hw .ph-tt-cell.is-flex { font-size: 12.5px; }
+}

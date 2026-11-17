@@ -1000,3 +1000,61 @@
 
 /* No decorative arcs or rings anywhere on the site (user 2026-11-17). Data graphics (TMS rings, review score) are kept. */
 .hw .pg-out::after, .hw .level-head::after, .hw .tm-all::before, .hw .wq-group-head::after, .hw .ba-hero::before, .hw .lp-more::after { content: none !important; display: none !important; }
+
+/* ---------- Phones (Corner Canyon mobile pass, 2026-11-17) ---------- */
+@media (max-width: 640px) {
+  /* Tighter FAQ: same questions and answers, smaller rows */
+  main.hw .faq-grid { gap: 20px; }
+  main.hw .faq-list { gap: 8px; }
+  main.hw .faq { border-radius: 12px; }
+  main.hw .faq summary { padding: 13px 14px; gap: 12px; font-size: 15.5px; line-height: 1.35; }
+  main.hw .faq summary svg { width: 18px; height: 18px; }
+  main.hw .faq-a { padding: 0 14px 14px; font-size: 15.5px; line-height: 1.6; }
+  main.hw .faq-groups { gap: 18px; }
+  main.hw .faq-gh { font-size: 15px; margin-bottom: 8px; }
+  main.hw .section { padding: 44px 0; }
+}
+@media (max-width: 640px) {
+  /* Office finder: intensive-program offices as compact photo rows */
+  main.hw .ob-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 0 12px; padding: 12px; border-radius: 16px; }
+  main.hw .ob-photo img { aspect-ratio: 1; border-radius: 12px; }
+  main.hw .ob-body { padding: 0; }
+  main.hw .ob-card h4, main.hw .ob-mini h4 { font-size: 16.5px; }
+  main.hw .ob-addr { font-size: 13.5px; }
+  main.hw .ob-progs { margin-top: 8px; gap: 4px; }
+  main.hw .ob-progs li { font-size: 14px; }
+  main.hw .ob-plus { font-size: 13px; }
+  main.hw .ob-links { padding-top: 8px; }
+  main.hw .ob-links a { font-size: 13.5px; }
+  main.hw .ob-mini { grid-template-columns: 96px minmax(0, 1fr); padding: 12px; border-radius: 16px; }
+
+  /* "All six locations" office cards: photo beside the text */
+  main.hw .ab-offices { gap: 12px; }
+  main.hw .ab-office { display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: start; border-radius: 18px; background-image: linear-gradient(var(--bar, var(--hw-bright)), var(--bar, var(--hw-bright))); background-size: 100% 4px; background-repeat: no-repeat; }
+  main.hw .ab-office-media { margin: 14px 0 0 12px; aspect-ratio: 1; border-radius: 12px; border-bottom: 0; }
+  main.hw .ab-office-media::after { display: none; }
+  main.hw .ab-office-media span { position: static; display: none; }
+  main.hw .ab-office-body { padding: 12px 14px 14px; gap: 6px; }
+  main.hw .ab-office-body h3.sr-only { position: static !important; width: auto !important; height: auto !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; clip: auto !important; clip-path: none !important; white-space: normal !important; order: -1; font-size: 17px; color: var(--hw-navy); }
+  main.hw .ab-office-care { font-size: 11.5px; }
+  main.hw .ab-office-addr { font-size: 13.5px; }
+  main.hw .ab-office-body > p:not([class]) { font-size: 14px; line-height: 1.5; }
+  main.hw .ab-office-offers { padding-top: 8px; gap: 4px; }
+  main.hw .ab-office-offers li { font-size: 13.5px; }
+  main.hw .ab-office-ctas { gap: 8px; padding-top: 4px; }
+  main.hw .ab-office-ctas .btn { min-height: 36px; padding: 0 12px; font-size: 13px; }
+}
+@media (max-width: 640px) {
+  /* Video grids and review grids: one swipeable row instead of a tall stack (Corner Canyon pattern) */
+  main.hw .vc-grid, main.hw .ab-revgrid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding: 4px var(--hw-gutter, 16px) 10px; scroll-padding-inline: var(--hw-gutter, 16px); }
+  main.hw .vc-grid::-webkit-scrollbar, main.hw .ab-revgrid::-webkit-scrollbar { display: none; }
+  main.hw .vc-grid > li { flex: 0 0 82%; scroll-snap-align: start; }
+  main.hw .ab-revgrid > .rv { flex: 0 0 86%; scroll-snap-align: start; }
+  main.hw .vc-grid .vc-desc { font-size: 14px; }
+
+  /* Condition and treatment cards: name + one-line summary show; the longer copy opens with "Read more" (all text stays in the page) */
+  main.hw .wq-card.has-more:not(.is-open) > p:not(.wq-line):not(.wq-meta) { display: none; }
+  main.hw .wq-more { align-self: flex-start; margin-top: 8px; padding: 0; border: 0; background: none; font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: var(--hw-blue); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+}
+main.hw .wq-more { display: none; }
+@media (max-width: 640px) { main.hw .wq-more { display: block; width: fit-content; margin-right: auto; text-align: left; } }
