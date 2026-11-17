@@ -210,3 +210,58 @@
 .hw .lhm-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: var(--hw-bright); }
 .hw .lhm-dot.is-add { background: var(--hw-gold); }
 @media (max-width: 600px) { .hw .lhm-key { grid-template-columns: 1fr; } }
+
+/* ---------- Locations hub (2026-11-17) ---------- */
+/* Hero: office building carousel instead of the map */
+.hw .lh-houses .ps-single .ps-track { box-shadow: 0 30px 70px rgba(0,0,0,.35); }
+.hw .wq-hero .lh-houses .ps-btn { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); color: #fff; }
+.hw .wq-hero .lh-houses .ps-btn:hover { background: #fff; color: var(--hw-navy); }
+.hw .wq-hero .lh-houses .ps-dots button { background: rgba(255,255,255,.35); }
+.hw .wq-hero .lh-houses .ps-dots button.is-on { background: #fff; }
+
+/* Connecticut: copy + regions left, office map right (navy section) */
+.hw .lh-ct { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hw .lh-ct-copy .lede { margin-top: 16px; }
+.hw .lh-ct-copy > p:not(.lede) { margin-top: 14px; font-size: 17px; line-height: 1.7; color: #c9d6e4; }
+.hw .lh-regions { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; }
+.hw .lh-regions li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); font-size: 15.5px; line-height: 1.55; color: #c9d6e4; }
+.hw .lh-regions strong { display: block; margin-bottom: 2px; font-family: var(--hw-head); font-size: 17px; color: #fff; }
+.hw .lh-region-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--hw-bright); color: #fff; }
+.hw .lh-regions a.inl, .hw .lh-ct-help a { color: #fff; }
+.hw .lh-ct-help { display: flex; gap: 10px; align-items: flex-start; margin-top: 22px; font-size: 14.5px; line-height: 1.55; color: #c9d6e4; }
+.hw .lh-ct-help svg { flex: none; margin-top: 2px; color: var(--hw-gold); }
+.hw .lh-ct-help a { font-weight: 700; }
+
+/* Visit: heading + welcome video side by side */
+.hw .lh-visit-top { display: grid; grid-template-columns: 1fr 300px; gap: clamp(28px, 4vw, 56px); align-items: center; margin-bottom: 36px; }
+.hw .lh-visit-note { display: flex; align-items: center; gap: 10px; margin-top: 16px; font-family: var(--hw-head); font-weight: 700; color: var(--hw-navy); }
+.hw .lh-visit-note svg { color: var(--hw-bright); }
+.hw .lh-tour { height: auto; }
+.hw .lh-tour .vc-poster img { aspect-ratio: 9 / 12; object-fit: cover; object-position: center 30%; }
+
+/* Telehealth band */
+.hw .lh-tele { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 4vw, 56px); align-items: center; padding: clamp(28px, 5vw, 60px); border-radius: 32px; background: linear-gradient(150deg, var(--hw-navy) 0%, var(--hw-night) 100%); color: #dce6f1; }
+.hw .lh-tele-arcs { position: absolute; width: 560px; right: -220px; top: -240px; fill: none; stroke: rgba(156,195,234,.18); stroke-width: 2; pointer-events: none; }
+.hw .lh-tele-copy, .hw .lh-tele-art, .hw .lh-tele-steps { position: relative; }
+.hw .lh-tele-tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: #fff; }
+.hw .lh-tele h2 { margin-top: 16px; color: #fff; }
+.hw .lh-tele .lede { margin-top: 14px; color: #dce6f1; }
+.hw .lh-tele-list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
+.hw .lh-tele-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15.5px; line-height: 1.45; color: #fff; }
+.hw .lh-tele-list li > span { flex: none; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(47,118,196,.35); color: #fff; }
+.hw .lh-tele-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.hw .lh-tele-ghost { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+.hw .lh-tele-ghost:hover { background: #fff; color: var(--hw-navy); }
+.hw .lh-tele-art { margin: 0; }
+.hw .lh-tele-art svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 24px 40px rgba(0,0,0,.3)); }
+.hw .lh-tele-steps { grid-column: 1 / -1; list-style: none; margin: 8px 0 0; padding: 22px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; border-top: 1px solid rgba(255,255,255,.14); }
+.hw .lh-tele-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.5; color: #c9d6e4; }
+.hw .lh-tele-steps strong { display: block; font-family: var(--hw-head); font-size: 16.5px; color: #fff; }
+.hw .lh-tele-n { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--hw-gold); color: #fff; font-family: var(--hw-head); font-weight: 800; }
+
+@media (max-width: 999px) {
+  .hw .lh-ct, .hw .lh-tele, .hw .lh-visit-top { grid-template-columns: 1fr; }
+  .hw .lh-visit-top .lh-tour { max-width: 320px; }
+  .hw .lh-tele-steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .hw .lh-tele-list { grid-template-columns: 1fr; } }

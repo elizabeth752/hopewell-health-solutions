@@ -11,13 +11,13 @@ import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
-import Locations from "../../components/hw/Locations.astro";
+import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import OfficeFinder from "../../components/hw/OfficeFinder.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
-import { STORIES } from "../../data/videos.js";
+import { STORIES, VIDEOS, videoSchema } from "../../data/videos.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/locations/";
 // Hero map: offices projected from locations.js lat/lng into a 100x80 box (graphic, not to scale at the shoreline).
@@ -27,6 +27,32 @@ const pins = locations.map((l, i) => ({ ...proj(l), n: i + 1, slug: l.slug, name
 // spread the three Glastonbury pins so they don't overlap
 for (const [slug, dx, dy] of [["glastonbury-ct", -3.5, -3], ["glastonbury-ct-2", 3.5, -2], ["glastonbury-ct-3", 0, 4]]) { const p = pins.find((q) => q.slug === slug); if (p) { p.x += dx; p.y += dy; } }
 const towns = [["Hartford", 14, 8], ["Middletown", 36, 41], ["Old Saybrook", 80, 70], ["New Haven", 3, 66]];
+const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
+const L = "/Assets/locations/";
+const heroHouses = [
+  { src: L + "glastonbury/exterior.webp", alt: "The Hopewell house at 33 Pratt Street, Glastonbury", cap: "Glastonbury · Pratt St", href: "/location/glastonbury-ct/", w: 1536, h: 1536 },
+  { src: L + "downtown-glastonbury/building.webp", alt: "The Medical Arts Center at 300 Hebron Avenue, Glastonbury", cap: "Downtown Glastonbury · 300 Hebron Ave", href: "/location/glastonbury-ct-2/", w: 1100, h: 886 },
+  { src: "/Assets/hhs-2026/south-glastonbury-office.webp", alt: "The South Glastonbury office at 1420 Main Street", cap: "South Glastonbury · 1420 Main St", href: "/location/glastonbury-ct-3/" },
+  { src: "/Assets/hhs-2026/west-hartford-office.webp", alt: "The West Hartford office on Farmington Avenue", cap: "West Hartford", href: "/location/west-hartford-ct/" },
+  { src: L + "east-hampton/exterior.webp", alt: "The East Hampton office at 151 East High Street", cap: "East Hampton", href: "/location/east-hampton-ct/", w: 1360, h: 1020 },
+  { src: L + "westbrook/exterior.webp", alt: "The Westbrook office at 70 Essex Road", cap: "Westbrook · the shoreline", href: "/location/westbrook-ct/", w: 1536, h: 866 },
+];
+const regions = [
+  { icon: "home", t: "Greater Hartford", d: `Three Glastonbury offices and <a class="inl" href="/location/west-hartford-ct/">West Hartford</a>, close to Hartford, Manchester, Wethersfield, Rocky Hill, South Windsor and Newington.` },
+  { icon: "compass", t: "The Connecticut River Valley", d: `<a class="inl" href="/location/east-hampton-ct/">East Hampton</a> serves Middletown, Portland, Colchester, Marlborough and the rest of Middlesex County.` },
+  { icon: "sun", t: "The shoreline", d: `<a class="inl" href="/location/westbrook-ct/">Westbrook</a> serves Old Saybrook, Clinton, Madison, Guilford, Branford, Essex and Niantic.` },
+];
+const teleWhy = [
+  ["users", "The same clinicians who see clients in our offices"],
+  ["shield", "Secure, private video on your phone, tablet or computer"],
+  ["refresh", "Switch between in-person and video visits any time"],
+  ["calendar", "Daytime and evening appointments"],
+];
+const teleSteps = [
+  ["Call or send a form", "We check your insurance for free and match you with a clinician."],
+  ["Get your link", "You receive a secure video link before your appointment."],
+  ["Meet from home", "Join from a quiet, private space anywhere in Connecticut."],
+];
 const allAreas = Array.from(new Set(locations.flatMap((l) => l.areas))).sort();
 const heroUsps = [
   { icon: "pin", t: "Six Connecticut offices, Hartford County & the shoreline" },
@@ -123,7 +149,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />
   <main class="hw">
-    <!-- Hero (Corner Canyon hub pattern): navy, H1 + facts, and a map graphic of the six offices -->
+    <!-- Hero (Corner Canyon hub pattern): navy, H1 + facts, and a carousel of the office buildings (user 2026-11-17: houses, not the map) -->
     <section class="wq-hero">
       <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
       <div class="container wq-hero-grid">
@@ -136,27 +162,9 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
           </ul>
           <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#by-location" class="btn wq-ghost">Find a program near you</a></div>
         </div>
-        <figure class="lhm-map" aria-label="Map of Hopewell's six Connecticut offices">
-          <svg viewBox="0 0 100 80" role="img" aria-labelledby="lhm-map-t">
-            <title id="lhm-map-t">Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, Connecticut</title>
-            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73 L100,80 L0,80 Z" class="lhm-sea" />
-            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73" class="lhm-coast" />
-            <path d="M45,0 C46,6 47,12 48,18 S49,30 51,38 S56,52 62,60 S70,70 73,75" class="lhm-river" />
-            <text x="24" y="78.4" class="lhm-sea-t">LONG ISLAND SOUND</text>
-            {pins.map((p) => (
-              <a href={`/location/${p.slug}/`} aria-label={p.name}>
-                <g class:list={["lhm-pin", p.add && "is-add"]} transform={`translate(${p.x} ${p.y})`}>
-                  <circle r="3.1" /><text y="1.1" text-anchor="middle">{p.n}</text>
-                </g>
-              </a>
-            ))}
-            {towns.map(([t, x, y]) => <text x={x} y={y} class="lhm-town">{t}</text>)}
-          </svg>
-          <figcaption>
-            <ol class="lhm-key">{pins.map((p) => <li><span class:list={["lhm-key-n", p.add && "is-add"]}>{p.n}</span><a href={`/location/${p.slug}/`}>{p.name}</a></li>)}</ol>
-            <p class="lhm-legend"><span class="lhm-dot"></span>Mental health care <span class="lhm-dot is-add"></span>Also addiction treatment</p>
-          </figcaption>
-        </figure>
+        <div class="lh-houses">
+          <PhotoSlider photos={heroHouses} eager label="Photos of Hopewell's Connecticut offices" />
+        </div>
       </div>
     </section>
     <Creds />
@@ -179,6 +187,42 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
             <p>We treat the <a href="/what-we-treat/" class="inl">full range of mental health and behavioral concerns</a>: depression, anxiety, trauma and PTSD, ADHD, OCD, and bipolar disorder, with <a href="/what-we-treat/substance-use-disorder/" class="inl">addiction</a> and co-occurring care at our Downtown Glastonbury and Westbrook offices. We welcome individuals of every age, background, and identity, and we work hard to make starting easy, most major PPO insurance plans are accepted, and our team <a href="/rates-and-insurance-coverage/" class="inl">verifies your benefits for free</a> before your first visit. Choose the office nearest you below, or call <a href="tel:8607351448" class="inl">(860) 735-1448</a> and we’ll help you find the right location, provider, and level of care.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Connecticut (user 2026-11-17: talk more about Connecticut). The office map moved here from the hero. -->
+    <section class="section is-navy" id="connecticut">
+      <div class="container lh-ct">
+        <div class="lh-ct-copy">
+          <h2>Mental health care rooted in Connecticut</h2>
+          <p class="lede">Hopewell started in Glastonbury in 2013 and has grown one Connecticut town at a time. Our clinicians live and work here, so they know the commutes, the school calendars, the local support groups and the hospitals and doctors you may already see.</p>
+          <p>Our offices follow the Connecticut River from the Hartford suburbs down through Middlesex County to the shoreline. That means most people in Hartford and Middlesex Counties, and along the coast from Branford to Old Saybrook, can reach an office without a long drive. Anyone else in the state can see the same team by secure telehealth.</p>
+          <ul class="lh-regions">
+            {regions.map((r) => <li><span class="lh-region-ico"><Icon name={r.icon} class="h-5 w-5" /></span><span><strong>{r.t}</strong><span set:html={r.d} /></span></li>)}
+          </ul>
+          <p class="lh-ct-help"><Icon name="phone" class="h-5 w-5" /><span>In crisis anywhere in Connecticut? Call or text <a href="tel:988">988</a>. For local community services, dial <a href="tel:211">2-1-1</a> (United Way of Connecticut).</span></p>
+        </div>
+        <figure class="lhm-map lh-ct-map" aria-label="Map of Hopewell's six Connecticut offices">
+          <svg viewBox="0 0 100 80" role="img" aria-labelledby="lhm-map-t">
+            <title id="lhm-map-t">Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, Connecticut</title>
+            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73 L100,80 L0,80 Z" class="lhm-sea" />
+            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73" class="lhm-coast" />
+            <path d="M45,0 C46,6 47,12 48,18 S49,30 51,38 S56,52 62,60 S70,70 73,75" class="lhm-river" />
+            <text x="24" y="78.4" class="lhm-sea-t">LONG ISLAND SOUND</text>
+            {pins.map((p) => (
+              <a href={`/location/${p.slug}/`} aria-label={p.name}>
+                <g class:list={["lhm-pin", p.add && "is-add"]} transform={`translate(${p.x} ${p.y})`}>
+                  <circle r="3.1" /><text y="1.1" text-anchor="middle">{p.n}</text>
+                </g>
+              </a>
+            ))}
+            {towns.map(([t, x, y]) => <text x={x} y={y} class="lhm-town">{t}</text>)}
+          </svg>
+          <figcaption>
+            <ol class="lhm-key">{pins.map((p) => <li><span class:list={["lhm-key-n", p.add && "is-add"]}>{p.n}</span><a href={`/location/${p.slug}/`}>{p.name}</a></li>)}</ol>
+            <p class="lhm-legend"><span class="lhm-dot"></span>Mental health care <span class="lhm-dot is-add"></span>Also addiction treatment</p>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -209,9 +253,6 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       </div>
     </section>
 
-    <!-- Map -->
-    <Locations heading="Find the office nearest you" lede="Every pin is a Hopewell office. Gold pins also offer addiction treatment. Tap a pin or an office for hours, photos and directions." tone="white" />
-
     <!-- Areas served -->
     <section class="section is-white" id="choose">
       <div class="container">
@@ -224,7 +265,16 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
 
     <section class="section is-stone" id="visit">
       <div class="container">
-        <div class="sec-head"><h2>What to expect when you visit</h2><p class="lede">Comfortable, private offices that feel more like a living room than a clinic, and a team that walks you through every step. Read more about <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.</p></div>
+        <div class="lh-visit-top">
+          <div class="sec-head" style="margin:0"><h2>What to expect when you visit</h2><p class="lede">Comfortable, private offices that feel more like a living room than a clinic, and a team that walks you through every step. Read more about <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.</p>
+            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />Watch a 16-second look inside our Glastonbury spaces.</p></div>
+          {tour && (
+            <button type="button" class="vc-card lh-tour" data-yt={tour.yt} data-title={tour.title} data-vertical="1" aria-label={`Play: ${tour.title}`}>
+              <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span><span class="vc-len">{tour.len}</span></span>
+              <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
+            </button>
+          )}
+        </div>
         <ol class="step-grid">
           {visit.map(([icon, t, d], i) => <li class="step"><span class="step-dot"><Icon name={icon} /></span><span class="step-num">Step {i + 1}</span><h3>{t}</h3><p>{d}</p>{i < visit.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
         </ol>
@@ -241,15 +291,44 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       </div>
     </section>
 
-    <!-- Telehealth -->
+    <!-- Telehealth (user 2026-11-17: "put more love on design"): navy card, benefits, steps and a video-call illustration -->
     <section class="section is-white" id="telehealth">
       <div class="container">
-        <div class="ab-band">
-          <span class="ab-band-ico"><Icon name="compass" /></span>
-          <div>
-            <h2>Telehealth across Connecticut</h2>
-            <p class="lede">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space, and you can move between in-person and virtual visits whenever it suits your life. Call <a href="tel:8607351448" class="inl">(860) 735-1448</a> to set up your first appointment.</p>
+        <div class="lh-tele">
+          <svg class="lh-tele-arcs" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="290" /><circle cx="300" cy="300" r="200" /></svg>
+          <div class="lh-tele-copy">
+            <span class="lh-tele-tag"><Icon name="compass" class="h-4 w-4" />Telehealth across Connecticut</span>
+            <h2>The same team, from wherever you are</h2>
+            <p class="lede">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space, and you can move between in-person and virtual visits whenever it suits your life.</p>
+            <ul class="lh-tele-list">
+              {teleWhy.map(([icon, t]) => <li><span><Icon name={icon} class="h-5 w-5" /></span>{t}</li>)}
+            </ul>
+            <div class="lh-tele-ctas">
+              <a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a>
+              <a href="/programs/counseling/" class="btn lh-tele-ghost">Telehealth counseling <Icon name="arrow" /></a>
+            </div>
           </div>
+          <figure class="lh-tele-art" aria-hidden="true">
+            <svg viewBox="0 0 420 330">
+              <defs><linearGradient id="lhtScreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf2fb"/><stop offset="1" stop-color="#d6e5f5"/></linearGradient></defs>
+              <rect x="40" y="30" width="340" height="215" rx="16" fill="#fff" />
+              <rect x="54" y="44" width="312" height="187" rx="10" fill="url(#lhtScreen)" />
+              <rect x="66" y="56" width="186" height="163" rx="10" fill="#265489" />
+              <circle cx="159" cy="118" r="26" fill="#f2d3b8" /><path d="M133 112c2-20 48-22 52 0-8-8-40-9-52 0z" fill="#6b4a33" />
+              <path d="M111 219c4-34 26-48 48-48s44 14 48 48z" fill="#9cc3ea" />
+              <rect x="264" y="56" width="90" height="76" rx="10" fill="#b6863c" />
+              <circle cx="309" cy="88" r="15" fill="#e8c4a2" /><path d="M287 132c3-18 13-26 22-26s19 8 22 26z" fill="#f4e6d0" />
+              <rect x="264" y="142" width="90" height="77" rx="10" fill="#fff" />
+              <rect x="276" y="156" width="54" height="7" rx="3.5" fill="#9cc3ea" /><rect x="276" y="170" width="66" height="7" rx="3.5" fill="#d6e5f5" /><rect x="276" y="184" width="44" height="7" rx="3.5" fill="#d6e5f5" />
+              <circle cx="288" cy="205" r="7" fill="#2f76c4" /><circle cx="309" cy="205" r="7" fill="#e05a4f" /><circle cx="330" cy="205" r="7" fill="#5c7c6b" />
+              <path d="M20 252h380l-22 22H42z" fill="#d6e5f5" /><rect x="176" y="252" width="68" height="6" rx="3" fill="#9cc3ea" />
+              <g transform="translate(312 8)"><rect width="96" height="34" rx="17" fill="#fff" /><path d="M20 10l9 4v6c0 5-4 8-9 10-5-2-9-5-9-10v-6z" fill="#5c7c6b" /><text x="36" y="22" font-family="Urbanist, sans-serif" font-weight="800" font-size="12" fill="#0b2f55">Secure</text></g>
+              <g transform="translate(0 286)"><rect width="150" height="36" rx="18" fill="#fff" /><circle cx="18" cy="18" r="7" fill="#2f76c4" /><text x="32" y="23" font-family="Urbanist, sans-serif" font-weight="800" font-size="12.5" fill="#0b2f55">Anywhere in CT</text></g>
+            </svg>
+          </figure>
+          <ol class="lh-tele-steps">
+            {teleSteps.map(([t, d], i) => <li><span class="lh-tele-n">{i + 1}</span><span><strong>{t}</strong>{d}</span></li>)}
+          </ol>
         </div>
       </div>
     </section>

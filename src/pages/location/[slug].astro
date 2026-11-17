@@ -1,4 +1,5 @@
 ---
+import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 // Location page — 2026 redesign, rebuilt to "Hopewell Locations: Content Briefs" (Claude Docs, 2026-11-16).
 // One template for the six offices. Brief titles, metas and H1s (addiction offices use "[Town] Mental Health & Addiction
 // Care"); URLs unchanged (the brief's 301 ideas are not applied). Photo-led: the real building in the hero, an office
@@ -294,6 +295,11 @@ const faqs = FAQS[l.slug];
 
 // ---- Schema ----------------------------------------------------------------------------------------------------------
 const gallery = PAGE.gallery;
+// Each photo shows once per page (user 2026-11-17): the intro carousel takes the two intro photos,
+// the "Inside the office" self-moving gallery takes the rest.
+const officePhotos = PAGE.pics.map(([src, alt]) => ({ src, alt }));
+const introSrcs = new Set(PAGE.pics.map(([src]) => src));
+const insidePhotos = gallery.filter(([src]) => !introSrcs.has(src)).map(([src, alt, cap]) => ({ src, alt, cap }));
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
@@ -338,7 +344,6 @@ const eventSchema = ev && {
   organizer: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
   url: `${canonical}#${ev.id}`,
 };
-const gCols = gallery.length % 4 === 0 && gallery.length > 4 ? 4 : gallery.length === 4 ? 4 : 3;
 ---
 
 <Base title={PAGE.title} description={PAGE.meta} canonical={canonical} image={PAGE.hero[0]}>
@@ -369,8 +374,7 @@ const gCols = gallery.length % 4 === 0 && gallery.length > 4 ? 4 : gallery.lengt
     <section class="section is-white" id="office">
       <div class="container lp-intro">
         <div class="lp-pics">
-          <img src={PAGE.pics[0][0]} alt={PAGE.pics[0][1]} width="1200" height="900" loading="eager" />
-          <img class="lp-inset" src={PAGE.pics[1][0]} alt={PAGE.pics[1][1]} width="600" height="600" loading="lazy" />
+          <PhotoSlider photos={officePhotos} label={`Photos of the ${l.name} office`} />
         </div>
         <div class="lp-copy">
           <h2>The {l.name} office</h2>
@@ -524,11 +528,7 @@ const gCols = gallery.length % 4 === 0 && gallery.length > 4 ? 4 : gallery.lengt
           <h2>Inside our {l.name} office</h2>
           <p class="lede">Real photos of the rooms where therapy, groups and psychiatric care happen at {l.street}. Prefer to meet from home? <a class="inl" href="/programs/counseling/">Telehealth counseling</a> is available statewide.</p>
         </div>
-        <ul class="lp-gallery" style={`--n:${gCols}`}>
-          {gallery.map(([src, alt, lab]) => (
-            <li><figure><img src={src} alt={alt} width="1200" height="900" loading="lazy" /><figcaption>{lab}</figcaption></figure></li>
-          ))}
-        </ul>
+        <PhotoSlider mode="marquee" photos={insidePhotos} label={`Inside the ${l.name} office`} />
       </div>
     </section>
 

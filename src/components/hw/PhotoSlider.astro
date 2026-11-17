@@ -5,17 +5,32 @@
 // mode "strip": a row of photos at one fixed height with their natural width (galleries). Scrolls/swipes when the row
 //   is wider than the container; arrows only show when there is something to scroll. Up to 4 photos fill the row
 //   edge to edge on desktop (equal columns, whole photos) and swipe on phones.
-interface Photo { src: string; alt: string; w?: number; h?: number }
-interface Props { photos: Photo[]; mode?: "single" | "strip"; label?: string; arc?: "left" | "right" }
-const { photos, mode = "single", label = "Photo gallery", arc = "left" } = Astro.props;
+// mode "marquee": self-moving strip (fixed height, natural width, whole photos) that loops; pauses on hover/focus,
+//   stops for reduced motion. Captions sit on each photo.
+interface Photo { src: string; alt: string; w?: number; h?: number; cap?: string; href?: string }
+interface Props { photos: Photo[]; mode?: "single" | "strip" | "marquee"; label?: string; arc?: "left" | "right"; eager?: boolean }
+const { photos, mode = "single", label = "Photo gallery", arc = "left", eager = false } = Astro.props;
 const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ---
+{mode === "marquee" ? (
+<div class="ps ps-marquee" role="region" aria-label={label} style={`--ps-dur:${Math.max(24, photos.length * 7)}s`}>
+  <ul class="ps-mq-track">
+    {[0, 1].map((k) => photos.map((p) => (
+      <li class="ps-mq-slide" aria-hidden={k === 1 ? "true" : undefined}>
+        <img src={p.src} alt={k === 0 ? p.alt : ""} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
+        {p.cap && <span class="ps-cap">{p.cap}</span>}
+      </li>
+    )))}
+  </ul>
+</div>
+) : (
 <div class:list={["ps", `ps-${mode}`, mode === "single" && `ps-arc-${arc}`, mode === "strip" && photos.length <= 4 && "is-fill"]} data-ps={mode} role="region" aria-roledescription="carousel" aria-label={label}>
   <div class="ps-track" tabindex="0">
     {photos.map((p, i) => (
       <figure class="ps-slide" aria-label={`${i + 1} of ${photos.length}`}>
         {mode === "single" && <img class="ps-blur" src={p.src} alt="" aria-hidden="true" loading="lazy" />}
-        <img class="ps-img" src={p.src} alt={p.alt} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
+        <img class="ps-img" src={p.src} alt={p.alt} width={p.w ?? 1200} height={p.h ?? 900} loading={i === 0 && eager ? "eager" : "lazy"} decoding="async" />
+        {p.cap && (p.href ? <a class="ps-cap" href={p.href}>{p.cap}</a> : <figcaption class="ps-cap">{p.cap}</figcaption>)}
       </figure>
     ))}
   </div>
@@ -27,6 +42,7 @@ const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" ar
     </div>
   )}
 </div>
+)}
 
 <style>
   .ps { position: relative; }
@@ -41,6 +57,18 @@ const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" ar
   .ps-single .ps-slide { width: 100%; aspect-ratio: 4 / 3; }
   .ps-single .ps-blur { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(22px) saturate(1.1); transform: scale(1.15); opacity: .55; }
   .ps-single .ps-img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+
+  .ps-cap { position: absolute; left: 14px; bottom: 14px; z-index: 1; padding: 7px 13px; border-radius: 10px; background: rgba(0,29,55,.82); color: #fff; font-family: var(--hw-head, inherit); font-weight: 700; font-size: 14px; text-decoration: none; }
+  a.ps-cap:hover { background: var(--hw-blue, #265489); }
+
+  /* marquee: self-moving, whole photos */
+  .ps-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+  .ps-mq-track { display: flex; gap: 14px; width: max-content; margin: 0; padding: 0; list-style: none; animation: ps-mq var(--ps-dur, 40s) linear infinite; }
+  .ps-marquee:hover .ps-mq-track, .ps-marquee:focus-within .ps-mq-track { animation-play-state: paused; }
+  .ps-mq-slide { position: relative; flex: none; height: clamp(240px, 26vw, 340px); border-radius: 20px; overflow: hidden; }
+  .ps-mq-slide img { display: block; height: 100%; width: auto; }
+  @keyframes ps-mq { to { transform: translateX(calc(-50% - 7px)); } }
+  @media (prefers-reduced-motion: reduce) { .ps-mq-track { animation: none; } .ps-marquee { overflow-x: auto; } }
 
   /* strip: same height, natural width */
   .ps-strip .ps-track { gap: 14px; }
