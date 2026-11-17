@@ -1,4 +1,6 @@
 ---
+import MediaStrip from "../../components/MediaStrip.astro";
+import Team from "../../components/hw/Team.astro";
 // Blog archive (/blog/) — Corner Canyon's archive pattern in Hopewell's brand (user, 2026-11-16: "the blog archive
 // should look like corners"): white hero with the latest article featured on a pastel card, accreditation band,
 // "Find what you're looking for" topic tab bar (text tabs with icon + count, not pills), card grid, then FAQ,
@@ -50,7 +52,7 @@ const order = Object.keys(CATS);
 const counts = Object.fromEntries(order.map((c) => [c, sorted.filter((p) => p.category === c).length]));
 
 const TITLE = "Mental Health Blog & Resources | Hopewell Health Solutions";
-const DESCRIPTION = "Evidence-based articles on mental health, treatment, and recovery — written and clinically reviewed by the licensed clinicians at Hopewell Health Solutions in Connecticut.";
+const DESCRIPTION = "Evidence-based articles on mental health, treatment, and recovery, written and clinically reviewed by the licensed clinicians at Hopewell Health Solutions in Connecticut.";
 const faqs = [
   ["Who writes and reviews these articles?", `Each article names its author, a licensed clinician on the <a class="inl" href="/about-us/team/">Hopewell team</a>, with a link to their profile and credentials.`],
   ["Is the blog a substitute for medical advice?", "The articles are general information about mental health and treatment. They can’t diagnose you or replace care from a licensed provider who knows your history."],
@@ -72,7 +74,7 @@ const ld = [
       <div class="container ba-hero-grid">
         <div class="ba-hero-copy">
           <h1>The Hopewell Blog</h1>
-          <p class="lede">Practical, evidence-based guidance on mental health, treatment, and recovery — written and clinically reviewed by our Connecticut team. Learn more about our <a class="inl" href="/programs/">mental health and addiction programs</a>.</p>
+          <p class="lede">Practical, evidence-based guidance on mental health, treatment, and recovery, written and clinically reviewed by our Connecticut team. Learn more about our <a class="inl" href="/programs/">mental health and addiction programs</a>.</p>
           <ul class="ba-points">
             <li><Icon name="users" class="h-[17px] w-[17px]" />Written by Hopewell clinicians</li>
             <li><Icon name="clipboard" class="h-[17px] w-[17px]" />Research sources cited</li>
@@ -129,9 +131,11 @@ const ld = [
       </div>
     </section>
 
+    <Reviews tone="white" />
+    <MediaStrip bg="white" />
     <Faq faqs={faqs} heading="Questions about the Hopewell blog" tone="stone" />
     <Insurance tone="white" />
-    <Reviews tone="stone" />
+    <Team tone="white" />
     <Locations />
     <ClosingCta verifyHref="/admissions/#verify" />
   </main>

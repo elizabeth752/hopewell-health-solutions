@@ -44,7 +44,7 @@ export default {
         },
         {
           img: "/Assets/Blogs/opt/silent-panic-attacks-what-they-are-and-when-to-seek-treatment.webp",
-          alt: "Friends gathered around a table looking at their phones — a social moment where a silent panic attack can happen without anyone noticing",
+          alt: "Friends gathered around a table looking at their phones, a social moment where a silent panic attack can happen without anyone noticing",
         },
       ],
     },
@@ -148,7 +148,7 @@ export default {
             "The attacks are becoming more frequent or more intense",
             "You have started avoiding places, people, or situations to prevent them",
             "Hiding the physical symptoms is becoming exhausting or constant",
-            "Physical symptoms have sent you to urgent care or the emergency room more than once",
+            "Physical symptoms have sent you to urgent care or the <a href=\"/post/why-the-er-is-not-mental-health-treatment-and-why-php-and-iop-is/\">emergency room</a> more than once",
             "The effort of appearing fine is affecting your work, your relationships, or your sense of yourself",
           ],
         },
@@ -159,13 +159,13 @@ export default {
       h2: "What Treatment Options Help With Silent Panic Attacks?",
       blocks: [
         {
-          p: "Cognitive Behavioral Therapy (CBT) is the most well-supported approach for panic attacks and panic disorder, often paired with interoceptive exposure, a technique that helps the body become less reactive to the physical sensations that trigger panic in the first place.",
+          p: "<a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a> is the most well-supported approach for panic attacks and panic disorder, often paired with interoceptive exposure, a technique that helps the body become less reactive to the physical sensations that trigger panic in the first place.",
         },
         {
-          p: "A 2025 review of digital CBT programs found that interoceptive exposure consistently strengthened treatment outcomes for panic disorder and agoraphobia.",
+          p: "A 2025 review of digital CBT programs found that interoceptive exposure consistently strengthened treatment outcomes for panic disorder and <a href=\"/post/fear-of-flying-or-fear-of-leaving-home/\">agoraphobia</a>.",
         },
         {
-          p: "Depending on what a person needs, treatment may also include individual therapy, medication management, or a higher level of structured support such as an Intensive Outpatient Program (IOP) for panic that has become frequent or debilitating.",
+          p: "Depending on what a person needs, treatment may also include individual therapy, <a href=\"/programs/medication-management/\">medication management</a>, or a higher level of structured support such as an <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Program</a> (IOP) for panic that has become frequent or debilitating.",
         },
       ],
     },
@@ -192,7 +192,7 @@ export default {
           p: "If you have been managing panic quietly, on your own, and for longer than you would like to admit, Hopewell Health Solutions can help you.",
         },
         {
-          p: "Hopewell Health Solutions is a mental health and psychiatry team in Connecticut, offering Intensive Outpatient Programs (IOP) and Partial Hospitalization Programs (PHP), psychiatry, and medication management from locations in Glastonbury, West Hartford, East Hampton, and Westbrook.",
+          p: "Hopewell Health Solutions is a mental health and psychiatry team in Connecticut, offering Intensive Outpatient Programs (IOP) and <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Programs</a> (PHP), psychiatry, and medication management from locations in Glastonbury, West Hartford, East Hampton, and <a href=\"/location/westbrook-ct/\">Westbrook</a>.",
         },
         {
           p: "Reach out today, confidentially, with no pressure.",

@@ -1,0 +1,174 @@
+---
+// What to Expect, 2026-11-16 "Admissions: Content Briefs" (What to Expect tab). New page at the brief's URL
+// /admissions/what-to-expect/; the hub keeps its short #what-to-expect section, which links here.
+// Sections in the brief's order: step-by-step timeline (numbered phase rows), first day in IOP or PHP (navy split),
+// what to bring (one panel split by thin rules), teens and tweens, real photos (one-at-a-time carousel), then the
+// sitewide bottom. Left out as [confirm]: first-call length, assessment length and format (in person or telehealth),
+// "a notebook" on the what-to-bring list. Facts come from the program pages and the hub.
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import Creds from "../../components/hw/Creds.astro";
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import Team from "../../components/hw/Team.astro";
+import Locations from "../../components/hw/Locations.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import Faq from "../../components/hw/Faq.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import AdHero from "./_parts/AdHero.astro";
+import PhotoCarousel from "./_parts/PhotoCarousel.astro";
+import { STORIES } from "../../data/videos.js";
+import "../../styles/pages/hubs.css";
+import "../../styles/pages/admissions.css";
+
+const SITE = "https://www.hopewellhealthsolutions.com";
+const canonical = `${SITE}/admissions/what-to-expect/`;
+const P = "/Assets/hhs-2026/";
+
+const phases = [
+  { t: "Your first call", sub: "Call or send the form", paras: [
+    `An admissions specialist asks what’s going on, about your insurance, and what you’re looking for. You can call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or send the form; forms sent after hours are answered the next business day.`,
+    `You can call for yourself or for someone you love, and you don’t need a referral or a diagnosis first. If you’re calling for a family member, see <a class="inl" href="/admissions/for-families/">how to help someone you love get care</a>.`,
+  ] },
+  { t: "Insurance check", sub: "Free and confidential", paras: [
+    `We <a class="inl" href="/admissions/#verify-insurance">verify your insurance benefits</a> for free and explain what your plan covers for the program you’re considering. Some plans need prior authorization first; we handle that with your insurer and keep you updated.`,
+    `Hopewell is in-network with most major commercial plans and doesn’t accept Medicare or Medicaid (HUSKY). See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a> for how costs work.`,
+  ] },
+  { t: "Your assessment", sub: "A conversation with a clinician", paras: [
+    `A conversation with a clinician about your symptoms, history and goals, so we can recommend the right level of care. It covers what brought you in, what you’ve tried before, any medications, and any substance use or safety concerns.`,
+    `If medication may help, we can schedule an evaluation for <a class="inl" href="/programs/medication-management/">medication management</a>. If testing would bring clarity, we may suggest <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological</a> or <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`,
+  ] },
+  { t: "Your plan", sub: "Program, office and schedule", paras: [
+    `You’ll hear which level of care we recommend and why, which office you’ll attend, and your schedule. Weekly <a class="inl" href="/programs/counseling/">counseling</a> fits many people. When weekly sessions aren’t enough, our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> meets about three hours a day, Monday through Thursday, in day or evening tracks. The <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> runs about six hours a day, Monday through Friday, at 300 Hebron Ave in Glastonbury.`,
+    `Not sure you need IOP? Read the <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">signs it may be time for more than weekly therapy</a>, or compare every option on our <a class="inl" href="/programs/">programs page</a>.`,
+  ] },
+  { t: "Your first day", sub: "Paperwork, your clinician, your first group", paras: [
+    `You’ll meet your clinician, finish paperwork and join your first group. Most people feel nervous at first and settle in quickly. More on that below.`,
+  ] },
+  { t: "Ongoing care and step-down", sub: "The same team, all the way through", paras: [
+    `Your care team reviews your plan regularly and can adjust it or step you up or down. When IOP ends, most people step down to counseling and medication management with the same team, so there’s no gap between programs.`,
+  ] },
+];
+const firstDay = [
+  ["Arrival", "Check in when you arrive. Our team will show you where to go and answer any last questions."],
+  ["Paperwork", "Finish your intake paperwork with a member of our team."],
+  ["Meeting your clinician", "You’ll meet the clinician who will guide your care and talk through your goals for the program."],
+  ["Your first group", `Small, clinician-led <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a>. You don’t have to talk right away: you can listen first and share when you’re ready.`],
+];
+const bring = [
+  ["shield", "Your insurance card", "So we can confirm your coverage details at check-in."],
+  ["users", "Photo ID", "A driver’s license or other photo identification."],
+  ["pill", "A list of current medications", "Names and doses of the medications you take."],
+  ["phone", "Your doctor’s contact information", "So we can coordinate with your primary care doctor or other providers."],
+];
+const photos: [string, string, string][] = [
+  [P + "sg-reception.webp", "The reception and waiting area at Hopewell's South Glastonbury office", "Reception, South Glastonbury"],
+  [P + "group-room-bright.webp", "A bright group therapy room at Hopewell Health Solutions", "Group room"],
+  [P + "sg-therapy-office.webp", "An individual therapy office at Hopewell's South Glastonbury office", "Therapy office, South Glastonbury"],
+  [P + "php-group-room.webp", "The PHP group room at 300 Hebron Ave in Glastonbury", "PHP group room, Glastonbury"],
+  [P + "sg-green-room.webp", "A calm therapy room with plants at Hopewell's South Glastonbury office", "Therapy room, South Glastonbury"],
+  [P + "east-hampton-waiting-room.webp", "The waiting room at Hopewell's East Hampton office", "Waiting room, East Hampton"],
+  [P + "westbrook-therapy-office.webp", "A therapy office at Hopewell's Westbrook office", "Therapy office, Westbrook"],
+];
+// Brief FAQ. "How long is the assessment?" is left out ([confirm]); the first-call answer drops its [confirm] length.
+const faqs: [string, string][] = [
+  ["What happens on the first call?", "An admissions specialist asks what’s going on, about your insurance, and what you’re looking for."],
+  ["What is the assessment?", "A conversation with a clinician about your symptoms, history and goals, so we can recommend the right level of care."],
+  ["What should I bring on my first day?", "Your insurance card, photo ID, a list of current medications and your doctor’s contact information."],
+  ["What happens on the first day of IOP?", `You’ll meet your clinician, finish paperwork and join your first group. Most people feel nervous at first and settle in quickly. Our guide to <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">your first day of IOP</a> walks through the day.`],
+  ["Will I have to talk in group right away?", "No. You can listen first and share when you’re ready."],
+  ["What if the program isn’t the right fit?", "Your care team reviews your plan regularly and can adjust it or step you up or down."],
+  ["What happens when IOP ends?", `Most people step down to <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> with the same team.`],
+  ["What if it’s an emergency?", `Call or text <a class="inl" href="tel:988">988</a>, call 911, or go to the nearest emergency room. Hopewell is not an emergency service.`],
+];
+const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", name: "What to Expect When You Start at Hopewell", url: canonical, publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions", url: SITE } };
+---
+<Base title="What to Expect: First Call, Assessment &amp; First Day | Hopewell" description="From your first call to your first group, here's what starting mental health or addiction treatment at Hopewell in Connecticut looks like, step by step." canonical={canonical} image={P + "group-room-bright.webp"}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
+  <main class="hw">
+    <AdHero
+      crumbs={[{ label: "Admissions", href: "/admissions/" }, { label: "What to Expect" }]}
+      title="What to Expect When You Start at Hopewell"
+      lede="Starting treatment is easier when you know what’s coming. Here’s what the first call, the assessment and your first day of IOP or PHP look like, step by step."
+      facts={[{ icon: "phone", text: "A real person on the first call" }, { icon: "shield", text: "Free insurance check" }, { icon: "users", text: "Listen first, share when ready" }]}
+      note="Forms sent after hours are answered the next business day."
+    />
+    <Creds />
+
+    <!-- Brief: step-by-step timeline, numbered phase rows -->
+    <section class="section is-white" id="timeline">
+      <div class="container">
+        <div class="sec-head"><h2>From first call to first day, step by step</h2><p class="lede">Six steps, with a real person guiding you through each one. You can stop and ask questions at any point.</p></div>
+        <ol class="ax-phases">
+          {phases.map((ph, i) => (
+            <li class="ax-phase">
+              <span class="ax-phase-n">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{ph.t}<small>{ph.sub}</small></h3>
+              <div>{ph.paras.map((p) => <p set:html={p} />)}</div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Brief: your first day in IOP or PHP, navy split -->
+    <section class="section is-navy" id="first-day">
+      <div class="container ax-navy">
+        <div>
+          <h2>Your first day in IOP or PHP</h2>
+          <p class="lede" style="margin-top:16px">Most people feel nervous at first and settle in quickly. Groups are small and led by a clinician, and you can listen first and share when you’re ready.</p>
+          <p style="margin-top:14px;font-size:17px;line-height:1.7">Adults in IOP choose a morning (9 AM–12 PM) or evening (5–8 PM) track, Monday through Thursday, and most programs run 8–12 weeks. PHP runs about six hours a day, Monday through Friday. Our guide to <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">what to expect on your first day of IOP</a> walks through the day, from check-in to skills group.</p>
+          <div class="ax-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a><a href="#verify" class="btn btn-ghost-l">Check my coverage</a></div>
+        </div>
+        <ol class="ax-olist">{firstDay.map(([t, d]) => <li><div><strong>{t}</strong><span set:html={d} /></div></li>)}</ol>
+      </div>
+    </section>
+
+    <!-- Brief: what to bring, one panel split by thin rules -->
+    <section class="section is-stone" id="what-to-bring">
+      <div class="container">
+        <div class="sec-head"><h2>What to bring on your first day</h2><p class="lede">Having these ready makes check-in quicker on your first day.</p></div>
+        <div class="ax-panel" style="--n:4">
+          {bring.map(([icon, t, d]) => <div><h3><Icon name={icon} class="h-5 w-5" />{t}</h3><p>{d}</p></div>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Brief: teens and tweens -->
+    <section class="section is-white" id="teens">
+      <div class="container ax-two">
+        <div>
+          <h2>What parents and kids can expect</h2>
+          <p class="lede">Parents and guardians can call on behalf of a child. We see children from age 4 for counseling and medication management.</p>
+          <p>Our <a class="inl" href="/programs/tween-iop/">Tween IOP</a> (ages 8–12) and <a class="inl" href="/programs/teen-iop/">Teen IOP</a> (ages 13–17) meet in after-school groups at our South Glastonbury office, with family sessions and school coordination built in, so most kids stay in school throughout.</p>
+          <p>Our page for <a class="inl" href="/admissions/for-families/">families helping someone they love</a> covers how to talk with your child about getting help and what involvement looks like.</p>
+        </div>
+        <div class="ax-media"><img src={P + "sg-tween-group-room.webp"} alt="The tween group room at Hopewell's South Glastonbury office" width="1200" height="900" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <!-- Brief: real photos of reception, group room and therapy rooms -->
+    <section class="section is-mist" id="photos">
+      <div class="container ax-two is-flip">
+        <div>
+          <h2>A look inside our offices</h2>
+          <p class="lede">Reception, group rooms and therapy offices across our Connecticut locations, so you know what to expect before you walk in.</p>
+          <p>We have six offices: three in Glastonbury, plus West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">all locations</a> for addresses and what each office offers.</p>
+        </div>
+        <PhotoCarousel photos={photos} label="Photos inside Hopewell's offices" />
+      </div>
+    </section>
+
+    <VideoCarousel videos={STORIES} heading="Starting Treatment, in Their Own Words" lede="Hopewell clients share what their first days in treatment were like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
+    <Team tone="white" />
+    <Locations tone="stone" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
+    <Reviews tone="white" first={["Outpatient care", "IOP"]} />
+    <MediaStrip bg="white" />
+    <Faq faqs={faqs} heading="What to Expect: Common Questions" tone="white" />
+    <ClosingCta heading="Ready to take the first step?" lede="Call us or send the form, and a real person will walk you through what happens next, confidentially, with no pressure." />
+  </main>
+  <Footer />
+</Base>

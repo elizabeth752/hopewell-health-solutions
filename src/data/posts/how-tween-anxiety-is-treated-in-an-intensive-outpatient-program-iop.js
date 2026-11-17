@@ -11,13 +11,13 @@ export default {
   datePublished: "2025-03-10",
   dateModified: "2025-03-10",
   readingMinutes: 2,
-  bodyHtml: `<p>IOP programs can be an effective way to treat anxiety in children due to the comprehensive, multidisciplinary approach that focuses on therapeutic and skill-building interventions. Many times, individual therapy is not enough for teaching the skills and strategies required to develop change and improve symptoms due to the length and frequency of sessions. Hopewell Health Solutions' IOP is designed to provide structured, intensive support without requiring an inpatient setting.</p>
+  bodyHtml: `<p>IOP programs can be an effective way to treat <a href="/what-we-treat/anxiety/">anxiety</a> in children due to the comprehensive, multidisciplinary approach that focuses on therapeutic and skill-building interventions. Many times, individual therapy is not enough for teaching the skills and strategies required to develop change and improve symptoms due to the length and frequency of sessions. Hopewell Health Solutions' IOP is designed to provide structured, intensive support without requiring an inpatient setting.</p>
 
 <p>Here are some ways Anxiety is Treated in an IOP setting:</p>
 
 <h3>Dialectical Behavioral Therapy (DBT)</h3>
 <ul>
-<li>DBT focuses on emotional regulation, distress tolerance, and mindfulness. For tweens with anxiety, DBT helps them learn to manage overwhelming emotions and learn to build healthier responses to stress.</li>
+<li><a href="/treatment-methods/dbt/">DBT</a> focuses on emotional regulation, distress tolerance, and mindfulness. For tweens with anxiety, DBT helps them learn to manage overwhelming emotions and learn to build healthier responses to stress.</li>
 <li>DBT skills is particularly helpful for tweens who are struggling with intense emotions, self-harm, suicidal ideation, or impulsivity, alongside anxiety.</li>
 </ul>
 
@@ -28,7 +28,7 @@ export default {
 
 <h3>Group Therapy Setting</h3>
 <ul>
-<li>Hopewell Health Solutions' IOP follows a group therapy model. This allows tweens to connect with peers who are experiencing similar struggles. Peer support helps reduce feelings of isolation and shame surrounding mental health challenges. In our group sessions, tweens learn important skills like communication skills, problem-solving, and emotional expression. They also have the opportunity to share coping strategies and experiences related to their anxiety, offering mutual support.</li>
+<li>Hopewell Health Solutions' IOP follows a group therapy model. This allows tweens to connect with peers who are experiencing similar struggles. Peer support helps reduce feelings of isolation and shame surrounding mental health challenges. In our group sessions, tweens learn important skills like communication skills, problem-solving, and emotional expression. They also have the opportunity to share <a href="/post/anxiety-coping-strategies-expert-tips-for-finding-calm/">coping strategies</a> and experiences related to their anxiety, offering mutual support.</li>
 </ul>
 
 <h3>Family Therapy</h3>
@@ -43,7 +43,7 @@ export default {
 
 <h3>Medication Management (If Desired)</h3>
 <ul>
-<li>Hopewell Health Solutions also offers medication management for children and families interested in that approach. Our skilled team of medication providers can prescribe medications to help manage symptoms of anxiety. The combination of medication and therapy is proven to be effective.</li>
+<li>Hopewell Health Solutions also offers <a href="/programs/medication-management/">medication management</a> for children and families interested in that approach. Our skilled team of medication providers can prescribe medications to help manage symptoms of anxiety. The combination of medication and therapy is proven to be effective.</li>
 </ul>
 
 <p>As you can see, there are many ways that Hopewell Health Solutions' IOP can support children with anxiety. It doesn't stop at the end of the program; we work with families and providers to develop a discharge plan for continued support in accessing their skills and managing their anxiety. By combining therapy, mindfulness, peer support, family support, and psychoeducation, tweens can gain the tools they need to manage anxiety effectively.</p>`,

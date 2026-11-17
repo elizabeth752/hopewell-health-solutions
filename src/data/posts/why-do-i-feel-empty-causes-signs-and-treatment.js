@@ -71,7 +71,7 @@ export default {
     "Feeling numb or flat? Here is what emptiness means clinically, how to tell when it points to something treatable, and where to start.",
   category: "Mental Health",
   excerpt:
-    "Feeling empty is not a diagnosis — it's usually a symptom of something else. Anhedonia, the reduced ability to feel interest or pleasure, appears in 35% to 70% of people with major depression. Here's what's behind the numbness, and how treatment reaches it.",
+    "Feeling empty is not a diagnosis, it's usually a symptom of something else. Anhedonia, the reduced ability to feel interest or pleasure, appears in 35% to 70% of people with major depression. Here's what's behind the numbness, and how treatment reaches it.",
   heroImage: "/Assets/Blogs/opt/why-do-i-feel-empty-causes-signs-and-treatment.webp",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
@@ -190,7 +190,7 @@ export default {
       h2: "How Is Feeling Empty Treated?",
       blocks: [
         {
-          p: "Treatment begins with a medical assessment to determine what is producing the emptiness, followed by a clinical plan matched to that cause — often a combination of therapy, medication management, or a more structured level of care.",
+          p: "Treatment begins with a medical assessment to determine what is producing the emptiness, followed by a clinical plan matched to that cause, often a combination of therapy, medication management, or a more structured level of care.",
         },
         { p: "Several clinical approaches are commonly recommended:" },
         {

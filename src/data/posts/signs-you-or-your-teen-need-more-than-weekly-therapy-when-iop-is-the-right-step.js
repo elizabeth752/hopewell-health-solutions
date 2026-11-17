@@ -1,8 +1,8 @@
 // Hand-authored post (structured `sections` model).
 export default {
   slug: "signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step",
-  title: "Signs You or Your Teen Need More Than Weekly Therapy — When IOP Is the Right Step",
-  metaTitle: "Signs You or Your Teen Need More Than Weekly Therapy — When IOP Is the Right Step | Hopewell Health Solutions",
+  title: "Signs You or Your Teen Need More Than Weekly Therapy, When IOP Is the Right Step",
+  metaTitle: "Signs You or Your Teen Need More Than Weekly Therapy, When IOP Is the Right Step | Hopewell Health Solutions",
   metaDescription:
     "An IOP offers more frequent, more intense care than weekly therapy. See when changing treatment makes the most sense for you or your teen.",
   category: "Levels of Care",
@@ -21,9 +21,9 @@ export default {
       id: "what-is-an-iop",
       h2: "What Is an IOP?",
       blocks: [
-        { p: "An IOP is a structured treatment for mental health disorders and substance use disorders. Unlike residential care, with an IOP you join sessions during the day and return home in the evening. At Hopewell Health, our IOP runs Monday to Thursday, and lasts between 8-12 weeks." },
+        { p: "An IOP is a structured treatment for mental health disorders and <a href=\"/what-we-treat/substance-use-disorder/\">substance use disorders</a>. Unlike residential care, with an IOP you join sessions during the day and return home in the evening. At Hopewell Health, our IOP runs Monday to Thursday, and lasts between 8-12 weeks." },
         { p: "Each session integrates evidence-based therapies and wellness activities that are tailored to you, based on your medical history, needs, and goals. Our therapies include:" },
-        { ul: ["Dialectical Behavioral Therapy (DBT)", "Cognitive Behavioral Therapy (CBT)", "Interpersonal Therapy", "Music Therapy", "Art Therapy", "Yoga and mindfulness", "Experiential activities"] },
+        { ul: ["<a href=\"/treatment-methods/dbt/\">Dialectical Behavioral Therapy (DBT)</a>", "<a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a>", "Interpersonal Therapy", "Music Therapy", "Art Therapy", "Yoga and mindfulness", "Experiential activities"] },
         { p: "The goal of IOP is to help you regulate emotionally and build healthy coping skills. We have programs specifically designed for teenagers, as well as for adults." },
         { p: "People tend to seek an IOP because it offers intense therapeutic support, while providing the flexibility to work or study. It also means you can live independently, stay close to your home and community, and integrate the skills you learn directly into your life." },
         { p: "IOPs are proven to reduce substance use and mental health symptoms; they also have a high retention rate. People generally report feeling satisfied with IOPs, having positive relationships with staff, and gaining valuable self-development insights." },
@@ -45,7 +45,7 @@ export default {
         { ul: [
           "Summary: A structured program that runs throughout the week, delivering care for a few hours a day",
           "Structure: A combination of evidence-based therapies and wellness activities to build stability and skills for healthy thinking and behaviors",
-          "Targeted for: People who are stable but require more than weekly therapy, and people who have finished a Partial Hospitalization Program (PHP)",
+          "Targeted for: People who are stable but require more than weekly therapy, and people who have finished a <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program</a> (PHP)",
           "Duration: Up to 20 weeks",
         ] },
       ],
@@ -98,7 +98,7 @@ export default {
       id: "iop-for-teens-and-adults-at-hopewell",
       h2: "IOP for Teens and Adults at Hopewell Health Solutions, Connecticut",
       blocks: [
-        { p: "At Hopewell Health Solutions, we believe that everyone can heal. We have a tween IOP (for ages 8-12), a teen IOP (for ages 13-17), and an adult IOP to help anyone who is suffering with a mental health disorder or substance use disorder. All our care is tailored to each individual and age group, taking into account social environments and pressures." },
+        { p: "At Hopewell Health Solutions, we believe that everyone can heal. We have a tween IOP (for ages 8-12), a <a href=\"/programs/teen-iop/\">teen IOP</a> (for ages 13-17), and an adult IOP to help anyone who is suffering with a mental health disorder or substance use disorder. All our care is tailored to each individual and age group, taking into account social environments and pressures." },
         { p: "We have a team of licensed clinicians who provide evidence-based therapies, prioritizing comfort and progress while always working to make you feel safe. We also have different mindfulness practices to nurture physical and mental well-being, and keep you engaged with treatment." },
         { p: "Our centers are based across Connecticut in Glastonbury, West Hartford, East Hampton, and Westbrook." },
         { p: "We've already helped many people of all ages and backgrounds transform their lives. There's always hope for healing. Contact us today." },

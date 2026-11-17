@@ -1,5 +1,6 @@
 ---
-// DBT — 2026 redesign. All live copy kept; four skills shown as a wheel.
+import MediaStrip from "../../components/MediaStrip.astro";
+// DBT, 2026 redesign. All live copy kept; four skills shown as a wheel. Brief (Treatments: Content Briefs, DBT) applied 2026-11-16.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -19,7 +20,7 @@ import "../../styles/pages/treatments.css";
 const canonical = "https://www.hopewellhealthsolutions.com/treatment-methods/dbt/";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "Dialectical Behavior Therapy — balancing acceptance and change",
+  "Dialectical Behavior Therapy: balancing acceptance and change",
   "Built on four core skills you can use for the rest of your life",
   "Developed by Dr. Marsha Linehan and validated by decades of research",
   "Offered within our <a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> and <a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> programs in Connecticut",
@@ -31,11 +32,30 @@ const skills = [
   ["users", "Interpersonal effectiveness", "Asking for what you need, setting boundaries, and keeping relationships healthy and self-respecting."],
 ];
 const helps = ["Self-harm or suicidal thoughts", "Chronic feelings of emptiness", "Impulsivity", "Intense mood swings", "Relationships that keep falling apart", "Depression, anxiety and post-traumatic stress", "Eating disorders", "Substance use"];
+// Where DBT skills are taught (brief: Adult IOP, Teen & Tween IOP, Women's IOPs; PHP from live copy).
+const where = [
+  ["<a class='inl' href='/programs/adult-mental-health-iop/'>Adult IOP</a>", "DBT skills are part of our adult intensive outpatient program."],
+  ["<a class='inl' href='/programs/teen-iop/'>Teen IOP</a> and <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>", "DBT skills are built into our programs for teens and tweens."],
+  ["<a class='inl' href='/programs/womens-wellness-iop/'>Women's Wellness IOP</a> and <a class='inl' href='/programs/womens-trauma-iop/'>Women's Trauma IOP</a>", "DBT skills are taught inside our women's programs."],
+  ["<a class='inl' href='/programs/partial-hospitalization-program/'>Partial hospitalization (PHP)</a>", "Skills practice as part of a more structured day of care."],
+];
+const groupLike = [
+  ["A small group", "You learn alongside a small group, led by a licensed clinician. DBT skills groups are one of the kinds of <a class='inl' href='/treatment-methods/group-therapy/'>group therapy</a> we run."],
+  ["Practical worksheets", "Each skill is taught with practical worksheets, so it's concrete and easy to try in your own life."],
+  ["Homework between sessions", "You practice the skills between sessions and bring what happened back to the group. Many people pair group work with one-on-one <a class='inl' href='/programs/counseling/'>counseling</a>."],
+];
+// FAQ: brief questions first (brief answer, then the live answer where the question already existed).
+// Left out until TJ confirms: "Do you offer full DBT or DBT skills?" and "How long does DBT take?" (both [confirm] in the brief).
 const faq = [
-  ["What is DBT?", "Dialectical Behavior Therapy (DBT) is an evidence-based form of talk therapy that teaches practical skills for managing intense emotions, tolerating distress, and improving relationships. The word \"dialectical\" refers to its central balance: fully accepting yourself as you are while also working toward meaningful change."],
-  ["What conditions is DBT used for?", "DBT was originally developed for people who experience very intense emotions and was first studied in borderline personality disorder. Today it is widely used for emotion dysregulation, self-harm and suicidal thoughts, chronic emotional pain, impulsivity, depression and anxiety — anytime emotions feel too big to manage on your own."],
-  ["How is DBT different from regular talk therapy?", "Traditional therapy often focuses on insight and exploring the past. DBT adds concrete, teachable skills you practice between sessions, and it places strong emphasis on validation — feeling genuinely understood — alongside the work of change. Many people describe it as therapy that gives them tools, not just conversations."],
+  ["What is DBT?", "<p>Dialectical behavior therapy teaches practical skills to manage strong emotions, cope with stress and get along better with others.</p> <p>Dialectical Behavior Therapy (DBT) is an evidence-based form of talk therapy that teaches practical skills for managing intense emotions, tolerating distress, and improving relationships. The word \"dialectical\" refers to its central balance: fully accepting yourself as you are while also working toward meaningful change.</p>"],
+  ["What are the four DBT skills?", "Mindfulness, distress tolerance, emotion regulation and interpersonal effectiveness."],
+  ["Who is DBT for?", "<p>People who feel emotions very intensely, act on impulse, or struggle in relationships. It's used for <a class='inl' href='/what-we-treat/depression/'>depression</a>, <a class='inl' href='/what-we-treat/anxiety/'>anxiety</a>, <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma</a> and more.</p> <p>DBT was originally developed for people who experience very intense emotions and was first studied in borderline personality disorder. Today it is widely used for emotion dysregulation, self-harm and suicidal thoughts, chronic emotional pain, impulsivity, depression and anxiety, anytime emotions feel too big to manage on your own.</p>"],
+  ["Is DBT used for teens?", "Yes. DBT skills are part of our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a> and <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>."],
+  ["How is DBT different from CBT?", "Both teach skills, but DBT adds acceptance and mindfulness and focuses on managing intense emotions."],
+  ["How is DBT different from regular talk therapy?", "Traditional therapy often focuses on insight and exploring the past. DBT adds concrete, teachable skills you practice between sessions, and it places strong emphasis on validation (feeling genuinely understood) alongside the work of change. Many people describe it as therapy that gives them tools, not just conversations."],
   ["Do I have to do all of DBT to benefit?", "No. While full DBT programs include a skills group and individual therapy, the four core skill sets are valuable on their own. At Hopewell, DBT skills are woven into our intensive outpatient (IOP) and partial hospitalization (PHP) programs so you can start building them right away."],
+  ["What if I'm having thoughts of self-harm?", "Call or text <a class='inl' href='tel:988'>988</a> now, call <a class='inl' href='tel:911'>911</a>, or go to the nearest emergency room. DBT can help over time, but crisis needs immediate care."],
+  ["Does insurance cover DBT?", "Many commercial plans cover DBT as therapy or as part of IOP. We <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits</a>; we don't accept Medicare or Medicaid."],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -48,14 +68,14 @@ const schema = {
 const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].includes(v.yt));
 ---
 
-<Base title="Dialectical Behavior Therapy (DBT) | Hopewell Health Solutions" description="DBT is an evidence-based therapy that teaches mindfulness, distress tolerance, emotion regulation and interpersonal skills. Offered within the IOP and PHP programs at Hopewell Health Solutions in Connecticut." canonical={canonical} image={P + "tx-group-room-2.webp"}>
+<Base title="DBT Therapy for Teens & Adults in Connecticut | Hopewell" description="Dialectical behavior therapy teaches skills for strong emotions, stress and relationships. DBT groups and therapy for teens and adults in Connecticut. Check coverage." canonical={canonical} image={P + "tx-group-room-2.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "DBT" }]}
-      title="Dialectical Behavior Therapy (DBT)"
-      lede="If your emotions sometimes feel too big to handle, you are not broken, and you are not alone. DBT was created for people who feel things deeply — and it teaches you how to ride those waves."
+      title="DBT (Dialectical Behavior Therapy) in Connecticut"
+      lede="If your emotions sometimes feel too big to handle, you are not broken, and you are not alone. DBT was created for people who feel things deeply, and it teaches you how to ride those waves."
       bullets={heroUsps}
       facts={[{ icon: "compass", text: "Evidence-based therapy" }, { icon: "users", text: "Group + individual practice" }]}
       image={P + "tx-group-room-2.webp"}
@@ -66,7 +86,7 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>A therapy for people who feel things deeply</h2>
-          <p style="margin-top:16px">If your emotions sometimes feel too big to handle — if small setbacks turn into overwhelming storms, relationships feel like a minefield, or you find yourself doing things in the heat of the moment that you later regret — you are not broken, and you are not alone. Dialectical Behavior Therapy, or DBT, was created precisely for people who feel things deeply and have never been taught how to ride those waves. It is one of the most thoroughly researched therapies in mental health, and at its heart is a simple, hopeful idea: you can accept yourself exactly as you are and still build a life that feels worth living.</p>
+          <p style="margin-top:16px">If your emotions sometimes feel too big to handle, if small setbacks turn into overwhelming storms, relationships feel like a minefield, or you find yourself doing things in the heat of the moment that you later regret, you are not broken, and you are not alone. Dialectical Behavior Therapy, or DBT, was created precisely for people who feel things deeply and have never been taught how to ride those waves. It is one of the <a class="inl" href="/post/exploring-dbt-therapy-effectiveness-and-approach-at-hopewell-health-solutions/">most thoroughly researched therapies</a> in mental health, and at its heart is a simple, hopeful idea: you can accept yourself exactly as you are and still build a life that feels worth living.</p>
         </div>
         <figure class="tx-photo"><img src={P + "tx-group-room-2.webp"} alt="A DBT skills group in session at Hopewell Health Solutions" width="1400" height="1050" loading="lazy" /><figcaption>DBT skills group<span>Part of our IOP and PHP programs</span></figcaption></figure>
       </div>
@@ -77,7 +97,7 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
         <figure class="tx-photo"><img src="/Assets/service/dbt.webp" alt="Dialectical Behavior Therapy at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /></figure>
         <div class="tx-copy">
           <h2>Where DBT comes from</h2>
-          <p style="margin-top:16px">DBT was developed in the late 1980s by psychologist Dr. Marsha Linehan, who recognized that some people experience emotions far more intensely than others and need more than insight to feel better — they need concrete skills. The "dialectical" in the name points to the balance the therapy strikes between two truths that seem opposite: the need for radical acceptance of your current reality, and the need for change. Holding both at once, rather than choosing between them, is what makes DBT distinct. Over four decades of research has shown it to be effective, and it has become a gold-standard approach for emotion regulation difficulties.</p>
+          <p style="margin-top:16px">DBT was developed in the late 1980s by psychologist Dr. Marsha Linehan, who recognized that some people experience emotions far more intensely than others and need more than insight to feel better: they need concrete skills. The "dialectical" in the name points to the balance the therapy strikes between two truths that seem opposite: the need for radical acceptance of your current reality, and the need for change. Holding both at once, rather than choosing between them, is what makes DBT distinct. Over four decades of research has shown it to be effective, and it has become a gold-standard approach for emotion regulation difficulties.</p>
         </div>
       </div>
     </section>
@@ -93,14 +113,16 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
     </section>
 
     <section class="section is-mist">
-      <div class="container tx-split">
+      <div class="container tx-split" style="align-items:start">
         <div class="tx-copy">
           <h2>Who DBT helps</h2>
-          <p style="margin-top:16px">DBT was first studied in people living with borderline personality disorder, but its reach is much wider today. It can help anyone whose emotions feel overwhelming or hard to control — including people struggling with self-harm or suicidal thoughts, chronic feelings of emptiness, impulsivity, intense mood swings, or relationships that keep falling apart. It is also frequently used alongside treatment for <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">post-traumatic stress</a>, eating disorders, and <a class="inl" href="/what-we-treat/substance-use-disorder/">substance use</a>, because the skills it teaches — staying grounded, surviving a crisis, soothing strong feelings, communicating clearly — are useful no matter what you're working through.</p>
+          <p style="margin-top:16px">DBT was first studied in people living with borderline personality disorder, but its reach is much wider today. It can help anyone whose emotions feel overwhelming or hard to control, including people struggling with self-harm or suicidal thoughts, chronic feelings of emptiness, impulsivity, intense mood swings, or relationships that keep falling apart. It is also frequently used alongside treatment for <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">post-traumatic stress</a>, eating disorders, and <a class="inl" href="/what-we-treat/substance-use-disorder/">substance use</a>, because the skills it teaches (staying grounded, surviving a crisis, soothing strong feelings, communicating clearly) are useful no matter what you're working through.</p>
+          <p style="margin-top:14px">Mood swings can have several causes, including <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder</a>, so your assessment looks at what's behind them before your plan is built.</p>
         </div>
         <div class="tx-card" style="--bar:#5c7c6b">
           <h3>DBT can help with</h3>
           <ul class="tx-checks cols-2" style="margin-top:6px">{helps.map((h) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{h}</span></li>)}</ul>
+          <p class="dbt-crisis">Having thoughts of self-harm right now? Call or text <a class="inl" href="tel:988">988</a>, call <a class="inl" href="tel:911">911</a>, or go to the nearest emergency room.</p>
         </div>
       </div>
     </section>
@@ -110,18 +132,62 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
         <figure class="tx-photo"><img src={P + "group-room-feelings-wheel.webp"} alt="A Hopewell group room with a feelings wheel on the wall" width="1200" height="900" loading="lazy" /></figure>
         <div class="tx-copy">
           <h2>What DBT looks like at Hopewell</h2>
-          <p style="margin-top:16px">At Hopewell Health Solutions, DBT is delivered by licensed clinicians as part of our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient (IOP)</a> and <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization (PHP)</a> programs. Rather than learning skills in isolation, you practice them in a supportive group, apply them to real situations in your own life, and refine them with your therapist. The atmosphere is intentionally validating — you are met with understanding, not judgment — while you are gently challenged to try new responses to old, painful patterns. Over time, the goal is simple but profound: emotions that once ran your life become something you can name, tolerate, and manage, so you can move toward the relationships and the future you actually want.</p>
+          <p style="margin-top:16px">At Hopewell Health Solutions, DBT is delivered by licensed clinicians as part of our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient (IOP)</a> and <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization (PHP)</a> programs. Rather than learning skills in isolation, you practice them in a supportive group, apply them to real situations in your own life, and refine them with your therapist. The atmosphere is intentionally validating: you are met with understanding, not judgment, while you are gently challenged to try new responses to old, painful patterns. Over time, the goal is simple but profound: emotions that once ran your life become something you can name, tolerate, and manage, so you can move toward the relationships and the future you actually want.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where DBT is taught: navy split, heading left, divided list right -->
+    <section class="section is-navy">
+      <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
+      <div class="container tx-split" style="align-items:start">
+        <div>
+          <h2>Where you can learn DBT at Hopewell</h2>
+          <p class="lede" style="margin-top:16px">DBT runs through most of our programs for adults, teens and women, so you can learn the skills in the setting that fits you. Your <a class="inl" href="/admissions/">admissions team</a> will help you find the right one.</p>
+        </div>
+        <ul class="dbt-where">
+          {where.map(([t, d]) => <li><strong set:html={t} /><span>{d}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- What a skills group is like: one panel split by thin rules -->
+    <section class="section is-mist">
+      <div class="container">
+        <div class="sec-head"><h2>What a DBT skills group is like</h2><p class="lede">Practical, structured and small enough that you're never lost in the crowd.</p></div>
+        <div class="dbt-panel">
+          {groupLike.map(([t, d]) => <div><h3>{t}</h3><p set:html={d} /></div>)}
         </div>
       </div>
     </section>
 
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Skills From Our Clinicians" lede="Short videos from the Hopewell team on grounding, emotional regulation and connection." link={{ href: "/podcast/", label: "More videos & the podcast" }} />
     <Team heading="Clinicians Who Use DBT" lede="Team members who list DBT among their focus areas. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["kaitlyn-czapiga-lmsw", "madeline-blinderman-lpc-a", "jackie-plagesse-lmfta", "christina-coelho-lmsw", "ashley-singh-psy-d", "eric-schwartz-psy-d-abpp", "chelsey-micciche-lpc"]} feature={null} tone="stone" />
-    <Reviews />
     <Insurance heading="DBT is often covered by insurance" lede="In-network with most major plans. We'll verify your benefits before you start." />
+    <Reviews tone="stone" />
+    <MediaStrip bg="crema" />
     <Faq faqs={faq} heading="Frequently asked questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/dbt/" />
-    <ClosingCta heading="Learn skills that last a lifetime" lede="Talk with our Connecticut team about whether DBT is right for you — confidentially, with no pressure." />
+    <ClosingCta heading="Learn skills that last a lifetime" lede="Talk with our Connecticut team about whether DBT is right for you, confidentially, with no pressure." />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .dbt-crisis { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--hw-line); font-size: 15px; line-height: 1.5; }
+  .dbt-where { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .dbt-where li { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .dbt-where strong { font-family: var(--hw-head); font-size: 17px; color: #fff; line-height: 1.4; }
+  .dbt-where span { font-size: 16px; line-height: 1.5; color: #dce6f1; }
+  .dbt-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #fff; border: 1px solid var(--hw-line); border-radius: 22px; }
+  .dbt-panel > div { padding: 28px 28px 30px; display: grid; gap: 8px; align-content: start; }
+  .dbt-panel > div + div { border-left: 1px solid var(--hw-line); }
+  .dbt-panel h3 { font-size: 19px; }
+  .dbt-panel p { font-size: 16px; line-height: 1.55; }
+  :global(.hw .faq-a p + p) { margin-top: 10px; }
+  @media (max-width: 860px) {
+    .dbt-where li { grid-template-columns: 1fr; gap: 4px; }
+    .dbt-panel { grid-template-columns: 1fr; }
+    .dbt-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
+  }
+</style>

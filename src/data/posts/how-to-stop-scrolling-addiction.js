@@ -63,7 +63,7 @@ export default {
     "Deleting an app rarely holds. Here is what works when scrolling takes over your time, and how to tell when the habit is a symptom of something more serious.",
   category: "Mental Health",
   excerpt:
-    "About half of American smartphone users worry they use their phone too much, and among adults under 30 that number climbs to 80%. Scrolling is rarely the whole problem — it is usually how anxiety, low mood, or exhaustion gets managed instead of treated.",
+    "About half of American smartphone users worry they use their phone too much, and among adults under 30 that number climbs to 80%. Scrolling is rarely the whole problem, it is usually how anxiety, low mood, or exhaustion gets managed instead of treated.",
   heroImage: "/Assets/Blogs/opt/how-to-stop-scrolling-addiction.webp",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: "kristine-a-schlichting-ph-d",

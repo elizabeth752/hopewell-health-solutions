@@ -30,6 +30,13 @@ const progItems = programs.map((k) => PROGRAMS[k]).filter(Boolean);
 const vids = [...stories.map((y) => STORIES.find((v) => v.yt === y)).filter(Boolean), ...STORIES.filter((v) => !stories.includes(v.yt))];
 const bands = ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55"];
 let photoIdx = 0;
+let cardN = 0;
+// Never link a page to itself (shared catalog copy can point at the current condition page).
+const here = meta.canonical.replace("https://www.hopewellhealthsolutions.com", "");
+const unself = (h) => typeof h === "string" ? h.replace(/<a class="inl" href="([^"]+)">(.*?)<\/a>/g, (m, href, txt) => (href === here ? txt : m)) : h;
+// Conditions & Treatments links: column count that fills every row evenly (no orphan tile).
+const svcList = SERVICES.filter((s) => s.href !== meta.canonical.replace("https://www.hopewellhealthsolutions.com", ""));
+const svcCols = [4, 3, 5].find((c) => svcList.length % c === 0) ?? 4;
 const nextPhoto = () => photos[photoIdx++ % Math.max(photos.length, 1)];
 const kickFacts = hero.facts ?? [];
 const highlights = addiction ? ADDICTION_HIGHLIGHTS : WHO_WE_HELP;
@@ -57,7 +64,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
           <p class="lede" set:html={addiction ? `Addiction and substance use treatment at our Downtown Glastonbury (300 Hebron Ave) and Westbrook (70 Essex Road) offices, with the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, and step-down care after rehab.` : "Care at Hopewell is built around who you are, at every age and stage of life, with programs for adults, women, teens and first responders."} />
         </div>
         <ul class="cd-hl">
-          {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={h.d} /></li>)}
+          {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={unself(h.d)} /></li>)}
         </ul>
       </div>
     </section>
@@ -115,23 +122,45 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
           </div>
         </section>
       );
-      if (b.type === "cards") return (
-        <section class={`section ${b.navy ? "is-navy" : "is-white"} cd-cards-sec`}>
-          <div class="container">
-            <div class="sec-head"><h2>{b.h2}</h2>{b.lede && <p class="lede" set:html={b.lede} />}</div>
-            <div class:list={["cd-cards", b.items.length % 4 === 0 ? "cols-4" : "cols-3"]}>
-              {b.items.map((c, i) => (
-                <article class="cd-card" style={`--bar-c:${bands[i % 4]}`}>
-                  <span class="cd-card-icon"><Icon name={c.icon} class="h-6 w-6" /></span>
-                  <h3>{c.href ? <a href={c.href}>{c.t}</a> : c.t}</h3>
-                  <p set:html={c.d} />
-                </article>
-              ))}
+      if (b.type === "cards") {
+        // Varied layouts instead of the same card grid on every section (user 2026-11-16: "lot of these cards along the
+        // pages, use other things"): divided list, one panel split by rules, navy split. Rotates per page.
+        let v = b.variant ?? ["rows", "strip", "navysplit"][cardN++ % 3];
+        if (v === "strip" && b.items.length > 5) v = "rows";
+        const title = (c) => c.href ? <a href={c.href}>{c.t}</a> : c.t;
+        if (v === "rows") return (
+          <section class="section is-white cd-rows-sec">
+            <div class="container">
+              <div class="sec-head"><h2>{b.h2}</h2>{b.lede && <p class="lede" set:html={b.lede} />}</div>
+              <ul class="cd-rows">
+                {b.items.map((c, i) => <li style={`--c:${bands[i % 4]}`}><span class="cd-rows-icon"><Icon name={c.icon} class="h-5 w-5" /></span><div><h3>{title(c)}</h3><p set:html={c.d} /></div></li>)}
+              </ul>
+              {b.foot && <p class="sec-foot cd-foot" set:html={b.foot} />}
             </div>
-            {b.foot && <p class="sec-foot cd-foot" set:html={b.foot} />}
-          </div>
-        </section>
-      );
+          </section>
+        );
+        if (v === "strip") return (
+          <section class="section is-stone cd-strip-sec">
+            <div class="container">
+              <div class="sec-head"><h2>{b.h2}</h2>{b.lede && <p class="lede" set:html={b.lede} />}</div>
+              <ol class="cd-strip" style={`--n:${Math.min(b.items.length, 5)}`}>
+                {b.items.map((c, i) => <li><span class="cd-strip-top"><span class="cd-strip-icon" style={`--c:${bands[i % 4]}`}><Icon name={c.icon} class="h-5 w-5" /></span></span><h3>{title(c)}</h3><p set:html={c.d} /></li>)}
+              </ol>
+              {b.foot && <p class="sec-foot cd-foot" set:html={b.foot} />}
+            </div>
+          </section>
+        );
+        return (
+          <section class="section is-navy cd-nsplit-sec">
+            <div class="container cd-nsplit">
+              <div class="cd-nsplit-head"><h2>{b.h2}</h2>{b.lede && <p class="lede" set:html={b.lede} />}{b.foot && <p class="cd-nsplit-foot" set:html={b.foot} />}</div>
+              <ul class="cd-nsplit-list">
+                {b.items.map((c) => <li><span class="cd-nsplit-icon"><Icon name={c.icon} class="h-5 w-5" /></span><div><h3>{title(c)}</h3><p set:html={c.d} /></div></li>)}
+              </ul>
+            </div>
+          </section>
+        );
+      }
       if (b.type === "checks") return (
         <section class="section is-white cd-checks-sec">
           <div class="container cd-checks">
@@ -153,7 +182,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
         <div class="container">
           <div class="sec-head">
             <h2>{short} care at the level you need</h2>
-            <p class="lede">A full continuum under one roof — from weekly counseling to intensive day programs. You can step up when you need more support, or step down as you heal, without ever switching teams.</p>
+            <p class="lede">A full continuum under one roof, from weekly counseling to intensive day programs. You can step up when you need more support, or step down as you heal, without ever switching teams.</p>
           </div>
           <div class="levels-grid">
             {LEVELS.map((l, i) => (
@@ -185,9 +214,6 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     {team.length > 0 && <Team slugs={team} heading={`Clinicians Who Treat ${short}`} lede={`Board-certified prescribers, psychologists and therapists across Connecticut. Real credentials, real names. <a class="inl" href="/about-us/team/">Meet our full team</a>.`} />}
 
     <VideoCarousel videos={vids} heading="Stories of Hope, in Their Own Words" lede="Hopewell clients and their families share what treatment was like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews />
-    <Insurance heading={insurance.heading} lede={insurance.lede} />
     {addiction ? (
       <section class="section is-mist" id="locations">
         <div class="container">
@@ -210,14 +236,16 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
         </div>
       </section>
     ) : <Locations heading="Our locations" lede={locLede} />}
-    <p class="cd-contact"><Icon name="phone" class="h-4 w-4" />Reach us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> · <a class="inl" href="mailto:hhs4help@gmail.com">hhs4help@gmail.com</a></p>
+    <Insurance heading={insurance.heading} lede={insurance.lede} />
+    <Reviews tone="white" />
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading={faqHeading} schema={false} />
 
     <section class="section is-white cd-services">
       <div class="container">
         <div class="sec-head"><h2>Conditions &amp; Treatments</h2></div>
-        <ul class="cd-svc">
-          {SERVICES.filter((s) => s.href !== meta.canonical.replace("https://www.hopewellhealthsolutions.com", "")).map((s) => <li><a href={s.href}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-4 w-4 cd-svc-go" /></a></li>)}
+        <ul class="cd-svc" style={`--cols:${svcCols}`}>
+          {svcList.map((s) => <li><a href={s.href}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-4 w-4 cd-svc-go" /></a></li>)}
         </ul>
       </div>
     </section>

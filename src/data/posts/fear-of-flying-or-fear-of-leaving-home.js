@@ -12,7 +12,7 @@ export default {
   dateModified: "2025-08-04",
   readingMinutes: 2,
   bodyHtml: `<h2>When Growing Up Feels Like Taking off Without a Parachute</h2>
-<p>For many young adults, the thought of getting on a plane brings up more than just a fear of heights or turbulence. It stirs something deeper: <strong>the fear of growing up, leaving home, and stepping into an uncertain future</strong> without the constant presence of parents or familiar comforts.</p>
+<p>For many <a href="/post/why-are-young-adults-struggling-more-with-mental-health-issues/">young adults</a>, the thought of getting on a plane brings up more than just a fear of heights or turbulence. It stirs something deeper: <strong>the fear of growing up, leaving home, and stepping into an uncertain future</strong> without the constant presence of parents or familiar comforts.</p>
 <p>Sometimes, it's not really about flying at all - it's about what flying represents.</p>
 <h2>The Symbolism Behind the Fear</h2>
 <p>Flying is often a metaphor for independence. A plane takes you away from everything you know - your room, your daily routines, your support system - and drops you into new territory. It can feel exciting, but also overwhelming and disorienting.</p>
@@ -51,7 +51,7 @@ export default {
 <h2>How Therapy Can Help:</h2>
 <p>If you or someone you know feels stuck between wanting freedom and fearing it, therapy can offer safe space to explore:</p>
 <ul>
-<li>The roots of your anxiety about flying or leaving home</li>
+<li>The roots of your <a href="/what-we-treat/anxiety/">anxiety</a> about flying or leaving home</li>
 <li>Your beliefs about independence, safety, and self-worth</li>
 <li>How to set boundaries with family while still staying connected</li>
 <li>Ways to build emotional resilience and coping skills for transitions</li>

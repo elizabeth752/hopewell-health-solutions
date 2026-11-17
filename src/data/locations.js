@@ -15,15 +15,14 @@ export const locations = [
     phone: "+1-860-946-0447",
     lat: 41.7195199, lng: -72.6158734,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.0462929427076!2d-72.6158734!3d41.7195199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f7540001%3A0x207d1c58279c2917!2sKristine%20Schlichting!5e0!3m2!1sen!2sus!4v1781754351066!5m2!1sen!2sus",
-    blurb: "Our Pratt Street office is the home base of Hopewell Health Solutions in Glastonbury — a warm, house-style setting for individual, couples, and family therapy and ongoing psychiatric care, minutes from Glastonbury center with on-site parking.",
+    blurb: "Our Pratt Street office is the home base of Hopewell Health Solutions in Glastonbury, a warm, house-style setting for <a class='inl' href='/programs/counseling/'>individual, couples, and family therapy</a> and ongoing <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, minutes from Glastonbury center with on-site parking.",
     areas: ["Glastonbury", "South Glastonbury", "East Hartford", "Manchester", "Wethersfield", "Rocky Hill", "Marlborough", "Hebron"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
+    // front.webp (the 1420 Main St building) and entrance.webp (the 300 Hebron hall) removed 2026-11-16: not Pratt St.
     photoDir: "/Assets/locations/glastonbury",
     photos: [
       ["exterior.webp", "Front exterior of the Glastonbury office"],
-      ["front.webp", "Front of the Glastonbury office house"],
-      ["entrance.webp", "Entrance to the Glastonbury office"],
       ["therapy-space.webp", "Living-room-style therapy space in Glastonbury"],
       ["couch.webp", "Comfortable seating in the Glastonbury office"],
       ["sitting-area.webp", "Sitting area with lamp in the Glastonbury office"],
@@ -43,7 +42,7 @@ export const locations = [
     phone: "+1-860-962-4486",
     lat: 41.7129207, lng: -72.6014876,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.352088935695!2d-72.6014876!3d41.7129207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e65229f086f393%3A0xca25306a43f52c40!2sHopewell%20Health%20Solutions-%20Glastonbury!5e0!3m2!1sen!2sus!4v1781754310129!5m2!1sen!2sus",
-    blurb: "Our Downtown Glastonbury office on Hebron Avenue offers outpatient therapy, medication management, and intensive programs in a convenient suite — an easy drive from across Hartford County, with parking on site.",
+    blurb: "Our Downtown Glastonbury office on Hebron Avenue offers outpatient therapy, <a class='inl' href='/programs/medication-management/'>medication management</a>, and <a class='inl' href='/programs/intensive-outpatient-program/'>intensive programs</a> in a convenient suite, an easy drive from across Hartford County, with parking on site.",
     areas: ["Glastonbury", "South Glastonbury", "East Hartford", "Manchester", "Wethersfield", "Rocky Hill", "Marlborough", "Hebron"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
@@ -70,7 +69,7 @@ export const locations = [
     phone: null,
     lat: 41.68429942, lng: -72.60043998,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11918.711576046591!2d-72.60043998441421!3d41.68429942600149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e651e2650fffff%3A0x2f4e4d624c5aadc9!2s1420%20Main%20St%20Suit%20124%2C%20Glastonbury%2C%20CT%2006033!5e0!3m2!1sen!2sus!4v1781754695365!5m2!1sen!2sus",
-    blurb: "Our South Glastonbury office on Main Street brings convenient, compassionate care to the southern end of town — a quiet, accessible suite for therapy, medication management, and follow-up appointments.",
+    blurb: "Our South Glastonbury office on Main Street brings convenient, compassionate care to the southern end of town, a quiet, accessible suite for <a class='inl' href='/programs/counseling/'>therapy</a>, <a class='inl' href='/programs/medication-management/'>medication management</a>, and follow-up appointments.",
     areas: ["South Glastonbury", "Glastonbury", "Cromwell", "Rocky Hill", "Portland", "Middletown", "Marlborough", "East Hampton"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
@@ -107,7 +106,7 @@ export const locations = [
     phone: "+1-860-672-1457",
     lat: 41.7556912, lng: -72.7643461,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus",
-    blurb: "Our West Hartford office on Farmington Avenue serves the greater Hartford area with outpatient therapy, psychiatric care, and intensive programs. Centrally located and easy to reach, it’s a welcoming home base for care close to the city.",
+    blurb: "Our West Hartford office on Farmington Avenue serves the greater Hartford area with <a class='inl' href='/programs/counseling/'>outpatient therapy</a>, <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, and intensive programs. Centrally located and easy to reach, it’s a welcoming home base for care close to the city.",
     areas: ["West Hartford", "Hartford", "Newington", "Farmington", "Bloomfield", "Elmwood", "Wethersfield", "Avon"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
@@ -133,17 +132,17 @@ export const locations = [
     phone: "+1-860-390-4330",
     lat: 41.5955894, lng: -72.49079189,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2983.7824223633115!2d-72.49079189999999!3d41.595589499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e64575a93599c7%3A0x4db6adc86935149a!2sHopewell%20Health%20Solutions%20-%20East%20Hampton!5e0!3m2!1sen!2sus!4v1781754448028!5m2!1sen!2sus",
-    blurb: "Our East Hampton office brings Hopewell’s compassionate, evidence-based care to the eastern shoreline communities — a calm, accessible setting for therapy and psychiatric care, serving families across Middlesex County.",
+    blurb: "Our East Hampton office brings Hopewell’s compassionate, evidence-based care to the eastern shoreline communities, a calm, accessible setting for <a class='inl' href='/programs/counseling/'>therapy</a> and <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, serving families across Middlesex County.",
     areas: ["East Hampton", "Colchester", "Marlborough", "Portland", "Middletown", "Cobalt", "Haddam", "Hebron"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
+    // sitting-area.webp removed 2026-11-16: same photo as west-hartford/therapy-office.webp.
     photoDir: "/Assets/locations/east-hampton",
     photos: [
       ["exterior.webp", "Exterior of the East Hampton office"],
       ["front.webp", "Front of the East Hampton office house"],
       ["entry-porch.webp", "Entry porch of the East Hampton office"],
       ["lobby.webp", "Lobby of the East Hampton office"],
-      ["sitting-area.webp", "Sitting area in the East Hampton office"],
       ["sign.webp", "Hopewell Health Solutions sign outside the East Hampton office"],
     ],
   },
@@ -160,7 +159,7 @@ export const locations = [
     phone: "+1-860-846-7761",
     lat: 41.2874111, lng: -72.4473502,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5995.9718215263765!2d-72.4473502!3d41.2874111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e62415b9edbbf3%3A0x388064d34123e66b!2s70%20Essex%20Rd%2C%20Westbrook%2C%20CT%2006498!5e0!3m2!1sen!2sus!4v1781754474034!5m2!1sen!2sus",
-    blurb: "Our Westbrook office on Essex Road serves the Connecticut shoreline with outpatient therapy and psychiatric care — a convenient, welcoming location for individuals and families across the Old Saybrook and Clinton area.",
+    blurb: "Our Westbrook office on Essex Road serves the Connecticut shoreline with <a class='inl' href='/programs/counseling/'>outpatient therapy</a> and <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, a convenient, welcoming location for individuals and families across the Old Saybrook and Clinton area.",
     areas: ["Westbrook", "Old Saybrook", "Clinton", "Essex", "Madison", "Deep River", "Old Lyme", "Killingworth"],
     // Hours sent by the client 2026-09-18 (TJ Aitken), confirmed by Dora Torres 2026-09-22.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",

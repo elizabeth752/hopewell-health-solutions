@@ -146,7 +146,7 @@ export default {
             "Daylight early in the day",
             "Small achievable goals",
             "Real relationships",
-            "Less or no alcohol — it produces dopamine surges far larger than natural rewards do.",
+            "Less or no alcohol, it produces dopamine surges far larger than natural rewards do.",
           ],
         },
         {

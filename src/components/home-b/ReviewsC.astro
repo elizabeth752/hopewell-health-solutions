@@ -1,10 +1,10 @@
 ---
 // Reviews — option C: centered heading over an aligned three-column wall (equal tops and bottoms): blue featured quote, video + review, two reviews.
-const featured = { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." };
+const featured = { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management, I highly recommend this place." };
 const reviews = [
   { name: "Jake Sted", meta: "2 months ago", text: "Hopewell’s IOP program made a huge difference in my life. The groups were engaging, and the therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day." },
   { name: "Joana Yoo", meta: "10 months ago", text: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
-  { name: "Donald Krusinski", meta: "a year ago", text: "I'm under Tracy Sibley's care, and she is a kind and helpful person. She is so patient, understanding, and always very supportive. She is helping me through a difficult journey — I know I will be alright because of her excellent care!" },
+  { name: "Donald Krusinski", meta: "a year ago", text: "I'm under Tracy Sibley's care, and she is a kind and helpful person. She is so patient, understanding, and always very supportive. She is helping me through a difficult journey, I know I will be alright because of her excellent care!" },
 ];
 const initials = (n) => n.split(/[\s,.]+/).filter(Boolean).map((w) => w[0]).filter((c, i, a) => i === 0 || i === a.length - 1).join(".").toUpperCase() + ".";
 const [r1, r2, r3] = reviews;
@@ -73,11 +73,11 @@ const press = [
          as two wide cards; all play in place, no YouTube code until pressed -->
     <div class="mt-14" data-yt-lite>
       <h3 class="font-display text-2xl sm:text-3xl text-ink text-center text-balance">More Patient Stories</h3>
-        <p class="mt-2 text-ink text-center text-pretty">In their own words — real Hopewell clients on what changed for them.</p>
+        <p class="mt-2 text-ink text-center text-pretty">In their own words, real Hopewell clients on what changed for them.</p>
         <ul class="hb-reels mt-8 list-none p-0">
           {stories.map((v) => (
             <li>
-              <button type="button" class="hb-reviews-c-yt hb-reviews-c-yt--tall hb-reel" data-yt={v.id} aria-label={`Play video: ${v.title} — ${v.sub}`}>
+              <button type="button" class="hb-reviews-c-yt hb-reviews-c-yt--tall hb-reel" data-yt={v.id} aria-label={`Play video: ${v.title}, ${v.sub}`}>
                 <img src={v.thumb} alt="" width="900" height="1600" loading="lazy" decoding="async" />
                 <span class="hb-reviews-c-yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
                 <span class="hb-reel-cap">
@@ -92,7 +92,7 @@ const press = [
         <ul class="mt-6 grid gap-5 md:grid-cols-2 list-none p-0">
           {press.map((v) => (
             <li class="overflow-hidden rounded-[20px] bg-white shadow-[0_10px_28px_rgba(0,29,55,.08)]">
-              <button type="button" class="hb-reviews-c-yt !rounded-none" data-yt={v.id} aria-label={`Play video: ${v.title} — ${v.sub}`}>
+              <button type="button" class="hb-reviews-c-yt !rounded-none" data-yt={v.id} aria-label={`Play video: ${v.title}, ${v.sub}`}>
                 <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" />
                 <span class="hb-reviews-c-yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
               </button>

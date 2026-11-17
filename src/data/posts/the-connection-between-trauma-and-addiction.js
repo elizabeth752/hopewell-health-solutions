@@ -18,11 +18,11 @@ export default {
   dateModified: "2025-12-01",
   readingMinutes: 3,
   bodyHtml: `
-<p>For many people, addiction doesn't just start with a desire to escape the reality they have found themselves in, but with a desire to escape <strong>pain</strong>. For many o those who struggle with substance use, there is an underlying story of trauma, or the experiences in the past that overwhelmed a person's ability to cope, leaving deep emotional wounds that never fully healed.</p>
+<p>For many people, addiction doesn't just start with a desire to escape the reality they have found themselves in, but with a desire to escape <strong>pain</strong>. For many o those who struggle with substance use, there is an underlying story of <a href="/what-we-treat/trauma-ptsd/">trauma</a>, or the experiences in the past that overwhelmed a person's ability to cope, leaving deep emotional wounds that never fully healed.</p>
 
 <p>Understanding how trauma and addiction intertwine is essential for those in the mental health field when it comes to helping people recover with compassion, rather than judgment.</p>
 
-<p>At Hopewell Health Solutions in Glastonbury, Connecticut, we see this connection every day. In both our Adult Mental Health Intensive Outpatient Program (IOP) and Women's Wellness IOP, clients often describe turning to substances as a way to numb, control, or quiet the distress that trauma leaves behind. Healing for our clients begins when we understand why that happens and how to begin addressing the root cause.</p>
+<p>At Hopewell Health Solutions in Glastonbury, Connecticut, we see this connection every day. In both our Adult Mental Health Intensive Outpatient Program (IOP) and <a href="/programs/womens-wellness-iop/">Women's Wellness IOP</a>, clients often describe turning to substances as a way to numb, control, or quiet the distress that trauma leaves behind. Healing for our clients begins when we understand why that happens and how to begin addressing the root cause.</p>
 
 <h2>How Trauma Affects the Brain and Body</h2>
 <p>Trauma reshapes how the brain processes safety and stress, and when someone experiences abuse, neglect, loss, or violence or other types of trauma, the body's alarm system becomes overly sensitive. Even long after the event has passed, the brain may continue to send signals of danger. This can then lead to chronic hypervigilance, anxiety, avoidance behaviors, trouble sleeping, nightmares, flashbacks, and emotional reactivity.</p>
@@ -30,14 +30,14 @@ export default {
 <p>Substances like alcohol, opioids, or stimulants can temporarily reduce these sensations - they can create a false sense of calm or control, which is why many trauma survivors turn to them as maladaptive coping tools. Over time, this pattern can develop into dependence - not because of weakness - but because the brain learns that substances = relief from unbearable distress.</p>
 
 <h2>Addiction as a Coping Strategy</h2>
-<p>When someone uses drugs or alcohol to cope with trauma, the behavior is often rooted in survival rather than self-destruction. Addiction becomes a way to manage emotional pain, intrusive memories, and feelings of emptiness or shame. However, the same substances that bring temporary relief can eventually create new layers of pain, damaged relationships, shame, guilt, and health issues, trapping individuals in a cycle that feels impossible to escape...</p>
+<p>When someone uses drugs or alcohol to cope with trauma, the behavior is often rooted in survival rather than self-destruction. Addiction becomes a way to manage emotional pain, intrusive memories, and <a href="/post/why-do-i-feel-empty-causes-signs-and-treatment/">feelings of emptiness</a> or shame. However, the same substances that bring temporary relief can eventually create new layers of pain, damaged relationships, shame, guilt, and health issues, trapping individuals in a cycle that feels impossible to escape...</p>
 
 <p>At Hopewell, we emphasize that understanding this cycle is not about excusing addiction, but about humanizing it, and healing from trauma requires safety, connection, and new ways of coping, not punishment or blame.</p>
 
 <h2>Breaking the Cycle: Healing Both Trauma and Addiction</h2>
 <p>Treating addiction without addressing trauma is like putting a bandage on a wound that has never been cleaned -- recovery <strong>must</strong> include looking at and treating both the symptoms of addiction and the underlying pain that drives it.</p>
 
-<p>In our Intensive Outpatient Programs (IOPs), we integrate evidence-based therapies that address both trauma and substance use, such as Dialectical Behavior Therapy (DBT), Cognitive Behavioral Therapy (CBT), medication assisted therapy, mindfulness, and trauma-informed group work. Clients learn to recognize their triggers, regulate their emotions, and replace substance use with healthier coping strategies.</p>
+<p>In our <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a> (IOPs), we integrate evidence-based therapies that address both trauma and substance use, such as Dialectical Behavior Therapy (DBT), <a href="/treatment-methods/therapeutic-treatments/">Cognitive Behavioral Therapy (CBT)</a>, medication assisted therapy, mindfulness, and trauma-informed group work. Clients learn to recognize their triggers, regulate their emotions, and replace substance use with healthier coping strategies.</p>
 
 <p>Our Women's Welness IOP provides a safe, supportive environment where women can process their experiences, connect with others who understand, and rebuild trust in themselves. Our co-ed Adult IOP offers support for individuals managing both mental health and substance use challenges, focusing on stabilization, relapse prevention, and emotional healing.</p>
 

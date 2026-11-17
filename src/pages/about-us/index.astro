@@ -1,136 +1,265 @@
 ---
-// About — 2026 redesign. All copy kept; "superior" (unsourced superlative, KB §1) now reads "multidisciplinary".
+// About, 2026 redesign. Rebuilt 2026-11-16 to the "Hopewell About Us Page: Content Brief" (12-section outline), keeping every
+// sentence of the previous page. Sitewide order at the bottom: Reviews, As featured in, FAQ, careers strip, closing CTA.
+// Left out until TJ confirms (brief [confirm] items): founding FAQ, clinician count in the numbers row, leadership titles from
+// the brief (Joy Burchell is not on the site; leaders and titles below are the live ones from providers.js), licences beyond
+// LegitScript, extra provider types, hiring status. Brief "never include": the old "14 years" and "50,000+ lives helped"
+// stat tiles are dropped from the numbers row.
 import "../../styles/pages/about.css";
 import "../../styles/pages/hubs.css";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
-import ServiceHero from "../../components/hw/ServiceHero.astro";
+import LegitScriptSeal from "../../components/LegitScriptSeal.astro";
 import Creds from "../../components/hw/Creds.astro";
 import Team from "../../components/hw/Team.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Reviews from "../../components/hw/Reviews.astro";
-import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Faq from "../../components/hw/Faq.astro";
 import { STORIES } from "../../data/videos.js";
+import { providers } from "../../data/providers.js";
+import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
+import { socials } from "../../data/socials.ts";
+import { SITE, PHONE, GOOGLE } from "../../data/site.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/about-us/";
 const P = "/Assets/hhs-2026/";
-const stats = [
-  ["14", "Years serving Central Connecticut", "calendar"],
-  ["50+", "Clinicians on our team", "users"],
-  ["6", "Connecticut locations", "pin"],
-  ["50,000+", "Lives helped", "heart"],
-];
-const offer = [
-  { t: "Therapy that works", d: "DBT, CBT, play therapy, solution-focused therapy, the Gottman Method for couples, and trauma-informed care.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["brain", "Individual, couples & family"]] },
-  { t: "Therapeutic & mind-body treatments", d: "Accelerated Resolution Therapy (ART), mindfulness, yoga therapy, and other wellness-based methods.", href: "/treatment-methods/therapeutic-treatments/", img: P + "group-room-bright.webp", bar: "#5c7c6b", facts: [["heart", "ART, mindfulness, yoga therapy"]] },
-  { t: "EMDR & eye-movement therapy", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", img: "/Assets/service/trauma-informed-individual.webp", bar: "#b6863c", facts: [["refresh", "Trauma-focused"]] },
-  { t: "Medication management", d: "Personalized psychiatric medication plans that help clients flourish — for ages 4 and up.", href: "/programs/medication-management/", img: P + "south-glastonbury-waiting-room.webp", bar: "#265489", facts: [["pill", "Ages 4 and up"]] },
-  { t: "Intensive Outpatient Program", d: "Structured group and individual support several days a week, without putting life on hold.", href: "/programs/intensive-outpatient-program/", img: P + "adult-evening-iop-group.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"]] },
-  { t: "Neuropsychological testing", d: "Comprehensive neuropsychological testing for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-play-room.webp", bar: "#b6863c", facts: [["clipboard", "Testing & diagnosis"]] },
-];
+const heroBullets = ["Board-certified specialists for ages 4 and up", "Six offices: Glastonbury, Westbrook, West Hartford &amp; East Hampton", "Therapy first. Medication second. Transformation third.", "Joint Commission accredited"];
 
-// Corner Canyon hub pattern (user, 2026-11-16: "we need content for SEO"): fuller offer cards, milestones, how we work,
-// who we serve, accreditation and an About FAQ. Facts from the site and the client knowledge base only.
+const offer = [
+  { t: "Therapy that works", d: "DBT, CBT, play therapy, solution-focused therapy, the Gottman Method for couples, and trauma-informed care.", href: "/programs/counseling/", img: P + "westbrook-therapy-office.webp" },
+  { t: "Therapeutic & mind-body treatments", d: "Accelerated Resolution Therapy (ART), mindfulness, yoga therapy, and other wellness-based methods.", href: "/treatment-methods/therapeutic-treatments/", img: P + "group-room-bright.webp" },
+  { t: "EMDR & eye-movement therapy", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", img: "/Assets/service/trauma-informed-individual.webp" },
+  { t: "Medication management", d: "Personalized psychiatric medication plans that help clients flourish, for ages 4 and up.", href: "/programs/medication-management/", img: P + "south-glastonbury-waiting-room.webp" },
+  { t: "Intensive Outpatient Program", d: "Structured group and individual support several days a week, without putting life on hold.", href: "/programs/intensive-outpatient-program/", img: P + "adult-evening-iop-group.webp" },
+  { t: "Neuropsychological testing", d: "Comprehensive neuropsychological testing for clarity, diagnosis, and a real plan.", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-play-room.webp" },
+];
 const offerMore = {
   "/programs/counseling/": "Weekly sessions with a licensed therapist for individuals, couples and families, at all six offices or by telehealth.",
-  "/treatment-methods/therapeutic-treatments/": "Whole-person approaches that work alongside talk therapy, from ART for trauma to mindfulness and yoga therapy for stress.",
+  "/treatment-methods/therapeutic-treatments/": "Whole-person approaches that work alongside talk therapy, from ART for <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma</a> to mindfulness and yoga therapy for stress.",
   "/treatment-methods/emdr/": "A structured trauma therapy that helps distressing memories lose their charge, used across our trauma programs.",
-  "/programs/medication-management/": "Board-certified prescribers build personalized plans and follow up closely, with GeneSight® testing available.",
+  "/programs/medication-management/": "Board-certified prescribers build personalized plans and follow up closely, with <a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight® testing</a> available.",
   "/programs/intensive-outpatient-program/": "Tracks for tweens, teens, women, adults, first responders and addiction, about three hours a day, four days a week.",
   "/treatment-methods/neuropsychological-testing/": "Detailed evaluation of attention, memory and learning, with a written report and clear next steps.",
 };
 const milestones = [
   ["2013", "Hopewell Health Solutions is founded in Glastonbury by Dr. Kristine Schlichting."],
   ["50+", "Licensed clinicians today: psychologists, prescribers, social workers and counselors."],
-  ["2026", "LegitScript certification for addiction treatment, alongside Joint Commission accreditation."],
-  ["Sept 2026", "Our Westbrook office opens on the shoreline, the sixth Hopewell location."],
+  ["2026", `LegitScript certification for <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a>, alongside Joint Commission accreditation.`],
+  ["Sept 2026", `Our <a class="inl" href="/post/hopewell-health-solutions-westbrook-campus/">Westbrook office</a> opens on the shoreline, the sixth Hopewell location.`],
 ];
+// Mantra (live copy), shown as one panel split by thin rules.
 const how = [
-  { icon: "chat", t: "Therapy first", d: "Most plans start with evidence-based therapy such as CBT, DBT and EMDR, because skills are what last." },
-  { icon: "pill", t: "Medication second", d: "When medication helps, our prescribers build a careful, personalized plan, never one-size-fits-all." },
-  { icon: "sparkles", t: "Transformation third", d: "The goal is a life that feels like yours again: confidence, clarity and the conviction to keep going." },
-  { icon: "users", t: "In person, with telehealth", d: "While others go all-virtual, our programs happen face to face, with telehealth when you need it." },
+  ["Therapy first", "Most plans start with evidence-based therapy such as CBT, DBT and EMDR, because skills are what last."],
+  ["Medication second", "When medication helps, our prescribers build a careful, personalized plan, never one-size-fits-all."],
+  ["Transformation third", "The goal is a life that feels like yours again: confidence, clarity and the conviction to keep going."],
+];
+// Brief section 4: what makes us different (one sentence + a fact each).
+const different = [
+  ["In-person care with clinicians who know your name", "While others go all-virtual, our programs happen face to face, with telehealth when you need it.", "Six Connecticut offices"],
+  ["Every level of care with one team", `<a class="inl" href="/programs/counseling/">Counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> are coordinated by one team as your needs change.`, "Four levels of care"],
+  ["Mental health and addiction treated together", `People who need both get care for mental health and <a class="inl" href="/programs/addiction-iop/">addiction</a> together, from the same team.`, "Addiction care at 300 Hebron Ave and Westbrook"],
+  ["Children, teens and adults", `Care starts at age 4, with programs for <a class="inl" href="/programs/tween-iop/">tweens</a>, <a class="inl" href="/programs/teen-iop/">teens</a>, women, adults and first responders.`, "Ages 4 and up"],
+];
+// Brief section 5: verified figures only.
+const numbers = [
+  ["6", "Connecticut offices"],
+  ["4", "Levels of care, from counseling to PHP"],
+  ["4+", "Ages we care for, from children to adults"],
+  [GOOGLE.rating, `Google rating from ${GOOGLE.count} reviews`],
 ];
 const serve = [
-  { icon: "sparkles", t: "Children & families", d: `Play therapy, parent guidance and <a class="inl" href="/programs/medication-management/">medication management</a> from age 4.` },
-  { icon: "users", t: "Tweens & teens", d: `After-school support in the <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a>.` },
-  { icon: "heart", t: "Women", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>.` },
-  { icon: "shield", t: "First responders", d: `A dedicated <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.` },
-  { icon: "compass", t: "Adults", d: `Day and evening care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>.` },
-  { icon: "link", t: "People facing addiction", d: `The <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave and Westbrook.` },
+  ["Children & families", `Play therapy, parent guidance and <a class="inl" href="/programs/medication-management/">medication management</a> from age 4.`],
+  ["Tweens & teens", `After-school support in the <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a>.`],
+  ["Women", `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>.`],
+  ["First responders", `A dedicated <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.`],
+  ["Adults", `Day and evening care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>.`],
+  ["People facing addiction", `The <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> at 300 Hebron Ave and Westbrook.`],
 ];
-const faqs = [
-  ["Who founded Hopewell Health Solutions?", `Hopewell was founded in Glastonbury in 2013 by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting, PhD</a>, a licensed psychologist who still leads the practice as Director.`],
-  ["Where are your offices?", `Six Connecticut offices: three in Glastonbury (Pratt St, 300 Hebron Ave and 1420 Main St), plus West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">all locations</a>.`],
-  ["Is Hopewell accredited?", `Yes. Hopewell is accredited by The Joint Commission, holds LegitScript certification for addiction treatment, and is a BBB Accredited Business.`],
-  ["What ages do you see?", `We care for clients aged 4 and older, from young children and teens to adults.`],
-  ["Do you offer telehealth?", `Yes. Care happens in person across our Connecticut offices, with telehealth when you need it.`],
-  ["Are you hiring?", `We’re always glad to meet clinicians who share our approach. See <a class="inl" href="/about-us/careers/">careers at Hopewell</a>.`],
-];
-const org = {
-  "@context": "https://schema.org", "@type": "AboutPage", url: canonical, name: "About Hopewell Health Solutions",
-  about: { "@type": "MedicalOrganization", "@id": "https://www.hopewellhealthsolutions.com/#organization", name: "Hopewell Health Solutions", foundingDate: "2013" },
+// Brief section 6: leadership, in the site's existing leadership order; titles and credentials from providers.js.
+const leadLines = {
+  "kristine-a-schlichting-ph-d": "Licensed psychologist with a doctorate in psychology from the University of Connecticut, known to clients and staff as Dr. K.",
+  "teesha-huertas-lcsw": "Licensed clinical social worker with a decade in behavioral health, from crisis work to clinical direction.",
+  "colleen-callaway-mba": "Manages the treatment schedule, benefits and insurance, and client relations.",
+  "tj-aitken-cpsrp": "Certified Peer Support and Recovery Professional with 10 years in the substance use field.",
 };
+const leaders = Object.keys(leadLines).map((s) => providers.find((p) => p.slug === s)).filter(Boolean);
+
+// Gallery (user, 2026-11-16: "add a gallery as the first section with images from the locations, groups, everything").
+// Real Hopewell people and places only. Spans make a full 4 x 4 mosaic with no gaps.
+const gallery = [
+  [P + "full-team-lawn.webp", "The Hopewell team together on the lawn", "Our team", "is-big"],
+  [P + "iop-room-group-photo.webp", "Hopewell clinicians in an IOP group room", "IOP group room", "is-tall"],
+  [P + "tms-neurostar-room.webp", "The TMS treatment room at Hopewell", "TMS room", ""],
+  ["/Assets/locations/westbrook/beach-walk.webp", "A walk on the beach near the Westbrook office", "Westbrook shoreline", ""],
+  [P + "group-room-feelings-wheel.webp", "A Hopewell group room with a feelings wheel on the wall", "Group room", ""],
+  [P + "sg-tween-group-room.webp", "The tween group room at the South Glastonbury office", "Tween group room", ""],
+  [P + "east-hampton-waiting-room.webp", "The waiting room at the East Hampton office", "East Hampton", ""],
+  [P + "womens-wellness-team.webp", "The Women's Wellness IOP team", "Women's Wellness team", ""],
+  [P + "team-with-dr-k-lawn.webp", "Dr. Kristine Schlichting with the Hopewell team", "Dr. K and the team", "is-wide"],
+  [P + "php-group-room.webp", "The PHP group room at Downtown Glastonbury", "PHP group room", ""],
+  [P + "west-hartford-office.webp", "The West Hartford office", "West Hartford", ""],
+];
+// Office photo gallery above the office cards (user: "and same with the locations section").
+const officeShots = {
+  "glastonbury-ct": ["/Assets/locations/glastonbury/therapy-space.webp", "Living-room-style therapy space at the Pratt St office"],
+  "glastonbury-ct-2": ["/Assets/locations/downtown-glastonbury/entrance.webp", "Entrance to the Downtown Glastonbury office at 300 Hebron Ave"],
+  "glastonbury-ct-3": ["/Assets/locations/1420-main/sg-waiting-room.webp", "Waiting room at the South Glastonbury office"],
+  "west-hartford-ct": ["/Assets/locations/west-hartford/therapy-office.webp", "Therapy office in West Hartford"],
+  "east-hampton-ct": ["/Assets/locations/east-hampton/lobby.webp", "Lobby of the East Hampton office"],
+  "westbrook-ct": ["/Assets/locations/westbrook/sitting-room.webp", "Sitting room with a window view in Westbrook"],
+};
+const faqs = [
+  ["Who is Hopewell Health Solutions?", `An outpatient mental health and addiction treatment provider with six offices in Connecticut, offering <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a>, <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>, <a class="inl" href="/treatment-methods/tms/">TMS</a> and testing for children, teens and adults.`],
+  ["Who founded Hopewell Health Solutions?", `Hopewell was founded in Glastonbury in 2013 by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting, PhD</a>, a licensed psychologist who still leads the practice as Director.`],
+  ["Where are your offices?", `<p>Pratt St and Downtown (Hebron Ave) in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">our locations</a>.</p> <p>Six Connecticut offices: three in Glastonbury (Pratt St, 300 Hebron Ave and 1420 Main St), plus West Hartford, East Hampton and Westbrook.</p>`],
+  ["Is care in person or online?", `<p>Our care is built around in-person visits and groups, with telehealth available for some services.</p> <p>Care happens in person across our Connecticut offices, with telehealth when you need it.</p>`],
+  ["Who provides care at Hopewell?", `Licensed therapists and psychiatric providers. Meet them on <a class="inl" href="/about-us/team/">our team page</a>.`],
+  ["Are you licensed and certified?", `<p>Hopewell is LegitScript-certified.</p> <p>Hopewell is accredited by The Joint Commission, holds LegitScript certification for addiction treatment, and is a BBB Accredited Business.</p>`],
+  ["Do you treat both mental health and addiction?", `Yes, including <a class="inl" href="/what-we-treat/co-occurring/">both together</a> for people who need it. See our <a class="inl" href="/what-we-treat/">conditions we treat</a>.`],
+  ["What ages do you see?", `We care for clients aged 4 and older, from young children and teens to adults.`],
+  ["What insurance do you accept?", `Most major commercial plans. We <a class="inl" href="/rates-and-insurance-coverage/">check your benefits</a> for free. We don't accept Medicare or Medicaid.`],
+  ["How is my privacy protected?", `We follow federal privacy laws, including the stricter rules for substance use treatment records. Read our <a class="inl" href="/privacy/">privacy policy</a>.`],
+  ["Are you hiring?", `<p>See current openings on <a class="inl" href="/about-us/careers/">our careers page</a>.</p> <p>We’re always glad to meet clinicians who share our approach.</p>`],
+];
+
+const org = {
+  "@type": "MedicalOrganization",
+  "@id": SITE + "/#organization",
+  name: "Hopewell Health Solutions",
+  url: SITE + "/",
+  logo: SITE + "/Assets/logo/hopewell-wave-logo.webp",
+  foundingDate: "2013",
+  sameAs: [...socials.map((s) => s.href), "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", "https://www.google.com/maps?cid=14566101802764545088", "https://www.google.com/maps?cid=5599854262951941274"],
+  subOrganization: locations.map((l) => ({
+    "@type": "MedicalClinic", "@id": `${SITE}/location/${l.slug}/#clinic`, name: `Hopewell Health Solutions, ${l.name}`, url: `${SITE}/location/${l.slug}/`,
+    telephone: l.phone, openingHours: l.hours,
+    address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
+    availableService: OFFER_ORDER.filter((k) => l.offers?.includes(k)).map((k) => ({ "@type": "MedicalTherapy", name: OFFERS[k].t, url: SITE + OFFERS[k].href })),
+  })),
+  employee: leaders.map((p) => ({
+    "@type": "Person", name: p.name.split(",")[0].trim(), honorificSuffix: p.credentials, jobTitle: p.role,
+    url: `${SITE}/provider/${p.slug}/`, image: `${SITE}/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`,
+  })),
+};
+const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: canonical, name: "About Hopewell Health Solutions", mainEntity: org, about: { "@id": SITE + "/#organization" } };
 ---
 
-<Base title="About Hopewell Health Solutions | Mental Health & Psychiatry in CT" description="Hopewell Health Solutions is a multidisciplinary mental health & psychiatry practice in Glastonbury, Westbrook & West Hartford, CT — board-certified specialists, a multidisciplinary approach, and care for ages 4 and up. Therapy first, medication second, transformation third." canonical={canonical} image={P + "team-celebrating-outside.webp"}>
+<Base title="About Hopewell | Connecticut Mental Health & Addiction Care" description="Meet Hopewell Health Solutions: an in-person Connecticut team treating mental health and addiction for all ages across six offices. Our story, leaders and standards." canonical={canonical} image={P + "team-300-hebron.webp"}>
   <Header />
-  <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "About Us" }]}
-      title="About Hopewell Health Solutions"
-      lede="A multidisciplinary mental health practice helping clients across Connecticut become the best version of themselves — in person and by telehealth."
-      bullets={["Board-certified specialists for ages 4 and up", "Six offices: Glastonbury, Westbrook, West Hartford &amp; East Hampton", "Therapy first. Medication second. Transformation third.", "Joint Commission accredited"]}
-      facts={[{ icon: "calendar", text: "Serving Connecticut since 2013" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
-      image={P + "team-celebrating-outside.webp"}
-      imagePos="center 40%"
-    />
+    <!-- 1. Hero + form (Corner Canyon navy hub hero) -->
+    <section class="wq-hero">
+      <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
+      <div class="container wq-hero-grid ab-hero-grid">
+        <div>
+          <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About Us</span></nav>
+          <h1 class="text-balance">About Hopewell Health Solutions</h1>
+          <p class="ab-tag">There is <em>hope</em> to <em>heal</em>.</p>
+          <p class="lede">A Connecticut team of clinicians you meet in person, caring for mental health and addiction at every level.</p>
+          <p class="lede ab-lede2">A multidisciplinary mental health practice helping clients across Connecticut become the best version of themselves, in person and by telehealth.</p>
+          <ul class="ab-hero-list">{heroBullets.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}</ul>
+          <ul class="wq-facts">
+            <li><Icon name="calendar" class="h-[18px] w-[18px]" />Serving Connecticut since 2013</li>
+            <li><Icon name="star" class="h-[18px] w-[18px]" />{GOOGLE.rating} · {GOOGLE.count} Google reviews</li>
+          </ul>
+          <div class="wq-ctas"><a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a><a href="/about-us/team/" class="btn wq-ghost">Meet our team</a></div>
+        </div>
+        <div class="ab-hero-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
+      </div>
+    </section>
     <Creds />
 
-    <!-- Welcome / mission -->
+    <!-- Gallery: real people, groups and offices -->
+    <section class="section is-white" id="gallery">
+      <div class="container">
+        <div class="sec-head"><h2>Inside Hopewell</h2><p class="lede">Our people, our groups and our six Connecticut offices. Every photo here is a real Hopewell person or place.</p></div>
+        <ul class="ab-gal">
+          {gallery.map(([src, alt, cap, cls]) => <li class={cls}><img src={src} alt={alt} loading="lazy" /><span>{cap}</span></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Who we are + our story -->
     <section class="section is-white" id="mission">
       <div class="container ab-story">
         <figure class="ab-story-media" style="margin:0">
-          <img src="/Assets/service/team-dedicated.webp" alt="The Hopewell Health Solutions team in Connecticut" width="1200" height="900" loading="lazy" />
+          <img src={P + "team-300-hebron.webp"} alt="The Hopewell Health Solutions team at the Downtown Glastonbury office" width="1200" height="900" loading="lazy" />
+          <figcaption>Our team at the Downtown Glastonbury office, 300 Hebron Ave</figcaption>
         </figure>
         <div class="ab-copy">
           <h2>Welcome to Hopewell Health Solutions</h2>
           <div style="margin-top:20px">
-            <p>Welcome to Hopewell Health Solutions, a multidisciplinary mental health practice with locations in Glastonbury and West Hartford, Connecticut. Our board-certified specialists take an innovative, multi-disciplinary approach to mental health treatments for clients aged 4 and older in a compassionate, safe environment, whether in person or via telehealth.</p>
+            <p>Welcome to Hopewell Health Solutions, a multidisciplinary mental health practice with <a class="inl" href="/locations/">locations in Glastonbury and West Hartford</a>, Connecticut. Our board-certified specialists take an innovative, multi-disciplinary approach to mental health treatments for clients aged 4 and older in a compassionate, safe environment, whether in person or via telehealth.</p>
             <p>Our mental health experts provide practical solutions, empowerment, and instruction. We’re committed to achieving outstanding client results. Our mission at Hopewell Health Solutions is to help clients become the best version of themselves by providing exceptional, effective treatments and cutting-edge medications that transform lives.</p>
             <p>We offer <a class="inl" href="/treatment-methods/dbt/">dialectical behavioral therapy (DBT)</a>, cognitive-behavioral therapy (CBT), play therapy, solution-focused therapy, trauma treatments, <a class="inl" href="/programs/counseling/">counseling</a>, and mind-body therapies. Additional mental health solutions include accelerated resolution therapy (ART), <a class="inl" href="/treatment-methods/emdr/">eye-movement therapies</a>, the Gottman Method for couples, and other <a class="inl" href="/treatment-methods/therapeutic-treatments/">therapeutic treatments</a>. We provide mindfulness therapy, yoga therapy, and numerous other wellness-based methods to ease depression, anxiety, and other mental health concerns.</p>
             <p>Our skilled staff creates personalized psychiatric <a class="inl" href="/programs/medication-management/">medication management</a> plans that help clients flourish and empower them to make lifestyle changes and live their best lives. We offer an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.</p>
           </div>
           <div class="pf-card is-navy" style="margin-top:24px">
             <p style="font-family:var(--hw-head);font-weight:800;font-size:22px;color:#fff;line-height:1.3">Therapy first. Medication second. Transformation third.</p>
-            <p style="margin-top:10px;font-size:16px">Our mantra guides a diverse team that collaborates to provide five-star treatment plans — giving clients the confidence, clarity, and conviction to create the life they long for and deserve.</p>
+            <p style="margin-top:10px;font-size:16px">Our mantra guides a diverse team that collaborates to provide five-star treatment plans, giving clients the confidence, clarity, and conviction to create the life they long for and deserve.</p>
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="section is-stone" id="story">
       <div class="container">
-        <ul class="usp-more is-stats" style="margin-top:44px">
-          {stats.map(([n, l, icon]) => <li><span class="usp-more-icon"><Icon name={icon} /></span><span><strong>{n}</strong>{l}</span></li>)}
-        </ul>
+        <div class="sec-head"><h2>Our story</h2><p class="lede">From one Glastonbury office to six across Connecticut, Hopewell has grown around a single idea: there is hope to heal.</p></div>
+        <ul class="hb-timeline">{milestones.map(([n, t]) => <li><strong>{n}</strong><span set:html={t} /></li>)}</ul>
+      </div>
+    </section>
+
+    <!-- 4. What makes us different (navy split: heading left, divided list right) + 5. by the numbers -->
+    <section class="section is-navy" id="different">
+      <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
+      <div class="container ab-diff">
+        <div>
+          <h2>What makes Hopewell different</h2>
+          <p class="lede" style="margin-top:16px">A local team you meet in person, with every level of care under one roof. See <a class="inl" href="/programs/">all programs</a> and <a class="inl" href="/treatment-methods/">treatments</a>.</p>
+        </div>
+        <dl class="ab-diff-list">
+          {different.map(([t, d, f]) => <div><dt>{t}</dt><dd><span set:html={d} /><small>{f}</small></dd></div>)}
+        </dl>
+      </div>
+      <div class="container">
+        <h2 class="ab-num-h">Hopewell by the numbers</h2>
+        <ul class="ab-nums">{numbers.map(([n, l]) => <li><strong>{n}</strong><span>{l}</span></li>)}</ul>
+      </div>
+    </section>
+
+    <!-- How we work: the mantra as one panel split by thin rules -->
+    <section class="section is-white" id="how">
+      <div class="container">
+        <div class="sec-head"><h2>How we work</h2><p class="lede">Our mantra is simple, and it shapes every treatment plan we build.</p></div>
+        <div class="ab-panel">{how.map(([t, d]) => <div><h3>{t}</h3><p>{d}</p></div>)}</div>
+      </div>
+    </section>
+
+    <!-- Who we serve: divided two-column list -->
+    <section class="section is-stone" id="serve">
+      <div class="container">
+        <div class="sec-head"><h2>Who we serve</h2><p class="lede">Programs shaped around who you are, for clients aged 4 and older.</p></div>
+        <dl class="ab-serve">{serve.map(([t, d]) => <div><dt>{t}</dt><dd set:html={d} /></div>)}</dl>
       </div>
     </section>
 
     <!-- What we offer -->
     <section class="section is-mist" id="offer">
       <div class="container">
-        <div class="sec-head"><h2>What we offer</h2><p class="lede">From talk therapy to advanced treatments, everything is coordinated by one team — and tailored to each client. See <a class="inl" href="/programs/">all programs</a> and <a class="inl" href="/what-we-treat/">what we treat</a>.</p></div>
+        <div class="sec-head"><h2>What we offer</h2><p class="lede">From talk therapy to advanced treatments, everything is coordinated by one team, and tailored to each client. See <a class="inl" href="/programs/">all programs</a> and <a class="inl" href="/what-we-treat/">what we treat</a>.</p></div>
         <div class="hb-groups"><section class="hb-group t-blue"><div class="hb-group-head"><span class="hb-group-icon"><Icon name="heart" /></span><div><h3>Care under one roof</h3><small>Therapy, psychiatry, intensive programs and testing</small></div></div>
           <div class="hb-cards">
             {offer.map((c) => (
               <article class="hb-card">
                 <img src={c.img} alt={`${c.t} at Hopewell Health Solutions`} width="300" height="300" loading="lazy" />
-                <div><h4><a href={c.href}>{c.t}</a></h4><p>{c.d}</p><p>{offerMore[c.href]}</p></div>
+                <div><h4><a href={c.href}>{c.t}</a></h4><p>{c.d}</p><p set:html={offerMore[c.href]} /></div>
               </article>
             ))}
           </div>
@@ -138,37 +267,144 @@ const org = {
       </div>
     </section>
 
-    <section class="section is-white" id="how">
+    <!-- 6. Leadership -->
+    <section class="section is-white" id="leadership">
       <div class="container">
-        <div class="sec-head"><h2>How we work</h2><p class="lede">Our mantra is simple, and it shapes every treatment plan we build.</p></div>
-        <div class="hb-tiles cols-4">{how.map((h, i) => <div class:list={["hb-tile", i === 0 && "is-dark"]}><span class="hb-tile-icon"><Icon name={h.icon} /></span><h3>{h.t}</h3><p>{h.d}</p></div>)}</div>
+        <div class="sec-head"><h2>Our leadership</h2><p class="lede">The people who guide Hopewell's care, operations and programs. Each name links to a full bio.</p></div>
+        <ul class="ab-leaders">
+          {leaders.map((p) => (
+            <li>
+              <img src={`/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`} alt={p.name} width="600" height="750" loading="lazy" />
+              <div>
+                <h3><a href={`/provider/${p.slug}/`}>{p.name}</a></h3>
+                <p class="ab-role">{p.role}</p>
+                <p>{leadLines[p.slug]}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
-    <section class="section is-stone" id="story">
+    <!-- 7. Our clinical team -->
+    <Team heading="The people behind the care" lede="50+ licensed clinicians, psychologists, psychiatric nurse practitioners, social workers, and trauma specialists, collaborating on every plan. <a class='inl' href='/about-us/team/'>Meet our clinicians by office</a>." tone="stone" />
+
+    <!-- 8. Certifications and standards: one panel split by thin rules -->
+    <section class="section is-white" id="standards">
       <div class="container">
-        <div class="sec-head"><h2>Our story</h2><p class="lede">From one Glastonbury office to six across Connecticut, Hopewell has grown around a single idea: there is hope to heal.</p></div>
-        <ul class="hb-timeline">{milestones.map(([n, t]) => <li><strong>{n}</strong><span>{t}</span></li>)}</ul>
+        <div class="sec-head"><h2>Certifications and standards</h2><p class="lede">How we hold ourselves accountable for safe, private care.</p></div>
+        <div class="ab-panel ab-standards">
+          <div><LegitScriptSeal /><h3>LegitScript certified</h3><p>Hopewell holds LegitScript certification for addiction treatment.</p></div>
+          <div><img src="/Assets/home-b/joint-commission-seal.webp" alt="The Joint Commission, Gold Seal of Approval" width="240" height="240" loading="lazy" /><h3>Joint Commission accredited</h3><p>Hopewell is accredited by The Joint Commission and is a BBB Accredited Business.</p></div>
+          <div><span class="ab-std-icon"><Icon name="shield" /></span><h3>Your privacy</h3><p>We follow federal privacy laws, including the stricter rules for substance use treatment records. Read our <a class="inl" href="/privacy/">privacy policy</a> and <a class="inl" href="/hipaa-notice/">HIPAA notice</a>.</p></div>
+        </div>
       </div>
     </section>
 
-    <section class="section is-white" id="serve">
+    <!-- 10. Testimonials -->
+    <VideoCarousel videos={STORIES} heading="Stories of Hope, in Their Own Words" lede="Clients and families share what treatment at Hopewell was like. Listen to the full conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>, or read more <a class='inl' href='/testimonials/'>client testimonials</a>." />
+
+    <!-- 11. Our offices: photo of each office, then the office cards -->
+    <section class="section is-white" id="offices-gallery">
       <div class="container">
-        <div class="sec-head"><h2>Who we serve</h2><p class="lede">Programs shaped around who you are, for clients aged 4 and older.</p></div>
-        <div class="hb-tiles">{serve.map((w) => <div class="hb-tile"><span class="hb-tile-icon"><Icon name={w.icon} /></span><h3>{w.t}</h3><p set:html={w.d} /></div>)}</div>
+        <div class="sec-head"><h2>Step inside our offices</h2><p class="lede">Real rooms, close to home. Tap an office to see its page, hours and directions.</p></div>
+        <ul class="ab-offices">
+          {locations.map((l) => officeShots[l.slug] && <li><a href={`/location/${l.slug}/`}><img src={officeShots[l.slug][0]} alt={officeShots[l.slug][1]} loading="lazy" /><span><strong>{l.name}</strong>{l.street}, {l.city}</span></a></li>)}
+        </ul>
       </div>
     </section>
+    <Locations heading="Our six Connecticut offices" lede="Three offices in Glastonbury (Pratt St, Downtown on Hebron Ave and South Glastonbury), plus West Hartford, East Hampton and our shoreline office in Westbrook, close to Old Saybrook, Clinton, Essex and Madison. Each office links to its own page; see <a class='inl' href='/locations/'>all locations</a>." />
 
-    <Team heading="The people behind the care" lede="50+ licensed clinicians — psychologists, psychiatric nurse practitioners, social workers, and trauma specialists — collaborating on every plan." />
-
-    <VideoCarousel videos={STORIES} heading="Stories of Hope, in Their Own Words" lede="Clients and families share what treatment at Hopewell was like. Listen to the full conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." />
-
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+    <!-- 9. Google reviews, then As featured in, then 12. FAQ (sitewide order) -->
     <Reviews tone="stone" />
-    <Insurance tone="white" />
-    <Locations />
-    <Faq faqs={faqs} heading="About Hopewell — common questions" tone="white" />
-    <ClosingCta heading="Ready to Discover Your Path to Healing?" lede="Schedule an in-person or virtual mental health evaluation today — call our office or get in touch with our experts, confidentially and with no pressure."/>
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
+    <Faq faqs={faqs} heading="About Hopewell, common questions" tone="white" />
+
+    <section class="ab-careers">
+      <div class="container ab-careers-in">
+        <h2>Work at Hopewell</h2>
+        <p>Clinicians who share our approach can <a class="inl" href="/about-us/careers/#apply">send us a CV through our careers page</a>, or start with <a class="inl" href="/admissions/">admissions</a> if you are looking for care.</p>
+      </div>
+    </section>
+    <ClosingCta heading="Ready to Discover Your Path to Healing?" lede="Schedule an in-person or virtual mental health evaluation today, call our office or get in touch with our experts, confidentially and with no pressure."/>
   </main>
   <Footer />
 </Base>
+
+<style>
+  .ab-hero-grid { align-items: start; }
+  .pf-card.is-navy { background: var(--hw-navy); }
+  .pf-card.is-navy p + p { color: #dce6f1; }
+  .ab-tag { margin-top: 10px; font-family: var(--hw-head); font-weight: 700; font-size: 20px; color: var(--hw-sky); }
+  .ab-tag em { font-style: italic; color: #fff; }
+  .ab-lede2 { margin-top: 12px !important; font-size: 16.5px; }
+  .ab-hero-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
+  .ab-hero-list li { display: flex; gap: 10px; align-items: flex-start; color: #fff; font-size: 15.5px; line-height: 1.45; }
+  .ab-diff { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 64px); align-items: start; position: relative; }
+  .ab-diff-list { margin: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .ab-diff-list > div { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .ab-diff-list dt { font-family: var(--hw-head); font-weight: 800; font-size: 18px; color: #fff; line-height: 1.35; }
+  .ab-diff-list dd { margin: 0; font-size: 16px; line-height: 1.55; color: #dce6f1; }
+  .ab-diff-list small { display: block; margin-top: 6px; font-family: var(--hw-head); font-weight: 700; font-size: 13.5px; color: var(--hw-sky); }
+  .ab-num-h { margin-top: clamp(44px, 6vw, 72px); font-size: 22px; position: relative; }
+  .ab-nums { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid rgba(255,255,255,.18); position: relative; }
+  .ab-nums li { padding: 22px 22px 6px 0; display: grid; gap: 6px; }
+  .ab-nums li + li { padding-left: 22px; border-left: 1px solid rgba(255,255,255,.18); }
+  .ab-nums strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(34px, 4vw, 46px); line-height: 1; color: #fff; }
+  .ab-nums span { font-size: 15px; color: #c3d2e2; }
+  .ab-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #fff; border: 1px solid var(--hw-line); border-radius: 22px; }
+  .ab-panel > div { padding: 28px 28px 30px; display: grid; gap: 8px; align-content: start; }
+  .ab-panel > div + div { border-left: 1px solid var(--hw-line); }
+  .ab-panel h3 { font-size: 19px; }
+  .ab-panel p { font-size: 16px; line-height: 1.55; }
+  .ab-standards > div > a, .ab-standards > div > img, .ab-std-icon { height: 56px; margin-bottom: 6px; }
+  .ab-standards > div > img { width: auto; }
+  .ab-std-icon { width: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--hw-mist); color: var(--hw-navy); }
+  .ab-std-icon :global(svg) { width: 26px; height: 26px; }
+  .ab-serve { margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 5vw, 64px); border-top: 1px solid var(--hw-line); }
+  .ab-serve > div { display: grid; grid-template-columns: 190px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--hw-line); }
+  .ab-serve dt { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
+  .ab-serve dd { margin: 0; font-size: 16px; line-height: 1.55; }
+  .ab-leaders { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 5vw, 64px); border-top: 1px solid var(--hw-line); }
+  .ab-leaders li { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--hw-line); }
+  .ab-leaders img { width: 120px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; }
+  .ab-leaders h3 { font-size: 19px; }
+  .ab-leaders h3 a { color: var(--hw-navy); text-decoration: none; }
+  .ab-leaders h3 a:hover { text-decoration: underline; }
+  .ab-role { margin-top: 4px; font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: var(--hw-gold); }
+  .ab-leaders p + p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
+  .ab-careers { background: var(--hw-stone); padding: clamp(28px, 4vw, 44px) 0; border-top: 1px solid var(--hw-line); }
+  .ab-careers-in { display: grid; grid-template-columns: auto 1fr; gap: 12px 40px; align-items: center; }
+  .ab-careers h2 { font-size: 24px; }
+  .ab-careers p { font-size: 17px; line-height: 1.55; }
+  :global(.hw .faq-a p + p) { margin-top: 10px; }
+  .ab-gal { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; grid-auto-flow: dense; gap: 12px; }
+  .ab-gal li { position: relative; overflow: hidden; border-radius: 18px; }
+  .ab-gal li.is-big { grid-column: span 2; grid-row: span 2; }
+  .ab-gal li.is-tall { grid-row: span 2; }
+  .ab-gal li.is-wide { grid-column: span 2; }
+  .ab-gal img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .ab-gal li:hover img { transform: scale(1.04); }
+  .ab-gal span { position: absolute; left: 10px; bottom: 10px; padding: 5px 10px; border-radius: 8px; background: rgba(0,29,55,.78); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 13px; }
+  .ab-offices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .ab-offices a { position: relative; display: block; overflow: hidden; border-radius: 20px; text-decoration: none; }
+  .ab-offices img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .4s ease; }
+  .ab-offices a:hover img { transform: scale(1.04); }
+  .ab-offices span { position: absolute; inset: auto 0 0 0; padding: 40px 18px 16px; background: linear-gradient(180deg, rgba(0,29,55,0), rgba(0,29,55,.88)); color: #dce6f1; font-size: 14px; }
+  .ab-offices strong { display: block; color: #fff; font-family: var(--hw-head); font-size: 18px; }
+  @media (max-width: 860px) { .ab-gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; } .ab-offices { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .ab-offices { grid-template-columns: 1fr; } }
+  @media (max-width: 999px) {
+    .ab-diff { grid-template-columns: 1fr; }
+    .ab-nums { grid-template-columns: 1fr 1fr; }
+    .ab-nums li:nth-child(3) { padding-left: 0; border-left: 0; }
+    .ab-leaders, .ab-serve { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .ab-hero-list { grid-template-columns: 1fr; }
+    .ab-diff-list > div, .ab-serve > div { grid-template-columns: 1fr; gap: 4px; }
+    .ab-panel { grid-template-columns: 1fr; }
+    .ab-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
+    .ab-careers-in { grid-template-columns: 1fr; }
+  }
+</style>

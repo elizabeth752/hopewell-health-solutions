@@ -1,42 +1,71 @@
 ---
-// Rates & Insurance Coverage — 2026 redesign. All live copy kept verbatim; logos sit bare on the page (no tiles).
+// Rates & Insurance, 2026-11-16 "Admissions: Content Briefs" (Rates & Insurance tab). URL kept (the brief's
+// /admissions/rates-insurance/ is marked "confirm" and this page already ranks here). Navy hero with the insurance form,
+// then the brief's order: how coverage works (glossary), coverage by level of care (table), plans we work with, not
+// accepted, self-pay and payment, "find out your actual cost" call to action. Every earlier sentence is kept.
+// Left out as [confirm]: self-pay rate amounts, in-network vs out-of-network by plan, payment plans, surprise-bill
+// practice. No dollar amounts and no coverage promises.
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
-import LeadForm from "../components/LeadForm.astro";
-import ServiceHero from "../components/hw/ServiceHero.astro";
 import Creds from "../components/hw/Creds.astro";
+import VideoCarousel from "../components/hw/VideoCarousel.astro";
+import Team from "../components/hw/Team.astro";
+import Locations from "../components/hw/Locations.astro";
 import Reviews from "../components/hw/Reviews.astro";
+import MediaStrip from "../components/MediaStrip.astro";
 import Faq from "../components/hw/Faq.astro";
 import ClosingCta from "../components/hw/ClosingCta.astro";
-import "../styles/pages/admissions.css";
-import "../styles/pages/seo.css";
 import Prose from "../components/seo/Prose.astro";
+import AdHero from "./admissions/_parts/AdHero.astro";
+import { STORIES } from "../data/videos.js";
+import "../styles/pages/hubs.css";
+import "../styles/pages/seo.css";
+import "../styles/pages/admissions.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/rates-and-insurance-coverage/";
 
-// In-network carriers (verbatim from the live page).
+// In-network carriers (verbatim from the live page) + the two named plans with no logo on file, shown as wordmarks,
+// so the grid matches the form's carrier list (14 plans, two even rows).
 const inNetwork = [
   ["Aetna", "/Assets/Insurance/AETNA.webp"],
   ["Anthem", "/Assets/Insurance/Anthem.webp"],
   ["Blue Cross / Blue Shield", "/Assets/home-b/insurance/bcbs.svg"],
   ["Cigna", "/Assets/Insurance/CIGNA.webp"],
-  ["Optum", "/Assets/home-b/insurance/optum.svg"],
-  ["UnitedHealthcare", "/Assets/home-b/insurance/unitedhealthcare.svg"],
-  ["TRICARE", "/Assets/Insurance/TRICARE.webp"],
-  ["Magellan", "/Assets/Insurance/Magellan%20Health.webp"],
-  ["UMR", "/Assets/home-b/insurance/umr.svg"],
-  ["VA Community Care", "/Assets/Insurance/VA%20Community%20Care.webp"],
   ["ConnectiCare", "/Assets/home-b/insurance/connecticare.svg"],
+  ["Evernorth", null],
   ["Harvard Pilgrim", "/Assets/home-b/insurance/harvard-pilgrim.svg"],
+  ["Magellan", "/Assets/Insurance/Magellan%20Health.webp"],
+  ["Meritain", null],
+  ["Optum", "/Assets/home-b/insurance/optum.svg"],
+  ["TRICARE", "/Assets/Insurance/TRICARE.webp"],
+  ["UMR", "/Assets/home-b/insurance/umr.svg"],
+  ["UnitedHealthcare", "/Assets/home-b/insurance/unitedhealthcare.svg"],
+  ["VA Community Care", "/Assets/Insurance/VA%20Community%20Care.webp"],
 ];
-const textOnly = ["United", "Meritain", "Evernorth"]; // named in-network, no logo on file
 const details = [
-  { icon: "phone", h: "Rates", bar: "#2f76c4", html: `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. Telehealth sessions available.` },
-  { icon: "clipboard", h: "Payment", bar: "#b6863c", html: "Cash, check, and all major credit cards accepted for payment." },
-  { icon: "calendar", h: "Cancellation Policy", bar: "#5c7c6b", html: "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session." },
-  { icon: "shield", h: "Your responsibility", bar: "#0b2f55", html: "Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account." },
+  { icon: "phone", h: "Rates", html: `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. Telehealth sessions available.` },
+  { icon: "clipboard", h: "Payment", html: "Cash, check, and all major credit cards accepted for payment." },
+  { icon: "calendar", h: "Cancellation Policy", html: "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session." },
+  { icon: "shield", h: "Your responsibility", html: "Clients are responsible for understanding their insurance coverage and will be responsible for services not covered and balances on their account." },
+];
+// Brief: "How coverage works, in plain words" glossary.
+const glossary = [
+  ["Deductible", "The amount you pay in a plan year before your plan starts sharing costs."],
+  ["Copay", "A set amount you pay per visit or program day."],
+  ["Coinsurance", "A percentage of the cost you pay after your deductible is met."],
+  ["Out-of-pocket maximum", "The cap on what you pay for covered care in a plan year."],
+  ["Prior authorization", "Some plans must approve a level of care before it starts. Our team works with your insurer on this."],
+];
+// Brief: "By level of care" table. No dollar amounts; billing column is the earlier "What we verify for you" table.
+const levels = [
+  [`<a class="inl" href="/programs/counseling/">Counseling</a>`, "Per session", "Usually covered by commercial plans."],
+  [`<a class="inl" href="/programs/medication-management/">Medication management</a>`, "Per visit", "Usually covered by commercial plans."],
+  [`<a class="inl" href="/programs/intensive-outpatient-program/">IOP</a>`, "Per program day", "Usually covered by commercial plans when medically necessary. May need prior authorization."],
+  [`<a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>`, "Per program day", "Usually covered by commercial plans when medically necessary. May need prior authorization."],
+  [`<a class="inl" href="/treatment-methods/tms/">TMS</a>`, "Verified individually", "May need prior authorization; plans may ask for records of earlier treatment."],
+  [`Testing (<a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological</a>, <a class="inl" href="/treatment-methods/adhd-testing/">ADHD</a>)`, "Verified individually", "Coverage varies by plan."],
 ];
 // Long-form SEO copy (2026-11-16). Primary keyword: "does insurance cover IOP in Connecticut"; variants: IOP cost CT,
 // mental health insurance coverage Connecticut, therapy covered by insurance. No prices or coverage guarantees: rates
@@ -52,7 +81,7 @@ const blocks = [
   { id: "coverage-by-service", h2: "Insurance coverage for therapy, IOP, PHP and medication management",
     paras: [
       `Hopewell offers a full continuum of outpatient care, and each level is billed a little differently. Weekly <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> are typically billed per visit. Our <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> meets about three hours a day, Monday through Thursday, and our <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> runs about six hours a day, Monday through Friday; both are billed as program days, and some plans ask for authorization before they begin.`,
-      `Specialized services are verified one by one. Plans may ask for records of earlier treatment before approving <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression, and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> coverage varies by plan. coverage for <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> also differs from plan to plan. We check each one with your carrier before anything is scheduled.`,
+      `Specialized services are verified one by one. Plans may ask for records of earlier treatment before approving <a class="inl" href="/treatment-methods/tms/">TMS therapy</a> for treatment-resistant depression, and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> coverage varies by plan. Coverage for <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> also differs from plan to plan. We check each one with your carrier before anything is scheduled.`,
       `For addiction care, the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> are offered at our 300 Hebron Ave office in Glastonbury and in Westbrook, and are verified the same way.`,
     ],
     aside: { type: "table", title: "What we verify for you", head: ["Service", "How it’s billed"], rows: [["Counseling", "Per session"], ["Medication management", "Per visit"], ["IOP", "Per program day"], ["PHP", "Per program day"], ["TMS &amp; testing", "Verified individually"]] } },
@@ -74,12 +103,17 @@ const blocks = [
       `Telehealth sessions are available for counseling and medication management, which can also make care easier to fit around work, school and family.`,
     ] },
 ];
-// Every answer restates this page's own facts.
+// Earlier FAQ (7, kept) merged with the brief's FAQ. Left out as [confirm]: "Are you in-network with my plan?",
+// "Do you offer payment plans?", "Will I get a surprise bill?"; the self-pay answer drops its [confirm] rate line.
 const faqs = [
-  ["Does insurance cover IOP in Connecticut?", `Most commercial plans include behavioral health benefits that cover intensive outpatient programs. Coverage, copays and authorization rules vary by plan, so we verify your benefits for free before you start. Read <a class="inl" href="/post/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance/">how much IOP costs in Connecticut</a>.`],
-  ["Do you accept TRICARE and VA Community Care?", "Yes. We accept TRICARE and VA Community Care, along with most major commercial carriers."],
+  ["How much does IOP cost?", `It depends on your insurance plan’s deductible, copay and coinsurance. We check your benefits for free and tell you what to expect before you start. Read <a class="inl" href="/post/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance/">how much IOP costs in Connecticut</a>.`],
+  ["Does insurance cover IOP in Connecticut?", `Most commercial plans include behavioral health benefits that cover intensive outpatient programs. Coverage, copays and authorization rules vary by plan, so we verify your benefits for free before you start. Most commercial plans cover IOP and PHP when medically necessary. Some require prior authorization, which we handle.`],
   ["Is Hopewell Health Solutions in-network with my insurance?", `We are in network with most insurances, including plans that are out of state: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans.`],
+  ["Do you accept Medicare or Medicaid?", "No. Hopewell doesn’t accept Medicare or Medicaid (HUSKY)."],
+  ["Do you accept TRICARE and VA Community Care?", "Yes. We accept TRICARE and VA Community Care, along with most major commercial carriers."],
   ["How much do sessions cost?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. We’ll verify your benefits for free so you know your coverage before you start.`],
+  ["What if I don’t have insurance?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. Uninsured and self-pay clients can request a Good Faith Estimate of expected costs before care.`],
+  ["What is prior authorization?", "Some plans must approve a level of care before it starts. Our team works with your insurer on this."],
   ["What forms of payment do you accept?", "Cash, check, and all major credit cards accepted for payment."],
   ["What is the cancellation policy?", "If you miss your appointment without 24 hours notice, you will be required to pay the full cost of the session."],
   ["Is insurance accepted for IOP, medication management and counseling?", `Yes. Hopewell Health Solutions provides <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a>, <a class="inl" href="/programs/medication-management/">med management</a> and <a class="inl" href="/programs/counseling/">counseling</a> services throughout Connecticut, and we check your benefits for each before you begin.`],
@@ -91,60 +125,108 @@ const schema = {
   url: canonical,
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
+const [bIop, bService, bCosts, bTricare, bTime] = blocks;
 ---
 
-<Base title="Rates & Insurance Coverage for IOP, Therapy & Psychiatry in CT | Hopewell Health Solutions" description="Hopewell Health Solutions is in-network with most major insurance carriers — Anthem, Aetna, Cigna, Optum, United, TRICARE and more. See our rates, payment, and insurance coverage for IOP, medication management, and counseling in Connecticut." canonical={canonical}>
+<Base title="Cost of IOP, PHP &amp; Therapy | Rates &amp; Insurance | Hopewell" description="How insurance covers therapy, IOP, PHP and addiction treatment at Hopewell in Connecticut, which plans we accept, and self-pay options. Free benefits check." canonical={canonical} image="/Assets/hhs-2026/downtown-glastonbury-entrance.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "Admissions", href: "/admissions/" }, { label: "Rates & Insurance Coverage" }]}
-      title="Rates and Insurance Coverage"
+    <AdHero
+      crumbs={[{ label: "Admissions", href: "/admissions/" }, { label: "Rates & Insurance" }]}
+      title="Rates &amp; Insurance"
       lede="Hopewell Health Solutions provides IOP, med management and counseling services throughout Connecticut. Following are our rates and insurance coverage information for our services."
-      bullets={["In-network with most major carriers", "Plans from out of state accepted", "Telehealth sessions available", "Free, confidential benefits check"]}
-      image="/Assets/hhs-2026/downtown-glastonbury-entrance.webp"
+      facts={[{ icon: "check", text: "In-network with most major carriers" }, { icon: "pin", text: "Plans from out of state accepted" }, { icon: "users", text: "Telehealth sessions available" }, { icon: "shield", text: "Free, confidential benefits check" }]}
     />
     <Creds />
 
-    <div class="mobile-verify is-white" id="verify-m"><div class="container"><LeadForm variant="card" formId="hhs-mobile" /></div></div>
+    <!-- Brief 1: how coverage works, in plain words (glossary) + the earlier out-of-pocket copy -->
+    <section class="section is-white" id={bCosts.id}>
+      <div class="container ax-two">
+        <div>
+          <h2>How insurance coverage works, in plain words</h2>
+          <h3 style="font-size:21px;margin:20px 0 10px" set:html={bCosts.h2} />
+          {bCosts.paras.map((p) => <p set:html={p} />)}
+        </div>
+        <dl class="ax-gloss">
+          {glossary.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
+        </dl>
+      </div>
+    </section>
 
-    <!-- Insurance logos -->
-    <section class="section is-white" id="insurance">
+    <Prose blocks={[{ ...bIop, tone: "stone" }]} />
+
+    <!-- Brief 2: coverage by level of care (comparison table) + the earlier coverage-by-service copy -->
+    <section class="section is-white" id={bService.id}>
+      <div class="container">
+        <div class="sec-head" style="max-width:900px">
+          <h2 set:html={bService.h2} />
+          {bService.paras.map((p) => <p class="lede" style="font-size:17.5px" set:html={p} />)}
+        </div>
+        <div class="ax-table-wrap">
+          <table class="ax-table">
+            <thead><tr><th scope="col">Level of care</th><th scope="col">How it’s billed</th><th scope="col">Coverage notes</th></tr></thead>
+            <tbody>{levels.map(([s, b, n]) => <tr><th scope="row" set:html={s} /><td>{b}</td><td>{n}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <p style="margin-top:16px;font-size:15.5px;color:var(--hw-slate)">No prices are listed because what you pay depends on your plan. We check each service with your carrier before anything is scheduled.</p>
+      </div>
+    </section>
+
+    <!-- Brief 3 + 4: plans we work with (logos matching the form) and what isn't accepted -->
+    <section class="section is-stone" id="insurance">
       <div class="container">
         <div class="sec-head">
           <h2>We’re in-network with most major carriers</h2>
-          <p class="lede">We accept most insurance carriers — please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
+          <p class="lede">We accept most insurance carriers, please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
         </div>
-        <div class="rt-logos">
-          {inNetwork.map(([name, src]) => <img src={src} alt={name} width="160" height="46" loading="lazy" />)}
+        <div class="ax-logos">
+          {inNetwork.map(([name, src]) => src ? <img src={src} alt={name} width="160" height="46" loading="lazy" /> : <span class="ax-word">{name}</span>)}
         </div>
-        <ul class="rt-also" aria-label="Also in network" style="list-style:none;padding:0">
-          {textOnly.map((n) => <li><Icon name="check" class="h-4 w-4" />{n}</li>)}
-        </ul>
-        <p class="lede" style="margin-top:22px">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="inl">860-735-1448</a> to inquire about other insurance plans.</p>
+        <p class="lede" style="margin-top:22px">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="inl">860-735-1448</a> to inquire about other insurance plans, or <a class="inl" href="#verify">check your insurance with our form</a>.</p>
+        <p class="ax-noline"><Icon name="alert" class="h-5 w-5" /><span><strong>Not accepted: Medicare and Medicaid (HUSKY).</strong> Hopewell doesn’t accept Medicare or Medicaid at this time. Our admissions team can suggest other options.</span></p>
       </div>
     </section>
 
-    <!-- Details -->
-    <section class="section is-stone">
+    <Prose blocks={[{ ...bTricare, tone: "white", aside: { type: "points", title: "Also accepted", items: [["shield", "TRICARE"], ["check", "VA Community Care"], ["pin", "Many plans issued outside Connecticut"], ["users", "Care for veterans, service members and first responders"]] } }]} />
+
+    <!-- Brief 5 + 7: self-pay and payment, one panel split by thin rules -->
+    <section class="section is-stone" id="rates">
       <div class="container">
         <div class="sec-head"><h2>Rates, payment &amp; policies</h2></div>
-        <div class="rt-cards">
+        <div class="ax-panel" style="--n:4">
           {details.map((d) => (
-            <article class="rt-card" style={`--bar:${d.bar}`}>
-              <span class="icon-badge"><Icon name={d.icon} /></span>
-              <h2>{d.h}</h2>
+            <div>
+              <h3><Icon name={d.icon} class="h-5 w-5" />{d.h}</h3>
               <p set:html={d.html} />
-            </article>
+            </div>
           ))}
+        </div>
+        <p class="ax-noline" style="background:#fff;border-color:var(--hw-line)"><Icon name="clipboard" class="h-5 w-5" /><span><strong>Paying for care yourself?</strong> Uninsured and self-pay clients can request a Good Faith Estimate of expected costs before care, under the federal No Surprises Act.</span></p>
+      </div>
+    </section>
+
+    <!-- Brief 8: call to action -->
+    <section class="section is-white" id="check-cost">
+      <div class="container">
+        <div class="ax-band">
+          <div>
+            <h2>Find out your actual cost: check your insurance.</h2>
+            <p>It’s free and confidential. A benefits check isn’t a guarantee of coverage, and some plans need prior authorization, which we handle with your insurer.</p>
+          </div>
+          <a href="#verify" class="btn btn-blue">Check my coverage</a>
         </div>
       </div>
     </section>
 
-    <Prose blocks={blocks} />
-    <Reviews />
-    <Faq faqs={faqs} heading="Insurance & Payment Questions" tone="stone" />
-    <ClosingCta heading="Questions about coverage?" lede="Our team will verify your benefits and walk you through your options — no pressure. Prefer email? Write to <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
+    <Prose blocks={[{ ...bTime, tone: "stone", aside: { type: "img", src: "/Assets/hhs-2026/adult-evening-iop-group.webp", alt: "An adult evening IOP group with Hopewell clinicians", cap: "Adult evening IOP group" } }]} />
+    <VideoCarousel videos={STORIES} heading="Getting Started, in Their Own Words" lede="Hopewell clients share what starting treatment was like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
+    <Team tone="white" />
+    <Locations tone="stone" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
+    <Reviews tone="white" first={["Outpatient care"]} />
+    <MediaStrip bg="white" />
+    <Faq faqs={faqs} heading="Insurance & Payment Questions" tone="white" />
+    <ClosingCta heading="Questions about coverage?" lede="Our team will verify your benefits and walk you through your options, no pressure. Prefer email? Write to <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
   </main>
   <Footer />
 </Base>

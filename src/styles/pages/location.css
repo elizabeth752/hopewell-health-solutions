@@ -1,0 +1,111 @@
+/* Location pages (/location/<slug>/) — 2026-11-16 rebuild to "Hopewell Locations: Content Briefs".
+   Photo-led, Corner Canyon layout in Hopewell's brand. Scoped under .hw, lp-* prefix. */
+
+/* Hero: let the real building photo show through on the right */
+.hw .lp-hero .sv-scrim { background: linear-gradient(90deg, rgba(0,29,55,.94) 0%, rgba(0,29,55,.82) 42%, rgba(0,29,55,.45) 100%); }
+@media (max-width: 999px) { .hw .lp-hero .sv-scrim { background: linear-gradient(180deg, rgba(0,29,55,.78), rgba(0,29,55,.92)); } }
+
+/* Office intro: photo pair + copy with a divided fact list */
+.hw .lp-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+.hw .lp-pics { position: relative; padding-bottom: 34px; }
+.hw .lp-pics img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 26px; }
+.hw .lp-pics img.lp-inset { position: absolute; width: 42%; aspect-ratio: 1; right: -14px; bottom: 0; border: 6px solid #fff; border-radius: 22px; box-shadow: 0 18px 40px rgba(0,29,55,.22); }
+.hw .lp-copy > p { margin-top: 14px; }
+.hw .lp-copy h2 + p { margin-top: 16px; }
+.hw .lp-facts { list-style: none; margin: 22px 0 24px; padding: 0; border-top: 1px solid var(--hw-line); }
+.hw .lp-facts li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--hw-line); font-size: 16.5px; line-height: 1.5; }
+.hw .lp-facts strong { display: flex; align-items: center; gap: 10px; font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
+.hw .lp-facts strong svg { color: var(--hw-bright); flex: none; }
+.hw .lp-facts a { color: var(--hw-blue); font-weight: 600; }
+@media (max-width: 999px) { .hw .lp-intro { grid-template-columns: 1fr; } .hw .lp-pics img.lp-inset { right: 10px; } }
+@media (max-width: 560px) { .hw .lp-facts li { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Programs at this office: even rows only */
+.hw .lp-cards { display: grid; gap: 16px; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
+.hw .lp-cards .pk { height: 100%; }
+.hw .lp-more { position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 28px 24px 24px; border-radius: 22px; background: var(--hw-navy); color: #dce6f1; }
+.hw .lp-more::after { content: ""; position: absolute; width: 200px; height: 200px; right: -80px; bottom: -100px; border-radius: 50%; border: 2px solid rgba(156,195,234,.25); }
+.hw .lp-more h3 { color: #fff; font-size: 19.5px; }
+.hw .lp-more p { font-size: 15.5px; line-height: 1.55; }
+.hw .lp-more .inl { color: var(--hw-sky); text-decoration: none; }
+.hw .lp-more .inl:hover { color: #fff; text-decoration: underline; }
+.hw .lp-more-icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(156,195,234,.18); color: var(--hw-sky); }
+@media (max-width: 1099px) { .hw .lp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .lp-cards.is-odd { grid-template-columns: 1fr; } }
+@media (max-width: 699px) { .hw .lp-cards { grid-template-columns: 1fr; } }
+
+/* Split: copy + photo, photo aligned to the top of the copy */
+.hw .lp-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.hw .lp-split.is-flip { grid-template-columns: 0.85fr 1.15fr; }
+.hw .lp-split.is-flip > figure { order: -1; }
+.hw .lp-split figure { margin: 0; }
+.hw .lp-split figure img { display: block; width: 100%; height: auto; border-radius: 26px; }
+.hw .lp-split figcaption { margin-top: 10px; font-size: 14px; color: var(--hw-slate); }
+.hw .lp-split .lede { margin-top: 16px; }
+@media (max-width: 999px) { .hw .lp-split, .hw .lp-split.is-flip { grid-template-columns: 1fr; } .hw .lp-split.is-flip > figure { order: 0; } }
+
+/* Schedule table */
+.hw .lp-table-wrap { margin-top: 24px; overflow-x: auto; border-radius: 20px; border: 1px solid var(--hw-line); background: #fff; }
+.hw .lp-table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+.hw .lp-table th, .hw .lp-table td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--hw-line); vertical-align: top; }
+.hw .lp-table tr:last-child th, .hw .lp-table tr:last-child td { border-bottom: 0; }
+.hw .lp-table thead th { background: var(--hw-navy); color: #fff; font-family: var(--hw-head); font-weight: 800; font-size: 14px; }
+.hw .lp-table tbody th { font-family: var(--hw-head); font-weight: 800; }
+.hw .lp-table tbody th a { color: var(--hw-navy); text-decoration: underline; text-decoration-color: var(--hw-sky); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.hw .lp-table tbody tr:nth-child(even) { background: var(--hw-stone); }
+.hw .lp-note { margin-top: 14px; font-size: 15px; color: var(--hw-slate); }
+
+/* Divided list (parents, community) */
+.hw .lp-list { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid var(--hw-line); }
+.hw .lp-list li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hw-line); }
+.hw .lp-list .lp-ico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--hw-mist); color: var(--hw-blue); }
+.hw .lp-list h3 { font-size: 18px; }
+.hw .lp-list p { margin-top: 4px; font-size: 16px; line-height: 1.55; color: var(--hw-body); }
+
+/* Westbrook shoreline: navy band with three portrait photos */
+.hw .lp-shore { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.hw .lp-shore-pics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.hw .lp-shore-pics img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 20px; }
+.hw .lp-shore-pics img:nth-child(2) { margin-top: 28px; }
+.hw .lp-shore .lede { margin-top: 16px; }
+.hw .lp-shore-note { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
+.hw .lp-shore-note h3 { font-size: 18px; }
+.hw .lp-shore-note p { margin-top: 6px; font-size: 16px; line-height: 1.6; }
+@media (max-width: 999px) { .hw .lp-shore { grid-template-columns: 1fr; } .hw .lp-shore-pics img:nth-child(2) { margin-top: 0; } }
+
+/* Team row sized to the office's own clinicians */
+.hw .lp-team .tt-grid { grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr)); }
+@media (max-width: 999px) { .hw .lp-team .tt-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .hw .lp-team .tt-grid.is-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .hw .lp-team .tt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Inside the office: even photo grid */
+.hw .lp-gallery { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
+.hw .lp-gallery figure { margin: 0; position: relative; overflow: hidden; border-radius: 20px; }
+.hw .lp-gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s; }
+.hw .lp-gallery figure:hover img { transform: scale(1.04); }
+.hw .lp-gallery figcaption { position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; border-radius: 10px; background: rgba(0,29,55,.78); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 13.5px; }
+@media (max-width: 999px) { .hw .lp-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+
+/* Directions: map + details */
+.hw .lp-visit { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.hw .lp-map { overflow: hidden; border-radius: 26px; border: 1px solid var(--hw-line); background: var(--hw-mist); }
+.hw .lp-map iframe { display: block; width: 100%; height: 420px; border: 0; }
+.hw .lp-visit .lede { margin-top: 14px; }
+@media (max-width: 999px) { .hw .lp-visit { grid-template-columns: 1fr; } .hw .lp-map iframe { height: 320px; } }
+
+/* Towns served + nearest offices */
+.hw .lp-areas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.hw .lp-areas .lede { margin-top: 14px; }
+.hw .lp-towns { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; border-top: 1px solid rgba(11,47,85,.14); }
+.hw .lp-towns li { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid rgba(11,47,85,.14); font-family: var(--hw-head); font-weight: 700; font-size: 16.5px; color: var(--hw-navy); }
+.hw .lp-towns svg { color: var(--hw-bright); flex: none; }
+.hw .lp-also { margin-top: 14px; font-size: 15.5px; color: var(--hw-slate); }
+.hw .lp-near h3 { font-size: 21px; }
+.hw .lp-near ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 14px; }
+.hw .lp-near li { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 18px; align-items: start; padding: 14px; border-radius: 20px; background: #fff; border: 1px solid var(--hw-line); }
+.hw .lp-near img { width: 132px; height: 104px; object-fit: cover; border-radius: 14px; }
+.hw .lp-near h4 { margin: 2px 0 0; font-family: var(--hw-head); font-size: 18px; font-weight: 800; }
+.hw .lp-near h4 a { color: var(--hw-navy); text-decoration: underline; text-decoration-color: var(--hw-sky); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.hw .lp-near p { margin-top: 4px; font-size: 15px; line-height: 1.5; color: var(--hw-body); }
+.hw .lp-near small { display: block; margin-top: 4px; font-size: 14px; color: var(--hw-slate); }
+@media (max-width: 999px) { .hw .lp-areas { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .hw .lp-near li { grid-template-columns: 92px minmax(0, 1fr); } .hw .lp-near img { width: 92px; height: 80px; } }

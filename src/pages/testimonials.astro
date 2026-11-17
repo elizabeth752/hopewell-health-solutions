@@ -1,4 +1,5 @@
 ---
+import Team from "../components/hw/Team.astro";
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -24,13 +25,13 @@ const blocks = [
   { id: "reviews-overview", h2: "Hopewell Health Solutions reviews: what clients say",
     paras: [
       `Hopewell Health Solutions holds a ${GOOGLE.rating}-star rating from ${GOOGLE.count} Google reviews. The reviews on this page are copied word for word from Google and shown with initials only, to protect each reviewer’s privacy. Read together, they describe the same things again and again: clinicians who take time to understand each person, groups that feel engaging rather than clinical, and staff who are professional, friendly and easy to talk to.`,
-      `Clients write about very different kinds of care. Some describe our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>; one says the IOP program “made a huge difference” and helped them “develop real tools I use every day.” Others describe individual therapy and <a class="inl" href="/programs/medication-management/">medication management</a> with a specific prescriber or therapist. Many describe moving from one level of care to another, which is exactly how our continuum is designed to work.`,
+      `Clients write about very different kinds of care. Some describe our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>; one says the IOP program “made a huge difference” and helped them “develop real tools I use every day.” Others describe <a class="inl" href="/programs/counseling/">individual therapy</a> and <a class="inl" href="/programs/medication-management/">medication management</a> with a specific prescriber or therapist. Many describe moving from one level of care to another, which is exactly how our continuum is designed to work.`,
       `Reviews are only one part of choosing a provider, but they are a useful window into what it feels like to walk through our doors. You can read every review on our Google Business Profiles, linked below for each office.`,
     ],
     aside: { type: "points", title: "Themes in our reviews", items: [["users", "Engaging, supportive groups"], ["heart", "Clinicians who take time to understand you"], ["clock", "Flexibility and extra support when needed"], ["shield", "Professional, friendly staff"]] } },
   { id: "iop-reviews", h2: "IOP reviews from Connecticut clients",
     paras: [
-      `Many of our reviews come from people who completed an intensive outpatient program. Our IOPs meet about three hours a day, Monday through Thursday, in day or evening tracks, so clients can keep up with work, school and family while getting more support than weekly therapy can offer. One graduate describes the IOP as “pivotal to my healing journey and my life in general.”`,
+      `Many of our reviews come from people who completed an intensive outpatient program. Our IOPs meet about three hours a day, Monday through Thursday, in day or evening tracks, so clients can keep up with work, school and family while getting <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more support than weekly therapy</a> can offer. One graduate describes the IOP as “pivotal to my healing journey and my life in general.”`,
       `Video stories add more detail. Evan shares how weekly therapy wasn’t giving him the deeper care he needed, and how at Hopewell he was able to believe that people wanted to help him. In the Teen IOP story, Eli talks about the 1:1 support he received, how the program helped him build relationships, and how his performance at school improved.`,
       `If you’re considering a program, our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> and <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> pages explain who each one is for, and <a class="inl" href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">what to expect on your first day of IOP</a> walks through the first session.`,
     ],
@@ -60,7 +61,7 @@ const faqs = [
   ["Why do reviews show initials instead of names?", "Mental health care is personal. Showing initials only protects the people who took time to share their experience."],
   ["Where can I read more Hopewell reviews?", "On each office’s Google Business Profile, linked in the reviews section on this page."],
   ["Can I watch video testimonials?", `Yes. The video stories on this page come from our YouTube channel, and our <a class="inl" href="/podcast/">Hope, Health &amp; Healing podcast</a> has full-length conversations about recovery.`],
-  ["How do I start care at Hopewell?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll verify your insurance for free and help you find the right level of care.`],
+  ["How do I start care at Hopewell?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll <a class="inl" href="/rates-and-insurance-coverage/">verify your insurance for free</a> and help you find the right level of care.`],
 ];
 
 const canonical = "https://www.hopewellhealthsolutions.com/testimonials/";
@@ -90,7 +91,7 @@ const videos = [
     duration: "PT0M47S",
     text: "See how our Women’s Wellness IOP, designed for women carrying heavy emotional loads and daily responsibilities, taught this attendee to know herself, and how the connection to other women made a real difference in her world." },
   { id: "S_CyYMDqEio", title: "“It Saved My Life”",
-    ytTitle: "I Knew I Needed Help — But I Never Imagined Life Could Get This Good | Women’s Wellness IOP",
+    ytTitle: "I Knew I Needed Help, But I Never Imagined Life Could Get This Good | Women’s Wellness IOP",
     thumb: "/Assets/testimonials/womens-wellness-works.webp",
     uploadDate: "2026-08-04T10:21:30-07:00",
     duration: "PT0M26S",
@@ -104,13 +105,13 @@ const videos = [
 ];
 
 // Verbatim Google Business Profile reviews (the approved, real set — never fabricated).
-const featured = { name: "Lee", meta: "Local Guide · IOP graduate", text: "I truly loved this IOP. I recently graduated and can honestly say it has been pivotal to my healing journey and my life in general. In the beginning I was insanely skeptical about group therapy… but the group setting, the therapists, and the other members made it such a safe, welcoming, and supportive space. I learned tools I’ll carry with me for life, and the group gave me a safe place to start the deep work I couldn’t have done alone. If you’re considering IOP or Hopewell, trust me — you should do it." };
+const featured = { name: "Lee", meta: "Local Guide · IOP graduate", text: "I truly loved this IOP. I recently graduated and can honestly say it has been pivotal to my healing journey and my life in general. In the beginning I was insanely skeptical about group therapy… but the group setting, the therapists, and the other members made it such a safe, welcoming, and supportive space. I learned tools I’ll carry with me for life, and the group gave me a safe place to start the deep work I couldn’t have done alone. If you’re considering IOP or Hopewell, trust me, you should do it." };
 const reviews = [
   { name: "Jake Sted", meta: "2 months ago", text: "Hopewell’s IOP program made a huge difference in my life. The groups were engaging, and the therapists genuinely took the time to understand each person’s needs. It helped me develop real tools I use every day." },
-  { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management — I highly recommend this place." },
+  { name: "Emily Ross", meta: "8 months ago", text: "This is the best therapy place I have ever been to. I started in their Women’s Wellness IOP and all the clinicians are amazing and actually care about you. Now I’m doing individual therapy and med management, I highly recommend this place." },
   { name: "Joana Yoo", meta: "10 months ago", text: "Christopher P. was extremely accommodating and took the time to meet with us without making us feel rushed. His calm and respectful demeanor made it easy to open up, and we felt heard and understood. Highly recommended." },
-  { name: "Cynthia Askew", meta: "6 months ago", text: "Rosa Kleinberg is a consummate professional — prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
-  { name: "Donald Krusinski", meta: "a year ago", text: "I'm under Tracy Sibley's care, and she is a kind and helpful person. She is so patient, understanding, and always very supportive. She is helping me through a difficult journey — I know I will be alright because of her excellent care!" },
+  { name: "Cynthia Askew", meta: "6 months ago", text: "Rosa Kleinberg is a consummate professional, prepared and on top of her game. She asks the right questions and listens with care and understanding, committed to finding the right balance for a healthy, quality life." },
+  { name: "Donald Krusinski", meta: "a year ago", text: "I'm under Tracy Sibley's care, and she is a kind and helpful person. She is so patient, understanding, and always very supportive. She is helping me through a difficult journey, I know I will be alright because of her excellent care!" },
   { name: "Lauren Irace", meta: "8 months ago", text: "I am very grateful for the care I am receiving at Hopewell Health Solutions. Everyone I have interacted with is extremely professional, friendly, and easy to talk to. I also appreciate the flexibility and willingness to accommodate additional support when needed. I highly recommend this practice to anyone seeking support." },
 ];
 
@@ -124,7 +125,7 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
 
 ---
 
-<Base title="Hopewell Health Solutions Reviews & Testimonials | IOP & Therapy in CT" description="Hear from Hopewell Health Solutions clients — video testimonials and real Google reviews about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical} image="/Assets/videos/teen-iop-story.webp">
+<Base title="Hopewell Health Solutions Reviews & Testimonials | IOP & Therapy in CT" description="Hear from Hopewell Health Solutions clients, video testimonials and real Google reviews about our IOP, therapy, and psychiatry programs in Glastonbury, Westbrook & West Hartford, Connecticut." canonical={canonical} image="/Assets/videos/teen-iop-story.webp">
   <Header />
   <main class="hw">
     <ServiceHero
@@ -136,10 +137,10 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
       image="/Assets/hhs-2026/womens-trauma-iop-group-room.webp"
     />
     <Creds />
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
     <VideoCarousel videos={stories} mode="grid" tone="white" id="video" heading="Life-Changing Experiences at Hopewell Health Solutions" lede="In their own voice: clients share what treatment was like and what changed. Press play on any story." link={{ href: "/podcast/", label: "Listen to the podcast" }} />
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
     <!-- Written reviews -->
     <section class="section is-stone" id="reviews">
@@ -179,11 +180,11 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
         <div class="ab-copy">
           <h2>What Sets Us Apart From Other Care</h2>
           <div style="margin-top:18px">
-            <p>We’ve walked with more than 50,000 people on their healing journey. We treat anyone who needs it, regardless of their background or how they identify. We welcome LGBTQIA+ individuals, as well as other marginalized communities. We see every person as they are, we consider the unique societal challenges they face, and we strive to make people healthier.</p>
+            <p>We’ve walked with more than 50,000 people on their healing journey. We treat anyone who needs it, regardless of their background or how they identify. We welcome <a class="inl" href="/post/lgbtq-inclusivity-in-behavioral-health-treatment/">LGBTQIA+ individuals</a>, as well as other marginalized communities. We see every person as they are, we consider the unique societal challenges they face, and we strive to make people healthier.</p>
           </div>
           <div class="ab-accred">
-            <img src="/Assets/home-b/joint-commission-seal.webp" alt="The Joint Commission — Gold Seal of Approval" width="240" height="240" loading="lazy" />
-            <p>We are accredited by the Joint Commission and recognized as a high-quality care provider, committed to providing safe, trusted, and effective care.</p>
+            <img src="/Assets/home-b/joint-commission-seal.webp" alt="The Joint Commission, Gold Seal of Approval" width="240" height="240" loading="lazy" />
+            <p>We are <a class="inl" href="/about-us/">accredited by the Joint Commission</a> and recognized as a high-quality care provider, committed to providing safe, trusted, and effective care.</p>
           </div>
           <div class="ab-band" style="margin-top:18px;padding:20px 22px">
             <span class="ab-band-ico" style="width:64px;height:64px;border-radius:20px"><Icon name="play" class="h-7 w-7" /></span>
@@ -194,9 +195,10 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
     </section>
 
     <Prose blocks={blocks} />
-    <Faq faqs={faqs} heading="Reviews &amp; testimonials — common questions" tone="white" />
+    <Team tone="stone" />
+    <Faq faqs={faqs} heading="Reviews &amp; testimonials, common questions" tone="white" />
     <Insurance />
-    <Locations heading="We’re Close to You in Connecticut" lede="We believe that everyone should have access to quality mental health and addiction care. We have six centers across Connecticut to ensure that more people can join our programs in the moments they most need. Visit us in person, or join our programs virtually via one of our centers:" />
+    <Locations heading="We’re Close to You in Connecticut" lede="We believe that everyone should have access to quality mental health and addiction care. We have <a class='inl' href='/locations/'>six centers across Connecticut</a> to ensure that more people can join our programs in the moments they most need. Visit us in person, or join our programs virtually via one of our centers:" />
     <ClosingCta heading="Write Your Own Recovery Story With Us" lede="These testimonials are just a few of the wonderful things people have to say about Hopewell Health Solutions. We’re constantly humbled and honored to play a role in people’s well-being, and we aim to continue helping the most people in the most effective ways. We encourage anyone who needs support with their mental health to contact our <a class='inl' href='/admissions/'>admissions team</a>. Every recovery story starts with a phone call. <strong style='color:#fff'>There is always hope. Find yours with us.</strong>" />
   </main>
   <Footer />

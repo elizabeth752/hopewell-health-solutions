@@ -15,7 +15,7 @@ export default {
   dateModified: "2026-05-21",
   readingMinutes: 6,
   intro:
-    "At Hopewell Health Solutions we are committed to supporting not only your mental and emotional recovery but also your ability to take necessary time away from work when treatment or life changes demand it. Many of our clients ask whether the programs we offer — like our Intensive Outpatient Programs (IOPs) and Transcranial Magnetic Stimulation (TMS) therapy — may qualify for leave under CT Paid Leave or FMLA. Here is how to think about these options.",
+    "At Hopewell Health Solutions we are committed to supporting not only your mental and emotional recovery but also your ability to take necessary time away from work when treatment or life changes demand it. Many of our clients ask whether the programs we offer, like our Intensive Outpatient Programs (IOPs) and Transcranial Magnetic Stimulation (TMS) therapy, may qualify for leave under CT Paid Leave or FMLA. Here is how to think about these options.",
   sections: [
     {
       id: "understanding-ct-paid-leave-and-fmla",
@@ -32,7 +32,7 @@ export default {
         { h3: "Intensive Outpatient Programs (IOPs)" },
         { p: "If you are participating in an IOP because of a mental health condition or co-occurring substance use disorder that affects your ability to work, this may qualify under \"serious health condition\" for FMLA or CT Paid Leave. The important part is documented treatment by a healthcare provider and that your condition prevents you from performing your job duties or requires a period of incapacity. Your IOP at Hopewell typically involves multiple sessions each week, which may meet the \"continuing treatment\" requirement for a serious health condition." },
         { h3: "TMS (Transcranial Magnetic Stimulation) Therapy" },
-        { p: "TMS is an evidence-based treatment for depression and other conditions when other treatments have not worked. If you are undergoing TMS and it requires frequent sessions or causes you to miss work while receiving treatment or recovering, it may qualify under leave protections. Documentation from your clinician or prescriber is key to establishing eligibility." },
+        { p: "<a href=\"/treatment-methods/tms/\">TMS</a> is an evidence-based treatment for depression and other conditions when other treatments have not worked. If you are undergoing TMS and it requires frequent sessions or causes you to miss work while receiving treatment or recovering, it may qualify under leave protections. Documentation from your clinician or prescriber is key to establishing eligibility." },
       ],
     },
     {
@@ -52,7 +52,7 @@ export default {
       id: "why-it-matters",
       h2: "Why It Matters",
       blocks: [
-        { p: "Treatment for mental health and co-occurring disorders is deeply important and should be respected as such. When you are in active treatment via an IOP or TMS, your focus should be on healing — not worrying about losing your job or being unable to cover expenses. When you know your leave options and your treatment team supports you, you can engage more fully in recovery and return to work with restored health and resilience." },
+        { p: "Treatment for mental health and <a href=\"/what-we-treat/co-occurring/\">co-occurring disorders</a> is deeply important and should be respected as such. When you are in active treatment via an IOP or TMS, your focus should be on healing, not worrying about losing your job or being unable to cover expenses. When you know your leave options and your treatment team supports you, you can engage more fully in recovery and return to work with restored health and resilience." },
         { p: "At Hopewell Health Solutions in Glastonbury we are here to partner with you through both treatment and the logistics of accessing support at work. If you have questions about whether your program qualifies, speak with your clinician and your employer's HR department." },
         { note: "This article is general information, not legal advice. Eligibility for CT Paid Leave and FMLA depends on your specific employer, role, and medical circumstances. Confirm details with your employer's HR department and the official resources below." },
         { p: "Call Hopewell Health Solutions at (860) 735-1448 (option 1 for IOP) to learn how our programs and clinical team can support you through treatment, leave, and recovery." },
@@ -60,9 +60,9 @@ export default {
     },
   ],
   sources: [
-    { text: "CT Paid Leave Authority — Covered employees & qualifying reasons", href: "https://ctpaidleave.org/" },
-    { text: "U.S. Department of Labor — Family and Medical Leave Act (FMLA)", href: "https://www.dol.gov/agencies/whd/fmla" },
-    { text: "U.S. DOL Fact Sheet #28A — Employee Protections under the FMLA", href: "https://www.dol.gov/agencies/whd/fact-sheets/28a-fmla-employee-protections" },
-    { text: "Connecticut Department of Labor — Family & Medical Leave", href: "https://www.ctdol.state.ct.us/progsupt/fmla/fmla.htm" },
+    { text: "CT Paid Leave Authority, Covered employees & qualifying reasons", href: "https://ctpaidleave.org/" },
+    { text: "U.S. Department of Labor, Family and Medical Leave Act (FMLA)", href: "https://www.dol.gov/agencies/whd/fmla" },
+    { text: "U.S. DOL Fact Sheet #28A, Employee Protections under the FMLA", href: "https://www.dol.gov/agencies/whd/fact-sheets/28a-fmla-employee-protections" },
+    { text: "Connecticut Department of Labor, Family & Medical Leave", href: "https://www.ctdol.state.ct.us/progsupt/fmla/fmla.htm" },
   ],
 };

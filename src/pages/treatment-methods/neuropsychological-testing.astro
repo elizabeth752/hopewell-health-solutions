@@ -1,5 +1,6 @@
 ---
-// Neuropsychological & Psychological Testing — 2026 redesign. All live copy kept. Testing-room photo still needed from the
+import Team from "../../components/hw/Team.astro";
+// Neuropsychological & Psychological Testing: 2026 redesign. All live copy kept. Testing-room photo still needed from the
 // client; real Hopewell office photos stand in.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -32,26 +33,38 @@ const considerations = [
   ["Learning disabilities (including dyslexia)", null], ["Autism Spectrum Disorders", null], ["ADHD", "/what-we-treat/adhd/"], ["Anxiety", "/what-we-treat/anxiety/"], ["Depression", "/what-we-treat/depression/"],
 ];
 const steps = [
-  ["Initial consultation", "Parents meet with a pediatric neuropsychologist to discuss concerns. We take a thorough developmental, psychological, and learning history — and you’ll have the chance to share your child’s strengths and ask questions about the process."],
-  ["Testing sessions", "Expect 4–6 hours of testing over 1–2 days, one-on-one with our neuropsychologist. Most activities are interactive and children don’t mind them. Depending on age, your child may complete rating scales — and with consent, parents and teachers complete questionnaires too."],
-  ["Feedback session", "About 60 minutes reviewing results together (with your child, depending on age and maturity). We discuss strengths and weaknesses, share any diagnoses, and offer recommendations — with ample time for your questions."],
-  ["Comprehensive report", "You receive a comprehensive neuropsychological report — background, test results, a summary of the evaluation, and tailored recommendations for home, school, and the community."],
+  ["Initial consultation", "Parents meet with a pediatric neuropsychologist to discuss concerns. We take a thorough developmental, psychological, and learning history, and you’ll have the chance to share your child’s strengths and ask questions about the process."],
+  ["Testing sessions", "Expect 4–6 hours of testing over 1–2 days, one-on-one with our neuropsychologist. Most activities are interactive and children don’t mind them. Depending on age, your child may complete rating scales, and with consent, parents and teachers complete questionnaires too."],
+  ["Feedback session", "About 60 minutes reviewing results together (with your child, depending on age and maturity). We discuss strengths and weaknesses, share any diagnoses, and offer recommendations, with ample time for your questions."],
+  ["Comprehensive report", "You receive a comprehensive neuropsychological report: background, test results, a summary of the evaluation, and tailored recommendations for home, school, and the community."],
 ];
 const psychAreas = ["ADHD", "Autism", "Depression", "Anxiety", "Mood disorders", "Learning disability", "Personality disorders", "Personality testing", "Memory & executive functioning"];
 const evals = [
-  { t: "Child & Adolescent", d: "A comprehensive evaluation that diagnoses and — most importantly — builds an individualized treatment plan with home, therapeutic, and school-based solutions. We work with the school’s special-education staff to implement it.", body: ["Attention Deficit Disorder", "Learning Disorders (including Non-Verbal)", "Anxiety & Depression", "Behavioral Disorders", "Personality Disorders", "Asperger’s / High-Functioning Autism"], bar: "#265489" },
+  { t: "Child & Adolescent", d: "A comprehensive evaluation that diagnoses and, most importantly, builds an individualized treatment plan with home, therapeutic, and school-based solutions. We work with the school’s special-education staff to implement it.", body: ["Attention Deficit Disorder", "Learning Disorders (including Non-Verbal)", "Anxiety & Depression", "Behavioral Disorders", "Personality Disorders", "Asperger’s / High-Functioning Autism"], bar: "#265489" },
   { t: "Adult", d: "Assessment that pinpoints the specific areas to target in treatment, giving you and your providers a clear, data-backed direction.", body: ["Attention Deficit Disorder", "Learning Disorders", "Personality Disorders", "Depression", "Anxiety"], bar: "#b6863c" },
 ];
 const reactions = [
-  { n: "A.S.", age: "age 27", q: "After all these years of failing and frustration, the testing indicated what type of ADHD I had — and through treatment and medication, I finally passed my boards." },
+  { n: "A.S.", age: "age 27", q: "After all these years of failing and frustration, the testing indicated what type of ADHD I had, and through treatment and medication, I finally passed my boards." },
   { n: "S.R.", age: "age 52", q: "The testing at HHS allowed me to finally understand why my son was struggling in school and how to help him." },
 ];
 const faqs = [
+  ["What is neuropsychological testing?", "An in-depth evaluation of how the brain handles attention, memory, learning, language and problem-solving."],
+  ["How is it different from ADHD testing?", `<a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> focuses on attention and related symptoms. Neuropsychological testing looks at a wider range of skills and can identify several issues at once.`],
+  ["Who should get tested?", "Children or adults with learning struggles, attention problems, memory concerns, or questions a regular therapy visit can’t answer."],
   ["What ages do you test?", "Our pediatric neuropsychology evaluations focus on ages 8–18, and we also offer evaluations for adults and young adults, plus psychoeducational evaluations including IEEs (Independent Educational Evaluations)."],
-  ["How long does testing take?", "Plan on 4–6 hours of testing over 1–2 days, one-on-one with our neuropsychologist, followed by a ~60-minute feedback session once results are scored."],
+  ["How long does testing take?", "Testing sometimes takes place over more than one appointment. Plan on 4–6 hours of testing over 1–2 days, one-on-one with our neuropsychologist, followed by a ~60-minute feedback session once results are scored."],
   ["What conditions can testing clarify?", `Learning disabilities (including dyslexia), Autism Spectrum Disorders, <a class="inl" href="/treatment-methods/adhd-testing/">ADHD</a>, anxiety, depression, mood and personality concerns, and memory or executive-functioning deficits.`],
   ["Will you work with my child’s school?", "Yes. When appropriate we can conduct a school observation and, if requested, attend a PPT meeting to share findings and recommendations with the school team."],
-  ["Why might I get testing before medication?", `Testing provides objective data for an accurate assessment — a baseline that helps target treatment and, when relevant, informs psychiatric <a class="inl" href="/programs/medication-management/">medication decisions</a>.`],
+  ["Why might I get testing before medication?", `Testing provides objective data for an accurate assessment: a baseline that helps target treatment and, when relevant, informs psychiatric <a class="inl" href="/programs/medication-management/">medication decisions</a>.`],
+  ["What happens after testing?", "You’ll get a written report and a feedback meeting to explain results and next steps."],
+  ["Does insurance cover neuropsychological testing?", "Coverage varies and often needs prior authorization. We <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits</a> before testing; we don’t accept Medicare or Medicaid."],
+];
+const compare = [
+  ["Scope", "A broad look at attention, memory, learning, language, problem-solving and emotions, and can identify several issues at once", "Focuses on attention and related symptoms"],
+  ["Time", "4–6 hours of testing over 1–2 days, followed by a ~60-minute feedback session", "An in-office appointment, a computerized assessment you complete from home, and a follow-up visit"],
+  ["What you get", "A comprehensive written report with findings and recommendations for home, school, work and treatment", "A diagnosis if ADHD is present, a written summary, and personalized treatment recommendations"],
+  ["Who it’s for", "Children or adults with learning struggles, attention problems, memory concerns, or questions a regular therapy visit can’t answer", "Children, teens and adults with focus or attention concerns"],
+  ["Who does it", "A licensed psychologist with advanced training in neuropsychology", "A Licensed PA/NP"],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -64,13 +77,13 @@ const schema = {
 };
 ---
 
-<Base title="Neuropsychological & Psychological Testing in CT | Hopewell Health Solutions" description="Neuropsychological & psychological testing at Hopewell Health Solutions, Glastonbury CT — evaluations for ADHD, autism, learning disabilities, anxiety & more. Children, teens & adults. Led by a pediatric neuropsychologist." canonical={canonical} image={P + "tx-east-hampton-play-room.webp"}>
+<Base title="Neuropsychological Testing for Kids & Adults in CT | Hopewell" description="In-depth testing of memory, attention, learning and thinking for children, teens and adults in Connecticut, with a clear report and next steps. Check coverage." canonical={canonical} image={P + "tx-east-hampton-play-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "Neuropsychological Testing" }]}
-      title="Neuropsychological &amp; Psychological Testing in Connecticut"
+      title="Neuropsychological Testing in Connecticut"
       lede="Evaluations that clarify a diagnosis, identify strengths and areas for growth, and turn results into a clear plan for home, school and the community."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Glastonbury, CT" }]}
@@ -86,6 +99,17 @@ const schema = {
         <div class="tx-copy">
           <h2>What is a neuropsychological evaluation?</h2>
           <p class="lede" style="margin-top:16px">A neuropsychological evaluation is conducted by a licensed psychologist with advanced training in neuropsychology, to better understand how the brain and behavior relate. Evaluations help clarify diagnoses, identify areas of strength and areas for growth, and deliver targeted recommendations for home, school, and the community.</p>
+          <p class="lede">Neuropsychological testing is a set of tests and interviews that measure how the brain handles attention, memory, language, problem-solving, learning and emotions. It’s broader than <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>, which focuses on attention and related symptoms.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-mist">
+      <div class="container">
+        <div class="sec-head"><h2>Neuropsychological testing vs. ADHD testing</h2><p class="lede">Two kinds of evaluation, side by side. If attention is the only question, <a class="inl" href="/treatment-methods/adhd-testing/">a focused ADHD evaluation</a> may be the simpler place to start.</p></div>
+        <div class="tx-table np-cmp" role="table" aria-label="Neuropsychological testing compared with ADHD testing">
+          <div class="tx-row is-head" role="row"><span role="columnheader"></span><span role="columnheader">Neuropsychological testing</span><span role="columnheader">ADHD testing</span></div>
+          {compare.map(([k, a, b]) => <div class="tx-row" role="row"><strong role="rowheader">{k}</strong><span role="cell" data-l="Neuropsychological testing">{a}</span><span role="cell" data-l="ADHD testing">{b}</span></div>)}
         </div>
       </div>
     </section>
@@ -105,6 +129,7 @@ const schema = {
           <h2>Would this be helpful for you or your child?</h2>
           <p class="lede" style="margin-top:14px">An evaluation is often conducted when there are questions about learning, development, behavior, mood, or social functioning. It can help answer diagnostic questions around:</p>
           <ul class="tx-checks cols-2">{considerations.map(([c, href]) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{href ? <a class="inl" href={href}>{c}</a> : c}</span></li>)}</ul>
+          <p style="margin-top:18px">Families and adults often reach out about learning or school struggles, attention concerns, memory changes, mood and behavior questions, or when planning school accommodations. Results can point to next steps such as <a class="inl" href="/programs/counseling/">counseling</a> or <a class="inl" href="/programs/medication-management/">medication management</a>, and when a child or teen needs more support than weekly sessions, our <a class="inl" href="/programs/tween-iop/">tween IOP</a> and <a class="inl" href="/programs/teen-iop/">teen IOP</a> are options to talk through.</p>
         </div>
       </div>
     </section>
@@ -113,7 +138,7 @@ const schema = {
       <div class="container">
         <div class="sec-head"><h2>What’s involved in an evaluation</h2><p class="lede">A simplified process, in four steps.</p></div>
         <ol class="tx-steps" style="--cols:4">{steps.map(([t, d], i) => <li class="tx-step"><span class="tx-step-n">{i + 1}</span><h3>{t}</h3><p>{d}</p>{i < steps.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}</ol>
-        <div class="tx-card" style="margin-top:18px;flex-direction:row;align-items:flex-start;gap:16px;--bar:#5c7c6b"><span class="icon-badge"><Icon name="users" /></span><span><h3>Continued consultation with families, educators &amp; providers</h3><p style="margin-top:6px">When appropriate we can conduct a school observation, and — if requested — attend a PPT meeting to share findings and recommendations directly with your child’s school team.</p></span></div>
+        <div class="tx-card" style="margin-top:18px;flex-direction:row;align-items:flex-start;gap:16px;--bar:#5c7c6b"><span class="icon-badge"><Icon name="users" /></span><span><h3>Continued consultation with families, educators &amp; providers</h3><p style="margin-top:6px">When appropriate we can conduct a school observation, and, if requested, attend a <a class="inl" href="/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/">PPT meeting</a> to share findings and recommendations directly with your child’s school team.</p></span></div>
       </div>
     </section>
 
@@ -122,7 +147,7 @@ const schema = {
         <div class="tx-copy">
           <p style="font-family:var(--hw-head);font-weight:700;font-size:14px;color:var(--hw-gold)">Comprehensive, customized reports</p>
           <h2 style="margin-top:6px">Psychological testing</h2>
-          <p class="lede" style="margin-top:14px">Think of testing like getting bloodwork for a doctor’s visit — it provides a baseline of behavior, a target for treatment, and a way to monitor progress. Using the Q-interactive digital platform, we deliver customized reports with clear visuals (graphs and tables) and tailored recommendations. Testing can also be important before considering psychiatric medication, providing data for an accurate assessment.</p>
+          <p class="lede" style="margin-top:14px">Think of testing like getting bloodwork for a doctor’s visit: it provides a baseline of behavior, a target for treatment, and a way to monitor progress. Using the Q-interactive digital platform, we deliver customized reports with clear visuals (graphs and tables) and tailored recommendations. Testing can also be important before considering <a class="inl" href="/programs/medication-management/">psychiatric medication</a>, providing data for an accurate assessment.</p>
           <ul class="tx-checks cols-2">{psychAreas.map((a) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{a}</span></li>)}</ul>
           <p style="margin-top:18px"><a class="inl" href="tel:8607351448">Request our testing brochure</a></p>
         </div>
@@ -142,12 +167,12 @@ const schema = {
     <section class="section is-stone">
       <div class="container">
         <div class="tx-feature">
-          <img src="/Assets/Team%20Members/laura-miller-phd.webp" alt="Laura Miller, PhD — Licensed Psychologist" loading="lazy" style="object-position:top" />
+          <img src="/Assets/Team%20Members/laura-miller-phd.webp" alt="Laura Miller, PhD, Licensed Psychologist" loading="lazy" style="object-position:top" />
           <div>
             <span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Meet your evaluator</span>
             <h2>Laura Miller, PhD</h2>
             <p style="font-family:var(--hw-head);font-weight:700;color:var(--hw-slate)">Licensed Psychologist · Advanced Training in Pediatric Neuropsychology</p>
-            <p>Dr. Miller offers comprehensive neuropsychological evaluations for children, adolescents, and young adults, as well as psychoeducational evaluations — including Independent Educational Evaluations (IEEs). She works closely with families and schools to turn results into a clear, actionable plan.</p>
+            <p>Dr. Miller offers comprehensive neuropsychological evaluations for children, adolescents, and young adults, as well as psychoeducational evaluations, including Independent Educational Evaluations (IEEs). She works closely with families and schools to turn results into a clear, actionable plan.</p>
             <p><a class="inl" href="/provider/laura-miller-ph-d/">Read Dr. Miller’s profile</a></p>
           </div>
         </div>
@@ -163,13 +188,24 @@ const schema = {
       </div>
     </section>
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" showLink={false} />
-    <Reviews tone="stone" />
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — and will let you know what testing coverage looks like before you commit." tone="white" />
+    <Team tone="white" />
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and will let you know what testing coverage looks like before you commit." tone="white" />
     <Locations heading="Our locations" lede="Testing is led from our Glastonbury offices, with care across Connecticut. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
-    <Faq faqs={faqs} heading="Testing — common questions" tone="white" />
+    <Reviews tone="stone" />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" showLink={false} />
+    <Faq faqs={faqs} heading="Testing: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/neuropsychological-testing/" />
-    <ClosingCta heading="Get the answers you’ve been looking for" lede="The right evaluation can clarify a diagnosis, unlock the right support, and help your family move forward with confidence. Reach out to Hopewell Health Solutions today — confidentially, with no pressure." />
+    <ClosingCta heading="Get the answers you’ve been looking for" lede="The right evaluation can clarify a diagnosis, unlock the right support, and help your family move forward with confidence. Reach out to Hopewell Health Solutions today, confidentially and with no pressure." />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .np-cmp .tx-row { grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.2fr) minmax(0, 1.2fr); line-height: 1.55; }
+  .np-cmp .tx-row.is-head span:first-child { visibility: hidden; }
+  @media (max-width: 760px) {
+    .np-cmp .tx-row { grid-template-columns: 1fr; gap: 8px; }
+    .np-cmp .tx-row.is-head { display: none; }
+    .np-cmp .tx-row span[data-l]::before { content: attr(data-l); display: block; font-family: var(--hw-head); font-weight: 700; font-size: 13px; color: var(--hw-slate); }
+  }
+</style>

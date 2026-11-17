@@ -12,7 +12,7 @@ export default {
   dateModified: "2026-04-02",
   readingMinutes: 3,
   bodyHtml: `<h2>What Is a PHP?</h2>
-<p>A Partial Hospitalization Program (PHP) is a structured, intensive level of mental health treatment designed for individuals who need consistent, daily support but don't require overnight care.</p>
+<p>A <a href="/programs/partial-hospitalization-program/">Partial Hospitalization Program</a> (PHP) is a structured, intensive level of mental health treatment designed for individuals who need consistent, daily support but don't require overnight care.</p>
 <p>Clients attend treatment during the day, typically five days a week for several hours and then return home in the evenings. This allows for a balance between necessary clinical support and real-life integration, which is often where meaningful change begins to happen.</p>
 <p>Here at Hopewell Health Solutions, our PHP is designed to provide both stability and forward movement to truly help clients not only feel better but function better in their daily lives.</p>
 <h2>Understanding the Different Levels of Mental Health Care</h2>
@@ -21,10 +21,10 @@ export default {
 <p>The goal here is safety and short-term stabilization.</p>
 <p>Residential treatment comes next - this is a live-in setting where individuals receive ongoing support and therapy in a structured environment, but without the intensity of a hospital.</p>
 <p>PHP sits just below residential care. It maintains a high level of structure and clinical involvement while allowing the clients to begin practicing independence, which is often a critical transition point in recovery.</p>
-<p>Below PHP is an Intensive Outpatient Program (IOP), which involves fewer hours and days per week and supports continued progress as individuals return more fully to work, school and relationships.</p>
-<p>For those exploring mental health services in or around Glastonbury, Connecticut, understanding these distinctions can help clarify what level of care is actually needed and not just what feels most convenient.</p>
+<p>Below PHP is an <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Program</a> (IOP), which involves fewer hours and days per week and supports continued progress as individuals return more fully to work, school and relationships.</p>
+<p>For those exploring mental health services in or around Glastonbury, Connecticut, understanding these distinctions can help clarify what <a href="/post/php-vs-iop-which-level-of-care-is-right-for-you/">level of care</a> is actually needed and not just what feels most convenient.</p>
 <h2>What to Expect in a PHP Program</h2>
-<p>In a PHP setting treatment is immersive and consistent, where clients participate in daily group therapy, which serves as the foundation of the program. These groups incorporate evidence-based approaches like dialectical behavioral therapy (DBT) and cognitive behavioral therapy (CBT), focusing on emotion regulation, coping strategies, trauma processing and interpersonal effectiveness.</p>
+<p>In a PHP setting treatment is immersive and consistent, where clients participate in daily group therapy, which serves as the foundation of the program. These groups incorporate evidence-based approaches like <a href="/treatment-methods/dbt/">dialectical behavioral therapy (DBT)</a> and <a href="/treatment-methods/therapeutic-treatments/">cognitive behavioral therapy (CBT)</a>, focusing on emotion regulation, coping strategies, trauma processing and interpersonal effectiveness.</p>
 <p>In addition to group work clients usually meet individually with a psychiatric provider for medication management and ongoing assessment.</p>
 <p>What sets PHP apart from traditional outpatient therapy is the frequency and repetition. Skills are not just discussed, they're practiced, refined and applied in real time and in real life. Clients have the opportunity to try new strategies, reflect on what works, and receive immediate feedback in a safe and supportive environment.</p>
 <h2>How Long Does PHP Last?</h2>

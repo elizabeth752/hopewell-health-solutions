@@ -15,13 +15,13 @@ export default {
   dateModified: "2026-06-26",
   readingMinutes: 6,
   intro:
-    "A Partial Hospitalization Program (PHP) and an Intensive Outpatient Program (IOP) are effective treatment structures for substance use disorders and mental health disorders. They are both part of the continuum of care, which is a system of levels that support recovery. Choosing the right level of care is important to ensure that you receive appropriate treatment to heal — it also means that treatment better aligns with your clinical needs, schedule, and responsibilities. PHP and IOP each have their advantages. Here's how to select the one that's best for you.",
+    "A Partial Hospitalization Program (PHP) and an Intensive Outpatient Program (IOP) are effective treatment structures for substance use disorders and mental health disorders. They are both part of the continuum of care, which is a system of levels that support recovery. Choosing the right level of care is important to ensure that you receive appropriate treatment to heal, it also means that treatment better aligns with your clinical needs, schedule, and responsibilities. PHP and IOP each have their advantages. Here's how to select the one that's best for you.",
   sections: [
     {
       id: "what-is-the-continuum-of-care",
       h2: "What Is the Continuum of Care?",
       blocks: [
-        { p: "The continuum of care is an interconnected series of levels of care that provide ongoing treatment for substance use disorders and mental health disorders. The continuum is designed to help you receive the right care for where you are in your recovery journey, and to give you a guideline for the next steps after each level. The continuum includes:" },
+        { p: "The continuum of care is an interconnected series of levels of care that provide ongoing treatment for <a href=\"/what-we-treat/substance-use-disorder/\">substance use disorders</a> and mental health disorders. The continuum is designed to help you receive the right care for where you are in your recovery journey, and to give you a guideline for the next steps after each level. The continuum includes:" },
         { ul: ["Detox", "Residential care", "PHP", "IOP", "Aftercare"] },
         { p: "The quality of care between levels does not change, however, as you stabilize, you move through levels, and your care evolves accordingly. Research shows that longer-term care for substance abuse and mental health disorders is associated with better outcomes, including a higher likelihood of abstinence from substances and a lower risk of relapse and readmission." },
       ],
@@ -30,7 +30,7 @@ export default {
       id: "what-is-a-partial-hospitalization-program",
       h2: "What Is a Partial Hospitalization Program (PHP)?",
       blocks: [
-        { p: "A Partial Hospitalization Program sits below residential care and above IOP on the care continuum. It is a structured type of care that typically includes evidence-based therapies, Medication-Assisted Therapy (MAT) if needed, and wellness activities such as yoga and meditation. Unlike residential programs, you return home in the evening during PHP." },
+        { p: "A <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program</a> sits below residential care and above IOP on the care continuum. It is a structured type of care that typically includes evidence-based therapies, <a href=\"/treatment-methods/medication-assisted-treatment/\">Medication-Assisted Therapy</a> (MAT) if needed, and wellness activities such as yoga and meditation. Unlike residential programs, you return home in the evening during PHP." },
         { p: "Most PHPs run Monday to Friday for around 25-35 hours per week. Programs last, on average, 6 weeks. PHPs suit people who are stable enough to live independently but still require intense therapeutic support." },
         { p: "Because you live at home while undergoing PHP, you can stay connected to your personal networks that offer support and motivation. This social support has been linked to positive health outcomes for individuals in recovery." },
       ],
@@ -91,8 +91,8 @@ export default {
       id: "start-healing-at-hopewell",
       h2: "Start Healing With IOP and PHP at Hopewell Health Solutions, Connecticut",
       blocks: [
-        { p: "At Hopewell Health Solutions, we believe that everyone can heal. We have Partial Hospitalization Programs (PHPs) and Intensive Outpatient Programs (IOPs) to help people overcome substance use disorders and mental health disorders." },
-        { p: "We have a licensed team that carries out approaches such as Cognitive Behavioral Therapy (CBT), Dialectical Behavioral Therapy (DBT), Accelerated Resolution Therapy (ART), play therapy, and mindfulness practices. We can also create personalized psychiatric medication management plans. All our treatment is tailored to each individual and focused on helping people gain confidence and clarity to build the life they long for and deserve." },
+        { p: "At Hopewell Health Solutions, we believe that everyone can heal. We have Partial Hospitalization Programs (PHPs) and <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Programs</a> (IOPs) to help people overcome substance use disorders and mental health disorders." },
+        { p: "We have a licensed team that carries out approaches such as <a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a>, <a href=\"/treatment-methods/dbt/\">Dialectical Behavioral Therapy (DBT)</a>, Accelerated Resolution Therapy (ART), play therapy, and mindfulness practices. We can also create personalized psychiatric medication management plans. All our treatment is tailored to each individual and focused on helping people gain confidence and clarity to build the life they long for and deserve." },
         { p: "Our admissions team is happy to discuss the right level of care for you. Take a step forward. Contact us today." },
       ],
     },

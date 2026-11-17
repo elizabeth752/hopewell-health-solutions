@@ -11,7 +11,7 @@ export default {
   datePublished: "2025-07-21",
   dateModified: "2025-07-21",
   readingMinutes: 3,
-  bodyHtml: `<p>Trauma isn't always loud or obvious. It doesn't always come from one big, dramatic event. Sometimes, trauma is silent, subtle, and accumulates over time, leaving you feeling confused, stuck or emotionally overwhelmed without understanding why.</p>
+  bodyHtml: `<p><a href="/what-we-treat/trauma-ptsd/">Trauma</a> isn't always loud or obvious. It doesn't always come from one big, dramatic event. Sometimes, trauma is silent, subtle, and accumulates over time, leaving you feeling confused, stuck or emotionally overwhelmed without understanding why.</p>
 
 <p>At Hopewell Health Solutions, we know how important it is to recognize the signs of trauma early. When we can name what we're experiencing, we can begin to heal. Here's what you need to know about how trauma can show up in your life, and how to know if you're experiencing it.</p>
 
@@ -21,7 +21,7 @@ export default {
 
 <ul>
 <li>A single incident such as a car accident, assault or death</li>
-<li>Ongoing or repeated experiences such as abuse, neglect or bullying</li>
+<li>Ongoing or repeated experiences such as abuse, neglect or <a href="/post/how-intensive-outpatient-programs-iop-can-help-with-bullying/">bullying</a></li>
 <li>Collective events like natural disaster, pandemics or community violence</li>
 <li>Developmental disruptions like growing up in unsafe or unstable home environment</li>
 </ul>
@@ -59,8 +59,8 @@ export default {
 <h2>Available Support at Hopewell Health Solutions</h2>
 
 <ul>
-<li>Women's Wellness Intensive Outpatient Program (IOP) with a trauma focus</li>
-<li>Adult Mental Health IOP</li>
+<li><a href="/programs/womens-wellness-iop/">Women's Wellness Intensive Outpatient Program</a> (IOP) with a trauma focus</li>
+<li><a href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a></li>
 <li>Individual trauma-focused therapy</li>
 <li>Teen &amp; Tween Mental Health Intensive Outpatient Program (IOP)</li>
 </ul>

@@ -32,10 +32,10 @@ import "../../styles/pages/programs.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "For teens ages 13–17 — all are welcome here",
+  "For teens ages 13–17, all are welcome here",
   "<a class='inl' href='/treatment-methods/dbt/'>DBT</a>/CBT-based, 8–12 weeks · Mon–Thu, 5:00–8:00 PM",
-  "Parents attend weekly — DBT skills carry into the home",
-  "Joint Commission Accredited — the Gold Seal of Approval",
+  "Parents attend weekly, DBT skills carry into the home",
+  "Joint Commission Accredited, the Gold Seal of Approval",
 ];
 const signs = [
   "Pulling away from friends, family or activities they used to enjoy",
@@ -49,10 +49,10 @@ const includes = [
   "Teen-only groups (ages 13–17)",
   "Individual therapy",
   "8–12 week DBT/CBT-based curriculum",
-  "Family sessions — parents attend once to twice a week",
+  "Family sessions, parents attend once to twice a week",
   "Psychiatry &amp; optional <a class='inl' href='/programs/medication-management/'>medication management</a>",
   "School coordination when helpful",
-  "Experiential therapies — art, movement-based &amp; animal-assisted",
+  "Experiential therapies, art, movement-based &amp; animal-assisted",
   "On-call clinical services",
   "Parent Support Group (Tuesdays) &amp; Parent Night (Thursdays)",
   "FMLA / CT Paid Leave assistance for caregivers",
@@ -79,7 +79,7 @@ const family = [
   { n: "J&D", t: "Teen IOP parents", q: "Thank you for all the time, energy and support you and the IOP staff have poured into A. over the past three months. Her light is starting to shine brightly again. There is more work to be done, but it is amazing to see her on this healing journey. We will forever be grateful." },
   { n: "N.E.", t: "Teen IOP parent", q: "I really like the weekly emails and having the clinician’s phone number to check in or get help when needed. That was a lifesaver." },
   { n: "A.Y.", t: "Teen IOP parent", q: "I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family." },
-  { n: "J.L.", t: "Teen IOP student", q: "I just completed Teen IOP at Hopewell and I feel I received the tools I need to go to college with less worry and anxiety. I really liked the groups and the other kids and the therapists. At first I did not always like going — and then I started looking forward to it, because it was making me better." },
+  { n: "J.L.", t: "Teen IOP student", q: "I just completed Teen IOP at Hopewell and I feel I received the tools I need to go to college with less worry and anxiety. I really liked the groups and the other kids and the therapists. At first I did not always like going, and then I started looking forward to it, because it was making me better." },
 ];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
 const stories = ["awy7nfDgC0k", "loSaQbRc-oE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
@@ -87,14 +87,14 @@ const news = [{ id: "P3cmQMf3WoM", t: "Teen Mental Health Crisis", outlet: "Inte
 const faqs: [string, string][] = [
   ["What is a teen IOP?", "A teen intensive outpatient program is a structured program where teens attend therapy several afternoons or evenings a week and keep living at home and going to school. It’s more support than weekly therapy, without an overnight stay."],
   ["What ages is it for?", "Ages 13–17. Younger children ages 8–12 attend our <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>, and adults 18 and up can join our <a class='inl' href='/programs/adult-mental-health-iop/'>adult IOP</a>."],
-  ["Will my teen miss school?", "No. Teen groups meet Monday–Thursday from 5:00 to 8:00 PM, after the school day, so most teens stay in school. We can coordinate with the school when it helps."],
+  ["Will my teen miss school?", "No. Teen groups meet Monday–Thursday from 5:00 to 8:00 PM, after the school day, so most teens stay in school. We can <a class='inl' href='/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/'>coordinate with the school</a> when it helps."],
   ["What does my teen work on?", "Coping and emotional skills (including DBT), managing anxiety and low mood, communication, and family relationships. Every teen has an individualized treatment plan."],
   ["How are parents involved?", "Parent involvement is required. Parents attend once to twice a week to learn the <a class='inl' href='/treatment-methods/dbt/'>DBT skills</a> being taught, so they carry into the home, and get regular updates from the care team. We also host a Parent Support Group on Tuesdays and Parent Night on Thursdays."],
   ["How do I know if my teen needs IOP instead of weekly therapy?", "If symptoms keep getting in the way of school, friendships or home life despite therapy, IOP may help. Our assessment recommends the right level of care. Read <a class='inl' href='/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/'>signs your teen needs more than weekly therapy</a>."],
   ["What if my teen is in crisis?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room. IOP is not an emergency service."],
   ["Does my teen need a diagnosis?", "No. Our assessment looks at what’s going on and recommends next steps."],
   ["Where is the Teen IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>, 1420 Main St, Suite 124, Glastonbury."],
-  ["Does insurance cover teen IOP?", "Most commercial plans do when medically necessary, and TRICARE East is accepted as a PPO plan. We verify benefits for free. We don’t accept Medicare or Medicaid (HUSKY). Many families also qualify for Connecticut Paid Leave or FMLA."],
+  ["Does insurance cover teen IOP?", "Most commercial plans do when medically necessary, and TRICARE East is accepted as a PPO plan. We <a class='inl' href='/rates-and-insurance-coverage/'>verify benefits for free</a>. We don’t accept Medicare or Medicaid (HUSKY). Many families also qualify for <a class='inl' href='/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/'>Connecticut Paid Leave or FMLA</a>."],
   ["Is it in person or online?", "In person, which helps teens connect with peers and clinicians. Telehealth is available for some services. Read <a class='inl' href='/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/'>virtual vs in-person IOP for teens</a>."],
 ];
 const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Teen IOP (ages 13–17)", url: SITE + "/programs/teen-iop/",
@@ -121,9 +121,9 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     <Creds />
 
     <Split heading="Evidence-based help for struggling teens &amp; families" img="/Assets/service/teen-iop.webp" alt="Teens in Hopewell Health Solutions' teen IOP in Glastonbury, CT" img2={P + "sg-tween-group-room.webp"} alt2="The adolescent group room at our South Glastonbury office">
-      <p><strong>Now accepting patients.</strong> Since COVID-19, we’ve seen exponential levels of <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">depression</a>, self-harm, school refusal, and maladaptive behaviors in adolescents — leaving families stuck and frustrated and kids very vulnerable. Hopewell’s teen IOP was created so parents and teens can receive evidence-based treatment for lifelong mental health and recovery.</p>
-      <p>The program runs Monday–Thursday at our 1420 Main St, Glastonbury location, for 8–12 weeks. Parents attend once to twice a week to learn the DBT skills being taught — so the skills integrate at home, where they matter most.</p>
-      <p>For many families, the teen years are when weekly therapy stops being enough. A teen who was doing fine in middle school starts missing class, staying up all night on a phone, or shutting their door and refusing to talk. An adolescent IOP gives them several hours of structured support each week, with other teens who understand, while they stay in school and at home.</p>
+      <p><strong>Now accepting patients.</strong> Since COVID-19, we’ve seen exponential levels of <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">depression</a>, self-harm, school refusal, and maladaptive behaviors in adolescents, leaving families stuck and frustrated and kids very vulnerable. Hopewell’s teen IOP was created so parents and teens can receive evidence-based treatment for lifelong mental health and recovery.</p>
+      <p>The program runs Monday–Thursday at our <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St, Glastonbury location</a>, for 8–12 weeks. Parents attend once to twice a week to learn the DBT skills being taught, so the skills integrate at home, where they matter most.</p>
+      <p>For many families, the teen years are when <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">weekly therapy stops being enough</a>. A teen who was doing fine in middle school starts missing class, staying up all night on a phone, or shutting their door and refusing to talk. An adolescent IOP gives them several hours of structured support each week, with other teens who understand, while they stay in school and at home.</p>
     </Split>
 
     <section class="section is-mist" id="signs">
@@ -131,7 +131,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
         <div>
           <h2>Signs your teen may need more support</h2>
           <p class="lede" style="margin-top:16px">Every teen has hard weeks. What parents tell us is different is when it doesn’t pass: the same struggles keep coming back, or get worse, even with a therapist in place. These signs aren’t a diagnosis. They’re a reason to talk with someone about whether a teen IOP could help.</p>
-          <p class="lede">If your teen talks about suicide or self-harm, don’t wait for an assessment: call or text 988, call 911, or go to the nearest emergency room. For everything else, our admissions team can talk through what you’re seeing and recommend a starting point. Our guide to <a class="inl" href="/post/how-the-world-of-social-media-affects-teens/">how social media affects teens</a> and our <a class="inl" href="/post/guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health/">guide to teen counseling</a> can help you think it through.</p>
+          <p class="lede">If your teen talks about suicide or self-harm, don’t wait for an assessment: call or text 988, call 911, or go to the nearest emergency room. For everything else, our <a class="inl" href="/admissions/">admissions team</a> can talk through what you’re seeing and recommend a starting point. Our guide to <a class="inl" href="/post/how-the-world-of-social-media-affects-teens/">how social media affects teens</a> and our <a class="inl" href="/post/guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health/">guide to teen counseling</a> can help you think it through.</p>
         </div>
         <div class="pg-panel ad-signs"><h3>What parents often notice (non-diagnostic)</h3><CheckList items={signs} /></div>
       </div>
@@ -139,7 +139,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
 
     <section class="section is-white" id="program">
       <div class="container">
-        <div class="sec-head"><h2>What the teen IOP includes</h2><p class="lede">Teen mental health treatment works best when it reaches every part of a teen’s life. Our program combines teen-only groups, individual therapy and psychiatric care with family sessions, so the skills your teen learns in group show up at home and at school.</p></div>
+        <div class="sec-head"><h2>What the teen IOP includes</h2><p class="lede">Teen mental health treatment works best when it reaches every part of a teen’s life. Our program combines teen-only <a class="inl" href="/treatment-methods/group-therapy/">groups</a>, individual therapy and psychiatric care with family sessions, so the skills your teen learns in group show up at home and at school.</p></div>
         <div class="pg-two">
           <div><CheckList items={includes} cols={2} /><p class="sec-foot">Need answers about attention or learning first? We also offer <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> for teens.</p></div>
           <Schedule title="Teen IOP week" stat="3 h" note="after school · Monday–Thursday · 8–12 weeks" days={[3, 3, 3, 3, 0, 0, 0]} tone={2} icon="sun" tracks={[["Teens (13–17)", "5:00–8:00 PM · Suite 124"], ["Parents", "Support Group Tuesdays · Parent Night Thursdays"]]} />
@@ -147,10 +147,10 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
 
-    <IconCards heading="What your teen works on" lede="Groups are small and clinician-led. Over 8–12 weeks, teens build skills they can use the same day — at school, with friends and at home." items={work} tone="stone" />
+    <IconCards heading="What your teen works on" lede="Groups are small and clinician-led. Over 8–12 weeks, teens build skills they can use the same day, at school, with friends and at home." items={work} tone="stone" />
 
     <Split heading="Why in-person matters for teens" img={P + "sg-tween-group-room.webp"} alt="Teen IOP group room in Glastonbury, CT" reverse>
-      <p>Teens spend much of their day behind a screen already. In our teen IOP they sit in a room with peers who get it and clinicians who know their name, and that face-to-face connection is often what helps a withdrawn teen open up. Groups practice skills out loud, role-play hard conversations, and notice when someone is having a rough day.</p>
+      <p>Teens spend much of their day behind a screen already. In our teen IOP they sit in a room with peers who get it and clinicians who know their name, and that <a class="inl" href="/post/the-power-of-presence-why-in-person-therapy-remains-crucial/">face-to-face connection</a> is often what helps a withdrawn teen open up. Groups practice skills out loud, role-play hard conversations, and notice when someone is having a rough day.</p>
       <p>Research on adolescent care keeps pointing to the same thing: belonging and real relationships matter. Read <a class="inl" href="/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/">what the research says about virtual vs in-person IOP for teens</a>. Telehealth is still available for some services when coming in isn’t possible.</p>
     </Split>
 
@@ -167,24 +167,9 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
 
     <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Hear From Teens &amp; Families" lede="A former Teen IOP client and his mom share what changed at home and at school, and our clinicians show the teen and tween space. More stories on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
 
-    <NewsVideos heading="Teen mental health, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on the teen mental health crisis and what parents can do." videos={news} tone="white" />
+    <NewsVideos heading="Teen mental health, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on the teen mental health crisis and <a class='inl' href='/post/how-to-help-your-kids-during-a-mental-health-crisis/'>what parents can do</a>." videos={news} tone="white" />
 
-    <ModalitiesOutcomes modalities={modalities} oHeading="Skills your teen will build" oLede="During the 8–12 week group IOP, your teen collaborates with a board-certified, multidisciplinary team — psychologists, psychiatric providers, and therapists — to strengthen:" outcomes={outcomes} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a>, <a class='inl' href='/programs/counseling/'>individual counseling</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." tone="stone" />
-
-    <section class="section is-white">
-      <div class="container">
-        <div class="sec-head"><h2>What Teen IOP Families Say</h2><p class="lede">In their own words, from parents and teens. Initials only.</p></div>
-        <div class="pg-testi">
-          {family.map((r) => (
-            <figure class="rv">
-              <svg class="rv-quote" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
-              <blockquote class="rv-text">“{r.q}”</blockquote>
-              <figcaption class="rv-who"><span class="rv-avatar">{ini(r.n)}</span><span class="rv-name"><strong>{r.n}</strong>{r.t}</span></figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
+    <ModalitiesOutcomes modalities={modalities} oHeading="Skills your teen will build" oLede="During the 8–12 week group IOP, your teen collaborates with a board-certified, multidisciplinary team, psychologists, psychiatric providers, and therapists, to strengthen:" outcomes={outcomes} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a>, <a class='inl' href='/programs/counseling/'>individual counseling</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." tone="stone" />
 
     <section class="section is-stone">
       <div class="container pg-cta-split">
@@ -203,14 +188,14 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews heading="What Our Clients Say on Google" tone="stone" first={["IOP"]} />
     <Team heading="Your Teen’s Care Team" lede="Psychologists, psychiatric providers and therapists with 10–30 years of experience with adolescents. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["eric-schwartz-psy-d-abpp", "linda-scillia-pmhnp-bc-aprn", "jackie-plagesse-lmfta", "kate-henneberry-lmfta", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d", "viviana-alvarado-lpc-a"]} tone="white" />
-    <Insurance heading="Does insurance cover teen IOP?" lede="Most commercial plans cover teen IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost — before you commit to anything. We don’t accept Medicare or Medicaid (HUSKY)." />
-    <Locations heading="Where the Teen IOP Meets" lede="The teen IOP is held at 1420 Main St, Suite 124, Glastonbury — our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
+    <Insurance heading="Does insurance cover teen IOP?" lede="Most commercial plans cover teen IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicare or Medicaid (HUSKY)." />
+    <Locations heading="Where the Teen IOP Meets" lede="The teen IOP is held at 1420 Main St, Suite 124, Glastonbury, our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
+    <Reviews tone="stone" heading="What Our Clients Say on Google" first={["IOP"]} />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading="Teen IOP: common questions" tone="white" />
     <OtherPrograms current="/programs/teen-iop/" />
-    <ClosingCta heading="All are welcome here" lede="It takes a village to raise kids these days. Let us be part of yours. Reach out to Hopewell Health Solutions — confidentially, with no pressure — and we’ll help you find the right next step for your teen." />
+    <ClosingCta heading="All are welcome here" lede="It takes a village to raise kids these days. Let us be part of yours. Reach out to Hopewell Health Solutions, confidentially, with no pressure, and we’ll help you find the right next step for your teen." />
   </main>
   <Footer />
 </Base>

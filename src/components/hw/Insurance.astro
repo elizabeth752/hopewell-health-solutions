@@ -6,7 +6,7 @@ import LeadForm from "../LeadForm.astro";
 import Icon from "../Icon.astro";
 import { PHONE } from "../../data/site.js";
 interface Props { heading?: string; lede?: string; mobileForm?: boolean; tone?: "stone" | "white"; form?: boolean }
-const { heading = "Comprehensive Coverage Options", lede = "We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you — free, in minutes.", mobileForm = true, tone = "stone", form = true } = Astro.props;
+const { heading = "Comprehensive Coverage Options", lede = "We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you, free, in minutes.", mobileForm = true, tone = "stone", form = true } = Astro.props;
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
   ["Blue Cross Blue Shield","/Assets/home-b/insurance/bcbs.svg"],["Cigna","/Assets/Insurance/CIGNA.webp"],

@@ -23,7 +23,7 @@ export default {
 <p>Below we will explore how changes in routine during Summer can impact mental health, and what you can do to stay grounded.</p>
 
 <h2>Disrupted Sleep Schedules</h2>
-<p>There's more daylight, likely more social events and late-night gatherings, and vacations that can throw off your sleep schedule. Poor sleep impacts your mood, anxiety levels, cognitive functioning, and energy levels.</p>
+<p>There's more daylight, likely more social events and late-night gatherings, and vacations that can throw off your sleep schedule. Poor sleep impacts your mood, <a href="/what-we-treat/anxiety/">anxiety</a> levels, cognitive functioning, and energy levels.</p>
 <ul>
 <li><strong>Tip:</strong> Make an effort to keep a consistent bedtime, even on weekends. Try using blackout curtains if sunlight keeps you up, and a sound machine if you need it.</li>
 </ul>
@@ -37,7 +37,7 @@ export default {
 <h2>Increased Social Pressure</h2>
 <p>Summer brings with it beach days, trips to the pool, family visits, and vacations. Often people find themselves getting spread a little too thin with the number of commitments they've made. People may not turn down an opportunity to engage in social activities because they're afraid of missing out on something fun - ever heard of FOMO? You might be comparing yourself to other people having the 'perfect' summer or going on 'perfect' trips, impacting your own happiness.</p>
 <ul>
-<li><strong>Tip:</strong> Comparing yourself to others and overstimulation can lead to burnout, social anxiety, and feelings of inadequacy. Allow yourself to set boundaries around social time - it's ok to say no sometimes.</li>
+<li><strong>Tip:</strong> Comparing yourself to others and overstimulation can lead to <a href="/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/">burnout</a>, social anxiety, and feelings of inadequacy. Allow yourself to set boundaries around social time - it's ok to say no sometimes.</li>
 </ul>
 
 <h2>Financial Stress</h2>

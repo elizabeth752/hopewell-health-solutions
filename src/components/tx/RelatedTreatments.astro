@@ -5,13 +5,16 @@ import ProgramCards from "../hw/ProgramCards.astro";
 import { TREATMENTS } from "./treatments.js";
 interface Props { current?: string; heading?: string; lede?: string; tone?: "white" | "stone" | "mist" }
 const { current, heading = "More Treatments at Hopewell", lede = "Every treatment is coordinated by the same Connecticut team, so you can combine what helps.", tone = "stone" } = Astro.props;
-const items = TREATMENTS.filter((t) => t.href !== current).slice(0, 4);
+const here = current ?? Astro.url.pathname;
+const items = TREATMENTS.filter((t) => t.href !== here).slice(0, 4);
+// Never link a page to itself: unwrap any link in the cross-link line that points at this page.
+const unself = (h: string) => h.replace(/<a class="inl" href="([^"]+)">(.*?)<\/a>/g, (m, href, txt) => (href === here ? txt : m));
 ---
 <section class={`section is-${tone}`}>
   <div class="container">
     <div class="sec-head"><h2>{heading}</h2><p class="lede" set:html={lede + ` See <a class="inl" href="/treatment-methods/">all treatments and testing</a>.`} /></div>
     <ProgramCards items={items} />
     {/* Conditions & treatments cross-links carried over from the live ServicesGrid (SEO interlinking, 2026-11-16 audit). */}
-    <p class="sec-foot">We also treat <a class="inl" href="/what-we-treat/">a wide range of conditions</a> under one roof, with <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>, plus <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>. Ready to start? See <a class="inl" href="/admissions/">how admissions works</a>.</p>
+    <p class="sec-foot" set:html={unself(`We also treat <a class="inl" href="/what-we-treat/">a wide range of conditions</a> under one roof, with <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>, plus <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>. Ready to start? See <a class="inl" href="/admissions/">how admissions works</a>.`)} />
   </div>
 </section>

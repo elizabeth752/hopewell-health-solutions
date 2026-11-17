@@ -1,7 +1,7 @@
 // Treatment-methods list used by the hub and the related-treatments block.
 const P = "/Assets/hhs-2026/";
 export const TREATMENTS = [
-  { t: "TMS Therapy", d: "FDA-cleared magnetic stimulation for treatment-resistant depression and OCD — drug-free, with no downtime.", href: "/treatment-methods/tms/", img: P + "tms-chair.webp", bar: "#265489", facts: [["brain", "Depression & OCD"], ["clock", "No downtime"]] },
+  { t: "TMS Therapy", d: "FDA-cleared magnetic stimulation for treatment-resistant depression and OCD, drug-free, with no downtime.", href: "/treatment-methods/tms/", img: P + "tms-chair.webp", bar: "#265489", facts: [["brain", "Depression & OCD"], ["clock", "No downtime"]] },
   { t: "EMDR", d: "Evidence-based trauma therapy that helps the mind heal what words can’t reach.", href: "/treatment-methods/emdr/", img: P + "tx-westbrook-office-2.webp", bar: "#b6863c", facts: [["refresh", "Eight-phase trauma therapy"], ["heart", "PTSD & distressing memories"]] },
   { t: "Dialectical Behavior Therapy (DBT)", d: "Four core skills for intense emotions, distress and relationships.", href: "/treatment-methods/dbt/", img: P + "tx-group-room-2.webp", bar: "#5c7c6b", facts: [["compass", "Four core skills"], ["users", "Within IOP & PHP"]] },
   { t: "Group Therapy", d: "Therapist-led process, skills and support groups in a confidential setting.", href: "/treatment-methods/group-therapy/", img: P + "group-room-feelings-wheel.webp", bar: "#2f76c4", facts: [["users", "Small, clinician-led groups"], ["shield", "Confidential"]] },

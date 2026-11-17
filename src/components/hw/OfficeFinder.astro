@@ -1,0 +1,108 @@
+---
+// "Which office offers which program" (canvas Option A, 2026-11-16): program filter + two tiers of offices.
+// Shared by the programs hub and the locations hub. Data: locations.js offers; trauma + first responder IOPs
+// meet only at Downtown Glastonbury (300 Hebron Ave), per their program pages.
+import Icon from "../Icon.astro";
+import { locations } from "../../data/locations.js";
+import { PHONE } from "../../data/site.js";
+import "../../styles/components/office-finder.css";
+interface Props { heading?: string; lede?: string; tone?: "stone" | "white" | "mist"; id?: string }
+const { heading = "Which Office Offers Which Program", lede = "Choose a program to see where it meets. Intensive programs run at three offices; all six offer therapy and medication management. We also serve the shoreline, including Niantic, Branford, Madison and Guilford.", tone = "stone", id = "by-location" } = Astro.props;
+const offices = locations.map((l) => ({ slug: l.slug, name: l.name.replace("Glastonbury (Pratt St)", "Pratt St, Glastonbury"), offers: l.offers || [], street: l.street, city: l.city }));
+const officePhoto = { "glastonbury-ct": "/Assets/locations/glastonbury/exterior.webp", "glastonbury-ct-2": "/Assets/hhs-2026/downtown-glastonbury-sign.webp", "glastonbury-ct-3": "/Assets/hhs-2026/sg-front-desk.webp", "west-hartford-ct": "/Assets/hhs-2026/west-hartford-office.webp", "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp", "westbrook-ct": "/Assets/hhs-2026/westbrook-sign.webp" };
+const progIcon = { "Partial Hospitalization (PHP)": "sun", "Adult Co-Occurring IOP": "users", "Addiction IOP": "link", "Women’s Wellness IOP": "heart", "Women’s Trauma IOP": "shield", "First Responder IOP": "shield", "Teen IOP & Tween IOP": "sparkles", "Counseling": "chat", "Medication Management": "pill" };
+const progColor = { "Partial Hospitalization (PHP)": "#265489", "Adult Co-Occurring IOP": "#2f76c4", "Addiction IOP": "#0b2f55", "Women’s Wellness IOP": "#b6863c", "Women’s Trauma IOP": "#b6863c", "First Responder IOP": "#265489", "Teen IOP & Tween IOP": "#5c7c6b", "Counseling": "#5a6b7a", "Medication Management": "#5a6b7a" };
+const matrix = [
+  { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", key: "php" },
+  { t: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", key: "iop" },
+  { t: "Addiction IOP", href: "/programs/addiction-iop/", key: "addiction" },
+  { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", key: "womens" },
+  { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", only: ["glastonbury-ct-2"] },
+  { t: "First Responder IOP", href: "/programs/first-responder-iop/", only: ["glastonbury-ct-2"] },
+  { t: "Teen IOP & Tween IOP", href: "/programs/teen-iop/", key: "teen-tween" },
+  { t: "Counseling", href: "/programs/counseling/", key: "therapy" },
+  { t: "Medication Management", href: "/programs/medication-management/", key: "meds" },
+].map((r) => ({ ...r, at: offices.map((o) => (r.only ? r.only.includes(o.slug) : o.offers.includes(r.key))) }));
+// Option A office section: intensive programs as filter chips; offices split into two tiers.
+const intensiveRows = matrix.filter((r) => !["Counseling", "Medication Management"].includes(r.t)).map((r, i) => ({ ...r, id: `p${i}` }));
+const withK = offices.map((o, k) => ({ o, k, n: intensiveRows.filter((r) => r.at[k]).length }));
+const tierOne = withK.filter((x) => x.n > 0);
+const tierTwo = withK.filter((x) => x.n === 0);
+const locBySlug = Object.fromEntries(locations.map((l) => [l.slug, l]));
+const dirs = (o) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${o.street}, ${o.city}, CT ${locBySlug[o.slug]?.zip ?? ""}`.trim())}`;
+---
+        <section class={`section is-${tone}`} id={id}>
+      <div class="container">
+        <div class="ob-head">
+          <div class="sec-head" style="margin:0">
+            <h2 set:html={heading} />
+            <p class="lede" set:html={lede} />
+          </div>
+          <div class="ob-every">
+            <span class="ob-every-h">At every office</span>
+            <ul><li><Icon name="check" class="h-4 w-4" /><a class="inl" href="/programs/counseling/">Counseling &amp; therapy</a></li><li><Icon name="check" class="h-4 w-4" /><a class="inl" href="/programs/medication-management/">Medication management</a></li></ul>
+          </div>
+        </div>
+
+        <div class="ob-filter">
+          <span class="ob-filter-h" id="ob-filter-h">Find a program</span>
+          <div class="ob-chips" role="group" aria-labelledby="ob-filter-h">
+            <button type="button" class="ob-chip is-on" aria-pressed="true" data-prog="">All offices</button>
+            {intensiveRows.map((r) => <button type="button" class="ob-chip" aria-pressed="false" data-prog={r.id}>{r.t}</button>)}
+          </div>
+          <p class="ob-status" aria-live="polite">Showing all {offices.length} offices</p>
+        </div>
+
+        <h3 class="ob-tier-h">Intensive programs (IOP &amp; PHP) <span>{tierOne.length} offices</span></h3>
+        <div class="ob-tier1">
+          {tierOne.map(({ o, k }) => { const progs = intensiveRows.filter((r) => r.at[k]); return (
+            <article class="ob-card" data-progs={progs.map((r) => r.id).join(" ")}>
+              <a class="ob-photo" href={`/location/${o.slug}/`} tabindex="-1" aria-hidden="true"><img src={officePhoto[o.slug]} alt="" width="1200" height="900" loading="lazy" /></a>
+              <div class="ob-body">
+                <h4><a href={`/location/${o.slug}/`}>{o.name}</a></h4>
+                <p class="ob-addr"><Icon name="pin" class="h-4 w-4" />{o.street}, {o.city}</p>
+                <ul class="ob-progs">{progs.map((r) => <li data-prog={r.id}><Icon name="check" class="h-4 w-4" /><a href={r.href}>{r.t}</a></li>)}</ul>
+                <p class="ob-plus">+ Counseling and medication management</p>
+                <div class="ob-links"><a href={`/location/${o.slug}/`}>Visit office page <span aria-hidden="true">&rarr;</span></a><a href={dirs(o)} target="_blank" rel="noopener">Directions</a></div>
+              </div>
+            </article>
+          ); })}
+        </div>
+
+        <h3 class="ob-tier-h ob-tier2-h">Therapy &amp; medication management <span>{tierTwo.length} more offices</span></h3>
+        <div class="ob-tier2">
+          {tierTwo.map(({ o }) => (
+            <article class="ob-mini">
+              <a class="ob-mini-photo" href={`/location/${o.slug}/`} tabindex="-1" aria-hidden="true"><img src={officePhoto[o.slug]} alt="" width="400" height="300" loading="lazy" /></a>
+              <div>
+                <h4><a href={`/location/${o.slug}/`}>{o.name}</a></h4>
+                <p class="ob-addr">{o.street}, {o.city}</p>
+                <div class="ob-links"><a href={`/location/${o.slug}/`}>Visit office page <span aria-hidden="true">&rarr;</span></a><a href={dirs(o)} target="_blank" rel="noopener">Directions</a></div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="ob-help">
+          <div><strong>Not sure which office or program fits?</strong><p>We’ll match you to the closest office and check your coverage. Shoreline families (Niantic, Branford, Madison, Guilford) are closest to Westbrook.</p></div>
+          <div class="ob-help-ctas"><a href="#verify" class="btn ob-gold">Check your coverage</a><a href={PHONE.href} class="btn ob-ghost"><Icon name="phone" />Call {PHONE.display}</a></div>
+        </div>
+      </div>
+    </section>
+
+<script>
+  // Option A: program chips dim offices that don't run the chosen program.
+  const chips = document.querySelectorAll<HTMLButtonElement>(".ob-chip");
+  const cards = document.querySelectorAll<HTMLElement>(".ob-card");
+  const minis = document.querySelectorAll<HTMLElement>(".ob-mini");
+  const status = document.querySelector<HTMLElement>(".ob-status");
+  chips.forEach((c) => c.addEventListener("click", () => {
+    const id = c.dataset.prog || "";
+    chips.forEach((x) => { const on = x === c; x.classList.toggle("is-on", on); x.setAttribute("aria-pressed", String(on)); });
+    let n = 0;
+    cards.forEach((k) => { const has = !id || (k.dataset.progs || "").split(" ").includes(id); k.classList.toggle("is-off", !has); k.querySelectorAll<HTMLElement>(".ob-progs li").forEach((li) => li.classList.toggle("is-match", !!id && li.dataset.prog === id)); if (has) n++; });
+    minis.forEach((m) => m.classList.toggle("is-off", !!id));
+    if (!id) n = cards.length + minis.length;
+    if (status) status.textContent = id ? `${c.textContent} meets at ${n} ${n === 1 ? "office" : "offices"}` : `Showing all ${n} offices`;
+  }));
+</script>

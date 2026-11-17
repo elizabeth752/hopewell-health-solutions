@@ -30,7 +30,7 @@ const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
   "Designed by first responders, for first responders",
-  "For police, fire, EMS, corrections &amp; 9-1-1 dispatch — current or retired",
+  "For police, fire, EMS, corrections &amp; 9-1-1 dispatch, current or retired",
   "Mon–Thu · 9 AM–12 PM · ~8 weeks · safe &amp; confidential",
   "CT may compensate you directly during day treatment · FMLA help",
 ];
@@ -45,15 +45,15 @@ const whyMatters = [
   ["Stigma", "Many fear that seeking help will be seen as weakness or could affect their career."],
   ["Support systems", "Access to counseling and peer support is vital for coping and resilience."],
   ["Self-care", "Mindfulness, physical activity, and hobbies help manage stress."],
-  ["Education &amp; training", "Learning the signs of distress — in yourself and colleagues — saves careers and lives."],
+  ["Education &amp; training", "Learning the signs of distress, in yourself and colleagues, saves careers and lives."],
 ];
 const conditions = [
   { icon: "cloud", t: "Burnout", d: "Emotional exhaustion, depersonalization (a cynical attitude toward the job and the people you serve), and a reduced sense of personal accomplishment." },
-  { icon: "bolt", t: "Acute stress reactions", d: "Anger, irritability, sadness, numbness, nightmares, intrusive thoughts — plus physical effects on sleep, appetite, and energy. Usually begins right after a traumatic event and lasts up to a month." },
-  { icon: "alert", t: "PTSI — Post-Traumatic Stress Injury", d: "Nightmares, flashbacks, hypervigilance, chronic pain, headaches, irritability, emotional outbursts, sleep disturbance, and trouble concentrating. Can continue from acute stress or surface six+ months later. See <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma &amp; PTSD treatment</a>." },
+  { icon: "bolt", t: "Acute stress reactions", d: "Anger, irritability, sadness, numbness, nightmares, intrusive thoughts, plus physical effects on sleep, appetite, and energy. Usually begins right after a traumatic event and lasts up to a month." },
+  { icon: "alert", t: "PTSI, Post-Traumatic Stress Injury", d: "Nightmares, flashbacks, hypervigilance, chronic pain, headaches, irritability, emotional outbursts, sleep disturbance, and trouble concentrating. Can continue from acute stress or surface six+ months later. See <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma &amp; PTSD treatment</a>." },
 ];
 const approach = [
-  { icon: "heart", t: "Healing beyond words", d: "Experiential therapies help you explore emotions and process trauma in non-verbal, embodied ways — through movement, creative expression, and connection with therapy animals." },
+  { icon: "heart", t: "Healing beyond words", d: "<a class='inl' href='/treatment-methods/therapeutic-treatments/'>Experiential therapies</a> help you explore emotions and process trauma in non-verbal, embodied ways, through movement, creative expression, and connection with therapy animals." },
   { icon: "link", t: "Optional family involvement", d: "Healing often means rebuilding relationships. We offer family sessions and psychoeducation to foster understanding and support at home." },
   { icon: "users", t: "A holistic care team", d: "Clinicians, psychiatric providers, and experiential therapists collaborate on a plan aligned with your values, goals, and needs." },
   { icon: "brain", t: "Foundational DBT &amp; CBT skills", d: "Build essential tools in mindfulness, emotion regulation, distress tolerance, interpersonal effectiveness, and cognitive restructuring." },
@@ -66,30 +66,30 @@ const modalities = [
 ];
 const ptg = ["Greater appreciation of life", "Improved relationships", "Renewed strength &amp; purpose", "New interests &amp; outlooks", "Reduced anxiety, depression &amp; emotional overwhelm", "Reduced hypervigilance &amp; distressing memories", "Decreased reliance on substances or harmful behaviors"];
 const faqs: [string, string][] = [
-  ["Who can join the First Responder IOP?", "Current or retired first responders 18+ — police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers — managing trauma, burnout, acute stress, or PTSI."],
+  ["Who can join the First Responder IOP?", "Current or retired first responders 18+, police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers, managing trauma, burnout, acute stress, or PTSI."],
   ["Will my department find out?", "Your treatment is confidential and protected by privacy law. We don’t share information with your employer without your written permission."],
   ["Will I be in groups with civilians?", "No. Groups are made up of other first responders."],
   ["Can I keep working during the program?", "Many people do. Groups meet Monday–Thursday, 9:00 AM–12:00 PM, so talk with our admissions team about your shift schedule before you start, and we’ll look at what works. Many participants also use FMLA or CT Paid Leave."],
-  ["What does the program help with?", "Critical-incident stress, <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma and PTSD symptoms</a>, sleep problems, anxiety, depression, burnout and drinking to cope. Trauma from outside the job is treated too; see our <a class='inl' href='/programs/womens-trauma-iop/'>Women’s Trauma IOP</a> and <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
-  ["What’s the schedule?", "Monday–Thursday, 9:00 AM–12:00 PM (three hours a day), for about 8 weeks at 300 Hebron Ave, Glastonbury, with ongoing progress evaluations."],
+  ["What does the program help with?", "Critical-incident stress, <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma and PTSD symptoms</a>, sleep problems, anxiety, depression, burnout and <a class='inl' href='/what-we-treat/alcohol/'>drinking to cope</a>. Trauma from outside the job is treated too; see our <a class='inl' href='/programs/womens-trauma-iop/'>Women’s Trauma IOP</a> and <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
+  ["What’s the schedule?", "Monday–Thursday, 9:00 AM–12:00 PM (three hours a day), for about 8 weeks at <a class='inl' href='/location/glastonbury-ct-2/'>300 Hebron Ave, Glastonbury</a>, with ongoing progress evaluations."],
   ["Do I need a PTSD diagnosis?", "No. Our assessment looks at what you’re dealing with and recommends next steps."],
-  ["Is it confidential?", "Yes — we provide a safe, confidential space built specifically for first responders. Seeking support is a mark of strength, not weakness."],
-  ["Does insurance cover it?", "Most commercial plans cover IOP when medically necessary, and TRICARE (TRICARE East is accepted as a PPO plan) and VA Community Care are on our list. In some cases the State of Connecticut may compensate you directly while you’re in day treatment, and many qualify for FMLA or CT Paid Leave — our team handles the paperwork. We verify benefits for free; we don’t accept Medicare or Medicaid."],
+  ["Is it confidential?", "Yes, we provide a safe, confidential space built specifically for first responders. Seeking support is a mark of strength, not weakness."],
+  ["Does insurance cover it?", "Most commercial plans cover IOP when medically necessary, and TRICARE (TRICARE East is accepted as a PPO plan) and VA Community Care are on our list. In some cases the State of Connecticut may compensate you directly while you’re in day treatment, and many qualify for FMLA or CT Paid Leave, our team handles the paperwork. We <a class='inl' href='/rates-and-insurance-coverage/'>verify benefits for free</a>; we don’t accept Medicare or Medicaid."],
   ["Can my spouse or family get support?", "Yes. Optional family sessions and psychoeducation are part of the program (ask our <a class='inl' href='/admissions/'>admissions team</a> what’s available for spouses), so the people at home understand what you’re working on and how to support you."],
   ["What if I’m in crisis right now?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room."],
 ];
 const whoBlocks = [
   { id: "who", h2: "First responder mental health treatment in Connecticut, built around the job",
     paras: [
-      "The First Responder IOP is an intensive outpatient program in Connecticut for police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers — current or retired. It is for responders who are carrying more than they can put down at the end of a shift: critical-incident stress, PTSD symptoms, sleep that never feels like rest, burnout, or drinking more to cope.",
+      "The First Responder IOP is an <a class='inl' href='/programs/intensive-outpatient-program/'>intensive outpatient program</a> in Connecticut for police officers, firefighters, EMTs and paramedics, corrections officers and 9-1-1 dispatchers, current or retired. It is for responders who are carrying more than they can put down at the end of a shift: critical-incident stress, PTSD symptoms, sleep that never feels like rest, burnout, or drinking more to cope.",
       "Most responders who come to us have never been in a program like this. Many have spent years telling themselves it comes with the job. Some are worried about what a department, a union or a partner might think. Trauma that happens <a class='inl' href='/post/why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder/'>through the job</a> is different, and it carries <a class='inl' href='/post/trauma-and-first-responders-the-hidden-cost-of-heroism/'>a hidden cost</a>. Our program exists so you can get real treatment in a room where nobody needs the job explained to them, and where what you say stays confidential.",
-      "You do not need a PTSD diagnosis to start. After a confidential assessment, we recommend the level of care that fits — the First Responder IOP, <a class='inl' href='/programs/medication-management/'>medication management</a>, weekly <a class='inl' href='/programs/counseling/'>counseling</a>, or, when alcohol or drugs are part of the picture, our <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> or <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Co-Occurring IOP</a>.",
+      "You do not need a PTSD diagnosis to start. After a confidential assessment, we recommend the level of care that fits, the First Responder IOP, <a class='inl' href='/programs/medication-management/'>medication management</a>, weekly <a class='inl' href='/programs/counseling/'>counseling</a>, or, when alcohol or drugs are part of the picture, our <a class='inl' href='/programs/addiction-iop/'>addiction IOP</a> or <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Co-Occurring IOP</a>.",
     ],
     aside: { type: "points", title: "Signs it may be time (non-diagnostic)", items: [["cloud", "Nightmares or calls that replay"], ["alert", "Always on edge, even off duty"], ["clock", "Sleep that never feels like rest"], ["swap", "Drinking more to wind down"], ["link", "Pulling away from family and friends"]] } },
   { id: "confidential", h2: "Confidential care: what is and isn’t shared with your department",
     paras: [
       "Your treatment at Hopewell is confidential health care, protected by federal and state privacy law. We do not share information about your treatment with your employer, your department or your union without your written permission. If you choose to involve an employee assistance program or a department wellness contact, you decide what they receive.",
-      "Groups are made up only of other first responders, and the same confidentiality applies to everyone in the room. If you have questions about leave paperwork, FMLA or Connecticut Paid Leave, our team walks you through what each form does and doesn’t include before you sign anything.",
+      "Groups are made up only of other first responders, and the same confidentiality applies to everyone in the room. If you have questions about leave paperwork, <a class='inl' href='/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/'>FMLA or Connecticut Paid Leave</a>, our team walks you through what each form does and doesn’t include before you sign anything.",
     ],
     aside: { type: "steps", title: "How confidentiality works", items: [["Your records stay with us", "Protected health information, not personnel files."], ["You give permission", "Nothing goes to your department without your written OK."], ["Leave paperwork", "We explain exactly what FMLA or Paid Leave forms include."]] } },
 ];
@@ -113,19 +113,18 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     </ServiceHero>
     <!-- 2. As featured in -->
     <Creds />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
 
     <!-- 4. Who it's for -->
     <Split heading="Specialized care for those who answer the call" img="/Assets/service/first-responder-session.webp" alt="A police officer receiving one-on-one support at Hopewell Health Solutions' First Responder IOP">
-      <p><strong>By those who serve, for those who serve.</strong> Our First Responder IOP is designed by first responders, for first responders. We understand the unique challenges of those who serve and protect — and we offer specialized care that supports both your mental health and your career longevity.</p>
-      <p>In a safe, confidential space, you can process your experiences, learn coping strategies, and grow stronger — personally and professionally. Whether you’re stepping down from inpatient care, need more than weekly therapy, or are navigating work while managing your mental health, <strong>seeking support is a mark of strength.</strong></p>
+      <p><strong>By those who serve, for those who serve.</strong> Our First Responder IOP is designed by first responders, for first responders. We understand the unique challenges of those who serve and protect, and we offer specialized care that supports both your mental health and your career longevity.</p>
+      <p>In a safe, confidential space, you can process your experiences, learn coping strategies, and grow stronger, personally and professionally. Whether you’re stepping down from inpatient care, need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more than weekly therapy</a>, or are navigating work while managing your mental health, <strong>seeking support is a mark of strength.</strong></p>
     </Split>
     <Prose blocks={whoBlocks} startTone={1} />
     <IconCards heading="Is this program right for you?" lede="Make the right choice. For current or retired <strong>police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers.</strong> These experiences can lead to:" items={conditions} cols={3} />
     <section class="section is-navy">
       <div class="container">
-        <div class="sec-head"><h2>Why first responder mental health matters</h2><p class="lede"><strong style="color:#fff">It takes a toll.</strong> The stress of emergencies, trauma, and high-pressure situations often leads to PTSD, anxiety, and depression. A culture of openness makes all the difference.</p></div>
+        <div class="sec-head"><h2>Why first responder mental health matters</h2><p class="lede"><strong style="color:#fff">It takes a toll.</strong> The stress of emergencies, trauma, and high-pressure situations often leads to PTSD, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, and <a class="inl" href="/what-we-treat/depression/">depression</a>. A culture of openness makes all the difference.</p></div>
         <ol class="pg-why">
           {whyMatters.map(([t, d], i) => <li><span class="n">{i + 1}</span><span><strong set:html={t + "."} /> <Fragment set:html={d} /></span></li>)}
         </ol>
@@ -147,7 +146,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
       </div>
     </section>
     <IconCards heading="A multimodal treatment approach" lede="More than just talk therapy. We blend clinical therapy with creative and relational approaches to promote true mind–body healing." items={approach} tone="mist" />
-    <ModalitiesOutcomes mHeading="Modalities used" modalities={modalities} oHeading="Post-traumatic growth" oLede="With the right support, first responders can move beyond survival toward growth — reclaiming the nervous system and finding:" outcomes={ptg} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; experiential therapies." tone="white" />
+    <ModalitiesOutcomes mHeading="Modalities used" modalities={modalities} oHeading="Post-traumatic growth" oLede="With the right support, first responders can move beyond survival toward growth, reclaiming the nervous system and finding:" outcomes={ptg} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; experiential therapies." tone="white" />
     <Quote text="Seeking support for your mental health is a mark of strength and self-awareness." img={P + "iop-group-room-lights.webp"} />
 
     <!-- 6. Team -->
@@ -160,17 +159,18 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <Locations heading="Where the First Responder IOP Meets" lede="The First Responder IOP is held at <a class='inl' href='/location/glastonbury-ct-2/'>300 Hebron Ave, Glastonbury</a> · plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
 
     <!-- 9. Insurance & admissions -->
-    <Insurance heading="Insurance for first responders — TRICARE East accepted as PPO" lede="We accept most major commercial insurance, TRICARE (East accepted as a PPO plan) and VA Community Care. <strong>In some cases, the State of Connecticut may compensate you directly while you’re in day treatment</strong>, and many qualify for FMLA or CT Paid Leave. Our team handles the paperwork. Hopewell doesn’t accept Medicare or Medicaid." />
+    <Insurance heading="Insurance for first responders, TRICARE East accepted as PPO" lede="We accept most major commercial insurance, TRICARE (East accepted as a PPO plan) and VA Community Care. <strong>In some cases, the State of Connecticut may compensate you directly while you’re in day treatment</strong>, and many qualify for FMLA or CT Paid Leave. Our team handles the paperwork. Hopewell doesn’t accept Medicare or Medicaid." />
 
     <!-- Reviews sit last, right above the FAQ (coordinator, 2026-11-16) -->
-    <Reviews heading="What Our IOP Clients Say" first={["IOP"]} tone="stone" />
 
     <!-- 10. FAQ -->
-    <Faq faqs={faqs} heading="First Responder IOP — common questions" tone="white" />
+    <Reviews tone="stone" heading="What Our IOP Clients Say" first={["IOP"]} />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
+    <Faq faqs={faqs} heading="First Responder IOP, common questions" tone="white" />
 
     <!-- 11. Related + final CTA -->
     <OtherPrograms current="/programs/first-responder-iop/" />
-    <FinalCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We walk alongside you with evidence-based tools, compassionate support, and space for real transformation — built by people who understand the job. Not a substitute for inpatient or emergency psychiatric care." />
+    <FinalCta heading="Start your healing journey today" lede="Healing is possible, and you don’t have to do it alone. We walk alongside you with evidence-based tools, compassionate support, and space for real transformation, built by people who understand the job. Not a substitute for inpatient or emergency psychiatric care." />
   </main>
   <Footer />
 </Base>

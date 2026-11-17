@@ -1,4 +1,6 @@
 ---
+import Reviews from "../components/hw/Reviews.astro";
+import Team from "../components/hw/Team.astro";
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -22,21 +24,21 @@ const canonical = "https://www.hopewellhealthsolutions.com/handouts/";
 const blocks = [
   { id: "using-handouts", h2: "Free mental health handouts for parents, kids and teens",
     paras: [
-      `These free mental health handouts were written by Hopewell Health Solutions clinicians for the families we work with every day in Connecticut. Each guide is a short, printable PDF that explains one topic in plain language: what anxiety is, why some children avoid school, and how to understand and respond to self-harm. Two are written for children and teens, and three are written for parents and caregivers.`,
+      `These free mental health handouts were written by <a class="inl" href="/about-us/team/">Hopewell Health Solutions clinicians</a> for the families we work with every day in Connecticut. Each guide is a short, printable PDF that explains one topic in plain language: what anxiety is, why some children avoid school, and how to understand and respond to self-harm. Two are written for children and teens, and three are written for parents and caregivers.`,
       `Parents tell us the hardest part is often knowing where to start a conversation. A handout gives you shared words. You can read a parent guide on your own first, then sit down with your child and read the kid-friendly version together. Many families keep a copy on the fridge or share one with a teacher, coach or grandparent so everyone responds the same way.`,
       `The guides are free to download, print and share. They are not a diagnosis and they are not a substitute for professional care, but they are a good first step, and they pair well with the practical articles on the <a class="inl" href="/blog/">Hopewell blog</a>.`,
     ],
-    aside: { type: "points", title: "What’s in the library", items: [["heart", "Understanding and Overcoming Self-Harm — for kids &amp; teens"], ["sparkles", "What Is Anxiety? — for kids"], ["clipboard", "Understanding School Refusal — for parents"], ["users", "A Parent’s Guide to Your Child’s Anxiety"], ["shield", "Supporting a Child Struggling with Self-Harm"]] } },
+    aside: { type: "points", title: "What’s in the library", items: [["heart", "Understanding and Overcoming Self-Harm, for kids &amp; teens"], ["sparkles", "What Is Anxiety?, for kids"], ["clipboard", "Understanding School Refusal, for parents"], ["users", "A Parent’s Guide to Your Child’s Anxiety"], ["shield", "Supporting a Child Struggling with Self-Harm"]] } },
   { id: "anxiety", h2: "Anxiety worksheets and guides for children",
     paras: [
       `Worry is a normal part of growing up, but anxiety becomes a problem when it starts to shape a child’s day: stomachaches before school, trouble sleeping, avoiding friends or activities, or meltdowns that seem bigger than the moment. “What Is Anxiety?” explains, in words a child can follow, what anxiety feels like in the body and gives gentle tools to feel calmer.`,
       `“A Parent’s Guide to Your Child’s Anxiety” is the companion piece for caregivers. It covers how to recognize anxiety, how to understand what is driving it, and practical strategies you can use at home, such as staying calm yourself, avoiding rescuing your child from every fear, and praising small brave steps. For more ideas, read our <a class="inl" href="/post/quick-parenting-tips-for-managing-a-childs-anxiety/">quick parenting tips for managing a child’s anxiety</a> and our guide to <a class="inl" href="/post/how-tween-anxiety-is-treated-in-an-intensive-outpatient-program-iop/">how tween anxiety is treated in an IOP</a>.`,
       `If anxiety keeps growing despite your best efforts, it may be time for professional support. Hopewell treats <a class="inl" href="/what-we-treat/anxiety/">anxiety</a> in children from age 4, with <a class="inl" href="/programs/counseling/">counseling</a>, <a class="inl" href="/programs/medication-management/">medication management</a> when it fits, and more structured care when weekly therapy isn’t enough.`,
     ],
-    aside: { type: "img", src: "/Assets/Handouts/what-is-anxiety.webp", alt: "Cover of the What Is Anxiety? handout for kids", cap: "What Is Anxiety? — for kids" } },
+    aside: { type: "img", src: "/Assets/Handouts/what-is-anxiety.webp", alt: "Cover of the What Is Anxiety? handout for kids", cap: "What Is Anxiety?, for kids" } },
   { id: "school-refusal", h2: "A school refusal guide for parents",
     paras: [
-      `School refusal is not the same as skipping school. A child who refuses school often wants to go but feels overwhelmed by anxiety, low mood, bullying, academic pressure or social stress. Mornings become a battle, complaints of headaches or stomachaches appear on school days, and the longer the avoidance lasts, the harder it is to return.`,
+      `School refusal is not the same as skipping school. A child who refuses school often wants to go but feels overwhelmed by anxiety, <a class="inl" href="/what-we-treat/depression/">low mood</a>, bullying, academic pressure or social stress. Mornings become a battle, complaints of headaches or stomachaches appear on school days, and the longer the avoidance lasts, the harder it is to return.`,
       `“Understanding School Refusal” walks parents through how to recognize it, what tends to drive it, and how to help a child get back to class step by step, working with the school instead of against it. If school accommodations are part of the picture, our post on <a class="inl" href="/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/">504 plans and academic accommodations</a> is a useful next read, as is <a class="inl" href="/post/how-intensive-outpatient-programs-iop-can-help-with-bullying/">how IOP can help with bullying</a>.`,
       `When school refusal is tied to anxiety or depression that weekly therapy hasn’t touched, our after-school <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> brings structure, skills and family involvement together, so children can keep up with school while they get more support.`,
     ],
@@ -45,20 +47,20 @@ const blocks = [
     paras: [
       `Discovering that a child is hurting themselves is frightening. Self-harm is usually a way of coping with overwhelming emotions, not an attempt to get attention, and it responds to support. “Understanding and Overcoming Self-Harm” is written for kids and teens: it explains what self-harm is, why it happens, and healthier ways to cope when the urge comes.`,
       `“Supporting a Child Struggling with Self-Harm” is written for parents. It focuses on how to respond with calm and care, how to support your child day to day, and how to find the right help. Staying calm, listening without judgment and making a plan together tend to matter more than finding the perfect words. Our article on <a class="inl" href="/post/what-is-a-safety-plan-and-how-can-you-make-one/">how to make a safety plan</a> and our guide to <a class="inl" href="/post/how-to-help-your-kids-during-a-mental-health-crisis/">helping your kids during a mental health crisis</a> go deeper.`,
-      `If your child is in immediate danger, call or text 988 or call 911. For ongoing care, Hopewell’s clinicians use <a class="inl" href="/treatment-methods/dbt/">DBT</a>, which teaches emotion regulation and distress tolerance skills, in individual therapy and in our intensive programs for teens and tweens.`,
+      `If your child is in immediate danger, call or text 988 or call 911. For ongoing care, Hopewell’s clinicians use <a class="inl" href="/treatment-methods/dbt/">DBT</a>, which teaches emotion regulation and distress tolerance skills, in <a class="inl" href="/programs/counseling/">individual therapy</a> and in our intensive programs for teens and tweens.`,
     ],
     aside: { type: "steps", title: "If you’re worried right now", items: [["Stay calm and listen", "Ask directly how they are, without judgment"], ["Keep them safe", "Call or text 988, or 911 in an emergency"], ["Make a plan together", "Who to call and what helps"], ["Get support", "Call (860) 735-1448 for an assessment"]] } },
   { id: "next-steps", h2: "When a handout isn’t enough: getting your child help",
     paras: [
       `Handouts are a starting point. If you have tried the strategies and your child is still struggling, or if things are getting worse, it is worth talking to a professional. Signs that a child may need more than weekly therapy include falling grades, withdrawal from friends, constant worry, or safety concerns. Our post on <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">signs your teen needs more than weekly therapy</a> explains what to look for.`,
-      `Hopewell offers a full continuum of care for children and families: weekly counseling, medication management, after-school intensive outpatient groups for tweens (8–12) and teens (13–17), and full-day partial hospitalization when more support is needed. The <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> meets after school at our South Glastonbury office, with family sessions and school coordination built in.`,
-      `Getting started is simple: call us or request a callback, and our admissions team will verify your insurance for free and help you find the right level of care. Read <a class="inl" href="/admissions/#for-families">guidance for families</a> to see what the first steps look like.`,
+      `Hopewell offers a full continuum of care for children and families: weekly counseling, medication management, after-school intensive outpatient groups for <a class="inl" href="/programs/tween-iop/">tweens (8–12)</a> and teens (13–17), and <a class="inl" href="/programs/partial-hospitalization-program/">full-day partial hospitalization</a> when more support is needed. The <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> meets after school at our South Glastonbury office, with family sessions and school coordination built in.`,
+      `Getting started is simple: call us or request a callback, and our admissions team will <a class="inl" href="/rates-and-insurance-coverage/">verify your insurance for free</a> and help you find the right level of care. Read <a class="inl" href="/admissions/#for-families">guidance for families</a> to see what the first steps look like.`,
     ],
     aside: { type: "table", title: "Levels of care for kids & teens", head: ["Level", "What it looks like"], rows: [["Counseling", "Weekly sessions, in person or telehealth"], ["Teen &amp; Tween IOP", "After school, Mon–Thu, 8–12 weeks"], ["PHP", "About 6 hours a day, Mon–Fri"]] } },
 ];
 const faqs = [
   ["Are the handouts really free?", "Yes. Every guide on this page is a free PDF you can download, print and share with family, teachers or anyone who supports your child."],
-  ["Who wrote these mental health handouts?", `Hopewell Health Solutions clinicians in Connecticut, the same team that runs our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> and counseling for children and families.`],
+  ["Who wrote these mental health handouts?", `Hopewell Health Solutions clinicians in Connecticut, the same team that runs our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> and <a class="inl" href="/programs/counseling/">counseling for children and families</a>.`],
   ["What ages are the kids’ handouts for?", "“What Is Anxiety?” is written for children, and “Understanding and Overcoming Self-Harm” is written for kids and teens. The other three are for parents and caregivers."],
   ["Can a handout diagnose my child?", "No. These guides are for general education and are not a substitute for professional care. A clinician can assess what your child is experiencing and recommend a plan."],
   ["What should I do if my child is in crisis?", "Call or text 988 (Suicide & Crisis Lifeline) or call 911. You can also go to your nearest emergency room."],
@@ -78,14 +80,14 @@ const handouts = [
   {
     title: "What Is Anxiety?",
     audience: "For kids",
-    desc: "A simple, reassuring explanation of anxiety for children — what it feels like and gentle tools to feel calmer.",
+    desc: "A simple, reassuring explanation of anxiety for children, what it feels like and gentle tools to feel calmer.",
     cover: H + "what-is-anxiety.webp",
     pdf: H + "what-is-anxiety.pdf",
   },
   {
     title: "Understanding School Refusal",
     audience: "For parents",
-    desc: "A guide for parents addressing school avoidance — how to recognize it, what drives it, and how to help your child get back to class.",
+    desc: "A guide for parents addressing school avoidance, how to recognize it, what drives it, and how to help your child get back to class.",
     cover: H + "school-refusal-parents-guide.webp",
     pdf: H + "school-refusal-parents-guide.pdf",
   },
@@ -106,13 +108,13 @@ const handouts = [
 ];
 ---
 
-<Base title="Free Mental Health Handouts & Guides | Hopewell Health Solutions" description="Free, downloadable mental health handouts from Hopewell Health Solutions — parent guides and kid-friendly resources on anxiety, self-harm, and school refusal from our Connecticut clinicians." canonical={canonical}>
+<Base title="Free Mental Health Handouts & Guides | Hopewell Health Solutions" description="Free, downloadable mental health handouts from Hopewell Health Solutions, parent guides and kid-friendly resources on anxiety, self-harm, and school refusal from our Connecticut clinicians." canonical={canonical}>
   <Header />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Resources", href: "/blog/" }, { label: "Handouts" }]}
       title="Handouts &amp; Guides"
-      lede="Free, downloadable guides written by our Connecticut clinicians — to help families and kids understand anxiety, self-harm, and school refusal, and take the next step with confidence."
+      lede="Free, downloadable guides written by our Connecticut clinicians, to help families and kids understand anxiety, self-harm, and school refusal, and take the next step with confidence."
       bullets={["Parent guides on anxiety, self-harm and school refusal", "Kid-friendly explanations", "Free PDF downloads", "Written by our Connecticut clinicians"]}
       image="/Assets/hhs-2026/tween-group-room.webp"
       form={false}
@@ -144,7 +146,9 @@ const handouts = [
     </section>
 
     <Prose blocks={blocks} startTone={1} />
-    <Faq faqs={faqs} heading="Mental health handouts — common questions" tone="stone" />
+    <Team tone="white" />
+    <Reviews tone="white" />
+    <Faq faqs={faqs} heading="Mental health handouts, common questions" tone="stone" />
     <Insurance heading="Ready for more support? We’ll check your coverage" tone="white" />
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Short Videos From Our Clinicians" lede="Quick, practical skills from the Hopewell team. More on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={null} />
 

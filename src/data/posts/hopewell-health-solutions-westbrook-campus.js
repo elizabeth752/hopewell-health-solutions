@@ -59,7 +59,7 @@ export default {
   dateModified: "2026-09-24",
   readingMinutes: 6,
   intro:
-    "In a national study of patients discharged from inpatient substance use treatment, those who traveled 10 miles or less were about 2.6 times more likely to get follow-up outpatient care than those who traveled more than 50 miles. Distance is not a small detail in mental health care — it decides who starts, and it decides who finishes. For people on the Connecticut shoreline, the nearest intensive programming has been an hour inland. Our new Westbrook campus closes that gap.",
+    "In a national study of patients discharged from inpatient substance use treatment, those who traveled 10 miles or less were about 2.6 times more likely to get follow-up outpatient care than those who traveled more than 50 miles. Distance is not a small detail in mental health care, it decides who starts, and it decides who finishes. For people on the Connecticut shoreline, the nearest intensive programming has been an hour inland. Our new Westbrook campus closes that gap.",
   sections: [
     {
       id: "where-is-the-new-campus",

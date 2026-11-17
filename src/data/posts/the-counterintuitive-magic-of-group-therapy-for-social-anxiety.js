@@ -11,7 +11,7 @@ export default {
   datePublished: "2025-04-21",
   dateModified: "2025-04-21",
   readingMinutes: 2,
-  bodyHtml: `<p>You might think that group therapy sounds like a recipe for disaster for someone with social anxiety. After all, isn't anxiety heightened by being around more people? Here's the twist—it turns out, group therapy can be incredibly healing and empowering for those dealing with this condition, whether they're kids, teens, or adults.</p>
+  bodyHtml: `<p>You might think that <a href="/treatment-methods/group-therapy/">group therapy</a> sounds like a recipe for disaster for someone with social anxiety. After all, isn't <a href="/what-we-treat/anxiety/">anxiety</a> heightened by being around more people? Here's the twist, it turns out, group therapy can be incredibly healing and empowering for those dealing with this condition, whether they're kids, teens, or adults.</p>
 
 <h2>Why Group Therapy Works</h2>
 
@@ -19,11 +19,11 @@ export default {
 
 <p>For children and teenagers, group therapy offers a chance to develop social skills in a way that's less pressured than typical school or family settings. Kids learn to express themselves, listen to others, and gain confidence in social situations. Teens, dealing with the complexities of adolescence, can explore their identities and build resilience through peer feedback and support.</p>
 
-<p>And it's not just for the younger crowd—adults benefit significantly too. Adult group therapy provides a platform to share experiences, offering insights that one might not have considered before, and creating a network of support that extends beyond the therapy session.</p>
+<p>And it's not just for the younger crowd, adults benefit significantly too. Adult group therapy provides a platform to share experiences, offering insights that one might not have considered before, and creating a network of support that extends beyond the therapy session.</p>
 
 <h2>Hopewell Health Solutions' Group Therapy Programs</h2>
 
-<p>At Hopewell Health Solutions in Glastonbury, Connecticut, we recognize the profound impact group therapy can have across all ages. That's why we offer specialized Intensive Outpatient Programs (IOPs) tailored to different age groups and needs:</p>
+<p>At Hopewell Health Solutions in Glastonbury, Connecticut, we recognize the profound impact group therapy can have across all ages. That's why we offer specialized <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a> (IOPs) tailored to different age groups and needs:</p>
 
 <ul>
 <li><strong>Teen and Tween IOPs</strong>: These programs are designed to help young people navigate the challenges of adolescence and early teenage years. Using a DBT-based curriculum, we focus on mindfulness, emotion regulation, distress tolerance, and interpersonal effectiveness.</li>

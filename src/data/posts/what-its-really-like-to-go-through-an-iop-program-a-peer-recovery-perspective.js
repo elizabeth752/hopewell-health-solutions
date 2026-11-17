@@ -34,7 +34,7 @@ export default {
           ul: [
             "Depression and mood disorders",
             "Anxiety and panic disorders",
-            "Post-Traumatic Stress Disorder (PTSD)",
+            "<a href=\"/what-we-treat/trauma-ptsd/\">Post-Traumatic Stress Disorder (PTSD)</a>",
             "Self-injury or suicidal thoughts",
             "School refusal or social withdrawal in adolescents",
             "Trauma and relational difficulties",
@@ -67,16 +67,16 @@ export default {
           p: "Tween IOP, for ages 8 to 12, meets from 4:30 to 7:30 PM. Teen IOP, for ages 13 to 17, meets from 5 to 8 PM, with family involvement built into the work for both adolescent tracks.",
         },
         {
-          p: "Women's Wellness IOP offers adults a 9 AM to noon or 5 to 8 PM track, over 8 to 12 weeks, blending DBT, EMDR, somatic therapy, and Trauma-Focused CBT for burnout, anxiety, stress, and life transitions.",
+          p: "Women's Wellness IOP offers adults a 9 AM to noon or 5 to 8 PM track, over <a href=\"/post/retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks/\">8 to 12 weeks</a>, blending DBT, EMDR, somatic therapy, and Trauma-Focused CBT for <a href=\"/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/\">burnout</a>, anxiety, stress, and life transitions.",
         },
         {
-          p: "Women's Trauma IOP runs the same Monday-through-Thursday pattern from 5 to 8 PM for about eight weeks, built specifically around trauma recovery in a women-only group, apart from Women's Wellness IOP's broader focus.",
+          p: "Women's Trauma IOP runs the same Monday-through-Thursday pattern from 5 to 8 PM for about eight weeks, built specifically around trauma recovery in a women-only group, apart from <a href=\"/programs/womens-wellness-iop/\">Women's Wellness IOP</a>'s broader focus.",
         },
         {
           p: "Adult Co-Occurring IOP runs the same hours as Women's Wellness and treats substance use alongside the mental health conditions that usually travel with it.",
         },
         {
-          p: "First Responder IOP serves current and retired police, fire, EMS, corrections, and 911 dispatch, meeting Monday through Thursday from 9 AM to noon for about eight weeks, built by first responders for first responders.",
+          p: "<a href=\"/programs/first-responder-iop/\">First Responder IOP</a> serves current and retired police, fire, EMS, corrections, and 911 dispatch, meeting Monday through Thursday from 9 AM to noon for about eight weeks, built by first responders for first responders.",
         },
         {
           p: "A separate Addiction and Substance Use IOP runs a tighter schedule, three to five sessions a week for about six to eight weeks, built specifically around addiction recovery.",
@@ -88,10 +88,10 @@ export default {
       h2: "What Approaches Actually Show Up in a Session?",
       blocks: [
         {
-          p: "Across tracks, sessions blend Dialectical Behavior Therapy (DBT), Cognitive Behavioral Therapy (CBT), Interpersonal Therapy, mindfulness, and experiential work like art therapy, music therapy, and yoga therapy.",
+          p: "Across tracks, sessions blend <a href=\"/treatment-methods/dbt/\">Dialectical Behavior Therapy (DBT)</a>, <a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a>, Interpersonal Therapy, mindfulness, and experiential work like art therapy, music therapy, and yoga therapy.",
         },
         {
-          p: "The Addiction and Substance Use IOP adds relapse-prevention education, life-skills training, and Medication-Assisted Treatment (MAT) when it is part of someone's plan. Every track is run by a multidisciplinary team with ten to thirty years of experience.",
+          p: "The Addiction and Substance Use IOP adds relapse-prevention education, life-skills training, and <a href=\"/treatment-methods/medication-assisted-treatment/\">Medication-Assisted Treatment</a> (MAT) when it is part of someone's plan. Every track is run by a multidisciplinary team with ten to thirty years of experience.",
         },
       ],
     },
@@ -185,7 +185,7 @@ export default {
             "Hopewell runs several IOP tracks, each built around a specific age group or need.",
             "Sessions blend DBT, CBT, interpersonal therapy, mindfulness, and experiential work, with relapse prevention, life skills, and MAT layered in for substance use.",
             "Peer support from people with recovery experience anchors the day-to-day feel of treatment, especially in the Substance Use and Adult Co-Occurring tracks.",
-            "IOP is not the easier option. It asks people to hold treatment and daily life together at the same time — and this contact with real life helps drive its strong retention and outcomes.",
+            "IOP is not the easier option. It asks people to hold treatment and daily life together at the same time, and this contact with real life helps drive its strong retention and outcomes.",
           ],
         },
       ],

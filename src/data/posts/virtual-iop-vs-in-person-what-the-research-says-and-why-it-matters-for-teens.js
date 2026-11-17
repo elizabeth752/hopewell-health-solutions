@@ -9,7 +9,7 @@ export default {
     "Virtual and in-person IOP both help teens heal. See what the research says about outcomes, benefits, limitations, and how to choose the right format.",
   category: "Teens & Families",
   excerpt:
-    "A virtual or in-person IOP both deliver effective care for mental health. For teens, the different formats can accommodate their studies and social life — and improve recovery outcomes.",
+    "A virtual or in-person IOP both deliver effective care for mental health. For teens, the different formats can accommodate their studies and social life, and improve recovery outcomes.",
   heroImage: "/Assets/Blogs/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens-hero.webp",
   heroAlt: "A young woman joining a virtual therapy session from her laptop at home",
   authorSlug: "tj-aitken-cpsrp",
@@ -31,7 +31,7 @@ export default {
           p: "At Hopewell Health Solutions, we have an IOP specifically designed for teenagers aged 13–17. The program runs from our center in Glastonbury for 8 to 12 weeks, Monday to Thursday, 5pm–8pm. We offer both in-person and virtual treatment.",
         },
         {
-          p: "Most IOPs (including ours) integrate evidence-based therapies such as cognitive behavioral therapy (CBT) and dialectical behavior therapy (DBT), with medication management (e.g. for antidepressants and mood stabilizers) if needed, and wellness activities, such as yoga and meditation. Our program additionally has parent night and support for parents to ensure that you are updated on your child's progress and have your own dedicated care.",
+          p: "Most IOPs (including ours) integrate evidence-based therapies such as <a href=\"/treatment-methods/therapeutic-treatments/\">cognitive behavioral therapy (CBT)</a> and dialectical behavior therapy (DBT), with <a href=\"/programs/medication-management/\">medication management</a> (e.g. for antidepressants and mood stabilizers) if needed, and wellness activities, such as yoga and meditation. Our program additionally has parent night and support for parents to ensure that you are updated on your child's progress and have your own dedicated care.",
         },
         {
           img: "/Assets/Blogs/teen-iop-bridge-to-mental-health.webp",
@@ -44,7 +44,7 @@ export default {
       h2: "How Does an IOP Help Teen Mental Health?",
       blocks: [
         {
-          p: "From 2006 to 2019, an estimated 145 million teens and young adults sought outpatient care because of a mental health condition. There are many reasons why there's greater engagement with mental health care among teens, including a growing mental health crisis among the demographic, as well as greater awareness around, and access to, mental health resources.",
+          p: "From 2006 to 2019, an estimated 145 million teens and <a href=\"/post/why-are-young-adults-struggling-more-with-mental-health-issues/\">young adults</a> sought outpatient care because of a mental health condition. There are many reasons why there's greater engagement with mental health care among teens, including a growing mental health crisis among the demographic, as well as greater awareness around, and access to, mental health resources.",
         },
         {
           p: "In fact, research shows that IOPs have helped meet the increasing needs for youth mental health services since the COVID-19 pandemic.",
@@ -56,7 +56,7 @@ export default {
           p: "Similarly, with an IOP, teens can stay connected to their personal and social support networks, seeing family and friends regularly, which can actually help their engagement in the program and foster their general well-being.",
         },
         {
-          p: "IOPs have also repeatedly been shown to effectively reduce depression symptoms and crisis events and improve overall functioning. And studies highlight that gains made for mental health disorders such as depression are generally maintained after finishing an IOP. LGBTQIA+ youth, who have a high risk of suicide, have demonstrated promising improvements to depressive symptoms when being discharged from an IOP.",
+          p: "IOPs have also repeatedly been shown to effectively reduce <a href=\"/what-we-treat/depression/\">depression</a> symptoms and crisis events and improve overall functioning. And studies highlight that gains made for mental health disorders such as depression are generally maintained after finishing an IOP. <a href=\"/post/lgbtq-inclusivity-in-behavioral-health-treatment/\">LGBTQIA+</a> youth, who have a high risk of suicide, have demonstrated promising improvements to depressive symptoms when being discharged from an IOP.",
         },
       ],
     },
@@ -118,7 +118,7 @@ export default {
       h2: "Virtual and In-Person IOP for Teens at Hopewell Health Solutions, Connecticut",
       blocks: [
         {
-          p: "Our dedicated teen IOP (for ages 13–17) treats young people suffering with their mental health. All our care is tailored to each person, taking into account their medical history, current situation, future plans, and unique challenges in the world.",
+          p: "Our dedicated <a href=\"/programs/teen-iop/\">teen IOP</a> (for ages 13–17) treats young people suffering with their mental health. All our care is tailored to each person, taking into account their medical history, current situation, future plans, and unique challenges in the world.",
         },
         {
           p: "We have a team of licensed clinicians who provide evidence-based therapies, medication management, and strive to always prioritize teens' comfort and progress. We also have different mindfulness practices to nurture physical and mental well-being and to keep young people engaged with treatment for longer-lasting outcomes.",
@@ -128,7 +128,7 @@ export default {
         },
         {
           img: "/Assets/Blogs/virtual-vs-in-person-teen-iop.webp",
-          alt: "Infographic: Virtual vs. in-person IOP — how to choose the right format for your teen",
+          alt: "Infographic: Virtual vs. in-person IOP, how to choose the right format for your teen",
         },
         { p: "There's always hope to heal. Speak with our admissions team now." },
       ],

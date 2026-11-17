@@ -56,7 +56,7 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
       <input id={`${formId}-email`} class={field} type="email" name="email" autocomplete="email" maxlength="120" />
     </div>
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <label class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2"><input type="checkbox" name="consent" class="mt-0.5 h-4 w-4 flex-none accent-azul" required /><span>I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</span></label>
+    <label class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2"><input type="checkbox" name="consent" class="mt-0.5 h-4 w-4 flex-none accent-azul" required /><span>I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies, call 988 if in crisis.</span></label>
     <button type="submit" class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-lg bg-azul-bright px-[30px] text-[15px] font-bold text-white transition hover:bg-azul disabled:cursor-wait disabled:opacity-60 sm:col-span-2">Check Your Coverage</button>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2 sm:col-span-2" role="status" aria-live="polite"></p>
   </form>
@@ -78,7 +78,7 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
     <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="membership_policy_id" placeholder="Member / Policy ID" />
     <!-- honeypot: bots fill this; humans never see it -->
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="consent" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
+    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="consent" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies, call 988 if in crisis.</label>
     <button type="submit" class="flex items-center justify-center w-full rounded-lg bg-azul h-[45px] font-semibold text-white hover:bg-azul-dark transition disabled:opacity-60">Verify My Insurance →</button>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
@@ -177,7 +177,7 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.ok) throw new Error("Bad status " + res.status);
         form.reset();
-        show("Thank you — we’ve got your info and will reach out shortly.", true);
+        show("Thank you, we’ve got your info and will reach out shortly.", true);
         // GA4/GTM conversion event
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: "generate_lead", form_id: FORM_ID });

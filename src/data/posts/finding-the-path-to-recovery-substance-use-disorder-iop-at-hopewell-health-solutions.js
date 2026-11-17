@@ -11,11 +11,11 @@ export default {
   datePublished: "2025-01-29",
   dateModified: "2025-01-29",
   readingMinutes: 2,
-  bodyHtml: `<p>Substance use disorder (SUD) can feel like a relentless cycle, difficult to break and isolating for those caught within it. At Hopewell Health Solutions, we understand the challenges faced by individuals struggling with addiction, and we're here to provide a supportive, structured path to recovery through our Substance Use Disorder Intensive Outpatient Program (IOP).</p>
+  bodyHtml: `<p><a href="/what-we-treat/substance-use-disorder/">Substance use disorder</a> (SUD) can feel like a relentless cycle, difficult to break and isolating for those caught within it. At Hopewell Health Solutions, we understand the challenges faced by individuals struggling with addiction, and we're here to provide a supportive, structured path to recovery through our <a href="/programs/addiction-iop/">Substance Use Disorder Intensive Outpatient Program</a> (IOP).</p>
 
 <h2>What is the Substance Use Disorder IOP?</h2>
 
-<p>Our IOP is a comprehensive program designed to help individuals who are battling substance use disorders but do not require inpatient care. The program offers a balanced approach that combines therapy, peer support, and medication management to foster recovery and resilience. Sessions are held in a supportive group setting, allowing participants to connect with others who share similar experiences and challenges.</p>
+<p>Our IOP is a comprehensive program designed to help individuals who are battling substance use disorders but do not require inpatient care. The program offers a balanced approach that combines therapy, peer support, and <a href="/programs/medication-management/">medication management</a> to foster recovery and resilience. Sessions are held in a supportive group setting, allowing participants to connect with others who share similar experiences and challenges.</p>
 
 <h2>Program Structure and Approach</h2>
 

@@ -36,3 +36,21 @@
 .hw .is-stone .sp-tbl tbody th, .hw .is-mist .sp-tbl tbody th { color: var(--hw-navy); }
 @media (max-width: 999px) { .hw .sp-grid { grid-template-columns: 1fr; } .hw .sp-grid.is-flip .sp-copy { order: 0; } .hw .sp-aside { position: static; } }
 @media (max-width: 640px) { .hw .sp-copy p { font-size: 16.5px; } }
+
+/* Corner Canyon alignment (2026-11-16): side cards sit flush with the top of the copy, never sticky or centred. */
+.hw .sp-aside { position: static; align-self: start; }
+.hw .sp-grid { align-items: start; }
+
+/* Corner Canyon phase row for step asides (CC tp-phases): heading + copy stacked on top, then the steps as one
+   full-width row: a navy header band with numbered stone tiles across under it. */
+.hw .sp-grid:has(> .sp-steps) { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+.hw .sp-grid:has(> .sp-steps) .sp-copy { order: 0; max-width: 860px; }
+.hw .sp-aside.sp-steps { order: 1; }
+.hw .sp-steps .sp-card, .hw .is-stone .sp-steps .sp-card, .hw .is-mist .sp-steps .sp-card { padding: 0; overflow: hidden; border-radius: 24px; background: #fff; border: 1px solid var(--hw-line); box-shadow: none; color: var(--hw-body); }
+.hw .sp-steps .sp-card-h, .hw .is-stone .sp-steps .sp-card-h, .hw .is-mist .sp-steps .sp-card-h { margin: 0; padding: 18px 22px; background: var(--hw-navy); color: #fff; font-size: 20px; }
+.hw .sp-steps .sp-card ol { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; padding: 14px; }
+.hw .sp-steps .sp-card li { padding: 14px; border-radius: 16px; background: var(--hw-stone, #f3efe7); }
+.hw .is-stone .sp-steps .sp-card li { background: var(--hw-mist); }
+.hw .sp-steps .sp-n { background: var(--hw-navy); }
+.hw .sp-steps strong, .hw .is-stone .sp-steps strong, .hw .is-mist .sp-steps strong { color: var(--hw-navy); }
+@media (max-width: 599px) { .hw .sp-steps .sp-card ol { grid-template-columns: 1fr; } }

@@ -12,7 +12,7 @@ export default {
   datePublished: "2025-04-28",
   dateModified: "2025-04-28",
   readingMinutes: 2,
-  bodyHtml: `<p>At Hopewell Health Solutions, we are committed to offering comprehensive and effective treatment options for individuals grappling with opioid addiction. One of the key tools in our treatment arsenal is Suboxone, a leading medication-assisted treatment (MAT) that has significantly changed the approach to addiction therapy. Guided by the expertise of Katherine Salvador, PA-C, our patients receive personalized care designed to support their path to recovery.</p>
+  bodyHtml: `<p>At Hopewell Health Solutions, we are committed to offering comprehensive and effective treatment options for individuals grappling with <a href="/what-we-treat/drug/">opioid addiction</a>. One of the key tools in our treatment arsenal is Suboxone, a leading <a href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment</a> (MAT) that has significantly changed the approach to addiction therapy. Guided by the expertise of Katherine Salvador, PA-C, our patients receive personalized care designed to support their path to recovery.</p>
 
 <h2>What is Suboxone and What is it Used For?</h2>
 

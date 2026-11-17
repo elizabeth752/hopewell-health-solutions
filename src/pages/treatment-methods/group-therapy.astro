@@ -1,5 +1,6 @@
 ---
-// Group Therapy — 2026 redesign. All live copy kept; Dr. K's group-therapy video added.
+import MediaStrip from "../../components/MediaStrip.astro";
+// Group Therapy, 2026 redesign. All live copy kept; Dr. K's group-therapy video added. Brief (Treatments: Content Briefs, Group Therapy) applied 2026-11-16.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -26,21 +27,46 @@ const heroUsps = [
 ];
 const types = [
   ["chat", "Process groups", "A safe space to talk through what you're feeling and experiencing, with a clinician guiding the conversation and the group offering support and perspective.", "#265489"],
-  ["clipboard", "Psychoeducation groups", "Learn how mental health, emotions and recovery actually work — practical knowledge that helps the rest of treatment make sense.", "#b6863c"],
-  ["compass", "Skills groups", "Hands-on practice with coping tools from approaches like DBT and CBT, so you leave with techniques you can use the same day.", "#5c7c6b"],
+  ["clipboard", "Psychoeducation groups", "Learn how mental health, emotions and recovery actually work: practical knowledge that helps the rest of treatment make sense.", "#b6863c"],
+  ["compass", "Skills groups", "Hands-on practice with coping tools from approaches like <a class='inl' href='/treatment-methods/dbt/'>DBT</a> and CBT, so you leave with techniques you can use the same day.", "#5c7c6b"],
   ["heart", "Support groups", "Connection-focused groups built around shared experiences, where members encourage one another and remind each other they're not alone.", "#2f76c4"],
 ];
 const why = [
   ["users", "Breaks the isolation", "that so often accompanies depression, anxiety, trauma and addiction."],
-  ["heart", "Receive and offer support", "— helping someone else can be just as healing as being helped."],
+  ["heart", "Receive and offer support", "Helping someone else can be just as healing as being helped."],
   ["refresh", "A living laboratory", "to practice new skills, like setting a boundary or asking for what you need."],
-  ["compass", "Perspective", "— hearing how others handle similar challenges expands your sense of what's possible."],
+  ["compass", "Perspective", "Hearing how others handle similar challenges expands your sense of what's possible."],
 ];
+// Groups by audience and office (offices per src/data/locations.js and each program page; addiction only at 300 Hebron Ave + Westbrook).
+const DG = "<a class='inl' href='/location/glastonbury-ct-2/'>Downtown Glastonbury</a>";
+const WB = "<a class='inl' href='/location/westbrook-ct/'>Westbrook</a>";
+const SG = "<a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury</a>";
+const groups = [
+  ["<a class='inl' href='/programs/adult-mental-health-iop/'>Adult IOP groups</a>", "Adults", `${DG} · ${WB}`],
+  ["<a class='inl' href='/programs/addiction-iop/'>Addiction recovery groups</a>", "Adults in addiction treatment, including <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring</a> mental health and addiction", `${DG} · ${WB}`],
+  ["<a class='inl' href='/programs/teen-iop/'>Teen IOP</a> and <a class='inl' href='/programs/tween-iop/'>Tween IOP</a> groups", "Teens and tweens", SG],
+  ["<a class='inl' href='/programs/womens-wellness-iop/'>Women's Wellness IOP</a>", "Adult women", `${DG} · ${WB}`],
+  ["<a class='inl' href='/programs/womens-trauma-iop/'>Women's Trauma IOP</a>", "Women healing from trauma", DG],
+  ["<a class='inl' href='/programs/first-responder-iop/'>First Responder IOP</a>", "First responders", DG],
+  ["<a class='inl' href='/programs/partial-hospitalization-program/'>Partial hospitalization (PHP)</a>", "Adults who need a more structured day of care", DG],
+  ["<a class='inl' href='/treatment-methods/dbt/'>DBT skills groups</a>", "Part of our adult, teen and women's programs", "With each program"],
+];
+const inPerson = [
+  ["Connection", "Sitting in the same room makes it easier to feel understood, and to understand others."],
+  ["Accountability", "Showing up in person, with people who expect you, helps you stay with the work."],
+  ["Learning from peers", "You see how others handle similar challenges and try new skills with real people."],
+];
+// FAQ: brief questions first (brief answer, then the live answer where the question already existed).
+// Left out until TJ confirms: group size, joining a group without IOP, telehealth groups ([confirm] in the brief),
+// and the brief's uncited "Research shows group therapy works well" line ([cite a source]).
 const faq = [
-  ["What is group therapy?", "Group therapy is a form of treatment where a small number of people meet together with one or more licensed clinicians. The therapist guides the session while members share, listen, learn skills, and support one another. It's a core part of intensive outpatient and partial hospitalization care."],
-  ["Will I be forced to share personal things?", "No. You are always in control of what you share and when. Many people simply listen at first and open up gradually as trust builds. Our clinicians create a respectful, low-pressure environment where you set your own pace."],
-  ["Is what I say kept private?", "Yes. Confidentiality is a foundation of group therapy. Clinicians are bound by privacy laws, and every member agrees to keep what's shared in the room inside the room. We review these ground rules clearly before anyone begins."],
-  ["Is group therapy as effective as individual therapy?", "Research shows group therapy can be just as effective as individual therapy for many concerns, and it offers something one-on-one work cannot — the experience of being understood by peers and practicing new skills in real relationships. At Hopewell, group and individual care work hand in hand."],
+  ["What is group therapy?", "<p>A small group of people with similar concerns who meet with a licensed clinician to learn skills and support each other.</p> <p>Group therapy is a form of treatment where a small number of people meet together with one or more licensed clinicians. The therapist guides the session while members share, listen, learn skills, and support one another. It's a core part of intensive outpatient and partial hospitalization care.</p>"],
+  ["Do I have to share personal things?", "<p>You share what you're comfortable with. Many people listen at first and open up over time.</p> <p>No. You are always in control of what you share and when. Many people simply listen at first and open up gradually as trust builds. Our clinicians create a respectful, low-pressure environment where you set your own pace.</p>"],
+  ["Is what I say kept private?", "<p>Group members agree to keep what's shared in the group confidential, and clinicians follow privacy laws.</p> <p>Yes. Confidentiality is a foundation of group therapy. Clinicians are bound by privacy laws, and every member agrees to keep what's shared in the room inside the room. We review these ground rules clearly before anyone begins.</p>"],
+  ["What groups do you offer?", "Groups for adults, teens and tweens, women, first responders, addiction recovery and DBT skills, depending on the office. See our <a class='inl' href='/programs/adult-mental-health-iop/'>Adult IOP</a>, <a class='inl' href='/programs/teen-iop/'>Teen IOP</a>, <a class='inl' href='/programs/womens-wellness-iop/'>Women's Wellness IOP</a>, <a class='inl' href='/programs/first-responder-iop/'>First Responder IOP</a> and <a class='inl' href='/programs/addiction-iop/'>Addiction IOP</a>."],
+  ["Are groups in person?", "Yes, our groups meet in person at our <a class='inl' href='/locations/'>Connecticut offices</a>."],
+  ["Is group therapy as effective as individual therapy?", "<p>Many people do both.</p> <p>Research shows group therapy can be just as effective as individual therapy for many concerns, and it offers something one-on-one work cannot: <a class='inl' href='/post/the-role-of-group-therapy-in-iop-why-connection-is-key-to-healing/'>the experience of being understood by peers</a> and practicing new skills in real relationships. At Hopewell, group and individual care work hand in hand.</p>"],
+  ["Does insurance cover group therapy?", "Most commercial plans do, including as part of IOP. We <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits</a>; we don't accept Medicare or Medicaid."],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -53,13 +79,13 @@ const schema = {
 const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].includes(v.yt));
 ---
 
-<Base title="Group Therapy | Hopewell Health Solutions" description="Therapist-led group therapy — process groups, psychoeducation and skills-building in a confidential, supportive setting. A core part of the IOP and PHP programs at Hopewell Health Solutions in Connecticut." canonical={canonical} image={P + "group-room-feelings-wheel.webp"}>
+<Base title="In-Person Group Therapy in Connecticut | Hopewell" description="In-person therapy groups for adults, teens, women and first responders at Hopewell's Connecticut offices, led by licensed clinicians. Check coverage." canonical={canonical} image={P + "group-room-feelings-wheel.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "Group Therapy" }]}
-      title="Group Therapy"
+      title="Group Therapy in Connecticut"
       lede="Connection-based care: the experience of being understood by people who have walked a similar road is one of the most powerful forces in healing."
       bullets={heroUsps}
       facts={[{ icon: "users", text: "Small, clinician-led groups" }, { icon: "shield", text: "Confidential" }]}
@@ -71,7 +97,7 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>You are not as alone as you feel</h2>
-          <p style="margin-top:16px">One of the heaviest parts of struggling with your mental health is the feeling that no one else could possibly understand. Group therapy gently dismantles that belief. The moment you hear someone else describe the exact thought you were sure only you had, something shifts — the isolation loosens its grip. That experience of being understood by people who have walked a similar road is one of the most powerful forces in healing, and it's something individual therapy, for all its value, simply can't provide. At Hopewell Health Solutions, group therapy is a cornerstone of how we help people recover.</p>
+          <p style="margin-top:16px">One of the heaviest parts of struggling with your mental health is the feeling that no one else could possibly understand. Group therapy gently dismantles that belief. The moment you hear someone else describe the exact thought you were sure only you had, something shifts: the isolation loosens its grip. That experience of being understood by people who have walked a similar road is one of the most powerful forces in healing, and it's something individual therapy, for all its value, simply can't provide. At Hopewell Health Solutions, group therapy is a cornerstone of how we help people recover.</p>
         </div>
         <figure class="tx-photo"><img src={P + "tx-group-room-2.webp"} alt="A Hopewell group therapy session in the Women's Trauma IOP room" width="1400" height="1050" loading="lazy" /><figcaption>A Hopewell group room<span>Small groups, licensed clinicians</span></figcaption></figure>
       </div>
@@ -82,7 +108,8 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
         <figure class="tx-photo"><img src="/Assets/service/group-therapy-room.webp" alt="A group therapy room at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /></figure>
         <div class="tx-copy">
           <h2>What group therapy is</h2>
-          <p style="margin-top:16px">Group therapy brings together a small number of people who meet regularly with one or more licensed clinicians. It is not simply a room where people take turns talking — it is a structured, professionally guided form of treatment. The therapist keeps the group safe and focused, facilitates meaningful conversation, teaches skills, and makes sure everyone's voice is respected. Groups are intentionally kept small enough that you're never lost in the crowd, and confidentiality is built into the foundation so members can speak openly.</p>
+          <p style="margin-top:16px">Group therapy brings together a small number of people who meet regularly with one or more licensed clinicians. It is not simply a room where people take turns talking. It is a structured, professionally guided form of treatment. The therapist keeps the group safe and focused, facilitates meaningful conversation, teaches skills, and makes sure everyone's voice is respected. Groups are intentionally kept small enough that you're never lost in the crowd, and confidentiality is built into the foundation so members can speak openly.</p>
+          <p style="margin-top:14px">It isn't a lecture, and it isn't a peer-run support meeting: a licensed clinician leads every group toward shared goals.</p>
         </div>
       </div>
     </section>
@@ -91,7 +118,7 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
       <div class="container">
         <div class="sec-head"><h2>Types of groups you might join</h2><p class="lede">"Group therapy" is really an umbrella term for several different kinds of groups, each with its own purpose. Most treatment plans include a mix.</p></div>
         <div class="tx-cards" style="--cols:4">
-          {types.map(([icon, t, d, bar]) => <div class="tx-card" style={`--bar:${bar}`}><span class="icon-badge"><Icon name={icon} /></span><h3>{t}</h3><p>{d}</p></div>)}
+          {types.map(([icon, t, d, bar]) => <div class="tx-card" style={`--bar:${bar}`}><span class="icon-badge"><Icon name={icon} /></span><h3>{t}</h3><p set:html={d} /></div>)}
         </div>
       </div>
     </section>
@@ -101,7 +128,7 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
       <div class="container tx-split" style="align-items:start">
         <div>
           <h2>Why it works</h2>
-          <p class="lede" style="margin-top:16px">Group therapy heals in ways that surprise many people who were nervous to try it. It breaks the isolation that so often accompanies depression, anxiety, trauma and addiction. It lets you both receive support and offer it — and helping someone else can be just as healing as being helped. It gives you a living laboratory to practice new skills, like setting a boundary or asking for what you need, in a setting that's safe and supportive. And it offers perspective: hearing how others handle similar challenges expands your own sense of what's possible. Members frequently say the group became one of the most important parts of their week.</p>
+          <p class="lede" style="margin-top:16px">Group therapy heals in ways that surprise many people who were nervous to try it. It breaks the isolation that so often accompanies <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a> and <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction</a>. It lets you both receive support and offer it, and helping someone else can be just as healing as being helped. It gives you a living laboratory to practice new skills, like setting a boundary or asking for what you need, in a setting that's safe and supportive. And it offers perspective: hearing how others handle similar challenges expands your own sense of what's possible. Members frequently say the group became one of the most important parts of their week.</p>
         </div>
         <ol class="tx-phases" style="grid-template-columns:1fr">
           {why.map(([icon, t, d], i) => <li class="tx-phase"><b><Icon name={icon} class="h-5 w-5" /></b><span><strong>{t}</strong><span>{d}</span></span></li>)}
@@ -113,19 +140,67 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>Group therapy at Hopewell</h2>
-          <p style="margin-top:16px">At Hopewell, group therapy is a central component of our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient (IOP)</a> and <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization (PHP)</a> programs, where it works alongside individual therapy and, when appropriate, <a class="inl" href="/programs/medication-management/">medication management</a>. Every group is led by a licensed clinician, and the tone is warm, respectful and judgment-free. You are never pressured to share before you're ready — many people listen quietly at first and open up as trust grows. Whether you're processing a difficult experience, learning new coping tools, or simply discovering that you are not as alone as you felt, our groups are designed to meet you where you are and walk with you forward.</p>
+          <p style="margin-top:16px">At Hopewell, group therapy is a central component of our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient (IOP)</a> and <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization (PHP)</a> programs, where it works alongside individual therapy and, when appropriate, <a class="inl" href="/programs/medication-management/">medication management</a>. Every group is led by a licensed clinician, and the tone is warm, respectful and judgment-free. You are never pressured to share before you're ready; many people listen quietly at first and open up as trust grows. Whether you're processing a difficult experience, learning new coping tools, or simply discovering that you are not as alone as you felt, our groups are designed to meet you where you are and walk with you forward.</p>
         </div>
         <figure class="tx-photo"><img src={P + "iop-clinicians-group-room.webp"} alt="Hopewell IOP clinicians in a group therapy room" width="1680" height="1260" loading="lazy" /></figure>
       </div>
     </section>
 
+    <!-- Groups we run: comparison table by audience and office -->
+    <section class="section is-white">
+      <div class="container">
+        <div class="sec-head"><h2>Groups we run, by office</h2><p class="lede">Every group below is led by a licensed clinician and meets in person. Addiction groups meet only at our Downtown Glastonbury (300 Hebron Ave) and Westbrook offices.</p></div>
+        <div class="tx-table gt-table">
+          <div class="tx-row is-head"><span>Group</span><span>Who it's for</span><span>Where it meets</span></div>
+          {groups.map(([g, w, o]) => <div class="tx-row"><strong set:html={g} /><span set:html={w} /><span set:html={o} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Why in person: copy + thin-rule list left, real group-room photos right -->
+    <section class="section is-stone">
+      <div class="container tx-split" style="align-items:start">
+        <div class="tx-copy">
+          <h2>Why our groups meet in person</h2>
+          <p style="margin-top:16px">Our groups meet in real rooms at our Connecticut offices, with a clinician and a small group of people working on shared goals. Many people pair group work with one-on-one <a class="inl" href="/programs/counseling/">counseling</a>.</p>
+          <dl class="gt-why">
+            {inPerson.map(([t, d]) => <div><dt>{t}</dt><dd>{d}</dd></div>)}
+          </dl>
+          <p style="margin-top:18px">Group members agree to keep what's shared in the group confidential, and clinicians follow privacy laws. Wondering how in-person care compares with online programs? Read <a class="inl" href="/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/">what the research says about virtual vs in-person IOP</a>.</p>
+        </div>
+        <div class="gt-photos">
+          <img src={P + "group-room-feelings-wheel.webp"} alt="A Hopewell group room with a feelings wheel on the wall" width="1200" height="900" loading="lazy" />
+          <img src="/Assets/service/group-therapy-room.webp" alt="Chairs set up in a Hopewell group therapy room" width="1200" height="900" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
     <VideoCarousel videos={vids} mode="grid" tone="navy" heading="Hear Why Groups Help" lede="Dr. Kristine Schlichting on why group therapy reduces isolation, plus clients on the connection they found in our groups." link={{ href: "/podcast/", label: "Watch the podcast" }} />
     <Team heading="Meet Some of Our Group Clinicians" lede="Licensed clinicians who lead groups across our programs. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["jeff-rapp-lmsw", "nathan-truong-lmft-a", "erica-schwartz-lcat", "bido-aguessy-psy-d-lpc-a", "kaitlyn-czapiga-lmsw", "viviana-alvarado-lpc-a", "teesha-huertas-lcsw"]} tone="white" />
-    <Reviews tone="stone" first={["IOP", "Women’s Wellness IOP"]} />
     <Insurance heading="Group therapy is often covered by insurance" lede="In-network with most major plans. We'll verify your benefits before you start." tone="white" />
+    <Reviews tone="white" first={["IOP", "Women’s Wellness IOP"]} />
+    <MediaStrip bg="white" />
     <Faq faqs={faq} heading="Frequently asked questions" />
     <RelatedTreatments current="/treatment-methods/group-therapy/" tone="white" />
-    <ClosingCta heading="You don't have to do this alone" lede="Talk with our Connecticut team about joining a group — confidentially, with no pressure." image={P + "iop-clinicians-group-room.webp"} />
+    <ClosingCta heading="You don't have to do this alone" lede="Talk with our Connecticut team about joining a group, confidentially, with no pressure." image={P + "iop-clinicians-group-room.webp"} />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .gt-table .tx-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 0.9fr); }
+  .gt-why { margin: 20px 0 0; border-top: 1px solid var(--hw-line); }
+  .gt-why > div { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--hw-line); }
+  .gt-why dt { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
+  .gt-why dd { margin: 0; font-size: 16px; line-height: 1.5; }
+  .gt-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .gt-photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; }
+  .gt-photos img + img { margin-top: 40px; }
+  :global(.hw .faq-a p + p) { margin-top: 10px; }
+  @media (max-width: 760px) {
+    .gt-table .tx-row { grid-template-columns: 1fr; gap: 4px; }
+    .gt-table .tx-row.is-head { display: none; }
+    .gt-why > div { grid-template-columns: 1fr; gap: 2px; }
+    .gt-photos img + img { margin-top: 0; }
+  }
+</style>

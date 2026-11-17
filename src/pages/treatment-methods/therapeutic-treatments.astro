@@ -1,5 +1,5 @@
 ---
-// HHS Therapeutic Treatments — 2026 redesign. Every modality and its live copy kept; regrouped into talk therapies,
+// HHS Therapeutic Treatments, 2026 redesign. Brief (Treatments: Content Briefs, HHS Therapeutic Treatments) applied 2026-11-16. Every modality and its live copy kept; regrouped into talk therapies,
 // trauma therapies, experiential & mind-body, and relationships.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -11,6 +11,7 @@ import Team from "../../components/hw/Team.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
+import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import RelatedTreatments from "../../components/tx/RelatedTreatments.astro";
@@ -23,7 +24,7 @@ const P = "/Assets/hhs-2026/";
 const heroUsps = [
   "An array of evidence-based &amp; holistic therapies",
   "For clients aged 4 and older",
-  "Tailored to you — never one-size-fits-all",
+  "Tailored to you, never one-size-fits-all",
   "In person &amp; via telehealth across Connecticut",
 ];
 const apps = [["Buddhify", T + "budify.webp"], ["Calm", T + "calm.webp"], ["Insight Timer", T + "insight.webp"], ["Headspace", T + "headspace.webp"]];
@@ -34,11 +35,30 @@ const talk = [
 ];
 const mods = [
   ["Outdoor Nature-Assisted Therapy", "An intervention to treat, hasten recovery, and rehabilitate, with the core principle that therapy involves plants, natural materials, and/or the outdoor environment."],
-  ["Play Therapy", "Primarily used to help children ages 3–12 explore their lives and express repressed thoughts and emotions through play, in a safe playroom — learning healthier self-expression, empathy, and positive problem-solving."],
-  ["Yoga Therapy", "The specific application of yogic tools — postures, breath work, and meditation techniques — to address physical, mental, and emotional needs."],
-  ["Exposure Therapy", "A behavior-therapy technique for anxiety disorders — gradually exposing you to the anxiety source (without danger) to help you overcome distress."],
+  ["Play Therapy", "Primarily used to help children ages 3–12 explore their lives and express repressed thoughts and emotions through play, in a safe playroom, learning healthier self-expression, empathy, and positive problem-solving."],
+  ["Yoga Therapy", "The specific application of yogic tools (postures, breath work, and meditation techniques) to address physical, mental, and emotional needs."],
+  ["Exposure Therapy", "A behavior-therapy technique for <a class='inl' href='/what-we-treat/anxiety/'>anxiety disorders</a>: gradually exposing you to the anxiety source (without danger) to help you overcome distress."],
   ["Biofeedback", "Gaining greater awareness of your body’s physiological functions using instruments, with the goal of learning to regulate them at will."],
-  ["Systematic Desensitization", "A behavioral therapy based on classical conditioning that replaces a phobia’s fear response with a relaxation response, gradually, through counter-conditioning."],
+  ["Systematic Desensitization", "A behavioral therapy based on classical conditioning that replaces a <a class='inl' href='/post/fear-of-flying-or-fear-of-leaving-home/'>phobia’s fear response</a> with a relaxation response, gradually, through counter-conditioning."],
+];
+// Approaches at a glance (brief's "likely contents" table). Blue Green therapy left out until the client describes it.
+const glance = [
+  ["Cognitive behavioral therapy (CBT)", "Changing unhelpful thought and behavior patterns", "One-on-one <a class='inl' href='/programs/counseling/'>counseling</a>, and part of our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a>"],
+  ["Family therapy", "Working through problems together as a family", "Families take part in our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a> and <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>; see <a class='inl' href='/programs/counseling/'>couples and family counseling</a>"],
+  ["Play therapy", "Helping young children work through feelings through play", "With a trained therapist, in a safe playroom"],
+  ["Mindfulness-based approaches", "Skills for staying present and calming the body", "A core skill in <a class='inl' href='/treatment-methods/dbt/'>dialectical behavior therapy</a>"],
+  ["Trauma-informed care", "How all of our clinicians approach care", "See <a class='inl' href='/treatment-methods/emdr/'>EMDR therapy</a> and <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma and PTSD treatment</a>"],
+];
+// FAQ from the brief. "[Confirmed list]" placeholders filled only with approaches already described on this page;
+// the brief's unconfirmed "yes" on family therapy left out (families in Teen/Tween IOP and couples & family counseling are live copy).
+const faq = [
+  ["What therapy approaches do your clinicians use?", "Approaches described on this page include DBT, CBT, solutions-focused therapy, Accelerated Resolution Therapy (ART), trauma-informed individual and group therapy, pet-assisted, walk-talk and nature-assisted therapy, play therapy, mindfulness, meditation, yoga therapy, exposure therapy, biofeedback and the Gottman Method. Your clinician chooses and combines approaches to fit your needs."],
+  ["What is CBT?", "Cognitive behavioral therapy helps you notice and change thought patterns and behaviors that keep you stuck."],
+  ["What is play therapy?", "A way for young children to express feelings and work through problems through play, guided by a trained therapist."],
+  ["Do you offer family therapy?", "Families are part of our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a> and <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>, and our <a class='inl' href='/programs/counseling/'>counseling</a> includes couples and family work."],
+  ["What are holistic approaches?", "Approaches that support the whole person, such as mindfulness and meditation, used alongside evidence-based therapy."],
+  ["Can I ask for a specific approach?", "Yes. Tell <a class='inl' href='/admissions/'>admissions</a>, and we'll match you with a clinician trained in it when possible."],
+  ["Does insurance cover these therapies?", "Most are covered as part of <a class='inl' href='/programs/counseling/'>counseling</a> or <a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a>. We <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits</a>; we don't accept Medicare or Medicaid."],
 ];
 const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "LInMQYyZSmY", "aff5Xfy9CfE"].includes(v.yt));
 const schema = {
@@ -52,14 +72,14 @@ const schema = {
 };
 ---
 
-<Base title="HHS Therapeutic Treatments in CT | Hopewell Health Solutions" description="An array of therapeutic treatments at Hopewell Health Solutions, Glastonbury, Westbrook & West Hartford CT — DBT, CBT, EMDR/ART, pet & nature therapy, play therapy, telehealth, mindfulness & more, for ages 4+." canonical={canonical} image={P + "tx-team-with-therapy-dog.webp"}>
+<Base title="Therapy Approaches: CBT, Play Therapy &amp; More in CT | Hopewell" description="The therapy approaches Hopewell clinicians use in Connecticut, from CBT and family therapy to play therapy and holistic approaches. Check coverage." canonical={canonical} image={P + "tx-team-with-therapy-dog.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "HHS Therapeutic Treatments" }]}
-      title="HHS Therapeutic Treatments"
-      lede="Nearly 20% of adults receive treatment for mental health conditions — and many children and teens do, too. We offer a wide array of evidence-based and holistic therapies for clients aged 4 and older, matched to what each person needs."
+      title="Therapies and Approaches at Hopewell"
+      lede="Nearly 20% of adults receive treatment for mental health conditions, and many children and teens do, too. We offer a wide array of evidence-based and holistic therapies for clients aged 4 and older, matched to what each person needs."
       bullets={heroUsps}
       facts={[{ icon: "pin", text: "HHS Therapeutic Treatments · Glastonbury, CT · Ages 4+" }]}
       image={P + "tx-team-with-therapy-dog.webp"}
@@ -68,13 +88,24 @@ const schema = {
     </ServiceHero>
     <Creds />
 
+    <!-- Approaches at a glance: comparison table -->
+    <section class="section is-stone">
+      <div class="container">
+        <div class="sec-head"><h2>Therapies and approaches at a glance</h2><p class="lede">Clinicians combine approaches to fit each person, in one-on-one <a class="inl" href="/programs/counseling/">counseling</a> and in <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a>. Here are the ones people ask about most, and where they fit.</p></div>
+        <div class="tx-table tt-table">
+          <div class="tx-row is-head"><span>Approach</span><span>What it is</span><span>Where it fits</span></div>
+          {glance.map(([t, d, w]) => <div class="tx-row"><strong>{t}</strong><span>{d}</span><span set:html={w} /></div>)}
+        </div>
+      </div>
+    </section>
+
     <!-- Talk therapies -->
     <section class="section is-white">
       <div class="container">
         <div class="tx-split">
           <div class="tx-copy">
             <h2>Dialectical Behavior Therapy (DBT)</h2>
-            <p class="lede" style="margin-top:16px">DBT is a type of psychotherapy — talk therapy — that uses a cognitive-behavioral approach and emphasizes the psychosocial aspects of treatment. <a class="inl" href="/treatment-methods/dbt/">Learn how DBT works at Hopewell</a>.</p>
+            <p class="lede" style="margin-top:16px">DBT is a type of psychotherapy (talk therapy) that uses a cognitive-behavioral approach and emphasizes the psychosocial aspects of treatment. <a class="inl" href="/treatment-methods/dbt/">Learn how DBT works at Hopewell</a>.</p>
             <p class="tx-card" style="margin-top:18px;flex-direction:row;align-items:center;--bar:#b6863c"><span class="icon-badge"><Icon name="sparkles" /></span><strong style="font-family:var(--hw-head);color:var(--hw-navy)">SPACE Training with <a class="inl" href="/provider/eric-schwartz-psy-d-abpp/">Dr. Schwartz</a></strong></p>
           </div>
           <figure class="tx-photo"><img src="/Assets/service/dbt.webp" alt="Dialectical Behavior Therapy at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /><figcaption>Talk therapy<span>DBT, CBT &amp; solutions-focused</span></figcaption></figure>
@@ -89,13 +120,13 @@ const schema = {
     <section class="section is-navy">
       <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
       <div class="container">
-        <div class="sec-head"><h2>Trauma-informed therapies</h2><p class="lede">Approaches that recognize trauma’s role in a person’s outlook, emotions and behavior — individual and group. See our <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD treatment</a>.</p></div>
+        <div class="sec-head"><h2>Trauma-informed therapies</h2><p class="lede">Approaches that recognize trauma’s role in a person’s outlook, emotions and behavior, in individual and group settings. See our <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD treatment</a>.</p></div>
         <div class="tx-cards">
           <div class="tx-card is-navy" style="--bar:#b6863c;background-color:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)">
             <span class="icon-badge"><Icon name="bolt" /></span>
             <h3>Accelerated Resolution Therapy (ART)</h3>
             <p style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-sky)">A briefer version of <a class="inl" href="/treatment-methods/emdr/">EMDR</a></p>
-            <p>ART was created to help people who have experienced trauma. The protocol brings up original traumatic experiences and actually changes the way that information is ultimately stored.</p>
+            <p>ART was created to help people who have <a class="inl" href="/what-we-treat/trauma-ptsd/">experienced trauma</a>. The protocol brings up original traumatic experiences and actually changes the way that information is ultimately stored.</p>
             <p><a class="inl" href="/media/">Watch helpful videos</a></p>
           </div>
           <div class="tx-card is-navy" style="--bar:#2f76c4;background-color:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)">
@@ -108,7 +139,7 @@ const schema = {
             <img src="/Assets/service/trauma-informed-group.webp" alt="Trauma-informed group therapy at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px" />
             <h3>Trauma-Informed Group Therapy</h3>
             <p style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-sky)">TFTG</p>
-            <p>Trauma Focus Group Therapy (TFTG) emphasizes two cognitive-behavioral methods — systematic prolonged exposure and cognitive restructuring — to process each member’s trauma. Each member has the opportunity to recount their story as others listen.</p>
+            <p>Trauma Focus <a class="inl" href="/treatment-methods/group-therapy/">Group Therapy</a> (TFTG) emphasizes two cognitive-behavioral methods (systematic prolonged exposure and cognitive restructuring) to process each member’s trauma. Each member has the opportunity to recount their story as others listen.</p>
           </div>
         </div>
       </div>
@@ -123,7 +154,7 @@ const schema = {
           <div>
             <span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Used in conjunction with traditional therapy</span>
             <h3 style="font-size:26px">Pet-Assisted Therapy</h3>
-            <p>Animal-assisted therapy works alongside the traditional work of a licensed clinician. Dogs are the primary animals used, though programs offer different animals for different needs. Animals provide calm, comfort, and safety — diverting attention from stress toward pleasure.</p>
+            <p>Animal-assisted therapy works alongside the traditional work of a licensed clinician. Dogs are the primary animals used, though programs offer different animals for different needs. Animals provide calm, comfort, and safety, diverting attention from stress toward pleasure.</p>
             <p>Building a bond with an animal can help people develop self-worth and trust, stabilize emotions, and improve communication, self-regulation, and socialization.</p>
           </div>
         </div>
@@ -132,7 +163,7 @@ const schema = {
           <div>
             <span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Pairing mental &amp; physical health</span>
             <h3 style="font-size:26px">Walk-Talk Therapy</h3>
-            <p>Just like it sounds — the client and therapist are outside walking during therapy instead of sitting in an office. Many clients find it a more relaxed environment than the therapy office, with added mental and physical health benefits.</p>
+            <p>Just like it sounds: the client and therapist are outside walking during therapy instead of sitting in an office. Many clients find it a more relaxed environment than the therapy office, with added mental and physical health benefits.</p>
           </div>
         </div>
       </div>
@@ -141,9 +172,9 @@ const schema = {
     <!-- Mind-body & behavioral tiles -->
     <section class="section is-white">
       <div class="container">
-        <div class="sec-head"><h2>Experiential, mind-body &amp; behavioral therapies</h2><p class="lede">From play therapy for young children to biofeedback and exposure work for anxiety — matched to what each person needs.</p></div>
+        <div class="sec-head"><h2>Experiential, mind-body &amp; behavioral therapies</h2><p class="lede">From play therapy for young children to biofeedback and exposure work for anxiety, matched to what each person needs.</p></div>
         <div class="tx-mods" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-          {mods.map(([t, d]) => <div class="tx-mod"><h3>{t}</h3><p>{d}</p></div>)}
+          {mods.map(([t, d]) => <div class="tx-mod"><h3>{t}</h3><p set:html={d} /></div>)}
         </div>
         <div class="tx-split" style="margin-top:36px">
           <figure class="tx-photo"><img src={P + "tx-east-hampton-play-room.webp"} alt="A child-friendly therapy room at our East Hampton office" width="1400" height="1400" loading="lazy" /><figcaption>A child-friendly therapy room<span>East Hampton office</span></figcaption></figure>
@@ -160,13 +191,13 @@ const schema = {
       <div class="container">
         <div class="sec-head"><h2>Calm, clarity &amp; care from home</h2></div>
         <div class="tx-cards" style="--cols:2">
-          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "telehealth.webp"} alt="Telehealth therapy at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Online therapy</span><h3>Telehealth</h3><p>Also known as telemental health — a therapist or counselor provides counseling and support over the internet through video conferencing, online chat, email, or a phone call.</p></div></div>
-          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "meditaiton.webp"} alt="Meditation at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Calm &amp; clarity</span><h3>Meditation</h3><p>A practice that uses a technique — such as mindfulness or focusing the mind on a particular object, thought, or activity — to train attention and awareness and achieve a mentally clear, emotionally calm, and stable state.</p></div></div>
+          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "telehealth.webp"} alt="Telehealth therapy at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Online therapy</span><h3>Telehealth</h3><p>Also known as telemental health: a therapist or counselor provides counseling and support over the internet through video conferencing, online chat, email, or a phone call.</p></div></div>
+          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "meditaiton.webp"} alt="Meditation at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Calm &amp; clarity</span><h3>Meditation</h3><p>A practice that uses a technique, such as mindfulness or focusing the mind on a particular object, thought, or activity, to train attention and awareness and achieve a mentally clear, emotionally calm, and stable state.</p></div></div>
         </div>
         <div class="tx-card" style="margin-top:18px;--bar:#5c7c6b">
           <span class="icon-badge"><Icon name="cloud" /></span>
           <h3>Mindfulness</h3>
-          <p>The psychological process of purposely bringing your attention to experiences in the present moment without judgment — developed through the practice of meditation and other training.</p>
+          <p>The psychological process of purposely bringing your attention to experiences in the present moment without judgment, developed through the practice of meditation and other training.</p>
           <p style="font-family:var(--hw-head);font-weight:700;color:var(--hw-navy);margin-top:6px">Apps we recommend</p>
           <div class="tx-apps" style="margin-top:4px">{apps.map(([name, img]) => <span class="tx-app"><img src={img} alt="" loading="lazy" />{name}</span>)}</div>
         </div>
@@ -176,7 +207,7 @@ const schema = {
     <!-- Couples -->
     <section class="section is-white">
       <div class="container tx-split is-flip">
-        <figure class="tx-photo"><img src={T + "couples%20gott.webp"} alt="Couples therapy — the Gottman Method — at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /></figure>
+        <figure class="tx-photo"><img src={T + "couples%20gott.webp"} alt="Couples therapy using the Gottman Method at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /></figure>
         <div class="tx-copy">
           <p style="font-family:var(--hw-head);font-weight:700;font-size:14px;color:var(--hw-gold)">Couples therapy</p>
           <h2 style="margin-top:6px">The Gottman Method</h2>
@@ -187,11 +218,20 @@ const schema = {
 
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Try a Skill From Our Clinicians" lede="Short videos from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={{ href: "/podcast/", label: "More videos & the podcast" }} />
     <Team heading="Therapists Behind These Treatments" lede="Clinicians who list play, art, couples, mindfulness and yoga-based work among their focus areas. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["eric-schwartz-psy-d-abpp", "traci-schneider-maatc-lpc-a-atr-p", "dori-bessette-crail-lmft", "meagan-carr-ph-d", "erica-schwartz-lcat", "madeline-blinderman-lpc-a", "kelvin-young-cpsrp"]} tone="stone" />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" showLink={false} />
-    <Reviews tone="stone" />
     <Insurance tone="white" />
+    <Reviews tone="stone" />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" showLink={false} />
+    <Faq faqs={faq} heading="Frequently asked questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/therapeutic-treatments/" />
-    <ClosingCta heading="Find the right therapy for you" lede="Not sure where to start? Our team will help match you — or your child — to the approach that fits best. Reach out to Hopewell Health Solutions today, confidentially and with no pressure." image={P + "tx-team-with-therapy-dog.webp"} />
+    <ClosingCta heading="Find the right therapy for you" lede="Not sure where to start? Our team will help match you (or your child) to the approach that fits best. Reach out to Hopewell Health Solutions today, confidentially and with no pressure." image={P + "tx-team-with-therapy-dog.webp"} />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .tt-table .tx-row { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.2fr); }
+  @media (max-width: 760px) {
+    .tt-table .tx-row { grid-template-columns: 1fr; gap: 4px; }
+    .tt-table .tx-row.is-head { display: none; }
+  }
+</style>

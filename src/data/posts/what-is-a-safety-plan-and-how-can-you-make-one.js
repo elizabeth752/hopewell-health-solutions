@@ -18,14 +18,14 @@ export default {
   dateModified: "2026-01-07",
   readingMinutes: 4,
   bodyHtml: `
-<p>At Hopewell Health Solutions in Glastonbury, Connecticut on the very first day a client starts in one of our Intensive Outpatient Programs, we complete a safety plan with them. It isn't a punishment, a contract, or a sign that someone is "at risk of failing." A safety plan, through our lens, is a compassionate and practical tool for moments when emotions spike and the nervous system takes over.</p>
+<p>At Hopewell Health Solutions in Glastonbury, Connecticut on the very <a href="/post/what-to-expect-on-your-first-day-of-intensive-outpatient-program-iop/">first day</a> a client starts in one of our <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a>, we complete a safety plan with them. It isn't a punishment, a contract, or a sign that someone is "at risk of failing." A safety plan, through our lens, is a compassionate and practical tool for moments when emotions spike and the nervous system takes over.</p>
 
 <p>We know that when distress and emotions are high, the access to our logical part of the brain, and our ability to problem-solve, drops. A safety plan exists so you don't have to rely on those systems when they're the least available.</p>
 
 <p>A safety plan is a written, personalized guide created during calmer moments and used during harder ones - it helps bridge the gap between <em>knowing</em> what helps and being able to <em>remember or use</em> it when you're overwhelmed. In therapy and in our Intensive Outpatient Programs (IOP), our safety planning is collaborative and grounded in real life application, not just in theory.</p>
 
 <h2>Who a Safety Plan Is For?</h2>
-<p>Many people assume safety plans are only for individuals experiencing active suicidal thoughts, self-harming behaviors, or who put themselves at risk for in other ways. In reality, these plans they can be incredibly helpful for anyone who struggles with emotional overwhelm, including those experiencing anxiety, depression, trauma responses, panic, dissociation, or intense feelings of anger, shame, or hopelessness. For many clients, simply having a safety plan reduces anxiety by answering the question <em>"What do I do if things start to spiral?"</em></p>
+<p>Many people assume safety plans are only for individuals experiencing active suicidal thoughts, self-harming behaviors, or who put themselves at risk for in other ways. In reality, these plans they can be incredibly helpful for anyone who struggles with emotional overwhelm, including those experiencing <a href="/what-we-treat/anxiety/">anxiety</a>, depression, trauma responses, panic, dissociation, or intense feelings of anger, shame, or hopelessness. For many clients, simply having a safety plan reduces anxiety by answering the question <em>"What do I do if things start to spiral?"</em></p>
 
 <h2>What a Safety Plan Typically Includes</h2>
 <p>While every safety plan looks different, most follow a general flow that mirrors how distress unfolds in real life and how support can be layered in gradually.</p>

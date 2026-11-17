@@ -1,0 +1,33 @@
+---
+// Photo carousel (Corner Canyon style): one real photo at a time, caption, arrows and dots. Scroll-snap track, so it
+// swipes on phones; dots/arrows scroll it, and the active dot follows the scroll. Several can sit on one page.
+interface Props { photos: [string, string, string?][]; label?: string }
+const { photos, label = "Photos of our offices" } = Astro.props;
+---
+<div class="ax-car" data-ax-car role="region" aria-roledescription="carousel" aria-label={label}>
+  <div class="ax-car-track" tabindex="0">
+    {photos.map(([src, alt, cap], i) => (
+      <figure class="ax-car-slide" aria-roledescription="slide" aria-label={`${i + 1} of ${photos.length}`}>
+        <img src={src} alt={alt} width="1600" height="1000" loading="lazy" />
+        {cap && <figcaption>{cap}</figcaption>}
+      </figure>
+    ))}
+  </div>
+  <button class="ax-car-btn is-prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg></button>
+  <button class="ax-car-btn is-next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
+  <div class="ax-car-dots">{photos.map((_, i) => <button type="button" class:list={["ax-car-dot", i === 0 && "is-on"]} aria-label={`Show photo ${i + 1}`}></button>)}</div>
+</div>
+<script>
+  document.querySelectorAll("[data-ax-car]").forEach((car) => {
+    if (car.dataset.ready) return; car.dataset.ready = "1";
+    const track = car.querySelector(".ax-car-track");
+    const slides = [...car.querySelectorAll(".ax-car-slide")];
+    const dots = [...car.querySelectorAll(".ax-car-dot")];
+    const idx = () => Math.round(track.scrollLeft / track.clientWidth);
+    const go = (i) => track.scrollTo({ left: ((i + slides.length) % slides.length) * track.clientWidth, behavior: "smooth" });
+    car.querySelector(".is-prev").addEventListener("click", () => go(idx() - 1));
+    car.querySelector(".is-next").addEventListener("click", () => go(idx() + 1));
+    dots.forEach((d, i) => d.addEventListener("click", () => go(i)));
+    track.addEventListener("scroll", () => { const n = idx(); dots.forEach((d, i) => d.classList.toggle("is-on", i === n)); }, { passive: true });
+  });
+</script>

@@ -1,35 +1,58 @@
 ---
-// Admissions — 2026 redesign (Corner Canyon layout, Hopewell brand). Keeps title, description, canonical, H1 and all copy.
-// Anchors the header links to: #verify (hero form, desktop), #what-to-expect, #for-families.
+// Admissions hub, 2026-11-16 "Admissions: Content Briefs" (hub tab + Verify Insurance tab). Navy hero with the
+// insurance form (What We Treat pattern), four-step numbered row, cards to the sub-pages, the Verify Insurance brief as
+// the #verify-insurance section (the form itself stays at #verify, so no competing /verify-insurance/ URL), then every
+// earlier section and sentence of this page. [confirm] items in the briefs are left out (hours, callback time,
+// referral, admissions team names). Bottom order: testimonials, team, offices, reviews, media, FAQ, closing.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
-import Insurance from "../../components/hw/Insurance.astro";
-import Reviews from "../../components/hw/Reviews.astro";
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import Team from "../../components/hw/Team.astro";
 import Locations from "../../components/hw/Locations.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
-import "../../styles/pages/admissions.css";
-import "../../styles/pages/seo.css";
 import Prose from "../../components/seo/Prose.astro";
+import AdHero from "./_parts/AdHero.astro";
+import { STORIES } from "../../data/videos.js";
+import "../../styles/pages/hubs.css";
+import "../../styles/pages/seo.css";
+import "../../styles/pages/admissions.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/admissions/";
 const P = "/Assets/hhs-2026/";
 
+// Brief: "(1) Call or send the form → (2) We check your insurance for free → (3) Assessment with a clinician →
+// (4) Your program, office and start date". Descriptions are the earlier step copy, verbatim.
 const steps = [
-  { icon: "phone", t: "Reach out", d: "Call us, or request a confidential callback — no commitment." },
-  { icon: "shield", t: "Verify insurance", d: "We check your benefits for you — free, in minutes." },
-  { icon: "clipboard", t: "Assessment", d: "A clinical assessment matches you to the right care." },
-  { icon: "compass", t: "Begin care", d: "Start at the right level — and adjust as you heal." },
+  { t: "Call or send the form", d: "Call us, or request a confidential callback, no commitment." },
+  { t: "We check your insurance for free", d: "We check your benefits for you, free, in minutes." },
+  { t: "Assessment with a clinician", d: "A clinical assessment matches you to the right care." },
+  { t: "Your program, office and start date", d: "Start at the right level, and adjust as you heal." },
 ];
+const subpages = [
+  { t: "Verify Insurance", href: "#verify-insurance", img: P + "sg-front-desk.webp", d: "A free, confidential check of your benefits before you commit to anything." },
+  { t: "Rates & Insurance", href: "/rates-and-insurance-coverage/", img: P + "downtown-glastonbury-entrance.webp", d: "How coverage works for each level of care, plans we accept, and payment." },
+  { t: "What to Expect", href: "/admissions/what-to-expect/", img: P + "group-room-bright.webp", d: "Your first call, the assessment and your first day, step by step." },
+  { t: "For Families", href: "/admissions/for-families/", img: P + "sg-family-room.webp", d: "How to help a child, teen, partner or parent get care." },
+];
+// Earlier "What to expect" rows, verbatim.
 const expect = [
-  { icon: "phone", t: "A real person, not a portal", d: "When you call, you’ll reach a caring member of our team — never an automated maze." },
+  { icon: "phone", t: "A real person, not a portal", d: "When you call, you’ll reach a caring member of our team, never an automated maze." },
   { icon: "shield", t: "A free benefits check", d: "We verify your insurance for you, so you know your coverage before you commit to anything." },
   { icon: "clipboard", t: "A thorough assessment", d: "A clinical assessment matches you with the right clinician and the right level of care." },
-  { icon: "compass", t: "A plan built around you", d: "You’ll start at the level that fits — and we adjust the plan as you heal." },
+  { icon: "compass", t: "A plan built around you", d: "You’ll start at the level that fits, and we adjust the plan as you heal." },
+];
+// Verify Insurance brief: plans list matches the form's carrier list (LeadForm.astro).
+const plans = ["Aetna", "Anthem", "Blue Cross Blue Shield", "Cigna", "ConnectiCare", "Evernorth", "Harvard Pilgrim", "Magellan", "Meritain", "Optum", "TRICARE", "UMR", "UnitedHealthcare", "VA Community Care"];
+const next = [
+  ["We check your benefits", "Our admissions team contacts your insurer for you, free and with no obligation."],
+  ["We call you", "A member of our team calls you back with what we found."],
+  ["We explain what’s covered and next steps", "Including any prior authorization your plan needs, and how to set up your assessment."],
 ];
 // Long-form SEO copy (2026-11-16). Primary keyword: "how to start IOP / mental health intake in Connecticut";
 // variants: mental health admissions CT, how to start therapy, intake assessment. Facts from the site and KB.
@@ -71,61 +94,97 @@ const blocks = [
       `Our offices are open Monday through Thursday, 9:00 AM–8:00 PM, and Friday, 9:00 AM–5:00 PM. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a> for payment details.`,
     ] },
 ];
-// Answers use facts already published on this site (programs, rates, locations pages).
+// Earlier FAQ (8, kept) + hub brief + Verify Insurance brief. Brief answers with [confirm] are left out or trimmed.
 const faqs = [
-  ["How quickly can I start IOP?", "Timing depends on your assessment, insurance and the program’s schedule. Call us and our admissions team will tell you the soonest start date for the program that fits."],
-  ["What should I bring to my first appointment?", "Bring your insurance card if you have one and a list of any medications you take. If you have records from other providers, bring those too."],
   ["How do I start treatment at Hopewell Health Solutions?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We verify your insurance for free, complete a clinical assessment, and match you to the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`],
+  ["What should I have ready when I call?", `Your insurance card, a list of current medications, and a short description of what’s going on.`],
+  ["How quickly can I start IOP?", "Timing depends on your assessment, insurance and the program’s schedule. Call us and our admissions team will tell you the soonest start date for the program that fits."],
   ["Do I need a referral or a diagnosis to reach out?", `No. You don’t need a diagnosis or all the answers to reach out. Call us, and we’ll help you understand the options and figure out the right next step.`],
+  ["When are you open?", `Our offices are open Monday through Thursday, 9:00 AM–8:00 PM, and Friday, 9:00 AM–5:00 PM. Forms sent after hours are answered the next business day.`],
+  ["What should I bring to my first appointment?", `Bring your insurance card if you have one and a list of any medications you take. If you have records from other providers, bring those too. Read <a class="inl" href="/admissions/what-to-expect/">what to expect when you start</a>.`],
+  ["Can a parent or family member call for a loved one?", `Yes. Families can call on behalf of a child, partner, or parent. Our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> weaves families directly into the work, and our team is glad to talk through how to support a loved one. Family members often call first; see our guide for <a class="inl" href="/admissions/for-families/">families helping someone they love</a>.`],
+  ["Is checking my insurance free?", "Yes. There’s no cost and no obligation."],
+  ["What information do I need to check my insurance?", "Your name, phone number and insurance carrier. Your member ID speeds things up."],
+  ["Is my information secure?", `Yes. The form is encrypted and your information is only used to check your coverage. See our <a class="inl" href="/privacy/">privacy policy</a>.`],
   ["Which insurance plans do you accept?", `We’re in-network with most major PPO plans, including Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, TRICARE, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance coverage</a>.`],
-  ["Can a parent or family member call for a loved one?", `Yes. Families can call on behalf of a child, partner, or parent. Our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> weaves families directly into the work, and our team is glad to talk through how to support a loved one.`],
+  ["Do you take Medicare or Medicaid?", "No, Hopewell doesn’t accept Medicare or Medicaid (HUSKY) at this time."],
+  ["Does a verified benefit mean treatment is approved?", "Not always. Some plans need prior authorization; we handle that with your insurer and keep you updated."],
+  ["What if my plan isn’t listed?", "Choose “Other / Not sure” on the form and we’ll check."],
+  ["Can I check insurance for a family member?", "Yes, with their permission and their insurance details."],
   ["Do you offer telehealth?", `Yes. Therapy and medication management are available in person or by telehealth, and our team will help you choose what fits your plan.`],
   ["Where are your offices?", `We have six Connecticut offices: three in Glastonbury, plus West Hartford, East Hampton and Westbrook. See <a class="inl" href="/locations/">all locations</a>.`],
+  ["What if Hopewell isn’t the right fit?", "We’ll help you find a better-matched provider or level of care."],
+  ["What if it’s an emergency?", `Call or text <a class="inl" href="tel:988">988</a>, call 911, or go to the nearest emergency room.`],
 ];
 ---
 
-<Base title="Admissions: How to Start IOP & Mental Health Care in CT | Hopewell Health Solutions" description="Getting started at Hopewell Health Solutions in Connecticut is simple. Verify your insurance, learn what to expect, and reach our team — confidentially, with no pressure. In person & telehealth." canonical={canonical}>
+<Base title="Admissions: How to Start Treatment at Hopewell | Connecticut" description="Starting care at Hopewell is four steps: call or send the form, free insurance check, assessment, and your start date. Here's what to expect." canonical={canonical} image={P + "iop-team-hallway.webp"}>
   <Header />
   <main class="hw">
-    <ServiceHero
+    <AdHero
       crumbs={[{ label: "Admissions" }]}
-      title="Admissions Made Simple"
-      lede="Reaching out is the hardest part — we handle the rest. From your first call to your first session, the Hopewell Health Solutions team makes admissions simple, confidential, and pressure-free."
-      bullets={["Free, confidential insurance check", "A real person, not a portal", "In person or by telehealth", "Six Connecticut offices"]}
-      facts={[{ icon: "phone", text: "(860) 735-1448" }, { icon: "pin", text: "Glastonbury · West Hartford · East Hampton · Westbrook" }]}
-      image={P + "iop-team-hallway.webp"}
-      imagePos="center 40%"
+      title="How Admissions Works at Hopewell"
+      lede="Reaching out is the hardest part, we handle the rest. From your first call to your first session, the Hopewell Health Solutions team makes admissions simple, confidential, and pressure-free."
+      facts={[{ icon: "shield", text: "Free, confidential insurance check" }, { icon: "phone", text: "A real person, not a portal" }, { icon: "users", text: "In person or by telehealth" }, { icon: "pin", text: "Six Connecticut offices: Glastonbury · West Hartford · East Hampton · Westbrook" }]}
+      note="Forms sent after hours are answered the next business day."
     />
     <Creds />
 
-    <!-- How admissions works -->
-    <section class="section is-white">
+    <!-- Brief 2: the four steps as a numbered row -->
+    <section class="section is-white" id="how-it-works">
       <div class="container">
-        <div class="sec-head"><h2>How admissions works</h2><p class="lede">Four simple steps — and a real person with you the whole way.</p></div>
-        <ol class="step-grid">
-          {steps.map((s, i) => (
-            <li class="step">
-              <span class="step-dot"><Icon name={s.icon} /></span>
-              <span class="step-num">Step {i + 1}</span>
-              <h3>{s.t}</h3>
-              <p>{s.d}</p>
-              {i < steps.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}
-            </li>
-          ))}
+        <div class="sec-head"><h2>Admissions made simple, in four steps</h2><p class="lede">Four simple steps, and a real person with you the whole way.</p></div>
+        <ol class="ax-steps">
+          {steps.map((s, i) => <li><span class="ax-n">{i + 1}</span><h3>{s.t}</h3><p>{s.d}</p></li>)}
         </ol>
       </div>
     </section>
 
-    <!-- What to expect -->
+    <!-- Brief 3: cards to the four sub-pages -->
+    <section class="section is-stone" id="start-here">
+      <div class="container">
+        <div class="sec-head"><h2>Find the answers you need</h2><p class="lede">Check your coverage, see what it costs, know what your first days look like, or get help for someone you love.</p></div>
+        <div class="ax-paths">
+          {subpages.map((s) => (
+            <a class="ax-path" href={s.href}>
+              <img src={s.img} alt="" width="1200" height="900" loading="lazy" />
+              <span class="ax-path-body"><h3>{s.t}<Icon name="arrow" class="h-5 w-5" /></h3><p>{s.d}</p></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Verify Insurance brief: what happens next, plans, not accepted, privacy. The form is the hero form (#verify). -->
+    <section class="section is-navy" id="verify-insurance" style="scroll-margin-top:110px">
+      <div class="container ax-navy">
+        <div>
+          <h2>Verify your insurance, free</h2>
+          <p class="lede" style="margin-top:16px">We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and walks you through your options before you commit to anything. See <a class="inl" href="/rates-and-insurance-coverage/">full rates &amp; insurance details</a>.</p>
+          <h3 class="ax-h3">What happens next</h3>
+          <ol class="ax-olist">{next.map(([t, d]) => <li><div><strong>{t}</strong><span>{d}</span></div></li>)}</ol>
+          <p class="ax-fine"><Icon name="shield" class="h-4 w-4" /><span>Your information is encrypted and only used to check your coverage. See our <a class="inl" href="/privacy/">privacy policy</a>.</span></p>
+          <div class="ax-ctas"><a href="#verify" class="btn btn-blue">Check my coverage</a><a href="tel:8607351448" class="btn btn-ghost-l"><Icon name="phone" />(860) 735-1448</a></div>
+        </div>
+        <div>
+          <h3 class="ax-h3" style="margin-top:6px">Plans we work with</h3>
+          <ul class="ax-plans">{plans.map((p) => <li><Icon name="check" class="h-4 w-4" />{p}</li>)}</ul>
+          <p class="ax-no"><Icon name="alert" class="h-5 w-5" /><span><strong>Not accepted: Medicare and Medicaid (HUSKY).</strong> If that’s your coverage, our admissions team can suggest other options.</span></p>
+          <p class="ax-fine"><Icon name="clipboard" class="h-4 w-4" /><span>Plan not listed? Choose “Other / Not sure” on the form and we’ll check. A benefits check isn’t a guarantee of coverage; some plans need prior authorization, which we handle with your insurer.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to expect (earlier section, kept) -->
     <section id="what-to-expect" class="section is-stone" style="scroll-margin-top:110px">
-      <div class="container ad-split">
+      <div class="container ad-split ax-top">
         <div class="ad-photo">
           <img src={P + "south-glastonbury-waiting-room.webp"} alt="The waiting room at our South Glastonbury office" width="1200" height="900" loading="lazy" />
           <p class="ad-photo-badge"><span><Icon name="heart" class="h-5 w-5" /></span>No surprises</p>
         </div>
         <div>
           <h2>What to expect</h2>
-          <p class="lede" style="margin-top:14px">From the first call to your first session, here’s what working with us looks like.</p>
+          <p class="lede" style="margin-top:14px">From the first call to your first session, here’s what working with us looks like. For the full picture, read <a class="inl" href="/admissions/what-to-expect/">what to expect when you start at Hopewell</a>.</p>
           <ul class="ad-rows">
             {expect.map((e) => <li><span class="icon-badge"><Icon name={e.icon} /></span><div><h3>{e.t}</h3><p>{e.d}</p></div></li>)}
           </ul>
@@ -133,20 +192,20 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Verify insurance (the hero form is the desktop form; phones get one form right above this section) -->
-    <Insurance heading="Verify your insurance — free" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and walks you through your options before you commit to anything. See <a class='inl' href='/rates-and-insurance-coverage/'>full rates &amp; insurance details</a>." tone="white" />
-
-    <!-- For families -->
+    <!-- For families (earlier section, kept) + a parent's words about the first intake (verbatim, Teen IOP page) -->
     <section id="for-families" class="section is-mist" style="scroll-margin-top:110px">
-      <div class="container ad-split">
+      <div class="container ad-split ax-top">
         <div>
           <h2>Helping someone you love</h2>
-          <p class="lede" style="margin-top:16px">Watching a child, partner, or parent struggle is one of the hardest things there is. You don’t need a diagnosis or all the answers to reach out — call us, and we’ll help you understand the options and figure out the right next step.</p>
-          <p class="lede" style="margin-top:14px">Our <a class="inl" href="/programs/teen-iop/">teen and tween programs</a> weave families directly into the work, and our team is always glad to talk through how to support a loved one with compassion and patience.</p>
+          <p class="lede" style="margin-top:16px">Watching a child, partner, or parent struggle is one of the hardest things there is. You don’t need a diagnosis or all the answers to reach out, call us, and we’ll help you understand the options and figure out the right next step.</p>
+          <p class="lede" style="margin-top:14px">Our <a class="inl" href="/programs/teen-iop/">teen and tween programs</a> weave families directly into the work, and our team is always glad to talk through how to support a loved one with compassion and patience. Our guide for <a class="inl" href="/admissions/for-families/">families helping a loved one get care</a> covers what to say, privacy and next steps.</p>
+          <figure class="ax-quote" style="padding:22px 0 0;margin-top:22px;border-top:1px solid #cfdae6">
+            <blockquote>“I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family.”</blockquote>
+            <figcaption><strong>A.Y.</strong> · Teen IOP parent</figcaption>
+          </figure>
           <div class="sv-ctas">
             <a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a>
-            <a href="#verify" class="btn btn-outline only-d">Get guidance</a>
-            <a href="#verify-m" class="btn btn-outline only-m">Get guidance</a>
+            <a href="#verify" class="btn btn-outline">Get guidance</a>
           </div>
         </div>
         <div class="ad-photo">
@@ -156,22 +215,29 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section is-white">
-      <div class="container">
-        <div class="sec-head"><h2>Contact our team</h2><p class="lede">We’re here to answer questions, verify benefits, or just talk through your options — confidentially, with no pressure.</p></div>
-        <div class="ad-contact">
-          <a href="tel:8607351448"><span class="icon-badge"><Icon name="phone" /></span><span><strong>(860) 735-1448</strong><small>Call or request a callback</small></span></a>
-          <a href="mailto:hhs4help@gmail.com"><span class="icon-badge"><Icon name="clipboard" /></span><span><strong>hhs4help@gmail.com</strong><small>Please don’t include health details</small></span></a>
-          <a href="/locations/"><span class="icon-badge"><Icon name="pin" /></span><span><strong>Our 6 CT locations</strong><small>Glastonbury to Westbrook</small></span></a>
+    <!-- Contact our team (earlier section, kept): photo + divided contact rows -->
+    <section class="section is-white" id="contact">
+      <div class="container ax-two is-flip">
+        <div>
+          <h2>Contact our team</h2>
+          <p class="lede">We’re here to answer questions, verify benefits, or just talk through your options, confidentially, with no pressure.</p>
+          <ul class="ax-contact">
+            <li><a href="tel:8607351448"><span class="ax-ci"><Icon name="phone" class="h-5 w-5" /></span><span><strong>(860) 735-1448</strong><small>Call or request a callback</small></span></a></li>
+            <li><a href="mailto:hhs4help@gmail.com"><span class="ax-ci"><Icon name="clipboard" class="h-5 w-5" /></span><span><strong>hhs4help@gmail.com</strong><small>Please don’t include health details</small></span></a></li>
+            <li><a href="/locations/"><span class="ax-ci"><Icon name="pin" class="h-5 w-5" /></span><span><strong>Our 6 CT locations</strong><small>Glastonbury to Westbrook</small></span></a></li>
+          </ul>
         </div>
+        <div class="ax-media"><img src={P + "team-300-hebron.webp"} alt="Members of the Hopewell Health Solutions team at the 300 Hebron Ave office in Glastonbury" width="1200" height="900" loading="lazy" /></div>
       </div>
     </section>
 
     <Prose blocks={blocks} startTone={1} />
-    <Reviews tone="stone" />
-    <Locations tone="white" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
-    <Faq faqs={faqs} heading="Admissions Questions" tone="stone" />
+    <VideoCarousel videos={STORIES} heading="Taking the First Step, in Their Own Words" lede="Hopewell clients share what reaching out and starting treatment was like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
+    <Team tone="white" />
+    <Locations tone="stone" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
+    <Reviews tone="white" first={["Outpatient care", "Medication management"]} />
+    <MediaStrip bg="white" />
+    <Faq faqs={faqs} heading="Admissions Questions" tone="white" />
     <ClosingCta heading="Ready when you are" lede="Whether it’s for you or someone you love, reaching out is the first step. We’ll take it from there. Not a substitute for emergency care." />
   </main>
   <Footer />

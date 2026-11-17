@@ -6,7 +6,7 @@
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import Icon from "../Icon.astro";
 interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone" }
-const { heading = "Care Near You, Across Central Connecticut", lede = "Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT — serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.", current, tone = "mist" } = Astro.props;
+const { heading = "Care Near You, Across Central Connecticut", lede = "Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT, serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.", current, tone = "mist" } = Astro.props;
 const P = "/Assets/hhs-2026/";
 const photo = {
   "glastonbury-ct": "/Assets/locations/glastonbury/exterior.webp",

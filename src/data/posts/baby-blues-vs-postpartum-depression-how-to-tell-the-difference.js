@@ -303,7 +303,7 @@ export default {
       href: "https://www.nimh.nih.gov/health/publications/perinatal-depression",
     },
     {
-      text: "Bauman, B.L., Ko, J.Y., Cox, S., et al. 2020. Vital Signs: Postpartum Depressive Symptoms and Provider Discussions About Perinatal Depression — United States, 2018. Morbidity and Mortality Weekly Report, 69(19), 575-581.",
+      text: "Bauman, B.L., Ko, J.Y., Cox, S., et al. 2020. Vital Signs: Postpartum Depressive Symptoms and Provider Discussions About Perinatal Depression, United States, 2018. Morbidity and Mortality Weekly Report, 69(19), 575-581.",
       href: "https://www.cdc.gov/mmwr/volumes/69/wr/mm6919a2.htm",
     },
     {

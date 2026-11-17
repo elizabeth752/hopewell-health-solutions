@@ -1,4 +1,6 @@
 ---
+import Reviews from "../components/hw/Reviews.astro";
+import Team from "../components/hw/Team.astro";
 // Hope, Health & Healing — Hopewell's podcast (YouTube channel @hopewellhealthsolutions2285). New page, 2026-11-16.
 // Episode facts come from each YouTube description; nothing is quoted that the guests didn't say.
 import Base from "../layouts/Base.astro";
@@ -30,7 +32,7 @@ const series = {
 const blocks = [
   { id: "about-podcast", h2: "A mental health and recovery podcast from Connecticut",
     paras: [
-      `Hope, Health &amp; Healing is the mental health and recovery podcast from Hopewell Health Solutions, an outpatient mental health, addiction and psychiatry practice with six offices in Connecticut. Each episode is an honest conversation with someone who has been through treatment, about what life looked like before they asked for help, what treatment was really like, and what recovery means to them now.`,
+      `Hope, Health &amp; Healing is the mental health and recovery podcast from Hopewell Health Solutions, an outpatient mental health, addiction and psychiatry practice with <a class="inl" href="/locations/">six offices in Connecticut</a>. Each episode is an honest conversation with someone who has been through treatment, about what life looked like before they asked for help, what treatment was really like, and what recovery means to them now.`,
       `The series exists for one reason: stories have the power to inspire hope, break stigma and remind people that they are not alone. If you are wondering whether an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> is for you, supporting a loved one through addiction or depression, or simply looking for hope, hearing someone describe the same doubts you have can make the next step feel possible.`,
       `Episodes run about 25 minutes, are free to watch and are published on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>. You can watch every episode right here on this page.`,
     ],
@@ -56,16 +58,16 @@ const blocks = [
     ] },
   { id: "clinician-videos", h2: "Short mental health videos from our clinicians",
     paras: [
-      `Alongside the podcast, Hopewell clinicians share short, practical videos. In “A lesson from Viviana on anchoring,” clinician Viviana walks through anchoring, a simple technique to help you stay grounded and present in moments of stress or overwhelm. It is a tool you can try during your day when anxiety or racing thoughts show up.`,
-      `In “3 Clinical Strategies for Supporting Neurodivergent Tweens,” Viviana shares approaches for children with ADHD, autism and other neurodivergent presentations: creating structure and predictability, strengthening emotional regulation, and building on each child’s strengths. Parents of tweens may also find our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> page helpful.`,
+      `Alongside the podcast, Hopewell clinicians share short, practical videos. In “A lesson from Viviana on anchoring,” clinician Viviana walks through anchoring, a simple technique to help you stay grounded and present in moments of stress or overwhelm. It is a tool you can try during your day when <a class="inl" href="/what-we-treat/anxiety/">anxiety</a> or racing thoughts show up.`,
+      `In “3 Clinical Strategies for Supporting Neurodivergent Tweens,” Viviana shares approaches for children with <a class="inl" href="/what-we-treat/adhd/">ADHD</a>, autism and other neurodivergent presentations: creating structure and predictability, strengthening emotional regulation, and building on each child’s strengths. Parents of tweens may also find our <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> page helpful.`,
       `In “The Loneliness Crisis in Adults,” Dr. Kristine Schlichting explains why <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> can be such a powerful part of healing: clients realize they’re not alone, learn from others and practise new skills in real time. You can watch all three videos further down this page.`,
     ],
-    aside: { type: "points", title: "Clinician videos", items: [["compass", "Anchoring — a grounding skill for stress"], ["sparkles", "3 strategies for neurodivergent tweens"], ["users", "Dr. K on the loneliness crisis and group therapy"]] } },
+    aside: { type: "points", title: "Clinician videos", items: [["compass", "Anchoring, a grounding skill for stress"], ["sparkles", "3 strategies for neurodivergent tweens"], ["users", "Dr. K on the loneliness crisis and group therapy"]] } },
   { id: "why-stories", h2: "Why recovery stories help break stigma",
     paras: [
-      `Stigma keeps many people from asking for help. Hearing someone describe depression, anxiety or addiction in their own words, and hearing what changed for them, can make it easier to talk about your own experience. That is especially true for people who feel they “should” be able to handle things alone.`,
+      `Stigma keeps many people from asking for help. Hearing someone describe <a class="inl" href="/what-we-treat/depression/">depression</a>, anxiety or addiction in their own words, and hearing what changed for them, can make it easier to talk about your own experience. That is especially true for people who feel they “should” be able to handle things alone.`,
       `Stories also help families. Parents, partners and friends often don’t know what treatment involves or how to support someone through it. Listening together can open a conversation that is otherwise hard to start. Our guide to <a class="inl" href="/post/how-to-recognize-when-its-time-to-see-a-therapist/">recognizing when it’s time to see a therapist</a> is another good place to begin.`,
-      `If an episode resonates with you, you don’t have to decide on a program alone. Our admissions team can talk through what you’re facing, check your insurance for free and recommend a starting level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>.`,
+      `If an episode resonates with you, you don’t have to decide on a program alone. Our <a class="inl" href="/admissions/">admissions team</a> can talk through what you’re facing, check your insurance for free and recommend a starting level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>.`,
     ] },
 ];
 const faqs = [
@@ -74,7 +76,7 @@ const faqs = [
   ["What is the Hope, Health & Healing podcast?", `It’s a Hopewell Health Solutions series of honest conversations about mental health, addiction and recovery. Each episode features someone sharing their own story, hosted by <a class="inl" href="/provider/tj-aitken-cpsrp/">TJ Aitken, CPSRP</a>, our Director of Business Development and a person in long-term recovery.`],
   ["Where can I watch or listen?", `Every episode is on this page and on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>, where you can subscribe for new episodes.`],
   ["Are the guests real Hopewell clients?", `Yes. Guests choose to share their own experiences, such as Evan’s time in our <a class="inl" href="/programs/intensive-outpatient-program/">Intensive Outpatient Program</a>. Every recovery is different, and their stories are their own.`],
-  ["I relate to an episode. How do I get help?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll verify your insurance for free and help you find the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization</a>. If you are in crisis, call or text 988.`],
+  ["I relate to an episode. How do I get help?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request a confidential callback. We’ll <a class="inl" href="/rates-and-insurance-coverage/">verify your insurance for free</a> and help you find the right level of care, from <a class="inl" href="/programs/counseling/">counseling</a> to <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization</a>. If you are in crisis, call or text 988.`],
 ];
 ---
 <Base title="Hope, Health & Healing: Mental Health & Recovery Podcast | Hopewell Health Solutions" description="Watch Hope, Health & Healing, the Hopewell Health Solutions podcast: real stories of mental health treatment, IOP and addiction recovery from Connecticut, hosted by TJ Aitken, CPSRP." canonical={SITE + "/podcast/"} image="/Assets/videos/podcast-ep2-luke.webp">
@@ -97,7 +99,7 @@ const faqs = [
       <div class="container split">
         <div>
           <h2>About the Show</h2>
-          <p class="lede" style="margin-top:16px">Hope, Health &amp; Healing is a Hopewell Health Solutions series dedicated to sharing real stories, meaningful conversations, and the power of recovery. Every recovery journey is different, but every story has the power to inspire hope, break stigma, and remind someone that they are not alone.</p>
+          <p class="lede" style="margin-top:16px">Hope, Health &amp; Healing is a Hopewell Health Solutions series dedicated to sharing <a class="inl" href="/testimonials/">real stories</a>, meaningful conversations, and the power of recovery. Every recovery journey is different, but every story has the power to inspire hope, break stigma, and remind someone that they are not alone.</p>
           <ul class="sv-bullets" style="grid-template-columns:1fr;margin-top:22px">
             <li style="color:var(--hw-body)"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Episode 1: Evan on the <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> and the help he didn’t know he needed</span></li>
             <li style="color:var(--hw-body)"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Episode 2: Luke’s story of <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction recovery</a></span></li>
@@ -121,6 +123,8 @@ const faqs = [
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Short Videos From Our Clinicians" lede="Quick, practical skills from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={null} />
 
     <Prose blocks={blocks} />
+    <Team tone="stone" />
+    <Reviews tone="stone" />
     <Faq faqs={faqs} heading="Podcast Questions" tone="white" />
     <Insurance heading="Ready to talk to someone? We’ll check your coverage" />
     <ClosingCta verifyHref="/admissions/#verify" />

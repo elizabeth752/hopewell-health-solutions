@@ -45,10 +45,10 @@ export default {
   title: "Postpartum Rage: Why It Happens and When to Get Help",
   metaTitle: "Postpartum Rage: Why It Happens | Hopewell Health Solutions",
   metaDescription:
-    "Postpartum rage is sudden, intense anger after having a baby — and a recognized sign of postpartum depression. Here is what triggers it and when to get help.",
+    "Postpartum rage is sudden, intense anger after having a baby, and a recognized sign of postpartum depression. Here is what triggers it and when to get help.",
   category: "Women's Mental Health",
   excerpt:
-    "Snapping at everyone since you had a baby? Postpartum rage is common, it has real triggers, and it is treatable — here is what it feels like, what causes it, and when to call for help.",
+    "Snapping at everyone since you had a baby? Postpartum rage is common, it has real triggers, and it is treatable, here is what it feels like, what causes it, and when to call for help.",
   heroImage: "/Assets/Blogs/postpartum-rage-hero.webp",
   heroAlt: "An overwhelmed mother at home in her kitchen, holding her head in frustration",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
@@ -125,7 +125,7 @@ export default {
           p: "<strong>Too little support.</strong> Little or no help from a partner, family, or friends raises the risk of postpartum depression. So do relationship strain and money problems.",
         },
         {
-          p: "<strong>A hard or traumatic birth.</strong> A birth can be traumatic even when mother and baby are physically fine. It might involve an emergency C-section, heavy bleeding, a baby rushed to the NICU, or feeling scared, unheard, or out of control in the delivery room. If birth-related trauma lingers, it is its own treatable condition — see <a href=\"/what-we-treat/trauma-ptsd/\">trauma and PTSD treatment</a>.",
+          p: "<strong>A hard or traumatic birth.</strong> A birth can be traumatic even when mother and baby are physically fine. It might involve an emergency C-section, heavy bleeding, a baby rushed to the NICU, or feeling scared, unheard, or out of control in the delivery room. If birth-related trauma lingers, it is its own treatable condition, see <a href=\"/what-we-treat/trauma-ptsd/\">trauma and PTSD treatment</a>.",
         },
         {
           p: "<strong>Hormone and body changes.</strong> Hormone levels drop quickly in the first day after birth, and researchers think this shift may play a role in postpartum depression. Thyroid levels can drop after birth and cause mood symptoms. A simple blood test can check for this.",

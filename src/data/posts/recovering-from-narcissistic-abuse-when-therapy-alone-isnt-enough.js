@@ -31,7 +31,7 @@ export default {
           p: "Researchers studying coercive control describe that accumulation directly: the ongoing removal of autonomy builds an environment of helplessness and fear that damages a person's sense of self.",
         },
         {
-          p: "Psychological abuse also carries consequences on the scale of physical violence. A meta-analysis found coercive control moderately associated with both PTSD and depression, at strengths comparable to those reported for physical abuse.",
+          p: "Psychological abuse also carries consequences on the scale of physical violence. A meta-analysis found coercive control moderately associated with both <a href=\"/what-we-treat/trauma-ptsd/\">PTSD</a> and depression, at strengths comparable to those reported for physical abuse.",
         },
       ],
     },
@@ -40,7 +40,7 @@ export default {
       h2: "Is Narcissistic Abuse a Formal Diagnosis?",
       blocks: [
         {
-          p: "No, and that gap is one reason survivors get misread. What clinicians do diagnose are the consequences: PTSD, Complex Post-Traumatic Stress Disorder (C-PTSD), Major Depressive Disorder, anxiety disorders, and Substance Use Disorder.",
+          p: "No, and that gap is one reason survivors get misread. What clinicians do diagnose are the consequences: PTSD, Complex Post-Traumatic Stress Disorder (C-PTSD), <a href=\"/what-we-treat/depression/\">Major Depressive Disorder</a>, <a href=\"/what-we-treat/anxiety/\">anxiety disorders</a>, and Substance Use Disorder.",
         },
         {
           p: "Among intimate partner violence survivors in a 2026 sample, C-PTSD was more common than PTSD, at 31.2% versus 17.1%.",
@@ -97,7 +97,7 @@ export default {
       id: "signs-you-need-more-than-weekly-therapy",
       h2: "How Do You Know You Need More Than Weekly Therapy?",
       blocks: [
-        { p: "These signs point toward a higher level of care:" },
+        { p: "These signs point toward a higher <a href=\"/post/php-vs-iop-which-level-of-care-is-right-for-you/\">level of care</a>:" },
         {
           ul: [
             "Symptoms affect your sleep, work, or parenting most days of the week",
@@ -114,7 +114,7 @@ export default {
       h2: "What Level of Care Treats Narcissistic Abuse Trauma?",
       blocks: [
         {
-          p: "Hopewell Health Solutions offers a full continuum of outpatient care, so the level can change without the team changing. Weekly counseling sits at one end. An Intensive Outpatient Program (IOP) runs three hours a day, four days a week. A Partial Hospitalization Program (PHP) delivers full-day treatment, the highest level of care available outside a hospital or residential treatment center.",
+          p: "Hopewell Health Solutions offers a full continuum of outpatient care, so the level can change without the team changing. Weekly counseling sits at one end. An <a href=\"/programs/intensive-outpatient-program/\">Intensive Outpatient Program</a> (IOP) runs three hours a day, four days a week. A <a href=\"/programs/partial-hospitalization-program/\">Partial Hospitalization Program</a> (PHP) delivers full-day treatment, the highest level of care available outside a hospital or residential treatment center.",
         },
         {
           p: "That structure matters after narcissistic abuse, because progress is rarely linear. You can step up during a hard stretch, then step back down, without starting over with a new clinician.",

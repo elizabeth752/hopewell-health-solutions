@@ -15,18 +15,18 @@ export default {
   dateModified: "2026-07-06",
   readingMinutes: 7,
   intro:
-    "Depression is a serious mental health disorder, and although it's common, it often goes undiscussed, which means it can go untreated. But depression can be managed and even overcome. There are a number of treatment programs specifically designed to help people struggling with depression, and some of the options include living at home while undergoing care. An Intensive Outpatient Program (IOP) is a type of treatment program where you attend daily therapeutic sessions for depression, but return home in the evening. It offers the flexibility to work or study and still receive high-quality, life-changing support. In Connecticut, depression rates are high — at one point in 2020, the state had the third-highest rate of depression symptoms in the US. Let's take a look at IOP for depression in Connecticut, how it works, and why it's beneficial.",
+    "Depression is a serious mental health disorder, and although it's common, it often goes undiscussed, which means it can go untreated. But depression can be managed and even overcome. There are a number of treatment programs specifically designed to help people struggling with depression, and some of the options include living at home while undergoing care. An Intensive Outpatient Program (IOP) is a type of treatment program where you attend daily therapeutic sessions for depression, but return home in the evening. It offers the flexibility to work or study and still receive high-quality, life-changing support. In Connecticut, depression rates are high, at one point in 2020, the state had the third-highest rate of depression symptoms in the US. Let's take a look at IOP for depression in Connecticut, how it works, and why it's beneficial.",
   sections: [
     {
       id: "what-is-an-iop",
       h2: "What Is an IOP?",
       blocks: [
-        { p: "An IOP is a structured form of care for mental health disorders, including depression. It involves attending sessions at a health facility during the day for a few hours, but not staying overnight. On the continuum of care, IOP sits below residential care and partial hospitalization (PHP), and above weekly therapy." },
+        { p: "An IOP is a structured form of care for mental health disorders, including <a href=\"/what-we-treat/depression/\">depression</a>. It involves attending sessions at a health facility during the day for a few hours, but not staying overnight. On the continuum of care, IOP sits below residential care and partial hospitalization (PHP), and above weekly therapy." },
         { p: "At Hopewell Health, our IOP runs Monday to Thursday, and lasts between 8 and 12 weeks. Each session uses evidence-based therapies and wellness activities to help to heal. All the care is tailored to you, factoring in your unique needs and goals." },
         { p: "The therapies we use, and that are most commonly used in IOPs, include:" },
         { ul: [
-          "Cognitive Behavioral Therapy (CBT) to identify and break the cycle of negative thinking and behaviors.",
-          "Dialectical Behavioral Therapy (DBT) to learn emotion regulation and coping skills.",
+          "<a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a> to identify and break the cycle of negative thinking and behaviors.",
+          "<a href=\"/treatment-methods/dbt/\">Dialectical Behavioral Therapy (DBT)</a> to learn emotion regulation and coping skills.",
           "Interpersonal Therapy to improve self-awareness and healthy relationship building.",
           "Music Therapy to explore new forms of communication and reduce stress.",
           "Art Therapy to help process trauma and boost mood.",
@@ -44,7 +44,7 @@ export default {
         { p: "Seeking outpatient treatment is a choice to look after yourself and build the strength to feel better, without losing touch with your life. The ways that outpatient treatment helps depression include:" },
         { ul: [
           "Evidence-based therapy sessions from clinicians trained in mental health",
-          "Medication management (such as SSRIs)",
+          "Medication management (such as <a href=\"/post/ssris-how-do-they-work-why-are-they-important/\">SSRIs</a>)",
           "Group therapy to share with, and be supported by, peers also experiencing depression",
           "Wellness activities that promote mental, physical, and spiritual health",
           "Flexibility to maintain daily routines such as work and school",
@@ -58,8 +58,8 @@ export default {
       blocks: [
         { p: "Inpatient treatment, sometimes called residential treatment, is when you stay on-site at a facility while being part of a program for depression. Both inpatient and outpatient care are effective and evidence-based; which one you choose depends on the severity of your symptoms and your preferred level of flexibility." },
         { p: "If you have a family, a job, or other daily responsibilities, outpatient treatment makes sense. If you've finished a residential program or a PHP, intensive outpatient care is also a good natural next step." },
-        { p: "Alternatively, if you've been doing weekly therapy sessions and feel that your depression symptoms are worsening, an intensive outpatient program can help. One study confirmed that intensive outpatient programs can be a solution for people who need more than a treatment session once per week, but less than a complex inpatient or day clinic program." },
-        { p: "If you're unsure which level of care is right for you, speak with your doctor." },
+        { p: "Alternatively, if you've been doing weekly therapy sessions and feel that your depression symptoms are worsening, an <a href=\"/programs/intensive-outpatient-program/\">intensive outpatient program</a> can help. One study confirmed that intensive outpatient programs can be a solution for people who need more than a treatment session once per week, but less than a complex inpatient or day clinic program." },
+        { p: "If you're unsure which <a href=\"/post/php-vs-iop-which-level-of-care-is-right-for-you/\">level of care</a> is right for you, speak with your doctor." },
       ],
     },
     {

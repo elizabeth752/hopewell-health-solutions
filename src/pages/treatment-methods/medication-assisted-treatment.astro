@@ -1,5 +1,6 @@
 ---
-// MAT — 2026 redesign. All live copy kept. Added (KB): addiction services run at Downtown Glastonbury (300 Hebron Ave)
+import MediaStrip from "../../components/MediaStrip.astro";
+// MAT, 2026 redesign. All live copy kept. Added (KB): addiction services run at Downtown Glastonbury (300 Hebron Ave)
 // and Westbrook only (locations.js `addiction`), addiction wording, links to the addiction IOP and condition pages.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -32,16 +33,20 @@ const meds = [
 ];
 const addictionOffices = locations.filter((l) => l.addiction);
 const faq = [
-  ["What is medication-assisted treatment?", "Medication-assisted treatment (MAT) is the use of FDA-approved medications, in combination with counseling and behavioral therapy, to treat substance use disorders — most often opioid use disorder and alcohol use disorder. SAMHSA describes it as a 'whole-patient' approach, because the medication and the therapy work together rather than alone."],
-  ["Isn't MAT just replacing one drug with another?", "No. This is one of the most common myths about MAT. When taken as prescribed under medical supervision, these medications do not produce a high — they stabilize brain chemistry, reduce cravings, and ease withdrawal so a person can focus on recovery. MAT is a legitimate, evidence-based medical treatment endorsed by leading health authorities."],
-  ["Which medications are used?", "It depends on the substance and the individual. For opioid use disorder, medications such as buprenorphine and naltrexone are commonly used. For alcohol use disorder, options include naltrexone, acamprosate and disulfiram. Your Hopewell prescriber determines what is appropriate for you based on a full evaluation."],
-  ["How long does someone stay on MAT?", "There is no single timeline. Some people benefit from medication for months, others for years. The right duration is a clinical decision made between you and your prescriber, based on your progress and goals. Stopping is always done gradually and under medical guidance — never abruptly on your own."],
+  ["What is medication-assisted treatment?", "MAT combines FDA-approved medication with counseling to treat opioid and alcohol addiction. Medication-assisted treatment (MAT) is the use of FDA-approved medications, in combination with counseling and behavioral therapy, to treat substance use disorders, most often opioid use disorder and alcohol use disorder. SAMHSA describes it as a 'whole-patient' approach, because the medication and the therapy work together rather than alone."],
+  ["Which medications do you offer?", "Your prescriber will help choose what fits. It depends on the substance and the individual. For opioid use disorder, medications such as buprenorphine and naltrexone are commonly used. For alcohol use disorder, options include naltrexone, acamprosate and disulfiram. Your Hopewell prescriber determines what is appropriate for you based on a full evaluation."],
+  ["Is MAT just replacing one drug with another?", `No. MAT medications are prescribed and monitored to reduce cravings and withdrawal so you can focus on recovery. It's an evidence-based approach recommended by <a class="inl" href="https://www.samhsa.gov/substance-use/treatment/options" target="_blank" rel="noopener">SAMHSA</a>. This is one of the most common myths about MAT. When taken as prescribed under medical supervision, these medications do not produce a high; they stabilize brain chemistry, reduce cravings, and ease withdrawal so a person can focus on recovery. MAT is a legitimate, evidence-based medical treatment endorsed by leading health authorities.`],
+  ["Do I need to detox before starting MAT?", "It depends on the medication and your situation. Your prescriber will explain the safest way to start. Withdrawal from alcohol, benzodiazepines or opioids can be dangerous, so please don't stop on your own without medical help."],
+  ["Is MAT used for alcohol addiction?", `Yes. Some medications reduce cravings or help prevent relapse for alcohol use. Learn more about our <a class="inl" href="/what-we-treat/alcohol/">alcohol addiction treatment</a>.`],
+  ["How long will I take medication?", "It depends on your needs. Some people take it for months, others longer, decided with your prescriber. There is no single timeline. Some people benefit from medication for months, others for years. The right duration is a clinical decision made between you and your prescriber, based on your progress and goals. Stopping is always done gradually and under medical guidance, never abruptly on your own."],
+  ["Is MAT confidential?", "Yes. Addiction treatment records have extra protection under federal law."],
+  ["Does insurance cover MAT?", `Most commercial plans cover MAT. We check your benefits for free; we don't accept Medicare or Medicaid. <a class="inl" href="#verify">Check your coverage</a>.`],
   ["Where is MAT offered?", `Addiction treatment, including MAT and our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a>, is offered at our <a class="inl" href="/location/glastonbury-ct-2/">Downtown Glastonbury</a> (300 Hebron Ave) and <a class="inl" href="/location/westbrook-ct/">Westbrook</a> offices.`],
 ];
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  name: "Medication-Assisted Treatment (MAT)",
+  name: "Medication-Assisted Treatment (MAT) for Addiction in Connecticut",
   url: canonical,
   about: { "@type": "MedicalTherapy", name: "Medication-Assisted Treatment" },
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
@@ -49,14 +54,14 @@ const schema = {
 const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].includes(v.yt));
 ---
 
-<Base title="Medication-Assisted Treatment (MAT) | Hopewell Health Solutions" description="Medication-assisted treatment (MAT) combines FDA-approved medications with counseling to treat opioid and alcohol use disorders. Medically supervised at Hopewell Health Solutions in Connecticut." canonical={canonical} image={P + "iop-group-session.webp"}>
+<Base title="Medication-Assisted Treatment (MAT) in Connecticut | Hopewell" description="MAT combines FDA-approved medication with counseling to treat opioid and alcohol addiction. Outpatient care in Glastonbury and Westbrook, CT. Check coverage." canonical={canonical} image={P + "iop-group-session.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "Medication-Assisted Treatment" }]}
-      title="Medication-Assisted Treatment (MAT)"
-      lede="Addiction recovery is rarely a matter of willpower alone. MAT eases the physical pull of a substance and clears space for the deeper work of recovery — under careful medical supervision."
+      title="Medication-Assisted Treatment (MAT) for Addiction in Connecticut"
+      lede="Addiction recovery is rarely a matter of willpower alone. MAT eases the physical pull of a substance and clears space for the deeper work of recovery, under careful medical supervision."
       bullets={heroUsps}
       facts={[{ icon: "pin", text: "Downtown Glastonbury & Westbrook" }, { icon: "pill", text: "Licensed prescribers" }]}
       image="/Assets/Blogs/psychiatric-medications-for-addiction-how-they-support-recovery.webp"
@@ -67,7 +72,7 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>Addiction recovery, with medical support</h2>
-          <p style="margin-top:16px">Recovery from addiction is rarely a matter of willpower alone. Substances like opioids and alcohol change the chemistry of the brain, and those changes can drive powerful cravings and painful withdrawal long after a person decides they want to stop. Medication-assisted treatment exists for exactly this reason. By easing the physical pull of a substance, MAT clears space for the deeper work of recovery — the counseling, the skill-building, and the rebuilding of a life. At Hopewell Health Solutions, MAT is delivered under careful medical supervision as part of a complete, compassionate approach to healing.</p>
+          <p style="margin-top:16px">Recovery from addiction is rarely a matter of willpower alone. Substances like opioids and alcohol change the chemistry of the brain, and those changes can drive powerful cravings and painful withdrawal long after a person decides they want to stop. Medication-assisted treatment exists for exactly this reason. By easing the physical pull of a substance, MAT clears space for the deeper work of recovery: the counseling, the skill-building, and the rebuilding of a life. At Hopewell Health Solutions, MAT is delivered under careful medical supervision as part of a complete, compassionate approach to healing.</p>
         </div>
         <figure class="tx-photo"><img src={P + "downtown-glastonbury-entrance.webp"} alt="The entrance to Hopewell's Downtown Glastonbury office, where addiction treatment is offered" width="1200" height="900" loading="lazy" /><figcaption>Downtown Glastonbury<span>300 Hebron Ave · addiction treatment</span></figcaption></figure>
       </div>
@@ -82,7 +87,7 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
         </div>
         <div class="tx-copy">
           <h2>What MAT is</h2>
-          <p style="margin-top:16px">Medication-assisted treatment is the use of FDA-approved medications, combined with counseling and behavioral therapies, to treat substance use disorders — most commonly opioid use disorder and alcohol use disorder. The Substance Abuse and Mental Health Services Administration (SAMHSA) calls it a "whole-patient" approach, and that phrase captures the point: the medication is never the entire treatment. It works hand in hand with therapy to address both the body and the mind. Used together, the two are more effective than either one on its own.</p>
+          <p style="margin-top:16px"><a class="inl" href="/post/understanding-medication-assisted-treatment-the-what-why-and-how/">Medication-assisted treatment</a> is the use of FDA-approved medications, combined with counseling and behavioral therapies, to treat substance use disorders, most commonly opioid use disorder and alcohol use disorder. The Substance Abuse and Mental Health Services Administration (SAMHSA) calls it a "whole-patient" approach, and that phrase captures the point: the medication is never the entire treatment. It works hand in hand with therapy to address both the body and the mind. Used together, the two are more effective than either one on its own.</p>
         </div>
       </div>
     </section>
@@ -91,7 +96,7 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
       <div class="container tx-split" style="align-items:start">
         <div class="tx-copy">
           <h2>How the medications help</h2>
-          <p style="margin-top:16px">The medications used in MAT are not a high in disguise. When taken as prescribed under medical supervision, they normalize brain chemistry, reduce or block the euphoric effects of the substance, relieve cravings, and ease withdrawal symptoms. For opioid use disorder, medications such as buprenorphine and naltrexone are commonly used. For alcohol use disorder, options include naltrexone, acamprosate and disulfiram. The right choice depends on your history, your health, and your goals — which is why every MAT plan at Hopewell begins with a thorough evaluation by a licensed prescriber, not a one-size-fits-all prescription.</p>
+          <p style="margin-top:16px">The medications used in MAT are not a high in disguise. When taken as prescribed under medical supervision, they normalize brain chemistry, reduce or block the euphoric effects of the substance, relieve cravings, and ease withdrawal symptoms. For opioid use disorder, medications such as <a class="inl" href="/post/suboxone-a-cornerstone-of-mat-at-hopewell-health-solutions/">buprenorphine</a> and <a class="inl" href="/post/vivitrol-a-key-player-in-opioid-and-alcohol-dependence-treatment-at-hopewell-health-solutions/">naltrexone</a> are commonly used. For alcohol use disorder, options include naltrexone, acamprosate and disulfiram. The right choice depends on your history, your health, and your goals, which is why every MAT plan at Hopewell begins with a thorough evaluation by a licensed prescriber, not a one-size-fits-all prescription.</p>
         </div>
         <div>
           <div class="tx-table">
@@ -104,12 +109,27 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
       </div>
     </section>
 
+    <!-- How MAT works at Hopewell (brief): numbered phase rows -->
+    <section class="section is-stone">
+      <div class="container">
+        <div class="sec-head"><h2>How MAT works at Hopewell</h2><p class="lede">MAT pairs FDA-approved medication with counseling and support. The medication eases cravings and withdrawal; therapy addresses the rest.</p></div>
+        <ol class="mat-rows">
+          <li><b>1</b><strong>Evaluation by a prescriber</strong><span>A licensed prescriber looks at your history, your health and your goals before anything is prescribed.</span></li>
+          <li><b>2</b><strong>Starting medication</strong><span>Your prescriber explains the safest way to start, including whether medical detox is needed first.</span></li>
+          <li><b>3</b><strong>Regular check-ins</strong><span>Your prescriber monitors your progress and adjusts the plan with you. Never stop or change a dose without your prescriber.</span></li>
+          <li><b>4</b><strong>Counseling or addiction IOP</strong><span>Medication is combined with <a class="inl" href="/programs/counseling/">counseling</a> or our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a>. If you also live with depression, anxiety or trauma, our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a> treats both together.</span></li>
+        </ol>
+        <p style="margin-top:22px;font-size:15.5px;color:var(--hw-slate)">MAT can sit alongside <a class="inl" href="/programs/medication-management/">medication management</a> for other mental health needs, and if you need a stable place to stay while you attend treatment, ask about <a class="inl" href="/programs/addiction-iop/#support">supportive accommodations</a> near our offices. See all our <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction and substance use treatment</a>.</p>
+      </div>
+    </section>
+
     <section class="section is-navy">
       <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
       <div class="container tx-split" style="align-items:start">
         <div>
           <h2>Clearing up a common myth</h2>
-          <p class="lede" style="margin-top:16px">Perhaps the most damaging myth about MAT is the idea that it simply "replaces one drug with another." It doesn't. Decades of research, and the consensus of organizations like SAMHSA and the National Institute on Drug Abuse, support MAT as a safe, effective, evidence-based medical treatment. Taking a prescribed medication to stabilize a chronic condition is no different in principle from taking medication for diabetes or high blood pressure. The goal is not dependence — it's freedom: the ability to think clearly, stay engaged in therapy, hold onto relationships and work, and dramatically lower the risk of relapse and overdose.</p>
+          <p class="lede" style="margin-top:16px">Perhaps the most damaging myth about MAT is the idea that it simply "replaces one drug with another." It doesn't. Decades of research, and the consensus of organizations like SAMHSA and the National Institute on Drug Abuse, support MAT as a safe, effective, evidence-based medical treatment. Taking a prescribed medication to stabilize a chronic condition is no different in principle from taking medication for diabetes or high blood pressure. The goal is not dependence; it's freedom: the ability to think clearly, stay engaged in therapy, hold onto relationships and work, and dramatically lower the risk of relapse and overdose.</p>
+          <p class="tx-source" style="margin-top:14px">Source: <a class="inl" href="https://www.samhsa.gov/substance-use/treatment/options" target="_blank" rel="noopener">SAMHSA, medications for substance use disorders</a>.</p>
         </div>
         <ol class="tx-phases" style="grid-template-columns:1fr">
           <li class="tx-phase"><b><Icon name="brain" class="h-5 w-5" /></b><span><strong>Think clearly</strong><span>Stable brain chemistry instead of cravings and withdrawal.</span></span></li>
@@ -124,7 +144,7 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>MAT at Hopewell Health Solutions</h2>
-          <p style="margin-top:16px">At Hopewell, medication-assisted treatment is always paired with the human side of recovery. Your prescriber manages your medication and monitors your progress closely, while individual and group therapy help you understand the roots of your substance use, build coping skills, and create a life that supports staying well. Care is coordinated, confidential, and judgment-free, and it can be integrated with our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> and other programs so the level of support matches where you are. If you or someone you love is struggling, MAT may be an important part of the path forward — and our Connecticut team is ready to help you take the first step.</p>
+          <p style="margin-top:16px">At Hopewell, medication-assisted treatment is always paired with the human side of recovery. Your prescriber manages your medication and monitors your progress closely, while individual and <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a> help you understand the roots of your substance use, build coping skills, and create a life that supports staying well. Care is coordinated, confidential, and judgment-free, and it can be integrated with our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> and other programs so the level of support matches where you are. If you or someone you love is struggling, MAT may be an important part of the path forward, and our Connecticut team is ready to help you take the first step.</p>
         </div>
         <div class="tx-cards" style="--cols:1">
           {addictionOffices.map((o) => (
@@ -138,13 +158,45 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
       </div>
     </section>
 
+    <!-- Safety (brief): one panel split by thin rules -->
+    <section class="section is-white">
+      <div class="container">
+        <div class="sec-head"><h2>Starting and staying on MAT safely</h2><p class="lede">Every step happens with your prescriber. Withdrawal from alcohol, benzodiazepines and opioids can be dangerous, so please don’t stop on your own without medical help.</p></div>
+        <div class="mat-rule-panel">
+          <div><h3>Detox may come first</h3><p>Medical detox may be needed before you start. It depends on the medication and your situation, and your prescriber will explain the safest way to begin.</p></div>
+          <div><h3>Never change a dose alone</h3><p>Never stop or change your dose without your prescriber. Any change is planned with you and made gradually.</p></div>
+          <div><h3>Confidential care</h3><p>Addiction treatment records have extra protection under federal law. In an emergency, call 911; for a mental health crisis, call or text 988.</p></div>
+        </div>
+      </div>
+    </section>
+
     <VideoCarousel videos={vids} mode="grid" tone="navy" heading="Stories of Recovery" lede="Hope, Health &amp; Healing podcast guests and clients share their own experiences with treatment and recovery." link={{ href: "/podcast/", label: "All podcast episodes" }} />
     <Team heading="Your MAT Prescribers and Recovery Team" lede="Licensed prescribers and recovery professionals on our team. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["linda-scillia-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "tracy-sibley-pmhnp-bc-aprn", "ana-arroyo-aprn-pmhnp-bc", "katherine-salvador-pa-c", "tj-aitken-cpsrp", "teesha-huertas-lcsw"]} feature={null} tone="white" />
-    <Reviews tone="stone" />
     <Insurance heading="MAT is often covered by insurance" lede="In-network with most major plans. We'll verify your benefits before you start." tone="white" />
+    <Reviews tone="white" />
+    <MediaStrip bg="white" />
     <Faq faqs={faq} heading="Frequently asked questions" />
     <RelatedTreatments current="/treatment-methods/medication-assisted-treatment/" tone="white" />
-    <ClosingCta heading="Recovery is possible — and you don't have to do it alone" lede="Talk with our Connecticut team about whether MAT is right for you — confidentially, with no pressure." />
+    <ClosingCta heading="Recovery is possible, and you don't have to do it alone" lede="Talk with our Connecticut team about whether MAT is right for you, confidentially, with no pressure." />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .hw .mat-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hw-line); }
+  .hw .mat-rows li { display: grid; grid-template-columns: 48px 260px 1fr; gap: 18px; align-items: start; padding: 20px 0; border-bottom: 1px solid var(--hw-line); font-size: 16px; line-height: 1.55; }
+  .hw .mat-rows b { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--hw-gold); color: #fff; font-family: var(--hw-head); font-weight: 800; }
+  .hw .mat-rows strong { font-family: var(--hw-head); color: var(--hw-navy); font-size: 18px; padding-top: 6px; }
+  .hw .mat-rows span { padding-top: 7px; }
+  .hw .mat-rule-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--hw-stone); border: 1px solid var(--hw-line); border-radius: 22px; align-items: start; }
+  .hw .mat-rule-panel > div { padding: 28px 28px 30px; }
+  .hw .mat-rule-panel > div + div { border-left: 1px solid var(--hw-line); }
+  .hw .mat-rule-panel h3 { font-size: 20px; color: var(--hw-navy); }
+  .hw .mat-rule-panel p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
+  @media (max-width: 860px) {
+    .hw .mat-rows li { grid-template-columns: 48px 1fr; }
+    .hw .mat-rows li span { grid-column: 2; padding-top: 0; }
+    .hw .mat-rule-panel { grid-template-columns: 1fr; }
+    .hw .mat-rule-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-// ADHD Testing — 2026 redesign. All live copy kept. Testing-room photo still needed from the client; a real Hopewell
+// ADHD Testing: 2026 redesign. All live copy kept. Testing-room photo still needed from the client; a real Hopewell
 // office photo stands in.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -33,9 +33,9 @@ const combine = [
   { t: "Remote computerized assessment", d: "An objective, computerized measure of attention you complete securely from home.", icon: "brain", bar: "#5c7c6b" },
 ];
 const whoFor = [
-  { img: P + "tween-group-room.webp", t: "Children", d: "Clarity around focus, behavior, and learning — with recommendations for home and school." },
+  { img: P + "tween-group-room.webp", t: "Children", d: "Clarity around focus, behavior, and learning, with recommendations for home and school." },
   { img: P + "tx-east-hampton-office.webp", t: "Teens", d: "Understand what’s behind the struggles and build a plan that fits this stage of life." },
-  { img: P + "tx-westbrook-office-3.webp", t: "Adults", d: "Answers after years of questions — and a clear, data-backed path forward." },
+  { img: P + "tx-westbrook-office-3.webp", t: "Adults", d: "Answers after years of questions, and a clear, data-backed path forward." },
 ];
 const steps = [
   ["In-office appointment with your provider", "Your evaluation begins with an in-office appointment with your provider to review your history and concerns."],
@@ -43,12 +43,39 @@ const steps = [
   ["Results & next steps", "One of our team members will call you to schedule a follow-up with your provider to review your results and discuss next steps."],
 ];
 const faqs = [
-  ["What ages do you evaluate?", "Our ADHD evaluations are designed for children, teens, and adults."],
+  ["How is ADHD tested?", "Through interviews, rating scales from people who know you or your child, and sometimes attention tests, reviewed by a licensed clinician."],
+  ["What ages do you test?", "Our ADHD evaluations are designed for children, teens, and adults."],
   ["What’s the first step?", "An in-office appointment with your provider to review your history and concerns."],
   ["Where does the computerized portion take place?", "You’ll receive a secure link by email and can complete it from the comfort of your home."],
   ["How much does the computerized portion cost?", "The computerized portion is $99, paid by the patient."],
   ["What happens after the test?", `One of our team members will call you to schedule a follow-up with your provider to review your results and discuss next steps, which may include <a class="inl" href="/programs/medication-management/">medication management</a> or <a class="inl" href="/programs/counseling/">counseling</a>.`],
-  ["How is this different from a checklist?", `Our evaluations go beyond a simple checklist — combining a detailed clinical interview, rating scales, and a computerized assessment to understand how symptoms affect daily life and distinguish ADHD from other conditions with similar signs. For a broader picture of learning and memory, see <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.`],
+  ["How is this different from a checklist?", `Our evaluations go beyond a simple checklist, combining a detailed clinical interview, rating scales, and a computerized assessment to understand how symptoms affect daily life and distinguish ADHD from other conditions with similar signs. For a broader picture of learning and memory, see <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.`],
+  ["How do I prepare my child?", "Explain it as a chance to show how they think and learn. Bring school reports or past evaluations if you have them."],
+  ["Can adults be tested for ADHD?", "Yes. Many adults are first diagnosed later in life."],
+  ["What happens if the test shows ADHD?", "You’ll get a plan that may include therapy, skills coaching, <a class=\"inl\" href=\"/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/\">school or work supports</a>, and a medication evaluation if appropriate."],
+  ["What if it’s not ADHD?", "The evaluation may point to other causes, like <a class=\"inl\" href=\"/what-we-treat/anxiety/\">anxiety</a> or learning differences, and the next steps for those."],
+  ["What’s the difference from neuropsychological testing?", `ADHD testing focuses on attention; <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> looks at a broader range of skills.`],
+  ["How much does ADHD testing cost?", "It depends on your plan. Testing may need prior authorization, and we <a class=\"inl\" href=\"/rates-and-insurance-coverage/\">check your benefits</a> before you book. We don’t accept Medicare or Medicaid."],
+];
+const paths = [
+  {
+    t: "Testing for my child",
+    d: "For children and teens, the evaluation looks at focus, behavior and learning, and ends with recommendations for home and school.",
+    steps: ["An in-office appointment with your provider to review your child’s history and concerns", "Rating scales from people who know your child", "A computerized assessment completed securely from home", "A follow-up with your provider to review results and next steps"],
+    tip: "<strong>How to prepare:</strong> explain it as a chance to show how they think and learn. Bring school reports or past evaluations if you have them.",
+  },
+  {
+    t: "Testing for me (adult)",
+    d: "Can adults be tested for ADHD? Yes. Many adults are first diagnosed later in life, and the evaluation looks at how symptoms show up in your daily life.",
+    steps: ["An in-office appointment with a Licensed PA/NP to review your history and concerns", "Rating scales from you and people who know you", "A computerized assessment completed securely from home", "A follow-up with your provider to review results and next steps"],
+    tip: "<strong>What it can lead to:</strong> recommendations for therapy, medication options, and strategies for work and daily life.",
+  },
+];
+const getItems = [
+  ["A clear answer", "A diagnosis if ADHD is present. If it isn’t, the evaluation may point to other causes, like anxiety or learning differences, and the next steps for those."],
+  ["A written summary", "A written summary of what the evaluation found, reviewed with you at your follow-up."],
+  ["Recommendations", "Therapy, medication options, and school or work strategies, matched to what the evaluation found."],
+  ["Support after testing", `Care can continue with <a class="inl" href="/programs/medication-management/">medication management</a> or <a class="inl" href="/programs/counseling/">counseling</a>. For broader questions about learning or memory, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> looks at a wider range of skills, and children or teens who need more support can ask about our <a class="inl" href="/programs/tween-iop/">tween IOP</a> and <a class="inl" href="/programs/teen-iop/">teen IOP</a>.`],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -61,14 +88,14 @@ const schema = {
 const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt));
 ---
 
-<Base title="ADHD Testing & Evaluation in CT | Hopewell Health Solutions" description="ADHD testing at Hopewell Health Solutions in Glastonbury, Westbrook & West Hartford, CT — personalized evaluations for children, teens & adults. Clinical interview, rating scales & a computerized assessment. Clear, tailored recommendations." canonical={canonical} image={P + "tx-east-hampton-office.webp"}>
+<Base title="ADHD Testing in Connecticut for Kids & Adults | Hopewell" description="ADHD evaluations for children, teens and adults at Hopewell in Connecticut: what's involved, how long it takes and what happens next. Check your coverage." canonical={canonical} image={P + "tx-east-hampton-office.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "ADHD Testing" }]}
-      title="ADHD Testing &amp; Evaluation in Connecticut"
-      lede="Get clarity — and a clear path forward. Personalized ADHD evaluations for children, teens and adults in Glastonbury, Westbrook and West Hartford."
+      title="ADHD Testing for Children, Teens &amp; Adults in Connecticut"
+      lede="Get clarity, and a clear path forward. Personalized ADHD evaluations for children, teens and adults in Glastonbury, Westbrook and West Hartford."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "users", text: "Children, teens & adults" }]}
       image={P + "tx-east-hampton-office.webp"}
@@ -80,7 +107,7 @@ const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt))
         <figure class="tx-photo"><img src="/Assets/service/adhd-assessment.webp" alt="A provider and patient during an ADHD evaluation at Hopewell Health Solutions, Connecticut" width="1200" height="900" loading="lazy" /><figcaption>Beyond a simple checklist<span>Interview, rating scales &amp; a computerized test</span></figcaption></figure>
         <div class="tx-copy">
           <h2>ADHD assessment &amp; treatment</h2>
-          <p class="lede" style="margin-top:16px">At Hopewell Health Solutions, we know that getting the right ADHD diagnosis is the first step toward effective treatment. Our evaluations are designed for children, teens, and adults — and go beyond a simple checklist.</p>
+          <p class="lede" style="margin-top:16px">At Hopewell Health Solutions, we know that getting the right ADHD diagnosis is the first step toward effective treatment. Our evaluations are designed for children, teens, and adults, and go beyond a simple checklist.</p>
           <p class="lede">This thorough process helps us understand how symptoms affect daily life and distinguish ADHD from other conditions with similar signs. The result? Clear, personalized treatment recommendations for you or your loved one. Learn more about <a class="inl" href="/what-we-treat/adhd/">ADHD treatment</a>.</p>
         </div>
       </div>
@@ -113,15 +140,51 @@ const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt))
       </div>
     </section>
 
+    <section class="section is-white">
+      <div class="container">
+        <div class="sec-head"><h2>Two paths: testing for your child, or for yourself</h2><p class="lede">The same careful process, shaped around who is being evaluated. Read more about <a class="inl" href="/what-we-treat/adhd/">ADHD and how it’s treated</a>.</p></div>
+        <div class="ad-paths">
+          {paths.map((p) => <div class="ad-path"><h3>{p.t}</h3><p>{p.d}</p><ol>{p.steps.map((st) => <li>{st}</li>)}</ol><p class="ad-tip" set:html={p.tip} /></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section is-stone">
+      <div class="container">
+        <div class="sec-head"><h2>What you walk away with</h2></div>
+        <ul class="ad-get">{getItems.map(([t, d]) => <li><strong>{t}</strong><span set:html={d} /></li>)}</ul>
+      </div>
+    </section>
+
     <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Tips for Families" lede="Viviana, one of our clinicians, on supporting neurodivergent tweens and a grounding skill for stressful moments." link={{ href: "/podcast/", label: "More videos" }} />
     <Team heading="Your ADHD Evaluation Team" lede="Licensed PAs and NPs who lead our ADHD evaluations, with therapists who support ADHD care. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["christina-lindsay-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "chris-patenaude-pa", "katherine-salvador-pa-c", "chelsey-micciche-lpc", "viviana-alvarado-lpc-a", "madeline-blinderman-lpc-a"]} feature={null} tone="white" />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" showLink={false} />
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and will let you know what your evaluation coverage looks like before you commit. (The computerized portion is a $99 cost to the patient.)" tone="white" />
+    <Locations heading="Our locations" lede="In person at <a class='inl' href='/locations/'>six Connecticut offices</a>, plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
     <Reviews tone="stone" />
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — and will let you know what your evaluation coverage looks like before you commit. (The computerized portion is a $99 cost to the patient.)" tone="white" />
-    <Locations heading="Our locations" lede="In person at six Connecticut offices — plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
-    <Faq faqs={faqs} heading="ADHD testing — common questions" tone="white" />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" showLink={false} />
+    <Faq faqs={faqs} heading="ADHD testing: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/adhd-testing/" />
     <ClosingCta heading="Take the first step today" lede="If you or your loved one are struggling with focus, attention, or daily challenges that may be ADHD, our team is here to help. With clear testing and tailored treatment, you can move forward with confidence." />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .ad-paths { display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; background: var(--hw-stone); }
+  .ad-path { padding: clamp(24px, 4vw, 40px); display: flex; flex-direction: column; gap: 12px; }
+  .ad-path + .ad-path { border-left: 1px solid var(--hw-line); }
+  .ad-path h3 { font-size: 22px; }
+  .ad-path p { font-size: 16.5px; line-height: 1.6; color: var(--hw-body); }
+  .ad-path ol { margin: 4px 0 0; padding: 0; list-style: none; counter-reset: s; }
+  .ad-path ol li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 12px 0; border-top: 1px solid var(--hw-line); font-size: 16px; line-height: 1.5; }
+  .ad-path ol li::before { content: counter(s); font-family: var(--hw-head); font-weight: 800; color: var(--hw-gold); }
+  .ad-path .ad-tip { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--hw-line); font-size: 15.5px; }
+  .ad-get { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 5vw, 64px); }
+  .ad-get li { display: grid; gap: 6px; align-content: start; padding: 20px 0; border-top: 1px solid var(--hw-line); }
+  .ad-get strong { font-family: var(--hw-head); font-weight: 800; font-size: 19px; color: var(--hw-navy); }
+  .ad-get span { font-size: 16.5px; line-height: 1.6; color: var(--hw-body); }
+  @media (max-width: 860px) {
+    .ad-paths, .ad-get { grid-template-columns: 1fr; }
+    .ad-path + .ad-path { border-left: 0; border-top: 1px solid var(--hw-line); }
+  }
+</style>

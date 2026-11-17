@@ -342,7 +342,7 @@ export default {
       href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12106345/",
     },
     {
-      text: "Substance Abuse and Mental Health Services Administration. (2020). Chapter 1—Substance Use Disorder Treatment: Working With Families. Treatment Improvement Protocol (TIP) Series, No. 39. Substance Abuse and Mental Health Services Administration.",
+      text: "Substance Abuse and Mental Health Services Administration. (2020). Chapter 1, Substance Use Disorder Treatment: Working With Families. Treatment Improvement Protocol (TIP) Series, No. 39. Substance Abuse and Mental Health Services Administration.",
       href: "https://www.ncbi.nlm.nih.gov/books/NBK571084/",
     },
   ],

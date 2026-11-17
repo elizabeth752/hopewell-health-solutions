@@ -12,10 +12,10 @@ export default {
   dateModified: "2025-01-29",
   readingMinutes: 2,
   bodyHtml: `<h2>Understanding Women's Trauma</h2>
-<p>Every woman carries her story, marked by chapters of resilience, moments of vulnerability, and, sometimes, pages of trauma. At Hopewell Health Solutions, we recognize the profound impact trauma can have on a woman's life, which is why we are proud to offer our Women's Trauma Group—a place dedicated to healing, understanding, and empowerment.</p>
+<p>Every woman carries her story, marked by chapters of resilience, moments of vulnerability, and, sometimes, pages of <a href="/what-we-treat/trauma-ptsd/">trauma</a>. At Hopewell Health Solutions, we recognize the profound impact trauma can have on a woman's life, which is why we are proud to offer our <a href="/programs/womens-trauma-iop/">Women's Trauma Group</a>, a place dedicated to healing, understanding, and empowerment.</p>
 <p>Trauma in women can arise from many sources: personal relationships, significant life changes, or unsettling events that shake one's sense of safety. The effects of these experiences can linger, influencing emotions, behaviors, and relationships. Our Women's Trauma Group provides a supportive space to address these effects, allowing participants to explore their experiences among peers who understand and empathize.</p>
 <h2>What is the Women's Trauma Group?</h2>
-<p>This group is an 8-week program tailored specifically for women navigating the aftermath of traumatic experiences. It integrates principles from Dialectical Behavior Therapy (DBT) and other effective therapeutic approaches to offer a comprehensive healing environment. Each session is thoughtfully designed to foster self-discovery, resilience, and emotional regulation through:</p>
+<p>This group is an 8-week program tailored specifically for women navigating the aftermath of traumatic experiences. It integrates principles from <a href="/treatment-methods/dbt/">Dialectical Behavior Therapy (DBT)</a> and other effective therapeutic approaches to offer a comprehensive healing environment. Each session is thoughtfully designed to foster self-discovery, resilience, and emotional regulation through:</p>
 <ul>
 <li><strong>Mindfulness:</strong> Learning to stay present and grounded.</li>
 <li><strong>Distress Tolerance:</strong> Developing skills to tolerate and reduce emotional pain.</li>

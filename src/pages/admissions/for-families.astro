@@ -1,0 +1,168 @@
+---
+// For Families, 2026-11-16 "Admissions: Content Briefs" (For Families tab). New page at the brief's URL
+// /admissions/for-families/; the hub keeps its short #for-families section, which links here.
+// Sections in the brief's order: two paths (child or teen / adult), for parents (divided two-column list + parents'
+// words), for families of adults (navy split), privacy in plain words (one panel split by a thin rule), family
+// involvement (copy + photo carousel), taking care of yourself, then the sitewide bottom.
+// Left out as [confirm]: parents of minors involved by default / Connecticut age rules, family sessions by program
+// beyond what the Teen and Tween IOP pages already say, family therapy, the outside resource list (NAMI CT, Al-Anon).
+// Family-involvement facts come from the live Teen IOP, Tween IOP and Addiction IOP pages; parent quotes are verbatim
+// from those pages (initials only).
+import Base from "../../layouts/Base.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Icon from "../../components/Icon.astro";
+import Creds from "../../components/hw/Creds.astro";
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import Team from "../../components/hw/Team.astro";
+import Locations from "../../components/hw/Locations.astro";
+import Reviews from "../../components/hw/Reviews.astro";
+import MediaStrip from "../../components/MediaStrip.astro";
+import Faq from "../../components/hw/Faq.astro";
+import ClosingCta from "../../components/hw/ClosingCta.astro";
+import AdHero from "./_parts/AdHero.astro";
+import PhotoCarousel from "./_parts/PhotoCarousel.astro";
+import { VIDEOS } from "../../data/videos.js";
+import "../../styles/pages/hubs.css";
+import "../../styles/pages/admissions.css";
+
+const SITE = "https://www.hopewellhealthsolutions.com";
+const canonical = `${SITE}/admissions/for-families/`;
+const P = "/Assets/hhs-2026/";
+
+const talk = "Choose a calm moment, speak from care rather than blame, and focus on specific things you’ve noticed. Offer to make the first call with them.";
+const parents = [
+  ["Starting the conversation", `${talk} With younger children, keep it simple and let them know they’re not in trouble.`],
+  ["When to look at IOP", `When weekly therapy isn’t enough, or worries and moods are taking over school, sleep and friendships, our <a class="inl" href="/programs/tween-iop/">Tween IOP</a> (ages 8–12) and <a class="inl" href="/programs/teen-iop/">Teen IOP</a> (ages 13–17) meet after school at our <a class="inl" href="/location/glastonbury-ct-3/">South Glastonbury office</a>. Read the <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">signs your teen needs more than weekly therapy</a>.`],
+  ["Parent involvement", "Parents are part of the work. In both programs, parents attend sessions once to twice a week and learn the same skills, so what your child practices in group continues at home."],
+  ["School coordination", `We can coordinate with your child’s school when it helps. Our article on <a class="inl" href="/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/">504 plans and academic accommodations</a> explains what schools can offer.`],
+  ["Younger children", `We see children from age 4 for <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a>, and our free <a class="inl" href="/handouts/">handouts for parents</a> cover anxiety, self-harm and school refusal.`],
+  ["Crisis signs and 988", `Talk of suicide or self-harm, threats, or signs of overdose need help right away. Call or text <a class="inl" href="tel:988">988</a> or call 911. Read <a class="inl" href="/post/how-to-help-your-kids-during-a-mental-health-crisis/">how to help your kids during a mental health crisis</a>.`],
+];
+const parentQuotes = [
+  { n: "A.Y.", t: "Teen IOP parent", q: "I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family." },
+  { n: "N.E.", t: "Teen IOP parent", q: "I really like the weekly emails and having the clinician’s phone number to check in or get help when needed. That was a lifesaver." },
+];
+const adults = [
+  ["How to talk about getting help", `${talk} You can also call us first, on your own, to learn the options before you talk with them.`],
+  ["What to do if they say no", "Keep the door open, take care of yourself, and reach out for guidance. If they’re in danger, call 911 or 988."],
+  ["How addiction treatment works", `Our <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> treats addiction and mental health together at 300 Hebron Ave in Glastonbury and in Westbrook, with <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a> when it fits. It is also a step-down for people leaving detox or residential rehab.`],
+  ["Supportive accommodations", `Some people need a stable place to stay while they attend treatment. We can connect you with <a class="inl" href="/programs/addiction-iop/#support">supportive accommodations</a> near our offices; ask our admissions team about current options.`],
+];
+const familyPhotos: [string, string, string][] = [
+  [P + "sg-family-room.webp", "The family room at Hopewell's South Glastonbury office", "Family room, South Glastonbury"],
+  [P + "sg-tween-group-room.webp", "The tween group room at Hopewell's South Glastonbury office", "Tween group room"],
+  [P + "tween-group-room.webp", "A group therapy room at Hopewell Health Solutions", "Group room"],
+  [P + "sg-waiting-room.webp", "The waiting room at Hopewell's South Glastonbury office", "Waiting room, South Glastonbury"],
+];
+const stories = ["awy7nfDgC0k", "loSaQbRc-oE", "7ISgjKEBoZo", "uIlSCS7clwE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+// Brief FAQ. Left out as [confirm]: "Do you offer family therapy?", "Can family members get support too?" (resource
+// list). The parents answer uses the live Teen and Tween IOP facts in place of the brief's [confirm] line.
+const faqs: [string, string][] = [
+  ["Can I call on behalf of someone else?", "Yes. Many people first hear about us from a family member. We can explain options, and the person will need to be part of the admissions process."],
+  ["How do I get my teen into therapy?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or send the form. Parents and guardians can call on behalf of a child. We see children from age 4 for counseling and medication management, and teens 13–17 can join our <a class="inl" href="/programs/teen-iop/">Teen IOP</a> after school.`],
+  ["My loved one is an adult. Will you tell me about their treatment?", "Only with their written permission. Privacy laws protect adults’ health and especially addiction treatment records."],
+  ["How do I talk to someone about getting help?", talk],
+  ["What if they refuse help?", "Keep the door open, take care of yourself, and reach out for guidance. If they’re in danger, call 911 or 988."],
+  ["How are parents involved in teen and tween programs?", `Parents attend sessions once to twice a week and learn the same skills their child practices in group. The <a class="inl" href="/programs/tween-iop/">Tween IOP</a> also offers a Parent Support Group on Tuesdays and Parent Night on Thursdays.`],
+  ["What are warning signs that need urgent help?", `Talk of suicide or self-harm, threats, or signs of overdose. Call <a class="inl" href="tel:988">988</a> or 911 right away.`],
+];
+const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", name: "For Families: How to Help Someone You Love Get Care", url: canonical, publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions", url: SITE } };
+---
+<Base title="Helping a Loved One Get Mental Health or Addiction Care | Hopewell" description="How to help your child, teen, partner or parent start mental health or addiction treatment at Hopewell in Connecticut, and how families stay involved." canonical={canonical} image={P + "sg-family-room.webp"}>
+  <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
+  <main class="hw">
+    <AdHero
+      crumbs={[{ label: "Admissions", href: "/admissions/" }, { label: "For Families" }]}
+      title="For Families: How to Help Someone You Love Get Care"
+      lede="Watching a child, partner, or parent struggle is one of the hardest things there is. You can make the first call: we’ll explain the options and help you figure out the right next step."
+      facts={[{ icon: "users", text: "Call for a child, teen, partner or parent" }, { icon: "heart", text: "Care for ages 4 and up" }, { icon: "shield", text: "Free insurance check" }]}
+      note="Forms sent after hours are answered the next business day."
+    />
+    <Creds />
+
+    <!-- Brief: two paths, side by side -->
+    <section class="section is-white" id="paths">
+      <div class="container">
+        <div class="sec-head"><h2>Who are you helping?</h2><p class="lede">Helping a child is different from helping an adult, especially when it comes to privacy. Start with the path that fits.</p></div>
+        <div class="ax-duo">
+          <a href="#my-child"><img src={P + "sg-tween-group-room.webp"} alt="" width="1200" height="900" loading="lazy" /><span class="ax-duo-body"><h3>My child or teen <Icon name="arrow" class="h-6 w-6" /></h3><p>Starting the conversation, when to look at IOP, parent involvement and school.</p></span></a>
+          <a href="#an-adult"><img src="/Assets/locations/westbrook/sitting-room.webp" alt="" width="1200" height="900" loading="lazy" /><span class="ax-duo-body"><h3>An adult I love <Icon name="arrow" class="h-6 w-6" /></h3><p>A partner, parent or adult child: what to say, what if they say no, and addiction care.</p></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brief: for parents, divided two-column list, then parents' own words -->
+    <section class="section is-stone" id="my-child" style="scroll-margin-top:110px">
+      <div class="container">
+        <div class="sec-head"><h2>When your child or teen is struggling</h2><p class="lede">Parents and guardians can call on behalf of a child. You don’t need a diagnosis or all the answers to reach out; our team will help you understand the options.</p></div>
+        <ul class="ax-dlist" style="margin-top:0">
+          {parents.map(([t, d]) => <li><h3>{t}</h3><p set:html={d} /></li>)}
+        </ul>
+        <div class="ax-quotes" style="margin-top:34px">
+          {parentQuotes.map((q) => <figure class="ax-quote"><blockquote>“{q.q}”</blockquote><figcaption><strong>{q.n}</strong> · {q.t}</figcaption></figure>)}
+        </div>
+      </div>
+    </section>
+
+    <!-- Brief: for families of adults, navy split -->
+    <section class="section is-navy" id="an-adult" style="scroll-margin-top:110px">
+      <div class="container ax-navy">
+        <div>
+          <h2>When the person you love is an adult</h2>
+          <p class="lede" style="margin-top:16px">A partner, a parent, an adult son or daughter: you can’t make the decision for them, but you can make it easier to say yes. Many people first hear about us from a family member.</p>
+          <p style="margin-top:14px;font-size:17px;line-height:1.7">Adults can start with weekly <a class="inl" href="/programs/counseling/">counseling</a>, an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> or <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>, and the same team treats mental health and substance use together. Read about <a class="inl" href="/post/are-you-a-high-functioning-alcoholic/">high-functioning alcoholism</a> and the <a class="inl" href="/post/signs-of-addiction-in-women/">signs of addiction in women</a>.</p>
+          <div class="ax-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />(860) 735-1448</a><a href="#verify" class="btn btn-ghost-l">Check their coverage</a></div>
+        </div>
+        <ol class="ax-olist">{adults.map(([t, d]) => <li><div><strong>{t}</strong><span set:html={d} /></div></li>)}</ol>
+      </div>
+    </section>
+
+    <!-- Brief: privacy, in plain words -->
+    <section class="section is-white" id="privacy">
+      <div class="container">
+        <div class="sec-head"><h2>Privacy, in plain words</h2><p class="lede">Families often ask what we can tell them. For adults, the answer depends on what your loved one chooses.</p></div>
+        <div class="ax-panel" style="--n:2">
+          <div><h3><Icon name="users" class="h-5 w-5" />Adults choose what’s shared</h3><p>Adults choose what’s shared with family. With their written permission, we can include you.</p></div>
+          <div><h3><Icon name="shield" class="h-5 w-5" />Addiction treatment records</h3><p>Privacy laws protect adults’ health records, and especially addiction treatment records, so we share them only with written permission.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brief: family involvement (live Teen, Tween and Addiction IOP facts) + photo carousel -->
+    <section class="section is-mist" id="family-involvement">
+      <div class="container ax-two">
+        <div>
+          <h2>How families stay involved</h2>
+          <p class="lede">Our teen and tween programs weave families directly into the work.</p>
+          <p>In the <a class="inl" href="/programs/teen-iop/">Teen IOP</a> and <a class="inl" href="/programs/tween-iop/">Tween IOP</a>, parents attend sessions once to twice a week, and the Tween IOP adds a Parent Support Group on Tuesdays and Parent Night on Thursdays. Both programs coordinate with school when it helps.</p>
+          <p>For adults in addiction care, you can call us with them or on their behalf. We’ll explain the options, how to start the conversation, and what the first steps look like. Read our guide to <a class="inl" href="/admissions/what-to-expect/">what to expect when someone starts at Hopewell</a>.</p>
+        </div>
+        <PhotoCarousel photos={familyPhotos} label="Photos of our South Glastonbury teen and tween office" />
+      </div>
+    </section>
+
+    <!-- Brief: taking care of yourself (outside resource list left out until confirmed) -->
+    <section class="section is-white" id="self-care">
+      <div class="container">
+        <div class="ax-band" style="background:var(--hw-stone);color:var(--hw-body)">
+          <div>
+            <h2 style="color:var(--hw-navy)">Taking care of yourself, too</h2>
+            <p style="color:var(--hw-body);font-size:17px;max-width:70ch">Supporting someone you love is hard work, and your own health matters. Lean on people you trust, keep up the routines that steady you, and ask our team for guidance when you’re not sure what to do next. If you’re worried about someone’s safety, you can call or text <a class="inl" href="tel:988">988</a> for support, too.</p>
+          </div>
+          <a href="tel:8607351448" class="btn btn-navy"><Icon name="phone" />Talk to our team</a>
+        </div>
+      </div>
+    </section>
+
+    <VideoCarousel videos={stories} heading="Families and Clients, in Their Own Words" lede="A teen and his mom, and adults in our programs, share what getting help was like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
+    <Team tone="white" />
+    <Locations tone="stone" heading="Find an Office Near You" lede="Six Connecticut offices. The Teen &amp; Tween IOP meets at 1420 Main St in South Glastonbury; addiction care is at 300 Hebron Ave in Glastonbury and in Westbrook." current="glastonbury-ct-3" />
+    <Reviews tone="white" first={["Outpatient care", "Medication management"]} />
+    <MediaStrip bg="white" />
+    <Faq faqs={faqs} heading="Questions From Families" tone="white" />
+    <ClosingCta heading="You don’t have to figure this out alone" lede="Call us for yourself or for someone you love. We’ll listen, explain the options and help with the next step, confidentially, with no pressure." />
+  </main>
+  <Footer />
+</Base>

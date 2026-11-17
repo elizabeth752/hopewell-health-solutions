@@ -10,7 +10,7 @@ export default {
     "The term high functioning alcoholic can sound like a contradiction. Learn the hidden signs, why recognizing them matters, and what you can do next.",
   category: "Addiction & Recovery",
   excerpt:
-    "You go to work, pay the bills, keep up appearances — but alcohol plays a bigger role than people know. The signs of high functioning alcoholism.",
+    "You go to work, pay the bills, keep up appearances, but alcohol plays a bigger role than people know. The signs of high functioning alcoholism.",
   heroImage: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
@@ -23,14 +23,14 @@ export default {
 <p>Honesty and awareness are the first steps toward meaningful change. If you're wondering whether your relationship with alcohol may be problematic-even if you seem to have it 'under control' - this post is for you.</p>
 
 <h2>What is a High Functioning Alcoholic?</h2>
-<p>A high functioning alcoholic is someone who appears to be managing their daily responsibilities well but struggles with alcohol use in ways that are harmful, hidden, or compulsive. You may not meet the stereotype of someone with an alcohol use disorder, but that doesn't mean your drinking isn't affecting your life, health, and relationships.</p>
+<p>A high functioning alcoholic is someone who appears to be managing their daily responsibilities well but struggles with alcohol use in ways that are harmful, hidden, or compulsive. You may not meet the stereotype of someone with an <a href="/what-we-treat/alcohol/">alcohol use disorder</a>, but that doesn't mean your drinking isn't affecting your life, health, and relationships.</p>
 
 <h2>Signs You Might Be a High Functioning Alcoholic</h2>
 <ul>
   <li><strong>You Set Limits…Then Break Them:</strong> You promise yourself you'll only have one or two drinks but often exceed that limit. You may also try to cut back "just to prove you can." only to quickly fall back into the same pattern.</li>
   <li><strong>Drinking is Part of Your Daily Routine:</strong> You drink most days of the week, even if it's just a glass or two. You may tell yourself it's for stress relief, socializing or to 'unwind,' but you can't remember the last time you felt truly relaxed without it</li>
   <li><strong>You Hide or Downplay Your Drinking:</strong> You might lie about how much you've had, drink before social events, or pour extra when no one is watching. You may joke about how much you drink, but deep down, you feel uneasy about it.</li>
-  <li><strong>You Experience Withdrawal Symptoms:</strong> Even mild withdrawal - like irritability, shakiness, sweating, anxiety, or difficulty sleeping when not drinking - can be a sign that your body is dependent on alcohol.</li>
+  <li><strong>You Experience Withdrawal Symptoms:</strong> Even mild withdrawal - like irritability, shakiness, sweating, <a href="/what-we-treat/anxiety/">anxiety</a>, or difficulty sleeping when not drinking - can be a sign that your body is dependent on alcohol.</li>
   <li><strong>You Use Alcohol to Cope with Emotions:</strong> You drink to manage stress, numb pain, escape boredom or deal with sadness or anxiety. Alcohol becomes less about enjoyment and more about avoiding discomfort</li>
 </ul>
 

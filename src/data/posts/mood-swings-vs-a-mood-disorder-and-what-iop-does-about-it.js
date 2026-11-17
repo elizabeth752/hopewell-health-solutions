@@ -1,8 +1,8 @@
 // Hand-authored post (structured `sections` model).
 export default {
   slug: "mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it",
-  title: "Mood Swings vs. a Mood Disorder — And What IOP Does About It",
-  metaTitle: "Mood Swings vs. a Mood Disorder — And What IOP Does About It | Hopewell Health Solutions",
+  title: "Mood Swings vs. a Mood Disorder, And What IOP Does About It",
+  metaTitle: "Mood Swings vs. a Mood Disorder, And What IOP Does About It | Hopewell Health Solutions",
   metaDescription:
     "Mood swings and mood disorders share symptoms but aren't the same. Learn the difference and how an Intensive Outpatient Program (IOP) treats mood disorders.",
   category: "Mental Health",
@@ -24,18 +24,18 @@ export default {
         { h3: "What Are Mood Swings?" },
         { p: "A mood swing is defined as a sudden change in how you feel. It happens because neurotransmitter levels in your brain rise or fall. Sometimes you may know what triggered the mood swing, e.g., being hungry, and other times you may not. Mood swings are normal, but they aren't always predictable. Some of the most common reasons for mood swings are:" },
         { ul: ["Going through puberty", "Menstruation", "Being sleep-deprived", "Taking certain medications", "Having a substance use disorder (SUD)"] },
-        { p: "Mental health conditions also influence the likelihood of having mood swings. Research shows that mood instability was reported in 40-60% of people with depression, anxiety disorders, post-traumatic stress disorder, and OCD [1]." },
+        { p: "Mental health conditions also influence the likelihood of having mood swings. Research shows that mood instability was reported in 40-60% of people with depression, <a href=\"/what-we-treat/anxiety/\">anxiety disorders</a>, post-traumatic stress disorder, and OCD [1]." },
         { p: "Shifts in mood are part of life, and most mood swings don't require treatment, but there are recommended ways to reduce the frequency and intensity of them. These include:" },
         { ul: ["Exercising regularly", "Eating well (fewer sugars and processed foods)", "Spending time outdoors or in nature", "Practicing mindfulness and meditation"] },
         { p: "If you start to experience mood swings more often, more strongly, and notice that they impact your relationships and daily routine, you should seek medical care. These signs may suggest a deeper issue to address, such as a mood disorder." },
         { h3: "What Is a Mood Disorder?" },
         { p: "A mood disorder is a mental health disorder that's characterized by long periods of extreme emotions such as sadness, happiness, or anger. Changes in mood can last for weeks and lead to changes in your behavior that make daily activities such as working or studying very difficult. Around 9.7% of U.S. adults have a mood disorder [2]. The most common mood disorders include:" },
-        { ul: ["Depression", "Bipolar disorder", "Premenstrual dysphoric disorder", "Disruptive mood dysregulation disorder"] },
+        { ul: ["Depression", "<a href=\"/what-we-treat/bipolar/\">Bipolar disorder</a>", "Premenstrual dysphoric disorder", "Disruptive mood dysregulation disorder"] },
         { p: "Mood disorders can affect anyone, but they are most prevalent among children and adolescents, where around 15% suffer from a mood disorder [3]. Anxiety disorder is not a mood disorder but is common among people with a mood disorder, and has been associated as a predictor of developing a mood disorder [4] [5]." },
         { p: "Symptoms of a mood disorder include:" },
         { ul: ["Feeling sad and hopeless most days", "Fatigue, low energy, and mood", "Inability to experience pleasure", "Suicidal thoughts", "Problems focusing", "Oversleeping or sleeping too little", "Loss of appetite", "Manic episodes (a period of extreme, elevated mood, often present with bipolar disorder)"] },
-        { p: "Biological, genetic, and environmental factors can increase the likelihood of having a mood disorder. People with major depressive disorder and bipolar disorder have been found to have increased activity or enlarged volume in the amygdala compared to healthy individuals [6]. Mood disorders share several genetic associations, meaning they are highly heritable [7]. Trauma and stress are both linked to mood disorders [8]." },
-        { p: "Treatment for mood disorders is effective and accessible, and combines psychotherapy such as Cognitive Behavioral Therapy (CBT) and Dialectical Behavioral Therapy (DBT), with medication such as antidepressants and mood stabilizers. The exact structure and elements of treatment vary depending on the mood disorder and symptoms." },
+        { p: "Biological, genetic, and environmental factors can increase the likelihood of having a mood disorder. People with <a href=\"/what-we-treat/depression/\">major depressive disorder</a> and bipolar disorder have been found to have increased activity or enlarged volume in the amygdala compared to healthy individuals [6]. Mood disorders share several genetic associations, meaning they are highly heritable [7]. Trauma and stress are both linked to mood disorders [8]." },
+        { p: "Treatment for mood disorders is effective and accessible, and combines psychotherapy such as <a href=\"/treatment-methods/therapeutic-treatments/\">Cognitive Behavioral Therapy (CBT)</a> and <a href=\"/treatment-methods/dbt/\">Dialectical Behavioral Therapy (DBT)</a>, with medication such as antidepressants and mood stabilizers. The exact structure and elements of treatment vary depending on the mood disorder and symptoms." },
       ],
     },
     {
@@ -55,7 +55,7 @@ export default {
         { p: "One of the biggest advantages of IOP is that you can integrate what you learn from treatment directly into your daily life in real time, so you can see the results of better emotion regulation, communication, and a more stable mood." },
         { p: "An IOP for mood disorders uses evidence-based therapies to guide you to recognize and reframe unhealthy emotions and behaviors. These therapies are led by a trained professional, and include:" },
         { ul: [
-          "CBT to help challenge your negative thought patterns and develop lifelong coping strategies to manage your mood disorder.",
+          "CBT to help challenge your negative thought patterns and develop lifelong <a href=\"/post/anxiety-coping-strategies-expert-tips-for-finding-calm/\">coping strategies</a> to manage your mood disorder.",
           "DBT to help you manage intense emotions, reduce stress, tolerate distress, and set boundaries in your relationships.",
           "Transcranial magnetic stimulation (TMS) to restore healthy brain activity if you have a treatment-resistant mood disorder such as depression. Treatment is non-invasive and uses electromagnetic pulses to stimulate the area of your brain responsible for mood regulation.",
         ] },

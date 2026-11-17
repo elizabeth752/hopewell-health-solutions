@@ -17,11 +17,11 @@ export default {
 
 <p>Katherine Salvador embarked on her medical journey at Springfield College, where she earned both her Bachelor's and Master's degrees. Her clinical training was centered around psychiatry in an inpatient hospital setting, providing her with a robust foundation in managing acute psychiatric conditions. After graduation, Katherine chose to dedicate her career to community-based settings where she felt she could make a significant impact on individuals' lives.</p>
 
-<p>With over nine years of experience, Katherine has developed a nuanced understanding of psychopharmacology, adeptly treating a broad spectrum of mental health conditions, including mood disorders, anxiety disorders, and substance use disorders. Her experience spans across clinical, hospital, and addiction treatment environments, giving her a comprehensive perspective on patient care.</p>
+<p>With over nine years of experience, Katherine has developed a nuanced understanding of psychopharmacology, adeptly treating a broad spectrum of mental health conditions, including mood disorders, <a href="/what-we-treat/anxiety/">anxiety disorders</a>, and <a href="/what-we-treat/substance-use-disorder/">substance use disorders</a>. Her experience spans across clinical, hospital, and addiction treatment environments, giving her a comprehensive perspective on patient care.</p>
 
 <h2>Understanding Medication-Assisted Treatment (MAT)</h2>
 
-<p>Medication-Assisted Treatment (MAT) is a highly effective approach to treating substance use disorders, which integrates the use of medication with counseling and behavioral therapies. This treatment is primarily used to sustain recovery and prevent overdose in individuals struggling with addiction, particularly opioids, alcohol, and nicotine. MAT helps to normalize brain chemistry, block the euphoric effects of alcohol and opioids, relieve physiological cravings, and stabilize body functions without the negative effects of the abused drug.</p>
+<p><a href="/treatment-methods/medication-assisted-treatment/">Medication-Assisted Treatment</a> (MAT) is a highly effective approach to treating substance use disorders, which integrates the use of medication with counseling and behavioral therapies. This treatment is primarily used to sustain recovery and prevent overdose in individuals struggling with addiction, particularly opioids, alcohol, and nicotine. MAT helps to normalize brain chemistry, block the euphoric effects of alcohol and opioids, relieve physiological cravings, and stabilize body functions without the negative effects of the abused drug.</p>
 
 <p>MAT is considered the gold standard in the treatment of addiction because it addresses the needs of the whole person. By combining medication that eases withdrawal symptoms and cravings with psychological support, MAT can help patients to engage more successfully in therapy and rebuild their lives in recovery.</p>
 
@@ -35,7 +35,7 @@ export default {
 
 <h2>Katherine's Role at Hopewell</h2>
 
-<p>In her role at Hopewell Health Solutions, which operates out of both Glastonbury and West Hartford, Connecticut, Katherine meets with clients experiencing both acute and chronic psychiatric conditions. Her treatment plans are comprehensive, designed to support recovery and promote sustainable management of mental health conditions through the thoughtful use of MAT.</p>
+<p>In her role at Hopewell Health Solutions, which operates out of both Glastonbury and <a href="/location/west-hartford-ct/">West Hartford</a>, Connecticut, Katherine meets with clients experiencing both acute and chronic psychiatric conditions. Her treatment plans are comprehensive, designed to support recovery and promote sustainable management of mental health conditions through the thoughtful use of MAT.</p>
 
 <p>As the primary MAT provider at Hopewell, Katherine Salvador exemplifies our mission to integrate advanced medical therapies with supportive mental health services, ensuring that each client receives the best possible care tailored to their unique needs.</p>
 

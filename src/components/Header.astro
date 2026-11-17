@@ -42,9 +42,9 @@ const menu = [
     { label: "ADHD Testing", href: "/treatment-methods/adhd-testing/" },
   ]},
   { label: "Locations", href: "/locations/", children: [
-    { label: "Glastonbury — Pratt St", href: "/location/glastonbury-ct/" },
-    { label: "Downtown Glastonbury — Hebron Ave", href: "/location/glastonbury-ct-2/" },
-    { label: "South Glastonbury — Main St", href: "/location/glastonbury-ct-3/" },
+    { label: "Glastonbury, Pratt St", href: "/location/glastonbury-ct/" },
+    { label: "Downtown Glastonbury, Hebron Ave", href: "/location/glastonbury-ct-2/" },
+    { label: "South Glastonbury, Main St", href: "/location/glastonbury-ct-3/" },
     { label: "West Hartford", href: "/location/west-hartford-ct/" },
     { label: "East Hampton", href: "/location/east-hampton-ct/" },
     { label: "Westbrook", href: "/location/westbrook-ct/" },
@@ -64,6 +64,8 @@ const menu = [
   { label: "Admissions", href: "/admissions/", align: "right", children: [
     { label: "Verify Insurance", href: "/admissions/#verify" },
     { label: "Rates & Insurance", href: "/rates-and-insurance-coverage/" },
+    { label: "What to Expect", href: "/admissions/what-to-expect/" },
+    { label: "For Families", href: "/admissions/for-families/" },
     { label: "What to Expect", href: "/admissions/#what-to-expect" },
     { label: "For Families", href: "/admissions/#for-families" },
   ]},
@@ -74,7 +76,7 @@ const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.
 <header class="hw-header">
   <div class="hw-top">
     <div class="hw-top-in">
-      <p>Mental health &amp; psychiatry in Connecticut · In crisis? Call or text <a href="tel:988">988</a></p>
+      <p><em class="hw-top-motto">Therapy first. Medication second. Transformation third.</em> · In crisis? Call or text <a href="tel:988">988</a></p>
       <ul class="hw-top-social">
         {socials.map((s) => (
           <li><a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label}><Fragment set:html={s.svg} /></a></li>
@@ -83,7 +85,7 @@ const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.
     </div>
   </div>
   <div class="hw-bar">
-    <a href="/" class="hw-logo" aria-label="Hopewell Health Solutions — home">
+    <a href="/" class="hw-logo" aria-label="Hopewell Health Solutions, home">
       <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" />
     </a>
     <nav class="hw-nav" id="hwNav" aria-label="Main" data-open="false">
@@ -114,6 +116,8 @@ const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.
   .hw-top-in, .hw-bar { max-width: 1240px; margin: 0 auto; padding: 0 var(--hw-gutter); }
   .hw-top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 36px; }
   .hw-top a { color: #fff; font-weight: 700; }
+  .hw-top-motto { font-style: normal; font-weight: 600; color: #fff; letter-spacing: .01em; }
+  @media (max-width: 640px) { .hw-top-motto { display: none; } }
   .hw-top-social { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
   .hw-top-social a { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #c3d2e2; }
   .hw-top-social a:hover { background: #fff; color: var(--hw-night); }

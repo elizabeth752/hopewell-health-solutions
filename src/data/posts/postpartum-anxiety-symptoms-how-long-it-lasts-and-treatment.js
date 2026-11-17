@@ -51,7 +51,7 @@ export default {
     "Checking on your baby again and again? It may be postpartum anxiety. Learn the signs, how long it lasts, and when to get help.",
   category: "Women's Mental Health",
   excerpt:
-    "Constant worry after having a baby may be postpartum anxiety. About 1 in 5 new mothers report anxiety symptoms — here are the signs, what panic attacks feel like, how long it lasts, and how treatment works.",
+    "Constant worry after having a baby may be postpartum anxiety. About 1 in 5 new mothers report anxiety symptoms, here are the signs, what panic attacks feel like, how long it lasts, and how treatment works.",
   heroImage: "/Assets/Blogs/postpartum-anxiety-hero.webp",
   heroAlt: "A woman breathing slowly with her hands on her chest to calm anxious feelings",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",

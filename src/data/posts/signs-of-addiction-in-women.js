@@ -18,7 +18,7 @@ export default {
   readingMinutes: 3,
   bodyHtml: `
 <h2>How Addiction Can Develop Differently in Women</h2>
-<p>Women often begin using substances for different reasons than men. Many turn to alcohol, prescription medication, or other substances as a way to cope with stress and burnout, the lasting effects of unresolved trauma, relationship challenges and interpersonal conflict, or overwhelming emotional pain. Because women are more likely to internalize their distress, addiction can develop quietly and may go unnoticed on the surface, until it begins to interfere with one's daily life.</p>
+<p>Women often begin using substances for different reasons than men. Many turn to alcohol, prescription medication, or other substances as a way to cope with stress and <a href="/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/">burnout</a>, the lasting effects of unresolved trauma, relationship challenges and interpersonal conflict, or overwhelming emotional pain. Because women are more likely to internalize their distress, addiction can develop quietly and may go unnoticed on the surface, until it begins to interfere with one's daily life.</p>
 
 <p>Biological differences also play a part - women tend to metabolize alcohol and drugs differently than men which can lead to a faster progression from use to dependence. Hormonal fluctuations, body composition, and even the way the brain responds to stress can all influence the development and the severity of addiction in women.</p>
 
@@ -42,11 +42,11 @@ export default {
 <p>At Hopewell Health Solutions, we believe that recovery begins with compassion -- not judgment. Addiction is not a moral failure or a lack of willpower, but rather it is a complex and treatable condition that requires understanding, education and evidence-based care.</p>
 
 <h2>Treatment That Addresses the Whole Person</h2>
-<p>Our Intensive Outpatient Programs (IOPs) are designed to help women recover from addiction while addressing the underlying mental health concerns that often accompany it. Many women who struggle with substance use also face anxiety, depression, PTSD, or unresolved trauma. Treating these issues together, rather than separately, increases the likelihood of long-term and lasting recovery.</p>
+<p>Our <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a> (IOPs) are designed to help women recover from addiction while addressing the underlying mental health concerns that often accompany it. Many women who struggle with substance use also face anxiety, depression, <a href="/what-we-treat/trauma-ptsd/">PTSD</a>, or unresolved trauma. Treating these issues together, rather than separately, increases the likelihood of long-term and lasting recovery.</p>
 
-<p>The Women's Wellness IOP at Hopewell provides a safe, all-female environment where women can heal without fear of stigma. Through group therapy, skill-building and supportive community connection, group members learn healthier ways to cope with their emotions, rebuild trust in themselves, foster a sense of renewed self-confidence and create a balanced life in recovery.</p>
+<p>The <a href="/programs/womens-wellness-iop/">Women's Wellness IOP</a> at Hopewell provides a safe, all-female environment where women can heal without fear of stigma. Through group therapy, skill-building and supportive community connection, group members learn healthier ways to cope with their emotions, rebuild trust in themselves, foster a sense of renewed self-confidence and create a balanced life in recovery.</p>
 
-<p>For those with co-occurring mental health and substance use disorders, our Adult Mental Health IOP offers a co-ed, trauma-informed setting that promotes healing, self-awareness, and relapse prevention. Each program combines evidence-based therapies such as Dialectical Behavior Therapy (DBT) and Cognitive Behavioral Therapy (CBT) to help our clients understand the connection between emotions, behaviors, and triggers.</p>
+<p>For those with co-occurring mental health and substance use disorders, our Adult Mental Health IOP offers a co-ed, trauma-informed setting that promotes healing, self-awareness, and relapse prevention. Each program combines evidence-based therapies such as Dialectical Behavior Therapy (DBT) and <a href="/treatment-methods/therapeutic-treatments/">Cognitive Behavioral Therapy (CBT)</a> to help our clients understand the connection between emotions, behaviors, and triggers.</p>
 
 <h2>There Is Hope and Help</h2>
 <p>Addiction in women often grows from pain - not from pleasure. But healing is possible, and no one has to do it alone. With the right support, women can recover, rebuild relationships, and rediscover purpose.</p>

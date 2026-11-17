@@ -6,7 +6,7 @@ if (import.meta.env.PROD) return Astro.redirect("/");
 // status: EXISTS | REBUILD | MIGRATE | NEW
 const tree = [
   { path: "/", label: "Home", status: "REBUILD", depth: 0 },
-  { path: "/programs/", label: "Programs — levels of care", status: "NEW", depth: 0, hub: true },
+  { path: "/programs/", label: "Programs, levels of care", status: "NEW", depth: 0, hub: true },
   { path: "/programs/intensive-outpatient-program/", label: "IOP overview", status: "MIGRATE", depth: 1 },
   { path: "/programs/adult-mental-health-iop/", label: "Adult Mental Health IOP", status: "REBUILD", depth: 1 },
   { path: "/programs/mens-iop/", label: "Men's IOP", status: "NEW", depth: 1 },
@@ -19,7 +19,7 @@ const tree = [
   { path: "/programs/medication-management/", label: "Medication Management", status: "REBUILD", depth: 1 },
   { path: "/programs/outpatient-therapy/", label: "Outpatient Therapy", status: "MIGRATE", depth: 1 },
 
-  { path: "/what-we-treat/", label: "What We Treat — conditions", status: "NEW", depth: 0, hub: true },
+  { path: "/what-we-treat/", label: "What We Treat, conditions", status: "NEW", depth: 0, hub: true },
   { path: "/what-we-treat/depression/", label: "Depression", status: "NEW", depth: 1 },
   { path: "/what-we-treat/anxiety/", label: "Anxiety", status: "NEW", depth: 1 },
   { path: "/what-we-treat/trauma-ptsd/", label: "Trauma & PTSD", status: "NEW", depth: 1 },
@@ -32,7 +32,7 @@ const tree = [
   { path: "/what-we-treat/prescription-drug-addiction/", label: "Prescription Drug Addiction", status: "REBUILD", depth: 2 },
   { path: "/what-we-treat/co-occurring-disorders/", label: "Co-occurring Disorders", status: "NEW", depth: 1 },
 
-  { path: "/treatment-methods/", label: "Treatment Methods — therapies", status: "NEW", depth: 0, hub: true },
+  { path: "/treatment-methods/", label: "Treatment Methods, therapies", status: "NEW", depth: 0, hub: true },
   { path: "/treatment-methods/tms/", label: "TMS", status: "MIGRATE", depth: 1 },
   { path: "/treatment-methods/spravato/", label: "Spravato", status: "MIGRATE", depth: 1 },
   { path: "/treatment-methods/medication-assisted-treatment/", label: "MAT", status: "NEW", depth: 1 },
@@ -44,7 +44,7 @@ const tree = [
   { path: "/treatment-methods/genesight-testing/", label: "GeneSight Testing", status: "NEW", depth: 1 },
 
   { path: "/locations/", label: "Locations", status: "REBUILD", depth: 0, hub: true },
-  { path: "/locations/glastonbury-ct/", label: "Glastonbury (300 Hebron) — flagship", status: "REBUILD", depth: 1 },
+  { path: "/locations/glastonbury-ct/", label: "Glastonbury (300 Hebron), flagship", status: "REBUILD", depth: 1 },
   { path: "/locations/south-glastonbury-ct/", label: "South Glastonbury (1420 Main)", status: "MIGRATE", depth: 1 },
   { path: "/locations/glastonbury-pratt-ct/", label: "Glastonbury (33 Pratt)", status: "MIGRATE", depth: 1 },
   { path: "/locations/west-hartford-ct/", label: "West Hartford", status: "MIGRATE", depth: 1 },
@@ -64,7 +64,7 @@ const tree = [
   { path: "/contact/", label: "Contact", status: "MIGRATE", depth: 0 },
   { path: "/testimonials/", label: "Testimonials", status: "EXISTS", depth: 0 },
   { path: "/resources/", label: "Resources (handouts)", status: "MIGRATE", depth: 0 },
-  { path: "/blog/", label: "Blog — PHASE 2", status: "PHASE2", depth: 0 },
+  { path: "/blog/", label: "Blog, PHASE 2", status: "PHASE2", depth: 0 },
 ];
 
 const badge = {
@@ -75,9 +75,9 @@ const badge = {
   PHASE2: "bg-gray-200 text-gray-600",
 };
 const legend = [
-  { s: "NEW", t: "Doesn't exist — build from scratch" },
-  { s: "REBUILD", t: "Exists but thin/wrong — full rewrite" },
-  { s: "MIGRATE", t: "Exists at wrong URL — move + redirect" },
+  { s: "NEW", t: "Doesn't exist, build from scratch" },
+  { s: "REBUILD", t: "Exists but thin/wrong, full rewrite" },
+  { s: "MIGRATE", t: "Exists at wrong URL, move + redirect" },
   { s: "EXISTS", t: "Keep slug, optimize content" },
 ];
 

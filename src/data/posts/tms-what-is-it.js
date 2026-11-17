@@ -11,7 +11,7 @@ export default {
   datePublished: "2025-05-12",
   dateModified: "2025-05-12",
   readingMinutes: 2,
-  bodyHtml: `<p>TMS - or Transcranial Magnetic Stimulation, is a non-invasive brain stimulation technique that is used to treat depression and other mental health conditions. TMS is a treatment alternative that does not require medication and can be used when traditional treatments (like medication and therapy) have not been effective.</p>
+  bodyHtml: `<p>TMS - or <a href="/treatment-methods/tms/">Transcranial Magnetic Stimulation</a>, is a non-invasive brain stimulation technique that is used to treat depression and other mental health conditions. TMS is a treatment alternative that does not require medication and can be used when traditional treatments (like medication and therapy) have not been effective.</p>
 
 <h2>How Does it Work?</h2>
 <ul>
@@ -24,7 +24,7 @@ export default {
 
 <h2>What Does it Treat?</h2>
 <ul>
-<li>Major Depressive Disorder (MDD)</li>
+<li><a href="/what-we-treat/depression/">Major Depressive Disorder</a> (MDD)</li>
 <li>Anxiety Disorders</li>
 <li>Obsessive-Compulsive Disorder (OCD)</li>
 </ul>

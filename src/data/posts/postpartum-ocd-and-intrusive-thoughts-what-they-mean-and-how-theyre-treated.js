@@ -58,7 +58,7 @@ export default {
     "Scary thoughts about your baby are common after birth and a core symptom of postpartum OCD. Here is what intrusive thoughts mean and how ERP therapy and medication help.",
   category: "Women's Mental Health",
   excerpt:
-    "Having unwanted thoughts about something bad happening to your baby? They are common after birth, they do not mean you will act on them, and postpartum OCD is treatable — here is what to know.",
+    "Having unwanted thoughts about something bad happening to your baby? They are common after birth, they do not mean you will act on them, and postpartum OCD is treatable, here is what to know.",
   heroImage: "/Assets/Blogs/postpartum-ocd-intrusive-thoughts-hero.webp",
   heroAlt: "A worried woman lost in thought, troubled by unwanted intrusive thoughts",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",

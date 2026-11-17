@@ -1,4 +1,5 @@
 ---
+import Team from "../../components/hw/Team.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -14,28 +15,44 @@ import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
+import OfficeFinder from "../../components/hw/OfficeFinder.astro";
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import { STORIES } from "../../data/videos.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/locations/";
+// Hero map: offices projected from locations.js lat/lng into a 100x80 box (graphic, not to scale at the shoreline).
+const lng0 = -72.95, lng1 = -72.30, lat0 = 41.85, lat1 = 41.22;
+const proj = (l) => ({ x: ((l.lng - lng0) / (lng1 - lng0)) * 100, y: ((lat0 - l.lat) / (lat0 - lat1)) * 74 });
+const pins = locations.map((l, i) => ({ ...proj(l), n: i + 1, slug: l.slug, name: l.name, add: !!l.addiction }));
+// spread the three Glastonbury pins so they don't overlap
+for (const [slug, dx, dy] of [["glastonbury-ct", -3.5, -3], ["glastonbury-ct-2", 3.5, -2], ["glastonbury-ct-3", 0, 4]]) { const p = pins.find((q) => q.slug === slug); if (p) { p.x += dx; p.y += dy; } }
+const towns = [["Hartford", 14, 8], ["Middletown", 36, 41], ["Old Saybrook", 80, 70], ["New Haven", 3, 66]];
 const allAreas = Array.from(new Set(locations.flatMap((l) => l.areas))).sort();
 const heroUsps = [
-  { icon: "pin", t: "Six Connecticut offices — Hartford County & the shoreline" },
+  { icon: "pin", t: "Six Connecticut offices, Hartford County & the shoreline" },
   { icon: "compass", t: "In person locally or by secure telehealth statewide" },
   { icon: "calendar", t: "Daytime & evening appointments" },
   { icon: "shield", t: "Joint Commission accredited · 4.8★ · most major PPOs" },
 ];
 const why = [
-  { icon: "users", t: "One team, every office", d: "The same psychiatrists, nurse practitioners, psychologists, and therapists support you across all six locations — your care travels with you." },
-  { icon: "refresh", t: "A full continuum of care", d: "Therapy, medication management, IOP, PHP, TMS, and testing — step up or down without leaving the practice." },
+  { icon: "users", t: "One team, every office", d: "The same psychiatrists, nurse practitioners, psychologists, and therapists support you across all six locations, your care travels with you." },
+  { icon: "refresh", t: "A full continuum of care", d: "Therapy, medication management, IOP, PHP, TMS, and testing, step up or down without leaving the practice." },
   { icon: "compass", t: "In person or virtual", d: "Choose the office closest to home, or meet by secure video anywhere in Connecticut." },
   { icon: "heart", t: "Compassionate, judgment-free", d: "A warm, welcoming environment for individuals and families of every background and identity." },
 ];
 const faqs = [
+  ["Where are your offices?", "Six offices: Pratt St and Downtown (Hebron Ave) in Glastonbury, South Glastonbury (Main St), West Hartford, East Hampton and Westbrook."],
+  ["Which office has the program I need?", "Intensive programs meet in Downtown Glastonbury, South Glastonbury and Westbrook. Use the program filter above to see exactly where."],
+  ["Do all offices offer therapy and medication management?", "Yes, all six do."],
+  ["Which office is closest to the shoreline?", "Westbrook, which serves Niantic, Branford, Madison, Guilford and nearby towns."],
+  ["Where is the teen and tween program?", "South Glastonbury, 1420 Main St."],
   ["How many locations does Hopewell Health Solutions have?", "We have six offices across Connecticut: three in Glastonbury (Pratt Street, Downtown / Hebron Avenue, and South Glastonbury / Main Street), plus West Hartford, East Hampton, and Westbrook. We also offer secure telehealth statewide."],
-  ["Do you offer telehealth, or do I have to come in person?", "Both. You can be seen in person at any of our offices or by secure video telehealth anywhere in Connecticut. Many clients combine the two — in-person visits when it helps, virtual sessions when life is busy."],
+  ["Do you offer telehealth, or do I have to come in person?", "Both. You can be seen in person at any of our offices or by secure video telehealth anywhere in Connecticut. Many clients combine the two, in-person visits when it helps, virtual sessions when life is busy."],
   ["Can I see the same provider at more than one office?", "Our clinical team works as one practice across all locations. We’ll match you to the provider who best fits your needs and help you find the most convenient office or a telehealth option."],
-  ["Which services are available at each location?", "Every office offers 1:1 therapy and medication management. Downtown Glastonbury (300 Hebron Avenue) also offers PHP, adult IOP, the Women’s Wellness IOP (morning and evening) and addiction treatment. South Glastonbury (1420 Main Street) offers the Tween & Teen IOP. Westbrook offers an adult IOP, the Women’s Wellness IOP and addiction treatment. TMS and testing are available across the practice — call us and we’ll direct you to the right office for the care you need."],
+  ["Which services are available at each location?", "Every office offers 1:1 therapy and medication management. Downtown Glastonbury (300 Hebron Avenue) also offers PHP, adult IOP, the Women’s Wellness IOP (morning and evening) and addiction treatment. South Glastonbury (1420 Main Street) offers the Tween & Teen IOP. Westbrook offers an adult IOP, the Women’s Wellness IOP and addiction treatment. TMS and testing are available across the practice, call us and we’ll direct you to the right office for the care you need."],
   ["What are your hours?", "All of our offices are open Monday to Thursday, 9:00 AM to 8:00 PM, and Friday, 9:00 AM to 5:00 PM. We are closed on weekends. Call (860) 735-1448 to book at the office nearest you."],
   ["Do you take my insurance?", "We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit."],
+  ["What if I’m in crisis?", "Call or text 988, call 911, or go to the nearest emergency room."],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -44,7 +61,7 @@ const schema = {
   url: canonical,
   location: locations.map((l) => ({
     "@type": "MedicalClinic",
-    name: `Hopewell Health Solutions — ${l.name}`,
+    name: `Hopewell Health Solutions, ${l.name}`,
     url: `https://www.hopewellhealthsolutions.com/location/${l.slug}`,
     ...(l.phone ? { telephone: l.phone } : {}),
     address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
@@ -93,25 +110,58 @@ const allServices = [
 const faqsHtml = faqs.map(([q, a]) => [q, a
   .replace("(860) 735-1448", '<a class="inl" href="tel:8607351448">(860) 735-1448</a>')
   .replace("intensive programs (IOP/PHP)", 'intensive programs (<a class="inl" href="/programs/intensive-outpatient-program/">IOP</a>/<a class="inl" href="/programs/partial-hospitalization-program/">PHP</a>)')
-  .replace("verify your benefits for free", 'verify your benefits for free (see <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>)')]);
+  .replace("verify your benefits for free", 'verify your benefits for free (see <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>)')
+  .replace("Westbrook, which serves", '<a class="inl" href="/location/westbrook-ct/">Westbrook</a>, which serves')
+  .replace("Our clinical team works as one practice", 'Our <a class="inl" href="/about-us/team/">clinical team</a> works as one practice')
+  .replace("offers the Tween & Teen IOP", 'offers the <a class="inl" href="/programs/teen-iop/">Tween &amp; Teen IOP</a>')
+  .replace("(morning and evening) and addiction treatment", '(morning and evening) and <a class="inl" href="/programs/addiction-iop/">addiction treatment</a>')]);
 
 ---
 
-<Base title="Our Connecticut Locations | Hopewell Health Solutions" description="Hopewell Health Solutions has six mental health & psychiatry offices across Connecticut — three in Glastonbury, plus West Hartford, East Hampton & Westbrook — with telehealth statewide. Most PPOs accepted." canonical={canonical} image={P + "downtown-glastonbury-sign.webp"}>
+<Base title="Mental Health &amp; Addiction Care Locations in Connecticut | Hopewell" description="Six Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, CT. See which programs each offers. Check coverage." canonical={canonical} image={P + "downtown-glastonbury-sign.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "Locations" }]}
-      title="Our Connecticut Locations"
-      lede="Six offices, one trusted team — and telehealth wherever you are."
-      bullets={heroUsps.map((u) => u.t)}
-      facts={[{ icon: "clock", text: "Mon–Thu 9–8 · Fri 9–5" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
-      image={P + "team-300-hebron.webp"}
-      imagePos="center 40%"
-    />
+    <!-- Hero (Corner Canyon hub pattern): navy, H1 + facts, and a map graphic of the six offices -->
+    <section class="wq-hero">
+      <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
+      <div class="container wq-hero-grid">
+        <div>
+          <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Locations</span></nav>
+          <h1>Our Connecticut Offices</h1>
+          <p class="lede">Six offices, one trusted team, and telehealth wherever you are.</p>
+          <ul class="wq-facts">
+            {heroUsps.slice(0, 3).map((u) => <li><Icon name={u.icon} class="h-[18px] w-[18px]" />{u.t}</li>)}
+          </ul>
+          <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#by-location" class="btn wq-ghost">Find a program near you</a></div>
+        </div>
+        <figure class="lhm-map" aria-label="Map of Hopewell's six Connecticut offices">
+          <svg viewBox="0 0 100 80" role="img" aria-labelledby="lhm-map-t">
+            <title id="lhm-map-t">Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, Connecticut</title>
+            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73 L100,80 L0,80 Z" class="lhm-sea" />
+            <path d="M0,70 C14,71 26,74 40,74.5 S60,75.5 72,75 S90,73.5 100,73" class="lhm-coast" />
+            <path d="M45,0 C46,6 47,12 48,18 S49,30 51,38 S56,52 62,60 S70,70 73,75" class="lhm-river" />
+            <text x="24" y="78.4" class="lhm-sea-t">LONG ISLAND SOUND</text>
+            {pins.map((p) => (
+              <a href={`/location/${p.slug}/`} aria-label={p.name}>
+                <g class:list={["lhm-pin", p.add && "is-add"]} transform={`translate(${p.x} ${p.y})`}>
+                  <circle r="3.1" /><text y="1.1" text-anchor="middle">{p.n}</text>
+                </g>
+              </a>
+            ))}
+            {towns.map(([t, x, y]) => <text x={x} y={y} class="lhm-town">{t}</text>)}
+          </svg>
+          <figcaption>
+            <ol class="lhm-key">{pins.map((p) => <li><span class:list={["lhm-key-n", p.add && "is-add"]}>{p.n}</span><a href={`/location/${p.slug}/`}>{p.name}</a></li>)}</ol>
+            <p class="lhm-legend"><span class="lhm-dot"></span>Mental health care <span class="lhm-dot is-add"></span>Also addiction treatment</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
     <Creds />
+
+    <OfficeFinder tone="stone" />
 
     <!-- Overview -->
     <section class="section is-white" id="overview">
@@ -123,10 +173,10 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
         <div class="ab-copy">
           <h2>Mental health &amp; psychiatry, close to home across Connecticut</h2>
           <div style="margin-top:20px">
-            <p>Hopewell Health Solutions has grown into an accessible outpatient mental health and psychiatry practice, with <strong>six offices</strong> spanning Hartford County and the shoreline — three in Glastonbury, plus West Hartford, East Hampton, and Westbrook. Wherever you are in the state, compassionate, evidence-based care is close to home — and when getting to an office isn’t practical, secure telehealth brings the same trusted team to you.</p>
-            <p>Since 2013, we’ve built our reputation on a simple idea: change is a practice, not a concept. Our clinicians fuse psychology, psychiatry, and whole-person wellness into care that’s active, collaborative, and tailored to each person. Across every location you’ll find the same standard of care — a Joint Commission–accredited practice with a 4.8-star reputation and a team of psychiatrists, board-certified nurse practitioners, psychologists, and licensed therapists who genuinely listen.</p>
-            <p>Each office offers the support most people need most often — <a href="/programs/counseling/" class="inl">individual, couples, and family therapy</a> and <a href="/programs/medication-management/" class="inl">medication management</a>. Across the practice we also provide our <a href="/programs/intensive-outpatient-program/" class="inl">Intensive Outpatient Program (IOP)</a> and <a href="/programs/partial-hospitalization-program/" class="inl">Partial Hospitalization Program (PHP)</a>, plus specialized treatments such as <a href="/treatment-methods/tms/" class="inl">TMS</a> and <a href="/treatment-methods/neuropsychological-testing/" class="inl">neuropsychological and ADHD testing</a>. Because all of it lives under one roof, you can step up or down between levels of care — or add a service — without ever having to start over with a new practice.</p>
-            <p>We treat the full range of mental health and behavioral concerns: depression, anxiety, trauma and PTSD, ADHD, OCD, and bipolar disorder, with <a href="/what-we-treat/substance-use-disorder/" class="inl">addiction</a> and co-occurring care at our Downtown Glastonbury and Westbrook offices. We welcome individuals of every age, background, and identity, and we work hard to make starting easy — most major PPO insurance plans are accepted, and our team verifies your benefits for free before your first visit. Choose the office nearest you below, or call <a href="tel:8607351448" class="inl">(860) 735-1448</a> and we’ll help you find the right location, provider, and level of care.</p>
+            <p>Hopewell Health Solutions has grown into an accessible outpatient mental health and psychiatry practice, with <strong>six offices</strong> spanning Hartford County and the shoreline, three in Glastonbury, plus West Hartford, East Hampton, and Westbrook. Wherever you are in the state, compassionate, evidence-based care is close to home, and when getting to an office isn’t practical, secure telehealth brings the same trusted team to you.</p>
+            <p>Since 2013, we’ve built our reputation on a simple idea: change is a practice, not a concept. Our clinicians fuse psychology, psychiatry, and whole-person wellness into care that’s active, collaborative, and tailored to each person. Across every location you’ll find the same standard of care, a <a href="/about-us/" class="inl">Joint Commission–accredited practice</a> with a 4.8-star reputation and a team of <a href="/about-us/team/" class="inl">psychiatrists, board-certified nurse practitioners, psychologists, and licensed therapists</a> who genuinely listen.</p>
+            <p>Each office offers the support most people need most often<a href="/programs/counseling/" class="inl">individual, couples, and family therapy</a> and <a href="/programs/medication-management/" class="inl">medication management</a>. Across the practice we also provide our <a href="/programs/intensive-outpatient-program/" class="inl">Intensive Outpatient Program (IOP)</a> and <a href="/programs/partial-hospitalization-program/" class="inl">Partial Hospitalization Program (PHP)</a>, plus specialized treatments such as <a href="/treatment-methods/tms/" class="inl">TMS</a> and <a href="/treatment-methods/neuropsychological-testing/" class="inl">neuropsychological and ADHD testing</a>. Because all of it lives under one roof, you can step up or down between levels of care, or add a service, without ever having to start over with a new practice.</p>
+            <p>We treat the <a href="/what-we-treat/" class="inl">full range of mental health and behavioral concerns</a>: depression, anxiety, trauma and PTSD, ADHD, OCD, and bipolar disorder, with <a href="/what-we-treat/substance-use-disorder/" class="inl">addiction</a> and co-occurring care at our Downtown Glastonbury and Westbrook offices. We welcome individuals of every age, background, and identity, and we work hard to make starting easy, most major PPO insurance plans are accepted, and our team <a href="/rates-and-insurance-coverage/" class="inl">verifies your benefits for free</a> before your first visit. Choose the office nearest you below, or call <a href="tel:8607351448" class="inl">(860) 735-1448</a> and we’ll help you find the right location, provider, and level of care.</p>
           </div>
         </div>
       </div>
@@ -139,12 +189,12 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
         <div class="ab-offices">
           {locations.map((l, i) => (
             <article class="ab-office" style={`--bar:${bars[i]}`}>
-              <a class="ab-office-media" href={`/location/${l.slug}/`}><img src={officePhoto[l.slug]} alt={`Hopewell Health Solutions — ${l.name}`} width="1200" height="900" loading="lazy" /><span>{l.name}</span></a>
+              <a class="ab-office-media" href={`/location/${l.slug}/`}><img src={officePhoto[l.slug]} alt={`Hopewell Health Solutions, ${l.name}`} width="1200" height="900" loading="lazy" /><span>{l.name}</span></a>
               <div class="ab-office-body">
                 <span class:list={["ab-office-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health & psychiatry"}</span>
                 <h3 class="sr-only">{l.name}</h3>
                 <p class="ab-office-addr"><Icon name="pin" class="h-4 w-4" />{l.street}, {l.city}, CT {l.zip}</p>
-                <p>{l.blurb}</p>
+                <p>{l.blurb.replace(/<[^>]+>/g, "")}</p>
                 <ul class="ab-office-offers" aria-label={`Services at ${l.name}`}>
                   {OFFER_ORDER.filter((k) => l.offers?.includes(k)).map((k) => <li><Icon name={OFFERS[k].icon} class="h-4 w-4" /><a href={OFFERS[k].href}>{OFFERS[k].t}</a></li>)}
                 </ul>
@@ -156,42 +206,6 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
             </article>
           ))}
         </div>
-      </div>
-    </section>
-
-    <!-- Which office offers what -->
-    <section class="section is-white" id="compare">
-      <div class="container">
-        <div class="sec-head"><h2>Which office offers what</h2><p class="lede">Every office offers 1:1 therapy and medication management. Intensive programs and addiction treatment run at specific offices — find yours below, or call <a class="inl" href="tel:8607351448">(860) 735-1448</a>.</p></div>
-        <div class="ab-cmp-wrap">
-          <table class="ab-cmp">
-            <caption class="sr-only">Hopewell Health Solutions services by office</caption>
-            <thead>
-              <tr><th scope="col">Service</th>{locations.map((l) => <th scope="col"><a href={`/location/${l.slug}/`}>{l.name}</a><small>{l.street.replace(/, Suite.*/, "")}</small></th>)}</tr>
-            </thead>
-            <tbody>
-              {OFFER_ORDER.map((k) => (
-                <tr>
-                  <th scope="row"><a href={OFFERS[k].href}><span class="icon-badge"><Icon name={OFFERS[k].icon} class="h-[18px] w-[18px]" /></span>{OFFERS[k].t}</a></th>
-                  {locations.map((l) => l.offers?.includes(k)
-                    ? <td class:list={["is-yes", k === "addiction" && "is-add"]}><span class="sr-only">Offered at {l.name}</span><Icon name="check" class="h-5 w-5" /></td>
-                    : <td class="is-no"><span class="sr-only">Not at {l.name}</span><span aria-hidden="true">–</span></td>)}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <ul class="ab-cmp-m">
-          {OFFER_ORDER.map((k) => {
-            const at = locations.filter((l) => l.offers?.includes(k));
-            return (
-              <li class:list={[k === "addiction" && "is-add"]}>
-                <span class="icon-badge"><Icon name={OFFERS[k].icon} class="h-[18px] w-[18px]" /></span>
-                <span><a href={OFFERS[k].href}>{OFFERS[k].t}</a><small>{at.length === locations.length ? "All six offices" : at.map((l) => l.name).join(" · ")}</small></span>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
 
@@ -221,7 +235,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       <div class="container ab-areas">
         <div>
           <h2>Serving towns across Connecticut</h2>
-          <p class="lede" style="margin-top:14px">From Hartford County to the shoreline, clients travel to our offices from dozens of nearby communities — and telehealth reaches every corner of the state.</p>
+          <p class="lede" style="margin-top:14px">From Hartford County to the shoreline, clients travel to our offices from dozens of nearby communities, and telehealth reaches every corner of the state.</p>
         </div>
         <ul class="ab-towns is-wide">{allAreas.map((a) => <li><Icon name="pin" class="h-4 w-4" />{a}</li>)}</ul>
       </div>
@@ -234,7 +248,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
           <span class="ab-band-ico"><Icon name="compass" /></span>
           <div>
             <h2>Telehealth across Connecticut</h2>
-            <p class="lede">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space — and you can move between in-person and virtual visits whenever it suits your life. Call <a href="tel:8607351448" class="inl">(860) 735-1448</a> to set up your first appointment.</p>
+            <p class="lede">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space, and you can move between in-person and virtual visits whenever it suits your life. Call <a href="tel:8607351448" class="inl">(860) 735-1448</a> to set up your first appointment.</p>
           </div>
         </div>
       </div>
@@ -252,9 +266,9 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       </div>
     </section>
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews />
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost — at every one of our locations — before you commit to anything." />
+    <VideoCarousel videos={STORIES} heading="Stories From Our Offices" lede="Clients and families from across Connecticut share <a class='inl' href='/testimonials/'>what treatment at Hopewell was like</a>." />
+    <Team tone="stone" />
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost, at every one of our locations, before you commit to anything." />
 
     <!-- Services -->
     <section class="section is-white" id="services">
@@ -266,8 +280,10 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       </div>
     </section>
 
-    <Faq faqs={faqsHtml} heading="Locations — common questions" />
-    <ClosingCta heading="Find the right office for you" lede="Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you choose the location nearest you, or set up a telehealth visit." image={P + "full-team-lawn.webp"} />
+    <Reviews tone="white" />
+    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
+    <Faq faqs={faqsHtml} heading="Locations, common questions" />
+    <ClosingCta heading="Find the right office for you" lede="Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you choose the location nearest you, or set up a telehealth visit." image={P + "full-team-lawn.webp"} />
   </main>
   <Footer />
 </Base>

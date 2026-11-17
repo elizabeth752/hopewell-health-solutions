@@ -1,9 +1,15 @@
 ---
-// Location page — 2026 redesign (Corner Canyon layout, Hopewell brand). Keeps the title, meta description, canonical,
-// H1, MedicalClinic + Event schema, map embed, hours, areas served, services and FAQ. Adds a real-photo gallery,
-// programs offered at Downtown Glastonbury and Westbrook (KB: client asked for offerings by location), the clinicians
-// who work at the office (team roster), FAQPage schema, and the form in the hero (desktop) / above insurance (phones).
+// Location page — 2026 redesign, rebuilt to "Hopewell Locations: Content Briefs" (Claude Docs, 2026-11-16).
+// One template for the six offices. Brief titles, metas and H1s (addiction offices use "[Town] Mental Health & Addiction
+// Care"); URLs unchanged (the brief's 301 ideas are not applied). Photo-led: the real building in the hero, an office
+// intro with real photos, an even "Inside the office" grid. Programs are the client-confirmed `offers` (locations.js),
+// plus the Women's Trauma and First Responder IOPs at 300 Hebron (their program pages place them there).
+// Every earlier sentence of page copy is kept. [confirm] items from the briefs (parking, accessibility, office tracking
+// numbers, per-GBP reviews, testimonials, drive times, ages) are left out until the client confirms them.
+// Section order: hero → accreditations → office → (office-specific) → programs → team → photos → directions → towns →
+// insurance → other offices → Google reviews → As featured in → FAQ → closing CTA.
 import "../../styles/pages/about.css";
+import "../../styles/pages/location.css";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -12,8 +18,6 @@ import MediaStrip from "../../components/MediaStrip.astro";
 import OpenHouse from "../../components/OpenHouse.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
-import ProgramCards from "../../components/hw/ProgramCards.astro";
-import Team from "../../components/hw/Team.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
@@ -21,6 +25,7 @@ import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import { clinicalRoster, rosterByLocation } from "../../data/clinicalRoster.js";
+import { providers } from "../../data/providers.js";
 
 export function getStaticPaths() {
   return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
@@ -30,6 +35,9 @@ const fullAddress = `${l.street}, ${l.city}, CT ${l.zip}`;
 const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Hopewell Health Solutions " + fullAddress)}`;
 const canonical = `https://www.hopewellhealthsolutions.com/location/${l.slug}/`;
 const P = "/Assets/hhs-2026/";
+const L = "/Assets/locations/";
+const at = (slug) => locations.find((x) => x.slug === slug);
+const link = (slug, text) => `<a class="inl" href="/location/${slug}/">${text}</a>`;
 
 const offers = OFFER_ORDER.filter((k) => l.offers?.includes(k));
 const offerNames = offers.map((k) => OFFERS[k].t);
@@ -41,78 +49,264 @@ const heroUsps = [
   "Joint Commission accredited · most major PPOs",
 ];
 
-// Gallery: the office's own photos (locations.js) plus real photos from the client's Drive (no AI images).
-const extra = {
-  "glastonbury-ct-2": [
-    [P + "downtown-glastonbury-entrance.webp", "The walkway to our Downtown Glastonbury office at 300 Hebron Avenue", "Entrance"],
-    [P + "php-group-room.webp", "The PHP group room at our Downtown Glastonbury office", "PHP group room"],
-    [P + "iop-group-room-lights.webp", "An IOP group room with string lights and comfortable seating", "IOP group room"],
-    [P + "group-room-bright.webp", "A bright group therapy room with armchairs", "Group room"],
-    [P + "tms-chair.webp", "The TMS therapy chair at our Downtown Glastonbury office", "TMS room"],
-  ],
-  "glastonbury-ct-3": [
-    [P + "south-glastonbury-office.webp", "The South Glastonbury office building at 1420 Main Street", "Building"],
-    [P + "south-glastonbury-waiting-room.webp", "The medication management waiting room in South Glastonbury", "Waiting room"],
-    [P + "tween-group-room.webp", "The tween group room in South Glastonbury", "Tween group room"],
-  ],
-  "west-hartford-ct": [[P + "west-hartford-office.webp", "The West Hartford office on Farmington Avenue", "Building"]],
-  "east-hampton-ct": [[P + "east-hampton-waiting-room.webp", "The main waiting room at our East Hampton office", "Waiting room"]],
-  "westbrook-ct": [
-    [P + "westbrook-sign.webp", "The Hopewell Health Solutions sign at 70 Essex Road, Westbrook", "Sign"],
-    [P + "westbrook-therapy-office.webp", "A therapy office at our Westbrook location", "Therapy office"],
-  ],
-};
-const LABELS = [["aerial", "Aerial view"], ["sign-entrance", "Entrance sign"], ["sign", "Sign"], ["exterior", "Building"], ["building", "Building"], ["campus", "Campus"], ["front", "Front"], ["entry", "Entry porch"], ["entrance", "Entrance"], ["street", "Street view"], ["lobby", "Lobby"], ["waiting", "Waiting room"], ["sitting", "Sitting room"], ["therapy", "Therapy room"], ["couch", "Therapy space"], ["office", "Office"]];
-const label = (file) => (LABELS.find(([k]) => file.includes(k)) || [, "Office"])[1];
-const gallery = [
-  ...(l.photos || []).map(([f, alt]) => [`${l.photoDir}/${f}`, alt, label(f)]),
-  ...(extra[l.slug] || []),
-];
-const heroImg = l.photos?.length ? `${l.photoDir}/${l.photos.find(([f]) => f.includes("exterior"))?.[0] ?? l.photos[0][0]}` : P + "iop-clinicians-group-room.webp";
+// ---- Per-office content from the briefs ----------------------------------------------------------------------------
+// title/meta/h1 = brief; lead = the brief's hero line, placed before the page's existing lede.
+const PAGE = {
+  "glastonbury-ct": {
+    title: "Therapist & Psychiatrist in Glastonbury, CT (Pratt St) | Hopewell",
+    meta: "Individual, family and group therapy plus medication management at Hopewell's Pratt St office in Glastonbury, CT. Real clinicians, in person. Check coverage.",
+    h1: "Therapy &amp; Psychiatry in Glastonbury, CT: Pratt St Office",
+    lead: "Glastonbury’s Hopewell office for therapy and medication management, in a house on Pratt Street.",
+    hero: [L + "glastonbury/exterior.webp", "center 55%"],
+    pics: [[L + "glastonbury/exterior.webp", "The Hopewell Health Solutions house at 33 Pratt St, Glastonbury"], [L + "glastonbury/therapy-space.webp", "A living-room-style therapy space at the Pratt St office"]],
+    gallery: [
+      [L + "glastonbury/therapy-space.webp", "Living-room-style therapy space in the Pratt St office", "Therapy room"],
+      [L + "glastonbury/sitting-area.webp", "Sitting area with a lamp in the Pratt St office", "Sitting area"],
+      [L + "glastonbury/couch.webp", "Comfortable seating in the Pratt St office", "Seating"],
+      [L + "glastonbury/exterior.webp", "Front of the Pratt St office house in Glastonbury", "The house"],
+    ],
+    reviewsFirst: ["Therapy", "Medication management"],
+  },
+  "glastonbury-ct-2": {
+    title: "IOP, PHP & Addiction Treatment in Glastonbury, CT | Hopewell",
+    meta: "Hopewell's Hebron Ave office in Glastonbury, CT offers PHP, addiction IOP and IOPs for women and first responders, plus therapy and psychiatry. Check coverage.",
+    h1: "Glastonbury Mental Health &amp; Addiction Care",
+    lead: "IOP, PHP and addiction treatment in Glastonbury, CT, at Hopewell’s main office in the Medical Arts Center.",
+    hero: [L + "downtown-glastonbury/exterior-2.webp", "center 60%"],
+    pics: [[L + "downtown-glastonbury/building.webp", "The Medical Arts Center at 300 Hebron Ave, Glastonbury"], [L + "downtown-glastonbury/entrance.webp", "The bright entrance hall at 300 Hebron Ave"]],
+    gallery: [
+      [P + "php-group-room.webp", "The PHP group room at our Downtown Glastonbury office", "PHP group room"],
+      [P + "iop-group-room-lights.webp", "An IOP group room with string lights and comfortable seating", "IOP group room"],
+      [P + "group-room-bright.webp", "A bright group therapy room with armchairs", "Group room"],
+      [P + "tms-chair.webp", "The TMS therapy chair at our Downtown Glastonbury office", "TMS room"],
+      [L + "downtown-glastonbury/entrance.webp", "Welcoming entrance at the Downtown Glastonbury office", "Entrance"],
+      [L + "downtown-glastonbury/sign.webp", "Glastonbury Medical Arts Center sign at 300 Hebron Avenue", "Medical Arts Center"],
+    ],
+    reviewsFirst: ["IOP", "Women’s Wellness IOP"],
+  },
+  "glastonbury-ct-3": {
+    title: "Teen & Tween IOP in South Glastonbury, CT | Hopewell",
+    meta: "Hopewell's South Glastonbury office runs after-school Teen (13–17) and Tween (8–12) IOPs, plus therapy and medication management for families. Check coverage.",
+    h1: "Teen &amp; Tween IOP and Family Therapy in South Glastonbury, CT",
+    lead: "Home of Hopewell’s Teen and Tween IOPs, with therapy and medication management for the whole family.",
+    hero: [L + "1420-main/1420-4.webp", "center 55%"],
+    pics: [[P + "south-glastonbury-office.webp", "The South Glastonbury office building at 1420 Main Street"], [L + "1420-main/1420-1.webp", "Hopewell Health Solutions sign at 1420 Main Street"]],
+    gallery: [
+      [L + "1420-main/1420-2.webp", "Front desk and waiting area at the South Glastonbury office", "Front desk"],
+      [L + "1420-main/1420-3.webp", "Welcome window and reception at the South Glastonbury office", "Reception"],
+      [L + "1420-main/1420-4.webp", "Waiting room at the South Glastonbury office", "Waiting room"],
+      [L + "1420-main/1420-5.webp", "Tween and teen IOP group room at the South Glastonbury office", "Group room"],
+      [L + "1420-main/1420-6.webp", "Individual therapy office at the South Glastonbury office", "Therapy office"],
+      [L + "1420-main/1420-8.webp", "Therapy room with a green wall at the South Glastonbury office", "Green room"],
+      [L + "1420-main/1420-9.webp", "Family therapy room at the South Glastonbury office", "Family room"],
+      [P + "south-glastonbury-waiting-room.webp", "The medication management waiting room in South Glastonbury", "Waiting area"],
+    ],
+    reviewsFirst: ["Therapy", "IOP"],
+  },
+  "west-hartford-ct": {
+    title: "Therapist & Psychiatrist in West Hartford, CT | Hopewell",
+    meta: "Therapy and medication management at Hopewell's Farmington Ave office in West Hartford, CT, with intensive programs nearby in Glastonbury. Check coverage.",
+    h1: "Therapy &amp; Psychiatry in West Hartford, CT",
+    lead: "Therapy and medication management on Farmington Avenue, with intensive programs nearby in Glastonbury.",
+    hero: [L + "west-hartford/exterior.webp", "center 50%"],
+    pics: [[P + "west-hartford-office.webp", "The West Hartford office on Farmington Avenue"], [L + "west-hartford/entrance.webp", "Entrance to the West Hartford office"]],
+    gallery: [
+      [L + "west-hartford/therapy-office.webp", "Therapy office in West Hartford", "Therapy office"],
+      [L + "west-hartford/office.webp", "Office space at the West Hartford location", "Office"],
+      [L + "west-hartford/couch.webp", "Comfortable seating in the West Hartford office", "Seating"],
+      [L + "west-hartford/entrance.webp", "Entrance to the West Hartford office", "Entrance"],
+    ],
+    reviewsFirst: ["Therapy", "Medication management"],
+  },
+  "east-hampton-ct": {
+    title: "Therapist & Psychiatrist in East Hampton, CT | Hopewell",
+    meta: "Therapy and medication management at Hopewell's E. High St office in East Hampton, CT, serving the Middletown area. Teen IOP is nearby in South Glastonbury.",
+    h1: "Therapy &amp; Psychiatry in East Hampton, CT",
+    lead: "Therapy and medication management on East High Street, serving East Hampton and the Middletown area.",
+    hero: [L + "east-hampton/exterior.webp", "center 55%"],
+    pics: [[L + "east-hampton/lobby.webp", "Lobby of the East Hampton office at 151 E. High St"], [L + "east-hampton/sign.webp", "Hopewell Health Solutions sign outside the East Hampton office"]],
+    gallery: [
+      [P + "east-hampton-waiting-room.webp", "The main waiting room at our East Hampton office", "Waiting room"],
+      [P + "east-hampton-waiting-room-2.webp", "A second seating area in the East Hampton waiting room", "Seating area"],
+      [P + "east-hampton-counseling-room.webp", "A counseling room at our East Hampton office", "Counseling room"],
+      [P + "east-hampton-therapy-office.webp", "A therapy office at our East Hampton office", "Therapy office"],
+      [P + "east-hampton-front-office.webp", "A front office at our East Hampton location", "Office"],
+      [L + "east-hampton/entry-porch.webp", "The drive up to the East Hampton office on E. High St", "Arriving"],
+    ],
+    reviewsFirst: ["Therapy", "Medication management"],
+  },
+  "westbrook-ct": {
+    title: "Westbrook, CT IOP & Addiction Treatment | Shoreline | Hopewell",
+    meta: "Hopewell Westbrook offers women's, addiction and co-occurring IOPs, therapy and psychiatry for the shoreline: Old Saybrook, Clinton, Madison, Guilford, Niantic. Check coverage.",
+    h1: "Westbrook Mental Health &amp; Addiction Care",
+    lead: "Hopewell’s shoreline office: IOPs, addiction treatment, therapy and psychiatry on Essex Road in Westbrook.",
+    hero: [L + "westbrook/sign.webp", "center 50%"],
+    pics: [[L + "westbrook/aerial.webp", "Aerial view of the Hopewell Westbrook campus at 70 Essex Road"], [L + "westbrook/sign-entrance.webp", "Front entrance and sign at the Westbrook office"]],
+    gallery: [
+      [L + "westbrook/waiting-room.webp", "Waiting room and front desk at the Westbrook office", "Waiting room"],
+      [L + "westbrook/therapy-room-shore.webp", "Therapy room with shoreline artwork in Westbrook", "Therapy room"],
+      [L + "westbrook/therapy-room-garden.webp", "Bright therapy room with plants in Westbrook", "Garden room"],
+      [L + "westbrook/therapy-room-sage.webp", "Therapy room with a green sofa in Westbrook", "Sage room"],
+      [L + "westbrook/therapy-room.webp", "Therapy room with sofa and armchair in Westbrook", "Therapy room"],
+      [L + "westbrook/office.webp", "Clinician office and seating area in Westbrook", "Office"],
+      [L + "westbrook/sitting-room.webp", "Sitting room with a window view in Westbrook", "Sitting room"],
+      [L + "westbrook/exterior.webp", "Hopewell Health Solutions sign and building at 70 Essex Road, Westbrook", "Building"],
+    ],
+    reviewsFirst: ["Women’s Wellness IOP", "IOP"],
+  },
+}[l.slug];
 
-// Programs & services at this office: exactly the client-confirmed list (locations.js `offers`, 2026-11-16).
+// ---- Programs & services at this office ----------------------------------------------------------------------------
+// Card copy kept from the earlier page; brief names used for the IOPs.
 const card = {
-  php: { d: "Full-day treatment for when weekly therapy simply isn’t enough.", img: P + "php-group-room.webp", bar: "#265489", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
-  iop: { d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", img: P + "adult-evening-iop-group.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
-  womens: { d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", img: P + (l.slug === "westbrook-ct" ? "womens-wellness-team-2.webp" : "womens-wellness-team.webp"), bar: "#b6863c", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : "Adult women"]] },
-  "teen-tween": { d: "After-school support for ages 8–18, with the family woven into the work.", img: P + "tween-group-room.webp", bar: "#5c7c6b", facts: [["calendar", "After school"], ["users", "Tweens 8–12 · teens 13–17"]] },
-  therapy: { d: "One-on-one sessions with a licensed therapist, in person at this office or by telehealth.", img: gallery.find(([src]) => /therapy|office|couch|sitting/.test(src))?.[0] ?? P + "westbrook-therapy-office.webp", bar: "#2f76c4", facts: [["users", "Individual sessions"], ["compass", "In person or telehealth"]] },
-  meds: { d: "Thoughtful psychiatric prescribing for ages 4 and up — never one-size-fits-all.", img: P + "providers-together.webp", bar: "#5c7c6b", facts: [["pill", l.slug === "westbrook-ct" ? "Including MAT" : "Ages 4 and up"], ["compass", "In person or telehealth"]] },
-  addiction: { d: "Addiction treatment with mental health care alongside it, in our addiction IOP.", img: P + "iop-group-session.webp", bar: "#0b2f55", facts: [["link", "Co-occurring care"], ["pin", l.name]] },
+  php: { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", bar: "#265489", icon: "sun", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
+  iop: { t: "Adult Co-Occurring IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", bar: "#2f76c4", icon: "users", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
+  womens: { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", bar: "#b6863c", icon: "heart", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : "Adult women"]] },
+  trauma: { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", d: "A women-only, trauma-informed program for healing from past trauma, in the evening.", bar: "#8a5a2b", icon: "shield", facts: [["clock", "Mon–Thu, 5–8 PM"], ["heart", "Women-only groups"]] },
+  responder: { t: "First Responder IOP", href: "/programs/first-responder-iop/", d: "A confidential IOP for police, firefighters, EMS and dispatchers, with peers who understand the job.", bar: "#0b2f55", icon: "shield", facts: [["clock", "Mon–Thu, 9 AM–12 PM"], ["users", "First responders"]] },
+  teen: { t: "Teen IOP", href: "/programs/teen-iop/", d: "After-school DBT skills groups for teens, with parents involved every week.", bar: "#5c7c6b", icon: "sparkles", facts: [["users", "Teens 13–17"], ["clock", "Mon–Thu, 5–8 PM"]] },
+  tween: { t: "Tween IOP", href: "/programs/tween-iop/", d: "After-school support for kids, with parent sessions built into the program.", bar: "#7a9a87", icon: "sun", facts: [["users", "Tweens 8–12"], ["clock", "Mon–Thu, 4:30–7:30 PM"]] },
+  therapy: { t: "1:1 Therapy", d: "One-on-one sessions with a licensed therapist, in person at this office or by telehealth.", bar: "#2f76c4", icon: "chat", facts: [["users", "Individual sessions"], ["compass", "In person or telehealth"]] },
+  meds: { t: "Medication Management", d: "Thoughtful psychiatric prescribing for ages 4 and up, never one-size-fits-all.", bar: "#5c7c6b", icon: "pill", facts: [["pill", l.slug === "westbrook-ct" ? "Including MAT" : "Ages 4 and up"], ["compass", "In person or telehealth"]] },
+  addiction: { t: "Addiction IOP", d: "Addiction treatment with mental health care alongside it, in our addiction IOP.", bar: "#0b2f55", icon: "link", facts: [["link", "Co-occurring care"], ["pin", l.name]] },
+  mat: { t: "Medication-Assisted Treatment (MAT)", href: "/treatment-methods/medication-assisted-treatment/", d: "Medication for recovery from alcohol or opioid use, prescribed alongside counseling when appropriate.", bar: "#265489", icon: "pill", facts: [["pill", "Through medication management"], ["pin", l.name]] },
 };
+const ORDER = {
+  "glastonbury-ct-2": ["php", "iop", "addiction", "womens", "trauma", "responder", "therapy", "meds"],
+  "glastonbury-ct-3": ["teen", "tween", "therapy", "meds"],
+  "westbrook-ct": ["womens", "addiction", "iop", "therapy", "meds", "mat"],
+};
+const keys = ORDER[l.slug] ?? offers;
+const items = keys.map((k) => ({ ...card[k], href: card[k].href ?? OFFERS[k].href }));
+const anchor = (t) => t.replace(/\s*\(.*?\)/, "");
+// Therapy-only offices: a third tile points to where the intensive programs meet (brief "Need more support?" box).
+const moreBox = {
+  "glastonbury-ct": { icon: "compass", h: "Need more support?", p: `IOP and PHP programs in Glastonbury meet at our ${link("glastonbury-ct-2", "Downtown Glastonbury office at 300 Hebron Ave")}, in the same town. See how an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> works.` },
+  "west-hartford-ct": { icon: "compass", h: "Need more support?", p: `The nearest intensive programs, PHP and IOP, meet at our ${link("glastonbury-ct-2", "Downtown Glastonbury office at 300 Hebron Ave")}. See how an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a> works.` },
+  "east-hampton-ct": { icon: "sparkles", h: "Looking for teen IOP?", p: `Our <a class="inl" href="/programs/teen-iop/">Teen IOP</a> and <a class="inl" href="/programs/tween-iop/">Tween IOP</a> meet at our ${link("glastonbury-ct-3", "South Glastonbury office, 1420 Main St")}.` },
+}[l.slug];
+const nCards = items.length + (moreBox ? 1 : 0);
+const cardCols = nCards % 4 === 0 ? 4 : 3;
+
 const intro = {
   "glastonbury-ct": "Our Pratt Street office offers 1:1 therapy and medication management in a warm, house-style setting.",
-  "glastonbury-ct-2": "300 Hebron Avenue is Hopewell’s main hub for intensive programs: PHP, adult IOP and our Women’s Wellness IOP (morning and evening), plus therapy and medication management — and addiction treatment with mental health care alongside it.",
-  "glastonbury-ct-3": "Our 1420 Main Street office is home to the Tween & Teen IOP, plus 1:1 therapy and medication management.",
+  "glastonbury-ct-2": "300 Hebron Avenue is Hopewell’s main hub for intensive programs: PHP, adult IOP and our Women’s Wellness IOP (morning and evening), plus therapy and medication management, and addiction treatment with mental health care alongside it.",
+  "glastonbury-ct-3": "Our 1420 Main Street office is home to the Tween & Teen IOP, plus 1:1 therapy and medication management. After-school support for ages 8–18, with the family woven into the work.",
   "west-hartford-ct": "Our West Hartford office offers 1:1 therapy and medication management.",
   "east-hampton-ct": "Our East Hampton office offers 1:1 therapy and medication management.",
-  "westbrook-ct": "Our Westbrook office offers an adult IOP and our Women’s Wellness IOP, plus 1:1 therapy and medication management — and addiction treatment.",
+  "westbrook-ct": "Our Westbrook office offers an adult IOP and our Women’s Wellness IOP, plus 1:1 therapy and medication management, and addiction treatment.",
 };
-const items = offers.map((k) => ({ t: OFFERS[k].t, href: OFFERS[k].href, ...card[k] }));
 
-// Clinical staff at this office, from the client PDF (same roster as /about-us/team/). No medical staff here.
-const teamSlugs = clinicalRoster[rosterByLocation[l.slug]] ?? [];
+// ---- Clinicians (client PDF roster; no medical staff). Glastonbury's three offices share one roster group. ----------
+const TEAM_PICK = {
+  "glastonbury-ct": ["jonathan-ficara-lcsw", "dori-bessette-crail-lmft", "joanne-malinka-lcsw", "meagan-carr-ph-d", "jessenia-medina-lpc-ncc", "patricia-nogelo-ph-d-lcsw"],
+  "glastonbury-ct-2": ["sherrie-gaudet-lcsw", "traci-schneider-maatc-lpc-a-atr-p", "sheryll-waring-lpc-ldac", "bido-aguessy-psy-d-lpc-a", "erica-schwartz-lcat", "kelvin-young-cpsrp"],
+  "glastonbury-ct-3": ["eric-schwartz-psy-d-abpp", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d", "nathan-truong-lmft-a", "eunice-rivera-miranda-ph-d", "dashelle-barco-lpc"],
+};
+const roster = clinicalRoster[rosterByLocation[l.slug]] ?? [];
+const okP = (p) => p && p.photo && !p.photoPlaceholder && !p.removed && !p.hideFromTeam;
+const team = (TEAM_PICK[l.slug] ?? roster).filter((s) => roster.includes(s)).map((s) => providers.find((p) => p.slug === s)).filter(okP).slice(0, 6);
+const nameOf = (n) => n.split(",")[0].trim();
+const credsOf = (n) => n.split(",").slice(1).map((c) => c.trim()).filter(Boolean).join(", ").replace(/-/g, "‑");
+const shortRole = (r) => r.replace(/^Board-Certified /, "").replace(/ · .*/, "").replace(/ & Licensed Clinical Social Worker/, "");
+const isGlast = rosterByLocation[l.slug] === "glastonbury";
+const teamHeading = isGlast ? "Clinicians at our Glastonbury offices" : `Clinicians at our ${l.city} office`;
+const teamLede = isGlast
+  ? `The psychologists, counselors, social workers and therapists who see clients across our three Glastonbury offices. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`
+  : `The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`;
 
+// ---- Nearest other offices (straight-line distance from locations.js coordinates) ----------------------------------
+const dist = (a, b) => Math.hypot(a.lat - b.lat, (a.lng - b.lng) * Math.cos((a.lat * Math.PI) / 180));
+const NEAR_PHOTO = {
+  "glastonbury-ct": L + "glastonbury/exterior.webp",
+  "glastonbury-ct-2": L + "downtown-glastonbury/exterior-2.webp",
+  "glastonbury-ct-3": P + "south-glastonbury-office.webp",
+  "west-hartford-ct": L + "west-hartford/exterior.webp",
+  "east-hampton-ct": L + "east-hampton/exterior.webp",
+  "westbrook-ct": L + "westbrook/exterior.webp",
+};
+const NEAR_NOTE = {
+  "glastonbury-ct": "Therapy and medication management in a house on Pratt Street.",
+  "glastonbury-ct-2": "PHP, adult, women’s, first responder and addiction IOPs, plus therapy and medication management.",
+  "glastonbury-ct-3": "Teen and Tween IOPs, plus therapy and medication management.",
+  "west-hartford-ct": "Therapy and medication management on Farmington Avenue.",
+  "east-hampton-ct": "Therapy and medication management on East High Street.",
+  "westbrook-ct": "Adult, women’s and addiction IOPs on the shoreline, plus therapy and medication management.",
+};
+const near = locations.filter((x) => x.slug !== l.slug).sort((a, b) => dist(l, a) - dist(l, b)).slice(0, 2);
 
-const faqs = [
-  [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online.`],
-  ["Do you offer in-person and telehealth appointments?", "Yes — you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."],
-  ["What services are offered at this location?", `At our ${l.name} office we offer ${listText(offers.map((k) => `<a class="inl" href="${OFFERS[k].href}">${OFFERS[k].t}</a>`))}${l.addiction ? "" : ". Addiction treatment is offered at our <a class=\"inl\" href=\"/location/glastonbury-ct-2/\">Downtown Glastonbury</a> and <a class=\"inl\" href=\"/location/westbrook-ct/\">Westbrook</a> offices"}. Providers vary by office — call us and we’ll match you to the right care and location.`],
-  ["Do you take my insurance?", `We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit. See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>.`],
-  ["How do I book my first appointment?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online. Our team will help you choose the right provider, service, and location.`],
-];
+// ---- FAQ: the page's earlier questions merged with the brief's (unconfirmed brief answers left out) ---------------
+const a = (href, t) => `<a class="inl" href="${href}">${t}</a>`;
+const servicesAnswer = `At our ${l.name} office we offer ${listText(offers.map((k) => a(OFFERS[k].href, OFFERS[k].t)))}${l.addiction ? "" : `. Addiction treatment is offered at our ${a("/location/glastonbury-ct-2/", "Downtown Glastonbury")} and ${a("/location/westbrook-ct/", "Westbrook")} offices`}. Providers vary by office, call us and we’ll match you to the right care and location.`;
+const faqWhere = [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online.`];
+const faqTele = ["Do you offer in-person and telehealth appointments?", "Yes, you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."];
+const faqIns = ["Do you take my insurance?", `We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit. See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>. Most commercial plans cover care here; Hopewell doesn’t accept Medicare either.`];
+const faqBook = ["How do I book my first appointment?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or <a class="inl" href="/admissions/">request an appointment online</a>. Our team will help you choose the right provider, service, and location. We’ll check your insurance first.`];
+const faqHours = ["What are the office hours?", `${l.hours.replace(" · ", "; ")}. Appointments are available during the day and into the evening.`];
+const faqCrisis = ["What if I’m in crisis?", `Call or text <a class="inl" href="tel:988">988</a>, call 911, or go to the nearest emergency room.`];
+const svcLinks = `${a("/programs/counseling/", "Counseling and therapy")}, and ${a("/programs/medication-management/", "medication management")} with a psychiatric provider.`;
+const FAQS = {
+  "glastonbury-ct": [
+    ["What services are offered at the Pratt St office?", `${svcLinks} ${servicesAnswer}`],
+    ["Are IOP or PHP programs held here?", `No. Intensive programs in Glastonbury meet at our ${a("/location/glastonbury-ct-2/", "Downtown office, 300 Hebron Ave")}.`],
+    faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
+  ],
+  "glastonbury-ct-2": [
+    ["What programs are at the Hebron Ave office?", `${a("/programs/partial-hospitalization-program/", "PHP")}, the ${a("/programs/adult-mental-health-iop/", "Adult Co-Occurring IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")}, ${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/womens-trauma-iop/", "Women’s Trauma IOP")} and ${a("/programs/first-responder-iop/", "First Responder IOP")}, plus counseling and medication management. ${servicesAnswer}`],
+    ["Is this where the PHP meets?", `Yes. Our ${a("/programs/partial-hospitalization-program/", "partial hospitalization program (PHP)")} meets here, Monday through Friday, about six hours a day.`],
+    ["Do you treat addiction at this office?", `Yes, through the Addiction IOP and Adult Co-Occurring IOP, with ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment")} available.`],
+    ["Where is the teen program?", `At our ${a("/location/glastonbury-ct-3/", "South Glastonbury office, 1420 Main St")}.`],
+    faqWhere, faqHours,
+    ["How soon can I start?", "It depends on the program. Call or send the form, and admissions will check your insurance and give you a start date."],
+    faqTele, faqIns, faqBook, faqCrisis,
+  ],
+  "glastonbury-ct-3": [
+    ["What programs meet at the South Glastonbury office?", `The ${a("/programs/teen-iop/", "Teen IOP")} for ages 13–17 and the ${a("/programs/tween-iop/", "Tween IOP")} for ages 8–12, plus counseling and medication management. ${servicesAnswer}`],
+    ["When do the teen and tween groups meet?", "After school, Monday through Thursday: teens from 5:00 to 8:00 PM and tweens from 4:30 to 7:30 PM, so kids don’t miss class."],
+    ["How are parents involved?", `Through family sessions and regular updates from the care team. Parents attend once or twice a week to learn the same ${a("/treatment-methods/dbt/", "DBT skills")}, and we host a Parent Support Group on Tuesdays and Parent Night on Thursdays.`],
+    ["Can my child see a therapist here without joining IOP?", "Yes, we offer counseling and medication management at this office."],
+    faqWhere, faqHours, faqTele,
+    ["Does insurance cover the teen and tween IOPs?", "Most commercial plans do. We check benefits for free; we don’t accept Medicaid (HUSKY)."],
+    faqIns, faqBook,
+    ["What if my teen is in crisis?", `Call or text <a class="inl" href="tel:988">988</a>, call 911, or go to the nearest emergency room.`],
+  ],
+  "west-hartford-ct": [
+    ["What services are offered in West Hartford?", `${svcLinks} ${servicesAnswer}`],
+    ["Do you have an IOP in West Hartford?", `Not at this office. Our intensive programs meet in Glastonbury and Westbrook; the nearest is our ${a("/location/glastonbury-ct-2/", "Downtown Glastonbury office")}.`],
+    faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
+  ],
+  "east-hampton-ct": [
+    ["What services are offered in East Hampton?", `${svcLinks} ${servicesAnswer}`],
+    ["Is the teen IOP in East Hampton?", `No. Our Teen and Tween IOPs meet at our ${a("/location/glastonbury-ct-3/", "South Glastonbury office")}.`],
+    faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
+  ],
+  "westbrook-ct": [
+    ["What programs are offered at the Westbrook office?", `${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")} and ${a("/programs/adult-mental-health-iop/", "Adult Co-Occurring IOP")}, plus counseling and medication management. ${servicesAnswer}`],
+    ["When did the Westbrook office open?", "On September 28, 2026."],
+    ["Do you treat addiction in Westbrook?", `Yes, through the Addiction IOP and Adult Co-Occurring IOP. Medication management here includes ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment (MAT)")}.`],
+    ["Is there a women’s program on the shoreline?", "Yes. Our Women’s Wellness IOP meets here, and a second group is planned."],
+    ["What towns does the Westbrook office serve?", "Shoreline towns including Old Saybrook, Clinton, Madison, Guilford, Branford and Niantic."],
+    ["Is there teen care in Westbrook?", `Our ${a("/programs/teen-iop/", "Teen")} and ${a("/programs/tween-iop/", "Tween IOPs")} meet in ${a("/location/glastonbury-ct-3/", "South Glastonbury")}.`],
+    faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
+  ],
+};
+const faqs = FAQS[l.slug];
+
+// ---- Schema ----------------------------------------------------------------------------------------------------------
+const gallery = PAGE.gallery;
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
-  name: `Hopewell Health Solutions — ${l.name}`,
+  "@id": `${canonical}#clinic`,
+  name: `Hopewell Health Solutions, ${l.name}`,
   url: canonical,
   ...(l.phone ? { telephone: l.phone } : {}),
   email: "hhs4help@gmail.com",
-  image: gallery.slice(0, 3).map(([src]) => "https://www.hopewellhealthsolutions.com" + src),
+  image: [PAGE.hero[0], ...gallery.slice(0, 2).map(([src]) => src)].map((src) => "https://www.hopewellhealthsolutions.com" + src),
   address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
   geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
   parentOrganization: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
-  areaServed: l.areas.map((a) => ({ "@type": "City", name: a })),
+  areaServed: l.areas.map((x) => ({ "@type": "City", name: x })),
   medicalSpecialty: ["Psychiatric", "Behavioral"],
   // Matches the Google Business Profiles: Mon to Thu 9 to 8, Fri 9 to 5, closed weekends.
   ...(l.hours && {
@@ -129,7 +323,7 @@ const ev = l.event && new Date() <= new Date(l.event.end) ? l.event : null;
 const eventSchema = ev && {
   "@context": "https://schema.org",
   "@type": "Event",
-  name: `${ev.eyebrow} — Hopewell Health Solutions ${l.name}`,
+  name: `${ev.eyebrow}, Hopewell Health Solutions ${l.name}`,
   description: ev.intro,
   startDate: ev.start,
   endDate: ev.end,
@@ -138,81 +332,69 @@ const eventSchema = ev && {
   isAccessibleForFree: true,
   location: {
     "@type": "Place",
-    name: `Hopewell Health Solutions — ${l.name}`,
+    name: `Hopewell Health Solutions, ${l.name}`,
     address: { "@type": "PostalAddress", streetAddress: `${l.street}, Building B`, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
   },
   organizer: { "@type": "Organization", name: "Hopewell Health Solutions", url: "https://www.hopewellhealthsolutions.com/" },
   url: `${canonical}#${ev.id}`,
 };
+const gCols = gallery.length % 4 === 0 && gallery.length > 4 ? 4 : gallery.length === 4 ? 4 : 3;
 ---
 
-<Base title={`${l.name} | Mental Health & Psychiatry in ${l.city}, CT | Hopewell Health Solutions`} description={`Hopewell Health Solutions ${l.name} — ${listText(offerNames.map((n) => n.replace(/ \(PHP\)/, "")))} at ${l.street}, ${l.city}, CT. In person & telehealth, most PPOs accepted.`} canonical={canonical} image={gallery[0]?.[0]}>
+<Base title={PAGE.title} description={PAGE.meta} canonical={canonical} image={PAGE.hero[0]}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "Locations", href: "/locations/" }, { label: l.name }]}
-      title={`Mental Health &amp; Psychiatry — ${l.name}`}
-      lede={`Compassionate, evidence-based care — close to home, at ${fullAddress}.`}
-      bullets={heroUsps}
-      facts={[{ icon: "clock", text: l.hours ?? "Daytime & evening appointments" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
-      image={heroImg}
-      imagePos="center 45%"
-    >
-      <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" /><a class="inl" href={directions} target="_blank" rel="noopener">Get directions to {l.name}</a></p>
-    </ServiceHero>
+    <!-- 1. Hero: the real building, address, hours, coverage form -->
+    <div class="lp-hero">
+      <ServiceHero
+        crumbs={[{ label: "Locations", href: "/locations/" }, { label: l.name }]}
+        title={PAGE.h1}
+        lede={`${PAGE.lead} Compassionate, evidence-based care, close to home, at ${fullAddress}.`}
+        bullets={heroUsps}
+        facts={[{ icon: "clock", text: l.hours ?? "Daytime & evening appointments" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
+        image={PAGE.hero[0]}
+        imagePos={PAGE.hero[1]}
+      >
+        <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" /><a class="inl" href={directions} target="_blank" rel="noopener">Get directions to {l.name}</a></p>
+      </ServiceHero>
+    </div>
 
     <Creds />
 
     {ev && <OpenHouse ev={ev} l={l} directions={directions} />}
 
-    <!-- Visit us: map + office details -->
-    <section class="section is-white" id="visit">
-      <div class="container ab-visit">
-        <div class="ab-map"><iframe src={l.map} title={`Map — Hopewell Health Solutions, ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
-        <div class="ab-details">
+    <!-- 2. The office -->
+    <section class="section is-white" id="office">
+      <div class="container lp-intro">
+        <div class="lp-pics">
+          <img src={PAGE.pics[0][0]} alt={PAGE.pics[0][1]} width="1200" height="900" loading="eager" />
+          <img class="lp-inset" src={PAGE.pics[1][0]} alt={PAGE.pics[1][1]} width="600" height="600" loading="lazy" />
+        </div>
+        <div class="lp-copy">
           <h2>The {l.name} office</h2>
-          <p>{l.blurb}</p>
-          <ul class="ab-facts">
-            <li><span class="ab-ico"><Icon name="pin" class="h-5 w-5" /></span><span><strong>Address</strong>{fullAddress}</span></li>
-            <li><span class="ab-ico"><Icon name="phone" class="h-5 w-5" /></span><span><strong>Phone</strong><a href="tel:8607351448">(860) 735-1448</a></span></li>
-            <li><span class="ab-ico"><Icon name="calendar" class="h-5 w-5" /></span><span><strong>Hours</strong>{l.hours ?? "By appointment — daytime & evening availability"}</span></li>
+          <p class="lede" set:html={l.blurb} />
+          <ul class="lp-facts">
+            <li><strong><Icon name="pin" class="h-5 w-5" />Address</strong><span>{fullAddress}</span></li>
+            <li><strong><Icon name="phone" class="h-5 w-5" />Phone</strong><span><a href="tel:8607351448">(860) 735-1448</a></span></li>
+            <li><strong><Icon name="calendar" class="h-5 w-5" />Hours</strong><span>{l.hours ? l.hours.split(" · ").map((h, i) => <Fragment>{i > 0 && <br />}{h}</Fragment>) : "By appointment, daytime & evening availability"}</span></li>
+            <li><strong><Icon name="check" class="h-5 w-5" />At this office</strong><span>{listText(offerNames)}</span></li>
           </ul>
           <a href={directions} target="_blank" rel="noopener" class="btn btn-blue"><Icon name="pin" />Get directions</a>
         </div>
       </div>
     </section>
 
-    <!-- Gallery: one photo at a time, thumbnails to pick from -->
-    {gallery.length > 0 && (
-      <section class="section is-stone" id="photos">
-        <div class="container gal" data-gallery>
-          <div>
-            <h2>Inside our {l.name} office</h2>
-            <p class="lede" style="margin-top:14px">Real photos of the rooms where therapy, groups and psychiatric care happen at {l.street}. Prefer to meet from home? <a class="inl" href="/programs/counseling/">Telehealth counseling</a> is available statewide.</p>
-            <div class="gal-thumbs">
-              {gallery.slice(0, 9).map(([src, , lab], i) => (
-                <button type="button" class:list={["gal-thumb", i === 0 && "is-active"]} aria-label={`Show photo: ${lab}`} aria-pressed={i === 0 ? "true" : "false"}><img src={src} alt="" width="240" height="160" loading="lazy" /><span>{lab}</span></button>
-              ))}
-            </div>
-          </div>
-          <div class="gal-stage">
-            {gallery.slice(0, 9).map(([src, alt], i) => <img class:list={["gal-slide", i === 0 && "is-active"]} src={src} alt={alt} width="1200" height="900" loading="lazy" />)}
-          </div>
-        </div>
-      </section>
-    )}
-
     {l.slug === "westbrook-ct" && (
-      <section class="section is-white" id="westbrook">
+      <section class="section is-stone" id="westbrook">
         <div class="container ab-story">
           <figure class="ab-story-media" style="margin:0"><img src="/Assets/locations/westbrook/therapy-room-shore.webp" alt="A sunny therapy room at our Westbrook office" width="1200" height="900" loading="lazy" /></figure>
           <div class="ab-copy">
             <h2>Mental health &amp; addiction care on the Connecticut shoreline</h2>
             <div style="margin-top:18px">
               <p>Hopewell Westbrook opened on September 28, 2026, bringing the same team-based care our Glastonbury offices are known for to the shoreline. We started with our <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, <a class="inl" href="/programs/medication-management/">psychiatric medication management</a> and <a class="inl" href="/programs/counseling/">1:1 therapy</a>, and added a co-ed <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> in October.</p>
-              <p>Westbrook is one of two Hopewell offices that offer <a class="inl" href="/programs/addiction-iop/">addiction treatment</a>, with mental health care alongside it, so people on the shoreline no longer have to drive to Hartford County for an intensive program. Medication management here includes medication-assisted treatment (MAT).</p>
+              <p>Westbrook is one of two Hopewell offices that offer <a class="inl" href="/programs/addiction-iop/">addiction treatment</a>, with mental health care alongside it, so people on the shoreline no longer have to drive to Hartford County for an intensive program. Medication management here includes <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>.</p>
               <p>The office sits on Essex Road, minutes from I-95, and serves Westbrook, Old Saybrook, Clinton, Essex, Madison, Deep River, Old Lyme and Killingworth, with clients also coming from Guilford, Branford and Niantic. The local clinical team is led by <a class="inl" href="/provider/kaitlyn-czapiga-lmsw/">Kaitlyn Czapiga, LMSW</a>, Clinical Team Lead for Westbrook.</p>
             </div>
           </div>
@@ -220,45 +402,188 @@ const eventSchema = ev && {
       </section>
     )}
 
-    <!-- Programs & services at this office (client-confirmed list) -->
+    {l.slug === "westbrook-ct" && (
+      <section class="section is-navy" id="shoreline">
+        <div class="container lp-shore">
+          <div>
+            <h2>Hopewell’s shoreline office</h2>
+            <p class="lede">Westbrook is where Hopewell meets the water. These photos were taken along the Westbrook shore near our office on Essex Road, where the shoreline is part of everyday life.</p>
+            <div class="lp-shore-note">
+              <h3>Open house, October 23, 2026</h3>
+              <p>Neighbors and local providers toured the new office at 70 Essex Road, met the team and heard about the programs starting here. A second <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> group is planned.</p>
+            </div>
+          </div>
+          <div class="lp-shore-pics">
+            <img src="/Assets/locations/westbrook/beach-walk.webp" alt="A walk on the beach near our Westbrook office" width="736" height="982" loading="lazy" />
+            <img src="/Assets/locations/westbrook/beach-group.webp" alt="The shoreline near our Westbrook office" width="736" height="983" loading="lazy" />
+            <img src="/Assets/locations/westbrook/beach-pier.webp" alt="A walk out on the pier along the Westbrook shore" width="736" height="983" loading="lazy" />
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- 3. Programs & services at this office (client-confirmed list) -->
     <section class="section is-mist" id="services">
       <div class="container">
         <div class="sec-head"><h2>Services &amp; programs we offer</h2><p class="lede">{intro[l.slug]} Compare <a class="inl" href="/locations/#compare">which office offers what</a>.</p></div>
-        <ProgramCards items={items} cols={items.length > 3 ? 4 : 3} />
+        <div class:list={["lp-cards", nCards % 2 === 1 && "is-odd"]} style={`--n:${cardCols}`}>
+          {items.map((p) => (
+            <div class="pk" style={`--bar-c:${p.bar}`}>
+              <span class="pk-icon"><Icon name={p.icon} class="h-[22px] w-[22px]" /></span>
+              <div>
+                <h3><a href={p.href}>{p.t}</a></h3>
+                <p>{p.d} Learn about our <a class="inl" href={p.href}>{anchor(p.t)}</a>.</p>
+                {p.facts && <ul class="pk-facts">{p.facts.map(([icon, t]) => <li><Icon name={icon} class="h-4 w-4" />{t}</li>)}</ul>}
+              </div>
+            </div>
+          ))}
+          {moreBox && (
+            <div class="lp-more">
+              <span class="lp-more-icon"><Icon name={moreBox.icon} class="h-[22px] w-[22px]" /></span>
+              <h3>{moreBox.h}</h3>
+              <p set:html={moreBox.p} />
+            </div>
+          )}
+        </div>
         {/* Cross-links carried over from the live page's Conditions & Treatments grid (2026-11-16 SEO audit). Phrased
             Hopewell-wide so no service is claimed for an office that doesn't offer it. */}
         <p class="sec-foot">Across our Connecticut offices, Hopewell also offers <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs</a>, <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>, <a class="inl" href="/treatment-methods/therapeutic-treatments/">HHS therapeutic treatments</a>, <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a> and <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.{l.addiction && <Fragment> This office also provides <a class="inl" href="/what-we-treat/substance-use-disorder/">addiction treatment</a> for <a class="inl" href="/what-we-treat/alcohol/">alcohol</a>, <a class="inl" href="/what-we-treat/drug/">drug</a> and <a class="inl" href="/what-we-treat/prescription-drugs/">prescription drug addiction</a>.</Fragment>}</p>
       </div>
     </section>
 
-    <!-- Areas served -->
-    <section class="section is-stone" id="areas">
-      <div class="container ab-areas">
-        <div>
-          <h2>Areas we serve from {l.city}</h2>
-          <p class="lede" style="margin-top:14px">Clients travel to our {l.city} office from across the surrounding towns — and telehealth is available statewide.</p>
+    {l.slug === "glastonbury-ct-2" && (
+      <section class="section is-white" id="schedule">
+        <div class="container lp-split">
+          <div>
+            <h2>A day at 300 Hebron Avenue</h2>
+            <p class="lede">Most people in PHP spend about six hours a day here, Monday through Friday. IOP groups meet three hours a day, Monday through Thursday, in the morning or the evening, so many people keep working while they attend.</p>
+            <div class="lp-table-wrap">
+              <table class="lp-table">
+                <thead><tr><th scope="col">Program</th><th scope="col">Days</th><th scope="col">Times</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row"><a href="/programs/partial-hospitalization-program/">Partial Hospitalization (PHP)</a></th><td>Mon–Fri</td><td>About 6 hours a day</td></tr>
+                  <tr><th scope="row"><a href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM or 5–8 PM</td></tr>
+                  <tr><th scope="row"><a href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM or 5–8 PM</td></tr>
+                  <tr><th scope="row"><a href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a></th><td>Mon–Thu</td><td>5–8 PM</td></tr>
+                  <tr><th scope="row"><a href="/programs/first-responder-iop/">First Responder IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="lp-note">Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> for current <a class="inl" href="/programs/addiction-iop/">Addiction IOP</a> group times.</p>
+          </div>
+          <figure>
+            <img src={P + "team-300-hebron.webp"} alt="Members of the Hopewell team outside the 300 Hebron Avenue office" width="1200" height="900" loading="lazy" />
+            <figcaption>Part of the team at 300 Hebron Ave</figcaption>
+          </figure>
         </div>
-        <ul class="ab-towns">{l.areas.map((a) => <li><Icon name="pin" class="h-4 w-4" />{a}</li>)}</ul>
+      </section>
+    )}
+
+    {l.slug === "glastonbury-ct-3" && (
+      <section class="section is-white" id="parents">
+        <div class="container lp-split is-flip">
+          <figure>
+            <img src={L + "1420-main/1420-9.webp"} alt="The family therapy room at the South Glastonbury office" width="1448" height="1086" loading="lazy" />
+            <figcaption>Family therapy room · 1420 Main St, Suite 124</figcaption>
+          </figure>
+          <div>
+            <h2>For parents: how the Teen and Tween IOPs work</h2>
+            <p class="lede">When your child is struggling, the whole family feels it. Here is what to expect at our South Glastonbury office.</p>
+            <ul class="lp-list">
+              <li><span class="lp-ico"><Icon name="phone" class="h-5 w-5" /></span><div><h3>The first step</h3><p>Call or send the form. Our <a class="inl" href="/admissions/">admissions team</a> checks your insurance and sets up an assessment, which recommends the right level of care for your child.</p></div></li>
+              <li><span class="lp-ico"><Icon name="clock" class="h-5 w-5" /></span><div><h3>After school, four days a week</h3><p>The <a class="inl" href="/programs/teen-iop/">Teen IOP</a> (13–17) meets Monday through Thursday, 5:00 to 8:00 PM, and the <a class="inl" href="/programs/tween-iop/">Tween IOP</a> (8–12) from 4:30 to 7:30 PM, so most kids stay in school.</p></div></li>
+              <li><span class="lp-ico"><Icon name="users" class="h-5 w-5" /></span><div><h3>Parents are part of it</h3><p>Parents attend once or twice a week to learn the same <a class="inl" href="/treatment-methods/dbt/">DBT skills</a>, so they carry into the home, and get regular updates from the care team.</p></div></li>
+              <li><span class="lp-ico"><Icon name="heart" class="h-5 w-5" /></span><div><h3>Support for you, too</h3><p>A Parent Support Group meets on Tuesdays and Parent Night is on Thursdays. We can <a class="inl" href="/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/">coordinate with your child’s school</a> when it helps.</p></div></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- 4. Clinicians at this office (no medical staff) -->
+    {team.length > 0 && (
+      <section class="section is-stone lp-team" id="team">
+        <div class="container">
+          <div class="vc-head">
+            <div class="sec-head" style="margin:0"><h2>{teamHeading}</h2><p class="lede" set:html={teamLede} /></div>
+            <a class="vc-all" href="/about-us/team/">Meet our full team <span aria-hidden="true">&rarr;</span></a>
+          </div>
+          <ul class:list={["tt-grid", team.length === 4 && "is-4"]} style={`--n:${team.length}`}>
+            {team.map((p) => (
+              <li><a class="tm-card" href={`/provider/${p.slug}/`}><img src={`/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`} alt={p.name} width="600" height="750" loading="lazy" /><span class="tm-cap"><strong>{nameOf(p.name)}</strong>{credsOf(p.name) && <em class="tm-creds">{credsOf(p.name)}</em>}<span>{shortRole(p.role)}</span></span></a></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    <!-- 5. Inside the office: real photos -->
+    <section class="section is-white" id="photos">
+      <div class="container">
+        <div class="sec-head">
+          <h2>Inside our {l.name} office</h2>
+          <p class="lede">Real photos of the rooms where therapy, groups and psychiatric care happen at {l.street}. Prefer to meet from home? <a class="inl" href="/programs/counseling/">Telehealth counseling</a> is available statewide.</p>
+        </div>
+        <ul class="lp-gallery" style={`--n:${gCols}`}>
+          {gallery.map(([src, alt, lab]) => (
+            <li><figure><img src={src} alt={alt} width="1200" height="900" loading="lazy" /><figcaption>{lab}</figcaption></figure></li>
+          ))}
+        </ul>
       </div>
     </section>
 
-    <!-- Care team -->
-    <div class="ab-team-solo">
-      <Team
-        heading={`Clinicians at our ${l.city} office`}
-        lede={`The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`}
-        tone="white"
-        slugs={teamSlugs}
-        feature={null}
-      />
-    </div>
+    <!-- 6. Directions -->
+    <section class="section is-stone" id="visit">
+      <div class="container lp-visit">
+        <div class="lp-map"><iframe src={l.map} title={`Map, Hopewell Health Solutions, ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <div>
+          <h2>Directions to the {l.name} office</h2>
+          <p class="lede">Find us at {fullAddress}. Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and our team will help you plan your first visit.</p>
+          <ul class="lp-facts">
+            <li><strong><Icon name="pin" class="h-5 w-5" />Address</strong><span>{fullAddress}</span></li>
+            <li><strong><Icon name="calendar" class="h-5 w-5" />Hours</strong><span>{l.hours.split(" · ").map((h, i) => <Fragment>{i > 0 && <br />}{h}</Fragment>)}</span></li>
+          </ul>
+          <a href={directions} target="_blank" rel="noopener" class="btn btn-navy"><Icon name="pin" />Open in Google Maps</a>
+        </div>
+      </div>
+    </section>
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews tone="stone" />
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost — before you commit to anything." />
+    <!-- 7. Towns served + nearest other offices -->
+    <section class="section is-mist" id="areas">
+      <div class="container lp-areas">
+        <div>
+          <h2>Areas we serve from {l.city}</h2>
+          <p class="lede">Clients travel to our {l.city} office from across the surrounding towns, and telehealth is available statewide.</p>
+          <ul class="lp-towns">{l.areas.map((x) => <li><Icon name="pin" class="h-4 w-4" />{x}</li>)}</ul>
+          {l.slug === "westbrook-ct" && <p class="lp-also">Clients also come from Guilford, Branford and Niantic.</p>}
+        </div>
+        <div class="lp-near">
+          <h3>Nearest other Hopewell offices</h3>
+          <ul>
+            {near.map((x) => (
+              <li>
+                <img src={NEAR_PHOTO[x.slug]} alt={`Hopewell Health Solutions ${x.name} office`} width="264" height="208" loading="lazy" />
+                <div>
+                  <h4><a href={`/location/${x.slug}/`}>{x.name}</a></h4>
+                  <small>{x.street}, {x.city}</small>
+                  <p>{NEAR_NOTE[x.slug]}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Insurance and admissions -->
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans. Our team verifies your benefits at no cost, before you commit to anything." tone="white" />
     <Locations heading="Our other locations" lede="Care across Connecticut: six offices from Hartford County to the shoreline, plus telehealth statewide." current={l.slug} />
-    <Faq faqs={faqs} heading={`${l.city} office — common questions`} tone="white" />
-    <ClosingCta heading={`Get started at ${l.name}`} lede={`Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you book at our ${l.name} office or by telehealth.`} image={gallery[0]?.[0] ?? undefined} imageAlt={`Hopewell Health Solutions ${l.name}`} />
+
+    <!-- 9. Google reviews → As featured in → FAQ → closing CTA -->
+    <Reviews tone="stone" first={PAGE.reviewsFirst} />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
+    <Faq faqs={faqs} heading={`${l.city} office, common questions`} tone="white" />
+    <ClosingCta heading={`Get started at ${l.name}`} lede={`Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you book at our ${l.name} office or by telehealth.`} />
   </main>
   <Footer />
   {ev && (
@@ -267,17 +592,4 @@ const eventSchema = ev && {
       if (el && new Date() > new Date(el.dataset.eventEnd!)) el.remove();
     </script>
   )}
-  <script>
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((g) => {
-      const thumbs = [...g.querySelectorAll<HTMLButtonElement>(".gal-thumb")];
-      const imgs = [...g.querySelectorAll<HTMLElement>(".gal-slide")];
-      let i = 0, hold = false;
-      const pick = (n: number) => { thumbs[i].classList.remove("is-active"); thumbs[i].setAttribute("aria-pressed", "false"); imgs[i].classList.remove("is-active"); i = (n + imgs.length) % imgs.length; thumbs[i].classList.add("is-active"); thumbs[i].setAttribute("aria-pressed", "true"); imgs[i].classList.add("is-active"); };
-      thumbs.forEach((t, n) => t.addEventListener("click", () => pick(n)));
-      g.addEventListener("mouseenter", () => (hold = true)); g.addEventListener("mouseleave", () => (hold = false));
-      g.addEventListener("focusin", () => (hold = true)); g.addEventListener("focusout", () => (hold = false));
-      if (!reduce && imgs.length > 1) setInterval(() => { if (!hold && !document.hidden) pick(i + 1); }, 5000);
-    });
-  </script>
 </Base>

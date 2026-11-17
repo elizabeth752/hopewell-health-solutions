@@ -1,6 +1,6 @@
 ---
 /*
-  Westbrook opening launcher — floating bottom-left button on every page (via Base.astro).
+  Westbrook opening launcher, floating bottom-left button on every page (via Base.astro).
 
   On load it grows from a 60px circle into a small postcard (~260 × 444, 510 while
   the open house button shows) with
@@ -16,12 +16,12 @@
   Call button uses the sitewide NAP number.
 
   The countdown ("Opens in N days") counts calendar days in the office's own
-  timezone — 70 Essex Rd, Westbrook, CT is on US Eastern (America/New_York) —
+  timezone, 70 Essex Rd, Westbrook, CT is on US Eastern (America/New_York) , 
   so it ticks over at local midnight in Connecticut, not the visitor's.
   From launch day on, the countdown is replaced by "Now open / Since Sept 28".
 
   The launcher shows for one month after launch (through HIDE_AFTER) and then
-  hides itself. It is NOT deleted: the client may want to keep it — to bring it
+  hides itself. It is NOT deleted: the client may want to keep it, to bring it
   back, move HIDE_AFTER forward.
 
   Dates are checked at build time and again in the browser, so a static build

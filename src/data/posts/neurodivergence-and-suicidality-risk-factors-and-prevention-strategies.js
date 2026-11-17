@@ -115,7 +115,7 @@ export default {
         },
         {
           img: "/Assets/Blogs/neurodivergence-masking-iceberg.svg",
-          alt: "Iceberg diagram: above the waterline is what others see — rehearsed conversations, forced eye contact, suppressed stimming, someone who looks calm and composed. Below the waterline is the cost — more anxiety and depression, more past interpersonal trauma, lower self-esteem, and a weaker sense of self.",
+          alt: "Iceberg diagram: above the waterline is what others see, rehearsed conversations, forced eye contact, suppressed stimming, someone who looks calm and composed. Below the waterline is the cost, more anxiety and depression, more past interpersonal trauma, lower self-esteem, and a weaker sense of self.",
         },
         {
           p: "For families, the practical version is this: a person who appears fine at work or school may be spending everything they have to appear that way. The collapse that follows at home is the cost of that performance.",

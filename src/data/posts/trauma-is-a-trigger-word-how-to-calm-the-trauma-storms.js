@@ -12,11 +12,11 @@ export default {
   datePublished: "2024-10-07",
   dateModified: "2024-10-07",
   readingMinutes: 4,
-  bodyHtml: `<p>You hear it everywhere these days: <em>trauma.</em> It's become a word that carries so much weight. For those who've lived through it, just hearing it can feel like opening a wound. The heart races, your palms sweat, and suddenly, you're not here—you're back in that place, in the middle of the storm. But here's the thing: while trauma can be a heavy burden, there are ways to find calm within the chaos. There are ways to navigate through the storm.</p>
+  bodyHtml: `<p>You hear it everywhere these days: <em><a href="/what-we-treat/trauma-ptsd/">trauma</a>.</em> It's become a word that carries so much weight. For those who've lived through it, just hearing it can feel like opening a wound. The heart races, your palms sweat, and suddenly, you're not here, you're back in that place, in the middle of the storm. But here's the thing: while trauma can be a heavy burden, there are ways to find calm within the chaos. There are ways to navigate through the storm.</p>
 
 <h2>Understanding Trauma Responses</h2>
 
-<p>Let's get one thing straight: trauma is very real, and so are the storms it stirs up inside us. Whether the trauma comes from a single event or repeated exposure to harmful experiences, it shapes us. It changes how we react to the world around us. The brain has a way of protecting us by responding to trauma with the classic "fight, flight, or freeze" mode. When something reminds us of that traumatic event—a trigger—the brain goes into survival mode, even if the danger isn't actually present anymore.</p>
+<p>Let's get one thing straight: trauma is very real, and so are the storms it stirs up inside us. Whether the trauma comes from a single event or repeated exposure to harmful experiences, it shapes us. It changes how we react to the world around us. The brain has a way of protecting us by responding to trauma with the classic "fight, flight, or freeze" mode. When something reminds us of that traumatic event, a trigger, the brain goes into survival mode, even if the danger isn't actually present anymore.</p>
 
 <p>But here's the thing: these trauma responses, while once essential for survival, can feel overwhelming in everyday life. And it's completely normal to feel that way. In fact, around 70% of adults in the U.S. will experience at least one traumatic event in their lifetime, and for many, that trauma leaves lasting effects.</p>
 
@@ -59,15 +59,15 @@ export default {
 
 <h2>How Therapy Helps</h2>
 
-<p>For many, navigating trauma on their own is overwhelming. That's where therapy comes in. Trauma-informed therapy recognizes that trauma isn't just about what happened in the past—it's about how it affects you in the present. Therapists trained in trauma can help you identify triggers, process painful memories, and build resilience so that the storms feel less severe over time.</p>
+<p>For many, navigating trauma on their own is overwhelming. That's where therapy comes in. Trauma-informed therapy recognizes that trauma isn't just about what happened in the past, it's about how it affects you in the present. Therapists trained in trauma can help you identify triggers, process painful memories, and build resilience so that the storms feel less severe over time.</p>
 
-<p>At Hopewell Health Solutions, we often use <em>talk therapy</em> and <em>dialectical behavior therapy (DBT)</em> to help clients manage their trauma responses. DBT, in particular, teaches mindfulness and distress tolerance—skills that are incredibly helpful in staying grounded during a trauma storm. Through these therapies, clients learn how to navigate their emotions in healthier ways and build long-term coping strategies that bring them peace.</p>
+<p>At Hopewell Health Solutions, we often use <em>talk therapy</em> and <em><a href="/treatment-methods/dbt/">dialectical behavior therapy (DBT)</a></em> to help clients manage their trauma responses. DBT, in particular, teaches mindfulness and distress tolerance, skills that are incredibly helpful in staying grounded during a trauma storm. Through these therapies, clients learn how to navigate their emotions in healthier ways and build long-term <a href="/post/anxiety-coping-strategies-expert-tips-for-finding-calm/">coping strategies</a> that bring them peace.</p>
 
 <h2>There's Hope, Even in the Storm</h2>
 
 <p>Healing from trauma isn't about erasing the past; it's about finding ways to live with it. It's about realizing that, yes, trauma is a part of your story, but it's not the whole story. You are not defined by what happened to you. And while the storms may feel powerful, they don't have to take control of your life.</p>
 
-<p>Tyler, who once struggled with intense trauma responses, recalls a turning point: <em>"I used to be afraid of my own mind—like I couldn't trust where it would take me. But after learning some of these techniques, I realized I could anchor myself in the present. I could find calm, even in the storm."</em></p>
+<p>Tyler, who once struggled with intense trauma responses, recalls a turning point: <em>"I used to be afraid of my own mind, like I couldn't trust where it would take me. But after learning some of these techniques, I realized I could anchor myself in the present. I could find calm, even in the storm."</em></p>
 
 <p>At Hopewell Health Solutions, we're here to help you weather the storm. Our trauma-focused therapies provide a safe, supportive environment to help you heal, no matter how overwhelming the storms may feel. You don't have to face trauma alone. There's hope, and there's a way forward.</p>`,
 };

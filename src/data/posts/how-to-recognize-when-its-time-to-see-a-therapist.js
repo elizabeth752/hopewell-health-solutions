@@ -9,7 +9,7 @@ export default {
     "Life has ups and downs, but sometimes difficult feelings linger or interfere with daily life. Learn the signs that it may be time to reach out to a therapist.",
   category: "Mental Health",
   excerpt:
-    "Signs it may be time to see a therapist — overwhelming emotions, strained relationships, unhealthy coping, major life changes, or feeling stuck.",
+    "Signs it may be time to see a therapist, overwhelming emotions, strained relationships, unhealthy coping, major life changes, or feeling stuck.",
   heroImage: "/Assets/Blogs/how-to-recognize-when-its-time-to-see-a-therapist.webp",
   authorSlug: "kristine-a-schlichting-ph-d",
   reviewerSlug: "teesha-huertas-lcsw",

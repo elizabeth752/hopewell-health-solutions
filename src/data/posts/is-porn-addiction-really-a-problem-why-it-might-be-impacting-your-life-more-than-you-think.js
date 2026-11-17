@@ -35,7 +35,7 @@ export default {
 
 <p>John didn't realize how much it was affecting him until his wife confronted him about their lack of intimacy. She felt distant from him, like he wasn't really there even when they were together. John felt ashamed but didn't know how to stop. He thought he should be able to handle it on his own, but the more he tried to quit, the harder it became. He was stuck in a cycle of guilt, shame, and addiction.</p>
 
-<p>Eventually, John reached out for help. Through individual therapy at <strong>Hopewell Health Solutions</strong>, he learned how his addiction was tied to deeper emotional struggles. John had been using porn to numb his feelings of inadequacy, stress, and loneliness. In therapy, he was able to unpack these emotions and begin healing.</p>
+<p>Eventually, John reached out for help. Through <a href="/programs/counseling/">individual therapy</a> at <strong>Hopewell Health Solutions</strong>, he learned how his addiction was tied to deeper emotional struggles. John had been using porn to numb his feelings of inadequacy, stress, and <a href="/post/building-a-meaningful-relationship-beyond-loneliness-and-addiction/">loneliness</a>. In therapy, he was able to unpack these emotions and begin healing.</p>
 
 <p>"I used to feel like porn had control over me," John shared in one of his therapy sessions. "But after working with my therapist, I realized it wasn't just about quitting. It was about understanding why I was using it in the first place. Now, I feel like I have my power back."</p>
 

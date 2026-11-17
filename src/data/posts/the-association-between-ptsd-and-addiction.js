@@ -11,7 +11,7 @@ export default {
   datePublished: "2025-09-22",
   dateModified: "2025-09-22",
   readingMinutes: 2,
-  bodyHtml: `<p>Post-Traumatic Stress Disorder (PTSD) and addiction often go hand in hand, and understanding this relationship is key to supporting healing and recovery. While PTSD can develop after experiencing or witnessing a traumatic event, addiction frequently arises as an attempt to cope with the overwhelming emotions that follow.</p>
+  bodyHtml: `<p><a href="/what-we-treat/trauma-ptsd/">Post-Traumatic Stress Disorder (PTSD)</a> and addiction often go hand in hand, and understanding this relationship is key to supporting healing and recovery. While PTSD can develop after experiencing or witnessing a traumatic event, addiction frequently arises as an attempt to cope with the overwhelming emotions that follow.</p>
 
 <h2>How PTSD Affects the Brain and Body</h2>
 
@@ -26,7 +26,7 @@ export default {
 <ul>
 <li><strong>Self-medication:</strong> Using substances to reduce anxiety, numb emotional pain, or help with sleep</li>
 <li><strong>Avoidance:</strong> Avoiding memories, thoughts, or feelings tied to trauma by turning to drugs or alcohol</li>
-<li><strong>Brain Chemistry Changes:</strong> Trauma and substances both affect dopamine and stress hormones, making the cycle of use and dependence more likely</li>
+<li><strong>Brain Chemistry Changes:</strong> Trauma and substances both affect <a href="/post/how-do-you-increase-dopamine-naturally-healthy-strategies-for-you-or-a-loved-one/">dopamine</a> and stress hormones, making the cycle of use and dependence more likely</li>
 <li><strong>Isolation:</strong> PTSD often leads to withdrawal from others, which can increase vulnerability to addiction</li>
 </ul>
 
@@ -48,7 +48,7 @@ export default {
 <p>Because PTSD and addiction are so closely linked, effective treatment needs to address both at the same time. Approaches may include:</p>
 
 <ul>
-<li>Intensive skill-based therapies like Dialectical Behavior Therapy (DBT) in our <a href="/adult-mental-health-iop">Adult IOP</a> to improve coping strategies</li>
+<li>Intensive skill-based therapies like Dialectical Behavior Therapy (DBT) in our <a href="/programs/adult-mental-health-iop/">Adult IOP</a> to improve coping strategies</li>
 <li>Trauma-informed therapy such as EMDR (Eye Movement Desensitization and Reprocessing) or trauma-focused CBT</li>
 <li>Addiction recovery programs that understand and account for the impact of trauma</li>
 <li>Support networks that reduce isolation and offer understanding</li>

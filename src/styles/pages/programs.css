@@ -462,7 +462,8 @@
 @media (min-width: 1000px) {
   .hw[data-pgx] .sp-grid:not(.is-solo) { align-items: stretch; }
   .hw[data-pgx] .sp-aside { position: static; display: flex; flex-direction: column; }
-  .hw[data-pgx] .sp-aside > .sp-card { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  /* Cards keep their natural height and sit centred beside the copy (stretched cards left big empty bands, 2026-11-16); photos still fill. */
+  .hw[data-pgx] .sp-aside:has(> .sp-card) { align-self: start; }
   .hw[data-pgx] .sp-aside > .sp-card ul, .hw[data-pgx] .sp-aside > .sp-card ol { gap: 18px; }
   .hw[data-pgx] .sp-aside > figure { flex: 1; display: flex; flex-direction: column; margin: 0; }
   .hw[data-pgx] .sp-aside > figure img { flex: 1; min-height: 0; height: 100%; aspect-ratio: auto; object-fit: cover; }
@@ -470,8 +471,11 @@
   .hw[data-pgx] .pg-split .pg-copy { align-self: center; }
   .hw[data-pgx] .pg-media { display: flex; }
   .hw[data-pgx] .pg-media > img { height: 100%; min-height: 360px; aspect-ratio: auto; }
-  .hw[data-pgx] .pg-media.has-two { display: grid; align-items: stretch; }
-  .hw[data-pgx] .pg-media.has-two img, .hw[data-pgx] .pg-media.has-two img + img { aspect-ratio: auto; height: 100%; min-height: 360px; }
+  /* Two-photo stacks keep their own proportions and sit centred (stretching them to the copy cropped people out, 2026-11-16). */
+  .hw[data-pgx] .pg-split:has(.pg-media.has-two) { align-items: center; }
+  .hw[data-pgx] .pg-media.has-two { display: grid; align-items: center; }
+  .hw[data-pgx] .pg-media.has-two img { height: auto; min-height: 0; aspect-ratio: 3 / 4; }
+  .hw[data-pgx] .pg-media.has-two img + img { aspect-ratio: 4 / 5; object-position: center top; }
   .hw[data-pgx] .pg-two { align-items: stretch; }
   .hw[data-pgx] .pg-mo { align-items: stretch; }
   .hw[data-pgx] .pg-out { display: flex; flex-direction: column; justify-content: center; }
@@ -503,3 +507,11 @@
 .hw .po-card.is-compact .po-body { padding: 16px 18px; }
 .hw .po-card.is-compact .po-list { margin-top: 2px; padding-top: 10px; }
 @media (max-width: 600px) { .hw .po-card.is-compact .po-photo { flex-basis: 34%; } }
+/* Five icon cards: one even row of five on wide screens (no split 3 + 2 rows), 2026-11-16. */
+@media (min-width: 1100px) {
+  .hw .pg-cards:is(.cols-3, .cols-4):has(> :nth-child(5):last-child) { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .hw .pg-cards:is(.cols-3, .cols-4):has(> :nth-child(5):last-child) > * { grid-column: auto; }
+  .hw .pg-cards:is(.cols-3, .cols-4):has(> :nth-child(5):last-child) > :nth-child(4) { grid-column: auto; }
+}
+
+

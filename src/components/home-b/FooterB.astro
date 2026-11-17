@@ -38,7 +38,7 @@ const cols = [
   <div class="mx-auto max-w-6xl px-5 pt-14 pb-28 md:pb-14">
     <div class="grid gap-10 md:grid-cols-4">
       <div class="text-center md:text-left">
-        <a href="/" class="inline-block mb-5" aria-label="Hopewell Health Solutions — home">
+        <a href="/" class="inline-block mb-5" aria-label="Hopewell Health Solutions, home">
           <img src="/Assets/logo/hopewell-wave-logo-white.svg" alt="Hopewell Health Solutions" width="990" height="444" loading="lazy" decoding="async" class="mx-auto h-20 w-auto md:mx-0" />
         </a>
         <p class="text-sm leading-relaxed">Connecticut’s intensive programs center for mental wellness &amp; psychiatry. There is hope to heal.</p>
@@ -57,7 +57,7 @@ const cols = [
       <h4 class="text-white text-sm font-semibold uppercase tracking-wide mb-4 text-center">Our Connecticut Locations</h4>
       <div class="mx-auto grid w-fit justify-items-center gap-x-12 gap-y-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
         {locations.map(([city, addr, href]) => (
-          <a href={href} class="flex items-center gap-2 whitespace-nowrap hover:text-white transition"><span class="h-1 w-1 shrink-0 rounded-full bg-azul-light" aria-hidden="true"></span><span><span class="text-white">{city}</span> — {addr}</span></a>
+          <a href={href} class="flex items-center gap-2 whitespace-nowrap hover:text-white transition"><span class="h-1 w-1 shrink-0 rounded-full bg-azul-light" aria-hidden="true"></span><span><span class="text-white">{city}</span>{addr}</span></a>
         ))}
       </div>
     </div>

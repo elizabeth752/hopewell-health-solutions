@@ -16,8 +16,9 @@ import Creds from "../components/hw/Creds.astro";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import Reviews from "../components/hw/Reviews.astro";
 import Team from "../components/hw/Team.astro";
+import ClosingCta from "../components/hw/ClosingCta.astro";
 import Locations from "../components/hw/Locations.astro";
-import { VIDEOS, videoSchema } from "../data/videos.js";
+import { VIDEOS, PODCAST, videoSchema } from "../data/videos.js";
 import { providers } from "../data/providers.js";
 import { locations as offices, OFFERS, OFFER_ORDER } from "../data/locations.js";
 import { PHONE } from "../data/site.js";
@@ -36,15 +37,22 @@ const heroSlides = [
 ];
 
 // 4. What we help with — conditions wheel (graphic) + program cards written around the visitor's problem.
+const teamPhotos = [
+  ["team-celebrating-outside", "The Hopewell Health Solutions team celebrating together outside the office"],
+  ["team-with-dr-k-lawn", "Dr. Kristine Schlichting with members of the Hopewell team"],
+  ["team-outside-with-therapy-dog", "Hopewell clinicians outside with the office therapy dog"],
+  ["iop-team-hallway", "Members of Hopewell's intensive outpatient team"],
+  ["iop-clinicians-group-room", "Hopewell IOP clinicians in a group room"],
+];
 const wheel = [
-  ["Depression", "/what-we-treat/depression/", "#2f76c4"],
-  ["Anxiety", "/what-we-treat/anxiety/", "#265489"],
-  ["Trauma", "/what-we-treat/trauma-ptsd/", "#5c7c6b"],
-  ["Addiction", "/what-we-treat/substance-use-disorder/", "#0b2f55"],
-  ["ADHD", "/what-we-treat/adhd/", "#b6863c"],
-  ["Bipolar", "/what-we-treat/bipolar/", "#2f76c4"],
-  ["OCD", "/what-we-treat/ocd/", "#265489"],
-  ["Co-occurring", "/what-we-treat/co-occurring/", "#5c7c6b"],
+  ["Depression", "/what-we-treat/depression/", "#2f76c4", "Low mood, no energy, losing interest in things you used to enjoy.", [["Counseling", "/programs/counseling/"], ["Medication management", "/programs/medication-management/"], ["Adult IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"], ["TMS", "/treatment-methods/tms/"]]],
+  ["Anxiety", "/what-we-treat/anxiety/", "#265489", "Constant worry, panic or avoiding things because of fear.", [["Counseling", "/programs/counseling/"], ["Adult IOP", "/programs/adult-mental-health-iop/"], ["Teen & Tween IOP", "/programs/teen-iop/"]]],
+  ["Trauma", "/what-we-treat/trauma-ptsd/", "#5c7c6b", "Past events still showing up in nightmares, fear or numbness.", [["Women’s Trauma IOP", "/programs/womens-trauma-iop/"], ["First Responder IOP", "/programs/first-responder-iop/"], ["Counseling", "/programs/counseling/"]]],
+  ["Addiction", "/what-we-treat/substance-use-disorder/", "#0b2f55", "When alcohol or drug use is hard to control.", [["Addiction IOP", "/programs/addiction-iop/"], ["MAT", "/treatment-methods/medication-assisted-treatment/"], ["Counseling", "/programs/counseling/"]]],
+  ["ADHD", "/what-we-treat/adhd/", "#b6863c", "Trouble focusing, staying organized or sitting still.", [["ADHD testing", "/treatment-methods/adhd-testing/"], ["Medication management", "/programs/medication-management/"], ["Counseling", "/programs/counseling/"]]],
+  ["Bipolar", "/what-we-treat/bipolar/", "#2f76c4", "Highs and lows in mood, energy and sleep.", [["Medication management", "/programs/medication-management/"], ["PHP", "/programs/partial-hospitalization-program/"], ["Adult IOP", "/programs/adult-mental-health-iop/"]]],
+  ["OCD", "/what-we-treat/ocd/", "#265489", "Unwanted thoughts and rituals that are hard to stop.", [["Counseling", "/programs/counseling/"], ["Medication management", "/programs/medication-management/"], ["IOP", "/programs/intensive-outpatient-program/"]]],
+  ["Co-occurring", "/what-we-treat/co-occurring/", "#5c7c6b", "Mental health and substance use, treated together.", [["Adult Co-Occurring IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"]]],
 ];
 const R = 150, r = 82, C = 170;
 const pt = (a, rad) => [C + rad * Math.cos(a), C + rad * Math.sin(a)];
@@ -72,8 +80,9 @@ const helps = [
   { q: "“I want answers about attention, learning or memory.”", t: "ADHD & neuropsychological testing", icon: "clipboard", bar: "#b6863c",
     html: `Thorough evaluations for children, teens and adults: <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.` },
   { q: "“Since the baby came, I don’t feel like myself.”", t: "Postpartum depression", icon: "heart", bar: "#265489",
-    html: `Therapy, medication management and women’s groups for new and expecting mothers. See <a class="inl" href="/what-we-treat/depression/">depression treatment</a>, including postpartum care.` },
+    html: `Therapy, medication management and <a class="inl" href="/programs/womens-wellness-iop/">women’s groups</a> for new and expecting mothers. See <a class="inl" href="/what-we-treat/depression/">depression treatment</a>, including postpartum care.` },
 ];
+for (const h of helps) h.href = h.html.match(/href="([^"]+)"/)?.[1] ?? "/programs/";
 
 // 5. Why in-person — what happens when you visit (real photos).
 const visit = [
@@ -100,7 +109,7 @@ const insurers = [
 const admit = [
   ["phone", "Call or send the form", `Call <a class="inl" href="${PHONE.href}">${PHONE.display}</a> or use the coverage form. An admissions specialist talks with you about what’s going on.`],
   ["shield", "We check your insurance", "We verify your benefits for free before you start, so you know what’s covered."],
-  ["calendar", "Assessment and start date", "A clinical assessment matches you to the right program, and we set a start date that works."],
+  ["calendar", "Assessment and start date", `A <a class="inl" href="/admissions/what-to-expect/">clinical assessment</a> matches you to the right program, and we set a start date that works.`],
 ];
 
 // 9. Team teaser.
@@ -122,13 +131,13 @@ const faqGroups = [
   ]],
   ["Programs and care", [
     ["What’s the difference between IOP and PHP?", `Both are structured outpatient programs where you go home each day. The <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> is the more intensive level, with more hours each day. An <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> meets for fewer hours a week, so it’s easier to fit around work or school. Your assessment helps decide which fits.`],
-    ["Do you treat addiction?", `Yes. We offer an <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> for adults, care for co-occurring mental health and substance use, and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>. Addiction care is offered at our 300 Hebron Ave (Glastonbury) and Westbrook offices.`],
-    ["What ages do you see?", `We care for children, teens and adults, ages 4 and up. We run separate <a class="inl" href="/programs/teen-iop/">teen and tween IOPs</a>, and adult programs for ages 18 and up.`],
+    ["Do you treat addiction?", `Yes. We offer an <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> for adults, care for <a class="inl" href="/what-we-treat/co-occurring/">co-occurring mental health and substance use</a>, and <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>. Addiction care is offered at our 300 Hebron Ave (Glastonbury) and Westbrook offices.`],
+    ["What ages do you see?", `We care for children, teens and adults, ages 4 and up. We run separate <a class="inl" href="/programs/teen-iop/">teen</a> and <a class="inl" href="/programs/tween-iop/">tween IOPs</a>, and adult programs for ages 18 and up.`],
     ["Do you offer psychiatry and medication management?", `Yes. Our psychiatric providers offer evaluations and ongoing <a class="inl" href="/programs/medication-management/">medication management</a>, and we also offer <a class="inl" href="/treatment-methods/tms/">TMS</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">ADHD and neuropsychological testing</a>.`],
   ]],
   ["Locations and visits", [
     ["Where are you located?", `We have offices in <a class="inl" href="/location/glastonbury-ct-2/">Glastonbury (300 Hebron Ave)</a>, <a class="inl" href="/location/glastonbury-ct/">Glastonbury (Pratt St)</a>, <a class="inl" href="/location/glastonbury-ct-3/">South Glastonbury</a>, <a class="inl" href="/location/west-hartford-ct/">West Hartford</a>, <a class="inl" href="/location/east-hampton-ct/">East Hampton</a> and <a class="inl" href="/location/westbrook-ct/">Westbrook</a>, and we serve families along the shoreline, including Niantic, Branford, Madison and Guilford. Each location offers different programs, so check the location page.`],
-    ["Is care in person or by telehealth?", "Our programs are built around in-person care, with groups and clinicians you meet face to face. Telehealth is available for some services when coming in isn’t possible."],
+    ["Is care in person or by telehealth?", `Our programs are built around <a class="inl" href="/post/the-importance-of-in-person-intensive-outpatient-programs-iops/">in-person care</a>, with groups and clinicians you meet face to face. Telehealth is available for some services when coming in isn’t possible.`],
   ]],
 ];
 const strip = (h) => h.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&");
@@ -144,14 +153,14 @@ const orgSchema = {
   url: SITE + "/",
   logo: SITE + "/Assets/logo/hopewell-wave-logo.webp",
   image: SITE + "/Assets/full%20team%20happy.webp",
-  description: "In-person mental health, addiction and psychiatry care in Connecticut — IOP, PHP, addiction IOP, TMS, medication management and counseling for ages 4 and up.",
+  description: "In-person mental health, addiction and psychiatry care in Connecticut, IOP, PHP, addiction IOP, TMS, medication management and counseling for ages 4 and up.",
   telephone: offices.find((l) => l.slug === "glastonbury-ct-2").phone,
   email: "hhs4help@gmail.com",
   foundingDate: "2013",
   areaServed: ["Glastonbury CT", "South Glastonbury CT", "West Hartford CT", "East Hampton CT", "Westbrook CT", "Hartford County CT", "Middlesex County CT", "Niantic CT", "Branford CT", "Madison CT", "Guilford CT"],
   sameAs: [...socials.map((s) => s.href), "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396"],
   subOrganization: offices.map((l) => ({
-    "@type": "MedicalClinic", "@id": `${SITE}/location/${l.slug}/#clinic`, name: `Hopewell Health Solutions — ${l.name}`, url: `${SITE}/location/${l.slug}/`,
+    "@type": "MedicalClinic", "@id": `${SITE}/location/${l.slug}/#clinic`, name: `Hopewell Health Solutions, ${l.name}`, url: `${SITE}/location/${l.slug}/`,
     telephone: l.phone, openingHours: l.hours,
     address: { "@type": "PostalAddress", streetAddress: l.street, addressLocality: l.city, addressRegion: "CT", postalCode: l.zip, addressCountry: "US" },
     geo: { "@type": "GeoCoordinates", latitude: l.lat, longitude: l.lng },
@@ -181,7 +190,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         <h1>Mental Health, Addiction &amp; Psychiatry Care in Connecticut</h1>
         <p class="hero-tag">There is <em>hope</em> to <em>heal</em>.</p>
         <a class="hero-rating" href="/testimonials/"><span class="g"><img src="/Assets/home-b/google-g.svg" alt="" width="16" height="16" /></span><span class="stars" aria-hidden="true">★★★★★</span><span>4.8 on Google · 368 reviews</span></a>
-        <p class="lede">Outpatient mental health and addiction care from a Connecticut team you meet in person.</p>
+        <p class="lede">Outpatient mental health and addiction care from a <a class="inl" href="/about-us/">Connecticut team</a> you meet in person.</p>
         <ul class="hero-bullets">
           <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/intensive-outpatient-program/">Intensive outpatient program (IOP)</a> &amp; PHP</span></li>
           <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/medication-management/">Psychiatry &amp; medication management</a></span></li>
@@ -203,7 +212,9 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
 
   <!-- 2. Trust bar: accreditations + as featured in -->
   <Creds />
-  <MediaStrip bg="white" />
+
+  <!-- 3. Testimonials matched to the page (moved under the hero, user 2026-11-17) -->
+  <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Our Programs" lede="Hopewell clients share what treatment was like, in their own words: adult IOP, IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
 
   <!-- 4. What we help with -->
   <section class="section is-stone" id="programs">
@@ -211,17 +222,27 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
       <div class="wh-top">
         <div class="sec-head" style="margin:0">
           <h2>What We Help With</h2>
-          <p class="lede">Hopewell treats the conditions we see most — depression, anxiety, trauma, addiction, ADHD and more — for children, teens and adults across Connecticut. Start with what’s going on, and we’ll match you to the right program. See <a class="inl" href="/what-we-treat/">everything we treat</a> or <a class="inl" href="/programs/">all programs</a>.</p>
+          <p class="lede">Hopewell treats the conditions we see most, depression, anxiety, trauma, addiction, ADHD and more, for children, teens and adults across Connecticut. Start with what’s going on, and we’ll match you to the right program. See <a class="inl" href="/what-we-treat/">everything we treat</a> or <a class="inl" href="/programs/">all programs</a>.</p>
           <ul class="wh-legend">
             <li><Icon name="users" class="h-5 w-5" />Children, teens and adults, ages 4 and up</li>
             <li><Icon name="refresh" class="h-5 w-5" />Step up or down in care with the same team</li>
             <li><Icon name="link" class="h-5 w-5" />Mental health and addiction treated together</li>
           </ul>
+          <div class="wh-pick" aria-live="polite">
+            {wheel.map(([t, href, c, line, progs], i) => (
+              <div class="wh-pick-p" data-i={i} hidden={i !== 0} style={`--c:${c}`}>
+                <p class="wh-pick-h"><span class="wh-pick-dot"></span>{t}</p>
+                <p class="wh-pick-line">{line}</p>
+                <p class="wh-pick-progs">{progs.map(([n, u], k) => <Fragment>{k > 0 && <span aria-hidden="true"> · </span>}<a class="inl" href={u}>{n}</a></Fragment>)}</p>
+                <p class="wh-pick-more">Read how we treat <a class="inl" href={href}>{t === "Co-occurring" ? "co-occurring disorders" : t === "Trauma" ? "trauma and PTSD" : t.toLowerCase()}</a>.</p>
+              </div>
+            ))}
+          </div>
         </div>
         <figure class="wh-wheel">
           <svg viewBox="0 0 340 340" role="img" aria-label="Conditions we treat: depression, anxiety, trauma and PTSD, addiction, ADHD, bipolar disorder, OCD and co-occurring disorders">
             {wheel.map(([t, href, c], i) => { const s = seg(i, wheel.length); return (
-              <a href={href} aria-label={`${t} treatment`}>
+              <a href={href} aria-label={`${t} treatment`} data-i={i} class="wh-seg-a">
                 <g class="wh-seg"><path d={s.d} fill={c} /><text x={s.lx} y={s.ly + 4} text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Urbanist, sans-serif">{t}</text></g>
               </a>
             ); })}
@@ -230,18 +251,16 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
             <text x={C} y={C + 14} text-anchor="middle" font-size="16" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">every level</text>
             <text x={C} y={C + 32} text-anchor="middle" font-size="10.5" fill="#5a6b7a" font-family="Urbanist, sans-serif">ages 4 and up</text>
           </svg>
-          <figcaption>Tap a condition to learn how we treat it.</figcaption>
+          <figcaption>Hover or tap a condition to see how we treat it.</figcaption>
         </figure>
       </div>
-      <div class="wh-cards">
+      <div class="wh-feel">
+        <div class="wh-feel-head"><h3>Or start with how you feel</h3><p><a class="inl" href="/programs/">All programs</a></p></div>
+        <ul class="wh-feel-list">
           {helps.map((h) => (
-            <div class="wh-card" style={`--bar-c:${h.bar}`}>
-              <span class="wh-icon"><Icon name={h.icon} class="h-5 w-5" /></span>
-              <div><p class="wh-q">{h.q}</p><h3>{h.t}</h3><p class="wh-d" set:html={h.html} /></div>
-            </div>
+            <li style={`--bar-c:${h.bar}`}><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
           ))}
-        </div>
-
+        </ul>
       </div>
     </div>
   </section>
@@ -252,7 +271,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
       <div class="ip-grid">
         <div>
           <h2>Why In-Person Care Matters</h2>
-          <p class="lede" style="margin-top:14px">While many programs have moved fully online, Hopewell is built around real rooms, real groups and clinicians who know your name. You sit with people who understand, practice skills face to face, and see the same team as you step up or down in care. Telehealth is available when coming in isn’t possible.</p>
+          <p class="lede" style="margin-top:14px">While many programs have moved fully online, Hopewell is built around real rooms, <a class="inl" href="/treatment-methods/group-therapy/">real groups</a> and clinicians who know your name. You sit with people who understand, practice skills face to face, and see the same team as you <a class="inl" href="/programs/">step up or down in care</a>. Telehealth is available when coming in isn’t possible.</p>
           <ul class="ip-points">
             <li><Icon name="users" class="h-5 w-5" />Small, clinician-led groups in person</li>
             <li><Icon name="home" class="h-5 w-5" />Comfortable rooms in six Connecticut offices</li>
@@ -278,8 +297,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <!-- 6. Locations -->
   <Locations heading="Six Offices Across Connecticut" lede={`Each office offers different programs, so check the services on each card. Addiction care is at our 300 Hebron Ave (Glastonbury) and Westbrook offices. We also serve families along the shoreline, including Niantic, Branford, Madison and Guilford, and see clients by telehealth across New England.`} />
 
-  <!-- 7. Testimonials matched to the page -->
-  <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Our Programs" lede="Hopewell clients share what treatment was like, in their own words: adult IOP, IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
+  <!-- Podcast (restored 2026-11-16) -->
+  <VideoCarousel videos={PODCAST} mode="grid" tone="white" id="podcast" heading="Hope, Health &amp; Healing: The Hopewell Podcast" lede="Real conversations about recovery, mental health and asking for help, hosted by Hopewell’s TJ Aitken, CPSRP. Each episode shares an honest story from someone who has been through treatment. <a class='inl' href='/podcast/'>See all episodes</a>." link={null} />
 
   <!-- 8. How admissions works (+ form) -->
   <div class="mobile-verify is-white" id="verify-m" style="display:none"></div>
@@ -287,7 +306,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
     <div class="container ins-grid">
       <div class="ins-copy">
         <h2>How Admissions Works</h2>
-        <p class="lede">Reaching out is the hardest part. We handle the rest — and you’ll know what’s covered before you start.</p>
+        <p class="lede">Reaching out is the hardest part. We handle the rest, and you’ll know what’s covered before you start.</p>
         <ol class="ad-steps">
           {admit.map(([icon, t, d], i) => <li><span class="ins-step-dot"><Icon name={icon} class="h-6 w-6" /></span><span><span class="step-num">Step {i + 1}</span><strong>{t}</strong><span set:html={d} /></span></li>)}
         </ol>
@@ -307,8 +326,19 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <!-- 9. Meet the team (shared component, same on every page) -->
   <Team />
 
+  <!-- Team photo gallery (user 2026-11-16): real team photos, one large + four, even 4x2 grid -->
+  <section class="section is-white" id="team-photos">
+    <div class="container">
+      <div class="sec-head"><h2>The Hopewell Team, Together</h2><p class="lede">Real people, real offices. Our clinicians, prescribers and support staff across Connecticut. <a class="inl" href="/about-us/team/">Meet the full team</a>.</p></div>
+      <div class="tp-grid">
+        {teamPhotos.map(([f, alt], i) => <figure class:list={["tp-cell", i === 0 && "is-big"]}><img src={`/Assets/hhs-2026/${f}.webp`} alt={alt} width="1200" height="900" loading="lazy" /></figure>)}
+      </div>
+    </div>
+  </section>
+
   <!-- Google reviews (last, above the FAQ) -->
   <Reviews tone="white" />
+  <MediaStrip bg="white" />
 
   <!-- 10. FAQ (4 groups, 12 questions) -->
   <section class="section is-stone" id="faq">
@@ -327,18 +357,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
     </div>
   </section>
 
-  <!-- 11. Final call to action: short form + phone + 988 + privacy -->
-  <section class="section fc-band">
-    <div class="container fc-grid">
-      <div>
-        <h2>You Don’t Have to Do This Alone.</h2>
-        <p class="lede">Reach out today and a real person will help you figure out the next step — confidentially, with no pressure. Forms sent after hours or on weekends are answered the next business day.</p>
-        <a href={PHONE.href} class="btn btn-blue" style="margin-top:22px"><Icon name="phone" />Call {PHONE.display}</a>
-        <p class="fc-crisis">In crisis? Call or text <a href="tel:988">988</a>, or call 911. Everything you share with us is confidential.</p>
-      </div>
-      <div class="fc-form"><LeadForm heading="Check your coverage" sub="Free, confidential insurance check." formId="hhs-final" /></div>
-    </div>
-  </section>
+  <!-- 11. Final call to action (shared closing band, no form: the hero and admissions sections carry the forms) -->
+  <ClosingCta heading="You Don’t Have to Do This Alone." lede="Reach out today and a real person will help you figure out the next step, confidentially, with no pressure. Forms sent after hours or on weekends are answered the next business day." />
 
   </main>
   <a href="#verify" class="hw-sticky-cta" aria-label="Check your coverage"><Icon name="shield" class="h-5 w-5" />Check coverage</a>
@@ -355,10 +375,17 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   if (!reduce && slides.length > 1) setInterval(() => { if (!document.hidden) show(cur + 1); }, 6000);
   // Sticky mobile button hides while a form is on screen.
   const sticky = document.querySelector<HTMLElement>(".hw-sticky-cta");
-  const forms = document.querySelectorAll(".lead-card, .fc-form");
+  const forms = document.querySelectorAll(".lead-card");
   if (sticky && "IntersectionObserver" in window) {
     const vis = new Set();
     const io = new IntersectionObserver((es) => { es.forEach((e) => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target))); sticky.classList.toggle("is-hidden", vis.size > 0); });
     forms.forEach((f) => io.observe(f));
   }
+  // What we help with (option C): hovering or focusing a wheel segment shows that condition in the panel.
+  const picks = document.querySelectorAll<HTMLElement>(".wh-pick-p");
+  document.querySelectorAll<SVGAElement>(".wh-seg-a").forEach((a) => {
+    const show = () => { picks.forEach((p) => (p.hidden = p.dataset.i !== a.dataset.i)); document.querySelectorAll(".wh-seg-a").forEach((x) => x.classList.toggle("is-on", x === a)); };
+    a.addEventListener("mouseenter", show); a.addEventListener("focus", show);
+  });
+  document.querySelector(".wh-seg-a")?.classList.add("is-on");
 </script>

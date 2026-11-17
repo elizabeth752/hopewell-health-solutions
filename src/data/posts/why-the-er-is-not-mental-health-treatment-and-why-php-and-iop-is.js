@@ -26,19 +26,19 @@ export default {
 
 <p>She walked out of the hospital still overwhelmed, exhausted and unsure how she was supposed to survive the next week.</p>
 
-<p>This is the part of mental health care many people don't understand until they experience it firsthand: the emergency room is designed to stabilize immediate danger — not treat the underlying mental health condition causing the crisis itself.</p>
+<p>This is the part of mental health care many people don't understand until they experience it firsthand: the emergency room is designed to stabilize immediate danger, not treat the underlying mental health condition causing the crisis itself.</p>
 
 <h2>Mental Health Is Accumulative, Not An Isolated Incident</h2>
-<p>Emergency room visits absolutely save lives, but they are not the end of the mental health conversation. Often they are the clearest sign that a person needs a higher level of mental health support; specifically programs such as Intensive Outpatient Programs (IOP) or Partial Hospitalization Programs (PHP).</p>
+<p>Emergency room visits absolutely save lives, but they are not the end of the mental health conversation. Often they are the clearest sign that a person needs a higher level of mental health support; specifically programs such as <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a> (IOP) or <a href="/programs/partial-hospitalization-program/">Partial Hospitalization Programs</a> (PHP).</p>
 
-<p>At Hopewell Health Solutions this is something we see every day. Many of the individuals entering our programs are not people who "suddenly fell apart," they are people who spent months, sometimes years, trying to push through worsening depression, escalating anxiety, unresolved trauma, emotional burnout, panic attacks, substance use, or suicidal thoughts while continuing to function the best they could.</p>
+<p>At Hopewell Health Solutions this is something we see every day. Many of the individuals entering our programs are not people who "suddenly fell apart," they are people who spent months, sometimes years, trying to push through worsening depression, escalating anxiety, unresolved trauma, emotional <a href="/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/">burnout</a>, <a href="/post/silent-panic-attacks-what-they-are-and-when-to-seek-treatment/">panic attacks</a>, substance use, or suicidal thoughts while continuing to function the best they could.</p>
 
 <p>Oftentimes when someone reaches an emergency room for mental health concerns, their nervous system has already been in survival mode for far too long.</p>
 
 <h2>What the ER Can't Do For Mental Health</h2>
 <p>The ER can determine whether someone is medically stable or if they require inpatient hospitalization. It can provide immediate crisis intervention, but what it can't realistically provide is the kind of sustained and therapeutic care necessary for true healing.</p>
 
-<p>There isn't time in an emergency department to deeply explore trauma patterns, teach emotional regulation skills, rebuild self-worth, process grief, improve relationships, or help someone understand why their mind and body have been stuck in constant fight-or-flight mode (or what that even is).</p>
+<p>There isn't time in an emergency department to deeply explore <a href="/what-we-treat/trauma-ptsd/">trauma</a> patterns, teach emotional regulation skills, rebuild self-worth, process grief, improve relationships, or help someone understand why their mind and body have been stuck in constant fight-or-flight mode (or what that even is).</p>
 
 <p>Healing does not happen in a single psychiatric evaluation under bright fluorescent lights with a clinician you may only meet once.</p>
 
@@ -47,11 +47,11 @@ export default {
 <h2>IOP and PHP Treatment Is Life-Changing Care</h2>
 <p>An Intensive Outpatient Program, or IOP, provides structured mental health treatment several days a week while allowing clients to continue living at home and maintaining aspects of daily life.</p>
 
-<p>Rather than seeing a therapist once a week for fifty minutes, clients in IOP receive immersive therapeutic support multiple times per week. Group therapy, individual therapy, psychiatric support, psychoeducation, coping skill development, and trauma-informed treatment approaches are all part of IOP.</p>
+<p>Rather than seeing a therapist once a week for fifty minutes, clients in IOP receive immersive therapeutic support multiple times per week. <a href="/treatment-methods/group-therapy/">Group therapy</a>, individual therapy, psychiatric support, psychoeducation, coping skill development, and trauma-informed treatment approaches are all part of IOP.</p>
 
 <p>Our programs at Hopewell Health Solutions are designed to meet people where they are emotionally while helping them develop the tools necessary to move toward long-term healing.</p>
 
-<p>We recognize that emotional suffering can look different across age groups and life experiences. Our Women's Wellness IOP was created to support women who may be navigating anxiety, depression, trauma, burnout, relationship struggles, identity challenges, and the overwhelming emotional demands many women silently carry every day. We also provide programs for adolescents and general adult mental health treatment as well as for those struggling with substance abuse.</p>
+<p>We recognize that emotional suffering can look different across age groups and life experiences. Our Women's Wellness IOP was created to support women who may be navigating <a href="/what-we-treat/anxiety/">anxiety</a>, <a href="/what-we-treat/depression/">depression</a>, trauma, burnout, relationship struggles, identity challenges, and the overwhelming emotional demands many women silently carry every day. We also provide programs for adolescents and general adult mental health treatment as well as for those struggling with substance abuse.</p>
 
 <p>For some individuals IOP may not provide enough support initially, so this is why we are proud to now offer Partial Hospitalization Programming (PHP) as a higher level of support.</p>
 

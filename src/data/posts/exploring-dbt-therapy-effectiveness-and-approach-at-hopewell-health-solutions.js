@@ -11,11 +11,11 @@ export default {
   datePublished: "2025-02-03",
   dateModified: "2025-02-03",
   readingMinutes: 3,
-  bodyHtml: `<p>Dialectical Behavior Therapy (DBT) is a powerful and evidence-based psychotherapeutic approach that has proven effective in treating a wide range of mental health issues across different age groups. At Hopewell Health Solutions, DBT is a cornerstone of our therapeutic practices, including our intensive outpatient programs (IOPs) for tweens and teens, as well as the upcoming programs focused on women's trauma and substance use disorders. Understanding what DBT is and why it is so effective can help clients and their families appreciate the potential benefits of this therapeutic approach.</p>
+  bodyHtml: `<p><a href="/treatment-methods/dbt/">Dialectical Behavior Therapy (DBT)</a> is a powerful and evidence-based psychotherapeutic approach that has proven effective in treating a wide range of mental health issues across different age groups. At Hopewell Health Solutions, DBT is a cornerstone of our therapeutic practices, including our intensive outpatient programs (IOPs) for tweens and teens, as well as the upcoming programs focused on <a href="/post/how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing/">women's trauma</a> and substance use disorders. Understanding what DBT is and why it is so effective can help clients and their families appreciate the potential benefits of this therapeutic approach.</p>
 
 <h3><strong>What is DBT?</strong></h3>
 
-<p>Developed by Dr. Marsha Linehan in the late 1980s to treat borderline personality disorder (BPD), DBT has since demonstrated its effectiveness across a spectrum of conditions including depression, bipolar disorder, PTSD, eating disorders, and substance abuse. The therapy combines cognitive-behavioral techniques with mindfulness principles based on Eastern meditative practices.</p>
+<p>Developed by Dr. Marsha Linehan in the late 1980s to treat borderline personality disorder (BPD), DBT has since demonstrated its effectiveness across a spectrum of conditions including depression, bipolar disorder, <a href="/what-we-treat/trauma-ptsd/">PTSD</a>, eating disorders, and <a href="/what-we-treat/substance-use-disorder/">substance abuse</a>. The therapy combines cognitive-behavioral techniques with mindfulness principles based on Eastern meditative practices.</p>
 
 <p>DBT focuses on the psychosocial aspects of treatment. It theorizes that some people react more intensely in certain emotional situations, primarily in relationships. DBT introduces skills to manage these emotions and decrease conflicts.</p>
 

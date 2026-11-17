@@ -6,7 +6,7 @@ export default {
   title: "How The World of Social Media Affects Teens",
   metaTitle: "How The World of Social Media Affects Teens | Mental Health & Psychiatry located in Glastonbury and West Hartford, CT | Hopewell Health Solutions",
   metaDescription:
-    "How social media shapes teen life — its benefits for connection and self-expression, its risks to mental health, and healthy habits for a balanced digital life.",
+    "How social media shapes teen life, its benefits for connection and self-expression, its risks to mental health, and healthy habits for a balanced digital life.",
   category: "Teens & Families",
   excerpt:
     "The upsides and downsides of social media for teens, plus healthy habits to help them navigate the digital world mindfully.",
@@ -34,7 +34,7 @@ export default {
   <li><strong>Comparison Culture:</strong> Seeing perfectly curated profiles and edited selfies can lead to unrealistic comparisons. Teens may feel like they're not good enough, attractive enough, or popular enough, which can harm self-esteem.</li>
   <li><strong>Mental Health Struggles:</strong> Studies have linked heavy social media use with increased rates of anxiety, depression, and isolation among teens. The constant pressure to keep up and stay relevant online can be exhausting.</li>
   <li><strong>Cyberbullying:</strong> Online harassment is a real issue. Unlike face-to-face bullying, cyberbullying can happen 24/7 and can be hard to escape, often leaving deep emotional scars.</li>
-  <li><strong>Sleep Disruption:</strong> Many teens stay up late scrolling or texting, disrupting their sleep patterns. Poor sleep can affect mood, school performance, and overall well-being.</li>
+  <li><strong>Sleep Disruption:</strong> Many teens stay up late <a href="/post/how-to-stop-scrolling-addiction/">scrolling</a> or texting, disrupting their sleep patterns. Poor sleep can affect mood, school performance, and overall well-being.</li>
   <li><strong>Addiction and Time Management:</strong> The endless scroll and instant gratification of likes and comments can become addictive. Teens might find themselves spending hours online instead of doing homework, exercising, or engaging in face-to-face relationships.</li>
 </ul>
 

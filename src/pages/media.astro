@@ -1,15 +1,19 @@
 ---
+import Reviews from "../components/hw/Reviews.astro";
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import MediaStrip from "../components/MediaStrip.astro";
 import "../styles/pages/about.css";
-import ServiceHero from "../components/hw/ServiceHero.astro";
+import "../styles/pages/hubs.css";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import ClosingCta from "../components/hw/ClosingCta.astro";
 import Insurance from "../components/hw/Insurance.astro";
-import { VIDEOS } from "../data/videos.js";
+import { VIDEOS, PODCAST, STORIES } from "../data/videos.js";
+import Locations from "../components/hw/Locations.astro";
+import { providers } from "../data/providers.js";
+import { SITE, PHONE } from "../data/site.js";
 import Prose from "../components/seo/Prose.astro";
 import Faq from "../components/hw/Faq.astro";
 import "../styles/pages/seo.css";
@@ -20,14 +24,14 @@ const blocks = [
   { id: "in-the-news", h2: "Hopewell Health Solutions in the news",
     paras: [
       `Connecticut reporters and TV producers regularly ask Hopewell Health Solutions clinicians to explain what is happening in mental health and what families can do about it. Our team has appeared on WFSB Eyewitness News 3, NBC Connecticut’s CT Live!, FOX61 and Great Day Connecticut, and the practice has been covered by the Hartford Courant and the Hartford Business Journal.`,
-      `The topics reflect the work we do every day: teen mental health, women’s mental health and trauma, support for new moms, and the role of intensive outpatient care in Connecticut. Each segment and article on this page links to the original source, and you can watch the TV interviews right here.`,
-      `If you saw one of our clinicians on the news and want to talk to someone about yourself or a loved one, our admissions team can help you find the right next step, from <a class="inl" href="/programs/counseling/">counseling</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`,
+      `The topics reflect the work we do every day: <a class="inl" href="/programs/teen-iop/">teen mental health</a>, <a class="inl" href="/programs/womens-wellness-iop/">women’s mental health</a> and trauma, support for new moms, and the role of intensive outpatient care in Connecticut. Each segment and article on this page links to the original source, and you can watch the TV interviews right here.`,
+      `If you saw one of our clinicians on the news and want to talk to someone about yourself or a loved one, our <a class="inl" href="/admissions/">admissions team</a> can help you find the right next step, from <a class="inl" href="/programs/counseling/">counseling</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.`,
     ],
     aside: { type: "points", title: "Where you’ve seen us", items: [["play", "WFSB Eyewitness News 3"], ["play", "NBC Connecticut · CT Live!"], ["play", "FOX61"], ["clipboard", "Hartford Courant"], ["clipboard", "Hartford Business Journal"]] } },
   { id: "iop-clinic", h2: "Hartford Courant: Glastonbury’s first privately owned IOP clinic",
     paras: [
       `In February 2023, the Hartford Courant covered the opening of Hopewell as the first privately owned IOP mental health clinic in Glastonbury. The story marked a step in the practice’s growth from outpatient therapy and psychiatry into structured intensive programs.`,
-      `Today those programs include the adult <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, the <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a>, the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> and a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>, across six Connecticut offices.`,
+      `Today those programs include the adult <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, the <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a>, the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> and a <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>, across <a class="inl" href="/locations/">six Connecticut offices</a>.`,
     ],
     aside: { type: "img", src: "/Assets/hhs-2026/iop-group-room-lights.webp", alt: "An IOP group room at Hopewell Health Solutions in Glastonbury", cap: "An IOP group room in Glastonbury" } },
   { id: "dr-k", h2: "Dr. Kristine Schlichting in the media",
@@ -39,14 +43,14 @@ const blocks = [
     aside: { type: "img", src: "/Assets/hhs-2026/dr-k-hhs-sign.webp", alt: "Dr. Kristine Schlichting with a Hopewell Health Solutions banner", cap: "Dr. Kristine Schlichting, Founder &amp; Director" } },
   { id: "women-trauma", h2: "NBC Connecticut CT Live!: trauma in women",
     paras: [
-      `On NBC Connecticut’s CT Live!, our team discussed why so many women carry trauma and how the right support changes things. The segment is a clear, compassionate introduction to how trauma can show up in daily life, long after the events themselves, through anxiety, low mood, exhaustion or difficulty trusting others.`,
-      `At Hopewell, women can heal in a women-only group in our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, built around trauma and healing, with EMDR, somatic approaches and trauma-focused CBT. The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> supports women dealing with burnout, anxiety, life transitions and postpartum changes, in morning and evening groups.`,
+      `On NBC Connecticut’s CT Live!, our team discussed why so many women carry trauma and how the right support changes things. The segment is a clear, compassionate introduction to how trauma can show up in daily life, long after the events themselves, through <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">low mood</a>, exhaustion or difficulty trusting others.`,
+      `At Hopewell, women can heal in a women-only group in our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, built around trauma and healing, with <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, somatic approaches and trauma-focused CBT. The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> supports women dealing with burnout, anxiety, life transitions and postpartum changes, in morning and evening groups.`,
       `If you want to understand more first, read <a class="inl" href="/post/how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing/">how women’s trauma differs from men’s and how group therapy helps</a>.`,
     ],
     aside: { type: "img", src: "/Assets/videos/news-ct-live-trauma-in-women.webp", alt: "CT Live! Trauma in Women segment poster", cap: "NBC Connecticut · CT Live!" } },
   { id: "teen-mental-health", h2: "Teen mental health on WFSB",
     paras: [
-      `In February 2023, WFSB’s Kara’s Cures featured Hopewell in two segments: one on the teen mental health crisis and one on how parents can help improve their teen’s mental health. Both are practical, parent-facing conversations about what to watch for and how to respond.`,
+      `In February 2023, WFSB’s Kara’s Cures featured Hopewell in two segments: one on the teen mental health crisis and one on <a class="inl" href="/admissions/for-families/">how parents can help</a> improve their teen’s mental health. Both are practical, parent-facing conversations about what to watch for and how to respond.`,
       `For parents who want to go further, our free <a class="inl" href="/handouts/">mental health handouts</a> cover anxiety, school refusal and self-harm, and our blog explains <a class="inl" href="/post/how-the-world-of-social-media-affects-teens/">how social media affects teens</a> and <a class="inl" href="/post/guide-to-teen-counseling-navigating-challenges-and-promoting-mental-health/">what teen counseling involves</a>.`,
     ] },
   { id: "why-media", h2: "Why our clinicians talk to Connecticut media",
@@ -56,16 +60,26 @@ const blocks = [
     ] },
   { id: "holistic", h2: "Holistic psychology and spiritual care",
     paras: [
-      `IssueWire featured <a class="inl" href="/provider/bido-aguessy-psy-d-lpc-a/">Dr. Bido Aguessy</a>, a clinical psychologist and spiritual care specialist at Hopewell, for holistic approaches in psychology and spiritual care. It reflects a wider part of how we work: alongside evidence-based therapies like DBT and EMDR, our team offers mind-body approaches such as mindfulness and yoga therapy.`,
+      `IssueWire featured <a class="inl" href="/provider/bido-aguessy-psy-d-lpc-a/">Dr. Bido Aguessy</a>, a clinical psychologist and spiritual care specialist at Hopewell, for holistic approaches in psychology and spiritual care. It reflects a wider part of how we work: alongside evidence-based therapies like <a class="inl" href="/treatment-methods/dbt/">DBT</a> and <a class="inl" href="/treatment-methods/emdr/">EMDR</a>, our team offers mind-body approaches such as mindfulness and yoga therapy.`,
       `You can read more about those methods on our <a class="inl" href="/treatment-methods/therapeutic-treatments/">therapeutic treatments</a> page.`,
     ] },
 ];
+// FAQ: brief questions first (brief answer, then the live answer where the question already existed).
+// Left out ([confirm] in the brief): response time, patient-interview policy beyond "we never share", podcast
+// description FAQ, platforms other than YouTube, podcast topic/guest suggestions.
+const EMAIL = "hhs4help@gmail.com";
 const faqs = [
+  ["How can journalists contact Hopewell?", `<p>Email <a class="inl" href="mailto:${EMAIL}">${EMAIL}</a> or use the <a class="inl" href="#press-contact">press contact details on this page</a>.</p> <p>Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and ask for a media contact.</p>`],
+  ["What topics can your experts speak on?", `Adult and teen mental health, addiction and <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a>, women’s mental health and postpartum care, first responder stress, <a class="inl" href="/what-we-treat/adhd/">ADHD</a>, and access to outpatient care in Connecticut.`],
+  ["Can I interview a clinician for a story?", "Yes. Tell us your topic and deadline, and we’ll match you with the right clinician."],
+  ["Can I interview a patient?", "We never share patient information."],
+  ["Where can I find Hopewell’s logo and photos?", `In the <a class="inl" href="#media-kit">media kit on this page</a>. Please use the files as provided.`],
   ["Where has Hopewell Health Solutions been featured?", "On WFSB Eyewitness News 3, NBC Connecticut (CT Live!), FOX61 and Great Day Connecticut, and in the Hartford Courant, the Hartford Business Journal and IssueWire."],
   ["Who are Hopewell’s media spokespeople?", `Most interviews feature our founder and director, <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Dr. Kristine Schlichting</a>. Other clinicians contribute videos and articles on the <a class="inl" href="/blog/">Hopewell blog</a>.`],
-  ["How can journalists reach Hopewell?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and ask for a media contact.`],
   ["Does Hopewell have a podcast?", `Yes. <a class="inl" href="/podcast/">Hope, Health &amp; Healing</a> shares real stories of treatment and recovery, hosted by TJ Aitken, CPSRP.`],
-  ["I saw a segment and want help. Where do I start?", `Call us or request a confidential callback. We’ll verify your insurance for free and recommend a starting level of care. See <a class="inl" href="/admissions/">how admissions works</a>.`],
+  ["Where can I listen?", `On this page and on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>.`],
+  ["Is podcast content medical advice?", `No. Episodes are for general education. If you need care, contact our <a class="inl" href="/admissions/">admissions team</a>; in a crisis, call or text <a class="inl" href="tel:988">988</a>.`],
+  ["I saw a segment and want help. Where do I start?", `Call us or request a confidential callback. We’ll <a class="inl" href="/rates-and-insurance-coverage/">verify your insurance for free</a> and recommend a starting level of care. See <a class="inl" href="/admissions/">how admissions works</a>.`],
   ["Can I share these videos?", "Yes. The TV segments link to the original outlets and our own videos are on the Hopewell Health Solutions YouTube channel."],
 ];
 
@@ -78,31 +92,154 @@ const videos = [
 const L = "/Assets/Media%20Appearances/";
 const press = [
   { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
-  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.webp", date: "Honoree", title: "Kristine Schlichting — recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
-  { outlet: "FOX61", logo: L + "fox61.webp", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
+  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.webp", date: "Honoree", title: "Kristine Schlichting, recognized leader in behavioral health", who: "Dr. Kristine Schlichting", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
+  { outlet: "FOX61", logo: L + "fox61.webp", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", who: "Dr. Kristine Schlichting", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
   { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "Teen mental health crisis", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-teen-mental-health-crisis/" },
   { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
-  { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
+  { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", who: "Dr. Bido Aguessy", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
 ];
 const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("Podcast") || v.type.startsWith("Clinician")));
 
+// "As featured in": only outlets with a live, linked piece (WOUB in the shared strip has no linked piece here, so it's left out).
+const featured = [
+  ["Hartford Courant", L + "hartford.webp", press[0].href],
+  ["Hartford Business Journal", L + "hbj-logo-v3.webp", press[1].href],
+  ["FOX61", L + "fox61.webp", press[2].href],
+  ["WFSB Eyewitness News 3", L + "wfsb.avif", press[3].href],
+  ["NBC Connecticut", L + "nbc-connecticut.webp", "https://www.youtube.com/watch?v=uDy-K1dO0Fw"],
+  ["IssueWire", L + "issuewire.webp", press[5].href],
+];
+const latest = PODCAST[0];
+const guestOf = (v) => v.name.replace(/’s story$/, "");
+// Our experts: clinicians who have spoken for Hopewell on TV, in print, on the podcast or in our videos. Topics come from those appearances.
+const experts = [
+  ["kristine-a-schlichting-ph-d", "Teen mental health, women’s trauma, children’s mental health, loneliness and group therapy"],
+  ["bido-aguessy-psy-d-lpc-a", "Holistic psychology and spiritual care"],
+  ["tj-aitken-cpsrp", "Addiction recovery and peer support; host of the podcast"],
+  ["viviana-alvarado-lpc-a", "Supporting neurodivergent tweens; grounding skills"],
+].map(([slug, topics]) => ({ p: providers.find((x) => x.slug === slug), topics })).filter((e) => e.p);
+const kitLogos = [
+  ["Wave logo, full color (SVG, vector)", "/Assets/logo/hopewell-wave-logo-color.svg"],
+  ["Wave logo, white for dark backgrounds (SVG, vector)", "/Assets/logo/hopewell-wave-logo-white.svg"],
+  ["Wave logo, full color (WebP)", "/Assets/logo/hopewell-wave-logo.webp"],
+  ["HHS logo (SVG, vector)", "/Assets/logo/hopewell-hhs-logo.svg"],
+  ["HHS logo, white (SVG, vector)", "/Assets/logo/hopewell-hhs-logo-white.svg"],
+];
+const kitPhotos = [
+  ["Dr. Kristine Schlichting headshot", "/Assets/Team%20Members/kristine-a-schlichting-phd.webp"],
+  ["TJ Aitken headshot", "/Assets/Team%20Members/tj-aitken-cpsrp.webp"],
+  ["The Hopewell team", "/Assets/hhs-2026/full-team-lawn.webp"],
+  ["Downtown Glastonbury office", "/Assets/locations/downtown-glastonbury/entrance.webp"],
+  ["Westbrook office", "/Assets/locations/westbrook/exterior.webp"],
+];
+const ldSeries = {
+  "@context": "https://schema.org", "@type": "PodcastSeries", name: "Hope, Health & Healing", url: SITE + "/podcast/",
+  description: "A Hopewell Health Solutions series sharing real stories of mental health treatment and recovery, hosted by TJ Aitken, CPSRP.",
+  webFeed: "https://www.youtube.com/@hopewellhealthsolutions2285",
+  hasPart: PODCAST.map((v, i) => ({ "@type": "PodcastEpisode", name: v.title, episodeNumber: PODCAST.length - i, datePublished: v.date, timeRequired: v.duration, url: `https://www.youtube.com/watch?v=${v.yt}`, description: v.desc })),
+};
+const ldPage = {
+  "@context": "https://schema.org", "@type": "CollectionPage", name: "Hopewell in the Media", url: SITE + "/media/",
+  about: { "@id": SITE + "/#organization" },
+  mentions: press.map((p) => ({ "@type": "NewsArticle", headline: p.title, url: p.href, publisher: { "@type": "Organization", name: p.outlet } })),
+  hasPart: experts.map(({ p }) => ({ "@type": "Person", name: p.name.split(",")[0].trim(), honorificSuffix: p.credentials, jobTitle: p.role, url: `${SITE}/provider/${p.slug}/` })),
+};
+// VideoObject schema comes from the VideoCarousel sections.
 ---
 
-<Base title="Hopewell Health Solutions in the News | Media & Interviews" description="Hopewell Health Solutions in the news — featured on WFSB Eyewitness News, FOX61, the Hartford Courant & Hartford Business Journal for behavioral health and teen mental health in Connecticut.">
+<Base title="Hopewell in the Media: Podcast, News & Experts | Hopewell" description="Listen to the Hopewell podcast, read our articles and press coverage, and contact our Connecticut mental health and addiction experts for interviews.">
   <Header />
+  <script type="application/ld+json" set:html={JSON.stringify(ldPage)} />
+  <script type="application/ld+json" set:html={JSON.stringify(ldSeries)} />
   <main class="hw">
-    <ServiceHero
-      crumbs={[{ label: "Media" }]}
-      title="Hopewell Health Solutions in the Media"
-      lede="Connecticut’s news outlets turn to our clinicians for expertise on teen mental health, women’s wellness, and the future of outpatient care. Here’s where you’ve seen us."
-      bullets={["WFSB Eyewitness News 3 &amp; NBC Connecticut", "FOX61 &amp; the Hartford Courant", "Hartford Business Journal", "The <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>"]}
-      image="/Assets/hhs-2026/iop-team-hallway.webp"
-      form={false}
-    />
-    <MediaStrip showLink={false} />
+    <!-- 1. Hero (navy hub hero). Coverage form sits lower on the page (#insurance). -->
+    <section class="wq-hero">
+      <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
+      <div class="container wq-hero-grid md-hero-grid">
+        <div>
+          <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Media</span></nav>
+          <h1 class="text-balance">Hopewell in the Media</h1>
+          <p class="lede">Our podcast, articles and expert commentary on mental health and addiction in Connecticut.</p>
+          <p class="lede md-lede2">Connecticut’s news outlets turn to our clinicians for expertise on teen mental health, women’s wellness, and the future of outpatient care. Here’s where you’ve seen us.</p>
+          <ul class="md-hero-list">
+            {["WFSB Eyewitness News 3 &amp; NBC Connecticut", "FOX61 &amp; the Hartford Courant", "Hartford Business Journal", "The <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>"].map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}
+          </ul>
+          <div class="wq-ctas"><a href="#podcast" class="btn btn-blue"><Icon name="play" />Listen to the podcast</a><a href="#press-contact" class="btn wq-ghost">Press inquiries</a></div>
+          <p class="md-client">Looking for care for yourself or a loved one? <a class="inl" href="#insurance">Check your coverage</a>.</p>
+        </div>
+        <nav class="md-jump" aria-label="On this page">
+          <p>On this page</p>
+          <a href="#featured">As featured in<span>Six outlets</span></a>
+          <a href="#podcast">Hope, Health &amp; Healing podcast<span>{PODCAST.length} episodes</span></a>
+          <a href="#press">In the news<span>{press.length} features</span></a>
+          <a href="#watch">Videos and TV segments<span>Watch here</span></a>
+          <a href="#experts">Our experts<span>{experts.length} clinicians</span></a>
+          <a href="#media-kit">Media kit<span>Logos and photos</span></a>
+        </nav>
+      </div>
+    </section>
 
-    <!-- TV segments -->
-    <section class="section is-white" id="watch">
+    <!-- 2. As featured in: each logo links to the live piece -->
+    <section class="section is-white md-feat-sec" id="featured">
+      <div class="container">
+        <div class="sec-head"><h2>As featured in</h2><p class="lede">Outlets where Hopewell clinicians have appeared. Each logo opens the original piece.</p></div>
+        <ul class="md-feat">
+          {featured.map(([name, src, href]) => <li><a href={href} target="_blank" rel="noopener"><img src={src} alt={name} loading="lazy" /><span>{name}</span></a></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Podcast: navy split + episode table -->
+    <section class="section is-navy" id="podcast">
+      <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
+      <div class="container md-pod">
+        <div>
+          <h2>Hope, Health &amp; Healing</h2>
+          <p class="lede" style="margin-top:16px">A Hopewell Health Solutions series sharing real stories of mental health treatment and recovery, hosted by <a class="inl" href="/provider/tj-aitken-cpsrp/">TJ Aitken, CPSRP</a>.</p>
+          <p style="margin-top:14px">Watch every episode on <a class="inl" href="/podcast/">our podcast page</a> or subscribe on the <a class="inl" href="https://www.youtube.com/@hopewellhealthsolutions2285" target="_blank" rel="noopener">Hopewell Health Solutions YouTube channel</a>.</p>
+        </div>
+        <button type="button" class="vc-card md-latest" data-yt={latest.yt} data-title={latest.title} aria-label={`Play: ${latest.title}`}>
+          <span class="vc-poster"><img src={`/Assets/videos/${latest.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+          <span class="md-latest-cap"><small>Latest episode · {latest.len}</small><strong>{latest.title}</strong></span>
+        </button>
+      </div>
+      <div class="container">
+        <div class="md-eps" role="table" aria-label="Podcast episodes">
+          <div class="md-ep is-head" role="row"><span role="columnheader">Episode</span><span role="columnheader">Guest</span><span role="columnheader">Date</span><span role="columnheader">Length</span><span role="columnheader">Summary</span></div>
+          {PODCAST.map((v) => (
+            <div class="md-ep" role="row">
+              <span role="cell"><strong>{v.type.replace("Podcast · ", "")}</strong></span>
+              <span role="cell">{guestOf(v)}</span>
+              <span role="cell">{new Date(v.date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+              <span role="cell">{v.len}</span>
+              <span role="cell">{v.desc}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. In the news -->
+    <section class="section is-stone" id="press">
+      <div class="container">
+        <div class="sec-head"><h2>In the news</h2><p class="lede">Articles and features about Hopewell and our clinicians, each linking to the original source.</p></div>
+        <div class="ab-press">
+          {press.map((p) => (
+            <a href={p.href} target="_blank" rel="noopener">
+              <span class="ab-press-top">{p.logo ? <img src={p.logo} alt={p.outlet} loading="lazy" /> : <b>{p.outlet}</b>}<span>{p.date}</span></span>
+              <strong>{p.title}</strong>
+              {p.who && <span class="md-who">Featuring {p.who}</span>}
+              <em>Read the feature <Icon name="arrow" class="h-4 w-4" /></em>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Prose blocks={blocks} />
+
+    <!-- 5. Videos: TV segments + more from the team -->
+    <section class="section is-stone" id="watch">
       <div class="container">
         <div class="sec-head"><h2>Interviews &amp; TV segments</h2><p class="lede">Press play to watch our clinicians on Connecticut TV.</p></div>
         <div class="ab-tv">
@@ -115,29 +252,145 @@ const more = VIDEOS.filter((v) => v.yt !== "aff5Xfy9CfE" && (v.type.startsWith("
         </div>
       </div>
     </section>
+    <VideoCarousel videos={more} mode="grid" heading="More From the Hopewell Team" lede="Our podcast and short videos from Hopewell clinicians." link={{ href: "/podcast/", label: "All podcast episodes" }} />
 
-    <!-- Press -->
-    <section class="section is-stone" id="press">
+    <!-- 6. Our experts: divided 2 x 2 list -->
+    <section class="section is-white" id="experts">
       <div class="container">
-        <div class="sec-head"><h2>Press &amp; features</h2></div>
-        <div class="ab-press">
-          {press.map((p) => (
-            <a href={p.href} target="_blank" rel="noopener">
-              <span class="ab-press-top">{p.logo ? <img src={p.logo} alt={p.outlet} loading="lazy" /> : <b>{p.outlet}</b>}<span>{p.date}</span></span>
-              <strong>{p.title}</strong>
-              <em>Read the feature <Icon name="arrow" class="h-4 w-4" /></em>
-            </a>
+        <div class="sec-head"><h2>Our experts</h2><p class="lede">Clinicians who have spoken for Hopewell on TV, in print, on the podcast or in our videos. Each name links to a full bio, and <a class="inl" href="/about-us/team/">our team page</a> lists every clinician.</p></div>
+        <ul class="md-experts">
+          {experts.map(({ p, topics }) => (
+            <li>
+              <img src={`/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`} alt={p.name} width="600" height="750" loading="lazy" />
+              <div>
+                <h3><a href={`/provider/${p.slug}/`}>{p.name}</a></h3>
+                <p class="md-role">{p.role}</p>
+                <p><strong>Topics:</strong> {topics}</p>
+              </div>
+            </li>
           ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Media kit: one panel split by thin rules -->
+    <section class="section is-stone" id="media-kit">
+      <div class="container">
+        <div class="sec-head"><h2>Media kit</h2><p class="lede">Approved files for press and partners. Please use the files as provided.</p></div>
+        <div class="md-kit">
+          <div>
+            <h3>About Hopewell</h3>
+            <p>Hopewell Health Solutions is an outpatient mental health and addiction treatment provider with six offices in Connecticut, offering counseling, medication management, IOP, PHP, TMS and testing for children, teens and adults. Our care is built around in-person visits and groups, with telehealth available for some services.</p>
+            <p>Read more <a class="inl" href="/about-us/">about Hopewell</a>.</p>
+          </div>
+          <div>
+            <h3>Logo files</h3>
+            <ul class="md-dl">{kitLogos.map(([t, href]) => <li><a class="inl" href={href} download>{t}</a></li>)}</ul>
+          </div>
+          <div>
+            <h3>Photos</h3>
+            <ul class="md-dl">{kitPhotos.map(([t, href]) => <li><a class="inl" href={href} download>{t}</a></li>)}</ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <Prose blocks={blocks} />
-    <Faq faqs={faqs} heading="Media &amp; press — common questions" tone="stone" />
-    <VideoCarousel videos={more} mode="grid" heading="More From the Hopewell Team" lede="Our podcast and short videos from Hopewell clinicians." link={{ href: "/podcast/", label: "All podcast episodes" }} />
+    <!-- 8. Press contact: navy split -->
+    <section class="section is-navy" id="press-contact">
+      <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
+      <div class="container md-pod">
+        <div>
+          <h2>Press inquiries</h2>
+          <p class="lede" style="margin-top:16px">Tell us your topic and deadline, and we’ll match you with the right clinician.</p>
+        </div>
+        <dl class="md-contact">
+          <div><dt>Phone</dt><dd><a class="inl" href={PHONE.href}>{PHONE.display}</a>, and ask for a media contact</dd></div>
+          <div><dt>Email</dt><dd><a class="inl" href={`mailto:${EMAIL}`}>{EMAIL}</a></dd></div>
+          <div><dt>Looking for care?</dt><dd>Our <a class="inl" href="/admissions/">admissions team</a> handles care requests. In a crisis, call or text <a class="inl" href="tel:988">988</a>.</dd></div>
+        </dl>
+      </div>
+    </section>
 
+    <!-- 9. Testimonials, 10. offices + coverage form, then Reviews, As featured in strip, FAQ (sitewide order) -->
+    <VideoCarousel videos={STORIES} tone="white" heading="Stories From Our Clients" lede="Clients share what treatment at Hopewell was like, in their own words." link={{ href: "/testimonials/", label: "All testimonials" }} id="stories" />
+    <Locations />
     <Insurance tone="white" />
-    <ClosingCta heading="Trusted by Connecticut — and here for you" lede="The same team the news turns to is ready to help you or your loved one heal." verifyHref="/admissions/#verify" />
+    <Reviews tone="stone" />
+    <MediaStrip bg="crema" showLink={false} />
+    <Faq faqs={faqs} heading="Media &amp; press, common questions" tone="white" />
+    <ClosingCta heading="Trusted by Connecticut, and here for you" lede="The same team the news turns to is ready to help you or your loved one heal." verifyHref="#insurance" />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .md-hero-grid { align-items: start; }
+  .md-lede2 { margin-top: 12px !important; font-size: 16.5px; }
+  .md-hero-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
+  .md-hero-list li { display: flex; gap: 10px; align-items: flex-start; color: #fff; font-size: 15.5px; line-height: 1.45; }
+  .md-client { margin-top: 18px; font-size: 15px; color: #c3d2e2; }
+  .md-jump { border-radius: 22px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); padding: 10px 24px; }
+  .md-jump p { padding: 12px 0 8px; font-family: var(--hw-head); font-weight: 800; font-size: 14px; color: var(--hw-sky); }
+  .md-jump a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.16); color: #fff; font-family: var(--hw-head); font-weight: 700; text-decoration: none; }
+  .md-jump a:hover { color: var(--hw-sky); }
+  .md-jump a span { font-family: var(--hw-body-font, inherit); font-weight: 400; font-size: 14px; color: #c3d2e2; }
+  .md-feat { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--hw-line); border-radius: 22px; overflow: hidden; }
+  .md-feat li + li { border-left: 1px solid var(--hw-line); }
+  .md-feat a { display: grid; justify-items: center; align-content: center; gap: 12px; height: 100%; padding: 28px 16px; text-decoration: none; transition: background .15s; }
+  .md-feat a:hover { background: var(--hw-mist); }
+  .md-feat img { height: 44px; width: auto; max-width: 100%; object-fit: contain; }
+  .md-feat span { font-size: 13.5px; color: var(--hw-slate); text-align: center; }
+  .md-pod { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .md-latest { display: block; width: 100%; text-align: left; border-radius: 22px; overflow: hidden; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); padding: 0; cursor: pointer; }
+  .md-latest .vc-poster { display: block; position: relative; }
+  .md-latest .vc-poster img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+  .md-latest-cap { display: grid; gap: 4px; padding: 16px 20px 18px; }
+  .md-latest-cap small { font-family: var(--hw-head); font-weight: 700; font-size: 13px; color: var(--hw-sky); }
+  .md-latest-cap strong { color: #fff; font-family: var(--hw-head); font-size: 17px; line-height: 1.35; }
+  .md-eps { position: relative; margin-top: 36px; border-top: 1px solid rgba(255,255,255,.2); }
+  .md-ep { display: grid; grid-template-columns: 0.8fr 0.6fr 0.8fr 0.5fr 2.6fr; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.16); font-size: 15.5px; line-height: 1.5; color: #dce6f1; }
+  .md-ep strong { color: #fff; font-family: var(--hw-head); }
+  .md-ep.is-head { font-family: var(--hw-head); font-weight: 800; font-size: 13px; color: var(--hw-sky); padding: 12px 0; }
+  .md-who { font-size: 14px; color: var(--hw-slate); }
+  .md-experts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(28px, 5vw, 64px); border-top: 1px solid var(--hw-line); }
+  .md-experts li { display: grid; grid-template-columns: 110px 1fr; gap: 20px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--hw-line); }
+  .md-experts img { width: 110px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; }
+  .md-experts h3 { font-size: 19px; }
+  .md-experts h3 a { color: var(--hw-navy); text-decoration: none; }
+  .md-experts h3 a:hover { text-decoration: underline; }
+  .md-role { margin-top: 4px; font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: var(--hw-gold); }
+  .md-experts p + p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
+  .md-kit { display: grid; grid-template-columns: 1.3fr 1fr 1fr; background: #fff; border: 1px solid var(--hw-line); border-radius: 22px; }
+  .md-kit > div { padding: 28px; display: grid; gap: 10px; align-content: start; }
+  .md-kit > div + div { border-left: 1px solid var(--hw-line); }
+  .md-kit h3 { font-size: 19px; }
+  .md-kit p { font-size: 16px; line-height: 1.6; }
+  .md-dl { list-style: none; margin: 0; padding: 0; }
+  .md-dl li { padding: 9px 0; border-bottom: 1px solid var(--hw-line); font-size: 15.5px; }
+  .md-dl li:last-child { border-bottom: 0; }
+  .md-contact { margin: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .md-contact > div { display: grid; grid-template-columns: 160px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+  .md-contact dt { font-family: var(--hw-head); font-weight: 800; color: #fff; }
+  .md-contact dd { margin: 0; color: #dce6f1; font-size: 16px; line-height: 1.55; }
+  :global(.hw .faq-a p + p) { margin-top: 10px; }
+  @media (max-width: 999px) {
+    .md-pod { grid-template-columns: 1fr; }
+    .md-feat { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .md-feat li:nth-child(4) { border-left: 0; }
+    .md-feat li:nth-child(n+4) { border-top: 1px solid var(--hw-line); }
+    .md-experts { grid-template-columns: 1fr; }
+    .md-kit { grid-template-columns: 1fr; }
+    .md-kit > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
+  }
+  @media (max-width: 760px) {
+    .md-hero-list { grid-template-columns: 1fr; }
+    .md-ep { grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+    .md-ep > span:last-child { grid-column: 1 / -1; }
+    .md-ep.is-head { display: none; }
+    .md-contact > div { grid-template-columns: 1fr; gap: 2px; }
+    .md-feat { grid-template-columns: 1fr 1fr; }
+    .md-feat li:nth-child(4) { border-left: 1px solid var(--hw-line); }
+    .md-feat li:nth-child(odd) { border-left: 0; }
+    .md-feat li:nth-child(n+3) { border-top: 1px solid var(--hw-line); }
+  }
+</style>

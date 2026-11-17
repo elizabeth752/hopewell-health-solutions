@@ -11,7 +11,7 @@ export default {
   datePublished: "2025-03-17",
   dateModified: "2025-03-17",
   readingMinutes: 3,
-  bodyHtml: `<p>Welcome to Hopewell Health Solutions! We're so excited that you are considering us for an intensive outpatient program. Starting an IOP can be a big step in your journey toward recovery. It's completely normal to feel a mix of emotions - nervousness, uncertainty, and even excitement! If you're preparing to start our IOP, you might have questions about what to expect on your first day. Knowing what's ahead can help reduce anxiety and prepare you for a productive, enjoyable experience. Here's a breakdown of what you can expect!</p>
+  bodyHtml: `<p>Welcome to Hopewell Health Solutions! We're so excited that you are considering us for an <a href="/programs/intensive-outpatient-program/">intensive outpatient program</a>. Starting an IOP can be a big step in your journey toward recovery. It's completely normal to feel a mix of emotions - nervousness, uncertainty, and even excitement! If you're preparing to start our IOP, you might have questions about what to expect on your first day. Knowing what's ahead can help reduce anxiety and prepare you for a productive, enjoyable experience. Here's a breakdown of what you can expect!</p>
 
 <h2>A Warm Welcome</h2>
 <ul>
@@ -25,12 +25,12 @@ export default {
 
 <h2>An Overview of the Program and Group Norms</h2>
 <ul>
-<li>You will get a brief orientation about the structure of your IOP. This includes the daily schedule, the types of therapy you will be participating in, and opportunities to ask any questions you might have. You'll also be informed of the expectations for attendance, participation and confidentiality as well as group norms to ensure a positive experience for all. Expect to hear what group therapy sessions are like, what to expect in individual check ins, and rules regarding things like phone use, breaks and safety protocols. This helps set the tone for your participation so you know what to expect and how the program operates.</li>
+<li>You will get a brief orientation about the structure of your IOP. This includes the daily schedule, the types of therapy you will be participating in, and opportunities to ask any questions you might have. You'll also be informed of the expectations for attendance, participation and confidentiality as well as group norms to ensure a positive experience for all. Expect to hear what <a href="/treatment-methods/group-therapy/">group therapy</a> sessions are like, what to expect in individual check ins, and rules regarding things like phone use, breaks and safety protocols. This helps set the tone for your participation so you know what to expect and how the program operates.</li>
 </ul>
 
 <h2>An Introduction to Group Therapy</h2>
 <ul>
-<li>A key component to our IOP is group therapy and your first day will typically include two group sessions. During these groups, you'll meet others who are on a similar journey. Group therapy is a safe space where individuals come together to share experiences, support one another, and learn coping strategies. At first, it might feel intimidating to open up in front of others, but keep in mind that group therapy is often a source of comfort and connection. It's normal to feel nervous, but you can expect a respectful, non-judgmental environment. We encourage you to take your time getting acclimated to the group - feel free to just listen and absorb the group at first.</li>
+<li>A key component to our IOP is group therapy and your first day will typically include two group sessions. During these groups, you'll meet others who are on a similar journey. Group therapy is a safe space where individuals come together to share experiences, support one another, and learn <a href="/post/anxiety-coping-strategies-expert-tips-for-finding-calm/">coping strategies</a>. At first, it might feel intimidating to open up in front of others, but keep in mind that group therapy is often a source of comfort and connection. It's normal to feel nervous, but you can expect a respectful, non-judgmental environment. We encourage you to take your time getting acclimated to the group - feel free to just listen and absorb the group at first.</li>
 </ul>
 
 <h2>Scheduling</h2>

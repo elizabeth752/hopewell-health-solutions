@@ -1,5 +1,6 @@
 ---
-// GeneSight — 2026 redesign. All live copy kept; the three-category report is drawn as a graphic.
+import MediaStrip from "../../components/MediaStrip.astro";
+// GeneSight: 2026 redesign. All live copy kept; the three-category report is drawn as a graphic.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -23,20 +24,28 @@ const heroUsps = [
   "Results reviewed one-on-one with your Hopewell provider",
 ];
 const facts = [
-  ["1", "", "cheek swab — no needles, no blood draw"],
+  ["1", "", "cheek swab: no needles, no blood draw"],
   ["60", "+", "FDA-approved psychiatric medications analyzed"],
   ["Days", "", "from sample to a report your provider can act on"],
 ];
 const steps = [
-  ["Cheek swab", "During a visit, a member of our team collects a DNA sample with a soft cheek swab — there are no needles and no blood draw."],
+  ["Your prescriber orders it", "Your Hopewell prescriber talks with you about whether testing makes sense and orders it. The sample goes to the Myriad Genetics lab for analysis."],
+  ["Cheek swab", "During a visit, a member of our team collects a DNA sample with a soft cheek swab. There are no needles and no blood draw."],
   ["Lab analysis", "That sample is sent to the laboratory, which analyzes the relevant genes and returns a report, usually within a few days."],
   ["Review together", "Your provider then sits down with you to interpret the results in plain language and discuss what they mean for your care."],
 ];
+const cant = [
+  ["It doesn’t diagnose", "GeneSight® doesn’t diagnose depression, anxiety or any other condition."],
+  ["It can’t promise which medication will work", "No test can promise that. The results give your provider extra information to consider alongside your history and symptoms."],
+  ["Your provider still makes the decision with you", "Medication decisions still depend on your provider’s judgment, your symptoms, your history and your preferences."],
+  ["Other options stay on the table", `If several medications haven’t brought enough relief, your provider can also talk with you about other treatments, such as <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>.`],
+];
 const faq = [
-  ["What is GeneSight testing?", "GeneSight is a pharmacogenomic (gene + drug) test that analyzes how your genes may influence the way your body processes certain psychiatric medications. The results give your prescriber additional information to consider when choosing or adjusting a medication for depression, anxiety, ADHD and related conditions."],
-  ["How is the test done?", "It's a simple cheek swab. A clinician rubs a soft swab on the inside of your cheek to collect a DNA sample — there are no needles and no blood draw. The sample is sent to the lab and results are typically available within a few days."],
-  ["Will GeneSight tell me exactly which medication to take?", "No. GeneSight does not diagnose any condition and it does not decide your treatment. It groups medications into categories based on potential gene-drug interactions, and your Hopewell prescriber uses that information — alongside your symptoms, history and preferences — to make the final clinical decision with you."],
-  ["Is GeneSight covered by insurance?", `Coverage varies by plan. Many commercial insurers and Medicare cover GeneSight for patients who meet certain criteria. Our team can help you understand your benefits before testing — call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and we'll walk you through it.`],
+  ["What is GeneSight® testing?", "A genetic test, made by Myriad Genetics, that shows how your genes may affect the way your body processes certain mental health medications. GeneSight is a pharmacogenomic (gene + drug) test that analyzes how your genes may influence the way your body processes certain psychiatric medications. The results give your prescriber additional information to consider when choosing or adjusting a medication for depression, anxiety, ADHD and related conditions."],
+  ["How is the test done?", "With a simple cheek swab. It's quick and painless. It's a simple cheek swab. A clinician rubs a soft swab on the inside of your cheek to collect a DNA sample. There are no needles and no blood draw. The sample is sent to the lab and results are typically available within a few days."],
+  ["Who might benefit?", `People who have tried several medications without enough relief, or who've had difficult side effects. Your prescriber can help you decide whether testing fits into your <a class="inl" href="/programs/medication-management/">medication management</a>.`],
+  ["Will it tell me which medication will work?", "No test can promise that. The results give your provider extra information to consider alongside your history and symptoms. No. GeneSight does not diagnose any condition and it does not decide your treatment. It groups medications into categories based on potential gene-drug interactions, and your Hopewell prescriber uses that information, alongside your symptoms, history and preferences, to make the final clinical decision with you."],
+  ["Does insurance cover GeneSight®?", `Coverage varies by plan. Many commercial insurers and Medicare cover GeneSight for patients who meet certain criteria. Our team can help you <a class="inl" href="/rates-and-insurance-coverage/">understand your benefits</a> before testing. Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and we'll walk you through it.`],
 ];
 const schema = {
   "@context": "https://schema.org",
@@ -48,13 +57,13 @@ const schema = {
 };
 ---
 
-<Base title="GeneSight Genetic Testing for Medication | Hopewell Health Solutions" description="GeneSight is a simple cheek-swab pharmacogenomic test that helps your prescriber reduce medication trial-and-error. Offered at Hopewell Health Solutions in Connecticut." canonical={canonical} image={P + "providers-together.webp"}>
+<Base title="GeneSight® Testing in Connecticut | Hopewell Health Solutions" description="GeneSight® is a cheek-swab genetic test your Hopewell provider can use to inform mental health medication choices. Learn how it works and check coverage." canonical={canonical} image={P + "providers-together.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
-      crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "GeneSight Testing" }]}
-      title="GeneSight Genetic Testing"
+      crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "GeneSight® Testing" }]}
+      title="GeneSight® Genetic Testing for Medication Decisions in Connecticut"
       lede="Pharmacogenomic testing that helps your Hopewell prescriber choose medication guided by your biology rather than by trial-and-error alone."
       bullets={heroUsps}
       facts={[{ icon: "dna", text: "Pharmacogenomic testing" }, { icon: "pill", text: "Part of medication management" }]}
@@ -67,7 +76,7 @@ const schema = {
       <div class="container tx-split">
         <div class="tx-copy">
           <h2>Why the same medication works differently for different people</h2>
-          <p style="margin-top:16px">Finding the right psychiatric medication can feel like a frustrating process of guess-and-check. Two people with the same diagnosis can respond very differently to the same prescription — one feels relief within weeks, while the other struggles with side effects or no improvement at all. A large part of that difference comes down to genetics: small variations in your DNA influence how quickly your body breaks medications down and how strongly it responds to them. GeneSight pharmacogenomic testing gives your Hopewell prescriber a window into those variations, so treatment decisions can be guided by your biology rather than by trial-and-error alone.</p>
+          <p style="margin-top:16px">Finding the right psychiatric medication can feel like a frustrating process of guess-and-check. Two people with the same diagnosis can respond very differently to the same prescription: one feels relief within weeks, while the other struggles with side effects or no improvement at all. A large part of that difference comes down to genetics: small variations in your DNA influence how quickly your body breaks medications down and how strongly it responds to them. <a class="inl" href="/post/exploring-genesight-testing-personalizing-mental-health-treatment-at-hopewell-health-solutions/">GeneSight pharmacogenomic testing</a> gives your Hopewell prescriber a window into those variations, so treatment decisions can be guided by your biology rather than by trial-and-error alone.</p>
         </div>
         <div>
           <div class="tx-stats" style="--cols:1;gap:10px">
@@ -90,17 +99,30 @@ const schema = {
         </div>
         <div class="tx-copy">
           <h2>What GeneSight is</h2>
-          <p style="margin-top:16px">GeneSight is a pharmacogenomic test — "pharmaco" for medication and "genomic" for genes. It analyzes specific genes that play a role in how your body metabolizes and responds to medications commonly used to treat <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/adhd/">ADHD</a> and other mental health conditions. The test does not diagnose anything, and it does not replace your provider's clinical judgment. Instead, it adds one more meaningful data point to the conversation: a report that shows which medications may work as expected for you, which may require dose adjustments, and which may carry a higher chance of side effects based on your genetic profile.</p>
+          <p style="margin-top:16px">GeneSight is a pharmacogenomic test: "pharmaco" for medication and "genomic" for genes. It analyzes specific genes that play a role in how your body metabolizes and responds to medications commonly used to treat <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/adhd/">ADHD</a> and other mental health conditions. The test does not diagnose anything, and it does not replace your provider's clinical judgment. Instead, it adds one more meaningful data point to the conversation: a report that shows which medications may work as expected for you, which may require dose adjustments, and which may carry a higher chance of side effects based on your genetic profile.</p>
+          <p>GeneSight® is made by Myriad Genetics, and a Hopewell prescriber can order it for you. It’s a cheek-swab test that looks at genes that affect how your body processes certain medications. Your provider uses the report alongside your history.</p>
         </div>
       </div>
     </section>
 
     <section class="section is-white">
       <div class="container">
-        <div class="sec-head"><h2>How the test works</h2><p class="lede">The process is quick and completely non-invasive. During a visit, a member of our team collects a DNA sample with a soft cheek swab — there are no needles and no blood draw. That sample is sent to the laboratory, which analyzes the relevant genes and returns a report, usually within a few days. The report organizes medications into easy-to-read categories: those that can generally be used as directed, those that may require closer monitoring or dosing changes, and those that may have a significant gene-drug interaction for you. Your provider then sits down with you to interpret the results in plain language and discuss what they mean for your care.</p></div>
-        <ol class="tx-steps">
+        <div class="sec-head"><h2>How the test works</h2><p class="lede">The process is quick and completely non-invasive. During a visit, a member of our team collects a DNA sample with a soft cheek swab. There are no needles and no blood draw. That sample is sent to the laboratory, which analyzes the relevant genes and returns a report, usually within a few days. The report organizes medications into easy-to-read categories: those that can generally be used as directed, those that may require closer monitoring or dosing changes, and those that may have a significant gene-drug interaction for you. Your provider then sits down with you to interpret the results in plain language and discuss what they mean for your care.</p></div>
+        <ol class="tx-steps" style="--cols:4">
           {steps.map(([t, d], i) => <li class="tx-step"><span class="tx-step-n">{i + 1}</span><h3>{t}</h3><p>{d}</p>{i < steps.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
         </ol>
+      </div>
+    </section>
+
+    <section class="section is-navy">
+      <div class="container gx-nsplit">
+        <div class="gx-nsplit-head">
+          <h2>What GeneSight® can’t do</h2>
+          <p class="lede">The report is one piece of information. It doesn’t replace a conversation with your provider.</p>
+        </div>
+        <ul class="gx-rules">
+          {cant.map(([t, d]) => <li><strong>{t}</strong><span set:html={d} /></li>)}
+        </ul>
       </div>
     </section>
 
@@ -109,6 +131,7 @@ const schema = {
         <div class="tx-copy">
           <h2>Who may benefit</h2>
           <p style="margin-top:16px">GeneSight can be especially helpful if you have tried one or more psychiatric medications without the relief you hoped for, if you've experienced unusual or hard-to-tolerate side effects, or if you are starting medication for the first time and want to make the most informed choice possible. It is often considered for people living with treatment-resistant depression, persistent anxiety, ADHD, or other conditions where finding the right medication has been a long road. Because every situation is different, your prescriber will help you decide whether testing is likely to add value for you specifically.</p>
+          <p>It’s most often considered for people who’ve had side effects or limited relief from several medications, as part of <a class="inl" href="/programs/medication-management/">medication management</a> for <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/adhd/">ADHD</a> or <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder</a>.</p>
         </div>
         <ul class="tx-checks">
           {["You’ve tried one or more psychiatric medications without the relief you hoped for", "You’ve had unusual or hard-to-tolerate side effects", "You’re starting medication for the first time and want the most informed choice", "Finding the right medication has been a long road"].map((c) => <li class="tx-card" style="flex-direction:row;align-items:center;padding:16px 18px"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{c}</span></li>)}
@@ -121,17 +144,30 @@ const schema = {
         <figure class="tx-photo"><img src={P + "providers-together.webp"} alt="Hopewell psychiatric providers" width="1200" height="1600" loading="lazy" style="object-position:center 25%" /><figcaption>Our prescribers<span>Review your results with you, one-on-one</span></figcaption></figure>
         <div class="tx-copy">
           <h2>How we use it at Hopewell</h2>
-          <p style="margin-top:16px">At Hopewell Health Solutions, GeneSight testing is never a standalone product — it's one tool inside a thoughtful, whole-person approach to <a class="inl" href="/programs/medication-management/">medication management</a>. Our prescribers combine your genetic results with the things that matter just as much: your symptoms, your history, your goals, your other medications, and your own preferences about treatment. The result is a more personalized, collaborative plan and, for many people, a shorter path to a medication that actually fits. If you're already working with one of our psychiatric providers, ask whether GeneSight testing makes sense as a next step. If you're new to Hopewell, our team can explain the process, check your insurance benefits, and schedule a visit.</p>
+          <p style="margin-top:16px">At Hopewell Health Solutions, GeneSight testing is never a standalone product. It's one tool inside a thoughtful, whole-person approach to <a class="inl" href="/programs/medication-management/">medication management</a>. Our prescribers combine your genetic results with the things that matter just as much: your symptoms, your history, your goals, your other medications, and your own preferences about treatment. The result is a more personalized, collaborative plan and, for many people, a shorter path to a medication that actually fits. If you're already working with one of our psychiatric providers, ask whether GeneSight testing makes sense as a next step. If you're new to Hopewell, our team can <a class="inl" href="/admissions/what-to-expect/">explain the process</a>, check your insurance benefits, and schedule a visit.</p>
         </div>
       </div>
     </section>
 
     <Team heading="Our Psychiatric Prescribers" lede="The providers who order and review GeneSight testing. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["christina-lindsay-pmhnp-bc-aprn", "tracy-sibley-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "ana-arroyo-aprn-pmhnp-bc", "chris-patenaude-pa", "katherine-salvador-pa-c", "linda-scillia-pmhnp-bc-aprn"]} feature={null} tone="stone" />
-    <Reviews first={["Medication management"]} />
     <Insurance heading="Wondering if testing is covered?" lede="We'll verify your benefits before anything is scheduled. Call <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." />
+    <Reviews tone="stone" first={["Medication management"]} />
+    <MediaStrip bg="crema" />
     <Faq faqs={faq} heading="Frequently asked questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/genesight-testing/" />
-    <ClosingCta heading="Take the guesswork out of medication" lede="Talk with our Connecticut team about whether GeneSight testing is right for you — confidentially, with no pressure." />
+    <ClosingCta heading="Take the guesswork out of medication" lede="Talk with our Connecticut team about whether GeneSight testing is right for you, confidentially and with no pressure." />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .gx-nsplit { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .gx-nsplit-head h2 { color: #fff; }
+  .gx-nsplit-head .lede { margin-top: 14px; color: #dce6f1; }
+  .gx-rules { list-style: none; margin: 0; padding: 0; }
+  .gx-rules li { display: grid; gap: 6px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .gx-rules li:first-child { padding-top: 0; border-top: 0; }
+  .gx-rules strong { font-family: var(--hw-head); font-weight: 800; font-size: 19px; color: #fff; }
+  .gx-rules span { font-size: 16.5px; line-height: 1.6; color: #dce6f1; }
+  @media (max-width: 860px) { .gx-nsplit { grid-template-columns: 1fr; } }
+</style>

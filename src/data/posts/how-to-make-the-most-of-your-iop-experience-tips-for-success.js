@@ -18,13 +18,13 @@ export default {
   dateModified: "2025-06-30",
   readingMinutes: 2,
   bodyHtml: `
-<p>Intensive Outpatient Programs can be lifechanging; especially if used to their full potential. Read on for tips for success to help you get the most out of your IOP.</p>
+<p><a href="/programs/intensive-outpatient-program/">Intensive Outpatient Programs</a> can be lifechanging; especially if used to their full potential. Read on for tips for success to help you get the most out of your IOP.</p>
 
 <h2>Be Open and Honest</h2>
 <p>Use this opportunity to share your thoughts, feelings, challenges, and progress truthfully with group members and providers. Honesty helps your therapists and peers understand how they can best support you. Be honest with yourself! What is going well? What do you need to improve? Are you actively engaging and practicing skills and strategies? Being honest with yourself allows you to be accountable so you can meet your goals.</p>
 
 <h2>Engage in Sessions</h2>
-<p>Actively participate in group discussions and complete assignments. A benefit of IOP is the group therapy component. Actively engaging in sessions allows peers to support one another, and allows for processing of your own thoughts and feelings.</p>
+<p>Actively participate in group discussions and complete assignments. A benefit of IOP is the <a href="/treatment-methods/group-therapy/">group therapy</a> component. Actively engaging in sessions allows peers to support one another, and allows for processing of your own thoughts and feelings.</p>
 
 <h2>Do The Work</h2>
 <p>Working on your mental health doesn't just stop when IOP ends for the night; the real work comes in your ability to practice applying your skills and strategies, and learning to change the way you think and act for the better. Complete journal assignments, practice your skills, and come back with questions or feedback on your experience.</p>

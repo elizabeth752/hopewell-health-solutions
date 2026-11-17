@@ -1,5 +1,6 @@
 ---
-// TMS — 2026 redesign (Corner Canyon layout, Hopewell brand). All live copy kept; layout rebuilt.
+import Team from "../../components/hw/Team.astro";
+// TMS, 2026 redesign (Corner Canyon layout, Hopewell brand). All live copy kept; layout rebuilt.
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -21,16 +22,16 @@ const heroUsps = [
   "FDA-cleared, drug-free &amp; non-invasive",
   "NeuroStar® Advanced TMS for depression &amp; OCD",
   "18–45 minute sessions · no downtime · resume your day",
-  "For treatment-resistant depression — a safer alternative to ECT",
+  "For treatment-resistant depression, a safer alternative to ECT",
 ];
 const uses = [
-  { icon: "cloud", t: "Treatment-Resistant Major Depression", d: "Nearly half of people with clinical depression are labeled “non-responsive” at some point — not improving on antidepressants or talk therapy alone. TMS is a safer alternative to ECT, with fewer side effects and higher success rates.", href: "/what-we-treat/depression/", link: "depression treatment" },
-  { icon: "refresh", t: "Treatment-Resistant OCD", d: "NeuroStar TMS is FDA-cleared to treat OCD — a series of short outpatient sessions that stimulate neural activity in the prefrontal cortex, with high success and few to no side effects.", href: "/what-we-treat/ocd/", link: "OCD treatment" },
+  { icon: "cloud", t: "Treatment-Resistant Major Depression", d: "Nearly half of people with clinical depression are labeled “non-responsive” at some point, not improving on antidepressants or talk therapy alone. TMS is a safer alternative to ECT, with fewer side effects and higher success rates.", href: "/what-we-treat/depression/", link: "depression treatment" },
+  { icon: "refresh", t: "Treatment-Resistant OCD", d: "NeuroStar TMS is FDA-cleared to treat OCD, a series of short outpatient sessions that stimulate neural activity in the prefrontal cortex, with high success and few to no side effects.", href: "/what-we-treat/ocd/", link: "OCD treatment" },
 ];
 const steps = [
-  ["Mapping", "You stay awake and alert while we perform a motor-threshold test to find your ideal magnetic field strength — a gentle pulse causes a small movement in your thumb, which lets us tailor the treatment to you."],
+  ["Mapping", "You stay awake and alert while we perform a motor-threshold test to find your ideal magnetic field strength: a gentle pulse causes a small movement in your thumb, which lets us tailor the treatment to you."],
   ["Treatment", "Your first session runs 18–45 minutes. Many patients describe the sensation as light tapping on the scalp; if anything feels uncomfortable, we adjust it for you."],
-  ["After treatment", "There’s no downtime — you can drive yourself home and resume work, family, or whatever your day holds, right away."],
+  ["After treatment", "There’s no downtime, you can drive yourself home and resume work, family, or whatever your day holds, right away."],
 ];
 const expect = [
   ["calendar", "Treatment frequency", "5 days a week for 30–36 sessions"],
@@ -47,40 +48,46 @@ const rightFor = [
 const L = "/Assets/Media%20Appearances/";
 const press = [
   { outlet: "Hartford Courant", logo: L + "hartford.webp", date: "Feb 2023", title: "Hopewell opens first privately owned IOP mental health clinic in Glastonbury", href: "https://www.courant.com/2023/02/24/hopewell-solutions-opens-first-privately-owned-iop-mental-health-clinic-in-glastonbury/" },
-  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.webp", date: "Honoree", title: "Kristine Schlichting — recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
+  { outlet: "Hartford Business Journal", logo: L + "hbj-logo-v3.webp", date: "Honoree", title: "Kristine Schlichting, recognized leader in behavioral health", href: "https://hartfordbusiness.com/honoree/kristine-schlichting/" },
   { outlet: "FOX61", logo: L + "fox61.webp", date: "2023", title: "Glastonbury psychologist is helping teen girls and new moms find support", href: "https://www.fox61.com/article/news/local/outreach/awareness-months/glastonbury-psychologist-is-helping-teen-girls-and-new-moms-find-support/520-84d3fd3f-1cec-40bc-9d4c-65f7b6a4d2e9" },
   { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "Teen mental health crisis", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-teen-mental-health-crisis/" },
   { outlet: "WFSB · Kara’s Cures", logo: L + "wfsb.avif", date: "Feb 2023", title: "How to help improve your teen’s mental health", href: "https://www.wfsb.com/video/2023/02/27/karas-cures-how-help-improve-your-teens-mental-health/" },
   { outlet: "IssueWire", logo: L + "issuewire.webp", date: "Feature", title: "Dr. Bido Aguessy: holistic approaches in psychology & spiritual care at Hopewell", href: "https://www.issuewire.com/dr-bido-aguessy-pioneering-holistic-approaches-in-psychology-and-spiritual-care-at-hopewell-health-solutions-1809193551604743" },
 ];
 const faqs = [
-  ["What is TMS?", "Transcranial Magnetic Stimulation is a safe, outpatient treatment that uses targeted magnetic pulses (similar to an MRI) to stimulate the brain areas that regulate mood. In depression those areas are often underactive — TMS gently “awakens” those connections to help restore healthy function. We use NeuroStar® Advanced TMS."],
-  ["Does it hurt?", "No. You stay awake and alert; most people describe the feeling as light tapping on the scalp. If anything is uncomfortable, we adjust it."],
-  ["How many sessions will I need?", "A typical course is 5 days a week for 30–36 sessions over about 6–9 weeks, with each session lasting 18–45 minutes."],
-  ["Is there downtime?", "None — no anesthesia or sedation. You can drive yourself home and resume your normal activities immediately."],
+  ["What is TMS?", "<a class='inl' href='/post/tms-what-is-it/'>Transcranial magnetic stimulation</a> uses magnetic pulses to stimulate parts of the brain involved in mood. It's a non-medication treatment for depression. Transcranial Magnetic Stimulation is a safe, outpatient treatment that uses targeted magnetic pulses (similar to an MRI) to stimulate the brain areas that regulate mood. In depression those areas are often underactive; TMS gently “awakens” those connections to help restore healthy function. We use NeuroStar® Advanced TMS."],
+  ["Is TMS FDA-cleared?", `Yes, for major depression that hasn't improved with medication, and for some other conditions. See the <a class="inl" href="https://www.fda.gov/news-events/press-announcements/fda-permits-marketing-transcranial-magnetic-stimulation-treatment-obsessive-compulsive-disorder" target="_blank" rel="noopener">FDA's announcement on TMS clearances</a>.`],
+  ["Who is a good candidate?", `Adults with <a class="inl" href="/what-we-treat/depression/">depression</a> who haven't had enough relief from antidepressants, or who can't tolerate their side effects.`],
+  ["What does a session feel like?", "You sit in a chair, awake, while a coil rests against your head. Most people feel a tapping sensation. You can return to normal activities right after. No. You stay awake and alert; most people describe the feeling as light tapping on the scalp. If anything is uncomfortable, we adjust it."],
+  ["How many sessions will I need?", "A typical course is several sessions a week for several weeks. A typical course is 5 days a week for 30–36 sessions over about 6–9 weeks, with each session lasting 18–45 minutes."],
+  ["What are the side effects?", `The most common are scalp discomfort and headache, which usually ease over time. Seizures are rare. Source: <a class="inl" href="https://www.nimh.nih.gov/health/topics/brain-stimulation-therapies/brain-stimulation-therapies" target="_blank" rel="noopener">NIMH, brain stimulation therapies</a>.`],
+  ["Can I keep taking my medication?", `Usually yes. Your provider will review your medications before you start, and TMS can sit alongside <a class="inl" href="/programs/medication-management/">medication management</a>.`],
+  ["Is there downtime?", "None: no anesthesia or sedation. You can drive yourself home and resume your normal activities immediately."],
   ["What does TMS treat?", `NeuroStar TMS is FDA-cleared for treatment-resistant major depression and OCD. Learn more about our <a class="inl" href="/what-we-treat/depression/">depression treatment</a> and <a class="inl" href="/what-we-treat/ocd/">OCD treatment</a>.`],
-  ["Will my insurance cover it?", `We accept most major PPO plans (we don’t accept Medicaid / HUSKY) and will <a class="inl" href="#verify">verify your benefits for free</a>.`],
+  ["Does insurance cover TMS?", `Many commercial plans cover TMS for depression after other treatments haven't worked, often with prior authorization. We check your benefits for you. We don't accept Medicare or Medicaid. We accept most major PPO plans (we don’t accept Medicaid / HUSKY) and will <a class="inl" href="#verify">verify your benefits for free</a>.`],
+  ["Can TMS be combined with therapy or IOP?", `Yes. Many people do TMS alongside <a class="inl" href="/programs/counseling/">counseling</a> or an <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a>.`],
+  ["Who can refer me?", "You can call us directly, or your doctor or therapist can refer you."],
 ];
 // Week-by-week course grid: weeks 1–6 always, weeks 7–9 when the plan runs longer (30–36 sessions, 6–9 weeks).
 const weeks = Array.from({ length: 9 }, (_, i) => i + 1);
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
-  name: "TMS Therapy for Depression & OCD in Connecticut",
+  name: "TMS Therapy for Depression in Connecticut",
   url: canonical,
   about: { "@type": "MedicalTherapy", name: "Transcranial Magnetic Stimulation (TMS)", alternateName: "NeuroStar Advanced TMS", relevantSpecialty: "Psychiatric" },
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
 ---
 
-<Base title="TMS Therapy for Depression & OCD in CT | Hopewell Health Solutions" description="NeuroStar® Advanced TMS at Hopewell Health Solutions, Glastonbury, Westbrook & West Hartford CT — FDA-cleared, drug-free relief for treatment-resistant depression & OCD. No downtime. Most insurance accepted." canonical={canonical} image={P + "tms-chair.webp"}>
+<Base title="TMS Therapy in Connecticut | Depression Treatment | Hopewell" description="TMS is a non-medication, FDA-cleared treatment for depression that hasn't improved with antidepressants. Offered at Hopewell in Connecticut. Check coverage." canonical={canonical} image={P + "tms-chair.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "TMS" }]}
-      title="TMS Therapy for Depression &amp; OCD in Connecticut"
-      lede="A safe, non-invasive, FDA-cleared treatment for people with depression and OCD who haven’t found relief with medication or talk therapy — a cutting-edge way to regain control of your mental health."
+      title="TMS Therapy for Depression in Connecticut"
+      lede="A safe, non-invasive, FDA-cleared treatment for people with depression and OCD who haven’t found relief with medication or talk therapy, a cutting-edge way to regain control of your mental health."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "TMS · NeuroStar® Advanced TMS · Glastonbury, CT" }]}
       image={P + "tms-neurostar-session.webp"} imagePos="center 30%"
@@ -97,8 +104,8 @@ const schema = {
         </figure>
         <div class="tx-copy">
           <h2>What is TMS?</h2>
-          <p class="lede" style="margin-top:16px">TMS is part of our suite of state-of-the-art treatments — a breakthrough technology for mental health conditions that don’t respond to conventional treatment. Transcranial Magnetic Stimulation is a safe, painless, non-invasive outpatient treatment that uses magnetic pulses to stimulate the brain areas affected by depression and OCD, reducing long-term symptoms. It begins with a psychiatric evaluation and brain mapping to target the right area precisely.</p>
-          <p class="lede" style="margin-top:14px">Antidepressants work indirectly through the body. <strong>NeuroStar® Advanced TMS targets the root cause — your brain.</strong> When synapses in the mood-regulating regions become underactive, connections are disrupted and depression sets in. TMS stimulates those inactive synapses, “awakening” the brain to restore its natural function. It can sit alongside <a class="inl" href="/programs/medication-management/">medication management</a> and therapy in one coordinated plan.</p>
+          <p class="lede" style="margin-top:16px">TMS is part of our <a class="inl" href="/treatment-methods/">suite of state-of-the-art treatments</a>, a breakthrough technology for mental health conditions that don’t respond to conventional treatment. Transcranial Magnetic Stimulation is a safe, painless, non-invasive outpatient treatment that uses magnetic pulses to stimulate the brain areas affected by depression and OCD, reducing long-term symptoms. It begins with a psychiatric evaluation and brain mapping to target the right area precisely.</p>
+          <p class="lede" style="margin-top:14px">Antidepressants work indirectly through the body. <strong>NeuroStar® Advanced TMS targets the root cause: your brain.</strong> When synapses in the mood-regulating regions become underactive, connections are disrupted and depression sets in. TMS stimulates those inactive synapses, “awakening” the brain to restore its natural function. It can sit alongside <a class="inl" href="/programs/medication-management/">medication management</a> and therapy in one coordinated plan.</p>
         </div>
       </div>
     </section>
@@ -124,8 +131,8 @@ const schema = {
     <section class="tx-band">
       <img src="/Assets/TMS/2757534.webp" alt="" aria-hidden="true" loading="lazy" />
       <div class="container">
-        <h2>Medication after medication — and still no relief?</h2>
-        <p class="lede">Treatment-resistant depression is more common than you think — and it isn’t the end of the road. TMS offers a drug-free path forward, with no downtime.</p>
+        <h2>Medication after medication, and still no relief?</h2>
+        <p class="lede"><a class="inl" href="/post/a-new-dawn-in-depression-treatment-introducing-tms-at-hopewell-health-solutions/">Treatment-resistant depression</a> is more common than you think, and it isn’t the end of the road. TMS offers a drug-free path forward, with no downtime.</p>
         <div class="sv-ctas"><a href="#verify" class="btn btn-blue only-d">See if TMS is right for you</a><a href="#verify-m" class="btn btn-blue only-m">See if TMS is right for you</a><a href="tel:8607351448" class="btn btn-ghost"><Icon name="phone" />(860) 735-1448</a></div>
       </div>
     </section>
@@ -150,7 +157,7 @@ const schema = {
       <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
       <div class="container tms-res">
         <div>
-          <div class="sec-head"><h2>Real, measurable relief</h2><p class="lede">Evidence-based results from NeuroStar® Advanced TMS — FDA-cleared, with no downtime, drug-free &amp; non-invasive.</p></div>
+          <div class="sec-head"><h2>Real, measurable relief</h2><p class="lede">Evidence-based results from NeuroStar® Advanced TMS, FDA-cleared, with no downtime, drug-free &amp; non-invasive.</p></div>
           <ul class="tms-perks">
             <li><Icon name="shield" class="h-5 w-5" />FDA-cleared</li>
             <li><Icon name="clock" class="h-5 w-5" />No downtime</li>
@@ -158,7 +165,7 @@ const schema = {
             <li><Icon name="heart" class="h-5 w-5" />Non-invasive</li>
           </ul>
           <div class="tms-rings">
-            {[[83, "of patients who completed TMS experienced relief from depression"], [62, "achieved full remission — complete relief from depression"]].map(([n, t], i) => (
+            {[[83, "of patients who completed TMS experienced relief from depression"], [62, "achieved full remission: complete relief from depression"]].map(([n, t], i) => (
               <figure class="tms-ring">
                 <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="12" /><circle cx="60" cy="60" r="50" fill="none" stroke={i ? "#b6863c" : "#9cc3ea"} stroke-width="12" stroke-linecap="round" stroke-dasharray={`${(n / 100) * 314.16} 314.16`} transform="rotate(-90 60 60)" /></svg>
                 <strong>{n}<em>%</em></strong>
@@ -168,7 +175,7 @@ const schema = {
           </div>
           <p class="tx-source">Source: NeuroStar® published clinical data.</p>
         </div>
-        <figure class="tms-res-photo"><img src={P + "tms-neurostar-device.webp"} alt="The NeuroStar Advanced Therapy device at Hopewell Health Solutions" width="1200" height="1600" loading="lazy" /><figcaption>NeuroStar® Advanced Therapy · Glastonbury</figcaption></figure>
+        <figure class="tms-res-photo"><img src={P + "tms-neurostar-device-only.webp"} alt="The NeuroStar Advanced Therapy device at Hopewell Health Solutions" width="1200" height="1600" loading="lazy" /><figcaption>NeuroStar® Advanced Therapy · Glastonbury</figcaption></figure>
       </div>
     </section>
 
@@ -177,7 +184,7 @@ const schema = {
       <div class="container tms-sched">
         <div>
           <h2>Your TMS schedule</h2>
-          <p class="lede" style="margin-top:14px">A full course of NeuroStar® Advanced TMS is delivered in short, consistent sessions — right here at our Glastonbury office.</p>
+          <p class="lede" style="margin-top:14px">A full course of NeuroStar® Advanced TMS is delivered in short, consistent sessions, right here at our Glastonbury office.</p>
           <div class="tms-facts">
             {expect.map(([icon, t, d]) => <div class="tx-fact"><span class="icon-badge"><Icon name={icon} /></span><span><strong>{t}</strong><span>{d}</span></span></div>)}
           </div>
@@ -205,15 +212,69 @@ const schema = {
       </div>
     </section>
 
-    
+    <!-- Safety, side effects, who it's not for (brief): one panel split by thin rules -->
+    <section class="section is-stone">
+      <div class="container">
+        <div class="sec-head"><h2>Safety, side effects and who TMS isn’t for</h2><p class="lede">You’re awake the whole time, there’s no anesthesia, and you can drive yourself home. Your evaluation checks that TMS is safe for you before you start.</p></div>
+        <div class="tms-rule-panel">
+          <div>
+            <h3>Side effects</h3>
+            <p>The most common side effects are mild scalp discomfort or headache, which usually ease over time. Seizures are rare.</p>
+            <p class="tx-source" style="margin-top:12px">Source: <a class="inl" href="https://www.nimh.nih.gov/health/topics/brain-stimulation-therapies/brain-stimulation-therapies" target="_blank" rel="noopener">NIMH, brain stimulation therapies</a>.</p>
+          </div>
+          <div>
+            <h3>Who it’s not for</h3>
+            <p>TMS isn’t right for people with certain metal implants in or near the head, or a history of seizures. The evaluation screens for this, along with conditions such as <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder</a>.</p>
+          </div>
+          <div>
+            <h3>Your medications</h3>
+            <p>You can usually keep taking your medication. Your provider will review your medications before you start.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
-    <Reviews tone="stone" />
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost — before you commit to anything." />
+    <!-- TMS alongside other care (brief): heading left, divided list right -->
+    <section class="section is-white">
+      <div class="container tx-split" style="align-items:start">
+        <div class="sec-head" style="margin:0">
+          <h2>TMS alongside your other care</h2>
+          <p class="lede">TMS is a non-medication treatment for <a class="inl" href="/what-we-treat/depression/">depression</a> that hasn’t improved with antidepressants. Many people do TMS alongside therapy, medication or an intensive program.</p>
+        </div>
+        <ul class="tms-dl">
+          <li><strong>Medication management</strong><span>Your prescriber reviews your medications before you start, and TMS can sit alongside ongoing <a class="inl" href="/programs/medication-management/">medication management</a>.</span></li>
+          <li><strong>Counseling</strong><span>Many people continue <a class="inl" href="/programs/counseling/">one-on-one counseling</a> during their TMS course.</span></li>
+          <li><strong>Adult IOP</strong><span>TMS can be combined with our <a class="inl" href="/programs/adult-mental-health-iop/">adult intensive outpatient program</a> when you need more support.</span></li>
+          <li><strong>GeneSight® testing</strong><span>If finding the right medication has been hard, <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a> can help guide your treatment plan.</span></li>
+          <li><strong>Referrals</strong><span>You can call us directly, or your doctor or therapist can refer you.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <Team tone="white" />
+    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost, before you commit to anything." />
     <Locations heading="Our locations" lede="TMS is delivered at our Glastonbury office, with care across Connecticut. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
-    <Faq faqs={faqs} heading="TMS — common questions" tone="white" />
+    <Reviews tone="stone" />
+    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
+    <Faq faqs={faqs} heading="TMS: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/tms/" />
-    <ClosingCta heading="Find out if TMS is right for you" lede="If medication and talk therapy haven’t been enough, there’s another path. Reach out to Hopewell Health Solutions today — confidentially, with no pressure — and we’ll help you take the next step." image={P + "tms-chair.webp"} imageAlt="The TMS chair at Hopewell Health Solutions" />
+    <ClosingCta heading="Find out if TMS is right for you" lede="If medication and talk therapy haven’t been enough, there’s another path. Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you take the next step." image={P + "tms-chair.webp"} imageAlt="The TMS chair at Hopewell Health Solutions" />
   </main>
   <Footer />
 </Base>
+
+<style>
+  .hw .tms-rule-panel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #fff; border: 1px solid var(--hw-line); border-radius: 22px; align-items: start; }
+  .hw .tms-rule-panel > div { padding: 28px 28px 30px; }
+  .hw .tms-rule-panel > div + div { border-left: 1px solid var(--hw-line); }
+  .hw .tms-rule-panel h3 { font-size: 20px; color: var(--hw-navy); }
+  .hw .tms-rule-panel p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
+  .hw .tms-dl { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hw-line); }
+  .hw .tms-dl li { display: grid; grid-template-columns: 200px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--hw-line); font-size: 16px; line-height: 1.55; }
+  .hw .tms-dl strong { font-family: var(--hw-head); color: var(--hw-navy); font-size: 17px; }
+  @media (max-width: 860px) {
+    .hw .tms-rule-panel { grid-template-columns: 1fr; }
+    .hw .tms-rule-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
+    .hw .tms-dl li { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
