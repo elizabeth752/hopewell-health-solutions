@@ -459,7 +459,7 @@
 .hw .vc-arcs { position: absolute; width: 760px; right: -330px; top: -380px; fill: none; stroke: rgba(156,195,234,.16); stroke-width: 2; pointer-events: none; }
 .hw .vc-card { display: flex; flex-direction: column; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 20px; overflow: hidden; background: #fff; cursor: pointer; text-align: left; font: inherit; color: var(--hw-body); box-shadow: 0 18px 40px rgba(0,0,0,.18); transition: transform .2s ease; }
 .hw .vc-card:hover, .hw .vc-card:focus-visible { transform: translateY(-3px); }
-.hw .vc-poster { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+.hw .vc-poster { position: relative; display: block; width: 100%; height: 0; padding-top: 56.25%; overflow: hidden; } /* padding box, not aspect-ratio: Safari squished it inside the <button> card (2026-11-17) */
 .hw .vc-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .hw .vc-card:hover .vc-poster img { transform: scale(1.04); }
 .hw .vc-play { position: absolute; right: 16px; bottom: 16px; width: 54px; height: 54px; border-radius: 50%; background: var(--hw-bright); display: grid; place-items: center; box-shadow: 0 0 0 5px rgba(255,255,255,.35), 0 8px 20px rgba(0,0,0,.35); transition: transform .2s ease; }
@@ -1058,3 +1058,20 @@
 }
 main.hw .wq-more { display: none; }
 @media (max-width: 640px) { main.hw .wq-more { display: block; width: fit-content; margin-right: auto; text-align: left; } }
+
+/* Phones: every gallery drifts (script in Base.astro). Photos keep their whole shape at one height. */
+@media (max-width: 640px) {
+  main.hw .m-drift { display: flex !important; gap: 12px; overflow-x: auto; scroll-snap-type: none !important; scroll-behavior: auto !important; scrollbar-width: none; grid-template-columns: none; }
+  main.hw .m-drift::-webkit-scrollbar { display: none; }
+  main.hw .m-drift > * { flex: 0 0 auto; scroll-snap-align: none; }
+  /* photo galleries: one height, natural width */
+  main.hw .tp-grid.m-drift > *, main.hw .ab-gal.m-drift > *, main.hw #offices-gallery .ab-offices.m-drift > *, main.hw .ps .m-drift > .ps-slide { width: auto; height: 240px; aspect-ratio: auto; border-radius: 18px; overflow: hidden; position: relative; }
+  main.hw .tp-grid.m-drift img, main.hw .ab-gal.m-drift img, main.hw #offices-gallery .ab-offices.m-drift img, main.hw .ps .m-drift .ps-img { width: auto !important; height: 100% !important; max-width: none; object-fit: cover; position: static; }
+  main.hw #offices-gallery .ab-offices.m-drift a { display: block; height: 100%; }
+  main.hw .ps.m-drift-host .ps-blur, main.hw .ps.m-drift-host .ps-nav { display: none; }
+  main.hw .ps.m-drift-host .ps-track { border-radius: 0; box-shadow: none; background: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding-inline: var(--hw-gutter, 16px); }
+  main.hw .ps-strip.is-fill .m-drift { display: flex !important; overflow: auto; }
+  /* video cards keep their card width */
+  main.hw .vc-grid.m-drift > li { flex: 0 0 82%; }
+}
+@media (min-width: 641px) { main.hw .m-clone { display: none !important; } }

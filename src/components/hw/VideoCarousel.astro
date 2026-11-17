@@ -57,29 +57,6 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
   )}
 </section>
 
-<script>
-  // Phones (user 2026-11-17): the video grid is a swipe row that moves on its own, one card every 4s, looping.
-  // Pauses while touched, hovered or focused, while a video is open, and off-screen; off for reduced motion.
-  const phone = matchMedia("(max-width: 640px)");
-  document.querySelectorAll<HTMLElement>(".vc-grid").forEach((row) => {
-    const cards = [...row.children] as HTMLElement[];
-    if (cards.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let hold = false, seen = false, resume = 0;
-    const pause = () => { hold = true; clearTimeout(resume); };
-    const later = () => { clearTimeout(resume); resume = window.setTimeout(() => (hold = false), 5000); };
-    row.addEventListener("touchstart", pause, { passive: true }); row.addEventListener("touchend", later, { passive: true });
-    row.addEventListener("mouseenter", pause); row.addEventListener("mouseleave", later);
-    row.addEventListener("focusin", pause); row.addEventListener("focusout", later);
-    new IntersectionObserver(([e]) => (seen = e.isIntersecting), { threshold: 0.5 }).observe(row);
-    setInterval(() => {
-      if (!phone.matches || hold || !seen || document.hidden || document.querySelector(".vc-dialog[open]")) return;
-      const step = cards[1].offsetLeft - cards[0].offsetLeft;
-      const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
-      row.scrollTo({ left: atEnd ? 0 : row.scrollLeft + step, behavior: "smooth" });
-    }, 4000);
-  });
-</script>
-
 <dialog class="vc-dialog" aria-label="Video player">
   <div class="vc-frame"></div>
   <button type="button" class="vc-close" aria-label="Close video">&times;</button>

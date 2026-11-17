@@ -79,6 +79,48 @@ const ogUrl = canonicalHref;
     <WestbrookLauncher />
     <GoogleBadge />
   <script>
+  // Phones (user 2026-11-17: "all the galleries should be always moving on mobile"): every gallery/carousel becomes a
+  // row of whole photos (or video cards) that glides continuously (~30px/s) and loops via cloned items. Stops while
+  // touched/hovered/focused (resumes 3s later), while a video is open and off-screen. Reduced motion: plain swipe row.
+  (() => {
+    if (!matchMedia("(max-width: 640px)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const SEL = ".ps-strip .ps-track, .ps-single .ps-track, .tp-grid, .ab-gal, #offices-gallery .ab-offices, .vc-grid";
+    document.querySelectorAll<HTMLElement>(SEL).forEach((row) => {
+      const items = [...row.children] as HTMLElement[];
+      if (items.length < 2) return;
+      row.classList.add("m-drift");
+      row.closest(".ps")?.classList.add("m-drift-host");
+      items.forEach((it, i) => {
+        const c = it.cloneNode(true) as HTMLElement;
+        c.classList.add("m-clone"); c.setAttribute("aria-hidden", "true");
+        c.querySelectorAll("img").forEach((im) => im.setAttribute("alt", ""));
+        c.querySelectorAll<HTMLElement>("a, button").forEach((el) => el.setAttribute("tabindex", "-1"));
+        // Cloned video buttons have no player handler, so they forward the tap to the original card.
+        c.querySelectorAll<HTMLElement>("button").forEach((b) => b.addEventListener("click", () => items[i].querySelector<HTMLElement>("button")?.click()));
+        row.append(c);
+      });
+      let hold = false, seen = false, resume = 0, pos = 0, last = 0;
+      const pause = () => { hold = true; clearTimeout(resume); };
+      const later = () => { clearTimeout(resume); resume = window.setTimeout(() => { pos = row.scrollLeft; hold = false; }, 3000); };
+      row.addEventListener("touchstart", pause, { passive: true }); row.addEventListener("touchend", later, { passive: true });
+      row.addEventListener("mouseenter", pause); row.addEventListener("mouseleave", later);
+      row.addEventListener("focusin", pause); row.addEventListener("focusout", later);
+      new IntersectionObserver(([e]) => (seen = e.isIntersecting), { threshold: 0.2 }).observe(row);
+      const frame = (t: number) => {
+        const dt = last ? Math.min(t - last, 64) : 0; last = t;
+        const half = (row.children[items.length] as HTMLElement).offsetLeft - items[0].offsetLeft;
+        if (half > 0 && !hold && seen && !document.hidden && !document.querySelector("dialog[open]")) {
+          pos += dt * 0.03;
+          if (pos >= half) pos -= half;
+          row.scrollLeft = pos;
+        } else if (hold && half > 0 && row.scrollLeft >= half) row.scrollLeft -= half;
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    });
+  })();
+</script>
+<script>
   // Phones: condition/treatment cards show the summary first, the rest opens with "Read more" (text stays in the HTML).
   document.querySelectorAll<HTMLElement>(".wq-card").forEach((card) => {
     if (!card.querySelector(":scope > p:not(.wq-line):not(.wq-meta)")) return;

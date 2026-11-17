@@ -118,6 +118,6 @@ const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" ar
     root.addEventListener("mouseenter", () => (paused = true)); root.addEventListener("mouseleave", () => (paused = false));
     root.addEventListener("focusin", () => (paused = true)); root.addEventListener("focusout", () => (paused = false));
     new IntersectionObserver(([e]) => (seen = e.isIntersecting)).observe(root);
-    setInterval(() => { if (!paused && seen && !document.hidden) go(current() + 1); }, 5000);
+    setInterval(() => { if (!paused && seen && !document.hidden && !track.classList.contains("m-drift")) go(current() + 1); }, 5000);
   });
 </script>
