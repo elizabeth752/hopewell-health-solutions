@@ -512,3 +512,12 @@
 }
 
 
+
+/* Self-moving program tabs: progress line fills under the active tab; panels fade in (2026-11-17) */
+.hw .ph-tab { position: relative; }
+.hw .ph-tab.is-auto::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--hw-gold); transform-origin: left; transform: scaleX(0); animation: ph-fill 8s linear forwards; }
+.hw #find.is-paused .ph-tab.is-auto::after { animation-play-state: paused; }
+@keyframes ph-fill { to { transform: scaleX(1); } }
+.hw .ph-panel.is-on { animation: ph-in .5s ease; }
+@keyframes ph-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hw .ph-tab.is-auto::after, .hw .ph-panel.is-on { animation: none; } }

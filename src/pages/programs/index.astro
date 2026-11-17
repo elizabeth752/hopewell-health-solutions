@@ -138,7 +138,6 @@ const prose = [
     paras: [
       "Mental health and addiction treatment comes in levels, and the right one depends on how much support you need right now, not on how serious your problem “sounds.” At Hopewell Health Solutions, the <a class='inl' href='/post/php-vs-iop-which-level-of-care-is-right-for-you/'>three outpatient levels</a> are partial hospitalization (PHP), intensive outpatient programs (IOP) and weekly outpatient care. You live at home at every level and go home each day.",
       `The difference comes down to hours and structure. <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> is the most intensive: about six structured hours a day, Monday through Friday, with group therapy, individual sessions and psychiatric care. An <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program (IOP)</a> meets about three hours a day, four days a week, in morning, evening or after-school tracks, so most people keep working or going to school. Weekly <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/programs/medication-management/">medication management</a> are the lightest level and the usual next step after a program.`,
-      "Many people move between levels. Someone might start in PHP after a hospital stay, step down to IOP as daily life gets steadier, and then continue with a therapist and prescriber they already know. Because every level is run by the same Connecticut team, nothing restarts when you step up or down.",
     ],
   },
 ];
@@ -349,6 +348,28 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
   document.querySelectorAll<HTMLAnchorElement>(".ph-quick a[data-tab]").forEach((a) => a.addEventListener("click", () => show(a.dataset.tab!)));
   const h = location.hash.slice(1);
   if ([...tabs].some((t) => t.dataset.tab === h)) show(h);
+
+  // Self-moving tabs (user 2026-11-17: "the user doesn't need to click"): advance every 8s while the section is on
+  // screen; pause on hover/focus; a click restarts the timer from that tab. A progress line fills under the active tab.
+  const find = document.querySelector<HTMLElement>("#find");
+  if (find && tabs.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const DUR = 8000;
+    let seen = false, paused = false, left = DUR, last = performance.now();
+    const cur = () => [...tabs].findIndex((t) => t.classList.contains("is-on"));
+    const restart = () => { left = DUR; tabs.forEach((t) => { t.classList.remove("is-auto"); void t.offsetWidth; }); tabs[cur()]?.classList.add("is-auto"); };
+    const tick = (now: number) => {
+      const running = seen && !paused && !document.hidden;
+      find.classList.toggle("is-paused", !running);
+      if (running) { left -= now - last; if (left <= 0) { show(tabs[(cur() + 1) % tabs.length].dataset.tab!); restart(); } }
+      last = now; requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(([e]) => (seen = e.isIntersecting), { threshold: 0.35 }).observe(find);
+    const box = find.querySelector<HTMLElement>(".ph-tabs")!.parentElement!;
+    box.addEventListener("mouseenter", () => (paused = true)); box.addEventListener("mouseleave", () => (paused = false));
+    box.addEventListener("focusin", () => (paused = true)); box.addEventListener("focusout", () => (paused = false));
+    tabs.forEach((t) => t.addEventListener("click", restart));
+    restart(); requestAnimationFrame(tick);
+  }
 
   const fbtns = document.querySelectorAll<HTMLButtonElement>(".ph-f");
   fbtns.forEach((b) => b.addEventListener("click", () => {
