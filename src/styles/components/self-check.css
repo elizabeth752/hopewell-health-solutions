@@ -1,0 +1,33 @@
+/* Self-check quiz (BlogSelfCheck.astro): shared by blog posts and the homepage (2026-11-17). Copied from blog.css. */
+.hw .sc { padding: clamp(20px, 3vw, 30px); border-radius: 24px; background: #fff; border: 1px solid var(--hw-line); box-shadow: 0 18px 44px rgba(0,29,55,.08); display: flex; flex-direction: column; gap: 14px; }
+.hw .sc-head { display: flex; gap: 14px; align-items: flex-start; }
+.hw .sc-ico { width: 46px; height: 46px; flex: none; border-radius: 14px; display: grid; place-items: center; background: var(--hw-mist); color: var(--hw-bright); }
+.hw .sc-head strong { display: block; font-family: var(--hw-head); font-weight: 800; font-size: clamp(19px, 2vw, 23px); line-height: 1.25; color: var(--hw-navy); }
+.hw .sc-note { display: block; margin-top: 4px; font-size: 14.5px; color: var(--hw-slate); }
+.hw .sc-intro { font-size: 16px; line-height: 1.55; color: var(--hw-body); }
+.hw .sc-bar { height: 6px; border-radius: 999px; background: var(--hw-mist); overflow: hidden; }
+.hw .sc-bar span { display: block; height: 100%; width: 0; background: var(--hw-bright); transition: width .3s ease; }
+.hw .sc-step, .hw .ns-step { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.hw .sc-step[hidden], .hw .sc-result[hidden], .hw .ns-step[hidden], .hw .ns-result[hidden], .hw .sc-crisis[hidden] { display: none; }
+.hw .sc-step legend { padding: 0; margin-bottom: 10px; font-family: var(--hw-head); font-weight: 700; font-size: 18px; line-height: 1.35; color: var(--hw-navy); display: flex; flex-direction: column; gap: 4px; }
+.hw .sc-n, .hw .ns-n { font-size: 13px; font-weight: 700; color: var(--hw-bright); }
+.hw .sc-opts { display: grid; gap: 8px; }
+@media (min-width: 640px) { .hw .sc-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.hw .sc-opt, .hw .ns-opt { position: relative; cursor: pointer; }
+.hw .sc-opt input, .hw .ns-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.hw .sc-opt span { display: flex; align-items: center; min-height: 48px; padding: 10px 16px; border-radius: 14px; background: var(--hw-stone); border: 1.5px solid transparent; font-size: 15.5px; font-weight: 600; line-height: 1.3; color: var(--hw-navy); transition: border-color .15s, background .15s; }
+.hw .sc-opt:hover span { border-color: var(--hw-sky); }
+.hw .sc-opt input:focus-visible + span, .hw .ns-opt input:focus-visible + span { outline: 3px solid var(--hw-bright); outline-offset: 2px; }
+.hw .sc-opt input:checked + span { background: var(--hw-navy); color: #fff; }
+.hw .sc-back, .hw .ns-back { align-self: flex-start; background: none; border: 0; padding: 4px 0; font-size: 14px; font-weight: 700; color: var(--hw-blue); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.hw .sc-result { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: 18px; background: var(--hw-mist); }
+.hw .sc-score { font-family: var(--hw-head); font-weight: 800; font-size: 14px; color: var(--hw-bright); }
+.hw .sc-result h3 { font-size: 22px; color: var(--hw-navy); }
+.hw .sc-text { font-size: 16.5px; line-height: 1.6; color: var(--hw-body); }
+.hw .sc-ctas, .hw .ns-ctas, .hw .bcl-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.hw .sc-ctas .btn, .hw .ns-ctas .btn, .hw .bcl-ctas .btn { min-height: 46px; font-size: 15px; padding: 0 22px; }
+.hw .sc .btn-ghost { color: var(--hw-navy) !important; border-color: var(--hw-navy) !important; }
+.hw .sc-crisis { padding: 14px 16px; border-radius: 14px; background: #fff3e6; border: 1.5px solid #e9b26b; font-size: 15.5px; line-height: 1.5; color: #5c3a10; }
+.hw .sc-crisis a, .hw .sc-988 a { font-weight: 800; color: inherit; }
+.hw .sc-988 { font-size: 14.5px; color: var(--hw-slate); }
+.hw .sc-src { font-size: 12.5px; line-height: 1.5; color: var(--hw-slate); }
