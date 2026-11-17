@@ -4,7 +4,7 @@
 //   bg       — "white" | "crema"
 //   heading  — override the eyebrow label
 //   showLink — show the "See all press →" link (false on the Media page itself)
-const { bg = "white", heading = "As featured in & on", showLink = true } = Astro.props;
+const { bg = "white", heading = "As featured in & on", showLink = true, compact = false } = Astro.props;
 const logos = [
   ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
   ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.webp"],
@@ -17,13 +17,13 @@ const logos = [
 // Avoid 3× duplication — that used to emit 36 <img> requests on every page.
 const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 ---
-<section class={`${bgClass} border-y border-line`}>
-  <div class="mx-auto max-w-6xl px-5 py-8">
+<section class:list={[bgClass, compact ? "border-b border-line" : "border-y border-line"]}>
+  <div class:list={["mx-auto max-w-6xl px-5", compact ? "py-5" : "py-8"]}>
     <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
 
     {/* Two identical groups; track scrolls exactly one group width → seamless.
         Spacing is driven by margin-right (not flex gap) so the loop seam is gapless. */}
-    <div class="ms-mask mt-6 overflow-hidden">
+    <div class:list={["ms-mask overflow-hidden", compact ? "mt-3" : "mt-6"]}>
       <div class="ms-track flex w-max">
         <ul class="flex shrink-0 items-center">
           {logos.map(([name, src]) => (
@@ -39,7 +39,7 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
     </div>
 
     {showLink && (
-      <div class="mt-6 text-center">
+      <div class:list={["text-center", compact ? "mt-3" : "mt-6"]}>
         <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &rarr;</a>
       </div>
     )}

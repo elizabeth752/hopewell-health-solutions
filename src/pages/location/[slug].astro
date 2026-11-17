@@ -16,7 +16,6 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import OpenHouse from "../../components/OpenHouse.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
@@ -626,7 +625,6 @@ const eventSchema = ev && {
 
     <!-- 9. Google reviews → As featured in → FAQ → closing CTA -->
     <Reviews tone="stone" first={PAGE.reviewsFirst} />
-    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading={`${l.city} office, common questions`} tone="white" />
     <ClosingCta heading={`Get started at ${l.name}`} lede={`Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you book at our ${l.name} office or by telehealth.`} />
   </main>

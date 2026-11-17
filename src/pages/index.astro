@@ -11,7 +11,6 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import LeadForm from "../components/LeadForm.astro";
-import MediaStrip from "../components/MediaStrip.astro";
 import Creds from "../components/hw/Creds.astro";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
 import Reviews from "../components/hw/Reviews.astro";
@@ -353,7 +352,6 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
 
   <!-- Google reviews (last, above the FAQ) -->
   <Reviews tone="white" />
-  <MediaStrip bg="white" />
 
   <!-- 10. FAQ (4 groups, 12 questions) -->
   <section class="section is-stone" id="faq">

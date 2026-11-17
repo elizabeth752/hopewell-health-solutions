@@ -17,7 +17,6 @@ import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import Prose from "../../components/seo/Prose.astro";
 import { VIDEOS } from "../../data/videos.js";
 import { PHONE } from "../../data/site.js";
@@ -324,7 +323,6 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
 
     <!-- 10. FAQ -->
     <Reviews tone="white" heading="What Our Program Clients Say" first={["IOP", "Women’s Wellness IOP"]} />
-    <MediaStrip bg="white" />
     <Faq faqs={faqs} heading="Questions About Choosing a Program" tone="stone" />
 
     <!-- 11. Closing CTA -->

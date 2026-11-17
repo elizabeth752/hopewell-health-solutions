@@ -7,7 +7,6 @@ import Base from "../../layouts/Base.astro";
 import Header from "../Header.astro";
 import Footer from "../Footer.astro";
 import Icon from "../Icon.astro";
-import MediaStrip from "../MediaStrip.astro";
 import ServiceHero from "../hw/ServiceHero.astro";
 import Creds from "../hw/Creds.astro";
 import ProgramCards from "../hw/ProgramCards.astro";
@@ -238,7 +237,6 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     ) : <Locations heading="Our locations" lede={locLede} />}
     <Insurance heading={insurance.heading} lede={insurance.lede} />
     <Reviews tone="white" />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading={faqHeading} schema={false} />
 
     <section class="section is-white cd-services">

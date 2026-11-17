@@ -5,7 +5,6 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Icon from "../components/Icon.astro";
 import "../styles/pages/about.css";
-import MediaStrip from "../components/MediaStrip.astro";
 import ServiceHero from "../components/hw/ServiceHero.astro";
 import Creds from "../components/hw/Creds.astro";
 import VideoCarousel from "../components/hw/VideoCarousel.astro";
@@ -137,7 +136,6 @@ const stories = order.map((id) => STORIES.find((v) => v.yt === id)).filter(Boole
       image="/Assets/hhs-2026/womens-trauma-iop-group-room.webp"
     />
     <Creds />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
 
     <VideoCarousel videos={stories} mode="grid" tone="white" id="video" heading="Life-Changing Experiences at Hopewell Health Solutions" lede="In their own voice: clients share what treatment was like and what changed. Press play on any story." link={{ href: "/podcast/", label: "Listen to the podcast" }} />
 

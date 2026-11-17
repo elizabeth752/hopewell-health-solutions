@@ -12,7 +12,6 @@ import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import RelatedTreatments from "../../components/tx/RelatedTreatments.astro";
 import "../../styles/pages/treatments.css";
 
@@ -254,7 +253,6 @@ const schema = {
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost, before you commit to anything." />
     <Locations heading="Our locations" lede="TMS is delivered at our Glastonbury office, with care across Connecticut. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
     <Reviews tone="stone" />
-    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading="TMS: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/tms/" />
     <ClosingCta heading="Find out if TMS is right for you" lede="If medication and talk therapy haven’t been enough, there’s another path. Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you take the next step." image={P + "tms-chair.webp"} imageAlt="The TMS chair at Hopewell Health Solutions" />

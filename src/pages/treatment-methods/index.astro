@@ -14,7 +14,6 @@ import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import { TREATMENTS } from "../../components/tx/treatments.js";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import { STORIES } from "../../data/videos.js";
@@ -213,7 +212,6 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost, before you commit to anything. <a class='inl' href='/rates-and-insurance-coverage/'>See rates &amp; insurance</a>." tone="white" />
     <Locations />
     <Reviews tone="stone" heading="Clients describe feeling genuinely heard" />
-    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqs} heading="Treatment questions" tone="white" />
     <ClosingCta heading="Wondering what’s right for you?" lede="From advanced treatments to comprehensive testing, our Connecticut team will help you find the right path, confidentially, with no pressure." />
   </main>

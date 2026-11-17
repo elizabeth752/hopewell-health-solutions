@@ -4,7 +4,6 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import "../../styles/pages/about.css";
 import "../../styles/pages/hubs.css";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
@@ -362,7 +361,6 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
     </section>
 
     <Reviews tone="white" />
-    <MediaStrip bg="white" heading="Our clinicians, featured across Connecticut" />
     <Faq faqs={faqsHtml} heading="Locations, common questions" />
     <ClosingCta heading="Find the right office for you" lede="Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you choose the location nearest you, or set up a telehealth visit." image={P + "full-team-lawn.webp"} />
   </main>

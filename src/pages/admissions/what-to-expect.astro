@@ -14,7 +14,6 @@ import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Team from "../../components/hw/Team.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Reviews from "../../components/hw/Reviews.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import AdHero from "./_parts/AdHero.astro";
@@ -166,7 +165,6 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
     <Team tone="white" />
     <Locations tone="stone" heading="Find an Office Near You" lede="Six Connecticut offices, with care in person or by telehealth." />
     <Reviews tone="white" first={["Outpatient care", "IOP"]} />
-    <MediaStrip bg="white" />
     <Faq faqs={faqs} heading="What to Expect: Common Questions" tone="white" />
     <ClosingCta heading="Ready to take the first step?" lede="Call us or send the form, and a real person will walk you through what happens next, confidentially, with no pressure." />
   </main>

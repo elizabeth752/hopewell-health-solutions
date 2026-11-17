@@ -2,6 +2,9 @@
 // Accreditation band: bare logos in one row.
 import LegitScriptSeal from "../LegitScriptSeal.astro";
 import BbbSeal from "../BbbSeal.astro";
+import MediaStrip from "../MediaStrip.astro";
+// "As featured in" sits right under the accreditations on every page (user 2026-11-17).
+const { media = true } = Astro.props;
 ---
 <div class="creds">
   <div class="container">
@@ -14,3 +17,4 @@ import BbbSeal from "../BbbSeal.astro";
     </ul>
   </div>
 </div>
+{media && <MediaStrip bg="white" compact />}

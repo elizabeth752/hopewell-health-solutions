@@ -14,7 +14,6 @@ import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
-import MediaStrip from "../../components/MediaStrip.astro";
 import RelatedTreatments from "../../components/tx/RelatedTreatments.astro";
 import { VIDEOS } from "../../data/videos.js";
 import "../../styles/pages/treatments.css";
@@ -161,7 +160,6 @@ const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt))
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and will let you know what your evaluation coverage looks like before you commit. (The computerized portion is a $99 cost to the patient.)" tone="white" />
     <Locations heading="Our locations" lede="In person at <a class='inl' href='/locations/'>six Connecticut offices</a>, plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
     <Reviews tone="stone" />
-    <MediaStrip bg="crema" heading="Our clinicians, featured across Connecticut" showLink={false} />
     <Faq faqs={faqs} heading="ADHD testing: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/adhd-testing/" />
     <ClosingCta heading="Take the first step today" lede="If you or your loved one are struggling with focus, attention, or daily challenges that may be ADHD, our team is here to help. With clear testing and tailored treatment, you can move forward with confidence." />
