@@ -11,6 +11,7 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import PhoneVideo from "../../components/hw/PhoneVideo.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import MediaStrip from "../../components/MediaStrip.astro";
 import LegitScriptSeal from "../../components/LegitScriptSeal.astro";
@@ -183,14 +184,9 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
           <div class="sec-head" style="margin:0">
             <h2>Welcome to Hopewell</h2>
             <p class="lede">Hopewell Health Solutions has cared for Connecticut families since 2013, from children as young as four to adults of every age. Our offices are designed to feel more like a living room than a clinic, with warm light, comfortable seats and rooms built for real conversation. Whether you come in for weekly therapy, medication management or an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>, you’ll be welcomed by a team that knows your name.</p>
-            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />Take a 16-second look inside our Glastonbury spaces.</p>
+            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />A 16-second look inside our Glastonbury spaces. Tap the phone for sound.</p>
           </div>
-          {tour && (
-            <button type="button" class="vc-card lh-tour" data-yt={tour.yt} data-title={tour.title} data-vertical="1" aria-label={`Play: ${tour.title}`}>
-              <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span><span class="vc-len">{tour.len}</span></span>
-              <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
-            </button>
-          )}
+          {tour && <PhoneVideo yt={tour.yt} title={tour.title} poster={`/Assets/videos/${tour.img}.webp`} />}
         </div>
       </div>
     </section>
