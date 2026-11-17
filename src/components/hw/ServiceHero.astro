@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "./HeroCreds.astro";
 // Hero for every inner page (Corner Canyon ServiceHero): breadcrumbs, H1, lede, bullet points with check icons, quick
 // facts, call button; the callback form on the right (desktop). A real photo sits behind a navy scrim (the client likes
 // photos). Emits BreadcrumbList schema. On phones the form hides; pages put <Insurance mobileForm> lower down
@@ -28,6 +29,7 @@ const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemLi
         {form ? <a href="#verify-m" class="btn btn-ghost only-m">Verify my insurance</a> : <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>}
       </div>
       <slot />
+      <HeroCreds />
     </div>
     {form && <div class:list={["sv-form", keepFormMobile && "is-keep"]} id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>}
   </div>

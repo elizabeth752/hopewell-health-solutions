@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../../components/hw/HeroCreds.astro";
 import Team from "../../components/hw/Team.astro";
 // What We Treat hub — Corner Canyon's conditions-hub pattern (user, 2026-11-16: "that is not how we did design for
 // Corner, you know that we need content for SEO"). Title, meta, canonical, H1 and every sentence of the previous hub
@@ -175,6 +176,7 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
             <li><Icon name="pin" class="h-[18px] w-[18px]" />Six Connecticut offices</li>
           </ul>
           <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#verify" class="btn wq-ghost only-d">Check my coverage</a><a href="#verify-m" class="btn wq-ghost only-m">Check my coverage</a></div>
+          <HeroCreds />
         </div>
         <nav class="wq-jump" aria-label="Condition groups">
           {jump.map((j) => (

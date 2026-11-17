@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../components/hw/HeroCreds.astro";
 // Homepage — rebuilt to the "Hopewell Homepage: Content Brief" (2026-11-16). 11 sections, top to bottom:
 // 1 hero + form · 2 as featured in · 3 Google reviews · 4 what we help with · 5 why in-person + video ·
 // 6 locations · 7 testimonials matched to the page · 8 how admissions works (+ form) · 9 team teaser · 10 FAQ ·
@@ -208,6 +209,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
           <a href="/admissions/" class="btn btn-ghost">How admissions works</a>
         </div>
         <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" />Glastonbury · South Glastonbury · West Hartford · East Hampton · Westbrook, CT</p>
+        <HeroCreds />
         <div class="hero-dots" role="group" aria-label="Choose a hero photo">
           {heroSlides.map(([, label], i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo: ${label}`}></button>)}
         </div>

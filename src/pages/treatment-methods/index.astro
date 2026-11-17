@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../../components/hw/HeroCreds.astro";
 // Treatments hub — 2026 redesign, Corner Canyon content-rich hub pattern (user, 2026-11-16: "we need content for SEO").
 // Live copy kept; all nine treatment pages now listed (DBT, Group Therapy, GeneSight and
 // MAT were missing from the old hub), grouped as treatments and testing.
@@ -131,6 +132,7 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
             <li><Icon name="pin" class="h-[18px] w-[18px]" />In person across Connecticut</li>
           </ul>
           <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#verify" class="btn wq-ghost only-d">Check my coverage</a><a href="#verify-m" class="btn wq-ghost only-m">Check my coverage</a></div>
+          <HeroCreds />
         </div>
         <nav class="wq-jump" aria-label="Treatment groups">
           {briefGroups.map((g) => (

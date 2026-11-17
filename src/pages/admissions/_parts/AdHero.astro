@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../../../components/hw/HeroCreds.astro";
 // Admissions hero (2026-11-16 briefs): the navy What We Treat hero (wq-hero, hubs.css) with the insurance form on the
 // right. The brief makes the form an equal option to calling on every admissions page, so it stays visible on phones
 // too (stacked under the copy). Emits BreadcrumbList schema. Lives under pages/admissions/_parts (not routed).
@@ -20,6 +21,7 @@ const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemLi
       <p class="lede" set:html={lede} />
       {facts.length > 0 && <ul class="wq-facts">{facts.map((f) => <li><Icon name={f.icon} class="h-[18px] w-[18px]" /><span set:html={f.text} /></li>)}</ul>}
       <div class="wq-ctas"><a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a></div>
+      <HeroCreds />
       {note && <p class="ax-hero-note"><Icon name="clock" class="h-[18px] w-[18px]" /><span set:html={note} /></p>}
       <slot />
       <p class="ax-hero-crisis">In crisis? Call or text <a href="tel:988">988</a> or call <a href="tel:911">911</a>.</p>

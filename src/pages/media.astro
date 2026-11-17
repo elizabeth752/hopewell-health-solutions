@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../components/hw/HeroCreds.astro";
 import Reviews from "../components/hw/Reviews.astro";
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
@@ -164,6 +165,7 @@ const ldPage = {
             {["WFSB Eyewitness News 3 &amp; NBC Connecticut", "FOX61 &amp; the Hartford Courant", "Hartford Business Journal", "The <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>"].map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}
           </ul>
           <div class="wq-ctas"><a href="#podcast" class="btn btn-blue"><Icon name="play" />Listen to the podcast</a><a href="#press-contact" class="btn wq-ghost">Press inquiries</a></div>
+          <HeroCreds />
           <p class="md-client">Looking for care for yourself or a loved one? <a class="inl" href="#insurance">Check your coverage</a>.</p>
         </div>
         <nav class="md-jump" aria-label="On this page">
