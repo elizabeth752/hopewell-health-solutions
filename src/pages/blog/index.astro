@@ -1,4 +1,5 @@
 ---
+import HeroCreds from "../../components/hw/HeroCreds.astro";
 import Team from "../../components/hw/Team.astro";
 // Blog archive (/blog/) — Corner Canyon's archive pattern in Hopewell's brand (user, 2026-11-16: "the blog archive
 // should look like corners"): white hero with the latest article featured on a pastel card, accreditation band,
@@ -83,6 +84,7 @@ const ld = [
             <a href="#articles" class="btn btn-navy">Browse {sorted.length} articles</a>
             <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
           </div>
+          <HeroCreds />
         </div>
         <a href={`/post/${featured.slug}/`} class="ba-feature">
           {featured.heroImage && <img class="ba-feature-img" src={featured.heroImage} alt="" width="1024" height="640" fetchpriority="high" />}
