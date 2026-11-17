@@ -1075,3 +1075,21 @@ main.hw .wq-more { display: none; }
   main.hw .vc-grid.m-drift > li { flex: 0 0 82%; }
 }
 @media (min-width: 641px) { main.hw .m-clone { display: none !important; } }
+/* Google rating card (Reviews): office links always span the card; phones get a slim card (Corner Canyon pattern, 2026-11-17). */
+@media (max-width: 1080px) { main.hw .rv-gbps { grid-column: 1 / -1; } }
+@media (max-width: 640px) {
+  main.hw .rv-score { grid-template-columns: auto auto minmax(0, 1fr); grid-template-areas: "g n s" "g n c" "l l l"; justify-content: stretch; justify-items: start; align-items: center; text-align: left; gap: 0 12px; padding: 16px; border-radius: 18px; }
+  main.hw .rv-score-g { grid-area: g; width: 42px; height: 42px; margin: 0; box-shadow: none; }
+  main.hw .rv-score-g img { width: 22px; height: 22px; }
+  main.hw .rv-score-num { grid-area: n; font-size: 38px; }
+  main.hw .rv-score-num span { font-size: 15px; }
+  main.hw .rv-score-stars { grid-area: s; align-self: end; font-size: 16px; letter-spacing: 1.5px; }
+  main.hw .rv-score-count { grid-area: c; grid-column: auto; align-self: start; font-size: 12.5px; line-height: 1.35; color: #b9c8d8; }
+  main.hw .rv-gbps { grid-area: l; grid-column: 1 / -1; margin-top: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  main.hw .rv-gbps a { grid-template-columns: 1fr; padding: 8px 10px; border-radius: 10px; text-align: left; }
+  main.hw .rv-gbps span { font-size: 13px; line-height: 1.25; }
+  main.hw .rv-gbps small { font-size: 11px; }
+  main.hw .rv-gbps b { display: none; }
+  main.hw .rv-gbps li { display: flex; }
+  main.hw .rv-gbps li > a { flex: 1; align-content: start; }
+}
