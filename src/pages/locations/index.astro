@@ -178,11 +178,11 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
         <p class="lh-hero-now" aria-live="off"><Icon name="pin" class="h-4 w-4" /><span>{heroHouses[0].cap}</span></p>
       </div>
     </section>
-    <!-- Office gallery: self-moving, whole photos -->
+    <Creds />
+    <!-- Office gallery under the accreditations (user 2026-11-17): self-moving, whole photos -->
     <section class="section is-white lh-gal" aria-label="Photos of our offices">
       <PhotoSlider mode="marquee" photos={officeGallery} label="Photos of Hopewell's six Connecticut offices" />
     </section>
-    <Creds />
 
     <OfficeFinder tone="stone" />
 

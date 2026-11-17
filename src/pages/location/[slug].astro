@@ -1,5 +1,6 @@
 ---
 import PhotoSlider from "../../components/hw/PhotoSlider.astro";
+import { TRANSIT, OPERATORS } from "../../data/transit.js";
 // Location page — 2026 redesign, rebuilt to "Hopewell Locations: Content Briefs" (Claude Docs, 2026-11-16).
 // One template for the six offices. Brief titles, metas and H1s (addiction offices use "[Town] Mental Health & Addiction
 // Care"); URLs unchanged (the brief's 301 ideas are not applied). Photo-led: the real building in the hero, an office
@@ -298,6 +299,7 @@ const gallery = PAGE.gallery;
 // Each photo shows once per page (user 2026-11-17): the intro carousel takes the two intro photos,
 // the "Inside the office" self-moving gallery takes the rest.
 const officePhotos = PAGE.pics.map(([src, alt]) => ({ src, alt }));
+const tr = TRANSIT[l.slug];
 const introSrcs = new Set(PAGE.pics.map(([src]) => src));
 const insidePhotos = gallery.filter(([src]) => !introSrcs.has(src)).map(([src, alt, cap]) => ({ src, alt, cap }));
 const schema = {
@@ -546,6 +548,49 @@ const eventSchema = ev && {
           <a href={directions} target="_blank" rel="noopener" class="btn btn-navy"><Icon name="pin" />Open in Google Maps</a>
         </div>
       </div>
+      {tr && (
+        <div class="container lp-go">
+          <h3 class="lp-go-h">Getting here by car, bus or train</h3>
+          <div class="lp-route" role="img" aria-label={`Driving route ${tr.from.toLowerCase()}: ${tr.signs.map((g) => `${g.k === "i" ? "I-" : g.k === "ct" ? "CT-" : g.k === "exit" ? "Exit " : ""}${g.n}${g.s ? " " + g.s : ""}`).join(", then ")}`}>
+            <span class="lp-route-from">{tr.from}</span>
+            {tr.signs.map((g, i) => (
+              <Fragment>
+                {i > 0 && <span class="lp-route-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}
+                <span class={`lp-sign is-${g.k}`} aria-hidden="true">
+                  {g.k === "i" && <svg viewBox="0 0 40 42"><path d="M3 3c6 2 11 2 17 0 6 2 11 2 17 0 2 9 2 15 0 21-3 9-9 14-17 17C12 38 6 33 3 24 1 18 1 12 3 3z" fill="#fff"/><path d="M5.5 5.6c5 1.4 9.5 1.4 14.5-.2 5 1.6 9.5 1.6 14.5.2.3 2.4.5 4.6.5 6.4H5c0-1.8.2-4 .5-6.4z" fill="#c8102e"/><path d="M5 13.4h30c0 3.4-.3 6.4-1 9.2-2.6 7.6-7.6 12-14 14.8C13.6 34.6 8.6 30.2 6 22.6c-.7-2.8-1-5.8-1-9.2z" fill="#003f87"/><text x="20" y="30" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Urbanist, sans-serif">{g.n}</text></svg>}
+                  {g.k === "ct" && <span class="lp-sign-ct">{g.n}</span>}
+                  {g.k === "exit" && <span class="lp-sign-exit"><small>EXIT</small>{g.n}</span>}
+                  {g.k === "st" && <span class="lp-sign-st">{g.n}</span>}
+                  {g.k === "home" && <span class="lp-sign-home"><Icon name="pin" class="h-4 w-4" />{g.n}</span>}
+                  {g.s && g.k !== "st" && <small class="lp-sign-sub">{g.s}</small>}
+                  {g.s && g.k === "st" && <small class="lp-sign-sub">{g.s}</small>}
+                </span>
+              </Fragment>
+            ))}
+          </div>
+          <div class="lp-modes">
+            <article class="lp-mode">
+              <span class="lp-mode-ico"><Icon name="pin" class="h-6 w-6" /></span>
+              <h4>By car</h4>
+              <p>{tr.car}</p>
+              <a class="inl" href={directions} target="_blank" rel="noopener">Directions in Google Maps</a>
+            </article>
+            <article class="lp-mode">
+              <span class="lp-mode-ico is-bus"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="4" y="3" width="16" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 11h16M8 21v-3M16 21v-3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="14.5" r="1.2" fill="currentColor"/><circle cx="16" cy="14.5" r="1.2" fill="currentColor"/></svg></span>
+              <h4>By bus {tr.bus.routes.map((r) => <span class="lp-chip-route">{r}</span>)}</h4>
+              <p>{tr.bus.text}</p>
+              <a class="inl" href={OPERATORS[tr.bus.op].href} target="_blank" rel="noopener">{OPERATORS[tr.bus.op].name} schedules</a>
+            </article>
+            <article class="lp-mode">
+              <span class="lp-mode-ico is-train"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 10h14M8 21l2-4M16 21l-2-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="13.5" r="1.1" fill="currentColor"/><circle cx="15" cy="13.5" r="1.1" fill="currentColor"/></svg></span>
+              <h4>By train</h4>
+              <p>{tr.train.text}</p>
+              <a class="inl" href={OPERATORS[tr.train.op].href} target="_blank" rel="noopener">{OPERATORS[tr.train.op].name}</a>
+            </article>
+          </div>
+          <p class="lp-go-note">Bus and train times change, so check the operator’s schedule before you travel. Need help getting here? Call <a class="inl" href="tel:8607351448">(860) 735-1448</a>.</p>
+        </div>
+      )}
     </section>
 
     <!-- 7. Towns served + nearest other offices -->
