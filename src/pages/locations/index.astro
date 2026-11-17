@@ -1,4 +1,5 @@
 ---
+import ConsentMap from "../../components/ConsentMap.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -122,7 +123,7 @@ const schema = {
           <div class="flex flex-col overflow-hidden rounded-2xl bg-white border border-line shadow-sm">
             {l.photos
               ? <img src={`${l.photoDir}/exterior.webp`} alt={`Hopewell Health Solutions — ${l.name}`} loading="lazy" class="h-48 w-full object-cover" />
-              : <iframe src={l.map} title={`Map — Hopewell Health Solutions, ${l.name}`} class="h-48 w-full border-0 grayscale-[0.15]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>}
+              : <ConsentMap src={l.map} title={`Map — Hopewell Health Solutions, ${l.name}`} address={`${l.street}, ${l.city}, CT ${l.zip}`} class="h-48 w-full border-0 grayscale-[0.15]" />}
             <div class="flex flex-1 flex-col p-6">
               <h3 class="font-display text-xl text-ink leading-tight">{l.name}</h3>
               <p class="mt-1.5 flex items-start gap-2 text-sm text-muted"><Icon name="pin" class="h-4 w-4 mt-0.5 shrink-0 text-azul" />{l.street}, {l.city}, CT {l.zip}</p>

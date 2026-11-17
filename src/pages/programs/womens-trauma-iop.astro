@@ -1,4 +1,6 @@
 ---
+import ConsentVideo from "../../components/ConsentVideo.astro";
+import ConsentMap from "../../components/ConsentMap.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -210,7 +212,7 @@ const faqs = [
         <a href="/media/" class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &amp; interviews <Icon name="arrow" class="h-4 w-4" /></a>
       </div>
       <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink shadow-sm">
-        <iframe class="h-full w-full" src="https://www.youtube.com/embed/uDy-K1dO0Fw" title="CT Live!: Trauma in Women — Hopewell Health Solutions" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <ConsentVideo id="uDy-K1dO0Fw" title="CT Live!: Trauma in Women — Hopewell Health Solutions" />
       </div>
     </div>
   </section>
@@ -274,7 +276,7 @@ const faqs = [
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {locations.map(([city, addr, map]) => (
           <div class="overflow-hidden rounded-2xl bg-white border border-line">
-            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <ConsentMap src={map} title={`Map — Hopewell Health Solutions, ${city}`} address={addr} class="h-40 w-full border-0 grayscale-[0.2]" />
             <div class="flex gap-3 p-5">
               <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
               <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>

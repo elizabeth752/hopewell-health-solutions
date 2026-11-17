@@ -1,0 +1,17 @@
+---
+// YouTube embed that loads only with Functional cookie consent (CookieConsent.astro). Uses youtube-nocookie;
+// the placeholder offers "Play video" plus a plain YouTube link. Fills its (aspect-video) parent.
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+<div class="relative h-full w-full">
+  <iframe class="h-full w-full" data-consent-src={`https://www.youtube-nocookie.com/embed/${id}`} title={title} loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" tabindex="-1" aria-hidden="true" allowfullscreen></iframe>
+  <div data-consent-placeholder class="absolute inset-0 grid place-content-center justify-items-center gap-2 bg-ink px-4 text-center">
+    <p class="text-sm text-white/80">This video is hosted on YouTube, which uses cookies.</p>
+    <button type="button" data-consent-load class="inline-flex h-[45px] items-center gap-2 rounded-lg bg-white px-5 text-sm font-semibold text-ink transition hover:bg-azul-light"><svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Play video</button>
+    <a href={`https://www.youtube.com/watch?v=${id}`} target="_blank" rel="noopener" class="text-sm font-semibold text-white underline hover:text-azul-light">Watch on YouTube<span class="sr-only"> (opens in a new tab)</span></a>
+  </div>
+</div>

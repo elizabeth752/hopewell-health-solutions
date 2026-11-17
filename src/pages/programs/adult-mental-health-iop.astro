@@ -1,4 +1,6 @@
 ---
+import ConsentVideo from "../../components/ConsentVideo.astro";
+import ConsentMap from "../../components/ConsentMap.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -241,7 +243,7 @@ const faqs = [
         {interviews.map((v) => (
           <figure>
             <div class="aspect-video overflow-hidden rounded-2xl border border-line bg-ink">
-              <iframe class="h-full w-full" src={`https://www.youtube.com/embed/${v.id}`} title={v.t} loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <ConsentVideo id={v.id} title={v.t} />
             </div>
             <figcaption class="mt-3"><span class="text-xs font-semibold uppercase tracking-wide text-azul">{v.outlet}</span><p class="font-display text-lg text-ink leading-tight">{v.t}</p></figcaption>
           </figure>
@@ -311,7 +313,7 @@ const faqs = [
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {locations.map(([city, addr, map]) => (
           <div class="overflow-hidden rounded-2xl bg-white border border-line">
-            <iframe src={map} title={`Map — Hopewell Health Solutions, ${city}`} class="h-40 w-full border-0 grayscale-[0.2]" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <ConsentMap src={map} title={`Map — Hopewell Health Solutions, ${city}`} address={addr} class="h-40 w-full border-0 grayscale-[0.2]" />
             <div class="flex gap-3 p-5">
               <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-azul-light text-azul"><Icon name="pin" class="h-5 w-5" /></span>
               <div><h3 class="font-display text-lg text-ink leading-tight">{city}</h3><p class="mt-1 text-sm text-muted">{addr}</p></div>
