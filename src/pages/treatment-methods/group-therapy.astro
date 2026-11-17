@@ -4,6 +4,7 @@ import MediaStrip from "../../components/MediaStrip.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 import Icon from "../../components/Icon.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
@@ -168,10 +169,10 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
           </dl>
           <p style="margin-top:18px">Group members agree to keep what's shared in the group confidential, and clinicians follow privacy laws. Wondering how in-person care compares with online programs? Read <a class="inl" href="/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/">what the research says about virtual vs in-person IOP</a>.</p>
         </div>
-        <div class="gt-photos">
-          <img src={P + "group-room-feelings-wheel.webp"} alt="A Hopewell group room with a feelings wheel on the wall" width="1200" height="900" loading="lazy" />
-          <img src="/Assets/service/group-therapy-room.webp" alt="Chairs set up in a Hopewell group therapy room" width="1200" height="900" loading="lazy" />
-        </div>
+        <PhotoSlider label="Hopewell group rooms" photos={[
+          { src: P + "group-room-feelings-wheel.webp", alt: "A Hopewell group room with a feelings wheel on the wall" },
+          { src: "/Assets/service/group-therapy-room.webp", alt: "Chairs set up in a Hopewell group therapy room" },
+        ]} />
       </div>
     </section>
 
@@ -193,14 +194,10 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
   .gt-why > div { display: grid; grid-template-columns: 150px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--hw-line); }
   .gt-why dt { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
   .gt-why dd { margin: 0; font-size: 16px; line-height: 1.5; }
-  .gt-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .gt-photos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 22px; }
-  .gt-photos img + img { margin-top: 40px; }
   :global(.hw .faq-a p + p) { margin-top: 10px; }
   @media (max-width: 760px) {
     .gt-table .tx-row { grid-template-columns: 1fr; gap: 4px; }
     .gt-table .tx-row.is-head { display: none; }
     .gt-why > div { grid-template-columns: 1fr; gap: 2px; }
-    .gt-photos img + img { margin-top: 0; }
   }
 </style>

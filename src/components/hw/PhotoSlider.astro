@@ -1,0 +1,95 @@
+---
+// Photo carousel that always shows the WHOLE photo (user 2026-11-17: "we should be able to see the whole picture").
+// mode "single": one photo at a time in a 4:3 frame (Split sections). Photos that aren't 4:3 sit on a blurred copy of
+//   themselves instead of being cropped. Auto-advances every 5s, pauses on hover/focus, off for reduced motion.
+// mode "strip": a row of photos at one fixed height with their natural width (galleries). Scrolls/swipes when the row
+//   is wider than the container; arrows only show when there is something to scroll. Up to 4 photos fill the row
+//   edge to edge on desktop (equal columns, whole photos) and swipe on phones.
+interface Photo { src: string; alt: string; w?: number; h?: number }
+interface Props { photos: Photo[]; mode?: "single" | "strip"; label?: string; arc?: "left" | "right" }
+const { photos, mode = "single", label = "Photo gallery", arc = "left" } = Astro.props;
+const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+---
+<div class:list={["ps", `ps-${mode}`, mode === "single" && `ps-arc-${arc}`, mode === "strip" && photos.length <= 4 && "is-fill"]} data-ps={mode} role="region" aria-roledescription="carousel" aria-label={label}>
+  <div class="ps-track" tabindex="0">
+    {photos.map((p, i) => (
+      <figure class="ps-slide" aria-label={`${i + 1} of ${photos.length}`}>
+        {mode === "single" && <img class="ps-blur" src={p.src} alt="" aria-hidden="true" loading="lazy" />}
+        <img class="ps-img" src={p.src} alt={p.alt} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
+      </figure>
+    ))}
+  </div>
+  {photos.length > 1 && (
+    <div class="ps-nav">
+      <button type="button" class="ps-btn" data-dir="-1" aria-label="Previous photo" set:html={arrow("M15 5l-7 7 7 7")} />
+      {mode === "single" && <div class="ps-dots">{photos.map((_, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo ${i + 1}`} />)}</div>}
+      <button type="button" class="ps-btn" data-dir="1" aria-label="Next photo" set:html={arrow("M9 5l7 7-7 7")} />
+    </div>
+  )}
+</div>
+
+<style>
+  .ps { position: relative; }
+  .ps-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; outline: none; }
+  .ps-track::-webkit-scrollbar { display: none; }
+  .ps-slide { margin: 0; flex: 0 0 auto; scroll-snap-align: start; position: relative; overflow: hidden; }
+
+  /* single: one 4:3 frame, whole photo */
+  .ps-single .ps-track { border-radius: 26px; box-shadow: 0 26px 60px rgba(0,29,55,.16); background: var(--hw-mist, #e9f0f7); }
+  .ps-arc-left .ps-track { border-top-left-radius: 110px; }
+  .ps-arc-right .ps-track { border-top-right-radius: 110px; }
+  .ps-single .ps-slide { width: 100%; aspect-ratio: 4 / 3; }
+  .ps-single .ps-blur { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(22px) saturate(1.1); transform: scale(1.15); opacity: .55; }
+  .ps-single .ps-img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; }
+
+  /* strip: same height, natural width */
+  .ps-strip .ps-track { gap: 14px; }
+  .ps-strip .ps-slide { height: clamp(300px, 34vw, 460px); border-radius: 22px; }
+  .ps-strip .ps-img { display: block; height: 100%; width: auto; }
+
+  .ps-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; }
+  .ps-btn { width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; border: 1px solid var(--hw-line, #d5dfe9); background: #fff; color: var(--hw-navy, #0b2f55); cursor: pointer; transition: background .2s, color .2s; }
+  .ps-btn:hover, .ps-btn:focus-visible { background: var(--hw-navy, #0b2f55); color: #fff; }
+  .ps-dots { display: flex; gap: 8px; }
+  .ps-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: var(--hw-line, #c9d6e3); cursor: pointer; transition: width .25s, background .25s; }
+  .ps-dots button.is-on { width: 26px; background: var(--hw-blue, #2f6fd0); }
+  .ps-strip.is-static .ps-nav { display: none; }
+  @media (min-width: 760px) {
+    .ps-strip.is-fill .ps-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); align-items: start; overflow: visible; }
+    .ps-strip.is-fill .ps-slide { height: auto; }
+    .ps-strip.is-fill .ps-img { width: 100%; height: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ps-track { scroll-behavior: auto; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-ps]").forEach((root) => {
+    const track = root.querySelector<HTMLElement>(".ps-track")!;
+    const slides = [...root.querySelectorAll<HTMLElement>(".ps-slide")];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>(".ps-dots button")];
+    const single = root.dataset.ps === "single";
+    const current = () => Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+    const go = (i: number) => { const n = (i + slides.length) % slides.length; track.scrollTo({ left: slides[n].offsetLeft - slides[0].offsetLeft }); };
+    root.querySelectorAll<HTMLButtonElement>(".ps-btn").forEach((b) => b.addEventListener("click", () => {
+      const dir = Number(b.dataset.dir);
+      if (single) return go(current() + dir);
+      const max = track.scrollWidth - track.clientWidth;
+      if (dir > 0 && track.scrollLeft >= max - 4) return track.scrollTo({ left: 0 });
+      if (dir < 0 && track.scrollLeft <= 4) return track.scrollTo({ left: max });
+      track.scrollBy({ left: dir * track.clientWidth * 0.8 });
+    }));
+    dots.forEach((d, i) => d.addEventListener("click", () => go(i)));
+    track.addEventListener("scroll", () => { const c = current(); dots.forEach((d, i) => d.classList.toggle("is-on", i === c)); }, { passive: true });
+    if (!single) {
+      const fit = () => root.classList.toggle("is-static", track.scrollWidth <= track.clientWidth + 2);
+      fit(); addEventListener("resize", fit); slides.forEach((s) => s.querySelector("img")?.addEventListener("load", fit));
+      return;
+    }
+    if (slides.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let paused = false, seen = false;
+    root.addEventListener("mouseenter", () => (paused = true)); root.addEventListener("mouseleave", () => (paused = false));
+    root.addEventListener("focusin", () => (paused = true)); root.addEventListener("focusout", () => (paused = false));
+    new IntersectionObserver(([e]) => (seen = e.isIntersecting)).observe(root);
+    setInterval(() => { if (!paused && seen && !document.hidden) go(current() + 1); }, 5000);
+  });
+</script>

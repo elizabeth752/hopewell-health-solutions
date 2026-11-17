@@ -17,51 +17,52 @@ const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCar
 const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
 ---
 {variant === "card" ? (
-<div class="lead-card w-full rounded-2xl bg-white p-5 text-ink shadow-[0_2px_6px_rgba(0,0,0,0.18),0_20px_44px_rgba(0,0,0,0.18)]">
-  <div class="mb-4 flex items-center gap-3">
-    <img src="/Assets/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="block h-10 w-auto flex-none" />
-    <span class="text-lg font-bold tracking-[-0.015em]">Talk to an Admissions Specialist</span>
+<div class="lead-card w-full rounded-2xl bg-white text-ink">
+  <div class="lc-head">
+    <div>
+      <p class="lc-title">Check my insurance coverage</p>
+      <p class="lc-sub">100% confidential · No commitment required</p>
+    </div>
+    <img src="/Assets/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="lc-hipaa" />
   </div>
-  <form class="ctm-lead-form grid grid-cols-1 gap-3 sm:grid-cols-2" novalidate>
-    <div>
-      <label class={lbl} for={`${formId}-name`}>What’s your name? <span aria-hidden="true" class="text-red-700">*</span></label>
-      <input id={`${formId}-name`} class={field} type="text" name="caller_name" autocomplete="name" required maxlength="80" />
-    </div>
-    <div>
-      <label class={lbl} for={`${formId}-phone`}>What’s your number? <span aria-hidden="true" class="text-red-700">*</span></label>
-      <div class="flex gap-2">
-        <span aria-hidden="true" class="flex h-[45px] flex-none items-center gap-[5px] rounded-lg border border-muted/50 bg-crema px-2.5 text-sm text-ink">
-          <svg viewBox="0 0 19 10" width="19" height="10" class="block rounded-[2px]" aria-hidden="true"><rect width="19" height="10" fill="#B22234" /><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77" /><rect width="7.6" height="5.38" fill="#3C3B6E" /></svg>
-          US +1
-        </span>
-        <input id={`${formId}-phone`} class={field} type="tel" name="phone_number" autocomplete="tel-national" inputmode="tel" required />
+  <form class="ctm-lead-form lc-form" novalidate>
+    <div class="lc-grid">
+      <div>
+        <label class="lc-lbl" for={`${formId}-name`}>Full name</label>
+        <input id={`${formId}-name`} class="lc-field" type="text" name="caller_name" autocomplete="name" required maxlength="80" />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-phone`}>Phone number</label>
+        <input id={`${formId}-phone`} class="lc-field" type="tel" name="phone_number" autocomplete="tel-national" inputmode="tel" required />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-email`}>Email <span class="lc-opt">(optional)</span></label>
+        <input id={`${formId}-email`} class="lc-field" type="email" name="email" autocomplete="email" maxlength="120" />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-carrier`}>Insurance carrier</label>
+        <div class="lc-select">
+          <select id={`${formId}-carrier`} class="lc-field" name="insurance_carrier">
+            <option value="" selected>Select carrier…</option>
+            {carriers.map((c) => <option value={c}>{c}</option>)}
+          </select>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </div>
       </div>
     </div>
-    <div>
-      <label class:list={[lbl, "whitespace-nowrap"]} for={`${formId}-policy`}>Membership Policy ID (optional)</label>
-      <input id={`${formId}-policy`} class={field} type="text" name="membership_policy_id" maxlength="40" autocomplete="off" />
-    </div>
-    <div>
-      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier (optional)</label>
-      <div class="relative">
-        <select id={`${formId}-carrier`} class:list={[field, "appearance-none pr-10"]} name="insurance_carrier">
-          <option value="" selected></option>
-          {carriers.map((c) => <option value={c}>{c}</option>)}
-        </select>
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted"><path d="m6 9 6 6 6-6" /></svg>
+    <!-- Revealed on hover / focus (user 2026-11-17: show 4 fields, the rest opens on hover) -->
+    <div class="lc-more"><div class="lc-more-in">
+      <div>
+        <label class="lc-lbl" for={`${formId}-policy`}>Member / policy ID <span class="lc-opt">(optional)</span></label>
+        <input id={`${formId}-policy`} class="lc-field" type="text" name="membership_policy_id" maxlength="40" autocomplete="off" />
       </div>
-    </div>
-    <div class="sm:col-span-2">
-      <label class={lbl} for={`${formId}-email`}>Email (optional)</label>
-      <input id={`${formId}-email`} class={field} type="email" name="email" autocomplete="email" maxlength="120" />
-    </div>
+      <label class="lc-check"><input type="checkbox" name="consent" required /><span><strong>Contact consent</strong> <span class="lc-opt">(required)</span><br />I agree to be contacted by Hopewell Health Solutions about my inquiry. Message and data rates may apply. Not for emergencies, call 988 if in crisis.</span></label>
+    </div></div>
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <label class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2"><input type="checkbox" name="consent" class="mt-0.5 h-4 w-4 flex-none accent-azul" required /><span>I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies, call 988 if in crisis.</span></label>
-    <button type="submit" class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-lg bg-azul-bright px-[30px] text-[15px] font-bold text-white transition hover:bg-azul disabled:cursor-wait disabled:opacity-60 sm:col-span-2">Check Your Coverage</button>
-    <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2 sm:col-span-2" role="status" aria-live="polite"></p>
+    <button type="submit" class="lc-btn">Verify my insurance, free</button>
+    <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
-  <p class="mt-3.5 text-center text-[11px] leading-relaxed text-muted">Or call us at <a href="tel:8607351448" class="font-bold text-azul">(860) 735-1448</a>. Everything you share is confidential.</p>
-  <p class="mt-2 text-center text-[10px] leading-normal text-muted">By submitting, you agree to our <a href="/privacy/" class="underline">Privacy Policy</a>.</p>
+  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. By submitting, you agree to our <a href="/privacy/">Privacy Policy</a>.</p>
 </div>
 ) : (
 <div class="rounded-2xl bg-white shadow-xl border border-line p-6">
@@ -84,6 +85,39 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
   </form>
 </div>
 )}
+
+<style is:global>
+  /* Card form (user 2026-11-17, modelled on the Virtue verify form): 4 fields show, the rest opens on hover/focus. */
+  .lead-card { padding: 26px 26px 20px; box-shadow: 0 2px 6px rgba(0,0,0,.12), 0 20px 44px rgba(0,0,0,.16); }
+  .lead-card .lc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+  .lead-card .lc-title { margin: 0; font-family: var(--hw-head, inherit); font-weight: 800; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-sub { margin: 6px 0 0; font-size: 14px; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-hipaa { display: block; height: 42px; width: auto; flex: none; }
+  .lead-card .lc-grid, .lead-card .lc-more-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+  .lead-card .lc-lbl { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 700; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-opt { font-weight: 500; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-field { display: block; width: 100%; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid #cfd8e3; border-radius: 9px; background: #fff; font-size: 15px; color: var(--hw-ink, #10233a); transition: border-color .2s, box-shadow .2s; }
+  .lead-card .lc-field:focus { outline: none; border-color: var(--hw-blue, #2f6fd0); box-shadow: 0 0 0 3px rgba(47,111,208,.2); }
+  .lead-card .lc-select { position: relative; }
+  .lead-card .lc-select select { appearance: none; padding-right: 38px; }
+  .lead-card .lc-select svg { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-more { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .35s ease, opacity .25s ease, margin .35s ease; }
+  .lead-card .lc-more-in { overflow: hidden; min-height: 0; }
+  .lead-card .lc-more-in > div { grid-column: 1 / -1; }
+  .lead-card:hover .lc-more, .lead-card:focus-within .lc-more, .lead-card.is-open .lc-more { grid-template-rows: 1fr; opacity: 1; margin-top: 14px; }
+  .lead-card .lc-check { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 12px; margin-top: 4px; font-size: 12.5px; line-height: 1.5; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-check strong + .lc-opt { margin-left: 4px; }
+  .lead-card .lc-check strong { font-size: 13.5px; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-check input { flex: none; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--hw-blue, #2f6fd0); }
+  .lead-card .lc-btn { display: flex; align-items: center; justify-content: center; width: 100%; height: 54px; margin-top: 18px; border: 0; border-radius: 10px; background: var(--hw-blue, #2f6fd0); color: #fff; font-size: 16.5px; font-weight: 700; cursor: pointer; transition: background .2s; }
+  .lead-card .lc-btn:hover { background: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-btn:disabled { opacity: .6; cursor: wait; }
+  .lead-card .ctm-form-msg { margin-top: 10px; }
+  .lead-card .lc-foot { margin: 12px 0 0; text-align: center; font-size: 11.5px; line-height: 1.5; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-foot a { font-weight: 700; color: var(--hw-blue, #2f6fd0); text-decoration: underline; text-underline-offset: 2px; }
+  @media (max-width: 520px) { .lead-card { padding: 22px 18px 18px; } .lead-card .lc-grid, .lead-card .lc-more-in { grid-template-columns: 1fr; } .lead-card .lc-hipaa { height: 34px; } }
+  @media (prefers-reduced-motion: reduce) { .lead-card .lc-more { transition: none; } }
+</style>
 
 <script>
   const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise
@@ -141,6 +175,7 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
       const get = (n) => (form.querySelector(`[name="${n}"]`) || {}).value || "";
       // honeypot + consent guards
       if (get("company_website")) return;
+      form.closest(".lead-card")?.classList.add("is-open"); // show the hidden fields (consent) once they try to submit
       if (!form.querySelector('[name="consent"]').checked) { show("Please agree to be contacted so we can reach you.", false); return; }
       const phone = toE164(get("phone_number"));
       if (phone.length < 12) { show("Please enter a valid phone number.", false); return; }

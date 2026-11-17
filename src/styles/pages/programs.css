@@ -4,11 +4,10 @@
 .hw .pg-split { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
 .hw .pg-split.is-rev .pg-media { order: 2; }
 .hw .pg-media { position: relative; }
-.hw .pg-media img { width: 100%; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: 26px; border-top-left-radius: 110px; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
-.hw .pg-split.is-rev .pg-media img { border-top-left-radius: 26px; border-top-right-radius: 110px; }
-.hw .pg-media.has-two { display: grid; grid-template-columns: 1.25fr 1fr; gap: 12px; align-items: end; }
-.hw .pg-media.has-two img { aspect-ratio: 3 / 4; }
-.hw .pg-media.has-two img + img { aspect-ratio: 1 / 1; border-radius: 22px; border-bottom-right-radius: 70px; }
+.hw .pg-media > img { width: 100%; aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: 26px; border-top-left-radius: 110px; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
+.hw .pg-split.is-rev .pg-media > img { border-top-left-radius: 26px; border-top-right-radius: 110px; }
+/* Two or more photos = PhotoSlider carousel, whole photos (2026-11-17, replaced the cropped two-photo stack). */
+.hw .pg-media.has-slider > .ps { width: 100%; }
 .hw .pg-copy > * + * { margin-top: 16px; }
 .hw .pg-copy p { font-size: 17.5px; line-height: 1.7; }
 .hw .pg-copy .pg-small { font-size: 15px; color: var(--hw-slate); }
@@ -471,11 +470,9 @@
   .hw[data-pgx] .pg-split .pg-copy { align-self: center; }
   .hw[data-pgx] .pg-media { display: flex; }
   .hw[data-pgx] .pg-media > img { height: 100%; min-height: 360px; aspect-ratio: auto; }
-  /* Two-photo stacks keep their own proportions and sit centred (stretching them to the copy cropped people out, 2026-11-16). */
-  .hw[data-pgx] .pg-split:has(.pg-media.has-two) { align-items: center; }
-  .hw[data-pgx] .pg-media.has-two { display: grid; align-items: center; }
-  .hw[data-pgx] .pg-media.has-two img { height: auto; min-height: 0; aspect-ratio: 3 / 4; }
-  .hw[data-pgx] .pg-media.has-two img + img { aspect-ratio: 4 / 5; object-position: center top; }
+  /* Carousels keep their 4:3 frame and sit centred (stretching photos to the copy cropped people out, 2026-11-16). */
+  .hw[data-pgx] .pg-split:has(.pg-media.has-slider) { align-items: center; }
+  .hw[data-pgx] .pg-media.has-slider { display: block; }
   .hw[data-pgx] .pg-two { align-items: stretch; }
   .hw[data-pgx] .pg-mo { align-items: stretch; }
   .hw[data-pgx] .pg-out { display: flex; flex-direction: column; justify-content: center; }
