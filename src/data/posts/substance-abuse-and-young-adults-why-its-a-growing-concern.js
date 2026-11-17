@@ -55,5 +55,7 @@ export default {
 
 <h2>Finding Hope and Healing</h2>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>Substance abuse among young adults is a growing issue, but it's not without hope. At Hopewell Health Solutions, we're committed to helping clients like Jake find their way back to a healthier, more balanced life. If you or someone you love is struggling with substance abuse, know that you don't have to face it alone. Reach out to us today, and let's start the journey toward recovery together.</p>`,
 };

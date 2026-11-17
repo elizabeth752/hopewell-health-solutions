@@ -60,5 +60,7 @@ export default {
 
 <p>If you or someone you love is struggling with PTSD and substance use, know that you are not alone - help is available.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p><strong>Hopewell Health Solutions</strong> is here to help. To discuss options, reach out to us over the phone at 860-735-1448 or through email at hhs4help@gmail.com.</p>`,
 };

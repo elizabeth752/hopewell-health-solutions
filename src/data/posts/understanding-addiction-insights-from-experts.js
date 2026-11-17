@@ -71,5 +71,7 @@ export default {
 
 <p>Addiction is a complex disease, but with the right treatment and support, recovery is possible. As experts like Dr. Volkow and Dr. Wakeman have shown us, addiction impacts the brain in profound ways, but therapy, medication, and long-term support can help retrain the brain and build a life free from addiction.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>If you or someone you know is struggling with addiction, don't hesitate to reach out. At Hopewell Health Solutions, we're here to provide expert care, personalized treatment, and the support needed to reclaim your life. Recovery is possible, and it starts with understanding the science behind addiction and taking that first step toward healing.</p>`,
 };

@@ -62,6 +62,8 @@ export default {
 
 <p>Struggling with alcohol doesn't mean you've failed-it means you're human. If you see yourself in this article, it might be time to have a compassionate, honest look at your drinking. You're not alone and support is available.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>Reach out to Hopewell Health Solutions to discuss how we can help support you.</p>
 `,
 };

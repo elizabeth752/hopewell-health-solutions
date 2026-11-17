@@ -57,5 +57,7 @@ export default {
 
 <p>If you or a loved one is struggling with substance use disorder, consider the Substance Use Disorder IOP at Hopewell Health Solutions as a step towards recovery. Our team is ready to support you every step of the way, offering professional care and compassion that can make all the difference.</p>
 
+<p>Our Addiction and Substance Use IOP meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>Recovery is a journey, and it starts with a single step. Let us help you take that step today.</p>`,
 };

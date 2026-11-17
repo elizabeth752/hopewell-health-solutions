@@ -48,5 +48,7 @@ export default {
 
 <p>Our experienced medication team at Hopewell Health Solutions provides guidance and support at every step. We begin with a personalized assessment to understand each client's needs and create a medication plan aligned with their overall treatment goals. This collaborative approach allows us to address concerns, answer questions, and work together toward a healthy, substance-free life.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>Medication isn't a standalone solution for addiction but a powerful component of a comprehensive recovery plan. In combination with therapy, peer support, and lifestyle changes, medication can provide the stability and resilience needed to make lasting change. If you're curious about how medication might support your recovery, reach out to Hopewell Health Solutions. Our team is here to guide you through the options, help you feel informed, and ensure that your path to recovery is built on a strong foundation.</p>`,
 };

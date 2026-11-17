@@ -46,6 +46,8 @@ export default {
 
 <p>Addiction may begin as a response to pain, but recovery begins with understanding. When we heal the wounds of trauma, the need for escape begins to fade.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>If you or someone you love is struggling with addiction or trauma, help is available. Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-735-1448 (option 1) to learn more about our trauma-informed Intensive Outpatient Programs and how we can support lasting recovery and healing.</p>
 `,
 };

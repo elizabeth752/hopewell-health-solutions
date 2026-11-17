@@ -316,6 +316,7 @@ export default {
         {
           p: 'When substance use or a <a href="/what-we-treat/co-occurring/">co-occurring condition</a> is part of the picture, our <a href="/programs/intensive-outpatient-program/">Intensive Outpatient Program (IOP)</a>, <a href="/programs/partial-hospitalization-program/">Partial Hospitalization Program (PHP)</a>, and <a href="/programs/medication-management/">medication management</a> sit under the same roof.',
         },
+        { p: 'If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.' },
         { p: "Connection is a skill, and skills can be rebuilt. Speak with admissions today. Call (860) 735-1448." },
       ],
     },

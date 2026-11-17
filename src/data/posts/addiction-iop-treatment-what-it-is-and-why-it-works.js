@@ -41,5 +41,7 @@ export default {
 
 <h2>Is IOP Right for You?</h2>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>IOP is an excellent choice for those motivated to overcome addiction and regain control over their lives. It's designed for people who are committed to making positive changes, equipped with a stable home environment, and seeking a program that combines flexibility with intensive support. At Hopewell Health Solutions, we're here to answer any questions you may have about IOP and help you decide if it's the right path for you.</p>`,
 };

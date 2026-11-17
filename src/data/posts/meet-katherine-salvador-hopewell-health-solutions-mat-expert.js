@@ -39,5 +39,7 @@ export default {
 
 <p>As the primary MAT provider at Hopewell, Katherine Salvador exemplifies our mission to integrate advanced medical therapies with supportive mental health services, ensuring that each client receives the best possible care tailored to their unique needs.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>For more information or to schedule a consultation, visit us at Hopewell Health Solutions, 300 Hebron Avenue, Glastonbury, Connecticut, call us at 860-735-1448, or email hhs4help@gmail.com. We're here to help you take the first step towards a healthier, substance-free life.</p>`,
 };

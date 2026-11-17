@@ -43,5 +43,7 @@ export default {
 
 <p>Recovery isn't easy, it's a long, often painful process that takes time, patience, and commitment. But for the millions of people living with substance use disorder, there is hope. Programs like the ones offered at Hopewell Health Solutions provide that crucial first step: acknowledging that help is needed, and offering the support and tools to make change possible.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>If you or someone you know is struggling with addiction, know that there's a path forward. Treatment isn't just about quitting, it's about healing, understanding yourself, and finding a future you might not have thought possible. You don't have to do it alone. And you don't have to wait until it's too late to ask for help.</p>`,
 };

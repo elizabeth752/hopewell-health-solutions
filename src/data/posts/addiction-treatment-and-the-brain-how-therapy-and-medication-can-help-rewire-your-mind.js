@@ -67,5 +67,7 @@ export default {
 
 <p>Addiction can feel like it's taken over your brain, but recovery is possible. By combining therapy with medication, you can begin to heal and reclaim control over your life. Hopewell Health Solutions is here to support you every step of the way, offering individual therapy, medication management, and compassionate care to guide you on your journey.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>If you or someone you love is struggling with addiction, don't wait. Reach out to us today. Rewiring your brain and reclaiming your life is possible – and it starts with taking that first step toward recovery.</p>`,
 };

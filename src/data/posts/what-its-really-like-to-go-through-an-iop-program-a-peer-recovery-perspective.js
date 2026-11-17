@@ -197,6 +197,7 @@ export default {
         {
           p: "Hopewell Health Solutions is Connecticut's outpatient mental health and psychiatry team, offering Intensive Outpatient Programs (IOP) across tween, teen, women's, and adult tracks, along with Partial Hospitalization (PHP), psychiatry, and medication management from locations in Glastonbury, West Hartford, East Hampton, and Westbrook.",
         },
+        { p: 'If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.' },
         {
           p: "If you or someone you love is ready to move forward in recovery, reach out today, confidentially, with no pressure.",
         },

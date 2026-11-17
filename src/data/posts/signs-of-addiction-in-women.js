@@ -53,6 +53,8 @@ export default {
 
 <p>If you or someone you love is showing signs of addiction, reach out for help. Compassionate care can change the course of a life.</p>
 
+<p>If alcohol or drug use is part of the picture, Hopewell’s <a href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> meets in person at 300 Hebron Ave in Glastonbury and at our <a href="/location/westbrook-ct/">Westbrook office</a> on the shoreline, with evening groups at both.</p>
+
 <p>Call Hopewell Health Solutions in Glastonbury, Connecticut at 860-735-1448 (option 1 for IOP) to learn more about our specialized Intensive Outpatient Programs for women and adults. Recovery starts with a single step and we are here to walk it with you.</p>
 `,
 };
