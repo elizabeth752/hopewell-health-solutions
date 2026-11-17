@@ -94,8 +94,8 @@ const visit = [
 const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
 const teenTour = VIDEOS.find((v) => v.yt === "loSaQbRc-oE");
 
-// 7. Testimonials matched to the page: adult IOP, IOP & recovery, a teen (with his mom), Women's Wellness.
-const matched = ["uIlSCS7clwE", "7ISgjKEBoZo", "awy7nfDgC0k", "eX6WO-MRdPs"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+// 7. Testimonials matched to the page (Evan feature removed, user 2026-11-17): IOP & recovery, a teen (with his mom), Women's Wellness.
+const matched = ["7ISgjKEBoZo", "awy7nfDgC0k", "eX6WO-MRdPs"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
 
 // 8. Admissions + insurance.
 const insurers = [
@@ -214,7 +214,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <Creds />
 
   <!-- 3. Testimonials matched to the page (moved under the hero, user 2026-11-17) -->
-  <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Our Programs" lede="Hopewell clients share what treatment was like, in their own words: adult IOP, IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
+  <VideoCarousel videos={matched} mode="grid" tone="navy" heading="Stories From Our Programs" lede="Hopewell clients share what treatment was like, in their own words: IOP and recovery, a teen and his mom, and Women’s Wellness. <a class='inl' href='/testimonials/'>Read more patient stories</a>." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
 
   <!-- 4. What we help with -->
   <section class="section is-stone" id="programs">
