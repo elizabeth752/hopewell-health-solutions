@@ -175,20 +175,27 @@ const faqs = [
       </div>
     </section>
 
-    <!-- What to expect (earlier section, kept) -->
+    <!-- What to expect (earlier section, kept; redesigned 2026-11-17: photo + intro, then a 4-step journey row) -->
     <section id="what-to-expect" class="section is-stone" style="scroll-margin-top:110px">
-      <div class="container ad-split ax-top">
-        <div class="ad-photo">
-          <img src={P + "south-glastonbury-waiting-room.webp"} alt="The waiting room at our South Glastonbury office" width="1200" height="900" loading="lazy" />
-          <p class="ad-photo-badge"><span><Icon name="heart" class="h-5 w-5" /></span>No surprises</p>
+      <div class="container">
+        <div class="wx-top">
+          <div>
+            <h2>What to expect</h2>
+            <p class="lede" style="margin-top:14px">From the first call to your first session, here’s what working with us looks like. For the full picture, read <a class="inl" href="/admissions/what-to-expect/">what to expect when you start at Hopewell</a>.</p>
+            <p class="wx-promise"><span><Icon name="heart" class="h-5 w-5" /></span><span><strong>No surprises.</strong> You’ll know your coverage, your clinician and your plan before you commit to anything.</span></p>
+          </div>
+          <figure class="wx-photo"><img src={P + "south-glastonbury-waiting-room.webp"} alt="The waiting room at our South Glastonbury office" width="1200" height="900" loading="lazy" /></figure>
         </div>
-        <div>
-          <h2>What to expect</h2>
-          <p class="lede" style="margin-top:14px">From the first call to your first session, here’s what working with us looks like. For the full picture, read <a class="inl" href="/admissions/what-to-expect/">what to expect when you start at Hopewell</a>.</p>
-          <ul class="ad-rows">
-            {expect.map((e) => <li><span class="icon-badge"><Icon name={e.icon} /></span><div><h3>{e.t}</h3><p>{e.d}</p></div></li>)}
-          </ul>
-        </div>
+        <ol class="wx-steps">
+          {expect.map((e, i) => (
+            <li style={`--c:${["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55"][i]}`}>
+              <span class="wx-dot">{i + 1}</span>
+              <span class="wx-ico"><Icon name={e.icon} class="h-6 w-6" /></span>
+              <h3>{e.t}</h3>
+              <p>{e.d}</p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
@@ -240,5 +247,22 @@ const faqs = [
     <Faq faqs={faqs} heading="Admissions Questions" tone="white" />
     <ClosingCta heading="Ready when you are" lede="Whether it’s for you or someone you love, reaching out is the first step. We’ll take it from there. Not a substitute for emergency care." />
   </main>
+<style>
+  .wx-top { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .wx-photo { margin: 0; }
+  .wx-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; border-radius: 26px; border-top-left-radius: 96px; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
+  .wx-promise { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 18px 20px; border-radius: 18px; background: #fff; font-size: 16px; line-height: 1.55; color: var(--hw-body); }
+  .wx-promise > span:first-child { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--hw-bright); color: #fff; }
+  .wx-promise strong { font-family: var(--hw-head); color: var(--hw-navy); }
+  .wx-steps { list-style: none; margin: clamp(36px, 5vw, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; position: relative; }
+  .wx-steps::before { content: ""; position: absolute; left: 12.5%; right: 12.5%; top: 17px; height: 2px; background: repeating-linear-gradient(90deg, #c9b99c 0 8px, transparent 8px 14px); }
+  .wx-steps li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .wx-dot { position: relative; z-index: 1; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #fff; font-family: var(--hw-head); font-weight: 800; box-shadow: 0 0 0 6px var(--hw-stone, #f3efe7); }
+  .wx-ico { margin-top: 18px; width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; background: #fff; color: var(--c); box-shadow: 0 12px 28px rgba(0,29,55,.1); border-bottom: 3px solid var(--c); }
+  .wx-steps h3 { margin-top: 16px; font-size: 18px; color: var(--hw-navy); }
+  .wx-steps p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--hw-slate); }
+  @media (max-width: 999px) { .wx-top { grid-template-columns: 1fr; } .wx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } .wx-steps::before { display: none; } }
+  @media (max-width: 560px) { .wx-steps { grid-template-columns: 1fr; } .wx-steps li { flex-direction: row; flex-wrap: wrap; text-align: left; align-items: center; gap: 0 14px; } .wx-steps li .wx-ico { display: none; } .wx-steps h3 { margin: 0; flex: 1; } .wx-steps p { flex-basis: 100%; padding-left: 50px; } }
+</style>
   <Footer />
 </Base>

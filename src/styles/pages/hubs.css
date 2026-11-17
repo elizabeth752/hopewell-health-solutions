@@ -212,12 +212,12 @@
 @media (max-width: 600px) { .hw .lhm-key { grid-template-columns: 1fr; } }
 
 /* ---------- Locations hub (2026-11-17) ---------- */
-/* Hero: office building carousel instead of the map */
-.hw .lh-houses .ps-single .ps-track { box-shadow: 0 30px 70px rgba(0,0,0,.35); }
-.hw .wq-hero .lh-houses .ps-btn { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); color: #fff; }
-.hw .wq-hero .lh-houses .ps-btn:hover { background: #fff; color: var(--hw-navy); }
-.hw .wq-hero .lh-houses .ps-dots button { background: rgba(255,255,255,.35); }
-.hw .wq-hero .lh-houses .ps-dots button.is-on { background: #fff; }
+/* Hero: office photos rotate as the banner background; whole-photo marquee right under it */
+.hw .lh-hero { isolation: isolate; background: var(--hw-night); min-height: 560px; display: flex; align-items: center; }
+.hw .lh-hero > .container { width: 100%; }
+.hw .lh-hero .wq-hero-grid { grid-template-columns: minmax(0, 640px); }
+.hw .lh-hero-now { width: fit-content; max-width: 100%; display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.12); font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: #fff; }
+.hw .lh-gal { padding: 22px 0; }
 
 /* Connecticut: copy + regions left, office map right (navy section) */
 .hw .lh-ct { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }

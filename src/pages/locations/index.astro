@@ -37,6 +37,15 @@ const heroHouses = [
   { src: L + "east-hampton/exterior.webp", alt: "The East Hampton office at 151 East High Street", cap: "East Hampton", href: "/location/east-hampton-ct/", w: 1360, h: 1020 },
   { src: L + "westbrook/exterior.webp", alt: "The Westbrook office at 70 Essex Road", cap: "Westbrook · the shoreline", href: "/location/westbrook-ct/", w: 1536, h: 866 },
 ];
+const officeGallery = [
+  ...heroHouses.map(({ src, alt, cap, w, h }) => ({ src, alt, cap, w, h })),
+  { src: L + "glastonbury/therapy-space.webp", alt: "A living-room-style therapy space at 33 Pratt St, Glastonbury", cap: "Glastonbury · therapy room" },
+  { src: L + "downtown-glastonbury/entrance.webp", alt: "The entrance hall at 300 Hebron Ave, Glastonbury", cap: "Downtown Glastonbury · entrance" },
+  { src: L + "1420-main/1420-2.webp", alt: "Inside the South Glastonbury office at 1420 Main St", cap: "South Glastonbury" },
+  { src: L + "west-hartford/therapy-office.webp", alt: "A therapy office at the West Hartford office", cap: "West Hartford · therapy office" },
+  { src: L + "east-hampton/sitting-area.webp", alt: "The sitting area at the East Hampton office", cap: "East Hampton · sitting area" },
+  { src: L + "westbrook/waiting-room.webp", alt: "The waiting room at the Westbrook office", cap: "Westbrook · waiting room" },
+];
 const regions = [
   { icon: "home", t: "Greater Hartford", d: `Three Glastonbury offices and <a class="inl" href="/location/west-hartford-ct/">West Hartford</a>, close to Hartford, Manchester, Wethersfield, Rocky Hill, South Windsor and Newington.` },
   { icon: "compass", t: "The Connecticut River Valley", d: `<a class="inl" href="/location/east-hampton-ct/">East Hampton</a> serves Middletown, Portland, Colchester, Marlborough and the rest of Middlesex County.` },
@@ -149,9 +158,12 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />
   <main class="hw">
-    <!-- Hero (Corner Canyon hub pattern): navy, H1 + facts, and a carousel of the office buildings (user 2026-11-17: houses, not the map) -->
-    <section class="wq-hero">
-      <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
+    <!-- Hero: the office buildings rotate as the banner background (user 2026-11-17), then a self-moving whole-photo gallery under it -->
+    <section class="wq-hero lh-hero">
+      <div class="hero-media" aria-hidden="true">
+        {heroHouses.map((h, i) => <img class:list={["hero-slide", i === 0 && "is-active"]} src={h.src} alt="" width={h.w ?? 1200} height={h.h ?? 900} style={`object-position:${h.pos ?? "center"}`} fetchpriority={i === 0 ? "high" : "low"} loading={i === 0 ? "eager" : "lazy"} decoding="async" />)}
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
       <div class="container wq-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Locations</span></nav>
@@ -162,10 +174,12 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
           </ul>
           <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#by-location" class="btn wq-ghost">Find a program near you</a></div>
         </div>
-        <div class="lh-houses">
-          <PhotoSlider photos={heroHouses} eager label="Photos of Hopewell's Connecticut offices" />
-        </div>
+        <p class="lh-hero-now" aria-live="off"><Icon name="pin" class="h-4 w-4" /><span>{heroHouses[0].cap}</span></p>
       </div>
+    </section>
+    <!-- Office gallery: self-moving, whole photos -->
+    <section class="section is-white lh-gal" aria-label="Photos of our offices">
+      <PhotoSlider mode="marquee" photos={officeGallery} label="Photos of Hopewell's six Connecticut offices" />
     </section>
     <Creds />
 
@@ -295,7 +309,6 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
     <section class="section is-white" id="telehealth">
       <div class="container">
         <div class="lh-tele">
-          <svg class="lh-tele-arcs" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="290" /><circle cx="300" cy="300" r="200" /></svg>
           <div class="lh-tele-copy">
             <span class="lh-tele-tag"><Icon name="compass" class="h-4 w-4" />Telehealth across Connecticut</span>
             <h2>The same team, from wherever you are</h2>
@@ -364,5 +377,18 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
     <Faq faqs={faqsHtml} heading="Locations, common questions" />
     <ClosingCta heading="Find the right office for you" lede="Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll help you choose the location nearest you, or set up a telehealth visit." image={P + "full-team-lawn.webp"} />
   </main>
+<script>
+  // Hero banner: crossfade the office photos and update the caption.
+  const slides = [...document.querySelectorAll<HTMLElement>(".lh-hero .hero-slide")];
+  const now = document.querySelector<HTMLElement>(".lh-hero-now span");
+  const caps = slides.map((_, i) => (document.querySelectorAll(".lh-gal .ps-cap")[i] as HTMLElement | undefined)?.textContent ?? "");
+  if (slides.length > 1 && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove("is-active"); i = (i + 1) % slides.length; slides[i].classList.add("is-active");
+      if (now && caps[i]) now.textContent = caps[i];
+    }, 6000);
+  }
+</script>
   <Footer />
 </Base>

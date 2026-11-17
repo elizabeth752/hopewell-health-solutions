@@ -13,7 +13,6 @@ const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemLi
 ---
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />
 <section class="wq-hero ax-hero">
-  <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
   <div class="container wq-hero-grid ax-hero-grid">
     <div>
       <nav class="wq-crumbs" aria-label="Breadcrumb">{all.map((c, i) => <Fragment>{i > 0 && " / "}{c.href && i < all.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</Fragment>)}</nav>

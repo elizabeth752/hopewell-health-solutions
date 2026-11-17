@@ -16,7 +16,6 @@ const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemLi
 <section class:list={["sv-hero", !form && "is-solo"]}>
   <img class="sv-bg" src={image} alt="" width="1680" height="1260" style={`object-position:${imagePos}`} fetchpriority="high" />
   <div class="sv-scrim" aria-hidden="true"></div>
-  <svg class="hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /><circle cx="400" cy="400" r="210" /></svg>
   <div class="container sv-grid">
     <div class="sv-copy">
       <nav class="sv-crumbs" aria-label="Breadcrumb"><ol>{all.map((c, i) => <li>{c.href && i < all.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}</ol></nav>

@@ -21,7 +21,8 @@ import Reviews from "../../components/hw/Reviews.astro";
 import Locations from "../../components/hw/Locations.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Faq from "../../components/hw/Faq.astro";
-import { STORIES } from "../../data/videos.js";
+import { STORIES, VIDEOS, PODCAST } from "../../data/videos.js";
+const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
 import { providers } from "../../data/providers.js";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import { socials } from "../../data/socials.ts";
@@ -156,7 +157,6 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
   <main class="hw">
     <!-- 1. Hero + form (Corner Canyon navy hub hero) -->
     <section class="wq-hero">
-      <svg class="wq-hero-arcs" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="290" /></svg>
       <div class="container wq-hero-grid ab-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About Us</span></nav>
@@ -175,6 +175,25 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
       </div>
     </section>
     <Creds />
+
+    <!-- Welcome to Hopewell + tour video (user 2026-11-17) -->
+    <section class="section is-stone" id="welcome">
+      <div class="container">
+        <div class="lh-visit-top" style="margin:0">
+          <div class="sec-head" style="margin:0">
+            <h2>Welcome to Hopewell</h2>
+            <p class="lede">Hopewell Health Solutions has cared for Connecticut families since 2013, from children as young as four to adults of every age. Our offices are designed to feel more like a living room than a clinic, with warm light, comfortable seats and rooms built for real conversation. Whether you come in for weekly therapy, medication management or an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>, you’ll be welcomed by a team that knows your name.</p>
+            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />Take a 16-second look inside our Glastonbury spaces.</p>
+          </div>
+          {tour && (
+            <button type="button" class="vc-card lh-tour" data-yt={tour.yt} data-title={tour.title} data-vertical="1" aria-label={`Play: ${tour.title}`}>
+              <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span><span class="vc-len">{tour.len}</span></span>
+              <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
+            </button>
+          )}
+        </div>
+      </div>
+    </section>
 
     <!-- Gallery: real people, groups and offices -->
     <section class="section is-white" id="gallery">
@@ -218,7 +237,6 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
 
     <!-- 4. What makes us different (navy split: heading left, divided list right) + 5. by the numbers -->
     <section class="section is-navy" id="different">
-      <svg class="hero-arcs" style="left:auto;right:-360px;top:-420px;bottom:auto" viewBox="0 0 800 800" aria-hidden="true"><circle cx="400" cy="400" r="390" /><circle cx="400" cy="400" r="300" /></svg>
       <div class="container ab-diff">
         <div>
           <h2>What makes Hopewell different</h2>
@@ -303,6 +321,9 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
 
     <!-- 10. Testimonials -->
     <VideoCarousel videos={STORIES} heading="Stories of Hope, in Their Own Words" lede="Clients and families share what treatment at Hopewell was like. Listen to the full conversations on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>, or read more <a class='inl' href='/testimonials/'>client testimonials</a>." />
+
+    <!-- Podcast (user 2026-11-17), same block as the homepage -->
+    <VideoCarousel videos={PODCAST} mode="grid" tone="stone" id="podcast" heading="Hope, Health &amp; Healing: The Hopewell Podcast" lede="Real conversations about recovery, mental health and asking for help, hosted by Hopewell’s TJ Aitken, CPSRP. Each episode shares an honest story from someone who has been through treatment. <a class='inl' href='/podcast/'>See all episodes</a>." link={null} />
 
     <!-- 11. Our offices: photo of each office, then the office cards -->
     <section class="section is-white" id="offices-gallery">

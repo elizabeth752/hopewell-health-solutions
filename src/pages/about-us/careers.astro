@@ -1,5 +1,6 @@
 ---
 import CareersForm from "../../components/hw/CareersForm.astro";
+import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Team from "../../components/hw/Team.astro";
 // Careers — 2026 redesign. Copy kept; adds real team photos ("life at Hopewell").
@@ -116,7 +117,10 @@ const roles = [
       </div>
     </section>
 
-    <section class="section is-stone" id="life">
+    <!-- Application form right under "Why work at Hopewell" (user 2026-11-17) -->
+    <CareersForm />
+
+    <section class="section is-white" id="life">
       <div class="container split">
         <div>
           <h2>Who we're looking for</h2>
@@ -125,17 +129,18 @@ const roles = [
             {roles.map(([icon, r]) => <li><span class="icon-badge"><Icon name={icon} /></span>{r}</li>)}
           </ul>
         </div>
-        <div class="split-media mosaic">
-          <img class="m-a" src={P + "iop-clinicians-group-room.webp"} alt="Hopewell IOP clinicians in a group therapy room" width="1200" height="900" loading="lazy" />
-          <img class="m-b" src={P + "team-outside-with-therapy-dog.webp"} alt="Hopewell staff outside with the office therapy dog" width="1200" height="900" loading="lazy" />
-          <img class="m-c" src={P + "iop-team-hallway.webp"} alt="The Hopewell IOP team at the Glastonbury office" width="1200" height="900" loading="lazy" />
-          <img class="m-d" src={P + "womens-wellness-team.webp"} alt="The Women's Wellness IOP team" width="1200" height="900" loading="lazy" />
+        <div class="split-media">
+          <PhotoSlider label="The Hopewell team" photos={[
+            { src: P + "iop-clinicians-group-room.webp", alt: "Hopewell IOP clinicians in a group therapy room" },
+            { src: P + "team-outside-with-therapy-dog.webp", alt: "Hopewell staff outside with the office therapy dog" },
+            { src: P + "iop-team-hallway.webp", alt: "The Hopewell IOP team at the Glastonbury office" },
+            { src: P + "womens-wellness-team.webp", alt: "The Women's Wellness IOP team" },
+          ]} />
         </div>
       </div>
     </section>
 
     <Prose blocks={blocks} />
-    <CareersForm />
     <Locations heading="Six Connecticut offices" lede="Our clinicians work across Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook." />
     <Team tone="stone" />
     <Reviews tone="stone" />

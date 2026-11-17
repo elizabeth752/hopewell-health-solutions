@@ -28,6 +28,12 @@ const facts = [
   ["60", "+", "FDA-approved psychiatric medications analyzed"],
   ["Days", "", "from sample to a report your provider can act on"],
 ];
+// Small drawn icons for the At a glance panel: swab, medication grid, calendar.
+const glanceArt = [
+  '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="21" y="6" width="6" height="28" rx="3" fill="#fff"/><ellipse cx="24" cy="38" rx="7" ry="6" fill="#f4e6d0"/><path d="M19 36c2 2 8 2 10 0" stroke="#b6863c" stroke-width="2" fill="none" stroke-linecap="round"/></svg>',
+  '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="16" height="8" rx="4" fill="#fff"/><rect x="26" y="9" width="16" height="8" rx="4" fill="#9cc3ea"/><rect x="6" y="21" width="16" height="8" rx="4" fill="#9cc3ea"/><rect x="26" y="21" width="16" height="8" rx="4" fill="#f4e6d0"/><rect x="6" y="33" width="16" height="8" rx="4" fill="#f4e6d0"/><rect x="26" y="33" width="16" height="8" rx="4" fill="#fff"/></svg>',
+  '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="31" rx="6" fill="#fff"/><rect x="7" y="10" width="34" height="9" rx="4" fill="#b6863c"/><path d="M15 6v8M33 6v8" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M16 30l5 5 11-11" stroke="#265489" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+];
 const steps = [
   ["Your prescriber orders it", "Your Hopewell prescriber talks with you about whether testing makes sense and orders it. The sample goes to the Myriad Genetics lab for analysis."],
   ["Cheek swab", "During a visit, a member of our team collects a DNA sample with a soft cheek swab. There are no needles and no blood draw."],
@@ -78,12 +84,21 @@ const schema = {
           <h2>Why the same medication works differently for different people</h2>
           <p style="margin-top:16px">Finding the right psychiatric medication can feel like a frustrating process of guess-and-check. Two people with the same diagnosis can respond very differently to the same prescription: one feels relief within weeks, while the other struggles with side effects or no improvement at all. A large part of that difference comes down to genetics: small variations in your DNA influence how quickly your body breaks medications down and how strongly it responds to them. <a class="inl" href="/post/exploring-genesight-testing-personalizing-mental-health-treatment-at-hopewell-health-solutions/">GeneSight pharmacogenomic testing</a> gives your Hopewell prescriber a window into those variations, so treatment decisions can be guided by your biology rather than by trial-and-error alone.</p>
         </div>
-        <div>
-          <div class="tx-stats" style="--cols:1;gap:10px">
-            {facts.map(([n, u, d]) => <div class="tx-stat" style="padding:20px 22px;background:var(--hw-stone);border-color:transparent"><strong style="font-size:40px">{n}<em>{u}</em></strong><span>{d}</span></div>)}
-          </div>
-          <p style="margin-top:10px;font-family:var(--hw-head);font-weight:700;font-size:14px;color:var(--hw-slate)">At a glance</p>
-        </div>
+        <!-- At a glance (user 2026-11-17: "design this better"): navy panel, drawn icon per fact, swab → lab → report line -->
+        <aside class="gs-glance" aria-label="GeneSight at a glance">
+          <p class="gs-glance-tag">At a glance</p>
+          <ul class="gs-glance-list">
+            {facts.map(([n, u, d], i) => (
+              <li>
+                <span class="gs-glance-ico" set:html={glanceArt[i]} />
+                <span><strong>{n}<em>{u}</em></strong><span>{d}</span></span>
+              </li>
+            ))}
+          </ul>
+          <ol class="gs-glance-path" aria-label="How it works">
+            <li><span></span>Cheek swab</li><li><span></span>Lab analysis</li><li><span></span>Report to your prescriber</li>
+          </ol>
+        </aside>
       </div>
     </section>
 
@@ -157,6 +172,23 @@ const schema = {
     <RelatedTreatments current="/treatment-methods/genesight-testing/" />
     <ClosingCta heading="Take the guesswork out of medication" lede="Talk with our Connecticut team about whether GeneSight testing is right for you, confidentially and with no pressure." />
   </main>
+<style>
+  .gs-glance { position: relative; overflow: hidden; padding: clamp(24px, 3vw, 34px); border-radius: 28px; border-top-right-radius: 90px; background: linear-gradient(155deg, var(--hw-navy) 0%, var(--hw-night) 100%); color: #dce6f1; box-shadow: 0 26px 60px rgba(0,29,55,.2); }
+  .gs-glance-helix { position: absolute; right: -10px; top: -20px; width: 110px; height: auto; fill: none; stroke: rgba(156,195,234,.18); stroke-width: 3; stroke-linecap: round; pointer-events: none; }
+  .gs-glance-tag { position: relative; display: inline-block; margin: 0; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-family: var(--hw-head); font-weight: 800; font-size: 13px; letter-spacing: .02em; color: #fff; }
+  .gs-glance-list { position: relative; list-style: none; margin: 18px 0 0; padding: 0; }
+  .gs-glance-list li { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.12); }
+  .gs-glance-list li:first-child { border-top: 0; }
+  .gs-glance-ico { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; background: rgba(47,118,196,.32); }
+  .gs-glance-ico :global(svg) { width: 40px; height: 40px; }
+  .gs-glance-list strong { display: block; font-family: var(--hw-head); font-weight: 800; font-size: 36px; line-height: 1; color: #fff; }
+  .gs-glance-list strong em { font-style: normal; color: #e0b56a; }
+  .gs-glance-list li > span:last-child > span { display: block; margin-top: 5px; font-size: 15px; line-height: 1.45; color: #c9d6e4; }
+  .gs-glance-path { position: relative; list-style: none; margin: 8px 0 0; padding: 18px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.12); font-family: var(--hw-head); font-weight: 700; font-size: 13px; line-height: 1.3; color: #fff; text-align: center; }
+  .gs-glance-path li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .gs-glance-path li > span { position: relative; z-index: 1; width: 14px; height: 14px; border-radius: 50%; background: #e0b56a; box-shadow: 0 0 0 4px rgba(224,181,106,.25); }
+  .gs-glance-path li + li::before { content: ""; position: absolute; top: 6px; right: 50%; width: 100%; height: 2px; background: rgba(224,181,106,.5); }
+</style>
   <Footer />
 </Base>
 
