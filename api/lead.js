@@ -232,8 +232,10 @@ export default async function handler(req, res) {
   const email = get('email', 160);
   if (email) f.set('email', email);
   f.set('custom_fields[insurance_carrier]', carrier);
+  // Member ID is optional on the form, but CTM rejects the whole lead with "missing required fields" when the
+  // reactor requires it and it is blank (2026-11-16/17, live PR #98). Backfill so a blank field never costs a lead.
   const member = get('membership_policy_id', 60);
-  if (member) f.set('custom_fields[membership_policy_id]', member);
+  f.set('custom_fields[membership_policy_id]', member || 'Not provided');
   const dobRaw = get('date_of_birth', 10), dob = /^\d{4}-\d{2}-\d{2}$/.test(dobRaw) ? dobRaw : '';
   if (dob) f.set('custom_fields[date_of_birth]', dob);
   const front = image(d.get('card_front')), back = image(d.get('card_back'));

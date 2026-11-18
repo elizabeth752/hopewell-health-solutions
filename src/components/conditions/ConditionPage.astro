@@ -1,4 +1,5 @@
 ---
+import ConsentMap from "../ConsentMap.astro";
 // What We Treat page renderer (2026 redesign, Corner Canyon layout system). Each condition page passes its own copy,
 // verbatim from the previous page, as data: hero, content blocks (in page order), FAQs, insurance/locations/CTA text.
 // Shared tail: levels of care (or the addiction band), programs, team, client stories, press, reviews, insurance
@@ -228,7 +229,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
                   {o.hours && <p class="cd-office-row"><Icon name="clock" class="h-5 w-5" />{o.hours}</p>}
                   <p class="cd-office-links"><a class="inl" href={`/location/${o.slug}/`}>Office details</a><a class="inl" href={mapsHref(o)} target="_blank" rel="noopener">Get directions</a></p>
                 </div>
-                <iframe src={o.map} title={`Map of Hopewell Health Solutions, ${o.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <ConsentMap src={o.map} title={`Map of Hopewell Health Solutions, ${o.name}`} address={`${o.street}, ${o.city}, CT ${o.zip}`} class="cd-map-frame" />
               </article>
             ))}
           </div>

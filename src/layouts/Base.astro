@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/site.css";
 import EventPopup from "../components/EventPopup.astro";
 import WestbrookLauncher from "../components/WestbrookLauncher.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import GoogleBadge from "../components/hw/GoogleBadge.astro";
 
 interface Props {
@@ -43,6 +44,8 @@ const ogUrl = canonicalHref;
     <link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/baskervville-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- Consent Mode v2 defaults (everything optional denied) + a saved choice re-applied; must run BEFORE GTM (live PR #96) -->
+    <CookieConsent part="head" prefix="hopewell" />
     <!-- Google Tag Manager — loads immediately (async) so CTM swaps the number before anyone can call the default one -->
     <script is:inline>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -155,5 +158,6 @@ const ogUrl = canonicalHref;
     alt.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 </script>
-</body>
+  <CookieConsent prefix="hopewell" primary="#265489" primaryDark="#1b3e63" text="#001d37" tint="#e7eef5" titleFont="'Baskervville', Georgia, serif" cookieDomain=".hopewellhealthsolutions.com" />
+  </body>
 </html>

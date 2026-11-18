@@ -1,4 +1,5 @@
 ---
+import ConsentMap from "../../components/ConsentMap.astro";
 import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 import { TRANSIT, OPERATORS } from "../../data/transit.js";
 // Location page — 2026 redesign, rebuilt to "Hopewell Locations: Content Briefs" (Claude Docs, 2026-11-16).
@@ -535,7 +536,7 @@ const eventSchema = ev && {
     <!-- 6. Directions -->
     <section class="section is-stone" id="visit">
       <div class="container lp-visit">
-        <div class="lp-map"><iframe src={l.map} title={`Map, Hopewell Health Solutions, ${l.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+        <div class="lp-map"><ConsentMap src={l.map} title={`Map, Hopewell Health Solutions, ${l.name}`} address={`${l.street}, ${l.city}, CT ${l.zip}`} class="lp-map-frame" /></div>
         <div>
           <h2>Directions to the {l.name} office</h2>
           <p class="lede">Find us at {fullAddress}. Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> and our team will help you plan your first visit.</p>

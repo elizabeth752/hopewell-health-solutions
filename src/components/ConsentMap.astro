@@ -1,0 +1,22 @@
+---
+// Google Maps embed that loads only with Functional cookie consent (CookieConsent.astro): the iframe carries
+// data-consent-src instead of src, and the placeholder offers "View map" plus a plain Google Maps link.
+interface Props {
+  src: string;
+  title: string;
+  /** Address used for the fallback Google Maps link */
+  address: string;
+  /** Classes for the iframe (height, filters) */
+  class?: string;
+}
+const { src, title, address, class: cls = "" } = Astro.props;
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${address}`)}`;
+---
+<div class="relative">
+  <iframe data-consent-src={src} title={title} class={cls} loading="lazy" referrerpolicy="no-referrer-when-downgrade" tabindex="-1" aria-hidden="true" allowfullscreen></iframe>
+  <div data-consent-placeholder class="absolute inset-0 grid place-content-center justify-items-center gap-2 bg-azul-light px-4 text-center">
+    <p class="text-sm text-ink">The map uses Google cookies.</p>
+    <button type="button" data-consent-load class="inline-flex h-[45px] items-center rounded-lg bg-azul px-5 text-sm font-semibold text-white transition hover:bg-azul-dark">View map</button>
+    <a href={mapsLink} target="_blank" rel="noopener" class="text-sm font-semibold text-azul underline hover:text-azul-dark">Open in Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
+  </div>
+</div>
