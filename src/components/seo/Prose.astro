@@ -92,9 +92,10 @@ const tones = ["white", "stone"];
 <!-- iopfit + serve aside styles live in src/styles/pages/seo.css (moved 2026-11-18 so they load as plain CSS). -->
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>(".sp-more").forEach((b) => b.addEventListener("click", () => {
+  // Guarded: programs/ReadMore.astro binds the same buttons, so each button is wired only once per page.
+  document.querySelectorAll<HTMLButtonElement>(".sp-more").forEach((b) => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => {
     const box = document.getElementById(b.getAttribute("aria-controls")!);
     const open = box!.classList.toggle("is-open");
-    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : "Read more";
-  }));
+    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : (b.dataset.label || "Read more");
+  }); });
 </script>

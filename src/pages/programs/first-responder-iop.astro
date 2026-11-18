@@ -14,6 +14,8 @@ import Locations from "../../components/hw/Locations.astro";
 import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import Split from "../../components/programs/Split.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
+import CheckList from "../../components/programs/CheckList.astro";
 import FirstResponderCare from "../../components/programs/graphics/FirstResponderCare.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
@@ -118,8 +120,17 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <!-- 4. Who it's for -->
     <Split heading="Specialized care for those who answer the call">
       <FirstResponderCare slot="media" />
-      <p><strong>By those who serve, for those who serve.</strong> Our First Responder IOP is designed by first responders, for first responders. We understand the unique challenges of those who serve and protect, and we offer specialized care that supports both your mental health and your career longevity.</p>
-      <p>In a safe, confidential space, you can process your experiences, learn coping strategies, and grow stronger, personally and professionally. Whether you’re stepping down from inpatient care, need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more than weekly therapy</a>, or are navigating work while managing your mental health, <strong>seeking support is a mark of strength.</strong></p>
+      <p class="pg-lede"><strong>By those who serve, for those who serve.</strong> Our First Responder IOP is designed by first responders, for first responders, supporting both your mental health and your career longevity.</p>
+      <CheckList icon="shield" items={[
+        "Specialized care for the <a class='inl' href='/post/why-trauma-is-different-when-it-happens-through-the-job-as-a-first-responder/'>unique challenges of those who serve and protect</a>",
+        "A safe, confidential space to process your experiences and learn coping strategies",
+        "Grow stronger, personally and professionally",
+        "For stepping down from inpatient care, needing <a class='inl' href='/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/'>more than weekly therapy</a>, or navigating work while <a class='inl' href='/post/first-responder-mental-health-when-you-need-help/'>managing your mental health</a>",
+        "<strong>Seeking support is a mark of strength.</strong>"
+      ]} />
+      <ReadMore id="fold-fr">
+        <p>We understand the unique challenges of those who serve and protect, and we offer specialized care that supports both your mental health and your career longevity. In a safe, confidential space, you can process your experiences, learn coping strategies, and grow stronger, personally and professionally. Read about <a class="inl" href="/post/trauma-and-first-responders-the-hidden-cost-of-heroism/">the hidden cost of heroism</a>.</p>
+      </ReadMore>
     </Split>
     <Prose blocks={whoBlocks} startTone={1} />
     <IconCards heading="Is this first responder treatment program right for you?" lede="Make the right choice. For current or retired <strong>police officers, firefighters, EMS professionals, corrections officers, and 9-1-1 dispatchers.</strong> These experiences can lead to:" items={conditions} cols={3} />

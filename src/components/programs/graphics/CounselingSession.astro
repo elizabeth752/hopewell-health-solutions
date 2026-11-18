@@ -1,24 +1,17 @@
 ---
-// Counseling, "What is counseling?" (2026-11-18, replaces the photo carousel). The 1-in-5 figure, the session rhythm,
-// and what happens in talk therapy, all from the section copy.
+// Counseling, "What is counseling?". Stone: a session dial and the 1-in-5 people row.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
 ---
-<figure class="gx on-dark" aria-label="One in five adults lives with a mental health condition. Counseling sessions run about 60 minutes, once or twice a week. You and a licensed clinician talk it through, work through difficult situations and conditions like depression and anxiety, and build coping strategies that stick.">
-  <div class="gx-two">
-    <div class="gx-box gx-stat">
-      <p class="gx-people" aria-hidden="true">{[0, 1, 2, 3, 4].map((k) => <span class:list={[k === 2 && "on"]}><Icon name="users" class="h-6 w-6" /></span>)}</p>
-      <p><strong>1 in 5</strong><span>adults lives with a mental health condition</span></p>
-    </div>
-    <div class="gx-box gx-stat">
-      <p class="gx-dial" aria-hidden="true"><Icon name="clock" class="h-7 w-7" /></p>
-      <p><strong>~60 min</strong><span>a session, once or twice a week</span></p>
-    </div>
+<figure class="gx t-stone" aria-label="Counseling sessions run about 60 minutes, once or twice a week. One in five adults lives with a mental health condition.">
+  <div class="co-dial" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="bg" /><circle cx="60" cy="60" r="50" class="arc" /></svg>
+    <p><strong>60</strong><span>minutes</span></p>
   </div>
-  <p class="gx-t">How talk therapy helps</p>
-  <ol class="gx-flow">
-    <li><span class="gx-i i-b"><Icon name="chat" class="h-5 w-5" /></span><span>Talk with a licensed clinician</span></li>
-    <li><span class="gx-i i-s"><Icon name="brain" class="h-5 w-5" /></span><span>Work through hard situations, <a class="inl" href="/what-we-treat/depression/">depression</a> or <a class="inl" href="/what-we-treat/anxiety/">anxiety</a></span></li>
-    <li><span class="gx-i i-g"><Icon name="shield" class="h-5 w-5" /></span><span>Build coping strategies that stick</span></li>
-  </ol>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Feel better and function better, at your own pace</figcaption>
+  <p class="gx-h">Once or twice a week</p>
+  <div class="co-people">
+    <span aria-hidden="true">{[0, 1, 2, 3, 4].map((k) => <span class:list={[k === 2 && "on"]}><Icon name="users" class="h-7 w-7" /></span>)}</span>
+    <p><strong>1 in 5</strong> adults lives with a mental health condition</p>
+  </div>
 </figure>

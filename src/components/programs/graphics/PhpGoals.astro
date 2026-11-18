@@ -1,20 +1,13 @@
 ---
-// PHP, "The benefits of PHP" (2026-11-18, replaces the photo). Who PHP helps (the three CheckList items, shortened)
-// climbing toward the program's three goals from the copy.
-import Icon from "../../Icon.astro";
+// PHP, "The benefits of PHP". Navy: the three goals as a target.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 ---
-<figure class="gx on-dark" aria-label="PHP helps people who need more than once-weekly therapy, people leaving residential treatment, and people living in supportive accommodations. The goal-oriented program focuses on stabilization, enhancing coping skills and improving overall quality of life.">
-  <p class="gx-t">Beneficial if you’re</p>
-  <ul class="gx-rows">
-    <li><Icon name="arrow" class="h-4 w-4" /><span>Needing more than once-weekly therapy</span></li>
-    <li><Icon name="arrow" class="h-4 w-4" /><span>Leaving residential treatment</span></li>
-    <li><Icon name="arrow" class="h-4 w-4" /><span>Living in supportive accommodations</span></li>
-  </ul>
-  <p class="gx-t">A goal-oriented program</p>
-  <ol class="gx-stairs">
-    <li><span class="gx-i i-b"><Icon name="shield" class="h-5 w-5" /></span><b>Stabilization</b></li>
-    <li><span class="gx-i i-s"><Icon name="brain" class="h-5 w-5" /></span><b>Stronger coping skills</b></li>
-    <li><span class="gx-i i-g"><Icon name="sun" class="h-5 w-5" /></span><b>Better quality of life</b></li>
-  </ol>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />A comprehensive, structured approach</figcaption>
+<figure class="gx t-navy on-dark" aria-label="PHP is goal-oriented: stabilization, stronger coping skills and a better quality of life">
+  <svg class="gx-svg tg" viewBox="0 0 320 230" aria-hidden="true">
+    <circle cx="160" cy="115" r="110" class="r0" /><circle cx="160" cy="115" r="76" class="r1" /><circle cx="160" cy="115" r="42" class="r2" />
+    <text x="160" y="28">Stabilization</text><text x="160" y="62">Coping skills</text>
+    <text x="160" y="111" class="in">Quality</text><text x="160" y="128" class="in">of life</text>
+  </svg>
+  <figcaption class="gx-cap">A goal-oriented program</figcaption>
 </figure>

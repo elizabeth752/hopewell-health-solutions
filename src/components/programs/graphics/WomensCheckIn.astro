@@ -1,22 +1,15 @@
 ---
-// Women's Wellness IOP, "Is this program right for me?" (2026-11-18, replaces the photo). From autopilot to checking
-// in: the six questions in the copy, as six short check-in areas.
+// Women's Wellness IOP, "Is this program right for me?". White card, gold border: a check-in wheel of six areas.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
-const areas = [
-  ["bolt", "Energy", "Drained, even after rest", "i-g"],
-  ["sun", "Joy", "Lost interest in what you loved", "i-s"],
-  ["heart-even", "Support", "Giving more than you get back", "i-b"],
-  ["cloud", "Honesty", "Pretending everything is okay", "i-n"],
-  ["alert", "Health & relationships", "Stress spilling into life & work", "i-g"],
-  ["compass", "Grounding", "Wanting to feel connected again", "i-s"],
-];
+const areas = [["bolt", "Energy", "#b6863c"], ["sun", "Joy", "#5c7c6b"], ["heart-even", "Support", "#2f76c4"], ["cloud", "Honesty", "#265489"], ["alert", "Stress", "#b6863c"], ["compass", "Grounding", "#5c7c6b"]];
 ---
-<figure class="gx on-dark" aria-label="A self check-in, from autopilot to checking in: energy, joy, support, honesty, health and relationships, and feeling grounded.">
-  <div class="gx-toggle" aria-hidden="true">
-    <span>Autopilot</span><Icon name="arrow" class="h-5 w-5" /><span class="on">Checking in with yourself</span>
+<figure class="gx t-paper a-gold" aria-label="A self check-in on energy, joy, support, honesty, stress and feeling grounded">
+  <div class="wh">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="37" /></svg>
+    <p class="wh-c"><b>Check in</b><span>with yourself</span></p>
+    {areas.map(([i, t, c], k) => <p class="wh-n" style={`--a:${k * 60}deg;--c:${c}`}><span><Icon name={i} class="h-5 w-5" /></span><b>{t}</b></p>)}
   </div>
-  <ul class="gx-tiles is-check">
-    {areas.map(([i, t, d, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span><span><b>{t}</b><small>{d}</small></span></li>)}
-  </ul>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" /><span>Any of these resonate? <a class="inl" href="/admissions/">Take our quick screening</a></span></figcaption>
+  <figcaption class="gx-cap"><a class="inl" href="/admissions/">Take our quick screening</a></figcaption>
 </figure>

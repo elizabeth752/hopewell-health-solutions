@@ -1,25 +1,13 @@
 ---
-// Medication management, "Assessment, therapy & meds in one visit" (2026-11-18, replaces the photo).
-// Bouncing between two offices vs one visit, plus the ages the copy names.
+// Medication management, "Assessment, therapy & meds in one visit". White card, blue border: three icon circles
+// that add up to one visit.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
+const parts = [["clipboard", "Assessment", "#2f76c4"], ["chat", "Therapy", "#5c7c6b"], ["pill", "Medication", "#b6863c"]];
 ---
-<figure class="gx on-dark" aria-label="Most practices make you bounce between a prescriber and a therapist. At Hopewell you can get assessment, talk therapy and medication in a single visit, often with a same-day appointment, for ages 4 and up.">
-  <div class="gx-cmp">
-    <div class="gx-cmp-old">
-      <p class="gx-t">Most practices</p>
-      <div class="gx-bounce"><span>Prescriber</span><Icon name="swap" class="h-5 w-5" /><span>Therapist</span></div>
-      <small>Bouncing back and forth</small>
-    </div>
-    <div class="gx-cmp-new">
-      <p class="gx-t">At Hopewell, one visit</p>
-      <ul>
-        <li><span class="gx-i i-b"><Icon name="clipboard" class="h-5 w-5" /></span>Assessment</li>
-        <li><span class="gx-i i-s"><Icon name="chat" class="h-5 w-5" /></span>Talk therapy</li>
-        <li><span class="gx-i i-g"><Icon name="pill" class="h-5 w-5" /></span>Medication</li>
-      </ul>
-      <p class="gx-badge"><Icon name="calendar" class="h-4 w-4" />Often a same-day appointment</p>
-    </div>
-  </div>
-  <p class="gx-strip"><Icon name="users" class="h-5 w-5" /><span><b>Ages 4 and up</b> · children, teens &amp; adults</span></p>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Less runaround, more progress</figcaption>
+<figure class="gx t-paper a-blue" aria-label="Assessment, talk therapy and medication in a single visit, often same-day, for ages 4 and up">
+  <ul class="gx-dots is-plus">{parts.map(([i, t, c]) => <li style={`--c:${c}`}><span><Icon name={i} class="h-6 w-6" /></span>{t}</li>)}</ul>
+  <p class="ov-one"><strong>One visit</strong><span>Often same-day</span></p>
+  <figcaption class="gx-cap">Ages 4 and up</figcaption>
 </figure>

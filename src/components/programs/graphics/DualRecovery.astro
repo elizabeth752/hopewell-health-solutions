@@ -1,24 +1,13 @@
 ---
-// Adult Mental Health IOP, "Supporting both mental health & substance-use recovery" (2026-11-18, replaces the photo).
-// Mental health and substance use overlap (dual diagnosis), and MAT as medication + counseling + behavioral therapy.
+// Adult Mental Health IOP, "Supporting both mental health & substance-use recovery" (user: "I don't like the
+// graphic"; Venn + tiles replaced). Light sky card: how MAT supports recovery in three steps.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
+const steps = [["pill", "FDA-approved medication", "#b6863c"], ["chat", "Counseling &amp; therapy", "#5c7c6b"], ["heart-even", "Long-term recovery", "#2f76c4"]];
 ---
-<figure class="gx on-dark" aria-label="Mental health and substance use are closely linked; where they overlap is dual diagnosis. MAT combines FDA-approved medication with counseling and behavioral therapy to reduce cravings and withdrawal and support long-term recovery.">
-  <svg class="gx-venn" viewBox="0 0 320 170" aria-hidden="true">
-    <circle cx="118" cy="85" r="78" class="a" />
-    <circle cx="202" cy="85" r="78" class="b" />
-    <text x="74" y="82" text-anchor="middle">Mental</text><text x="74" y="102" text-anchor="middle">health</text>
-    <text x="248" y="82" text-anchor="middle">Substance</text><text x="248" y="102" text-anchor="middle">use</text>
-    <text x="160" y="82" text-anchor="middle" class="g">Dual</text><text x="160" y="100" text-anchor="middle" class="g">diagnosis</text>
-  </svg>
-  <p class="gx-t">How <a class="inl" href="/treatment-methods/medication-assisted-treatment/">MAT</a> works</p>
-  <div class="gx-eq">
-    <span><span class="gx-i i-g"><Icon name="pill" class="h-5 w-5" /></span>FDA-approved medication</span>
-    <i aria-hidden="true">+</i>
-    <span><span class="gx-i i-b"><Icon name="chat" class="h-5 w-5" /></span>Counseling</span>
-    <i aria-hidden="true">+</i>
-    <span><span class="gx-i i-s"><Icon name="brain" class="h-5 w-5" /></span>Behavioral therapy</span>
-  </div>
-  <p class="gx-strip"><Icon name="heart-even" class="h-5 w-5" /><span><b>Fewer cravings, less withdrawal</b> · support for long-term recovery</span></p>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Personalized, trauma-informed &amp; judgment-free</figcaption>
+<figure class="gx t-sky" aria-label="How MAT supports recovery: FDA-approved medication, with counseling and behavioral therapy, toward long-term recovery">
+  <p class="gx-h">How <a class="inl" href="/treatment-methods/medication-assisted-treatment/">MAT</a> supports recovery</p>
+  <ol class="mt">{steps.map(([i, t, c]) => <li style={`--c:${c}`}><span><Icon name={i} class="h-6 w-6" /></span><b set:html={t} /></li>)}</ol>
+  <figcaption class="gx-cap">Fewer cravings, less withdrawal</figcaption>
 </figure>

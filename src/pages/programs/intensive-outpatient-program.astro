@@ -16,6 +16,7 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import CheckList from "../../components/programs/CheckList.astro";
 import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.astro";
@@ -123,8 +124,12 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
           <small>nearly this many live with a mental health condition</small>
         </div>
       </div>
-      <p><strong>A higher level of care, on your schedule.</strong> Mental health conditions are common, affecting nearly 23% of adults and 17% of children aged 6–17 in the United States. An Intensive Outpatient Program (IOP) offers structured therapeutic care for those who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more than weekly therapy</a>, without an overnight stay.</p>
-      <p>At Hopewell Health Solutions, our IOPs combine individual and group counseling, skills-based psychotherapy, psychiatric <a class="inl" href="/programs/medication-management/">medication management</a>, and experiential therapies, so you can keep your routine at home, work, or school while you heal.</p>
+      <p class="pg-lede"><strong>A higher level of care, on your schedule.</strong> An Intensive Outpatient Program (IOP) offers structured therapeutic care for those who need more than weekly therapy, without an overnight stay.</p>
+      <CheckList items={["Nearly 23% of U.S. adults and 17% of children aged 6–17 live with a mental health condition", "Individual and group counseling, plus skills-based psychotherapy", "Psychiatric <a class='inl' href='/programs/medication-management/'>medication management</a> and experiential therapies", "Tracks for adults, <a class='inl' href='/programs/addiction-iop/'>addiction</a>, <a class='inl' href='/programs/teen-iop/'>teens</a>, <a class='inl' href='/programs/tween-iop/'>tweens</a>, women, and <a class='inl' href='/programs/first-responder-iop/'>first responders</a>", "Keep your routine at home, work, or school while you heal"]} />
+      <ReadMore id="fold-iop">
+        <p><strong>A higher level of care, on your schedule.</strong> Mental health conditions are common, affecting nearly 23% of adults and 17% of children aged 6–17 in the United States. An Intensive Outpatient Program (IOP) offers structured therapeutic care for those who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more than weekly therapy</a>, without an overnight stay.</p>
+        <p>At Hopewell Health Solutions, our IOPs combine individual and group counseling, skills-based psychotherapy, psychiatric <a class="inl" href="/programs/medication-management/">medication management</a>, and experiential therapies, so you can keep your routine at home, work, or school while you heal.</p>
+      </ReadMore>
     </Split>
 
     <section class="section is-mist" id="tracks">

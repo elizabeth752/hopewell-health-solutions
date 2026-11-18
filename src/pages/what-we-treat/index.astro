@@ -202,14 +202,14 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
                 <span class="wq-group-icon"><Icon name={g.icon} /></span>
                 <div><h3 id={`h-${g.id}`}>{g.name}</h3><span>{g.note}</span></div>
               </div>
-              <div class="wq-cards">
+              <div class={`wq-cards n-${g.items.length}`}>
                 {g.items.map((c) => { const x = detail[c.href] ?? {}; return (
                   <article class="wq-card">
                     <h4><a href={c.href}>{c.t}</a></h4>
                     <p class="wq-line">{c.line}.</p>
                     {x.signs && <ul class="wq-signlist">{x.signs.map((sg) => <li>{sg}</li>)}</ul>}
                     {(x.d || x.more) && (
-                      <details class="wq-more"><summary>Read more</summary>{x.d && <p>{x.d}</p>}{x.more && <p set:html={x.more} />}</details>
+                      <details class="wq-fold"><summary>Read more</summary>{x.d && <p>{x.d}</p>}{x.more && <p set:html={x.more} />}</details>
                     )}
                     <p class="wq-meta">{c.ages && <Fragment><Icon name="users" class="h-4 w-4" />{c.ages} · </Fragment>}<span set:html={c.progs.map((k) => `<a class="inl" href="${PROG[k][1]}">${PROG[k][0]}</a>`).join(", ")} /></p>
                   </article>

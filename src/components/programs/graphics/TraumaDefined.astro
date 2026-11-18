@@ -1,20 +1,16 @@
 ---
-// Women's Trauma IOP, "What is trauma?" (user 2026-11-18: graphic instead of the photo). Single event vs ongoing
-// circumstances, and the four areas of well-being the copy names. Styles: .gx-* in styles/pages/programs.css.
-import Icon from "../../Icon.astro";
-const areas = [["heart-even", "Physical", "i-b"], ["users", "Social", "i-s"], ["cloud", "Emotional", "i-g"], ["sun", "Spiritual", "i-n"]];
+// Women's Trauma IOP, "What is trauma?". White card, sage border: a ripple from one event (or many) out to the four
+// areas of well-being trauma can affect.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 ---
-<figure class="gx on-dark" aria-label="Trauma can come from a single event, or a series of events or circumstances, that feel harmful or life-threatening, with lasting effects on physical, social, emotional or spiritual well-being">
-  <p class="gx-t">Trauma can come from</p>
-  <div class="gx-vs">
-    <div class="gx-box"><span class="gx-i i-g"><Icon name="bolt" class="h-5 w-5" /></span><b>A single event</b></div>
-    <span class="gx-or">or</span>
-    <div class="gx-box"><span class="gx-i i-b"><Icon name="refresh" class="h-5 w-5" /></span><b>A series of events or circumstances</b></div>
-  </div>
-  <p class="gx-note">that feel emotionally or physically harmful or life-threatening</p>
-  <p class="gx-t">With lasting effects on your well-being</p>
-  <ul class="gx-tiles is-4">
-    {areas.map(([i, t, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{t}</li>)}
-  </ul>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />No “right” way to respond, and no shame in needing support</figcaption>
+<figure class="gx t-paper a-sage" aria-label="Trauma, from a single event or many, can have lasting effects on physical, social, emotional and spiritual well-being">
+  <svg class="gx-svg" viewBox="0 0 320 250" aria-hidden="true">
+    <circle cx="160" cy="125" r="108" class="rp r0" /><circle cx="160" cy="125" r="80" class="rp r1" /><circle cx="160" cy="125" r="52" class="rp r2" />
+    <circle cx="160" cy="125" r="38" class="core" /><text x="160" y="130" class="cw">Trauma</text>
+    {[["Physical", 160, 18], ["Social", 270, 125], ["Emotional", 160, 232], ["Spiritual", 50, 125]].map(([t, x, y]) => (
+      <g><rect x={Number(x) - 48} y={Number(y) - 15} width="96" height="30" rx="15" class="lb" /><text x={x} y={Number(y) + 5}>{t}</text></g>
+    ))}
+  </svg>
+  <figcaption class="gx-cap">One event or many, with effects that can last</figcaption>
 </figure>

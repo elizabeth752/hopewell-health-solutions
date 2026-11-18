@@ -192,6 +192,26 @@ export const QUIZZES = {
       [8, "Many warning signs", "Many warning signs, or signs that last despite weekly therapy, often mean a child needs more support. Learn about our after-school <a class=\"inl\" href=\"/programs/teen-iop/\">Tween &amp; Teen IOP</a> at 1420 Main St in South Glastonbury."],
     ],
   },
+  // Adult Mental Health IOP page (user 2026-11-18: "add a quiz on the is this program right"). Built only from the
+  // page's own "Is this program right for you?" criteria; plain-language, not a validated tool, never diagnostic.
+  adultIop: {
+    title: "Is an adult IOP a fit? A quick self-check",
+    intro: "Thinking about the past month, is each of these true for you?",
+    source: "A plain-language checklist written by Hopewell Health Solutions from this program’s admission criteria. It is not a validated screening tool.",
+    options: YESNO,
+    questions: [
+      "Anxiety or depression has been getting in the way of my days",
+      "I’m living with the effects of trauma or PTSD",
+      "My emotions feel hard to regulate, or my mood swings more than I’d like",
+      "I’ve been using alcohol or drugs to cope",
+      "I’m struggling to function in daily life, even with outpatient support",
+    ],
+    crisis: true,
+    bands: [
+      [1, "Weekly therapy may be enough for now", "Your answers suggest weekly support may be the right place to start. <a class=\"inl\" href=\"/programs/counseling/\">Counseling</a> is flexible, and you can step up to an IOP later if you need more."],
+      [5, "An adult IOP may be a good fit", "Your answers match the kinds of concerns our Adult IOP is built for. Call us to talk them through with our admissions team, or verify your insurance at no cost."],
+    ],
+  },
   behavior: {
     title: "Is it becoming a compulsion? A self-check",
     intro: "Think about the habit this article is about (porn, gaming, scrolling or similar). Over the past few months…",

@@ -19,6 +19,7 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import Prose from "../../components/seo/Prose.astro";
 import Split from "../../components/programs/Split.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
 import WomensCheckIn from "../../components/programs/graphics/WomensCheckIn.astro";
 import WomensLoad from "../../components/programs/graphics/WomensLoad.astro";
 import Quote from "../../components/programs/Quote.astro";
@@ -45,14 +46,6 @@ const stats = [
   ["1 in 5", "women experience a mental health condition each year"],
   ["2×", "more likely than men to be diagnosed with anxiety or depression"],
   ["1 in 3", "women experience some form of trauma in their lifetime"],
-];
-const questions = [
-  "Do you feel emotionally drained, even after rest?",
-  "Have you lost interest in things that used to bring you joy?",
-  "Do you give to others but rarely feel emotionally supported yourself?",
-  "Are you tired of pretending everything is okay when it isn’t?",
-  "Has stress or anxiety started to affect your health, relationships, or work?",
-  "Do you want to feel more grounded and connected, but don’t know where to begin?",
 ];
 const beliefs = [
   "“I’m not struggling enough to need this.”",
@@ -166,8 +159,18 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <!-- 4. Who this program is for -->
     <Split heading="We understand the load women carry">
       <WomensLoad slot="media" />
-      <p><strong>A space to pause, process &amp; heal.</strong> Between work, parenting, caregiving, relationships, health concerns, and the constant pressure to “hold it all together,” it’s easy to lose your sense of self. That’s why we created the Women’s Wellness IOP, a supportive, structured space where women can pause, process, and begin to heal.</p>
-      <p>This 8–12 week program is for women experiencing emotional burnout, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>. Whether you’re overwhelmed, disconnected, or simply ready to prioritize yourself, you don’t have to do it alone.</p>
+      <p class="pg-lede"><strong>A space to pause, process &amp; heal.</strong> Between work, parenting, caregiving, relationships, and health concerns, it’s easy to lose your sense of self.</p>
+      <CheckList icon="heart" items={[
+        "A supportive, structured space where women can pause, process, and begin to heal",
+        "An <a class='inl' href='/post/retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks/'>8–12 week program</a>",
+        "For <a class='inl' href='/post/do-i-need-to-take-a-break-from-my-job-signs-of-job-burnout/'>emotional burnout</a>, <a class='inl' href='/what-we-treat/anxiety/'>anxiety</a>, stress, life transitions, or relationship challenges",
+        "For low self-esteem or the lingering effects of <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma</a>",
+        "Overwhelmed, disconnected, or ready to prioritize yourself? You don’t have to do it alone"
+      ]} />
+      <ReadMore id="fold-load">
+        <p>Between work, parenting, caregiving, relationships, health concerns, and the constant pressure to “hold it all together,” it’s easy to lose your sense of self. That’s why we created the Women’s Wellness IOP.</p>
+        <p>This 8–12 week program is for women experiencing emotional burnout, anxiety, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of trauma. Whether you’re overwhelmed, disconnected, or simply ready to prioritize yourself, you don’t have to do it alone.</p>
+      </ReadMore>
     </Split>
 
     <Prose blocks={whoBlocks} startTone={1} />
@@ -187,9 +190,18 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
     <Split heading="Is this program right for me?" reverse>
       <WomensCheckIn slot="media" />
-      <p><strong>The space &amp; support you’ve been looking for.</strong> You may be so used to functioning on autopilot that you’ve stopped checking in with yourself. Consider:</p>
-      <CheckList items={questions} icon="heart" />
-      <p>If any of these resonate, this program may offer the space and support you’ve been looking for. <a class="inl" href="/admissions/">Take our quick screening</a>.</p>
+      <p class="pg-lede"><strong>The space &amp; support you’ve been looking for.</strong> You may be so used to functioning on autopilot that you’ve stopped checking in with yourself. Consider:</p>
+      <CheckList icon="heart" items={[
+        "Do you feel <a class='inl' href='/post/why-do-i-feel-empty-causes-signs-and-treatment/'>emotionally drained</a>, even after rest?",
+        "Have you <a class='inl' href='/what-we-treat/depression/'>lost interest</a> in things that used to bring you joy?",
+        "Do you give to others but rarely feel emotionally supported yourself?",
+        "Has stress or <a class='inl' href='/what-we-treat/anxiety/'>anxiety</a> started to affect your health, relationships, or work?",
+        "If any of these resonate, <a class='inl' href='/admissions/'>take our quick screening</a>"
+      ]} />
+      <ReadMore id="fold-check" label="Two more questions">
+        <ul class="pg-list"><li><span class="pg-tick"><Icon name="heart" class="h-4 w-4" /></span><span>Are you tired of pretending everything is okay when it isn’t?</span></li><li><span class="pg-tick"><Icon name="heart" class="h-4 w-4" /></span><span>Do you want to feel more grounded and connected, but don’t know where to begin?</span></li></ul>
+        <p>If any of these resonate, this program may offer the space and support you’ve been looking for.</p>
+      </ReadMore>
     </Split>
 
     <IconCards heading="Even if you’re telling yourself…" lede="You deserve help." items={beliefs.map((b, i) => ({ icon: ["alert", "users", "clock", "shield"][i], t: b, d: "" }))} tone="white">

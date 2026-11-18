@@ -15,6 +15,7 @@ import Locations from "../../components/hw/Locations.astro";
 import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import Split from "../../components/programs/Split.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
 import MedOneVisit from "../../components/programs/graphics/MedOneVisit.astro";
 import MedCycle from "../../components/programs/graphics/MedCycle.astro";
 import Quote from "../../components/programs/Quote.astro";
@@ -125,8 +126,17 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <!-- 4. Who it's for -->
     <Split heading="What is medication management?">
       <MedCycle slot="media" />
-      <p><strong>Psychiatric care, built around you.</strong> Medication management is ongoing psychiatric care, a thorough evaluation, an accurate diagnosis, a personalized medication plan, and regular follow-ups to fine-tune it as you go. Our providers are specifically trained in psychiatric diagnoses, treatments, and medications.</p>
-      <p>It’s essential care for promoting mental health, preventing things from getting worse, and meeting each person where they are. And we don’t put limits on your care, keep your current therapist, <a class="inl" href="/programs/counseling/">work with one of ours</a>, or skip therapy altogether. It’s your call.</p>
+      <p class="pg-lede"><strong>Psychiatric care, built around you.</strong> Medication management is <a class='inl' href='/post/what-is-medication-management-a-comprehensive-guide-to-effective-treatment/'>ongoing psychiatric care</a> that meets each person where they are.</p>
+      <CheckList icon="check" items={[
+        "A thorough evaluation and an accurate diagnosis",
+        "A personalized medication plan, with regular follow-ups to fine-tune it as you go",
+        "Providers specifically trained in psychiatric diagnoses, treatments, and medications",
+        "Essential care for promoting mental health and preventing things from getting worse",
+        "Keep your current therapist, <a class='inl' href='/programs/counseling/'>work with one of ours</a>, or skip therapy altogether, it’s your call"
+      ]} />
+      <ReadMore id="fold-med">
+        <p>Medication management is ongoing psychiatric care, a thorough evaluation, an accurate diagnosis, a personalized medication plan, and regular follow-ups to fine-tune it as you go. It’s essential care for promoting mental health, preventing things from getting worse, and meeting each person where they are. And we don’t put limits on your care.</p>
+      </ReadMore>
     </Split>
     <Prose blocks={whoBlocks.slice(0, 1)} startTone={1} />
     <section class="section is-mist">
@@ -142,10 +152,17 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <!-- 5. What treatment includes -->
     <Split heading="Assessment, therapy &amp; meds in one visit" reverse tone="stone">
       <MedOneVisit slot="media" />
-      <p><strong>Less runaround, more progress.</strong> Most practices make you bounce between a prescriber and a therapist. At Hopewell Health Solutions, you can get assessment, talk therapy, and medication in a single visit, and often a same-day appointment.</p>
-      <p>We care for ages 4 and up, children, teens, and adults, including kids who need <a class="inl" href="/treatment-methods/adhd-testing/">ADHD evaluation</a> and support. Whether you’re starting medication for the first time or your longtime psychiatrist is retiring, we’ll build a plan you’re comfortable with.</p>
-      <h3 style="font-size:20px">Your care, your choice</h3>
-      <CheckList items={["Keep your therapist", "Work with ours", "Medication-only"]} />
+      <p class="pg-lede"><strong>Less runaround, more progress.</strong> Most practices make you bounce between a prescriber and a therapist. At Hopewell Health Solutions, you can get assessment, talk therapy, and medication in a single visit.</p>
+      <CheckList icon="check" items={[
+        "Often a same-day appointment",
+        "Care for ages 4 and up: children, <a class='inl' href='/programs/teen-iop/'>teens</a>, and adults",
+        "Kids who need <a class='inl' href='/treatment-methods/adhd-testing/'>ADHD evaluation</a> and <a class='inl' href='/what-we-treat/adhd/'>support</a>",
+        "Starting medication for the first time, or your longtime psychiatrist is retiring",
+        "<strong>Your care, your choice:</strong> keep your therapist, <a class='inl' href='/programs/counseling/'>work with ours</a>, or medication-only"
+      ]} />
+      <ReadMore id="fold-onevisit">
+        <p>We care for ages 4 and up, children, teens, and adults, including kids who need ADHD evaluation and support. Whether you’re starting medication for the first time or your longtime psychiatrist is retiring, we’ll build a plan you’re comfortable with.</p>
+      </ReadMore>
     </Split>
     <Prose blocks={whoBlocks.slice(1, 2)} startTone={0} />
     <section class="section is-white">

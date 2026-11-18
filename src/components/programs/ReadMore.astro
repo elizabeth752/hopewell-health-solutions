@@ -1,0 +1,17 @@
+---
+// Folded "Read more" block for the text + graphic splits (user 2026-11-18: bullets up front, nothing lost). Same
+// pattern and classes as seo/Prose.astro (.sp-fold / .sp-more); the rules are copied into programs.css so they load
+// on every program page. Both scripts guard with data-bound, so a page that has both wires each button once.
+interface Props { id: string; label?: string }
+const { id, label = "Read more" } = Astro.props;
+---
+<div class="sp-fold pg-fold" id={id}><slot /></div>
+<button type="button" class="sp-more" aria-expanded="false" aria-controls={id} data-label={label}>{label}</button>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".sp-more").forEach((b) => { if (b.dataset.bound) return; b.dataset.bound = "1"; b.addEventListener("click", () => {
+    const box = document.getElementById(b.getAttribute("aria-controls")!);
+    const open = box!.classList.toggle("is-open");
+    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : (b.dataset.label || "Read more");
+  }); });
+</script>

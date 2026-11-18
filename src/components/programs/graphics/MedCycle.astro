@@ -1,23 +1,19 @@
 ---
-// Medication management, "What is medication management?" (2026-11-18, replaces the photo carousel).
-// The care cycle the copy describes: evaluation, diagnosis, personalized plan, regular follow-ups.
+// Medication management, "What is medication management?". Navy: the care cycle around a loop (OCD-cycle style).
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
-const steps = [["clipboard", "Thorough evaluation", "i-b"], ["brain", "Accurate diagnosis", "i-s"], ["refresh", "Regular follow-ups to fine-tune", "i-n"], ["pill", "Personalized medication plan", "i-g"]];
+const steps = [["clipboard", "Evaluation", "#2f76c4"], ["brain", "Diagnosis", "#5c7c6b"], ["pill", "Medication plan", "#b6863c"], ["refresh", "Follow-ups", "#265489"]];
 ---
-<figure class="gx on-dark" aria-label="Medication management is a cycle: a thorough evaluation, an accurate diagnosis, a personalized medication plan, and regular follow-ups to fine-tune it as you go. Keep your current therapist, work with one of ours, or skip therapy.">
-  <p class="gx-t">Ongoing psychiatric care, built around you</p>
-  <div class="gx-cycle">
-    <svg class="gx-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="72" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(45 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(135 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(225 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(315 100 100)" /></svg>
-    <ol>
-      {steps.map(([i, t, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{t}</li>)}
-    </ol>
-    <p class="gx-cycle-c"><Icon name="heart-even" class="h-6 w-6" /><span>As you go</span></p>
+<figure class="gx t-navy on-dark" aria-label="Medication management is a cycle: evaluation, diagnosis, a personalized medication plan and regular follow-ups">
+  <div class="cy">
+    <svg class="cy-loop" viewBox="0 0 300 300" aria-hidden="true">
+      <defs><marker id="cy-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#e0b56a" /></marker></defs>
+      <path d="M150 40 A110 110 0 0 1 260 150" marker-end="url(#cy-arrow)" /><path d="M260 150 A110 110 0 0 1 150 260" marker-end="url(#cy-arrow)" />
+      <path d="M150 260 A110 110 0 0 1 40 150" marker-end="url(#cy-arrow)" /><path d="M40 150 A110 110 0 0 1 150 40" marker-end="url(#cy-arrow)" />
+    </svg>
+    <p class="cy-c"><strong>You</strong><span>Care built around you</span></p>
+    {steps.map(([i, t, c], k) => <p class={`cy-s is-${k}`} style={`--c:${c}`}><span><Icon name={i} class="h-5 w-5" /></span><b>{t}</b></p>)}
   </div>
-  <p class="gx-t">Therapy is your call</p>
-  <ul class="gx-call">
-    <li><Icon name="check" class="h-4 w-4" />Keep your current therapist</li>
-    <li><Icon name="check" class="h-4 w-4" /><a class="inl" href="/programs/counseling/">Work with one of ours</a></li>
-    <li><Icon name="check" class="h-4 w-4" />Or skip therapy</li>
-  </ul>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Providers trained in psychiatric diagnoses, treatments &amp; medications</figcaption>
+  <figcaption class="gx-cap">Therapy is your call</figcaption>
 </figure>

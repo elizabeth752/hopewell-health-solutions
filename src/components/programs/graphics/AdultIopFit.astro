@@ -1,21 +1,17 @@
 ---
-// Adult Mental Health IOP, "What is an Adult IOP?" (2026-11-18, replaces the photo carousel). Two ways in that
-// converge on the IOP, the conditions it supports, and the life it fits around.
+// Adult Mental Health IOP, "What is an Adult IOP?" (user: the funnel version "looks really bad"). Stone: two ways in
+// arrive at a centred IOP circle; one row of four condition dots below.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
-const conds = [["cloud", "Depression", "/what-we-treat/depression/", "i-b"], ["bolt", "Anxiety", "/what-we-treat/anxiety/", "i-g"], ["shield", "Trauma", "/what-we-treat/trauma-ptsd/", "i-s"], ["refresh", "Mood disorders", "", "i-n"]];
+const conds = [["cloud", "Depression", "/what-we-treat/depression/", "#2f76c4"], ["bolt", "Anxiety", "/what-we-treat/anxiety/", "#b6863c"], ["shield", "Trauma", "/what-we-treat/trauma-ptsd/", "#5c7c6b"], ["refresh", "Mood", "", "#265489"]];
 ---
-<figure class="gx on-dark" aria-label="Adults come to the IOP stepping down from inpatient care or needing more than weekly therapy. It supports depression, anxiety, trauma, mood disorders and co-occurring substance use, with no hospital stay, while you keep up with work, school and family.">
-  <div class="gx-conv">
-    <div class="gx-box"><Icon name="arrow" class="h-5 w-5 dn" /><b>Stepping down from inpatient care</b></div>
-    <div class="gx-box"><Icon name="arrow" class="h-5 w-5 up" /><b>Needing more than weekly therapy</b></div>
+<figure class="gx t-stone" aria-label="Adults step down from inpatient care or need more than weekly therapy. The Adult IOP is 3 hours a day, 4 days a week, for depression, anxiety, trauma, mood disorders and co-occurring substance use.">
+  <div class="ai">
+    <p class="ai-in">Stepping down from inpatient care<svg viewBox="0 0 40 12" aria-hidden="true"><path d="M2 6 H34 M28 1 L35 6 L28 11" /></svg></p>
+    <p class="ai-c"><strong>Adult IOP</strong><span>3 hrs a day<br />4 days a week</span></p>
+    <p class="ai-in is-r">More than weekly therapy<svg viewBox="0 0 40 12" aria-hidden="true"><path d="M38 6 H6 M12 1 L5 6 L12 11" /></svg></p>
   </div>
-  <div class="gx-hub">
-    <span class="gx-hub-i"><Icon name="home" class="h-7 w-7" /></span>
-    <p><strong>Adult IOP, no hospital stay</strong><span>A higher level of care around work, school &amp; family</span></p>
-  </div>
-  <p class="gx-t">Support for</p>
-  <ul class="gx-tiles is-4">
-    {conds.map(([i, t, h, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{h ? <a class="inl" href={h}>{t}</a> : t}</li>)}
-  </ul>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Plus support for co-occurring substance use</figcaption>
+  <ul class="gx-dots is-4 is-sm">{conds.map(([i, t, h, c]) => <li style={`--c:${c}`}><span><Icon name={i} class="h-5 w-5" /></span>{h ? <a class="inl" href={h}>{t}</a> : t}</li>)}</ul>
+  <figcaption class="gx-cap">+ co-occurring substance use</figcaption>
 </figure>

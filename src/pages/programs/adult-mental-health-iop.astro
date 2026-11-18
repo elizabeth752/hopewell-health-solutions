@@ -13,6 +13,8 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import BlogSelfCheck from "../../components/blog/BlogSelfCheck.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
 import DualRecovery from "../../components/programs/graphics/DualRecovery.astro";
 import AdultIopFit from "../../components/programs/graphics/AdultIopFit.astro";
 import Quote from "../../components/programs/Quote.astro";
@@ -37,7 +39,6 @@ const heroUsps = [
 ];
 const rightFit = ["Anxiety or depression", "Trauma or PTSD", "Emotional dysregulation or mood instability", "Co-occurring substance use concerns", "Difficulty functioning in daily life despite outpatient support"];
 const weekIncludes = ["Evidence-based group therapy grounded in <a class='inl' href='/treatment-methods/dbt/'>DBT</a> &amp; CBT", "Experiential therapies, art, movement-based &amp; animal-assisted", "Individual therapy for personalized treatment", "Optional <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; psychiatric support", "Optional family therapy &amp; psychoeducation"];
-const sudSupport = ["Psychoeducation on addiction &amp; the brain", "Relapse prevention &amp; recovery planning", "DBT &amp; CBT skill-building to replace maladaptive behaviors", "Dual-diagnosis support (<a class='inl' href='/what-we-treat/co-occurring/'>co-occurring mental health &amp; substance use</a>)", "<a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-Assisted Treatment (MAT)</a> services"];
 // Program-specific differentiators (preserved from the live page).
 const unique = [
   { icon: "sparkles", t: "Multimodal treatment approach", d: "We blend clinical therapy with creative, somatic, and relational approaches for true mind–body healing." },
@@ -97,11 +98,22 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
 
     <Split heading="What is an Adult Intensive Outpatient Program (IOP)?">
       <AdultIopFit slot="media" />
-      <p>An Adult Intensive Outpatient Program (IOP) is a structured treatment plan for adults experiencing mental health challenges who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more support than weekly therapy</a> provides. It offers a higher level of care while you continue your daily life, work, school, and family.</p>
-      <p>Unlike inpatient programs, an Adult IOP doesn’t require a hospital stay. At Hopewell Health Solutions, our IOP supports adults struggling with <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>, mood disorders, and co-occurring substance use, and is ideal for those stepping down from inpatient care or seeking more than traditional outpatient therapy.</p>
+      <p class="pg-lede">An Adult IOP is a structured treatment plan for adults with mental health challenges who need <a class='inl' href='/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/'>more support than weekly therapy</a> provides.</p>
+      <CheckList icon="check" items={[
+        "A higher level of care while you continue your daily life, work, school, and family",
+        "No hospital stay required, unlike inpatient programs",
+        "Support for <a class='inl' href='/what-we-treat/depression/'>depression</a>, <a class='inl' href='/what-we-treat/anxiety/'>anxiety</a>, <a class='inl' href='/what-we-treat/trauma-ptsd/'>trauma</a>, and <a class='inl' href='/post/mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it/'>mood disorders</a>",
+        "Help with <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring substance use</a>",
+        "Ideal if you’re stepping down from inpatient care or seeking more than traditional outpatient therapy"
+      ]} />
+      <ReadMore id="fold-adult">
+        <p>An Adult Intensive Outpatient Program (IOP) is a structured treatment plan for adults experiencing mental health challenges who need more support than weekly therapy provides. Unlike inpatient programs, an Adult IOP doesn’t require a hospital stay. At Hopewell Health Solutions, our IOP supports adults struggling with depression, anxiety, trauma, mood disorders, and co-occurring substance use.</p>
+      </ReadMore>
     </Split>
 
-    <section class="section is-stone">
+    {/* User 2026-11-18: "separate these two sections, add a quiz on the is this program right". The criteria stay
+        visible on the left; the yes/no self-check (data/quizzes.js `adultIop`, built only from these criteria) sits right. */}
+    <section class="section is-stone" id="right-for-you">
       <div class="container pg-two">
         <div>
           <h2>Is this program right for you?</h2>
@@ -109,25 +121,38 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
           <CheckList items={rightFit} />
           <p class="lede">If you’re ready to take a more active role in your healing but don’t require inpatient care, this program may be the right fit.</p>
         </div>
-        <div>
-          <h2>How does the program work?</h2>
-          <Schedule title="Adult IOP week" stat="3 h" note="a day · four days a week · Monday–Thursday" days={[3, 3, 3, 3, 0, 0, 0]} tracks={[["Morning track", "9 AM–12 PM"], ["Evening track", "5 PM–8 PM"]]}>
-            <p>Our IOP runs four days per week, three hours per day, a balance of intensive clinical care and flexibility for your work, school, or family life. Choose a <strong>morning (9 AM–12 PM)</strong> or <strong>evening (5 PM–8 PM)</strong> track, Monday–Thursday, at 300 Hebron Ave, Glastonbury. Most participants engage for <a class="inl" href="/post/retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks/">8–12 weeks</a>, with regular progress evaluations. Each week includes:</p>
-          </Schedule>
-          <CheckList items={weekIncludes} />
-          <p class="pg-small" style="font-size:15px;color:var(--hw-slate)">Most major insurances accepted · Many participants qualify for <a class="inl" href="/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/">FMLA or CT Paid Leave</a>.</p>
-        </div>
+        <BlogSelfCheck quiz="adultIop" />
       </div>
     </section>
 
-    <Split heading="Supporting both mental health &amp; substance-use recovery" reverse>
-      <DualRecovery slot="media" />
-      <p><strong>Struggling with unhealthy coping?</strong> While our focus is mental health, we recognize how closely <a class="inl" href="/what-we-treat/substance-use-disorder/">substance use</a> and emotional pain are linked. For clients struggling with unhealthy coping mechanisms, we offer:</p>
-      <CheckList items={sudSupport} />
-      <div class="pg-panel">
-        <h3>What is MAT?</h3>
-        <p>Medication-Assisted Treatment combines FDA-approved medications with counseling and behavioral therapy to reduce cravings and withdrawal and support long-term recovery. Under the compassionate care of <a class="inl" href="/provider/katherine-salvador-pa-c/">Katherine Salvador, PA-C</a>, MAT is personalized, never one-size-fits-all, with a trauma-informed, judgment-free approach.</p>
+    <section class="section is-mist" id="how-it-works">
+      <div class="container pg-two">
+        <div>
+          <h2>How does the program work?</h2>
+          <p>Our IOP runs four days per week, three hours per day, a balance of intensive clinical care and flexibility for your work, school, or family life. Choose a <strong>morning (9 AM–12 PM)</strong> or <strong>evening (5 PM–8 PM)</strong> track, Monday–Thursday, at 300 Hebron Ave, Glastonbury. Most participants engage for <a class="inl" href="/post/retraining-the-brain-why-our-intensive-outpatient-programs-are-8-12-weeks/">8–12 weeks</a>, with regular progress evaluations. Each week includes:</p>
+          <CheckList items={weekIncludes} />
+          <p class="pg-small" style="font-size:15px;color:var(--hw-slate)">Most major insurances accepted · Many participants qualify for <a class="inl" href="/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/">FMLA or CT Paid Leave</a>.</p>
+        </div>
+        <Schedule title="Adult IOP week" stat="3 h" note="a day · four days a week · Monday–Thursday" days={[3, 3, 3, 3, 0, 0, 0]} tracks={[["Morning track", "9 AM–12 PM"], ["Evening track", "5 PM–8 PM"]]} />
       </div>
+    </section>
+
+    <Split heading="Supporting both mental health &amp; substance-use recovery">
+      <DualRecovery slot="media" />
+      <p class="pg-lede"><strong>Struggling with unhealthy coping?</strong> While our focus is mental health, we recognize how closely <a class='inl' href='/what-we-treat/substance-use-disorder/'>substance use</a> and emotional pain are linked. We offer:</p>
+      <CheckList icon="check" items={[
+        "Psychoeducation on <a class='inl' href='/post/addiction-treatment-and-the-brain-how-therapy-and-medication-can-help-rewire-your-mind/'>addiction &amp; the brain</a>",
+        "Relapse prevention &amp; recovery planning",
+        "<a class='inl' href='/treatment-methods/dbt/'>DBT</a> &amp; CBT skill-building to replace maladaptive behaviors",
+        "Dual-diagnosis support (<a class='inl' href='/what-we-treat/co-occurring/'>co-occurring mental health &amp; substance use</a>)",
+        "<a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-Assisted Treatment (MAT)</a> services"
+      ]} />
+      <ReadMore id="fold-mat" label="What is MAT?">
+        <div class="pg-panel">
+          <h3>What is MAT?</h3>
+          <p>Medication-Assisted Treatment combines FDA-approved medications with counseling and behavioral therapy to reduce cravings and withdrawal and support long-term recovery. Under the compassionate care of <a class="inl" href="/provider/katherine-salvador-pa-c/">Katherine Salvador, PA-C</a>, MAT is personalized, never one-size-fits-all, with a trauma-informed, judgment-free approach.</p>
+        </div>
+      </ReadMore>
     </Split>
 
     <Prose startTone={1} blocks={[

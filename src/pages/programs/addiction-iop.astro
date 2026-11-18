@@ -23,6 +23,7 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import ReadMore from "../../components/programs/ReadMore.astro";
 import AddictionLevel from "../../components/programs/graphics/AddictionLevel.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
@@ -38,7 +39,6 @@ const heroUsps = [
   "Mon–Thu, 3 hours a day",
   "<a class='inl' href='/treatment-methods/medication-assisted-treatment/'>MAT</a> when appropriate",
 ];
-const substances = ["<a class='inl' href='/what-we-treat/alcohol/'>Alcohol</a>", "<a class='inl' href='/what-we-treat/prescription-drugs/'>Prescription medications</a>", "Opioids", "Stimulants", "Other illicit substances (see <a class='inl' href='/what-we-treat/drug/'>drug addiction</a>)"];
 const components = [
   { icon: "heart", t: "Individual therapy", d: "Address personal challenges and triggers one-on-one." },
   { icon: "users", t: "Group therapy", d: "Build a support network and foster accountability." },
@@ -140,9 +140,18 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
 
     <Split heading="What is the addiction IOP?">
       <AddictionLevel slot="media" />
-      <p><strong>Structured support, real independence.</strong> The Addiction and Substance Use IOP is a structured yet flexible addiction treatment program for people struggling with alcohol, drugs, or prescription medications. It offers a <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">higher level of care than traditional outpatient therapy</a> while letting you live at home and continue your daily life.</p>
-      <p>Unlike inpatient rehab, IOP delivers structured care multiple times a week while you maintain work, school, and family, providing intensive support while building independence and accountability. We support recovery from:</p>
-      <CheckList items={substances} cols={2} icon="shield" />
+      <p class="pg-lede"><strong>Structured support, real independence.</strong> A structured yet flexible addiction treatment program, a <a class='inl' href='/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/'>higher level of care than traditional outpatient therapy</a>, while you live at home.</p>
+      <CheckList icon="shield" items={[
+        "Structured care multiple times a week, unlike inpatient rehab",
+        "Keep up with work, school, and family during treatment",
+        "Intensive support that builds independence and accountability",
+        "Recovery from <a class='inl' href='/what-we-treat/alcohol/'>alcohol</a>, <a class='inl' href='/what-we-treat/prescription-drugs/'>prescription medications</a>, opioids, stimulants, and other illicit substances (see <a class='inl' href='/what-we-treat/drug/'>drug addiction</a>)",
+        "Read <a class='inl' href='/post/addiction-iop-treatment-what-it-is-and-why-it-works/'>how addiction IOP works and why</a>"
+      ]} />
+      <ReadMore id="fold-aiop">
+        <p>The Addiction and Substance Use IOP is for people struggling with alcohol, drugs, or prescription medications. It offers a higher level of care than traditional outpatient therapy while letting you live at home and continue your daily life.</p>
+        <p>Unlike inpatient rehab, IOP delivers structured care multiple times a week while you maintain work, school, and family, providing intensive support while building independence and accountability.</p>
+      </ReadMore>
     </Split>
 
     <section class="section is-mist" id="signs">

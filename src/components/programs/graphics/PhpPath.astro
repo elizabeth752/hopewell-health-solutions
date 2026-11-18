@@ -1,27 +1,14 @@
 ---
-// PHP, "Who our PHP is designed for" (2026-11-18, replaces the photo). A vertical path: where people come from,
-// the two kinds of PHP care, and the step down to the addiction IOP (all from the section copy).
+// PHP, "Who our PHP is designed for". Map style: three pins on a dashed route.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
 ---
-<figure class="gx on-dark" aria-label="People come to PHP after a crisis, from inpatient hospitalization, rehab, detox or residential treatment, or when weekly therapy isn't enough. PHP treats depression, anxiety, trauma and mood disorders, and the addiction PHP treats alcohol, drug and prescription drug addiction with SUD groups, MAT when it fits and co-occurring care. As you stabilize you move into the addiction IOP in Glastonbury or Westbrook.">
-  <ol class="gx-path">
-    <li>
-      <span class="gx-path-n i-n"><Icon name="arrow" class="h-5 w-5" /></span>
-      <div><b>Coming from</b><small>A crisis · inpatient hospitalization, rehab, detox or residential care · weekly therapy that isn’t enough</small></div>
-    </li>
-    <li class="is-here">
-      <span class="gx-path-n i-g"><Icon name="shield" class="h-5 w-5" /></span>
-      <div><b>PHP in Glastonbury</b>
-        <div class="gx-path-two">
-          <p><span>Mental health</span>Depression, anxiety, trauma, mood disorders</p>
-          <p><span>Addiction PHP</span>Alcohol, drug &amp; prescription drug use · SUD groups · MAT when it fits</p>
-        </div>
-      </div>
-    </li>
-    <li>
-      <span class="gx-path-n i-s"><Icon name="refresh" class="h-5 w-5" /></span>
-      <div><b>As you stabilize</b><small>Step into our <a class="inl" href="/programs/addiction-iop/">Addiction IOP</a> in Glastonbury or Westbrook</small></div>
-    </li>
+<figure class="gx t-map" aria-label="From a crisis or a hospital, rehab or residential stay, to PHP in Glastonbury, then to the addiction IOP in Glastonbury or Westbrook as you stabilize">
+  <ol class="mp">
+    <li><span class="mp-pin"><Icon name="pin" class="h-5 w-5" /></span><b>After a crisis or hospital stay</b></li>
+    <li class="is-here"><span class="mp-pin"><Icon name="pin" class="h-5 w-5" /></span><b>PHP in Glastonbury</b></li>
+    <li><span class="mp-pin"><Icon name="pin" class="h-5 w-5" /></span><b>Step down to <a class="inl" href="/programs/addiction-iop/">IOP</a></b></li>
   </ol>
-  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Support tailored to you, including those at risk of relapse</figcaption>
+  <figcaption class="gx-cap">Support tailored to you</figcaption>
 </figure>

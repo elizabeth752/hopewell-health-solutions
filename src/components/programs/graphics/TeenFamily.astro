@@ -1,27 +1,15 @@
 ---
-// Teen IOP, "Evidence-based help for struggling teens & families" (2026-11-18, replaces the photo carousel).
-// What families are seeing, then the two lanes (teen groups + parents learning DBT) meeting at home.
+// Teen IOP, "Evidence-based help for struggling teens & families". Mist: the week, teens Mon–Thu and parents 1–2×.
+// Simplified 2026-11-18 (user: graphics too busy): few big elements, large icon circles, little text, in the style
+// of conditions/OcdGraphic.astro and the DBT wheel. Facts are in the bullets beside it. Styles: programs.css (.gx-*).
 import Icon from "../../Icon.astro";
 const days = ["Mon", "Tue", "Wed", "Thu"];
 ---
-<figure class="gx on-dark" aria-label="Families are seeing anxiety, depression, self-harm, school refusal and maladaptive behaviors. In the teen IOP, teens attend groups Monday to Thursday at 1420 Main St, Glastonbury, for 8 to 12 weeks, while parents attend once or twice a week to learn the DBT skills, so the skills carry over at home.">
-  <p class="gx-t">What families are seeing</p>
-  <p class="gx-dots"><span>Anxiety</span><span>Depression</span><span>Self-harm</span><span>School refusal</span><span>Maladaptive behaviors</span></p>
-  <div class="gx-lanes">
-    <div class="gx-lane">
-      <span class="gx-i i-b"><Icon name="users" class="h-5 w-5" /></span>
-      <p><b>Teens</b><small>Groups Mon–Thu at <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St</a></small></p>
-      <span class="gx-days" aria-hidden="true">{days.map((d) => <i>{d}</i>)}</span>
-    </div>
-    <div class="gx-lane">
-      <span class="gx-i i-g"><Icon name="heart-even" class="h-5 w-5" /></span>
-      <p><b>Parents</b><small>Once to twice a week, learning the DBT skills</small></p>
-      <span class="gx-days" aria-hidden="true"><i>1–2×</i></span>
-    </div>
-    <div class="gx-merge">
-      <span class="gx-hub-i"><Icon name="home" class="h-6 w-6" /></span>
-      <p><b>Skills that work at home</b><small>Where they matter most</small></p>
-    </div>
+<figure class="gx t-mist" aria-label="Teens attend Monday to Thursday and parents once or twice a week, for 8 to 12 weeks at 1420 Main St, Glastonbury">
+  <p class="gx-h">A teen IOP week</p>
+  <div class="wk">
+    <p class="wk-r"><span class="wk-l"><Icon name="users" class="h-5 w-5" />Teens</span><span class="wk-d">{days.map((d) => <i>{d}</i>)}</span></p>
+    <p class="wk-r is-par"><span class="wk-l"><Icon name="heart-even" class="h-5 w-5" />Parents</span><span class="wk-d"><i>1–2× a week</i></span></p>
   </div>
-  <p class="gx-strip"><Icon name="calendar" class="h-5 w-5" /><span><b>8–12 weeks</b> · teens stay in school and at home</span></p>
+  <figcaption class="gx-cap">8–12 weeks · <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St, Glastonbury</a></figcaption>
 </figure>
