@@ -77,7 +77,7 @@ const groups = [
       d: `A licensed therapist, in person or by telehealth. Explore <a class="inl" href="/programs/counseling/">counseling at Hopewell</a>.` },
     { t: "TMS Therapy", href: "/treatment-methods/tms/", img: P + "tms-neurostar-device.webp", who: "Depression that hasn’t responded to medication", sched: "Outpatient treatment", where: "Glastonbury",
       d: `FDA-cleared, drug-free NeuroStar® treatment. Learn about <a class="inl" href="/treatment-methods/tms/">TMS therapy</a>.` },
-    { t: "ADHD & Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: "/Assets/12.webp", who: "Attention, learning and memory", sched: "Evaluation", where: "Ask our team",
+    { t: "ADHD & Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: "/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp", who: "Attention, learning and memory", sched: "Evaluation", where: "Ask our team",
       d: `<a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.` },
   ] },
 ];
@@ -147,7 +147,7 @@ const prose2 = [
       "Individual time is built in. You meet one-on-one with your clinician, and psychiatric providers see you for evaluations and medication follow-ups when medication is part of your plan. In the teen and tween programs, family sessions and school coordination are part of the week, so parents know how to help at home.",
       "Our programs are built around <a class='inl' href='/post/the-importance-of-in-person-intensive-outpatient-programs-iops/'>in-person care</a>, real rooms, real groups and clinicians who know your name, with telehealth for some services when coming in isn’t possible. PHP follows the same approach across a longer day, adding more group, individual and psychiatric time.",
     ],
-    aside: { type: "img", src: P + "group-room-feelings-wheel.webp", alt: "One of Hopewell’s IOP programs in CT: a group room in Glastonbury", cap: "A Hopewell group room" } },
+    aside: { type: "img", src: P + "iop-group-session.webp", alt: "One of Hopewell’s IOP programs in CT: a group session in Glastonbury", cap: "A Hopewell group room" } },
 ];
 
 const day = [
@@ -303,7 +303,7 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
             <h2>{prose2[0].h2}</h2>
             {prose2[0].paras.map((p) => <p set:html={p} />)}
           </div>
-          <div class="ph-week-media"><img src={P + "group-room-feelings-wheel.webp"} alt="One of Hopewell’s IOP programs in CT: a group room in Glastonbury" width="1200" height="900" loading="lazy" /></div>
+          <div class="ph-week-media"><img src={P + "iop-group-session.webp"} alt="One of Hopewell’s IOP programs in CT: a group session in Glastonbury" width="1200" height="900" loading="lazy" /></div>
         </div>
         <ol class="ph-steps">
           {day.map(([icon, t, d], i) => <li><span class="ph-step-top"><span class="icon-badge"><Icon name={icon} /></span><span class="ph-step-n">Part {i + 1}</span></span><h3>{t}</h3><p>{d}</p></li>)}

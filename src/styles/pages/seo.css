@@ -145,3 +145,18 @@
 .hw .sp-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--hw-navy); background: transparent; color: var(--hw-navy); font-weight: 700; font-size: 15px; cursor: pointer; }
 .hw .sp-more:hover { background: var(--hw-navy); color: #fff; }
 .hw .is-navy .sp-more { border-color: #fff; color: #fff; }
+
+/* "An IOP week" moved under the text (user 2026-11-18: no white space under the copy). Light card, same day chips. */
+.hw .if-weekcard { margin-top: 28px; padding: 22px 24px; border-radius: 22px; background: var(--hw-stone); border: 1px solid var(--hw-line); }
+.hw .if-weekcard .sp-card-h { color: var(--hw-navy); margin: 0 0 12px; }
+.hw .if-weekcard .if-day { background: #fff; color: var(--hw-slate); }
+.hw .if-weekcard .if-day.is-on { background: #e0b56a; color: #0b2f55; }
+.hw .if-weekcard .if-tracks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+.hw .if-weekcard .if-tracks li { display: grid; gap: 2px; padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--hw-body); font-size: 14.5px; border: 0; }
+.hw .if-weekcard .if-tracks b { color: #b6863c; }
+@media (max-width: 560px) { .hw .if-weekcard .if-tracks { grid-template-columns: minmax(0, 1fr); } .hw .if-weekcard { padding: 18px; } }
+.hw .if-weekcard .if-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.hw .if-weekcard .if-day { display: grid; justify-items: center; gap: 2px; padding: 10px 0; border-radius: 12px; }
+.hw .if-weekcard .if-day b { font-size: 13px; color: var(--hw-navy); } .hw .if-weekcard .if-day i { font-style: normal; font-size: 12.5px; color: var(--hw-slate); }
+.hw .if-weekcard .if-day.is-on i { color: #0b2f55; }
+.hw .if-weekcard .if-tracks { list-style: none; padding: 0; }

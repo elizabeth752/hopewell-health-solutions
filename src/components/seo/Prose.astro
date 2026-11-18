@@ -31,6 +31,17 @@ const tones = ["white", "stone"];
             {b.h3s?.map((s) => (<div class="sp-sub"><h3 set:html={s.h3} />{s.paras.map((p) => <p set:html={p} />)}</div>))}
           </Fragment>
         )}
+        {b.aside?.type === "iopfit" && (
+          <div class="if-weekcard" aria-label="An IOP week: Monday to Thursday, three hours a day">
+            <p class="sp-card-h">An IOP week</p>
+            <div class="if-week">{["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d, k) => <span class:list={["if-day", k < 4 && "is-on"]}><b>{d}</b><i>{k < 4 ? "3 h" : "Off"}</i></span>)}</div>
+            <ul class="if-tracks">
+              <li><b>Morning</b> 9 AM–12 PM</li>
+              <li><b>Evening</b> 5–8 PM</li>
+              <li><b>Teens &amp; tweens</b> after school</li>
+            </ul>
+          </div>
+        )}
       </div>
       {b.aside && (
         <aside class={`sp-aside sp-${b.aside.type}`}>
@@ -46,13 +57,6 @@ const tones = ["white", "stone"];
                 <li><span>Partial hospitalization (PHP)</span><small>Full days · Mon–Fri</small></li>
                 <li><span>Hospital stay</span><small>Overnight, inpatient</small></li>
               </ol>
-              <p class="sp-card-h" style="margin-top:18px">An IOP week</p>
-              <div class="if-week">{["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((d, k) => <span class:list={["if-day", k < 4 && "is-on"]}><b>{d}</b><i>{k < 4 ? "3 h" : "Off"}</i></span>)}</div>
-              <ul class="if-tracks">
-                <li><b>Morning</b> 9 AM–12 PM</li>
-                <li><b>Evening</b> 5–8 PM</li>
-                <li><b>Teens &amp; tweens</b> after school</li>
-              </ul>
             </div>
           )}
           {b.aside.type === "serve" && (
