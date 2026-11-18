@@ -185,16 +185,24 @@ const schema = {
     <section class="section is-mist" id="mindfulness">
       <div class="container">
         <div class="sec-head"><h2>Calm, clarity &amp; care from home</h2></div>
-        <div class="tx-cards" style="--cols:2">
-          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "telehealth.webp"} alt="Telehealth therapy at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Online therapy</span><h3>Telehealth</h3><p>Also known as telemental health: a therapist or counselor provides counseling and support over the internet through video conferencing, online chat, email, or a phone call.</p></div></div>
-          <div class="tx-card" style="padding:0;overflow:hidden"><img src={T + "meditaiton.webp"} alt="Meditation at Hopewell Health Solutions" loading="lazy" style="width:100%;aspect-ratio:16/9;object-fit:cover" /><div style="padding:22px 24px 24px;display:grid;gap:8px"><span style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-gold)">Calm &amp; clarity</span><h3>Meditation</h3><p>A practice that uses a technique, such as mindfulness or focusing the mind on a particular object, thought, or activity, to train attention and awareness and achieve a mentally clear, emotionally calm, and stable state.</p></div></div>
+        {/* Three equal cards + an apps band (user 2026-11-18: "design this better"). */}
+        <div class="mc-grid">
+          <article class="mc-card">
+            <img src={T + "telehealth.webp"} alt="Telehealth therapy at Hopewell Health Solutions" width="1200" height="675" loading="lazy" />
+            <div class="mc-body"><span class="mc-ico" style="--c:#2f76c4"><Icon name="chat" /></span><h3>Telehealth</h3><p>Also known as telemental health: a therapist or counselor provides <a class="inl" href="/programs/counseling/">counseling</a> and support over the internet through video conferencing, online chat, email, or a phone call.</p></div>
+          </article>
+          <article class="mc-card">
+            <img src={T + "meditaiton.webp"} alt="Meditation at Hopewell Health Solutions" width="1200" height="675" loading="lazy" />
+            <div class="mc-body"><span class="mc-ico" style="--c:#b6863c"><Icon name="sun" /></span><h3>Meditation</h3><p>A practice that uses a technique, such as mindfulness or focusing the mind on a particular object, thought, or activity, to train attention and awareness and achieve a mentally clear, emotionally calm, and stable state.</p></div>
+          </article>
+          <article class="mc-card">
+            <img src="/Assets/Blogs/anxiety-coping-strategies-expert-tips-for-finding-calm.webp" alt="A woman pausing to breathe and stay present" width="1200" height="675" loading="lazy" />
+            <div class="mc-body"><span class="mc-ico" style="--c:#5c7c6b"><Icon name="cloud" /></span><h3>Mindfulness</h3><p>The psychological process of purposely bringing your attention to experiences in the present moment without judgment, developed through the practice of meditation and other training. It’s a core skill in <a class="inl" href="/treatment-methods/dbt/">DBT</a>.</p></div>
+          </article>
         </div>
-        <div class="tx-card" style="margin-top:18px;--bar:#5c7c6b">
-          <span class="icon-badge"><Icon name="cloud" /></span>
-          <h3>Mindfulness</h3>
-          <p>The psychological process of purposely bringing your attention to experiences in the present moment without judgment, developed through the practice of meditation and other training.</p>
-          <p style="font-family:var(--hw-head);font-weight:700;color:var(--hw-navy);margin-top:6px">Apps we recommend</p>
-          <div class="tx-apps" style="margin-top:4px">{apps.map(([name, img]) => <span class="tx-app"><img src={img} alt="" loading="lazy" />{name}</span>)}</div>
+        <div class="mc-apps">
+          <p class="mc-apps-h">Apps we recommend</p>
+          <ul>{apps.map(([name, img]) => <li><img src={img} alt="" loading="lazy" /><span>{name}</span></li>)}</ul>
         </div>
       </div>
     </section>
