@@ -35,7 +35,7 @@ const P = "/Assets/hhs-2026/";
 // 1. Hero (user pick 2026-11-18): like the old site. A full-width slider of the old site's banner photos (recovered via
 // the Wayback Machine: couple, man, teen, woman, young woman) under ONE fixed text block: H1 (primary keyword), H2,
 // H3 tagline, one button and the accreditation logos. The text never changes between slides; the photos lead. The
-// photo runs behind the coverage form too (user 2026-11-18); phones get the form further down.
+// form was removed from the hero (user 2026-11-18): "Start today" jumps to the coverage form in the insurance section.
 const heroSlides = [
   { img: P + "hero-slide-couple.webp", pos: "30% 35%", alt: "A smiling couple embracing outdoors" },
   { img: P + "hero-slide-man.webp", pos: "35% 30%", alt: "A smiling man outdoors" },
@@ -216,7 +216,6 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         <a href="#verify" class="btn btn-blue ho-cta">Start today <span aria-hidden="true">&rarr;</span></a>
         <HeroCreds />
       </div>
-      <div class="hero-form ho-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
     </div>
     <div class="ho-dots" role="group" aria-label="Choose a photo">
       {heroSlides.map((x, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo ${i + 1}`}></button>)}
@@ -349,7 +348,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         </ol>
         <p class="ad-note"><Icon name="shield" class="h-5 w-5" /><span>We work with most major commercial plans. Hopewell does not accept Medicare or Medicaid (HUSKY). Verifying your benefits doesn’t guarantee coverage or admission. See <a class="inl" href="/rates-and-insurance-coverage/">rates and insurance</a>.</span></p>
       </div>
-      <div class="ins-form is-keep" id="verify-ins"><LeadForm variant="card" formId="hhs-ins" /></div>
+      <div class="ins-form is-keep" id="verify"><LeadForm variant="card" formId="hhs-ins" /></div>
     </div>
     <div class="container payers">
       <div class="marquee" aria-label="Insurance plans we work with">

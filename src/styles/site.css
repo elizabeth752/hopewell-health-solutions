@@ -2188,3 +2188,23 @@ main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
   .hw .ho-text h1, .hw .ho-h2, .hw .ho-h3s, .hw .ho-h3 { text-shadow: 0 2px 14px rgba(0,0,0,.45); }
   .hw .ho-dots { top: auto; bottom: 22px; }
 }
+@media (max-width: 640px) {
+  main.hw .ab-offices:not(.m-drift) .ab-office-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 8px; }
+  main.hw .ab-offices:not(.m-drift) .ab-office-ctas .btn { width: 100%; justify-content: center; min-height: 42px; font-size: 14px; }
+}
+
+/* Hero without the form (user 2026-11-18): one text block on the right over the photos, like the old site, with larger,
+   evenly spaced type. Faces in the old banner photos sit left of centre, so the text never covers them. */
+@media (min-width: 1000px) {
+  .hw .hero-old { min-height: 680px; }
+  .hw .ho-grid { display: flex; justify-content: flex-end; padding-top: 90px; padding-bottom: 110px; }
+  .hw .ho-text { width: min(600px, 100%); text-align: right; }
+  .hw .ho-text h1 { font-size: clamp(40px, 3.8vw, 58px); line-height: 1.06; text-wrap: balance; }
+  .hw .ho-h2 { max-width: 34ch; font-size: clamp(17px, 1.3vw, 20px); margin-top: 22px; }
+  .hw .ho-h3s { font-size: clamp(19px, 1.5vw, 22px); margin-top: 20px; }
+  .hw .ho-h3 { font-size: clamp(34px, 3vw, 46px); }
+  .hw .ho-cta { margin-top: 28px; min-height: 54px; padding: 0 30px; font-size: 17px; }
+  .hw .ho-text .hc { justify-content: flex-end; }
+  .hw .ho-slide { left: -10%; width: 110%; }
+  .hw .hero-old::before { background: linear-gradient(90deg, rgba(0,22,44,0) 25%, rgba(0,22,44,.55) 50%, rgba(0,22,44,.82) 100%); }
+}
