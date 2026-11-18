@@ -75,8 +75,17 @@ const schema = {
       <div class="container tx-read">
         <div class="tx-copy">
           <h2>What is EMDR therapy?</h2>
-          <p style="margin-top:16px">EMDR (Eye Movement Desensitization and Reprocessing) is a psychotherapy that enables people to heal from the symptoms and emotional distress that are the result of disturbing life experiences. Repeated studies show that by using EMDR therapy people can experience the benefits of psychotherapy that once took years to make a difference. It is widely assumed that severe emotional pain requires a long time to heal. EMDR therapy shows that the mind can in fact heal from <a class="inl" href="/what-we-treat/trauma-ptsd/">psychological trauma</a> much as the body recovers from physical trauma.</p>
+          {/* Phones (user 2026-11-18: "a lot of text"): a 3-point summary first, the full text folds behind "Read more". */}
+          <ul class="em-glance">
+            <li><Icon name="refresh" class="h-5 w-5" />Eye movements or tapping help the brain reprocess painful memories</li>
+            <li><Icon name="clock" class="h-5 w-5" />Often works faster than traditional talk therapy</li>
+            <li><Icon name="shield" class="h-5 w-5" />You don’t have to describe the trauma in detail</li>
+          </ul>
+          <div class="em-more" id="em-more">
+          <p>EMDR (Eye Movement Desensitization and Reprocessing) is a psychotherapy that enables people to heal from the symptoms and emotional distress that are the result of disturbing life experiences. Repeated studies show that by using EMDR therapy people can experience the benefits of psychotherapy that once took years to make a difference. It is widely assumed that severe emotional pain requires a long time to heal. EMDR therapy shows that the mind can in fact heal from <a class="inl" href="/what-we-treat/trauma-ptsd/">psychological trauma</a> much as the body recovers from physical trauma.</p>
           <p>When you cut your hand, your body works to close the wound. If a foreign object or repeated injury irritates the wound, it festers and causes pain. Once the block is removed, healing resumes. EMDR therapy demonstrates that a similar sequence of events occurs with mental processes. The brain’s information processing system naturally moves toward mental health. If the system is blocked or imbalanced by the impact of a disturbing event, the emotional wound festers and can cause intense suffering. Once the block is removed, healing resumes. Using the detailed protocols and procedures learned in EMDR therapy training sessions, clinicians help clients activate their natural healing processes. Read <a class="inl" href="/post/emdr-therapy-what-it-is-side-effects-and-what-to-expect/">what to expect from EMDR, including side effects</a>.</p>
+          </div>
+          <button type="button" class="em-toggle" aria-expanded="false" aria-controls="em-more">Read more</button>
         </div>
         <aside>
           <img src="/Assets/Blogs/emdr-therapy-what-it-is-side-effects-and-what-to-expect.webp" alt="A therapist guiding a client's eye movements with two fingers during an EMDR session" width="1200" height="620" loading="lazy" />
@@ -89,20 +98,18 @@ const schema = {
     <section class="section is-stone">
       <div class="container">
         <div class="sec-head"><h2>Who EMDR may help</h2><p class="lede">EMDR, eye movement desensitization and reprocessing, uses guided eye movements or tapping while you recall a memory, so it feels less overwhelming.</p></div>
-        <div class="emdr-cols">
-          <div>
-            <h3>Best known for</h3>
-            <ul>
-              <li><a class="inl" href="/what-we-treat/trauma-ptsd/">Trauma and PTSD</a>, the main use of EMDR</li>
-              <li>Distressing memories that still feel overwhelming</li>
-            </ul>
+        {/* Who EMDR may help (user 2026-11-18: "create a graphic"): a target graphic, core use in the centre. */}
+        <div class="ew">
+          <div class="ew-core">
+            <span class="ew-ico"><Icon name="shield" class="h-6 w-6" /></span>
+            <p class="ew-k">Best known for</p>
+            <a class="ew-big" href="/what-we-treat/trauma-ptsd/">Trauma &amp; PTSD</a>
+            <p class="ew-sub">The main use of EMDR, plus distressing memories that still feel overwhelming</p>
           </div>
-          <div>
-            <h3>Sometimes used for</h3>
-            <ul>
-              <li><a class="inl" href="/what-we-treat/anxiety/">Anxiety</a></li>
-              <li><a class="inl" href="/post/fear-of-flying-or-fear-of-leaving-home/">Phobias</a></li>
-            </ul>
+          <div class="ew-also">
+            <p class="ew-k">Sometimes used for</p>
+            <a class="ew-chip" href="/what-we-treat/anxiety/"><Icon name="cloud" class="h-5 w-5" />Anxiety</a>
+            <a class="ew-chip" href="/post/fear-of-flying-or-fear-of-leaving-home/"><Icon name="alert" class="h-5 w-5" />Phobias</a>
           </div>
         </div>
         <p style="margin-top:22px;font-size:15.5px;color:var(--hw-slate)">EMDR is one of several approaches our clinicians use, alongside <a class="inl" href="/programs/counseling/">counseling</a> and <a class="inl" href="/treatment-methods/dbt/">DBT</a>. For more structured trauma support, see our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> and <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.</p>
@@ -175,9 +182,17 @@ const schema = {
           <figure class="tx-photo tx-photo-tall"><img src="/Assets/Blogs/how-to-recognize-when-its-time-to-see-a-therapist.webp" alt="A client talking one-on-one with her therapist" width="1200" height="1200" loading="lazy" /><figcaption>One-on-one sessions<span>EMDR is done individually with your clinician</span></figcaption></figure>
           <div class="tx-copy">
             <h2>How EMDR works</h2>
-            <p style="margin-top:16px">EMDR therapy is an eight-phase treatment. Eye movements (or other bilateral stimulation) are used during one part of the session. After the clinician has determined which memory to target first, he asks the client to hold different aspects of that event or thought in mind and to use his eyes to track the therapist’s hand as it moves back and forth across the client’s field of vision. As this happens, for reasons believed by a Harvard researcher to be connected with the biological mechanisms involved in Rapid Eye Movement (REM) sleep, internal associations arise and the clients begin to process the memory and disturbing feelings.</p>
+            <ol class="em-steps">
+              <li><span>1</span>Your clinician picks a memory to work on</li>
+              <li><span>2</span>You hold it in mind while following eye movements or tapping</li>
+              <li><span>3</span>The memory loses its charge and new beliefs take hold</li>
+            </ol>
+            <div class="em-more" id="em-more-2">
+            <p>EMDR therapy is an eight-phase treatment. Eye movements (or other bilateral stimulation) are used during one part of the session. After the clinician has determined which memory to target first, he asks the client to hold different aspects of that event or thought in mind and to use his eyes to track the therapist’s hand as it moves back and forth across the client’s field of vision. As this happens, for reasons believed by a Harvard researcher to be connected with the biological mechanisms involved in Rapid Eye Movement (REM) sleep, internal associations arise and the clients begin to process the memory and disturbing feelings.</p>
             <p>In successful EMDR therapy, the meaning of painful events is transformed on an emotional level. For instance, a rape victim shifts from feeling horror and self-disgust to holding the firm belief that, “I survived it and I am strong.” Unlike <a class="inl" href="/programs/counseling/">talk therapy</a>, the insights clients gain in EMDR therapy result not so much from clinician interpretation, but from the client’s own accelerated intellectual and emotional processes.</p>
             <p>The net effect is that clients conclude EMDR therapy feeling empowered by the very experiences that once debased them. Their wounds have not just closed, they have transformed. As a natural outcome of the EMDR therapeutic process, the clients’ thoughts, feelings and behavior are all robust indicators of emotional health and resolution, all without speaking in detail or doing homework used in other therapies.</p>
+            </div>
+            <button type="button" class="em-toggle" aria-expanded="false" aria-controls="em-more-2">Read more</button>
           </div>
         </div>
       </div>
@@ -212,6 +227,13 @@ const schema = {
     <ClosingCta heading="Ready to start healing?" lede="Talk with our Connecticut team about whether EMDR is right for you, confidentially, with no pressure." verifyHref="#verify" />
   </main>
   <Footer />
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".em-toggle").forEach((b) => b.addEventListener("click", () => {
+    const box = document.getElementById(b.getAttribute("aria-controls")!);
+    const open = box!.classList.toggle("is-open");
+    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : "Read more";
+  }));
+</script>
 </Base>
 
 <style>

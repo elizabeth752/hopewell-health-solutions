@@ -263,3 +263,47 @@
 .hw .dbg figcaption { margin-top: 14px; text-align: center; font-size: 14px; color: #dce6f1; }
 .hw .dbg figcaption a { color: #9cc3ea; font-weight: 700; text-decoration: none; }
 @media (max-width: 520px) { .hw .dbg-grid { grid-template-columns: minmax(0, 1fr); } .hw .dbg-mid { position: static; transform: none; width: auto; height: auto; border-radius: 14px; padding: 10px; display: flex; gap: 8px; justify-content: center; order: -1; } .hw .dbg-grid > .dbg-sk { padding: 16px !important; } }
+
+/* EMDR intro on phones (2026-11-18): summary bullets, then the full text folded behind "Read more". */
+.hw .em-glance { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.hw .em-glance li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; background: var(--hw-stone); font-weight: 600; color: var(--hw-navy); font-size: 16px; line-height: 1.45; }
+.hw .em-glance svg { flex: none; margin-top: 2px; color: var(--hw-blue); }
+.hw .em-more { margin-top: 16px; display: grid; gap: 14px; }
+.hw .em-toggle { display: none; }
+@media (max-width: 760px) {
+  .hw .em-more { position: relative; max-height: 150px; overflow: hidden; }
+  .hw .em-more::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(rgba(255,255,255,0), #fff); }
+  .hw .em-more.is-open { max-height: none; }
+  .hw .em-more.is-open::after { display: none; }
+  .hw .em-toggle { display: inline-flex; align-items: center; margin-top: 10px; padding: 10px 18px; border-radius: 999px; border: 1.5px solid var(--hw-navy); background: #fff; color: var(--hw-navy); font-weight: 700; font-size: 15px; cursor: pointer; }
+  .hw .em-more p { font-size: 16px; line-height: 1.65; }
+}
+
+/* EMDR "Who it may help" graphic + research rings on phones (2026-11-18). */
+.hw .ew { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; }
+.hw .ew-core { position: relative; overflow: hidden; padding: 28px; border-radius: 24px; background: linear-gradient(160deg, #0b2f55, #12406f); color: #fff; }
+.hw .ew-core::after { content: ""; position: absolute; right: -60px; bottom: -60px; width: 220px; height: 220px; border-radius: 50%; border: 22px solid rgba(156,195,234,.12); box-shadow: 0 0 0 30px rgba(156,195,234,.06); }
+.hw .ew-ico { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: #e0b56a; color: #0b2f55; }
+.hw .ew-k { margin: 14px 0 4px; font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: #9cc3ea; }
+.hw .ew-big { display: inline-block; font-family: var(--hw-head); font-weight: 800; font-size: clamp(26px, 3vw, 34px); color: #fff; text-decoration: none; }
+.hw .ew-big:hover { text-decoration: underline; }
+.hw .ew-sub { margin: 8px 0 0; max-width: 34ch; font-size: 15.5px; line-height: 1.5; color: #dce6f1; position: relative; z-index: 1; }
+.hw .ew-also { padding: 24px; border-radius: 24px; background: #fff; border: 1px solid var(--hw-line); display: grid; gap: 10px; align-content: start; }
+.hw .ew-also .ew-k { margin: 0 0 4px; color: var(--hw-slate); }
+.hw .ew-chip { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--hw-stone); color: var(--hw-navy); font-weight: 700; font-size: 17px; text-decoration: none; }
+.hw .ew-chip svg { color: var(--hw-blue); }
+.hw .ew-chip:hover { background: var(--hw-mist); }
+@media (max-width: 760px) { .hw .ew { grid-template-columns: minmax(0, 1fr); } .hw .ew-core { padding: 22px; } }
+@media (max-width: 640px) {
+  .hw .er-rings { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .hw .er-ring { grid-template-columns: 96px minmax(0, 1fr); justify-items: start; text-align: left; align-items: center; gap: 4px 14px; padding: 12px; border-radius: 18px; background: rgba(255,255,255,.06); }
+  .hw .er-dial { width: 96px !important; grid-row: span 2; }
+  .hw .er-ring strong { font-size: 20px; }
+  .hw .er-sess { margin: 0; align-self: end; }
+  .hw .er-d { align-self: start; max-width: none; font-size: 14px; }
+}
+
+.hw .em-steps { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.hw .em-steps li { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--hw-line); font-weight: 600; color: var(--hw-navy); font-size: 16px; line-height: 1.4; }
+.hw .em-steps span { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #e0b56a; color: #0b2f55; font-weight: 800; font-size: 14px; }
+@media (max-width: 760px) { .is-stone .em-more::after { background: linear-gradient(rgba(243,241,236,0), var(--hw-stone)); } }
