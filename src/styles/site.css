@@ -1998,3 +1998,21 @@ main.hw .wq-more { display: none; }
   .hw .ho-text .hc img.hc-seal { height: 40px; }
   .hw .ho-text .hc img.hc-white { height: 22px; }
 }
+/* Hero breathing room (user 2026-11-18: "really squishy"): taller hero, more space between the H1/H2/H3, button and
+   logos, a slightly narrower form, and logos on one calm row. */
+@media (min-width: 1000px) {
+  .hw .hero-old { min-height: 720px; }
+  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) minmax(340px, 410px); gap: clamp(40px, 5vw, 80px); padding-top: 84px; padding-bottom: 116px; }
+  .hw .ho-text h1 { font-size: clamp(32px, 2.7vw, 46px); line-height: 1.12; }
+  .hw .ho-h2 { margin-top: 20px; padding-bottom: 20px; line-height: 1.6; }
+  .hw .ho-h3 { margin-top: 22px; }
+  .hw .ho-cta { margin-top: 30px; }
+  .hw .ho-text .hc { margin-top: 34px; padding-top: 22px; gap: 14px 22px; }
+  .hw .ho-form .lead-card { padding: 28px 26px 22px; }
+  .hw .ho-form .lead-card .lc-grid, .hw .ho-form .lead-card .lc-more-in { gap: 16px 14px; }
+}
+@media (min-width: 1000px) and (max-width: 1240px) {
+  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; }
+  .hw .ho-text { width: 100%; }
+  .hw .ho-form .lead-card .lc-grid, .hw .ho-form .lead-card .lc-more-in { grid-template-columns: 1fr; }
+}
