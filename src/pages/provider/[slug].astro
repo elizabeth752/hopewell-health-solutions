@@ -56,7 +56,7 @@ const services = [
 
 ---
 
-<Base title={`${p.name} | Hopewell Health Solutions`} description={metaDesc} image={photo && !p.photoPlaceholder ? photo : undefined}>
+<Base title={[`${p.name} | Hopewell Health Solutions`, `${p.name} | Hopewell`].find((t) => t.length <= 60) || p.name} description={metaDesc} image={photo && !p.photoPlaceholder ? photo : undefined}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />

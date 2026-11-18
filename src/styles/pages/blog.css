@@ -333,7 +333,8 @@
   .hw .bc-title { font-size: 16.5px; }
   .hw .bc-desc { -webkit-line-clamp: 2; font-size: 14.5px; }
   .hw .bc-meta img { display: none; }
-  .hw .ba-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .hw .ba-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 4px 18px; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding-inline: var(--hw-gutter, 16px); touch-action: pan-x pan-y; }
+  .hw .ba-filter { flex: none; white-space: nowrap; }
 }
 .hw .bc-meta span:last-child, .hw .ba-feature-meta span:nth-last-child(2) { white-space: nowrap; }
 .hw .bc-meta > span:nth-child(2) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

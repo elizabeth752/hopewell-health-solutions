@@ -78,7 +78,7 @@ const schema = {
 };
 ---
 
-<Base title="TMS Therapy in Connecticut | Depression Treatment | Hopewell" description="TMS is a non-medication, FDA-cleared treatment for depression that hasn't improved with antidepressants. Offered at Hopewell in Connecticut. Check coverage." canonical={canonical} image={P + "tms-chair.webp"}>
+<Base title="TMS Therapy for Depression in Glastonbury, CT | Hopewell" description="TMS is a non-medication, FDA-cleared treatment for depression that hasn't improved with antidepressants. Offered at Hopewell in Connecticut. Check coverage." canonical={canonical} image={P + "tms-chair.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -199,7 +199,7 @@ const schema = {
     <!-- Is TMS right for you -->
     <section class="section is-white">
       <div class="container tx-split is-flip">
-        <figure class="tx-photo"><img src="/Assets/guy%20thinking%20worried.webp" alt="Someone considering whether TMS is right for them" width="1200" height="900" loading="lazy" /></figure>
+        <figure class="tx-photo"><img src="/Assets/Blogs/what-is-seasonal-affective-disorder-sad.webp" alt="A woman sitting by a window, weighing her options for depression treatment" width="1200" height="900" loading="lazy" /></figure>
         <div>
           <h2>Is TMS treatment right for you?</h2>
           <p class="lede" style="margin-top:14px">Make the right choice. TMS may be a great fit if any of these resonate:</p>
@@ -269,8 +269,8 @@ const schema = {
   .hw .tms-dl li { display: grid; grid-template-columns: 200px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--hw-line); font-size: 16px; line-height: 1.55; }
   .hw .tms-dl strong { font-family: var(--hw-head); color: var(--hw-navy); font-size: 17px; }
   @media (max-width: 860px) {
-    .hw .tms-rule-panel { grid-template-columns: 1fr; }
+    .hw .tms-rule-panel { grid-template-columns: minmax(0, 1fr); }
     .hw .tms-rule-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
-    .hw .tms-dl li { grid-template-columns: 1fr; gap: 4px; }
+    .hw .tms-dl li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   }
 </style>

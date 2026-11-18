@@ -96,7 +96,7 @@ const leaders = Object.keys(leadLines).map((s) => providers.find((p) => p.slug =
 // Real Hopewell people and places only. Spans make a full 4 x 4 mosaic with no gaps.
 const gallery = [
   [P + "full-team-lawn.webp", "The Hopewell team together on the lawn", "Our team", "is-big"],
-  [P + "iop-room-group-photo.webp", "Hopewell clinicians in an IOP group room", "IOP group room", "is-tall"],
+  [P + "iop-room-group-photo.webp", "A Women's Trauma IOP group meeting in a Hopewell group room", "IOP group room", "is-tall"],
   [P + "tms-neurostar-room.webp", "The TMS treatment room at Hopewell", "TMS room", ""],
   ["/Assets/locations/westbrook/beach-walk.webp", "A walk on the beach near the Westbrook office", "Westbrook shoreline", ""],
   [P + "group-room-feelings-wheel.webp", "A Hopewell group room with a feelings wheel on the wall", "Group room", ""],
@@ -152,7 +152,7 @@ const org = {
 const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: canonical, name: "About Hopewell Health Solutions", mainEntity: org, about: { "@id": SITE + "/#organization" } };
 ---
 
-<Base title="About Hopewell | Connecticut Mental Health & Addiction Care" description="Meet Hopewell Health Solutions: an in-person Connecticut team treating mental health and addiction for all ages across six offices. Our story, leaders and standards." canonical={canonical} image={P + "team-300-hebron.webp"}>
+<Base title="About Hopewell | Connecticut Mental Health & Addiction Care" description="Meet Hopewell Health Solutions: an in-person Connecticut team treating mental health and addiction for all ages across six offices. Our story and leaders." canonical={canonical} image={P + "team-300-hebron.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -410,18 +410,18 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
   .ab-offices span { position: absolute; inset: auto 0 0 0; padding: 40px 18px 16px; background: linear-gradient(180deg, rgba(0,29,55,0), rgba(0,29,55,.88)); color: #dce6f1; font-size: 14px; }
   .ab-offices strong { display: block; color: #fff; font-family: var(--hw-head); font-size: 18px; }
   @media (max-width: 860px) { .ab-gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; } .ab-offices { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .ab-offices { grid-template-columns: 1fr; } }
+  @media (max-width: 520px) { .ab-offices { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 999px) {
-    .ab-diff { grid-template-columns: 1fr; }
+    .ab-diff { grid-template-columns: minmax(0, 1fr); }
     .ab-nums { grid-template-columns: 1fr 1fr; }
     .ab-nums li:nth-child(3) { padding-left: 0; border-left: 0; }
-    .ab-leaders, .ab-serve { grid-template-columns: 1fr; }
+    .ab-leaders, .ab-serve { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 760px) {
-    .ab-hero-list { grid-template-columns: 1fr; }
-    .ab-diff-list > div, .ab-serve > div { grid-template-columns: 1fr; gap: 4px; }
-    .ab-panel { grid-template-columns: 1fr; }
+    .ab-hero-list { grid-template-columns: minmax(0, 1fr); }
+    .ab-diff-list > div, .ab-serve > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .ab-panel { grid-template-columns: minmax(0, 1fr); }
     .ab-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
-    .ab-careers-in { grid-template-columns: 1fr; }
+    .ab-careers-in { grid-template-columns: minmax(0, 1fr); }
   }
 </style>

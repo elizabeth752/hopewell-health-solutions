@@ -66,7 +66,7 @@ const schema = {
 const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].includes(v.yt));
 ---
 
-<Base title="DBT Therapy for Teens & Adults in Connecticut | Hopewell" description="Dialectical behavior therapy teaches skills for strong emotions, stress and relationships. DBT groups and therapy for teens and adults in Connecticut. Check coverage." canonical={canonical} image={P + "tx-group-room-2.webp"}>
+<Base title="DBT Therapy for Teens & Adults in Connecticut | Hopewell" description="Dialectical behavior therapy teaches skills for strong emotions, stress and relationships. DBT groups and therapy for teens and adults in Connecticut." canonical={canonical} image={P + "tx-group-room-2.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -183,12 +183,12 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
   .dbt-panel > div + div { border-left: 1px solid var(--hw-line); }
   .dbt-panel h3 { font-size: 19px; }
   .dbt-panel p { font-size: 16px; line-height: 1.55; }
-  .dbt-panel.is-stack { grid-template-columns: 1fr; }
+  .dbt-panel.is-stack { grid-template-columns: minmax(0, 1fr); }
   .dbt-panel.is-stack > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
   :global(.hw .faq-a p + p) { margin-top: 10px; }
   @media (max-width: 860px) {
-    .dbt-where li { grid-template-columns: 1fr; gap: 4px; }
-    .dbt-panel { grid-template-columns: 1fr; }
+    .dbt-where li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .dbt-panel { grid-template-columns: minmax(0, 1fr); }
     .dbt-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
   }
 </style>

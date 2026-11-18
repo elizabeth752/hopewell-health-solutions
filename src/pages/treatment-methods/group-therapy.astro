@@ -193,8 +193,8 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
   .gt-why dd { margin: 0; font-size: 16px; line-height: 1.5; }
   :global(.hw .faq-a p + p) { margin-top: 10px; }
   @media (max-width: 760px) {
-    .gt-table .tx-row { grid-template-columns: 1fr; gap: 4px; }
+    .gt-table .tx-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
     .gt-table .tx-row.is-head { display: none; }
-    .gt-why > div { grid-template-columns: 1fr; gap: 2px; }
+    .gt-why > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   }
 </style>

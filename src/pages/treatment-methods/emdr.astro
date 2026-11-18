@@ -179,7 +179,7 @@ const schema = {
   .hw .emdr-rule-panel h3 { font-size: 20px; color: var(--hw-navy); }
   .hw .emdr-rule-panel p { margin-top: 8px; font-size: 16px; line-height: 1.55; }
   @media (max-width: 860px) {
-    .hw .emdr-cols, .hw .emdr-rule-panel { grid-template-columns: 1fr; }
+    .hw .emdr-cols, .hw .emdr-rule-panel { grid-template-columns: minmax(0, 1fr); }
     .hw .emdr-cols > div + div, .hw .emdr-rule-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
   }
 </style>

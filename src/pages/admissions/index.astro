@@ -259,8 +259,8 @@ const faqs = [
   .wx-ico { margin-top: 18px; width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; background: #fff; color: var(--c); box-shadow: 0 12px 28px rgba(0,29,55,.1); border-bottom: 3px solid var(--c); }
   .wx-steps h3 { margin-top: 16px; font-size: 18px; color: var(--hw-navy); }
   .wx-steps p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: var(--hw-slate); }
-  @media (max-width: 999px) { .wx-top { grid-template-columns: 1fr; } .wx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } .wx-steps::before { display: none; } }
-  @media (max-width: 560px) { .wx-steps { grid-template-columns: 1fr; } .wx-steps li { flex-direction: row; flex-wrap: wrap; text-align: left; align-items: center; gap: 0 14px; } .wx-steps li .wx-ico { display: none; } .wx-steps h3 { margin: 0; flex: 1; } .wx-steps p { flex-basis: 100%; padding-left: 50px; } }
+  @media (max-width: 999px) { .wx-top { grid-template-columns: minmax(0, 1fr); } .wx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; } .wx-steps::before { display: none; } }
+  @media (max-width: 560px) { .wx-steps { grid-template-columns: minmax(0, 1fr); } .wx-steps li { flex-direction: row; flex-wrap: wrap; text-align: left; align-items: center; gap: 0 14px; } .wx-steps li .wx-ico { display: none; } .wx-steps h3 { margin: 0; flex: 1; } .wx-steps p { flex-basis: 100%; padding-left: 50px; } }
 </style>
   <Footer />
 </Base>

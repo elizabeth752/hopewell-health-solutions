@@ -154,7 +154,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
 
 ---
 
-<Base title="Mental Health &amp; Addiction Care Locations in Connecticut | Hopewell" description="Six Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, CT. See which programs each offers. Check coverage." canonical={canonical} image={P + "downtown-glastonbury-sign.webp"}>
+<Base title="Mental Health &amp; Addiction Care Locations in CT | Hopewell" description="Six Hopewell offices in Glastonbury, South Glastonbury, West Hartford, East Hampton and Westbrook, CT. See which programs each offers. Check coverage." canonical={canonical} image={P + "downtown-glastonbury-sign.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />

@@ -34,7 +34,7 @@
 .hw .is-stone .sp-tbl thead th { color: var(--hw-blue); }
 .hw .sp-tbl tbody th { font-family: var(--hw-head); font-weight: 700; color: #fff; }
 .hw .is-stone .sp-tbl tbody th, .hw .is-mist .sp-tbl tbody th { color: var(--hw-navy); }
-@media (max-width: 999px) { .hw .sp-grid { grid-template-columns: 1fr; } .hw .sp-grid.is-flip .sp-copy { order: 0; } .hw .sp-aside { position: static; } }
+@media (max-width: 999px) { .hw .sp-grid { grid-template-columns: minmax(0, 1fr); } .hw .sp-grid.is-flip .sp-copy { order: 0; } .hw .sp-aside { position: static; } }
 @media (max-width: 640px) { .hw .sp-copy p { font-size: 16.5px; } }
 
 /* Corner Canyon alignment (2026-11-16): side cards sit flush with the top of the copy, never sticky or centred. */
@@ -53,4 +53,6 @@
 .hw .is-stone .sp-steps .sp-card li { background: var(--hw-mist); }
 .hw .sp-steps .sp-n { background: var(--hw-navy); }
 .hw .sp-steps strong, .hw .is-stone .sp-steps strong, .hw .is-mist .sp-steps strong { color: var(--hw-navy); }
-@media (max-width: 599px) { .hw .sp-steps .sp-card ol { grid-template-columns: 1fr; } }
+@media (max-width: 599px) { .hw .sp-steps .sp-card ol { grid-template-columns: minmax(0, 1fr); } }
+/* Phones/tablets (mobile QA 2026-11-18): aside photos and episode covers show whole, at their own shape. */
+@media (max-width: 999px) { .hw .sp-aside figure img { aspect-ratio: auto; height: auto; } }

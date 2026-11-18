@@ -66,8 +66,15 @@ const share = {
 const related = relatedPosts(post.slug, 3);
 
 // --- Metas: pull verbatim from the live page where provided; fall back to excerpt ---
-const metaTitle = post.metaTitle || `${post.title} | Hopewell Health Solutions`;
-const metaDesc = (post.metaDescription || post.excerpt || "").slice(0, 160);
+// Migrated titles carry the old site's boilerplate ("| Mental Health & Psychiatry located in Glastonbury and West
+// Hartford, CT | Hopewell Health Solutions"), which pushes them past 150 chars. Strip it, then add the longest
+// brand suffix that keeps the title within ~60 chars (SEO audit 2026-11-18).
+const BOILER = /\s*\|\s*Mental Health & Psychiatry located in[^|]*/i;
+const baseTitle = (post.metaTitle || post.title).replace(BOILER, "").replace(/\s*\|\s*Hopewell Health Solutions\s*$/i, "").replace(/\s+/g, " ").trim();
+const metaTitle = post.seoTitle || [`${baseTitle} | Hopewell Health Solutions`, `${baseTitle} | Hopewell`].find((t) => t.length <= 60) || baseTitle;
+const rawDesc = (post.metaDescription || post.excerpt || "").replace(/\s+/g, " ").trim();
+// Cut long descriptions at a word boundary rather than mid-word.
+const metaDesc = rawDesc.length <= 160 ? rawDesc : rawDesc.slice(0, 158).replace(/\s+\S*$/, "").replace(/[\s,;:–—-]+$/, "") + "…";
 const hasSources = post.sources && post.sources.length > 0;
 
 // --- Body: migrated posts carry verbatim `bodyHtml`; auto-build the TOC from its <h2>s ---
@@ -78,6 +85,13 @@ const slugifyHeading = (s) =>
 let bodyHtml = post.bodyHtml || null;
 let tocItems = [];
 if (bodyHtml) {
+  // A few migrated bodies start their outline at <h3> (no <h2>), which skips a level after the page H1.
+  // Shift every heading up so the outline starts at <h2>; the words stay exactly as written.
+  const firstLevel = Number((bodyHtml.match(/<h([2-6])[\s>]/i) || [])[1] || 2);
+  if (firstLevel > 2) {
+    const shift = firstLevel - 2;
+    bodyHtml = bodyHtml.replace(/<(\/?)h([3-6])(?=[\s>])/gi, (_m, close, lv) => `<${close}h${Math.max(2, Number(lv) - shift)}`);
+  }
   bodyHtml = bodyHtml.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/gi, (_m, _attrs, inner) => {
     const text = inner.replace(/<[^>]+>/g, "").trim();
     const id = slugifyHeading(text);
@@ -102,15 +116,15 @@ const clinicPhotos = {
   chairs: { src: "/Assets/service/trauma-informed-individual.webp", alt: "Trauma-informed individual therapy at Hopewell Health Solutions" },
   groupRoom: { src: "/Assets/service/group-therapy-room.webp", alt: "A comfortable treatment room at Hopewell Health Solutions, Glastonbury CT" },
   iop: { src: "/Assets/service/iop-group-session.webp", alt: "Intensive outpatient program group in Glastonbury, CT" },
-  teen: { src: "/Assets/service/teen-iop.webp", alt: "Teens supported by Hopewell Health Solutions' IOP in Glastonbury, CT" },
-  tween: { src: "/Assets/service/tween-iop.webp", alt: "Tweens in Hopewell Health Solutions' adolescent IOP" },
-  adhd: { src: "/Assets/service/what-is-adhd.webp", alt: "ADHD testing and treatment at Hopewell Health Solutions, Connecticut" },
-  adhdEval: { src: "/Assets/service/adhd-assessment.webp", alt: "A provider and patient during an ADHD evaluation at Hopewell Health Solutions, Connecticut" },
+  teen: { src: "/Assets/tweens-1729660767703.webp", alt: "A group of teenagers laughing together" },
+  tween: { src: "/Assets/02-1729661349143.webp", alt: "Two kids laughing together on a school bus" },
+  adhd: { src: "/Assets/Blogs/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations.webp", alt: "A parent and child meeting with a teacher about attention and learning at school" },
+  adhdEval: { src: "/Assets/12.webp", alt: "A clinician meeting one-on-one with a teen during an evaluation" },
   trauma: { src: "/Assets/service/what-is-trauma-ptsd.webp", alt: "Compassionate, trauma-informed care at Hopewell Health Solutions, Connecticut" },
-  substance: { src: "/Assets/service/substance-use-how-it-works.webp", alt: "Group therapy in Hopewell's Addiction IOP" },
-  co: { src: "/Assets/service/co-occurring.webp", alt: "Integrated care for co-occurring disorders at Hopewell Health Solutions, Connecticut" },
+  substance: { src: "/Assets/AdobeStock_413328337-1747245457937.webp", alt: "Adults talking together in a substance use group session" },
+  co: { src: "/Assets/hhs-2026/adult-evening-iop-group.webp", alt: "An adult evening IOP group with Hopewell clinicians in Glastonbury, CT" },
   php: { src: "/Assets/service/php-what-is.webp", alt: "Partial hospitalization day program in Glastonbury, CT" },
-  phpBenefits: { src: "/Assets/service/php-benefits.webp", alt: "A supportive partial hospitalization group at Hopewell Health Solutions" },
+  phpBenefits: { src: "/Assets/service/what-is-adhd.webp", alt: "Adults in a group session at Hopewell's Glastonbury office" },
   dbt: { src: "/Assets/service/dbt.webp", alt: "Dialectical Behavior Therapy at Hopewell Health Solutions" },
   solutions: { src: "/Assets/service/solutions-focused.webp", alt: "Solutions-Focused Therapy at Hopewell Health Solutions" },
   team: { src: "/Assets/service/team-dedicated.webp", alt: "The Hopewell Health Solutions team in Connecticut" },

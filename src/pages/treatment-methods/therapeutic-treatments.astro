@@ -70,7 +70,7 @@ const schema = {
 };
 ---
 
-<Base title="Therapy Approaches: CBT, Play Therapy &amp; More in CT | Hopewell" description="The therapy approaches Hopewell clinicians use in Connecticut, from CBT and family therapy to play therapy and holistic approaches. Check coverage." canonical={canonical} image={P + "tx-team-with-therapy-dog.webp"}>
+<Base title="Therapy Approaches: CBT, Play Therapy &amp; More in CT" description="The therapy approaches Hopewell clinicians use in Connecticut, from CBT and family therapy to play therapy and holistic approaches. Check coverage." canonical={canonical} image={P + "tx-team-with-therapy-dog.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -227,7 +227,7 @@ const schema = {
 <style>
   .tt-table .tx-row { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.2fr); }
   @media (max-width: 760px) {
-    .tt-table .tx-row { grid-template-columns: 1fr; gap: 4px; }
+    .tt-table .tx-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
     .tt-table .tx-row.is-head { display: none; }
   }
 </style>

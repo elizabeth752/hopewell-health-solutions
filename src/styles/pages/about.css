@@ -6,7 +6,7 @@
 .hw .ab-checks li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.5; color: var(--hw-body); }
 .hw .ab-checks .sv-tick { margin-top: 2px; }
 .hw .ab-checks.cols-2 { grid-template-columns: 1fr 1fr; gap: 12px 26px; }
-@media (max-width: 640px) { .hw .ab-checks.cols-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hw .ab-checks.cols-2 { grid-template-columns: minmax(0, 1fr); } }
 
 /* Copy column with a photo beside it */
 .hw .ab-story { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
@@ -16,7 +16,7 @@
 .hw .ab-story-media figcaption { margin-top: 12px; font-size: 14px; color: var(--hw-slate); }
 .hw .ab-copy p { font-size: 17.5px; line-height: 1.75; color: var(--hw-body); }
 .hw .ab-copy p + p { margin-top: 14px; }
-@media (max-width: 999px) { .hw .ab-story { grid-template-columns: 1fr; } .hw .ab-story-media { position: static; } .hw .ab-story-media img { aspect-ratio: 16 / 10; } }
+@media (max-width: 999px) { .hw .ab-story { grid-template-columns: minmax(0, 1fr); } .hw .ab-story-media { position: static; } .hw .ab-story-media img { aspect-ratio: 16 / 10; } }
 
 /* Visit us: map + details card */
 .hw .ab-visit { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; align-items: stretch; }
@@ -31,7 +31,7 @@
 .hw .ab-facts strong { display: block; font-family: var(--hw-head); color: #fff; font-size: 14px; }
 .hw .ab-facts a { color: #fff; font-weight: 700; }
 .hw .ab-details .btn { align-self: flex-start; margin-top: auto; }
-@media (max-width: 999px) { .hw .ab-visit { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .hw .ab-visit { grid-template-columns: minmax(0, 1fr); } }
 
 /* Areas served: town list in columns with pin markers (no pills) */
 .hw .ab-areas { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
@@ -39,7 +39,7 @@
 .hw .ab-towns.is-wide { columns: 3; }
 .hw .ab-towns li { display: flex; align-items: center; gap: 10px; padding: 8px 0; break-inside: avoid; font-family: var(--hw-head); font-weight: 700; font-size: 16px; color: var(--hw-navy); border-bottom: 1px solid var(--hw-line); }
 .hw .ab-towns li svg { color: var(--hw-bright); flex: none; }
-@media (max-width: 999px) { .hw .ab-areas { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .hw .ab-areas { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) { .hw .ab-towns.is-wide { columns: 2; } }
 
 /* Service tiles (what's offered at a location / across offices) */
@@ -50,7 +50,7 @@
 .hw .ab-svc a.is-add .icon-badge { background: var(--hw-gold-soft); color: #7a5a22; }
 .hw .ab-svc a > svg:last-child { color: var(--hw-bright); }
 @media (max-width: 999px) { .hw .ab-svc { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .ab-svc { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .ab-svc { grid-template-columns: minmax(0, 1fr); } }
 
 /* Why cards (4-up, coloured) */
 .hw .ab-why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
@@ -62,14 +62,14 @@
 .hw .ab-why p { font-size: 15.5px; line-height: 1.55; }
 .hw .ab-why .usp-icon { width: 46px; height: 46px; }
 @media (max-width: 1080px) { .hw .ab-why { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .ab-why { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .ab-why { grid-template-columns: minmax(0, 1fr); } }
 
 /* Telehealth / note band */
 .hw .ab-band { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: center; padding: clamp(24px, 4vw, 40px); border-radius: 28px; background: #fff; border: 1px solid var(--hw-line); }
 .hw .ab-band-ico { width: 92px; height: 92px; border-radius: 28px; display: grid; place-items: center; background: var(--hw-bright); color: #fff; }
 .hw .ab-band-ico svg { width: 46px; height: 46px; }
 .hw .ab-band .lede { margin-top: 10px; }
-@media (max-width: 640px) { .hw .ab-band { grid-template-columns: 1fr; } .hw .ab-band-ico { width: 64px; height: 64px; border-radius: 20px; } .hw .ab-band-ico svg { width: 32px; height: 32px; } }
+@media (max-width: 640px) { .hw .ab-band { grid-template-columns: minmax(0, 1fr); } .hw .ab-band-ico { width: 64px; height: 64px; border-radius: 20px; } .hw .ab-band-ico svg { width: 32px; height: 32px; } }
 
 /* Hub office cards (bigger than the Locations component cards) */
 .hw .ab-offices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -88,7 +88,7 @@
 .hw .ab-office-ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
 .hw .ab-office-ctas .btn { min-height: 44px; padding: 0 18px; font-size: 14.5px; }
 @media (max-width: 1080px) { .hw .ab-offices { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .hw .ab-offices { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hw .ab-offices { grid-template-columns: minmax(0, 1fr); } }
 
 /* Team roster sections */
 .hw .ab-roster-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; margin-bottom: 26px; }
@@ -106,7 +106,7 @@
 .hw .ab-motto { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 620px; }
 .hw .ab-motto li { padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 15px; line-height: 1.3; }
 .hw .ab-motto b { display: block; font-size: 22px; color: var(--hw-gold); line-height: 1; margin-bottom: 4px; }
-@media (max-width: 560px) { .hw .ab-motto { grid-template-columns: 1fr; } .hw .ab-motto li { display: flex; gap: 12px; align-items: center; } .hw .ab-motto b { margin: 0; } }
+@media (max-width: 560px) { .hw .ab-motto { grid-template-columns: minmax(0, 1fr); } .hw .ab-motto li { display: flex; gap: 12px; align-items: center; } .hw .ab-motto b { margin: 0; } }
 
 /* Press cards */
 .hw .ab-press { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
@@ -120,7 +120,7 @@
 .hw .ab-press strong { font-family: var(--hw-head); font-size: 19px; line-height: 1.3; color: var(--hw-navy); flex: 1; }
 .hw .ab-press em { font-style: normal; display: inline-flex; align-items: center; gap: 6px; font-family: var(--hw-head); font-weight: 800; font-size: 14.5px; color: var(--hw-blue); }
 @media (max-width: 999px) { .hw .ab-press { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .ab-press { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .ab-press { grid-template-columns: minmax(0, 1fr); } }
 
 /* Media page: TV segment embeds (click to play) */
 .hw .ab-tv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
@@ -130,7 +130,7 @@
 .hw .ab-tv-body small { font-family: var(--hw-head); font-weight: 800; font-size: 13px; color: var(--hw-gold); }
 .hw .ab-tv-body strong { font-family: var(--hw-head); font-size: 18px; line-height: 1.25; color: var(--hw-navy); }
 @media (max-width: 1080px) { .hw .ab-tv { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .ab-tv { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .ab-tv { grid-template-columns: minmax(0, 1fr); } }
 
 /* Testimonials: featured written review */
 .hw .ab-quote { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr; gap: 26px; align-items: start; padding: clamp(26px, 4vw, 44px); border-radius: 30px; background: var(--hw-navy); color: #dce6f1; margin-bottom: 26px; }
@@ -141,7 +141,7 @@
 .hw .ab-revgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .hw .ab-revgrid .rv { flex: none; }
 @media (max-width: 999px) { .hw .ab-revgrid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .hw .ab-revgrid { grid-template-columns: 1fr; } .hw .ab-quote { grid-template-columns: 1fr; } .hw .ab-quote svg.q { width: 44px; } }
+@media (max-width: 640px) { .hw .ab-revgrid { grid-template-columns: minmax(0, 1fr); } .hw .ab-quote { grid-template-columns: minmax(0, 1fr); } .hw .ab-quote svg.q { width: 44px; } }
 
 /* Accreditation note row */
 .hw .ab-accred { display: flex; align-items: center; gap: 20px; margin-top: 22px; padding: 18px 22px; border-radius: 20px; background: var(--hw-stone); }
@@ -170,16 +170,16 @@
 .hw .pf-focus { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
 .hw .pf-focus li { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; line-height: 1.45; color: var(--hw-body); }
 .hw .pf-focus li svg { color: var(--hw-bright); flex: none; margin-top: 3px; }
-@media (max-width: 999px) { .hw .pf-grid { grid-template-columns: 1fr; } .hw .pf-photo { max-width: 340px; } .hw .pf-body { grid-template-columns: 1fr; } .hw .pf-aside { position: static; } }
+@media (max-width: 999px) { .hw .pf-grid { grid-template-columns: minmax(0, 1fr); } .hw .pf-photo { max-width: 340px; } .hw .pf-body { grid-template-columns: minmax(0, 1fr); } .hw .pf-aside { position: static; } }
 
 /* Careers roles list */
 .hw .ab-roles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .hw .ab-roles li { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 18px; background: #fff; border: 1px solid var(--hw-line); font-family: var(--hw-head); font-weight: 700; font-size: 16.5px; color: var(--hw-navy); }
 .hw .ab-roles .icon-badge { width: 46px; height: 46px; }
-@media (max-width: 760px) { .hw .ab-roles { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hw .ab-roles { grid-template-columns: minmax(0, 1fr); } }
 
 /* Team component without a founder card: people span the full width */
-.hw .ab-team-solo .tm-grid { grid-template-columns: 1fr; }
+.hw .ab-team-solo .tm-grid { grid-template-columns: minmax(0, 1fr); }
 .hw .ab-team-solo .tm-people { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
 @media (max-width: 1080px) { .hw .ab-team-solo .tm-people { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .hw .ab-team-solo .tm-people { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -187,7 +187,7 @@
 .hw .ab-gbps { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; gap: 12px; }
 .hw .ab-gbps a { background: var(--hw-navy); }
 .hw .ab-gbps a:hover { background: var(--hw-blue); }
-@media (max-width: 760px) { .hw .ab-gbps { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hw .ab-gbps { grid-template-columns: minmax(0, 1fr); } }
 
 /* Hub: services on each office card */
 .hw .ab-office-offers { list-style: none; margin: 0; padding: 12px 0 0; border-top: 1px solid var(--hw-line); display: grid; gap: 7px; }

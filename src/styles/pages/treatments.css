@@ -12,14 +12,14 @@
 .hw .tx-split.is-flip .tx-photo img { border-top-left-radius: 24px; border-bottom-right-radius: 90px; }
 .hw .tx-photo figcaption { position: absolute; left: 18px; bottom: 18px; max-width: 78%; padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.95); font-family: var(--hw-head); font-weight: 700; font-size: 14.5px; line-height: 1.35; color: var(--hw-navy); box-shadow: 0 10px 24px rgba(0,29,55,.18); }
 .hw .tx-photo figcaption span { display: block; font-size: 12.5px; font-weight: 600; color: var(--hw-slate); }
-@media (max-width: 999px) { .hw .tx-split { grid-template-columns: 1fr; } .hw .tx-split .tx-photo, .hw .tx-split.is-flip .tx-photo { order: 2; } }
+@media (max-width: 999px) { .hw .tx-split { grid-template-columns: minmax(0, 1fr); } .hw .tx-split .tx-photo, .hw .tx-split.is-flip .tx-photo { order: 2; } }
 
 /* Check list on light backgrounds */
 .hw .tx-checks { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
 .hw .tx-checks.cols-2 { grid-template-columns: 1fr 1fr; }
 .hw .tx-checks li { display: flex; gap: 12px; align-items: flex-start; font-size: 16.5px; line-height: 1.5; }
 .hw .tx-checks .sv-tick { margin-top: 1px; }
-@media (max-width: 640px) { .hw .tx-checks.cols-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hw .tx-checks.cols-2 { grid-template-columns: minmax(0, 1fr); } }
 
 /* Icon cards with a straight colour band on top */
 .hw .tx-cards { display: grid; gap: 16px; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); }
@@ -33,7 +33,7 @@
 .hw .tx-card.is-navy .icon-badge { background: rgba(255,255,255,.12); color: var(--hw-sky); }
 .hw .tx-card .tx-n { font-family: var(--hw-head); font-weight: 800; font-size: 34px; line-height: 1; color: var(--bar); }
 @media (max-width: 999px) { .hw .tx-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .hw .tx-cards { grid-template-columns: 1fr; gap: 12px; } .hw .tx-card { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 20px 18px 18px; } .hw .tx-card h3 { flex: 1; } .hw .tx-card p { flex-basis: 100%; } }
+@media (max-width: 560px) { .hw .tx-cards { grid-template-columns: minmax(0, 1fr); gap: 12px; } .hw .tx-card { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 20px 18px 18px; } .hw .tx-card h3 { flex: 1; } .hw .tx-card p { flex-basis: 100%; } }
 
 /* Numbered process rows with round arrow chips between (no connector lines) */
 .hw .tx-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); }
@@ -43,7 +43,7 @@
 .hw .tx-step p { font-size: 16px; line-height: 1.55; }
 .hw .tx-step .step-arrow { right: -29px; top: 32px; }
 @media (max-width: 999px) { .hw .tx-steps { grid-template-columns: 1fr 1fr; } .hw .tx-step .step-arrow { display: none; } }
-@media (max-width: 560px) { .hw .tx-steps { grid-template-columns: 1fr; gap: 10px; } .hw .tx-step { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; padding: 16px; } .hw .tx-step-n { grid-row: span 2; width: 46px; height: 46px; font-size: 17px; margin: 0; } }
+@media (max-width: 560px) { .hw .tx-steps { grid-template-columns: minmax(0, 1fr); gap: 10px; } .hw .tx-step { display: grid; grid-template-columns: 48px 1fr; column-gap: 14px; padding: 16px; } .hw .tx-step-n { grid-row: span 2; width: 46px; height: 46px; font-size: 17px; margin: 0; } }
 
 /* Stat band on navy */
 .hw .tx-stats { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 16px; }
@@ -55,7 +55,7 @@
 .hw .is-white .tx-stat, .hw .is-stone .tx-stat, .hw .is-mist .tx-stat { background: #fff; border-color: var(--hw-line); }
 .hw .is-white .tx-stat strong, .hw .is-stone .tx-stat strong, .hw .is-mist .tx-stat strong { color: var(--hw-blue); }
 .hw .is-white .tx-stat span, .hw .is-stone .tx-stat span, .hw .is-mist .tx-stat span { color: var(--hw-slate); }
-@media (max-width: 760px) { .hw .tx-stats { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hw .tx-stats { grid-template-columns: minmax(0, 1fr); } }
 
 /* TMS course: a week-by-week session grid (5 sessions × 6–9 weeks) */
 .hw .tx-course { padding: 26px; border-radius: 26px; background: #fff; border: 1px solid var(--hw-line); }
@@ -72,7 +72,7 @@
 .hw .tx-fact { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--hw-stone); }
 .hw .tx-fact strong { display: block; font-family: var(--hw-head); font-size: 15px; color: var(--hw-navy); }
 .hw .tx-fact span { display: block; font-size: 14px; color: var(--hw-slate); }
-@media (max-width: 760px) { .hw .tx-facts3 { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hw .tx-facts3 { grid-template-columns: minmax(0, 1fr); } }
 
 /* Phase wheel / numbered phase grid (EMDR, DBT) */
 .hw .tx-phases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
@@ -82,7 +82,7 @@
 .hw .tx-phase span { display: block; margin-top: 3px; font-size: 14.5px; line-height: 1.45; color: #c3d2e2; }
 .hw .tx-phase.is-hl { background: rgba(156,195,234,.16); border-color: rgba(156,195,234,.45); }
 @media (max-width: 1080px) { .hw .tx-phases { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .tx-phases { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .tx-phases { grid-template-columns: minmax(0, 1fr); } }
 
 /* DBT skills wheel: four quadrants around a centre */
 .hw .tx-wheel { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -96,7 +96,7 @@
 .hw .tx-q .icon-badge { background: rgba(255,255,255,.16); color: #fff; }
 .hw .tx-wheel-core { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 128px; height: 128px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 10px var(--hw-stone), 0 18px 40px rgba(0,29,55,.2); display: grid; place-items: center; text-align: center; font-family: var(--hw-head); font-weight: 800; font-size: 14px; line-height: 1.25; color: var(--hw-navy); padding: 12px; }
 .hw .tx-wheel-core small { display: block; font-size: 11.5px; font-weight: 700; color: var(--hw-gold); }
-@media (max-width: 640px) { .hw .tx-wheel { grid-template-columns: 1fr; } .hw .tx-q { min-height: 0; text-align: left !important; align-items: flex-start !important; border-radius: 20px !important; } .hw .tx-wheel-core { display: none; } }
+@media (max-width: 640px) { .hw .tx-wheel { grid-template-columns: minmax(0, 1fr); } .hw .tx-q { min-height: 0; text-align: left !important; align-items: flex-start !important; border-radius: 20px !important; } .hw .tx-wheel-core { display: none; } }
 
 /* GeneSight report graphic: three columns of medication bins */
 .hw .tx-report { padding: 22px; border-radius: 24px; background: #fff; border: 1px solid var(--hw-line); box-shadow: 0 22px 50px rgba(0,29,55,.1); }
@@ -108,7 +108,7 @@
 .hw .tx-bin span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.4; color: var(--hw-body); }
 .hw .tx-bin i { display: block; height: 10px; border-radius: 5px; background: var(--c); opacity: .55; margin-top: 8px; }
 .hw .tx-bin i + i { width: 70%; } .hw .tx-bin i + i + i { width: 85%; }
-@media (max-width: 640px) { .hw .tx-bins { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hw .tx-bins { grid-template-columns: minmax(0, 1fr); } }
 
 /* "Whole-patient" overlap graphic (MAT) */
 .hw .tx-venn { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 20px 10px; }
@@ -142,14 +142,14 @@
 .hw .tx-mod:nth-child(4n+1) { background: var(--hw-navy); } .hw .tx-mod:nth-child(4n+2) { background: var(--hw-sage); }
 .hw .tx-mod:nth-child(4n+3) { background: var(--hw-blue); } .hw .tx-mod:nth-child(4n+4) { background: var(--hw-gold); }
 @media (max-width: 1080px) { .hw .tx-mods { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .hw .tx-mods { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .hw .tx-mods { grid-template-columns: minmax(0, 1fr); } }
 
 /* Photo feature card (photo + copy in one rounded card) */
 .hw .tx-feature { display: grid; grid-template-columns: 0.9fr 1.1fr; overflow: hidden; border-radius: 26px; background: #fff; border: 1px solid var(--hw-line); }
 .hw .tx-feature img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; }
 .hw .tx-feature > div { padding: clamp(24px, 4vw, 40px); display: flex; flex-direction: column; gap: 12px; justify-content: center; }
 .hw .tx-feature.is-flip img { order: 2; }
-@media (max-width: 860px) { .hw .tx-feature { grid-template-columns: 1fr; } .hw .tx-feature img { min-height: 0; aspect-ratio: 16 / 10; } .hw .tx-feature.is-flip img { order: 0; } }
+@media (max-width: 860px) { .hw .tx-feature { grid-template-columns: minmax(0, 1fr); } .hw .tx-feature img { min-height: 0; aspect-ratio: 16 / 10; } .hw .tx-feature.is-flip img { order: 0; } }
 
 /* App tiles (mindfulness) */
 .hw .tx-apps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
@@ -162,7 +162,7 @@
 .hw .tx-who-card { overflow: hidden; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); display: flex; flex-direction: column; }
 .hw .tx-who-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
 .hw .tx-who-card > div { padding: 20px 22px 22px; display: grid; gap: 6px; }
-@media (max-width: 860px) { .hw .tx-who { grid-template-columns: 1fr; } .hw .tx-who-card { flex-direction: row; } .hw .tx-who-card img { width: 120px; aspect-ratio: auto; flex: none; } }
+@media (max-width: 860px) { .hw .tx-who { grid-template-columns: minmax(0, 1fr); } .hw .tx-who-card { flex-direction: row; } .hw .tx-who-card img { width: 120px; aspect-ratio: auto; flex: none; } }
 
 /* Treatments hub: grouped list */
 .hw .tx-group-h { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; }
@@ -174,14 +174,14 @@
 .hw .tx-read { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
 .hw .tx-read aside { display: grid; gap: 14px; }
 .hw .tx-read aside img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; border-radius: 22px; }
-@media (max-width: 999px) { .hw .tx-read { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .hw .tx-read { grid-template-columns: minmax(0, 1fr); } }
 
 /* Pull quote */
 .hw .tx-pull { margin: 0; padding: 26px 28px; border-radius: 22px; background: var(--hw-navy); color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 20px; line-height: 1.4; }
 .hw .tx-pull small { display: block; margin-top: 10px; font-size: 13.5px; font-weight: 600; color: var(--hw-sky); }
 
 /* Team strip without a feature card spans the full width */
-.hw .tm-grid:not(:has(.tm-feature)) { grid-template-columns: 1fr; }
+.hw .tm-grid:not(:has(.tm-feature)) { grid-template-columns: minmax(0, 1fr); }
 .hw .tx-venn > div:first-child { padding: 18% 30% 18% 12%; }
 .hw .tx-venn > div:nth-child(2) { padding: 18% 12% 18% 30%; }
 .hw .tx-venn b { top: 22%; }
@@ -200,8 +200,8 @@
 .hw .tms-res-photo { margin: 0; position: relative; border-radius: 26px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.35); }
 .hw .tms-res-photo img { width: 100%; aspect-ratio: 3 / 3.6; object-fit: cover; display: block; }
 .hw .tms-res-photo figcaption { position: absolute; left: 14px; bottom: 14px; padding: 6px 12px; border-radius: 999px; background: #fff; font-family: var(--hw-head); font-size: 13px; font-weight: 700; color: var(--hw-navy); }
-@media (max-width: 999px) { .hw .tms-res { grid-template-columns: 1fr; } .hw .tms-res-photo img { aspect-ratio: 16 / 10; } }
-@media (max-width: 640px) { .hw .tms-rings { grid-template-columns: 1fr; } .hw .tms-ring { grid-template-columns: 96px 1fr; } .hw .tms-ring svg { width: 96px; height: 96px; } .hw .tms-ring strong { width: 96px; font-size: 26px; } }
+@media (max-width: 999px) { .hw .tms-res { grid-template-columns: minmax(0, 1fr); } .hw .tms-res-photo img { aspect-ratio: 16 / 10; } }
+@media (max-width: 640px) { .hw .tms-rings { grid-template-columns: minmax(0, 1fr); } .hw .tms-ring { grid-template-columns: 96px 1fr; } .hw .tms-ring svg { width: 96px; height: 96px; } .hw .tms-ring strong { width: 96px; font-size: 26px; } }
 
 /* TMS schedule: stat tiles across, course chart full width */
 .hw .tms-sched { display: grid; gap: 28px; }
@@ -212,4 +212,4 @@
 .hw .tms-facts strong { font-family: var(--hw-head); font-size: 15px; color: var(--hw-slate); font-weight: 700; }
 .hw .tms-facts .tx-fact > span:last-child > span { font-family: var(--hw-head); font-size: 20px; font-weight: 800; color: var(--hw-navy); line-height: 1.2; }
 .hw .tms-sched .tx-course { max-width: none; width: 100%; }
-@media (max-width: 760px) { .hw .tms-facts { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .hw .tms-facts { grid-template-columns: minmax(0, 1fr); } }

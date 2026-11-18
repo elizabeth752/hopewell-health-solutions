@@ -60,7 +60,7 @@ const topics = [
   .hsc-panels :global(.sc h3), .hsc-panels :global(.sc strong) { color: var(--hw-navy); }
   .hsc-panels :global(.sc a.inl) { color: var(--hw-blue); }
   .hsc-panels :global(.sc .sc-intro), .hsc-panels :global(.sc .sc-text) { color: var(--hw-body); }
-  @media (max-width: 999px) { .hsc { grid-template-columns: 1fr; } }
+  @media (max-width: 999px) { .hsc { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 520px) { .hsc-topics { gap: 8px; } .hsc-topic { padding: 10px; gap: 8px; } .hsc-ico { width: 32px; height: 32px; } .hsc-topic strong { font-size: 14.5px; } .hsc-topic small { font-size: 11.5px; } }
 </style>
 

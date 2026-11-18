@@ -15,8 +15,8 @@
 .hw .lp-facts strong { display: flex; align-items: center; gap: 10px; font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy); }
 .hw .lp-facts strong svg { color: var(--hw-bright); flex: none; }
 .hw .lp-facts a { color: var(--hw-blue); font-weight: 600; }
-@media (max-width: 999px) { .hw .lp-intro { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .hw .lp-facts li { grid-template-columns: 1fr; gap: 2px; } }
+@media (max-width: 999px) { .hw .lp-intro { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .hw .lp-facts li { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 
 /* Programs at this office: even rows only */
 .hw .lp-cards { display: grid; gap: 16px; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); }
@@ -28,8 +28,8 @@
 .hw .lp-more .inl { color: var(--hw-sky); text-decoration: none; }
 .hw .lp-more .inl:hover { color: #fff; text-decoration: underline; }
 .hw .lp-more-icon { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(156,195,234,.18); color: var(--hw-sky); }
-@media (max-width: 1099px) { .hw .lp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .lp-cards.is-odd { grid-template-columns: 1fr; } }
-@media (max-width: 699px) { .hw .lp-cards { grid-template-columns: 1fr; } }
+@media (max-width: 1099px) { .hw .lp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .lp-cards.is-odd { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 699px) { .hw .lp-cards { grid-template-columns: minmax(0, 1fr); } }
 
 /* Split: copy + photo, photo aligned to the top of the copy */
 .hw .lp-split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
@@ -39,7 +39,7 @@
 .hw .lp-split figure img { display: block; width: 100%; height: auto; border-radius: 26px; }
 .hw .lp-split figcaption { margin-top: 10px; font-size: 14px; color: var(--hw-slate); }
 .hw .lp-split .lede { margin-top: 16px; }
-@media (max-width: 999px) { .hw .lp-split, .hw .lp-split.is-flip { grid-template-columns: 1fr; } .hw .lp-split.is-flip > figure { order: 0; } }
+@media (max-width: 999px) { .hw .lp-split, .hw .lp-split.is-flip { grid-template-columns: minmax(0, 1fr); } .hw .lp-split.is-flip > figure { order: 0; } }
 
 /* Schedule table */
 .hw .lp-table-wrap { margin-top: 24px; overflow-x: auto; border-radius: 20px; border: 1px solid var(--hw-line); background: #fff; }
@@ -68,7 +68,7 @@
 .hw .lp-shore-note { margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); }
 .hw .lp-shore-note h3 { font-size: 18px; }
 .hw .lp-shore-note p { margin-top: 6px; font-size: 16px; line-height: 1.6; }
-@media (max-width: 999px) { .hw .lp-shore { grid-template-columns: 1fr; } .hw .lp-shore-pics img:nth-child(2) { margin-top: 0; } }
+@media (max-width: 999px) { .hw .lp-shore { grid-template-columns: minmax(0, 1fr); } .hw .lp-shore-pics img:nth-child(2) { margin-top: 0; } }
 
 /* Team row sized to the office's own clinicians */
 .hw .lp-team .tt-grid { grid-template-columns: repeat(var(--n, 6), minmax(0, 1fr)); }
@@ -88,7 +88,7 @@
 .hw .lp-map { overflow: hidden; border-radius: 26px; border: 1px solid var(--hw-line); background: var(--hw-mist); }
 .hw .lp-map iframe { display: block; width: 100%; height: 420px; border: 0; }
 .hw .lp-visit .lede { margin-top: 14px; }
-@media (max-width: 999px) { .hw .lp-visit { grid-template-columns: 1fr; } .hw .lp-map iframe { height: 320px; } }
+@media (max-width: 999px) { .hw .lp-visit { grid-template-columns: minmax(0, 1fr); } .hw .lp-map iframe { height: 320px; } }
 
 /* Towns served + nearest offices */
 .hw .lp-areas { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
@@ -105,7 +105,7 @@
 .hw .lp-near h4 a { color: var(--hw-navy); text-decoration: underline; text-decoration-color: var(--hw-sky); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .hw .lp-near p { margin-top: 4px; font-size: 15px; line-height: 1.5; color: var(--hw-body); }
 .hw .lp-near small { display: block; margin-top: 4px; font-size: 14px; color: var(--hw-slate); }
-@media (max-width: 999px) { .hw .lp-areas { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .hw .lp-areas { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 480px) { .hw .lp-near li { grid-template-columns: 92px minmax(0, 1fr); } .hw .lp-near img { width: 92px; height: 80px; } }
 
 /* Getting here: road-sign route + car / bus / train cards (2026-11-17, Corner Canyon road-sign pattern) */
@@ -133,4 +133,4 @@
 .hw .lp-mode p { flex: 1; margin-top: 8px; font-size: 15.5px; line-height: 1.6; color: var(--hw-body); }
 .hw .lp-mode .inl { margin-top: 12px; font-size: 15px; font-weight: 700; }
 .hw .lp-go-note { margin-top: 14px; font-size: 14px; color: var(--hw-slate); }
-@media (max-width: 999px) { .hw .lp-modes { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .hw .lp-modes { grid-template-columns: minmax(0, 1fr); } }

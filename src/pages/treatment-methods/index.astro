@@ -64,11 +64,11 @@ const groups = [
       helps: ["Opioid use disorder", "Alcohol use disorder", "Step-down care after detox or rehab"] },
   ] },
   { key: "testing", name: "Testing & evaluation", note: "Get the full picture", icon: "clipboard", tone: "t-sage", items: [
-    { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: P + "tx-east-hampton-play-room.webp",
+    { t: "Neuropsychological Testing", href: "/treatment-methods/neuropsychological-testing/", img: "/Assets/12.webp",
       d: "Comprehensive evaluation for clarity, diagnosis, and a real plan.",
       more: `Comprehensive evaluation of attention, memory, and learning, for clarity, diagnosis, and a real plan. A detailed look at language and emotional functioning too, with a written report and clear recommendations for home, school or work. See <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.`,
       helps: ["Learning or memory concerns", "Questions about autism or ADHD", "School accommodations and 504 plans"] },
-    { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", img: P + "tx-east-hampton-office.webp",
+    { t: "ADHD Testing", href: "/treatment-methods/adhd-testing/", img: B + "inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp",
       d: "Thorough, compassionate assessment for children, teens & adults.",
       more: `Thorough, compassionate assessment for children, teens, and adults. Interviews, rating scales and testing that separate <a class="inl" href="/what-we-treat/adhd/">ADHD</a> from anxiety, depression or learning differences, so treatment fits. Learn about <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a>.`,
       helps: ["Focus and attention concerns", "Adults who suspect lifelong ADHD", "Kids struggling at school"] },
@@ -115,7 +115,7 @@ faqs.push(...faqTail);
 const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: briefGroups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---
 
-<Base title="Mental Health &amp; Addiction Treatments in CT: TMS, EMDR, DBT | Hopewell" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices. Check coverage." canonical={canonical} image={P + "sg-family-room.webp"}>
+<Base title="Mental Health Treatments in CT: TMS, EMDR, DBT | Hopewell" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices." canonical={canonical} image={P + "sg-family-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(list)} />
   <main class="hw">

@@ -75,7 +75,7 @@ const schema = {
 };
 ---
 
-<Base title="Neuropsychological Testing for Kids & Adults in CT | Hopewell" description="In-depth testing of memory, attention, learning and thinking for children, teens and adults in Connecticut, with a clear report and next steps. Check coverage." canonical={canonical} image={P + "tx-east-hampton-play-room.webp"}>
+<Base title="Neuropsychological Testing in Connecticut | Hopewell" description="In-depth testing of memory, attention, learning and thinking for children, teens and adults in Connecticut, with a clear report and next steps. Check coverage." canonical={canonical} image={P + "tx-east-hampton-play-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -200,7 +200,7 @@ const schema = {
   .np-cmp .tx-row { grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.2fr) minmax(0, 1.2fr); line-height: 1.55; }
   .np-cmp .tx-row.is-head span:first-child { visibility: hidden; }
   @media (max-width: 760px) {
-    .np-cmp .tx-row { grid-template-columns: 1fr; gap: 8px; }
+    .np-cmp .tx-row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
     .np-cmp .tx-row.is-head { display: none; }
     .np-cmp .tx-row span[data-l]::before { content: attr(data-l); display: block; font-family: var(--hw-head); font-weight: 700; font-size: 13px; color: var(--hw-slate); }
   }

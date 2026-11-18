@@ -52,7 +52,7 @@ const schema = {
 const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].includes(v.yt));
 ---
 
-<Base title="Medication-Assisted Treatment (MAT) in Connecticut | Hopewell" description="MAT combines FDA-approved medication with counseling to treat opioid and alcohol addiction. Outpatient care in Glastonbury and Westbrook, CT. Check coverage." canonical={canonical} image={P + "westbrook-therapy-office.webp"}>
+<Base title="Medication-Assisted Treatment (MAT) in CT | Hopewell" description="MAT combines FDA-approved medication with counseling to treat opioid and alcohol addiction. Outpatient care in Glastonbury and Westbrook, CT. Check coverage." canonical={canonical} image={P + "westbrook-therapy-office.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -193,7 +193,7 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
   @media (max-width: 860px) {
     .hw .mat-rows li { grid-template-columns: 48px 1fr; }
     .hw .mat-rows li span { grid-column: 2; padding-top: 0; }
-    .hw .mat-rule-panel { grid-template-columns: 1fr; }
+    .hw .mat-rule-panel { grid-template-columns: minmax(0, 1fr); }
     .hw .mat-rule-panel > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
   }
 </style>

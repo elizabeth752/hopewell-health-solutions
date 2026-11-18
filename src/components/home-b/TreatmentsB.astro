@@ -39,7 +39,7 @@ const treatments = [
 </section>
 
 <style>
-  .hb-treat-b-tms { display: grid; grid-template-columns: 1fr; overflow: hidden; border-radius: 28px; background: var(--color-ink); }
+  .hb-treat-b-tms { display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; border-radius: 28px; background: var(--color-ink); }
   .hb-treat-b-tms:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 3px; }
   .hb-treat-b-media { display: block; aspect-ratio: 16/10; overflow: hidden; }
   .hb-treat-b-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .7s; }
@@ -56,7 +56,7 @@ const treatments = [
     .hb-treat-b-panel { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 48px 44px; }
   }
 
-  .hb-treat-b-row { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--color-line); }
+  .hb-treat-b-row { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--color-line); }
   .hb-treat-b-item { position: relative; display: block; height: 100%; padding: 28px 56px 28px 4px; border-bottom: 1px solid var(--color-line); transition: background .3s; }
   .hb-treat-b-item:focus-visible { outline: 2px solid var(--color-azul); outline-offset: -2px; }
   .hb-treat-b-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--color-sage-light); color: var(--color-sage); transition: transform .3s, background .3s, color .3s; }

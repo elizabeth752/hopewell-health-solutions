@@ -61,7 +61,7 @@ const schema = {
 };
 ---
 
-<Base title="GeneSight® Testing in Connecticut | Hopewell Health Solutions" description="GeneSight® is a cheek-swab genetic test your Hopewell provider can use to inform mental health medication choices. Learn how it works and check coverage." canonical={canonical} image={P + "providers-together.webp"}>
+<Base title="GeneSight® Testing in Connecticut | Hopewell" description="GeneSight® is a cheek-swab genetic test your Hopewell provider can use to inform mental health medication choices. Learn how it works and check coverage." canonical={canonical} image={P + "providers-together.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -199,5 +199,5 @@ const schema = {
   .gx-rules li:first-child { padding-top: 0; border-top: 0; }
   .gx-rules strong { font-family: var(--hw-head); font-weight: 800; font-size: 19px; color: #fff; }
   .gx-rules span { font-size: 16.5px; line-height: 1.6; color: #dce6f1; }
-  @media (max-width: 860px) { .gx-nsplit { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .gx-nsplit { grid-template-columns: minmax(0, 1fr); } }
 </style>

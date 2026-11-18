@@ -136,26 +136,28 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     .hw-footer-brand > a:first-child { grid-row: span 2; }
     .hw-footer-brand img { width: 120px; margin: 0; }
     .hw-footer-brand p { grid-column: 1 / -1; grid-row: 3; font-size: 14px; line-height: 1.55; max-width: none; }
-    .hw-f-phone { margin: 0; font-size: 18px; }
+    .hw-f-phone { margin: 0; font-size: 18px; white-space: nowrap; }
     .hw-social { margin: 0; gap: 6px; }
-    .hw-social a { width: 32px; height: 32px; }
+    .hw-social a { width: 36px; height: 36px; }
     .hw-social :global(svg) { width: 13px; height: 13px; }
     .hw-foot-h { font-size: 14.5px; margin-bottom: 8px; }
-    .hw-footer-col ul { gap: 5px; }
+    .hw-footer-col ul { gap: 0; }
+    .hw-footer-col li a { display: inline-block; padding: 6px 0; }
     .hw-footer-col li { font-size: 14px; line-height: 1.4; }
     .hw-footer-col:last-child { grid-column: 1 / -1; }
     .hw-footer-col:last-child ul { grid-template-columns: 1fr 1fr; column-gap: 18px; }
     .hw-find { padding-bottom: 22px; }
     .hw-find-inner { padding-top: 20px; }
-    .hw-find-grid { grid-template-columns: 1fr; gap: 0; }
+    .hw-find-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
     .hw-place { grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; padding: 9px 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.1); }
-    .hw-place-care { grid-column: 1; grid-row: 3; font-size: 11.5px; }
+    .hw-place-care { grid-column: 1; grid-row: 3; font-size: 12.5px; }
     .hw-footer .hw-place-name { font-size: 15px; }
     .hw-place-addr { grid-column: 1; font-size: 13.5px; line-height: 1.4; }
     .hw-place-addr br { display: none; }
     .hw-comma { display: inline; }
     .hw-footer .hw-place-link { grid-column: 2; grid-row: 1 / 3; align-self: center; margin: 0; font-size: 13px; }
     .hw-footer-bar { padding-top: 16px; gap: 8px 16px; font-size: 12.5px; }
-    .hw-legal { gap: 6px 14px; }
+    .hw-legal { gap: 0 16px; }
+    .hw-legal a { display: inline-block; padding: 6px 0; }
   }
 </style>

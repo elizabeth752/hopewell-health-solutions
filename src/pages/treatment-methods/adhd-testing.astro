@@ -31,9 +31,9 @@ const combine = [
   { t: "Remote computerized assessment", d: "An objective, computerized measure of attention you complete securely from home.", icon: "brain", bar: "#5c7c6b" },
 ];
 const whoFor = [
-  { img: P + "tween-group-room.webp", t: "Children", d: "Clarity around focus, behavior, and learning, with recommendations for home and school." },
-  { img: P + "tx-east-hampton-office.webp", t: "Teens", d: "Understand what’s behind the struggles and build a plan that fits this stage of life." },
-  { img: P + "tx-westbrook-office-3.webp", t: "Adults", d: "Answers after years of questions, and a clear, data-backed path forward." },
+  { img: "/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp", t: "Children", d: "Clarity around focus, behavior, and learning, with recommendations for home and school." },
+  { img: "/Assets/12.webp", t: "Teens", d: "Understand what’s behind the struggles and build a plan that fits this stage of life." },
+  { img: "/Assets/Blogs/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance.webp", t: "Adults", d: "Answers after years of questions, and a clear, data-backed path forward." },
 ];
 const steps = [
   ["In-office appointment with your provider", "Your evaluation begins with an in-office appointment with your provider to review your history and concerns."],
@@ -181,7 +181,7 @@ const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt))
   .ad-get strong { font-family: var(--hw-head); font-weight: 800; font-size: 19px; color: var(--hw-navy); }
   .ad-get span { font-size: 16.5px; line-height: 1.6; color: var(--hw-body); }
   @media (max-width: 860px) {
-    .ad-paths, .ad-get { grid-template-columns: 1fr; }
+    .ad-paths, .ad-get { grid-template-columns: minmax(0, 1fr); }
     .ad-path + .ad-path { border-left: 0; border-top: 1px solid var(--hw-line); }
   }
 </style>

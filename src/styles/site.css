@@ -2027,20 +2027,55 @@ main.hw .wq-more { display: none; }
   main.hw .lc-track { padding: 6px var(--hw-gutter, 16px) 22px; gap: 14px; }
   main.hw .vc-track { padding: 0 var(--hw-gutter, 16px); }
   /* rows inside .container bleed to the screen edge */
-  main.hw .rv-loop-track, main.hw .ps-mq-track { margin-inline: calc(var(--hw-gutter, 16px) * -1); padding-inline: var(--hw-gutter, 16px); }
+  main.hw .ps-mq-track { padding-inline: var(--hw-gutter, 16px); }
+  main.hw .rv-loop-track, main.hw .container .ps-mq-track { margin-inline: calc(var(--hw-gutter, 16px) * -1); padding-inline: var(--hw-gutter, 16px); }
   main.hw .rv-loop-track { gap: 12px; padding-block: 2px 8px; }
   /* card widths win over the generic .m-drift > * rule */
   main.hw .lc-track > .lc { flex: 0 0 min(300px, 82vw); }
   main.hw .rv-loop-track > .rv { flex: 0 0 min(300px, 82vw); }
   main.hw .vc-track > li { flex: 0 0 min(260px, 72vw); width: auto; }
   main.hw .rv-loop .rv-more { margin: 0; align-self: flex-start; }
+  /* cards keep their own height (no tall empty gaps when one card has more text) */
+  main.hw .lc-track, main.hw .rv-loop-track { align-items: flex-start; }
 
   /* Photo rows: every photo shows whole, never wider than the screen (wide photos get a little shorter instead). */
   main.hw .tp-grid.m-drift > *, main.hw .ab-gal.m-drift > *, main.hw #offices-gallery .ab-offices.m-drift > *, main.hw .ps .m-drift > .ps-slide, main.hw .ps-mq-track > .ps-mq-slide { height: auto; max-width: calc(100vw - 2 * var(--hw-gutter, 16px)); align-self: center; }
   main.hw .tp-grid.m-drift img, main.hw .ab-gal.m-drift img, main.hw #offices-gallery .ab-offices.m-drift img, main.hw .ps .m-drift .ps-img, main.hw .ps-mq-track .ps-mq-slide img { width: auto !important; height: auto !important; max-height: 240px; max-width: calc(100vw - 2 * var(--hw-gutter, 16px)); object-fit: contain; display: block; }
   main.hw #offices-gallery .ab-offices.m-drift a { height: auto; }
+
+  /* No clipped copy on phones: the podcast host card and blog cards show their full text and author names. */
+  main.hw .ba-feature-d { display: block; -webkit-line-clamp: unset; overflow: visible; }
+  main.hw .bc-desc { -webkit-line-clamp: 3; }
+  /* office filter tabs: one swipeable line on narrow phones instead of cutting the last tab */
+  main.hw .lc-tabs { gap: 18px; overflow-x: auto; scrollbar-width: none; touch-action: pan-x pan-y; }
+  main.hw .lc-tabs::-webkit-scrollbar { display: none; }
+  main.hw .lc-tab { flex: none; white-space: nowrap; }
+
+  /* Readable small print on phones (was 11–12px) */
+  main.hw .lead-card .lc-foot { font-size: 13px; }
+  main.hw .lc-care, main.hw .ab-office-care { font-size: 12.5px; }
+  main.hw .rv-gbps small { font-size: 12px; }
 }
 
 /* Hero H3 (SEO, user 2026-11-18): keyword line under the H2; the "hope to heal" tagline stays as styled text. */
 .hw .ho-h3s { margin: 16px 0 0; font-family: var(--hw-head); font-weight: 700; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.4; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.4); }
 .hw .ho-h3s + .ho-h3 { margin-top: 14px; }
+
+/* Mobile QA 2026-11-18: no clipped copy at any width (podcast host card, blog author names). */
+@media (max-width: 1080px) { main.hw .tm-feature p { display: block; -webkit-line-clamp: unset; overflow: visible; } }
+main.hw .bc-meta { flex-wrap: wrap; row-gap: 2px; }
+main.hw .bc-meta > span:nth-child(2) { white-space: normal; overflow: visible; text-overflow: clip; }
+
+/* Touch tablets (iPad etc., wider than 640px): the self-moving marquees become plain swipe rows too, so a finger can
+   scroll them (Base.astro drift script also runs here for these rows). */
+@media (min-width: 641px) and (hover: none) and (pointer: coarse) {
+  main.hw .lc-wrap, main.hw .rv-loop, main.hw .vc-marquee, main.hw .ps-marquee { overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  main.hw .lc-track, main.hw .rv-loop-track, main.hw .vc-track, main.hw .ps-mq-track { animation: none !important; transform: none; width: auto; overflow-x: auto; overflow-y: hidden; scroll-snap-type: none; scroll-behavior: auto; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; }
+  main.hw .lc-track::-webkit-scrollbar, main.hw .rv-loop-track::-webkit-scrollbar, main.hw .vc-track::-webkit-scrollbar, main.hw .ps-mq-track::-webkit-scrollbar { display: none; }
+  main.hw .lc-track { padding: 6px var(--hw-gutter) 22px; }
+  main.hw .vc-track { padding: 0 var(--hw-gutter); }
+  main.hw .ps-mq-track { padding-inline: var(--hw-gutter); }
+  main.hw .rv-loop-track, main.hw .container .ps-mq-track { margin-inline: calc(var(--hw-gutter) * -1); padding-inline: var(--hw-gutter); }
+  main.hw .lc-track, main.hw .rv-loop-track { align-items: flex-start; }
+  main.hw .lc-track > *, main.hw .rv-loop-track > *, main.hw .vc-track > *, main.hw .ps-mq-track > * { flex-shrink: 0; }
+}

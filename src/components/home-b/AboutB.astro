@@ -42,7 +42,7 @@ const stats = [
   .hb-about-b-btn:focus-visible { outline: 2px solid var(--color-azul); outline-offset: 2px; }
   .hb-about-b-photo { position: relative; padding: 0 14px 14px 0; }
   .hb-about-b-photo::before { content: ""; position: absolute; inset: 14px 0 0 14px; border: 2px solid var(--color-gold); border-radius: 24px; opacity: .55; }
-  .hb-about-b-stats { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
+  .hb-about-b-stats { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
   .hb-about-b-stat { position: relative; padding: 24px 4px; border-top: 1px solid var(--color-line); }
   .hb-about-b-stat:first-child { border-top: 0; }
   .hb-about-b-stat::before { content: ""; position: absolute; left: 0; top: -1px; width: 48px; height: 3px; background: var(--color-gold); transform: scaleX(0); transform-origin: left; transition: transform .35s; }
