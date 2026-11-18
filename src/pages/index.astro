@@ -28,23 +28,17 @@ import { PHONE } from "../data/site.js";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 
-// 1. Hero — message slider (client request 2026-11-18): slide 1 is the brand intro with the H1; the others each sell one
-// program with its own real photo, short copy (taken from that program page) and a button. The coverage form stays
-// fixed on the right. Auto-advances, pauses on hover/focus or with the pause button, off for reduced motion.
+// 1. Hero — H1 + intro on top, then a visible rotating photo slider with the form beside it (client request 2026-11-18: "a slider in
+// the hero"). Whole photos (PhotoSlider "single", no cropping), each captioned with the program it links to. The
+// coverage form sits beside the slider on desktop (client doc Task 1); phones get the form further down.
 const heroSlides = [
-  [P + "team-with-dr-k-lawn.webp", "Dr. Kristine Schlichting with the Hopewell team outside the office", "center 35%"],
-  [P + "php-group-room.webp", "A Hopewell PHP group room in Glastonbury", "center 50%"],
-  [P + "teen-iop-outside.webp", "Teens from our Teen IOP outside the Glastonbury office", "center 60%"],
-  [P + "iop-group-session.webp", "An addiction IOP group session at Hopewell", "center 45%"],
-  [P + "providers-together.webp", "Hopewell psychiatric providers together", "center 35%"],
-  [P + "womens-wellness-team.webp", "The Women’s Wellness IOP team", "center 40%"],
-];
-const programSlides = [
-  { t: "Partial Hospitalization (PHP) in Glastonbury", lede: "Full-day, in-person care for adults who need more support than IOP, without an overnight stay.", bullets: ["Full-day program at 300 Hebron Ave", "Therapy and psychiatry in one place", "Go home every evening"], href: "/programs/partial-hospitalization-program/", cta: "See the PHP" },
-  { t: "Teen IOP for Ages 13–17", lede: "More than weekly therapy, less than residential: teens meet after school, keep going to class and live at home.", bullets: ["After-school hours", "Family sessions, parents involved", "In person in Glastonbury"], href: "/programs/teen-iop/", cta: "See the Teen IOP" },
-  { t: "Addiction IOP for Alcohol & Drug Use", lede: "Group therapy, individual counseling, psychiatric care and MAT when appropriate, while you live at home and keep working.", bullets: ["Glastonbury and Westbrook, CT", "MAT when appropriate", "Fits around work"], href: "/programs/addiction-iop/", cta: "See the Addiction IOP" },
-  { t: "Psychiatry & Medication Management", lede: "Getting the right medication shouldn’t feel like a guessing game. Thoughtful, collaborative psychiatric care built around you.", bullets: ["Children, teens and adults", "In person or by telehealth", "Offices from Glastonbury to Westbrook"], href: "/programs/medication-management/", cta: "See psychiatry" },
-  { t: "Women’s Wellness IOP", lede: "Support for anxiety, depression, burnout, postpartum mood changes and life transitions, in a group of women who understand.", bullets: ["Westbrook and Glastonbury", "Designed by women, for women", "Trauma-informed and skills-based"], href: "/programs/womens-wellness-iop/", cta: "See the Women’s IOP" },
+  { src: P + "team-with-dr-k-lawn.webp", alt: "Dr. Kristine Schlichting with the Hopewell team outside the office", w: 1200, h: 900, cap: "Meet our team", href: "/about-us/" },
+  { src: P + "php-group-room.webp", alt: "A Hopewell PHP group room in Glastonbury", w: 1200, h: 900, cap: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/" },
+  { src: P + "teen-iop-outside.webp", alt: "Teens from our Teen IOP outside the Glastonbury office", w: 1200, h: 900, cap: "Teen IOP, ages 13\u201317", href: "/programs/teen-iop/" },
+  { src: P + "iop-group-session.webp", alt: "An addiction IOP group session at Hopewell", w: 1200, h: 900, cap: "Addiction IOP", href: "/programs/addiction-iop/" },
+  { src: P + "sg-tween-group-room.webp", alt: "The tween group room at our South Glastonbury office", w: 1200, h: 900, cap: "Tween & Teen IOP", href: "/programs/tween-iop/" },
+  { src: P + "womens-wellness-team.webp", alt: "The Women\u2019s Wellness IOP team", w: 1200, h: 900, cap: "Women\u2019s Wellness IOP", href: "/programs/womens-wellness-iop/" },
+  { src: P + "providers-together.webp", alt: "Hopewell psychiatric providers together", w: 1200, h: 1600, cap: "Psychiatry & medication management", href: "/programs/medication-management/" },
 ];
 
 // 4. What we help with — conditions wheel (graphic) + program cards written around the visitor's problem.
@@ -187,7 +181,7 @@ const orgSchema = {
 const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SITE));
 ---
 
-<Base title="Mental Health & Addiction Treatment in CT | Hopewell" description="In-person mental health, addiction and psychiatry care in Glastonbury, West Hartford, East Hampton and Westbrook, CT. IOP, PHP and more. Check coverage." canonical={SITE + "/"} image={heroSlides[0][0]}>
+<Base title="Mental Health & Addiction Treatment in CT | Hopewell" description="In-person mental health, addiction and psychiatry care in Glastonbury, West Hartford, East Hampton and Westbrook, CT. IOP, PHP and more. Check coverage." canonical={SITE + "/"} image={heroSlides[0].src}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -195,58 +189,39 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <main class="hw">
 
   <!-- 1. Hero + form -->
-  <section class="hero">
-    <div class="hero-media" aria-hidden="true">
-      {heroSlides.map(([src, , pos], i) => (
-        <img class:list={["hero-slide", i === 0 && "is-active"]} src={src} alt="" width="1920" height="1440" style={`object-position:${pos}`} fetchpriority={i === 0 ? "high" : "low"} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
-      ))}
-    </div>
-    <div class="hero-scrim" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hs" role="region" aria-roledescription="carousel" aria-label="Hopewell programs">
-        <div class="hs-slides" aria-live="off">
-          <div class="hs-slide is-active" role="group" aria-roledescription="slide" aria-label={`1 of ${heroSlides.length}`}>
+  <section class="hero hero-has-slider">
+    <svg class="hero-arcs" viewBox="0 0 820 820" aria-hidden="true"><circle cx="410" cy="410" r="400" /><circle cx="410" cy="410" r="300" /><circle cx="410" cy="410" r="200" /></svg>
+    <div class="container">
+      <div class="hero-top">
+        <div>
           <h1>Mental Health, Addiction &amp; Psychiatry Care in Connecticut</h1>
           <p class="hero-tag">There is <em>hope</em> to <em>heal</em>.</p>
+        </div>
+        <div>
           <a class="hero-rating" href="/testimonials/"><span class="g"><img src="/Assets/home-b/google-g.svg" alt="" width="16" height="16" /></span><span class="stars" aria-hidden="true">★★★★★</span><span>4.8 on Google · 368 reviews</span></a>
           <p class="lede">Outpatient mental health and addiction care from a <a class="inl" href="/about-us/">Connecticut team</a> you meet in person.</p>
-          <ul class="hero-bullets">
-            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/intensive-outpatient-program/">Intensive outpatient program (IOP)</a> &amp; PHP</span></li>
-            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/medication-management/">Psychiatry &amp; medication management</a></span></li>
-            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/addiction-iop/">Addiction IOP</a></span></li>
-            <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Ages 4 and up, in person or by telehealth</span></li>
-          </ul>
-          <div class="hero-ctas">
-            <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
-            <a href="/admissions/" class="btn btn-ghost">How admissions works</a>
-          </div>
-          </div>
-          {programSlides.map((x, i) => (
-            <div class="hs-slide" role="group" aria-roledescription="slide" aria-label={`${i + 2} of ${heroSlides.length}`} aria-hidden="true" inert>
-              <p class="hs-title">{x.t}</p>
-              <p class="lede">{x.lede}</p>
-              <ul class="hero-bullets">
-                {x.bullets.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{b}</span></li>)}
-              </ul>
-              <div class="hero-ctas">
-                <a href={x.href} class="btn btn-blue">{x.cta}</a>
-                <a href={PHONE.href} class="btn btn-ghost"><Icon name="phone" />Call {PHONE.display}</a>
-              </div>
-            </div>
-          ))}
         </div>
-        <div class="hs-nav">
-          <button type="button" class="hs-btn" data-dir="-1" aria-label="Previous slide"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="hero-dots" role="group" aria-label="Choose a slide">
-            {heroSlides.map(([, label], i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show slide ${i + 1}: ${i === 0 ? "Hopewell Health Solutions" : programSlides[i - 1].t}`} aria-current={i === 0 ? "true" : undefined}></button>)}
-          </div>
-          <button type="button" class="hs-btn" data-dir="1" aria-label="Next slide"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button type="button" class="hs-btn hs-pause" aria-label="Pause slides" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></button>
+      </div>
+      <!-- Photo-led rotating banner with the form beside it on desktop (client doc, Task 1). Phones: no form here;
+           the form sits further down the page (insurance section). -->
+      <div class="hero-grid">
+        <div class="hero-slider"><PhotoSlider photos={heroSlides} label="Hopewell programs and team" arc="left" eager /></div>
+        <div class="hero-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
+      </div>
+      <ul class="hero-bullets">
+        <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/intensive-outpatient-program/">Intensive outpatient program (IOP)</a> &amp; PHP</span></li>
+        <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/addiction-iop/">Addiction &amp; substance use IOP</a></span></li>
+        <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span><a class="inl" href="/programs/medication-management/">Psychiatry &amp; medication management</a></span></li>
+        <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>Ages 4 and up, in person or by telehealth</span></li>
+      </ul>
+      <div class="hero-foot">
+        <div class="hero-ctas">
+          <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
+          <a href="/admissions/" class="btn btn-ghost">How admissions works</a>
         </div>
-        <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" />Glastonbury · South Glastonbury · West Hartford · East Hampton · Westbrook, CT</p>
         <HeroCreds />
       </div>
-      <div class="hero-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
+      <p class="hero-where"><Icon name="pin" class="h-[18px] w-[18px]" />Glastonbury · South Glastonbury · West Hartford · East Hampton · Westbrook, CT</p>
     </div>
   </section>
 
@@ -417,32 +392,6 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
 
 <script>
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const slides = [...document.querySelectorAll<HTMLElement>(".hero-slide")];
-  const panes = [...document.querySelectorAll<HTMLElement>(".hs-slide")];
-  const dots = [...document.querySelectorAll<HTMLButtonElement>(".hero-dots button")];
-  const hs = document.querySelector<HTMLElement>(".hs");
-  const pauseBtn = document.querySelector<HTMLButtonElement>(".hs-pause");
-  let cur = 0, paused = reduce, hover = false;
-  const show = (n: number) => {
-    cur = (n + panes.length) % panes.length;
-    slides.forEach((x, i) => x.classList.toggle("is-active", i === cur));
-    panes.forEach((x, i) => { const on = i === cur; x.classList.toggle("is-active", on); x.toggleAttribute("inert", !on); on ? x.removeAttribute("aria-hidden") : x.setAttribute("aria-hidden", "true"); });
-    dots.forEach((x, i) => { x.classList.toggle("is-on", i === cur); i === cur ? x.setAttribute("aria-current", "true") : x.removeAttribute("aria-current"); });
-  };
-  const setPaused = (p: boolean) => { paused = p; hs?.classList.toggle("is-paused", p); pauseBtn?.setAttribute("aria-pressed", String(p)); pauseBtn?.setAttribute("aria-label", p ? "Play slides" : "Pause slides"); };
-  setPaused(paused);
-  dots.forEach((d, i) => d.addEventListener("click", () => show(i)));
-  document.querySelectorAll<HTMLButtonElement>(".hs-btn[data-dir]").forEach((b) => b.addEventListener("click", () => show(cur + Number(b.dataset.dir))));
-  pauseBtn?.addEventListener("click", () => setPaused(!paused));
-  hs?.addEventListener("mouseenter", () => (hover = true));
-  hs?.addEventListener("mouseleave", () => (hover = false));
-  hs?.addEventListener("focusin", () => (hover = true));
-  hs?.addEventListener("focusout", (e) => { if (!hs.contains(e.relatedTarget as Node)) hover = false; });
-  // Swipe on phones.
-  let x0 = 0;
-  hs?.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), { passive: true });
-  hs?.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
-  if (panes.length > 1) setInterval(() => { if (!paused && !hover && !document.hidden) show(cur + 1); }, 7000);
   // Sticky mobile button hides while a form is on screen.
   const sticky = document.querySelector<HTMLElement>(".hw-sticky-cta");
   // Hidden while a form or the hero buttons are on screen (they overlapped on phones).

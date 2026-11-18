@@ -1094,22 +1094,27 @@ main.hw .wq-more { display: none; }
   main.hw .rv-gbps li > a { flex: 1; align-content: start; }
 }
 
-/* Homepage hero message slider (client request 2026-11-18). Slides share one grid cell so the hero keeps the height of
-   the tallest slide and nothing jumps; the active one fades in. */
-.hw .hs-slides { display: grid; }
-.hw .hs-slide { grid-area: 1 / 1; align-self: center; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease, visibility 0s linear .6s; }
-.hw .hs-slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .6s ease, transform .6s ease, visibility 0s; }
-.hw .hs-title { margin: 0; font-family: var(--hw-head); font-weight: 800; color: #fff; font-size: clamp(32px, 3.6vw, 50px); line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
-.hw .hs-nav { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
-.hw .hs-nav .hero-dots { margin-top: 0; }
-.hw .hs-btn { flex: none; width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; transition: background .2s, border-color .2s; }
-.hw .hs-btn:hover { background: rgba(255,255,255,.2); border-color: #fff; }
-.hw .hs-btn:focus-visible { outline: 3px solid var(--hw-sky); outline-offset: 2px; }
-.hw .hs-pause { margin-left: 4px; }
-.hw .hs-pause .i-play { display: none; }
-.hw .hs.is-paused .hs-pause .i-play { display: block; }
-.hw .hs.is-paused .hs-pause .i-pause { display: none; }
-.hw .hs-nav .hero-dots button { width: 10px; height: 10px; }
-.hw .hs-nav .hero-dots button.is-on { width: 30px; }
-@media (prefers-reduced-motion: reduce) { .hw .hs-slide, .hw .hs-slide.is-active { transition: none; transform: none; } }
-@media (max-width: 640px) { .hw .hs-btn { width: 36px; height: 36px; } .hw .hs-nav { gap: 8px; } }
+/* Homepage hero: photo-led rotating slider with the form beside it on desktop (client doc Task 1, 2026-11-18). */
+.hw .hero-has-slider { background: var(--hw-night); min-height: 0; display: block; }
+.hw .hero-top { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 16px clamp(28px, 4vw, 56px); align-items: end; }
+.hw .hero-top .hero-rating { margin-top: 0; }
+.hw .hero-top .lede { margin-top: 12px; }
+.hw .hero-has-slider .hero-grid { margin-top: clamp(26px, 3vw, 38px); grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; }
+.hw .hero-slider .ps-single .ps-track { box-shadow: 0 30px 80px rgba(0,0,0,.45); background: #0d2f52; }
+.hw .hero-slider .ps-cap { font-size: 15px; padding: 9px 15px; background: rgba(255,255,255,.95); color: var(--hw-navy); }
+.hw .hero-slider a.ps-cap:hover { background: var(--hw-sky-soft); color: var(--hw-navy); }
+.hw .hero-slider a.ps-cap::after { content: " \2192"; }
+.hw .hero-slider .ps-btn { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); color: #fff; }
+.hw .hero-slider .ps-btn:hover, .hw .hero-slider .ps-btn:focus-visible { background: #fff; color: var(--hw-navy); }
+.hw .hero-slider .ps-dots button { background: rgba(255,255,255,.35); }
+.hw .hero-slider .ps-dots button.is-on { background: var(--hw-sky); }
+.hw .hero-has-slider .hero-bullets { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; margin-top: 30px; }
+.hw .hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-top: 26px; }
+.hw .hero-foot .hero-ctas { margin-top: 0; }
+.hw .hero-foot .hc { margin: 0; padding: 0; border: 0; }
+.hw .hero-has-slider .hero-where { margin-top: 24px; }
+@media (max-width: 999px) {
+  .hw .hero-top, .hw .hero-has-slider .hero-grid { grid-template-columns: 1fr; }
+  .hw .hero-has-slider .hero-bullets { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) { .hw .hero-has-slider .hero-bullets { grid-template-columns: 1fr; } }
