@@ -287,3 +287,10 @@
 .hw .lh-glance-foot { display: flex; align-items: center; gap: 10px; margin: 6px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.12); font-family: var(--hw-head); font-weight: 700; font-size: 15px; color: #fff; }
 .hw .lh-glance-foot svg { color: #e0b56a; }
 @media (max-width: 560px) { .hw .lh-glance ul { grid-template-columns: 1fr; } .hw .lh-glance li:nth-child(even) { padding-left: 0; border-left: 0; } .hw .lh-glance li:nth-child(2) { border-top: 1px solid rgba(255,255,255,.12); } .hw .lh-glance li:nth-child(odd) { padding-right: 0; } }
+
+/* Group side panels carry a real photo instead of an empty colour block (user 2026-11-18). */
+.hw .wq-group-head.has-photo { isolation: isolate; min-height: 240px; }
+.hw .wq-group-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.hw .wq-group-head.has-photo::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,29,55,.15) 0%, rgba(0,29,55,.35) 45%, rgba(0,29,55,.88) 100%); }
+.hw .wq-group-head.has-photo .wq-group-icon { background: rgba(0,29,55,.55); backdrop-filter: blur(4px); }
+@media (max-width: 999px) { .hw .wq-group-head.has-photo { min-height: 200px; flex-direction: column; align-items: flex-start; justify-content: space-between; } }

@@ -79,9 +79,9 @@ const all = Object.fromEntries(groups.flatMap((g) => g.items).map((c) => [c.href
 const medMgmt = { t: "Medication Management", short: "Medication management", href: "/programs/medication-management/", d: "Psychiatric evaluations and follow-up with our board-certified prescribers.", more: `Board-certified prescribers who build personalized plans, never one-size-fits-all, for ages 4 and up. See <a class="inl" href="/programs/medication-management/">psychiatry and medication management</a>.`, helps: ["Depression and anxiety", "ADHD", "Bipolar disorder"] };
 const pick = (hrefs) => hrefs.map((h) => all[h]);
 const briefGroups = [
-  { key: "therapies", name: "Therapies", note: "Talk-based and skills-based approaches, in person, one-on-one or in groups", icon: "chat", tone: "navy", items: pick(["/treatment-methods/emdr/", "/treatment-methods/dbt/", "/treatment-methods/group-therapy/", "/treatment-methods/therapeutic-treatments/"]) },
-  { key: "medical", name: "Medical treatments", note: "Treatments led by psychiatric and medical providers", icon: "brain", tone: "blue", items: [...pick(["/treatment-methods/tms/", "/treatment-methods/medication-assisted-treatment/"]), medMgmt] },
-  { key: "testing", name: "Testing", note: "Clear answers that guide the treatment plan", icon: "clipboard", tone: "sage", items: pick(["/treatment-methods/adhd-testing/", "/treatment-methods/neuropsychological-testing/", "/treatment-methods/genesight-testing/"]) },
+  { key: "therapies", name: "Therapies", note: "Talk-based and skills-based approaches, in person, one-on-one or in groups", icon: "chat", tone: "navy", img: "/Assets/hhs-2026/group-room-feelings-wheel.webp", alt: "A Hopewell group therapy room", items: pick(["/treatment-methods/emdr/", "/treatment-methods/dbt/", "/treatment-methods/group-therapy/", "/treatment-methods/therapeutic-treatments/"]) },
+  { key: "medical", name: "Medical treatments", note: "Treatments led by psychiatric and medical providers", icon: "brain", tone: "blue", img: "/Assets/hhs-2026/tms-neurostar-room.webp", alt: "The NeuroStar TMS room at Hopewell", items: [...pick(["/treatment-methods/tms/", "/treatment-methods/medication-assisted-treatment/"]), medMgmt] },
+  { key: "testing", name: "Testing", note: "Clear answers that guide the treatment plan", icon: "clipboard", tone: "sage", img: "/Assets/hhs-2026/tx-east-hampton-play-room.webp", alt: "A testing and play room at our East Hampton office", items: pick(["/treatment-methods/adhd-testing/", "/treatment-methods/neuropsychological-testing/", "/treatment-methods/genesight-testing/"]) },
 ];
 const steps = [
   ["phone", "Reach out", "Call or request a confidential callback. We check your insurance for free."],
@@ -156,7 +156,8 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
         <div class="wq-groups">
           {briefGroups.map((g) => (
             <section class={`wq-group t-${g.tone}`} id={g.key} aria-labelledby={`h-${g.key}`}>
-              <div class="wq-group-head">
+              <div class:list={["wq-group-head", g.img && "has-photo"]}>
+                {g.img && <img class="wq-group-photo" src={g.img} alt={g.alt} width="1200" height="900" loading="lazy" decoding="async" />}
                 <span class="wq-group-icon"><Icon name={g.icon} /></span>
                 <div><h3 id={`h-${g.key}`}>{g.name}</h3><span>{g.note}</span></div>
               </div>
