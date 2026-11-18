@@ -27,9 +27,9 @@ const heroUsps = [
 ];
 const apps = [["Buddhify", T + "budify.webp"], ["Calm", T + "calm.webp"], ["Insight Timer", T + "insight.webp"], ["Headspace", T + "headspace.webp"]];
 const talk = [
-  { icon: "brain", t: "Cognitive Behavioral Therapy", sub: "CBT", d: "A psycho-social intervention that aims to improve mental health by challenging and changing unhelpful cognitive distortions and behaviors, improving emotional regulation, and developing personal coping strategies that target solving current problems.", bar: "#265489" },
-  { icon: "compass", t: "Solutions-Focused Therapy", sub: "We assist clients by", d: "A goal-directed, collaborative approach to psychotherapeutic change, conducted through direct observation of clients’ responses to a series of precisely constructed questions.", bar: "#5c7c6b" },
-  { icon: "sparkles", t: "Video Self-Modeling", sub: "Observational learning", d: "A form of observational learning in which individuals watch themselves performing a behavior successfully on video, then imitate the targeted behavior. Example cases: behavior video self-monitoring and restrictive-eating video self-monitoring.", bar: "#b6863c" },
+  { icon: "brain", t: "Cognitive Behavioral Therapy (CBT)", c: "#2f76c4", short: "Change unhelpful thinking patterns", d: "A psycho-social intervention that aims to improve mental health by challenging and changing unhelpful cognitive distortions and behaviors, improving emotional regulation, and developing personal coping strategies that target solving current problems.", bar: "#265489" },
+  { icon: "compass", t: "Solutions-Focused Therapy", c: "#5c7c6b", short: "Goal-directed and collaborative", d: "A goal-directed, collaborative approach to psychotherapeutic change, conducted through direct observation of clients’ responses to a series of precisely constructed questions.", bar: "#5c7c6b" },
+  { icon: "sparkles", t: "Video Self-Modeling", c: "#b6863c", short: "Observational learning", d: "A form of observational learning in which individuals watch themselves performing a behavior successfully on video, then imitate the targeted behavior. Example cases: behavior video self-monitoring and restrictive-eating video self-monitoring.", bar: "#b6863c" },
 ];
 const mods = [
   ["Outdoor Nature-Assisted Therapy", "An intervention to treat, hasten recovery, and rehabilitate, with the core principle that therapy involves plants, natural materials, and/or the outdoor environment."],
@@ -104,24 +104,26 @@ const schema = {
           <div class="tx-copy">
             <h2>Dialectical Behavior Therapy (DBT)</h2>
             <p class="lede" style="margin-top:16px">DBT is a type of psychotherapy (talk therapy) that uses a cognitive-behavioral approach and emphasizes the psychosocial aspects of treatment. <a class="inl" href="/treatment-methods/dbt/">Learn how DBT works at Hopewell</a>.</p>
-            <p class="tx-card" style="margin-top:18px;flex-direction:row;align-items:center;--bar:#b6863c"><span class="icon-badge"><Icon name="sparkles" /></span><strong style="font-family:var(--hw-head);color:var(--hw-navy)">SPACE Training with <a class="inl" href="/provider/eric-schwartz-psy-d-abpp/">Dr. Schwartz</a></strong></p>
+            <ul class="db-list">
+              <li style="--c:#2f76c4"><span>1</span>Mindfulness</li><li style="--c:#b6863c"><span>2</span>Distress tolerance</li><li style="--c:#5c7c6b"><span>3</span>Emotion regulation</li><li style="--c:#265489"><span>4</span>Interpersonal effectiveness</li>
+            </ul>
+            <p class="db-space"><Icon name="sparkles" class="h-5 w-5" /><span>Also offered: <strong>SPACE Training</strong> with <a class="inl" href="/provider/eric-schwartz-psy-d-abpp/">Dr. Schwartz</a></span></p>
           </div>
           {/* DBT skills graphic (user 2026-11-18: "create a graphic"): the four core DBT skill sets around acceptance + change. */}
-          <figure class="dbg" aria-label="The four core DBT skills, balancing acceptance and change">
-            <p class="dbg-h">The four DBT skills</p>
-            <div class="dbg-grid">
-              <div class="dbg-sk" style="--c:#2f76c4"><span><Icon name="cloud" /></span><b>Mindfulness</b><small>Stay present, without judgment</small></div>
-              <div class="dbg-sk" style="--c:#b6863c"><span><Icon name="shield" /></span><b>Distress tolerance</b><small>Get through a crisis without making it worse</small></div>
-              <div class="dbg-mid"><b>Acceptance</b><i>+</i><b>Change</b></div>
-              <div class="dbg-sk" style="--c:#5c7c6b"><span><Icon name="heart" /></span><b>Emotion regulation</b><small>Understand and steady big feelings</small></div>
-              <div class="dbg-sk" style="--c:#265489"><span><Icon name="users" /></span><b>Interpersonal effectiveness</b><small>Ask for what you need, keep relationships</small></div>
-            </div>
-            <figcaption>The core curriculum in our <a href="/programs/intensive-outpatient-program/">IOP programs</a></figcaption>
+          {/* DBT wheel (user 2026-11-18: "do these better"): four skill segments around acceptance + change, on a light card. */}
+          <figure class="db-wheel">
+            <svg viewBox="0 0 300 300" role="img" aria-label="The four DBT skills: mindfulness, distress tolerance, emotion regulation, interpersonal effectiveness, around acceptance and change"><path d="M156.2,32.2 A118,118 0 0 1 267.8,143.8 L223.9,146.1 A74,74 0 0 0 153.9,76.1 Z" fill="#2f76c4"/><path d="M267.8,156.2 A118,118 0 0 1 156.2,267.8 L153.9,223.9 A74,74 0 0 0 223.9,153.9 Z" fill="#b6863c"/><path d="M143.8,267.8 A118,118 0 0 1 32.2,156.2 L76.1,153.9 A74,74 0 0 0 146.1,223.9 Z" fill="#5c7c6b"/><path d="M32.2,143.8 A118,118 0 0 1 143.8,32.2 L146.1,76.1 A74,74 0 0 0 76.1,146.1 Z" fill="#265489"/><circle cx="217.9" cy="82.1" r="15" fill="#fff" fill-opacity=".95"/><text x="217.9" y="87.1" text-anchor="middle" font-size="14" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">1</text><circle cx="217.9" cy="217.9" r="15" fill="#fff" fill-opacity=".95"/><text x="217.9" y="222.9" text-anchor="middle" font-size="14" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">2</text><circle cx="82.1" cy="217.9" r="15" fill="#fff" fill-opacity=".95"/><text x="82.1" y="222.9" text-anchor="middle" font-size="14" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">3</text><circle cx="82.1" cy="82.1" r="15" fill="#fff" fill-opacity=".95"/><text x="82.1" y="87.1" text-anchor="middle" font-size="14" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">4</text><circle cx="150" cy="150" r="66" fill="#fff"/><text x="150" y="142" text-anchor="middle" font-size="17" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">Acceptance</text><text x="150" y="160" text-anchor="middle" font-size="16" font-weight="800" fill="#b6863c" font-family="Urbanist, sans-serif">+</text><text x="150" y="178" text-anchor="middle" font-size="17" font-weight="800" fill="#0b2f55" font-family="Urbanist, sans-serif">Change</text></svg>
+            <figcaption>The core skills curriculum in our <a class="inl" href="/programs/intensive-outpatient-program/">IOP programs</a></figcaption>
           </figure>
         </div>
-        <div class="tx-cards" style="margin-top:36px">
-          {talk.map((c) => <div class="tx-card" style={`--bar:${c.bar}`}><span class="icon-badge"><Icon name={c.icon} /></span><h3>{c.t}</h3><p style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-slate)">{c.sub}</p><p>{c.d}</p></div>)}
-        </div>
+        <ul class="tt-cards">
+          {talk.map((c) => (
+            <li style={`--c:${c.c}`}>
+              <div class="tt-top"><span class="tt-ico"><Icon name={c.icon} class="h-6 w-6" /></span><div><h3>{c.t}</h3><p class="tt-short">{c.short}</p></div></div>
+              <p class="tt-d">{c.d}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 

@@ -312,3 +312,24 @@
 .hw .ad-doc svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 30px rgba(0,29,55,.15)); }
 .hw .ad-walk .ad-get { margin-top: 18px; }
 @media (max-width: 999px) { .hw .ad-quiz, .hw .ad-walk { grid-template-columns: minmax(0, 1fr); } .hw .ad-doc { max-width: 360px; } }
+
+/* DBT section redo (2026-11-18): skill list, inline SPACE note, light wheel graphic, cleaner approach cards. */
+.hw .db-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; }
+.hw .db-list li { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--hw-navy); font-size: 16px; }
+.hw .db-list svg { color: var(--hw-blue); flex: none; }
+.hw .db-space { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--hw-line); font-size: 16px; color: var(--hw-body); }
+.hw .db-space svg { color: #b6863c; flex: none; }
+.hw .db-wheel { margin: 0; padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: var(--hw-mist, #eef4fa); text-align: center; }
+.hw .db-wheel svg { width: min(100%, 360px); height: auto; display: block; margin: 0 auto; }
+.hw .db-wheel figcaption { margin-top: 12px; font-size: 14.5px; color: var(--hw-body); }
+.hw .tt-cards { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hw .tt-cards li { display: flex; flex-direction: column; gap: 14px; padding: 0 0 22px; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); overflow: hidden; box-shadow: 0 12px 30px rgba(0,29,55,.05); }
+.hw .tt-top { display: flex; gap: 14px; align-items: center; padding: 20px 22px; background: color-mix(in srgb, var(--c) 12%, #fff); border-bottom: 3px solid var(--c); }
+.hw .tt-ico { flex: none; width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--c); color: #fff; }
+.hw .tt-top h3 { margin: 0; font-size: 18px; line-height: 1.25; }
+.hw .tt-short { margin: 2px 0 0; font-size: 14px; font-weight: 600; color: var(--c); }
+.hw .tt-d { margin: 0; padding: 0 22px; font-size: 15.5px; line-height: 1.6; color: var(--hw-body); }
+@media (max-width: 999px) { .hw .tt-cards { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 460px) { .hw .db-list { grid-template-columns: minmax(0, 1fr); } }
+
+.hw .db-list li span { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #fff; font-size: 13px; font-weight: 800; }
