@@ -132,10 +132,15 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
   @media (max-width: 640px) {
     .hw-footer { padding-top: 34px; font-size: 14.5px; }
     .hw-footer-grid { grid-template-columns: 1fr 1fr; gap: 22px 18px; padding-bottom: 24px; }
-    .hw-footer-brand { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px 16px; }
-    .hw-footer-brand > a:first-child { grid-row: span 2; }
-    .hw-footer-brand img { width: 120px; margin: 0; }
-    .hw-footer-brand p { grid-column: 1 / -1; grid-row: 3; font-size: 14px; line-height: 1.55; max-width: none; }
+    /* one left-aligned column (QA 2026-11-18): logo, phone, socials in one row, tagline, seals */
+    .hw-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+    .hw-footer-brand > a:first-child { order: 0; }
+    .hw-f-phone { order: 1; }
+    .hw-social { order: 2; }
+    .hw-footer-brand p { order: 3; }
+    .hw-f-trust { order: 4; margin-top: 4px; }
+    .hw-footer-brand img { width: 130px; margin: 0; }
+    .hw-footer-brand p { font-size: 14px; line-height: 1.55; max-width: none; margin: 0; }
     .hw-f-phone { margin: 0; font-size: 18px; white-space: nowrap; }
     .hw-social { margin: 0; gap: 6px; }
     .hw-social a { width: 36px; height: 36px; }

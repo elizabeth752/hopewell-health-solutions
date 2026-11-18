@@ -135,14 +135,14 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
   .lead-card .lc-foot a { font-weight: 700; color: var(--hw-blue, #2f6fd0); text-decoration: underline; text-underline-offset: 2px; }
   @media (max-width: 520px) { .lead-card { padding: 22px 18px 18px; } .lead-card .lc-grid { grid-template-columns: 1fr; } .lead-card .lc-hipaa { height: 34px; } }
   @media (prefers-reduced-motion: reduce) { .lead-card .lc-more { transition: none; } }
-  /* Phones: payer logos as a 2-per-row grid of large tiles (same rule as hw/Insurance.astro; repeated here because
-     the homepage builds its own insurance section next to this form and doesn't load Insurance.astro). */
+  /* Phones: payer logos as a self-moving row of large tiles (same rule as hw/Insurance.astro; the homepage builds its
+     own insurance section next to this form). Base.astro drifts it by scrollLeft: pauses on touch, swipeable. */
   @media (max-width: 640px) {
-    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; }
-    .hw .payers .marquee-track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: auto; animation: none; }
-    .hw .payers .marquee .payer[aria-hidden="true"] { display: none; }
-    .hw .payers .marquee .payer { height: 88px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
-    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 150px; max-height: 50px; object-fit: contain; }
+    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; overflow: visible; }
+    .hw .payers .marquee-track { display: flex; gap: 12px; width: auto; animation: none; transform: none; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding: 2px var(--hw-gutter, 16px) 6px; }
+    .hw .payers .marquee-track::-webkit-scrollbar { display: none; }
+    .hw .payers .marquee .payer { flex: 0 0 150px; height: 84px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
+    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 118px; max-height: 48px; object-fit: contain; }
   }
 </style>
 

@@ -60,13 +60,13 @@ const steps = [
 </section>
 
 <style is:global>
-  /* Phones: payer logos as a 2-per-row grid of large tiles instead of the small moving strip (reviewer 2026-11-18).
-     The same rule ships in LeadForm.astro for the homepage, which builds its own insurance section. */
+  /* Phones: payer logos as a self-moving row of large tiles (user 2026-11-18; was a 2-per-row grid). Base.astro
+     drifts it by scrollLeft, so it pauses on touch and stays swipeable. Same rule ships in LeadForm.astro for the homepage. */
   @media (max-width: 640px) {
-    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; }
-    .hw .payers .marquee-track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: auto; animation: none; }
-    .hw .payers .marquee .payer[aria-hidden="true"] { display: none; }
-    .hw .payers .marquee .payer { height: 88px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
-    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 150px; max-height: 50px; object-fit: contain; }
+    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; overflow: visible; }
+    .hw .payers .marquee-track { display: flex; gap: 12px; width: auto; animation: none; transform: none; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding: 2px var(--hw-gutter, 16px) 6px; }
+    .hw .payers .marquee-track::-webkit-scrollbar { display: none; }
+    .hw .payers .marquee .payer { flex: 0 0 150px; height: 84px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
+    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 118px; max-height: 48px; object-fit: contain; }
   }
 </style>

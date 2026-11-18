@@ -284,5 +284,16 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
     .cc-link { background: none; border: 0; padding: 0; margin: 0; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; cursor: pointer; }
     .cc-link:hover { text-decoration: underline; }
   }
-  @media (max-width: 600px) { .cc { right: 16px; bottom: 16px; padding: 18px 16px 14px; } }
+  @media (max-width: 600px) {
+    /* Phones (mobile QA 2026-11-18): compact card, three buttons on one row, so it covers less of the first screen */
+    .cc { right: 12px; bottom: 12px; width: calc(100vw - 24px); padding: 16px 16px 14px; font-size: 13.5px; line-height: 1.5; max-height: calc(100vh - 24px); }
+    .cc__title { font-size: 18px; margin-bottom: 8px; }
+    .cc__body p { margin-bottom: 8px; }
+    .cc details { margin-bottom: 10px; }
+    .cc__actions { flex-wrap: nowrap; gap: 6px; }
+    .cc__actions .cc__btn { flex: 1 1 0; min-width: 0; height: 44px; min-height: 44px; padding: 0 6px; font-size: 14px; }
+    .cc__actions .cc__btn--ghost { flex-basis: 0; }
+    .cc__prefs:not([hidden]) ~ .cc__actions { flex-wrap: wrap; }
+    .cc__prefs:not([hidden]) ~ .cc__actions .cc__btn--ghost { flex-basis: 100%; }
+  }
 </style>

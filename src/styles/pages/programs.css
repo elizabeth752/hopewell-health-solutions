@@ -538,3 +538,14 @@
   .hw .ph-tt-row { gap: 3px; }
   .hw .ph-tt-cell.is-flex { font-size: 12.5px; }
 }
+/* Programs hub panels (user 2026-11-18: "image too long" / "doesn't align"): the side photo no longer stretches to the
+   full panel height. It keeps a 4:5 frame at the top of the panel, inset with the same padding and radius as the cards,
+   so its edges line up. Row thumbnails are a fixed square instead of stretching with tall rows. */
+@media (min-width: 900px) {
+  .hw .ph-panel { align-items: start; }
+  .hw .ph-panel-media { min-height: 0; aspect-ratio: 1 / 1; margin: clamp(24px, 3vw, 36px) 0 clamp(24px, 3vw, 36px) clamp(24px, 3vw, 36px); border-radius: 20px; overflow: hidden; }
+  .hw .ph-panel-cap { padding: 50px 20px 18px; }
+  .hw .ph-panel-cap h3 { font-size: 22px; }
+}
+.hw .ph-row { align-items: center; }
+.hw .ph-row > img { height: 112px; min-height: 0; aspect-ratio: 1 / 1; }

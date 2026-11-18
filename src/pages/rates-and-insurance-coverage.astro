@@ -167,7 +167,7 @@ const [bIop, bService, bCosts, bTricare, bTime] = blocks;
         <div class="ax-table-wrap">
           <table class="ax-table">
             <thead><tr><th scope="col">Level of care</th><th scope="col">How it’s billed</th><th scope="col">Coverage notes</th></tr></thead>
-            <tbody>{levels.map(([s, b, n]) => <tr><th scope="row" set:html={s} /><td>{b}</td><td>{n}</td></tr>)}</tbody>
+            <tbody>{levels.map(([s, b, n]) => <tr><th scope="row" set:html={s} /><td data-label="How it’s billed">{b}</td><td data-label="Coverage notes">{n}</td></tr>)}</tbody>
           </table>
         </div>
         <p style="margin-top:16px;font-size:15.5px;color:var(--hw-slate)">No prices are listed because what you pay depends on your plan. We check each service with your carrier before anything is scheduled.</p>

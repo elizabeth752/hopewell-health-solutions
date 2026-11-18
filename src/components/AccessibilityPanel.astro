@@ -89,7 +89,9 @@ const opts = [
   .a11y-opt { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; }
   .a11y-opt input { width: 18px; height: 18px; accent-color: #0B2F55; }
   .a11y-reset { width: 100%; margin-top: 10px; height: 40px; border: 1.5px solid #0B2F55; border-radius: 6px; background: #0B2F55; color: #fff; font-weight: 700; cursor: pointer; }
-  @media (max-width: 600px) { .a11y-btn { width: 42px; height: 42px; top: auto; bottom: 96px; transform: none; } .a11y-panel { left: 16px; right: 16px; width: auto; top: auto; bottom: 150px; transform: none; } }
+  /* Phones (mobile QA 2026-11-18): the button sits in the same bottom band as the sticky "Check coverage" button (one
+     floating row instead of two), so it no longer lands on hero buttons and card text mid-screen. */
+  @media (max-width: 767px) { .a11y-btn { width: 44px; height: 44px; top: auto; bottom: calc(17px + env(safe-area-inset-bottom, 0px)); transform: none; } .a11y-panel { left: 12px; right: auto; width: min(340px, calc(100vw - 24px)); top: auto; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); max-height: calc(100vh - 160px); transform: none; } }
 
   /* Effects */
   html[data-a11y-size="1"] body { zoom: 1.1; }

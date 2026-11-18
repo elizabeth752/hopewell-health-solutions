@@ -167,7 +167,9 @@ const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.
     .hw-menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     .hw-nav { display: none; }
     .hw-nav[data-open="true"] { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - 120px); overflow-y: auto; background: #fff; border-bottom: 1px solid var(--hw-line); padding: 8px var(--hw-gutter) 24px; font-size: 17px; }
-    .hw-nav[data-open="true"] .hw-nav-top { justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--hw-line); }
+    .hw-nav[data-open="true"] .hw-nav-top { display: flex; width: 100%; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--hw-line); }
+    /* open menu fills the screen below the bar (QA 2026-11-18) */
+    .hw-nav[data-open="true"] { max-height: calc(100dvh - 124px); box-shadow: 0 18px 30px rgba(0,29,55,.12); }
     .hw-drop[data-expanded="true"] .hw-panel { display: block; padding: 6px 0 10px 12px; }
     .hw-drop[data-expanded="true"] :global(.hw-caret) { transform: rotate(180deg); }
     .hw-nav-actions { flex-direction: column; align-items: stretch; margin: 18px 0 0; gap: 12px; }
