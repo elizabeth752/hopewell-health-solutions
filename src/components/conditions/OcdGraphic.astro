@@ -1,0 +1,53 @@
+---
+// "The OCD cycle" graphic (user 2026-11-18: "here a graphic"): obsession → anxiety → compulsion → short-lived relief,
+// and back again. Shows why OCD isn't "just being neat": the ritual keeps the loop going. Pure HTML/SVG.
+import Icon from "../Icon.astro";
+const steps = [
+  { t: "Obsession", d: "An unwanted, repeated thought or image", icon: "cloud", c: "#2f76c4" },
+  { t: "Anxiety", d: "Real distress that builds and builds", icon: "alert", c: "#b6863c" },
+  { t: "Compulsion", d: "Checking, cleaning or counting to ease it", icon: "refresh", c: "#5c7c6b" },
+  { t: "Short relief", d: "It fades, then the thought comes back", icon: "clock", c: "#265489" },
+];
+---
+<figure class="ocg" aria-label="The OCD cycle: obsession, anxiety, compulsion, short-lived relief, then the obsession returns">
+  <p class="ocg-h">The OCD cycle</p>
+  <div class="ocg-ring">
+    <svg class="ocg-loop" viewBox="0 0 300 300" aria-hidden="true">
+      <defs><marker id="ocg-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#9cc3ea" /></marker></defs>
+      <path d="M150 40 A110 110 0 0 1 260 150" marker-end="url(#ocg-arrow)" />
+      <path d="M260 150 A110 110 0 0 1 150 260" marker-end="url(#ocg-arrow)" />
+      <path d="M150 260 A110 110 0 0 1 40 150" marker-end="url(#ocg-arrow)" />
+      <path d="M40 150 A110 110 0 0 1 150 40" marker-end="url(#ocg-arrow)" />
+    </svg>
+    <div class="ocg-center"><strong>OCD</strong><span>The ritual keeps the loop going</span></div>
+    {steps.map((s, i) => (
+      <div class={`ocg-step is-${i}`} style={`--c:${s.c}`}>
+        <span class="ocg-ico"><Icon name={s.icon} class="h-5 w-5" /></span>
+        <b>{s.t}</b>
+        <small>{s.d}</small>
+      </div>
+    ))}
+  </div>
+  <figcaption class="ocg-foot"><Icon name="check" class="h-4 w-4" />Therapy like ERP helps break the cycle</figcaption>
+</figure>
+
+<style>
+  .ocg { margin: 0; padding: clamp(22px, 3vw, 30px); border-radius: 28px; background: linear-gradient(160deg, #0b2f55, #12406f); color: #fff; box-shadow: 0 26px 60px rgba(0,29,55,.18); }
+  .ocg-h { margin: 0 0 6px; text-align: center; font-family: var(--hw-head); font-weight: 800; font-size: 18px; color: #9cc3ea; }
+  .ocg-ring { position: relative; width: min(100%, 460px); aspect-ratio: 1; margin: 0 auto; }
+  .ocg-loop { position: absolute; inset: 14%; width: 72%; height: 72%; fill: none; stroke: rgba(156,195,234,.55); stroke-width: 3; stroke-dasharray: 6 7; }
+  .ocg-center { position: absolute; inset: 36%; border-radius: 50%; display: grid; place-content: center; text-align: center; gap: 4px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); }
+  .ocg-center strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(22px, 3vw, 30px); }
+  .ocg-center span { font-size: 11.5px; line-height: 1.3; color: #c9d6e4; padding: 0 8px; }
+  .ocg-step { position: absolute; width: 33%; display: grid; justify-items: center; text-align: center; gap: 3px; padding: 8px 8px 10px; border-radius: 16px; background: #0f3a66; box-shadow: 0 8px 22px rgba(0,0,0,.22); z-index: 1; }
+  .ocg-step.is-0 { top: 0; left: 33.5%; }
+  .ocg-step.is-1 { top: 34%; right: -3%; }
+  .ocg-step.is-2 { bottom: 0; left: 33.5%; }
+  .ocg-step.is-3 { top: 34%; left: -3%; }
+  .ocg-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--c); color: #fff; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+  .ocg-step b { font-family: var(--hw-head); font-size: 15px; }
+  .ocg-step small { font-size: 12px; line-height: 1.3; color: #dce6f1; max-width: 16ch; }
+  .ocg-foot { margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: #dce6f1; }
+  .ocg-foot :global(svg) { color: #7fd3a8; }
+  @media (max-width: 420px) { .ocg-step small { display: none; } .ocg-center span { display: none; } }
+</style>
