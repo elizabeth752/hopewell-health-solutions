@@ -268,3 +268,8 @@
 .hw .ax-logos img { max-width: 100%; max-height: 44px; width: auto; height: auto; object-fit: contain; }
 .hw .ax-logos span { font-family: var(--hw-head); font-weight: 800; font-size: 16px; color: var(--hw-navy); text-align: center; }
 @media (max-width: 520px) { .hw .ax-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .ax-logos li { height: 64px; } }
+
+/* "Find the answers you need" cards: illustrated headers instead of photos (user 2026-11-18). */
+.hw .ax-path-art { display: block; aspect-ratio: 16 / 10; background: radial-gradient(120% 90% at 20% 0%, rgba(255,255,255,.18), transparent 60%), var(--c); }
+.hw .ax-path-art svg { display: block; width: 100%; height: 100%; }
+.hw .ax-path:hover .ax-path-art svg { transform: scale(1.04); transition: transform .3s; }
