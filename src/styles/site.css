@@ -1938,3 +1938,9 @@ main.hw .wq-more { display: none; }
 }
 
 .hw .xp-head { margin-top: 40px; font-size: clamp(20px, 2vw, 24px); }
+
+/* Homepage program cards with real photos (client doc Task 2, 2026-11-18). */
+.hw .wh-feel-list li { flex-wrap: wrap; padding: 0 0 16px; overflow: hidden; }
+.hw .wh-feel-img { flex: 0 0 100%; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; margin-bottom: 4px; }
+.hw .wh-feel-list li > .wh-feel-icon { margin-left: 16px; }
+.hw .wh-feel-list li > span:last-child { flex: 1; min-width: 0; padding-right: 16px; }

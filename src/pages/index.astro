@@ -71,23 +71,23 @@ const seg = (i, n) => {
   return { d: `M${x0},${y0} A${R},${R} 0 0 1 ${x1},${y1} L${x2},${y2} A${r},${r} 0 0 0 ${x3},${y3} Z`, lx, ly };
 };
 const helps = [
-  { q: "“Weekly therapy isn’t enough anymore.”", t: "Adult IOP & PHP", icon: "users", bar: "#2f76c4",
+  { q: "“Weekly therapy isn’t enough anymore.”", t: "Adult IOP & PHP", img: P + "php-group-room.webp", icon: "users", bar: "#2f76c4",
     html: `Structured care while you live at home: our <a class="inl" href="/programs/adult-mental-health-iop/">adult mental health IOP</a> meets a few hours a day, and our <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> adds full days when you need more.` },
-  { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction IOP", icon: "link", bar: "#0b2f55",
+  { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction & Substance Use IOP", img: P + "iop-group-session.webp", icon: "link", bar: "#0b2f55",
     html: `Our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> treats addiction with <a class="inl" href="/what-we-treat/co-occurring/">co-occurring mental health and addiction</a> care alongside it, including step-down care after rehab, at 300 Hebron Ave and Westbrook.` },
-  { q: "“My teen or tween is struggling.”", t: "Teen & Tween IOP", icon: "sparkles", bar: "#5c7c6b",
+  { q: "“My teen or tween is struggling.”", t: "Teen & Tween IOP", img: P + "teen-iop-outside.webp", icon: "sparkles", bar: "#5c7c6b",
     html: `After-school groups for ages 8–17, with the family part of the work. Learn about our <a class="inl" href="/programs/teen-iop/">teen and tween IOP</a>.` },
-  { q: "“I’m carrying too much, and I want women who get it.”", t: "Women’s Wellness IOP", icon: "heart", bar: "#b6863c",
+  { q: "“I’m carrying too much, and I want women who get it.”", t: "Women’s Wellness IOP", img: P + "womens-wellness-team.webp", icon: "heart", bar: "#b6863c",
     html: `A women-only group, mornings or evenings, for burnout, anxiety and life transitions. See the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>.` },
-  { q: "“The job is following me home.”", t: "First Responder IOP", icon: "shield", bar: "#265489",
+  { q: "“The job is following me home.”", t: "First Responder IOP", img: P + "group-lounge-beach-mural.webp", icon: "shield", bar: "#265489",
     html: `For police, fire, EMS and dispatch, with clinicians who understand the work. Explore the <a class="inl" href="/programs/first-responder-iop/">first responder IOP</a>.` },
-  { q: "“I need the right medication, managed well.”", t: "Psychiatry & medication", icon: "pill", bar: "#5c7c6b",
+  { q: "“I need the right medication, managed well.”", t: "Psychiatry & medication", img: P + "south-glastonbury-med-waiting-room.webp", icon: "pill", bar: "#5c7c6b",
     html: `Evaluations and follow-up with our psychiatric providers for ages 4 and up. Read about <a class="inl" href="/programs/medication-management/">psychiatry and medication management</a>.` },
-  { q: "“Medication and therapy haven’t been enough.”", t: "TMS", icon: "brain", bar: "#2f76c4",
+  { q: "“Medication and therapy haven’t been enough.”", t: "TMS", img: P + "tms-neurostar-device.webp", icon: "brain", bar: "#2f76c4",
     html: `FDA-cleared, drug-free treatment for depression that hasn’t responded to other care. Learn about <a class="inl" href="/treatment-methods/tms/">TMS</a>.` },
-  { q: "“I want answers about attention, learning or memory.”", t: "ADHD & neuropsychological testing", icon: "clipboard", bar: "#b6863c",
+  { q: "“I want answers about attention, learning or memory.”", t: "ADHD & neuropsychological testing", img: P + "tx-east-hampton-play-room.webp", icon: "clipboard", bar: "#b6863c",
     html: `Thorough evaluations for children, teens and adults: <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.` },
-  { q: "“Since the baby came, I don’t feel like myself.”", t: "Postpartum depression", icon: "heart", bar: "#265489",
+  { q: "“Since the baby came, I don’t feel like myself.”", t: "Postpartum depression", img: P + "sg-family-room.webp", icon: "heart", bar: "#265489",
     html: `Therapy, medication management and <a class="inl" href="/programs/womens-wellness-iop/">women’s groups</a> for new and expecting mothers. See <a class="inl" href="/what-we-treat/depression/">depression treatment</a>, including postpartum care.` },
 ];
 for (const h of helps) h.href = h.html.match(/href="([^"]+)"/)?.[1] ?? "/programs/";
@@ -267,7 +267,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         <div class="wh-feel-head"><h3>Or start with how you feel</h3><p><a class="inl" href="/programs/">All programs</a></p></div>
         <ul class="wh-feel-list">
           {helps.map((h) => (
-            <li style={`--bar-c:${h.bar}`}><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
+            <li style={`--bar-c:${h.bar}`}><img class="wh-feel-img" src={h.img} alt={`${h.t} at Hopewell`} width="1200" height="900" loading="lazy" decoding="async" /><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
           ))}
         </ul>
       </div>
