@@ -2002,7 +2002,7 @@ main.hw .wq-more { display: none; }
    logos, a slightly narrower form, and logos on one calm row. */
 @media (min-width: 1000px) {
   .hw .hero-old { min-height: 720px; }
-  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) minmax(340px, 410px); gap: clamp(40px, 5vw, 80px); padding-top: 84px; padding-bottom: 116px; }
+  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) minmax(460px, 540px); gap: clamp(36px, 4vw, 64px); padding-top: 84px; padding-bottom: 116px; }
   .hw .ho-text h1 { font-size: clamp(32px, 2.7vw, 46px); line-height: 1.12; }
   .hw .ho-h2 { margin-top: 20px; padding-bottom: 20px; line-height: 1.6; }
   .hw .ho-h3 { margin-top: 22px; }
@@ -2012,7 +2012,6 @@ main.hw .wq-more { display: none; }
   .hw .ho-form .lead-card .lc-grid, .hw .ho-form .lead-card .lc-more-in { gap: 16px 14px; }
 }
 @media (min-width: 1000px) and (max-width: 1240px) {
-  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; }
+  .hw .ho-grid { grid-template-columns: minmax(0, 1fr) 440px; gap: 32px; }
   .hw .ho-text { width: 100%; }
-  .hw .ho-form .lead-card .lc-grid, .hw .ho-form .lead-card .lc-more-in { grid-template-columns: 1fr; }
 }
