@@ -106,7 +106,7 @@ export const locations = [
     phone: "+1-860-672-1457",
     lat: 41.7556912, lng: -72.7643461,
     map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5952.7389464474345!2d-72.7643461!3d41.7556912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7ac50c26c2c71%3A0x794a9d4447f2f815!2s1216%20Farmington%20Ave%20%23301%2C%20West%20Hartford%2C%20CT%2006107!5e0!3m2!1sen!2sus!4v1781754415819!5m2!1sen!2sus",
-    blurb: "Our West Hartford office on Farmington Avenue serves the greater Hartford area with <a class='inl' href='/programs/counseling/'>outpatient therapy</a>, <a class='inl' href='/programs/medication-management/'>psychiatric care</a>, and intensive programs. Centrally located and easy to reach, it’s a welcoming home base for care close to the city.",
+    blurb: "Our West Hartford office on Farmington Avenue serves the greater Hartford area with <a class='inl' href='/programs/counseling/'>outpatient therapy</a> and <a class='inl' href='/programs/medication-management/'>psychiatric care and medication management</a>. Centrally located and easy to reach, it’s a welcoming home base for care close to the city.",
     areas: ["West Hartford", "Hartford", "Newington", "Farmington", "Bloomfield", "Elmwood", "Wethersfield", "Avon"],
     // Hours match the Google Business Profiles (all offices), confirmed 2026-09-28.
     hours: "Mon–Thu 9:00 AM–8:00 PM · Fri 9:00 AM–5:00 PM",
