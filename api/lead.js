@@ -44,6 +44,8 @@ const ALLOWED = [
   'visitor_sid',
 ];
 
+const BACKFILL = ['custom_fields[insurance_carrier]', 'custom_fields[membership_policy_id]'];
+
 function toE164(raw) {
   const digits = String(raw || '').replace(/\D/g, '');
   if (digits.length === 10) return `+1${digits}`;
@@ -76,6 +78,13 @@ function buildPayload(fields) {
     if (!value) continue;
     if ((name === 'sid' || name === 'visitor_sid') && !SID_RE.test(value)) continue;
     out.set(name, value.slice(0, MAX_FIELD_LEN));
+  }
+  // Carrier and member ID are optional on the form, but CTM rejects the whole
+  // lead with "missing required fields" when the reactor requires one and it is
+  // blank (2026-11-16/17: the visitor saw an error and the lead was lost).
+  // Backfill so a blank optional field can never cost a lead.
+  for (const name of BACKFILL) {
+    if (!out.get(name)) out.set(name, 'Not provided');
   }
   return out;
 }
