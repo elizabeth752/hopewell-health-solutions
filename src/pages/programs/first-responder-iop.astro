@@ -28,10 +28,9 @@ import "../../styles/pages/seo.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "Designed by first responders, for first responders",
-  "For police, fire, EMS, corrections &amp; 9-1-1 dispatch, current or retired",
-  "Mon–Thu · 9 AM–12 PM · ~8 weeks · safe &amp; confidential",
-  "CT may compensate you directly during day treatment · FMLA help",
+  "Designed by first responders",
+  "Mon–Thu · 9 AM–12 PM",
+  "Current or retired responders",
 ];
 const groupTopics = [
   ["Trauma processing", "Discussing specific incidents that have had a significant emotional impact."],
@@ -103,12 +102,13 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "First Responder" }]}
       title="First Responder IOP in Connecticut"
-      lede="A confidential, in-person First Responder IOP in Connecticut for police, firefighters, EMS, corrections and 9-1-1 dispatchers, in groups only with other responders. Designed by first responders, for first responders."
+      lede="A confidential, in-person IOP for police, firefighters, EMS, corrections and 9-1-1 dispatchers, in groups only with other responders."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "shield", text: "Confidential" }]}
-      image={P + "php-group-room.webp"}
+      image="/Assets/First%20responder.webp"
+      imagePos="center 40%"
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/chris-patenaude-pa/">Christopher Patenaude, PA</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/chris-patenaude-pa/">Christopher Patenaude, PA</a></p>
     </ServiceHero>
     <!-- 2. As featured in -->
     <Creds />

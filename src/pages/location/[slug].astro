@@ -44,10 +44,9 @@ const offers = OFFER_ORDER.filter((k) => l.offers?.includes(k));
 const offerNames = offers.map((k) => OFFERS[k].t);
 const listText = (a) => a.length > 1 ? a.slice(0, -1).join(", ") + " & " + a[a.length - 1] : a[0];
 const heroUsps = [
-  `At this office: ${listText(offerNames).replace(/&/g, "&amp;")}`,
-  "Daytime &amp; evening appointments",
-  "In person at this office or by secure telehealth",
-  "Joint Commission accredited · most major PPOs",
+  "Joint Commission accredited",
+  "In person or telehealth",
+  "Most major PPOs accepted",
 ];
 
 // ---- Per-office content from the briefs ----------------------------------------------------------------------------
@@ -88,7 +87,7 @@ const PAGE = {
   "glastonbury-ct-3": {
     title: "Teen & Tween IOP in South Glastonbury, CT | Hopewell",
     meta: "Hopewell's South Glastonbury office runs after-school Teen (13–17) and Tween (8–12) IOPs, plus therapy and medication management for families. Check coverage.",
-    h1: "Teen &amp; Tween IOP and Family Therapy in South Glastonbury, CT",
+    h1: "Teen &amp; Tween IOP in South Glastonbury, CT",
     lead: "Home of Hopewell’s Teen and Tween IOPs, with therapy and medication management for the whole family.",
     hero: [L + "1420-main/1420-4.webp", "center 55%"],
     pics: [[P + "south-glastonbury-office.webp", "The South Glastonbury office building at 1420 Main Street"], [L + "1420-main/1420-1.webp", "Hopewell Health Solutions sign at 1420 Main Street"]],
@@ -357,7 +356,7 @@ const eventSchema = ev && {
       <ServiceHero
         crumbs={[{ label: "Locations", href: "/locations/" }, { label: l.name }]}
         title={PAGE.h1}
-        lede={`${PAGE.lead} Compassionate, evidence-based care, close to home, at ${fullAddress}.`}
+        lede={PAGE.lead}
         bullets={heroUsps}
         facts={[{ icon: "clock", text: l.hours ?? "Daytime & evening appointments" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
         image={PAGE.hero[0]}

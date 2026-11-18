@@ -31,10 +31,9 @@ import "../../styles/pages/programs.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "For teens ages 13–17, all are welcome here",
-  "<a class='inl' href='/treatment-methods/dbt/'>DBT</a>/CBT-based, 8–12 weeks · Mon–Thu, 5:00–8:00 PM",
-  "Parents attend weekly, DBT skills carry into the home",
-  "Joint Commission Accredited, the Gold Seal of Approval",
+  "<a class='inl' href='/treatment-methods/dbt/'>DBT</a>/CBT-based, 8–12 weeks",
+  "Weekly parent sessions",
+  "Now accepting new patients",
 ];
 const signs = [
   "Pulling away from friends, family or activities they used to enjoy",
@@ -109,17 +108,17 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Teen IOP" }]}
       title="Teen IOP in Connecticut for Ages 13–17"
-      lede="Hopewell’s teen IOP is an in-person intensive outpatient program in Glastonbury, CT for teens ages 13–17 who need more than weekly therapy. Teens meet after school, keep going to class and live at home, and parents are part of the work. Now accepting new patients."
+      lede="After-school intensive outpatient care in Glastonbury, CT for teens who need more than weekly therapy, while they stay in school and live at home."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "calendar", text: "Mon–Thu · 5–8 PM" }]}
       image={P + "teen-iop-outside.webp"}
       imagePos="center 60%"
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
     <Creds />
 
-    <Split heading="Evidence-based help for struggling teens &amp; families" img="/Assets/service/teen-iop.webp" alt="Teens in Hopewell Health Solutions' teen IOP in Glastonbury, CT" img2={P + "sg-tween-group-room.webp"} alt2="The adolescent group room at our South Glastonbury office">
+    <Split heading="Evidence-based help for struggling teens &amp; families" img="/Assets/tweens-1729660767703.webp" alt="Teenagers laughing together, the age group Hopewell's teen IOP in Glastonbury, CT serves" img2={P + "sg-tween-group-room.webp"} alt2="The adolescent group room at our South Glastonbury office">
       <p><strong>Now accepting patients.</strong> Since COVID-19, we’ve seen exponential levels of <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">depression</a>, self-harm, school refusal, and maladaptive behaviors in adolescents, leaving families stuck and frustrated and kids very vulnerable. Hopewell’s teen IOP was created so parents and teens can receive evidence-based treatment for lifelong mental health and recovery.</p>
       <p>The program runs Monday–Thursday at our <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St, Glastonbury location</a>, for 8–12 weeks. Parents attend once to twice a week to learn the DBT skills being taught, so the skills integrate at home, where they matter most.</p>
       <p>For many families, the teen years are when <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">weekly therapy stops being enough</a>. A teen who was doing fine in middle school starts missing class, staying up all night on a phone, or shutting their door and refusing to talk. An adolescent IOP gives them several hours of structured support each week, with other teens who understand, while they stay in school and at home.</p>

@@ -30,10 +30,9 @@ import "../../styles/pages/seo.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "A program for women, focused on trauma recovery",
-  "Mon–Thu · 5–8 PM · 8 weeks (extendable to your needs)",
-  "Heal within a supportive community of women",
-  "Most major insurance accepted · trauma-informed",
+  "Women-only groups",
+  "8 weeks, extendable",
+  "Most major insurance accepted",
 ];
 const symptoms = [
   { t: "Physical", d: "Fatigue, edginess, and problems with sleep and concentration.", icon: "bolt" },
@@ -108,12 +107,13 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Trauma" }]}
       title="Women's Trauma IOP in Connecticut"
-      lede="A women-only, trauma-informed intensive outpatient program in Connecticut. Heal from past trauma and PTSD symptoms with a team you meet in person, in a supportive community of women. Rebuild your life, one step at a time."
+      lede="A women-only, trauma-informed intensive outpatient program. Heal from trauma and PTSD with a team you meet in person, in a supportive community of women."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "clock", text: "Mon–Thu · 5–8 PM" }]}
-      image={P + "iop-group-room-lights.webp"}
+      image={P + "womens-trauma-iop-group-room.webp"}
+      imagePos="center 45%"
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
 
     <!-- 2. As featured in -->

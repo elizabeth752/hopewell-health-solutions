@@ -173,7 +173,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
           <ul class="wq-facts">
             {heroUsps.slice(0, 3).map((u) => <li><Icon name={u.icon} class="h-[18px] w-[18px]" />{u.t}</li>)}
           </ul>
-          <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue"><Icon name="phone" />Call (860) 735-1448</a><a href="#by-location" class="btn wq-ghost">Find a program near you</a></div>
+          <div class="wq-ctas"><a href="tel:8607351448" class="btn btn-blue only-d"><Icon name="phone" />Call (860) 735-1448</a><a href="#by-location" class="btn wq-ghost">Find a program near you</a></div>
           <HeroCreds />
         </div>
         <p class="lh-hero-now" aria-live="off"><Icon name="pin" class="h-4 w-4" /><span>{heroHouses[0].cap}</span></p>

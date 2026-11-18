@@ -5,10 +5,9 @@
 import ConditionPage from "../../components/conditions/ConditionPage.astro";
 
 const heroUsps = [
-  { icon: "shield", t: "Experienced, board-certified mental health specialists" },
-  { icon: "pill", t: "Medical, psychological & behavioral support" },
-  { icon: "link", t: "Integrated care, we treat co-occurring anxiety, depression & trauma too" },
-  { icon: "calendar", t: "Evening & daytime options · in person or telehealth" },
+  { icon: "shield", t: "Board-certified specialists" },
+  { icon: "pill", t: "Medical & behavioral support" },
+  { icon: "link", t: "Co-occurring care included" },
 ];
 const includes = [
   { t: "Comprehensive assessment", d: "<a class=\"inl\" href=\"/admissions/what-to-expect/\">A full evaluation</a> to understand drinking patterns, co-occurring disorders, medical needs, and readiness for change.", icon: "clipboard", href: null },
@@ -98,7 +97,7 @@ const blocks = [
   {"type": "checks", "h2": "Helping a loved one who drinks", "lede": "You don’t have to figure out the next step alone. Call us with them or on their behalf, and we’ll talk through options and <a class=\"inl\" href=\"/admissions/for-families/\">how to start the conversation</a>.", "foot": "If they drink heavily or daily, they shouldn’t stop suddenly without medical help; our admissions team can help arrange medical detox. If they need a stable place to stay during treatment, we can connect them with <a class=\"inl\" href=\"/programs/addiction-iop/#support\">supportive accommodations</a> near our offices.", "items": family},
   {"type": "checks", "h2": "What results can I expect?", "lede": "With consistent care, clients often work toward:", "foot": "Our goal is to help individuals build the tools, structure, and support needed for sustainable change.", "items": results},
 ];
-const hero = {"crumb": "Alcohol Addiction", "h1": "Alcohol Addiction Treatment in Connecticut", "tagline": "Regain control. Rebuild stability. Begin lasting recovery.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Medically reviewed by Kristine Schlichting, PhD", "image": "/Assets/hhs-2026/iop-team-hallway.webp", "bullets": heroUsps.map((u) => u.t) };
+const hero = {"crumb": "Alcohol Addiction", "h1": "Alcohol Addiction Treatment in Connecticut", "tagline": "Regain control. Rebuild stability. Begin lasting recovery.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Clinically reviewed by Kristine Schlichting, PhD", "image": "/Assets/AdobeStock_404268940.webp", "bullets": heroUsps.map((u) => u.t) };
 const meta = {"title": "Outpatient Alcohol Addiction Treatment in CT | Hopewell", "description": "Outpatient alcohol addiction treatment in Glastonbury and Westbrook, CT. Addiction IOP, medication options and counseling while you keep working. Check coverage.", "canonical": "https://www.hopewellhealthsolutions.com/what-we-treat/alcohol/"};
 ---
 <ConditionPage

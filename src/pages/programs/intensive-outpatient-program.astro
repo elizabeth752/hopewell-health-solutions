@@ -28,19 +28,18 @@ import "../../styles/pages/programs.css";
 
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "Tracks for every age, tweens, teens, women &amp; adults",
-  "Day &amp; evening options, Mon–Thu, keep work &amp; school intact",
-  "Joint Commission Accredited, the Gold Seal of Approval",
-  "8–12 weeks · <a class='inl' href='/treatment-methods/dbt/'>DBT</a>-based care from a multidisciplinary team",
+  "Tracks for every age",
+  "Mon–Thu, day or evening",
+  "8–12 weeks, <a class='inl' href='/treatment-methods/dbt/'>DBT</a>-based",
 ];
 const tracks = [
-  { t: "Adult Co-Occurring IOP", d: "Mental health and substance use treated together, by one team.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: P + "adult-evening-iop-group.webp", bar: "#0b2f55" },
-  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Several days a week", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: P + "iop-group-session.webp", bar: "#265489" },
+  { t: "Adult Co-Occurring IOP", d: "Mental health and substance use treated together, by one team.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: "/Assets/service/what-is-adhd.webp", bar: "#0b2f55" },
+  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Several days a week", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: "/Assets/AdobeStock_542909901.webp", bar: "#265489" },
   { t: "Teen IOP", d: "After-school groups for teens, with family sessions and school coordination.", age: "Ages 13–17", sched: "Mon–Thu · 5:00–8:00 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-iop/", img: P + "teen-iop-outside.webp", bar: "#2f76c4" },
   { t: "Tween IOP", d: "Play, skills and parent coaching for younger kids, after school.", age: "Ages 8–12", sched: "Mon–Thu · 4:30–7:30 PM", loc: "1420 Main St, Glastonbury", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", bar: "#5c7c6b" },
-  { t: "Women's Wellness IOP", d: "Women-only, DBT-based care for anxiety, depression and life transitions.", age: "Women 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", bar: "#b6863c" },
+  { t: "Women's Wellness IOP", d: "Women-only, DBT-based care for anxiety, depression and life transitions.", age: "Women 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp", bar: "#b6863c" },
   { t: "Women's Trauma IOP", d: "A women-only evening group built around healing from trauma.", age: "Women 18+", sched: "Mon–Thu · 5:00–8:00 PM", loc: "300 Hebron Ave, Glastonbury", href: "/programs/womens-trauma-iop/", img: P + "womens-trauma-iop-group-room.webp", bar: "#b6863c" },
-  { t: "First Responder IOP", d: "For police, fire, EMS and dispatch, with peers who get the work.", age: "First responders", sched: "Mon–Thu · 9 AM–12 PM", loc: "300 Hebron Ave, Glastonbury", href: "/programs/first-responder-iop/", img: P + "team-300-hebron.webp", bar: "#265489" },
+  { t: "First Responder IOP", d: "For police, fire, EMS and dispatch, with peers who get the work.", age: "First responders", sched: "Mon–Thu · 9 AM–12 PM", loc: "300 Hebron Ave, Glastonbury", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", bar: "#265489" },
 ];
 const whoBenefit = [
   "<a class='inl' href='/what-we-treat/depression/'>Depression</a> &amp; mood disorders",
@@ -95,12 +94,12 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP" }]}
       title="Intensive Outpatient Programs (IOP) in Connecticut"
-      lede="Intensive outpatient programs in Connecticut · Glastonbury, South Glastonbury &amp; Westbrook · Day &amp; evening. Structured care for tweens, teens, women and adults who need more than weekly therapy, without an overnight stay."
+      lede="Structured day and evening care in Glastonbury, South Glastonbury and Westbrook for tweens, teens, women and adults, without an overnight stay."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "calendar", text: "Mon–Thu · 8–12 weeks" }]}
       image={P + "iop-group-room-lights.webp"}
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
     <Creds />
 

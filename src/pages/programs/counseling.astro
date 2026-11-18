@@ -30,10 +30,9 @@ import "../../styles/pages/seo.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "Individual, couples &amp; family counseling, ages 4+",
-  "~60-minute sessions, weekly · in person or telehealth",
-  "Matched to a therapist who fits, not assigned at random",
-  "Part of a full continuum, step up to <a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a>/<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> anytime",
+  "Ages 4 and up",
+  "Weekly 60-minute sessions",
+  "Matched to the right therapist",
 ];
 const whoFor = [
   { icon: "heart", t: "Individual therapy", d: "For adults, teens &amp; kids (ages 4+), a space that’s entirely yours." },
@@ -120,12 +119,12 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Counseling" }]}
       title="Counseling &amp; Therapy in Connecticut for All Ages"
-      lede="Counseling and therapy in Connecticut for children, teens and adults, at six offices from Glastonbury to Westbrook and by telehealth. Sometimes you just need a great therapist who gets you."
+      lede="Individual, couples and family therapy for children, teens and adults at six offices from Glastonbury to Westbrook, and by telehealth."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "All six CT offices" }]}
       image={P + "east-hampton-therapy-office.webp"}
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
     <!-- 2. As featured in -->
     <Creds />

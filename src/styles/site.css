@@ -575,6 +575,14 @@
 .hw .sv-facts li { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-family: var(--hw-head); font-weight: 700; font-size: 15px; }
 .hw .sv-facts svg { color: var(--hw-sky); }
 .hw .sv-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+/* Hero copy rule (QA 2026-11-18): up to 3 short bullets sit on one wrapping row. On phones the hero keeps ONE CTA
+   (the header already has the call button), shown as the solid primary button. */
+.hw .sv-bullets { display: flex; flex-wrap: wrap; gap: 10px 26px; max-width: none; }
+.hw .sv-bullets li { align-items: center; }
+@media (max-width: 640px) { .hw .sv-bullets { flex-direction: column; gap: 10px; } }
+@media (max-width: 999px) {
+  .hw .sv-ctas .btn-ghost, .hw .wq-ctas .wq-ghost { background: var(--hw-bright); border-color: var(--hw-bright); color: #fff; }
+}
 .hw .sv-form .lead-card { box-shadow: 0 30px 80px rgba(0,0,0,.4); }
 @media (max-width: 999px) { .hw .sv-grid { grid-template-columns: 1fr; } .hw .sv-form:not(.is-keep) { display: none; } .hw .sv-scrim { background: linear-gradient(180deg, rgba(0,29,55,.82), rgba(0,29,55,.94)); } }
 

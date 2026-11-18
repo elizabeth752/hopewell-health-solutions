@@ -5,10 +5,9 @@
 import ConditionPage from "../../components/conditions/ConditionPage.astro";
 
 const heroUsps = [
-  { icon: "shield", t: "Board-certified mental health & addiction specialists" },
-  { icon: "pill", t: "Medication-assisted support & evidence-based therapy" },
-  { icon: "clipboard", t: "For dependency on opioids, benzodiazepines, stimulants & more" },
-  { icon: "compass", t: "In person (Downtown Glastonbury & Westbrook) or telehealth" },
+  { icon: "clipboard", t: "Opioids, benzodiazepines, stimulants & more" },
+  { icon: "pill", t: "Medication-assisted support" },
+  { icon: "shield", t: "Board-certified specialists" },
 ];
 const medications = ["Opioid pain relievers (oxycodone, hydrocodone, morphine)", "Benzodiazepines (Xanax®, Ativan®, Klonopin®)", "Stimulants (Adderall®, Ritalin®, Vyvanse®)", "Sedatives and sleep medications"];
 const includes = [
@@ -85,7 +84,7 @@ const blocks = [
   {"type": "tiles", "h2": "Signs you may benefit from treatment", "lede": "Prescription drug treatment may be appropriate if you experience:", "foot": "Any of these may be a sign of prescription drug addiction; they aren’t a diagnosis. <strong>When to get help:</strong> if you’re taking more than prescribed, running out early, using medication to cope, or struggling to cut back, talk with a medical provider, and don’t stop on your own.", "items": signs},
   {"type": "checks", "h2": "The benefits of treatment", "lede": "Over the course of treatment, clients often work toward:", "foot": "Our mission is to help every client restore safety, stability, and independence.", "items": results},
 ];
-const hero = {"crumb": "Prescription Drug Addiction", "h1": "Prescription Drug Addiction Treatment in Connecticut", "tagline": "Regain control, and rebuild your life.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Medically reviewed by Kristine Schlichting, PhD", "image": "/Assets/hhs-2026/team-300-hebron.webp", "bullets": heroUsps.map((u) => u.t) };
+const hero = {"crumb": "Prescription Drug Addiction", "h1": "Prescription Drug Addiction Treatment in Connecticut", "tagline": "Regain control, and rebuild your life.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Clinically reviewed by Kristine Schlichting, PhD", "image": "/Assets/AdobeStock_516259503%20(1).webp", "bullets": heroUsps.map((u) => u.t) };
 const meta = {"title": "Prescription Drug Addiction Treatment in CT | Hopewell", "description": "Outpatient help in Connecticut for addiction to prescription opioids, benzodiazepines, stimulants and sleep medications, with safe, medically guided care. Check coverage.", "canonical": "https://www.hopewellhealthsolutions.com/what-we-treat/prescription-drugs/"};
 ---
 <ConditionPage

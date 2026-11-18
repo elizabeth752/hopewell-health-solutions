@@ -32,6 +32,8 @@ const canonical = `${SITE}/post/${post.slug}/`;
 const byId = (slug) => providers.find((p) => p.slug === slug);
 const author = byId(post.authorSlug);
 const reviewer = post.reviewerSlug ? byId(post.reviewerSlug) : null;
+// "Medically reviewed" only for prescribers (MD/DO/APRN/NP/PA); psychologists and therapists (e.g. PhD) are "Clinically reviewed".
+const reviewLabel = reviewer && /\b(MD|M\.D\.|DO|APRN|PMHNP|DNP|NP|FNP|PA)\b/.test(reviewer.credentials ?? "") ? "Medically reviewed by" : "Clinically reviewed by";
 const initials = (name) => {
   const w = name.split(",")[0].trim().split(" ").filter(Boolean);
   return (w[0][0] + (w.length > 1 ? w[w.length - 1][0] : "")).toUpperCase();
@@ -348,10 +350,10 @@ const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c
           )}
           {reviewer && (
             reviewer.removed
-              ? <span class="bp-person"><span class="bp-ini">{initials(reviewer.name)}</span><span><small>Medically reviewed by</small><strong>{reviewer.name}</strong>{reviewer.role}</span></span>
+              ? <span class="bp-person"><span class="bp-ini">{initials(reviewer.name)}</span><span><small>{reviewLabel}</small><strong>{reviewer.name}</strong>{reviewer.role}</span></span>
               : <a class="bp-person" href={`/provider/${reviewer.slug}/`}>
                   {photoUrl(reviewer) ? <img src={photoUrl(reviewer)} alt="" width="50" height="50" /> : <span class="bp-ini">{initials(reviewer.name)}</span>}
-                  <span><small>Medically reviewed by</small><strong>{reviewer.name}</strong>{reviewer.role}</span>
+                  <span><small>{reviewLabel}</small><strong>{reviewer.name}</strong>{reviewer.role}</span>
                 </a>
           )}
         </div>
@@ -448,7 +450,7 @@ const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c
               {authorExcerpt && <p>{authorExcerpt}</p>}
               <a class="inl" href={`/provider/${author.slug}/`}>Read {author.name.split(",")[0]}’s full bio</a>
               {reviewer && (
-                <p class="bp-rev"><Icon name="shield" class="mr-1 inline h-4 w-4" />Medically reviewed by{" "}
+                <p class="bp-rev"><Icon name="shield" class="mr-1 inline h-4 w-4" />{reviewLabel}{" "}
                   {reviewer.removed ? <strong>{reviewer.name}</strong> : <a class="inl" href={`/provider/${reviewer.slug}/`}>{reviewer.name}</a>}, {reviewer.role}.
                 </p>
               )}

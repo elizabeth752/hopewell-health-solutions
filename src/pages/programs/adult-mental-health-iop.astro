@@ -29,10 +29,9 @@ const P = "/Assets/hhs-2026/";
 // The 4 agreed USPs — shown in the hero. ("hospitals don't offer" → no unsourced comparison, KB §1; specialist count
 // matches the homepage's 50+.)
 const heroUsps = [
-  "50+ credentialed specialists you’ll actually meet",
-  "Specialized IOP tracks built for who you are",
-  "<a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight®</a> genetic testing, medications matched to your DNA",
-  "<a class='inl' href='/treatment-methods/tms/'>TMS</a> for treatment-resistant depression, FDA-cleared, drug-free",
+  "Mental health &amp; addiction together",
+  "Psychiatry and <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>MAT</a> included",
+  "<a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight®</a> &amp; <a class='inl' href='/treatment-methods/tms/'>TMS</a> available",
 ];
 const rightFit = ["Anxiety or depression", "Trauma or PTSD", "Emotional dysregulation or mood instability", "Co-occurring substance use concerns", "Difficulty functioning in daily life despite outpatient support"];
 const weekIncludes = ["Evidence-based group therapy grounded in <a class='inl' href='/treatment-methods/dbt/'>DBT</a> &amp; CBT", "Experiential therapies, art, movement-based &amp; animal-assisted", "Individual therapy for personalized treatment", "Optional <a class='inl' href='/programs/medication-management/'>medication management</a> &amp; psychiatric support", "Optional family therapy &amp; psychoeducation"];
@@ -84,14 +83,15 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Adult Co-Occurring IOP" }]}
       title="Co-Occurring Disorders IOP for Adults in Connecticut"
-      lede="Adult Co-Occurring Intensive Outpatient Program (IOP) · Glastonbury &amp; Westbrook, CT. Co-occurring disorders treatment in Connecticut: structured, DBT-based care for adults 18+ who need more than weekly therapy, with mental health and addiction treated together by one team."
+      lede="Structured, DBT-based care in Glastonbury and Westbrook, CT for adults 18+ who need more than weekly therapy, with one team for mental health and addiction."
       bullets={heroUsps}
       facts={[{ icon: "calendar", text: "Mon–Thu · 3 hours a day" }, { icon: "clock", text: "Morning or evening track" }, { icon: "star", text: "4.8 · 368 Google reviews" }]}
-      image={P + "group-room-bright.webp"}
+      image="/Assets/service/what-is-adhd.webp"
+      imagePos="center 45%"
     />
     <Creds />
 
-    <Split heading="What is an Adult Intensive Outpatient Program (IOP)?" img={P + "iop-group-session.webp"} alt="Adult IOP group therapy in Glastonbury, CT" img2={P + "iop-group-room-lights.webp"} alt2="An IOP group room at Hopewell">
+    <Split heading="What is an Adult Intensive Outpatient Program (IOP)?" img="/Assets/AdobeStock_413328337-1747245457937.webp" alt="Adults in an IOP group therapy circle" img2={P + "iop-group-room-lights.webp"} alt2="An IOP group room at Hopewell">
       <p>An Adult Intensive Outpatient Program (IOP) is a structured treatment plan for adults experiencing mental health challenges who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more support than weekly therapy</a> provides. It offers a higher level of care while you continue your daily life, work, school, and family.</p>
       <p>Unlike inpatient programs, an Adult IOP doesn’t require a hospital stay. At Hopewell Health Solutions, our IOP supports adults struggling with <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>, mood disorders, and co-occurring substance use, and is ideal for those stepping down from inpatient care or seeking more than traditional outpatient therapy.</p>
     </Split>

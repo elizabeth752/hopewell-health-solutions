@@ -4,10 +4,9 @@
 import ConditionPage from "../../components/conditions/ConditionPage.astro";
 
 const heroUsps = [
-  { icon: "shield", t: "A team of board-certified mental health specialists" },
-  { icon: "pill", t: "Medical, psychological & therapeutic interventions" },
-  { icon: "brain", t: "Addresses the underlying causes, trauma, mental health & chronic stress" },
-  { icon: "compass", t: "In person (Downtown Glastonbury & Westbrook) or telehealth" },
+  { icon: "shield", t: "Board-certified specialists" },
+  { icon: "pill", t: "Medical & therapeutic care" },
+  { icon: "brain", t: "Treats the underlying causes" },
 ];
 const signs = [
   { t: "Using more, or for longer, than you intended", icon: "clipboard" },
@@ -74,7 +73,7 @@ const blocks = [
   {"type": "quote", "img": "/Assets/AdobeStock_340805112-1743711281010.webp", "q": "“S.U.D. is a treatable condition. With the right care, individuals can achieve lasting recovery and lead fulfilling lives.”"},
   {"type": "tiles", "h2": "When to seek S.U.D. treatment", "lede": "Seek treatment when drug or alcohol use starts to interfere with daily functioning, relationships, or health. Some key indicators that it’s time to seek help include:", "foot": "If any of these signs are present, reach out to the team at Hopewell Health Solutions. <strong>Early intervention can significantly improve long-term recovery.</strong>", "variant": "panel", "items": seekHelp},
 ];
-const hero = {"crumb": "Addiction", "h1": "Addiction &amp; Substance Use Disorder Treatment in Connecticut", "tagline": "Break free from dependency, and regain control of your life.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Medically reviewed by Kristine Schlichting, PhD", "image": "/Assets/hhs-2026/adult-evening-iop-group.webp", "bullets": heroUsps.map((u) => u.t) };
+const hero = {"crumb": "Addiction", "h1": "Addiction &amp; Substance Use Disorder Treatment in Connecticut", "tagline": "Break free from dependency, and regain control of your life.", "facts": [{"icon": "pin", "text": "300 Hebron Ave, Glastonbury & 70 Essex Rd, Westbrook"}, {"icon": "compass", "text": "In person & telehealth"}], "reviewer": "Clinically reviewed by Kristine Schlichting, PhD", "image": "/Assets/AdobeStock_542909901.webp", "bullets": heroUsps.map((u) => u.t) };
 const meta = {"title": "Addiction Treatment in Connecticut | Outpatient SUD Care | Hopewell", "description": "Outpatient addiction treatment in Glastonbury and Westbrook, CT for alcohol, drug and prescription drug use. Addiction IOP, MAT and counseling. Check coverage.", "canonical": "https://www.hopewellhealthsolutions.com/what-we-treat/substance-use-disorder/"};
 ---
 <ConditionPage

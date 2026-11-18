@@ -18,10 +18,9 @@ import "../../styles/pages/treatments.css";
 const canonical = "https://www.hopewellhealthsolutions.com/treatment-methods/tms/";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "FDA-cleared, drug-free &amp; non-invasive",
-  "NeuroStar® Advanced TMS for depression &amp; OCD",
-  "18–45 minute sessions · no downtime · resume your day",
-  "For treatment-resistant depression, a safer alternative to ECT",
+  "Drug-free, no downtime",
+  "NeuroStar® Advanced TMS",
+  "18–45 minute sessions",
 ];
 const uses = [
   { icon: "cloud", t: "Treatment-Resistant Major Depression", d: "Nearly half of people with clinical depression are labeled “non-responsive” at some point, not improving on antidepressants or talk therapy alone. TMS is a safer alternative to ECT, with fewer side effects and higher success rates.", href: "/what-we-treat/depression/", link: "depression treatment" },
@@ -86,10 +85,10 @@ const schema = {
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "TMS" }]}
       title="TMS Therapy for Depression in Connecticut"
-      lede="A safe, non-invasive, FDA-cleared treatment for people with depression and OCD who haven’t found relief with medication or talk therapy, a cutting-edge way to regain control of your mental health."
+      lede="A safe, non-invasive, FDA-cleared treatment for depression and OCD when medication or talk therapy hasn’t brought relief."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "TMS · NeuroStar® Advanced TMS · Glastonbury, CT" }]}
-      image={P + "tms-neurostar-session.webp"} imagePos="center 30%"
+      image={P + "tms-neurostar-session.webp"}
       imagePos="center 35%"
     />
     <Creds />

@@ -28,10 +28,9 @@ import "../../styles/pages/seo.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "Assessment, therapy &amp; medication, often in a single visit",
-  "Same-day appointments, in person or virtual across CT",
-  "Ages 4 &amp; up, children, teens &amp; adults (incl. <a class='inl' href='/what-we-treat/adhd/'>ADHD</a>)",
-  "<a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight®</a> testing for precision prescribing",
+  "Ages 4 and up",
+  "Same-day appointments available",
+  "<a class='inl' href='/treatment-methods/genesight-testing/'>GeneSight®</a> testing offered",
 ];
 const L = "/Assets/Media%20Appearances/";
 const treats = [
@@ -109,10 +108,11 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "Medication Management" }]}
       title="Psychiatry &amp; Medication Management in Connecticut"
-      lede="Psychiatry and medication management in Connecticut for children, teens and adults, at six offices from Glastonbury to Westbrook and by telehealth. Getting the right medication shouldn’t feel like a guessing game. Psychiatric care at Hopewell Health Solutions is thoughtful, collaborative, and built around you."
+      lede="Thoughtful, collaborative psychiatric care for children, teens and adults at six offices from Glastonbury to Westbrook, and by telehealth."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "All six CT offices" }]}
-      image={P + "south-glastonbury-waiting-room.webp"}
+      image="/Assets/evaluation-session.webp"
+      imagePos="center 40%"
     />
     <!-- 2. As featured in -->
     <Creds />

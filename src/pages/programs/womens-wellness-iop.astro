@@ -35,10 +35,9 @@ const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const W = "/Assets/locations/westbrook/";
 const heroUsps = [
-  "A program for women, designed by women",
-  "Anxiety, depression, burnout, <a class='inl' href='/what-we-treat/depression/'>postpartum mood changes</a> &amp; life transitions",
-  "8–12 weeks · morning or evening groups, Mon–Thu",
-  "Westbrook &amp; Glastonbury · in person, with virtual options",
+  "Designed by women, for women",
+  "8–12 weeks, Mon–Thu",
+  "Morning or evening groups",
 ];
 const stats = [
   ["1 in 5", "women experience a mental health condition each year"],
@@ -149,12 +148,13 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Wellness" }]}
       title="Women's Wellness IOP in Connecticut"
-      lede="An in-person women’s IOP in Connecticut, now in Westbrook and Glastonbury: support for anxiety, depression, burnout, postpartum mood changes and life transitions, in a group of women who understand. A program for women, designed by women."
+      lede="In-person support in Westbrook and Glastonbury for anxiety, depression, burnout, <a class='inl' href='/what-we-treat/depression/'>postpartum mood changes</a> and life transitions, in a group of women."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Westbrook & Glastonbury" }]}
-      image={W + "therapy-room-shore.webp"}
+      image="/Assets/women%20looking%20at%20me.webp"
+      imagePos="center 40%"
     >
-      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Medically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
+      <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
 
     <!-- 2. As featured in -->

@@ -11,6 +11,9 @@ interface Crumb { label: string; href?: string }
 interface Props { crumbs: Crumb[]; title: string; lede: string; bullets?: string[]; facts?: { icon: string; text: string }[]; image?: string; imagePos?: string; form?: boolean; keepFormMobile?: boolean }
 const { crumbs, title, lede, bullets = [], facts = [], image = "/Assets/hhs-2026/iop-clinicians-group-room.webp", imagePos = "center", form = true, keepFormMobile = false } = Astro.props;
 const all = [{ label: "Home", href: "/" }, ...crumbs];
+// Hero copy rule (QA 2026-11-18): short keyword H1, lede of about 25 words, at most 3 short bullets. The cap is
+// enforced here so no page can overload the hero again.
+const points = bullets.slice(0, 3);
 const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: all.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, ...(c.href ? { item: SITE + c.href } : { item: SITE + Astro.url.pathname }) })) };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(ld)} />
@@ -22,11 +25,12 @@ const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemLi
       <nav class="sv-crumbs" aria-label="Breadcrumb"><ol>{all.map((c, i) => <li>{c.href && i < all.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}</ol></nav>
       <h1 set:html={title} />
       <p class="lede" set:html={lede} />
-      {bullets.length > 0 && <ul class="sv-bullets">{bullets.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}</ul>}
+      {points.length > 0 && <ul class="sv-bullets">{points.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}</ul>}
       {facts.length > 0 && <ul class="sv-facts">{facts.map((f) => <li><Icon name={f.icon} class="h-[18px] w-[18px]" />{f.text}</li>)}</ul>}
       <div class="sv-ctas">
-        <a href={PHONE.href} class="btn btn-blue"><Icon name="phone" />Call {PHONE.display}</a>
-        {form ? <a href="#verify-m" class="btn btn-ghost only-m">Verify my insurance</a> : <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>}
+        {/* One CTA on phones: the header already carries the call button, so under 1000px only "Verify my insurance" shows. */}
+        <a href={PHONE.href} class="btn btn-blue only-d"><Icon name="phone" />Call {PHONE.display}</a>
+        {form ? <a href={keepFormMobile ? "#verify" : "#verify-m"} class="btn btn-blue only-m">Verify my insurance</a> : <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>}
       </div>
       <slot />
       <HeroCreds />

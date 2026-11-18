@@ -34,25 +34,25 @@ const P = "/Assets/hhs-2026/";
 // Program chooser: one tab per audience. Each panel = a large real photo + program rows (thumb, who, schedule, office).
 // Locations from locations.js offers + each program page (Women's Trauma / First Responder IOP: 300 Hebron Ave).
 const groups = [
-  { id: "adults", t: "Adults", icon: "users", img: P + "iop-group-session.webp", alt: "Adults in an IOP group at Hopewell's Glastonbury office",
+  { id: "adults", t: "Adults", icon: "users", img: "/Assets/service/what-is-adhd.webp", alt: "Adults in a group session at Hopewell's Glastonbury office",
     intro: "Structured care for adults 18+ dealing with depression, anxiety, trauma or mood disorders, from several hours a week to full days.", items: [
     { t: "IOP Overview", href: "/programs/intensive-outpatient-program/", img: P + "iop-group-room-lights.webp", who: "Compare every intensive outpatient program", sched: "About 3 hours a day, Mon–Thu", where: "300 Hebron Ave, 1420 Main St & Westbrook",
       d: `Start with our <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient programs in Connecticut</a> to compare every IOP track.` },
-    { t: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", img: P + "iop-room-group-photo.webp", who: "Mental health and substance use treated together", sched: "9 AM–12 PM or 5–8 PM, Mon–Thu", where: "300 Hebron Ave & Westbrook",
+    { t: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/", img: "/Assets/AdobeStock_413328337-1747245457937.webp", who: "Mental health and substance use treated together", sched: "9 AM–12 PM or 5–8 PM, Mon–Thu", where: "300 Hebron Ave & Westbrook",
       d: `See the <a class="inl" href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a>, with morning and evening tracks.` },
     { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", img: P + "php-group-room.webp", who: "Full-day care without an inpatient stay", sched: "About 6 hours a day, Mon–Fri", where: "300 Hebron Ave, Glastonbury",
       d: `Learn about the <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program</a>, the highest level of outpatient care.` },
   ] },
-  { id: "addiction", t: "Addiction", icon: "link", img: P + "westbrook-beach-group.webp", alt: "Clients on the beach near Hopewell's Westbrook office",
+  { id: "addiction", t: "Addiction", icon: "link", img: "/Assets/AdobeStock_542909901.webp", alt: "Adults in an addiction recovery group",
     intro: "Addiction treatment for alcohol and drug use, with mental health care built in. Offered at 300 Hebron Ave in Glastonbury and in Westbrook.", items: [
-    { t: "Addiction and Substance Use IOP", href: "/programs/addiction-iop/", img: P + "iop-clinicians-group-room.webp", who: "Adults with alcohol or drug use", sched: "Several days a week", where: "300 Hebron Ave & Westbrook",
+    { t: "Addiction and Substance Use IOP", href: "/programs/addiction-iop/", img: "/Assets/AdobeStock_404268940.webp", who: "Adults with alcohol or drug use", sched: "Several days a week", where: "300 Hebron Ave & Westbrook",
       d: `SUD groups, dual-diagnosis care and a step-down after rehab. See the <a class="inl" href="/programs/addiction-iop/">Addiction IOP</a>.` },
     { t: "Medication-Assisted Treatment (MAT)", href: "/treatment-methods/medication-assisted-treatment/", img: P + "westbrook-therapy-office.webp", who: "Medication plus counseling for opioid and alcohol use", sched: "Alongside your program", where: "300 Hebron Ave & Westbrook",
       d: `<a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment</a>, managed by our psychiatric team when it fits.` },
   ] },
   { id: "women", t: "Women", icon: "heart", img: P + "womens-wellness-team.webp", alt: "Hopewell's Women's Wellness IOP team in the group room",
     intro: "Women-only groups led by clinicians who specialize in women’s mental health, for burnout, life transitions, postpartum challenges and trauma.", items: [
-    { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", img: P + "group-room-bright.webp", who: "Anxiety, depression, transitions, postpartum", sched: "9 AM–12 PM or 5–8 PM, Mon–Thu", where: "300 Hebron Ave & Westbrook",
+    { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp", who: "Anxiety, depression, transitions, postpartum", sched: "9 AM–12 PM or 5–8 PM, Mon–Thu", where: "300 Hebron Ave & Westbrook",
       d: `Trauma-informed, DBT-based care. See the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP in Connecticut</a>.` },
     { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", img: P + "womens-trauma-iop-group-room.webp", who: "Adult women healing from trauma", sched: "5–8 PM, Mon–Thu", where: "300 Hebron Ave, Glastonbury",
       d: `EMDR, somatic approaches and trauma-focused CBT in our <a class="inl" href="/programs/womens-trauma-iop/">women’s trauma IOP</a>.` },
@@ -64,14 +64,14 @@ const groups = [
     { t: "Tween IOP (8–12)", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", who: "Play, skills and parent coaching", sched: "4:30–7:30 PM, Mon–Thu", where: "1420 Main St, South Glastonbury",
       d: `Age-matched groups for younger kids. Explore the <a class="inl" href="/programs/tween-iop/">Tween IOP</a>.` },
   ] },
-  { id: "first-responders", t: "First responders", icon: "shield", img: P + "team-300-hebron.webp", alt: "Hopewell's team outside the 300 Hebron Ave office in Glastonbury",
+  { id: "first-responders", t: "First responders", icon: "shield", img: "/Assets/First%20responder.webp", alt: "A line of firefighters in turnout gear",
     intro: "Specialized care for police, fire, EMS and dispatch, with clinicians who understand the culture, confidentiality and schedules involved.", items: [
-    { t: "First Responder IOP", href: "/programs/first-responder-iop/", img: P + "group-lounge-beach-mural.webp", who: "Police, fire, EMS, dispatch", sched: "9 AM–12 PM, Mon–Thu", where: "300 Hebron Ave, Glastonbury",
+    { t: "First Responder IOP", href: "/programs/first-responder-iop/", img: "/Assets/service/first-responder-session.webp", who: "Police, fire, EMS, dispatch", sched: "9 AM–12 PM, Mon–Thu", where: "300 Hebron Ave, Glastonbury",
       d: `A group with peers who get it. See the <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>.` },
   ] },
   { id: "psychiatry", t: "Psychiatry, TMS & testing", icon: "pill", img: P + "tms-neurostar-room.webp", alt: "A NeuroStar TMS treatment room at Hopewell in Glastonbury",
     intro: "Outpatient psychiatry, therapy and specialized treatment, for ongoing care or the step after a program.", items: [
-    { t: "Medication Management", href: "/programs/medication-management/", img: P + "south-glastonbury-med-waiting-room.webp", who: "Psychiatric care for ages 4 and up", sched: "Outpatient visits", where: "All six offices",
+    { t: "Medication Management", href: "/programs/medication-management/", img: "/Assets/evaluation-session.webp", who: "Psychiatric care for ages 4 and up", sched: "Outpatient visits", where: "All six offices",
       d: `Thoughtful prescribing, with <a class="inl" href="/treatment-methods/genesight-testing/">GeneSight® testing</a>. See <a class="inl" href="/programs/medication-management/">medication management</a>.` },
     { t: "Counseling", href: "/programs/counseling/", img: P + "westbrook-counseling-office.webp", who: "Individual, family, group and DBT therapy", sched: "Weekly or twice weekly", where: "All six offices + telehealth",
       d: `A licensed therapist, in person or by telehealth. Explore <a class="inl" href="/programs/counseling/">counseling at Hopewell</a>.` },
@@ -196,9 +196,10 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
       crumbs={[{ label: "Programs" }]}
       title="IOP, PHP &amp; Addiction Programs in Connecticut"
       lede="In-person IOP, PHP and outpatient care for adults, teens and children, with programs in Glastonbury, Westbrook, East Hampton and West Hartford."
-      bullets={["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> tracks for tweens, teens, women, adults &amp; first responders", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a>full-day care without an inpatient stay", "<a class='inl' href='/programs/addiction-iop/'>Addiction IOP</a> in Glastonbury &amp; Westbrook", "<a class='inl' href='/programs/counseling/'>Counseling</a> &amp; <a class='inl' href='/programs/medication-management/'>medication management</a> at all six offices"]}
+      bullets={["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> for every age", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> full-day care", "<a class='inl' href='/programs/addiction-iop/'>Addiction IOP</a> for adults"]}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Six Connecticut offices" }]}
-      image={P + "iop-group-session.webp"}
+      image="/Assets/service/what-is-adhd.webp"
+      imagePos="center 45%"
     >
       <nav class="ph-quick" aria-label="Who is the care for?">
         <a href="#find" data-tab="adults"><Icon name="users" class="h-4 w-4" />For me</a>

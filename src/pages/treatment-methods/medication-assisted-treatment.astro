@@ -21,10 +21,9 @@ import "../../styles/pages/treatments.css";
 const canonical = "https://www.hopewellhealthsolutions.com/treatment-methods/medication-assisted-treatment/";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
-  "FDA-approved medications combined with counseling",
-  "Eases cravings and withdrawal so recovery can take hold",
-  "Medically supervised by our licensed prescribers",
-  "An evidence-based, whole-person approach to recovery",
+  "FDA-approved medications + counseling",
+  "Supervised by licensed prescribers",
+  "Whole-person, evidence-based care",
 ];
 const meds = [
   ["Opioid use disorder", "Buprenorphine and naltrexone are commonly used."],
@@ -60,10 +59,11 @@ const vids = VIDEOS.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].
     <ServiceHero
       crumbs={[{ label: "Treatments", href: "/treatment-methods/" }, { label: "Medication-Assisted Treatment" }]}
       title="Medication-Assisted Treatment (MAT) for Addiction in Connecticut"
-      lede="Addiction recovery is rarely a matter of willpower alone. MAT eases the physical pull of a substance and clears space for the deeper work of recovery, under careful medical supervision."
+      lede="MAT eases cravings and withdrawal under careful medical supervision, clearing space for the deeper work of addiction recovery."
       bullets={heroUsps}
       facts={[{ icon: "pin", text: "Downtown Glastonbury & Westbrook" }, { icon: "pill", text: "Licensed prescribers" }]}
-      image={P + "westbrook-therapy-office.webp"}
+      image="/Assets/evaluation-session.webp"
+      imagePos="center 40%"
     />
     <Creds />
 
