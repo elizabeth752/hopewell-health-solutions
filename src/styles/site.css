@@ -2208,3 +2208,10 @@ main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
   .hw .ho-slide { left: -10%; width: 110%; }
   .hw .hero-old::before { background: linear-gradient(90deg, rgba(0,22,44,0) 25%, rgba(0,22,44,.55) 50%, rgba(0,22,44,.82) 100%); }
 }
+/* Inline links (user 2026-11-18: "I don't like the underlining, just the blue is enough"): blue + semibold, no
+   underline; the underline only appears on hover/focus. On dark sections links are sky blue so they still stand out.
+   The accessibility panel's "Underline links" option still forces underlines. */
+.hw .inl, .hw .post-body a, .hw .post-sec a { text-decoration: none; }
+.hw .inl:hover, .hw .inl:focus-visible, .hw .post-body a:hover, .hw .post-sec a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.hw .hero .inl, .hw .sv-hero .inl, .hw .is-navy .inl, .hw .on-dark .inl { color: var(--hw-sky-soft, #9cc3ea); text-decoration: none; }
+.hw .hero .inl:hover, .hw .sv-hero .inl:hover, .hw .is-navy .inl:hover, .hw .on-dark .inl:hover { color: #fff; text-decoration: underline; }
