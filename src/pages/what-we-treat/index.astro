@@ -197,7 +197,7 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
         <div class="sec-head"><h2>Conditions we treat: our areas of expertise</h2><p class="lede">From depression and anxiety to trauma, ADHD, and substance use, the board-certified team at <a class="inl" href="/about-us/">Hopewell Health Solutions</a> treats the full range of mental health and co-occurring conditions, for children, teens, and adults, in person across Connecticut and by telehealth.</p></div>
         <div class="wq-groups">
           {grid.map((g) => (
-            <section class={`wq-group t-${g.tone}`} id={g.id} aria-labelledby={`h-${g.id}`}>
+            <section class={`wq-group wq-g2 ${String(g.tone).startsWith("t-") ? g.tone : "t-" + g.tone}`} id={g.id} aria-labelledby={`h-${g.id}`}>
               <div class="wq-group-head">
                 <span class="wq-group-icon"><Icon name={g.icon} /></span>
                 <div><h3 id={`h-${g.id}`}>{g.name}</h3><span>{g.note}</span></div>
@@ -207,9 +207,10 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
                   <article class="wq-card">
                     <h4><a href={c.href}>{c.t}</a></h4>
                     <p class="wq-line">{c.line}.</p>
-                    {x.d && <p>{x.d}</p>}
-                    {x.more && <p set:html={x.more} />}
-                    {x.signs && <p class="wq-signs"><strong>Common signs:</strong> {x.signs.join(" · ")}</p>}
+                    {x.signs && <ul class="wq-signlist">{x.signs.map((sg) => <li>{sg}</li>)}</ul>}
+                    {(x.d || x.more) && (
+                      <details class="wq-more"><summary>Read more</summary>{x.d && <p>{x.d}</p>}{x.more && <p set:html={x.more} />}</details>
+                    )}
                     <p class="wq-meta">{c.ages && <Fragment><Icon name="users" class="h-4 w-4" />{c.ages} · </Fragment>}<span set:html={c.progs.map((k) => `<a class="inl" href="${PROG[k][1]}">${PROG[k][0]}</a>`).join(", ")} /></p>
                   </article>
                 ); })}

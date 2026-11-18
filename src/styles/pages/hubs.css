@@ -308,3 +308,24 @@
 .hw .lh-fold { display: none; margin-top: 16px; } .hw .lh-fold.is-open { display: block; } .hw .lh-fold p + p { margin-top: 14px; }
 .hw .sp-more { display: inline-flex; align-items: center; margin-top: 14px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--hw-navy); background: transparent; color: var(--hw-navy); font-weight: 700; font-size: 15px; cursor: pointer; }
 .hw .sp-more:hover { background: var(--hw-navy); color: #fff; }
+
+/* Conditions hub groups (user 2026-11-18 "fix this"): coloured header bar on top (icon, name, note), lighter cards with
+   a short line, sign bullets and a "Read more" for the long paragraph. */
+.hw .wq-g2 { grid-template-columns: minmax(0, 1fr) !important; gap: 14px; }
+.hw .wq-g2 .wq-group-head { flex-direction: row !important; align-items: center; justify-content: flex-start; gap: 16px; padding: 18px 22px; min-height: 0; height: auto; }
+.hw .wq-g2 .wq-group-head h3 { color: #fff !important; font-size: 22px; margin: 0; }
+.hw .wq-g2 .wq-group-head span:not(.wq-group-icon) { color: #dce6f1; font-size: 15px; }
+.hw .wq-g2.t-blue .wq-group-head { background: var(--hw-blue); } .hw .wq-g2.t-sage .wq-group-head { background: var(--hw-sage); }
+.hw .wq-g2.t-gold .wq-group-head { background: #b6863c; } .hw .wq-g2.t-navy .wq-group-head { background: var(--hw-navy); }
+.hw .wq-g2 .wq-cards { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.hw .wq-g2 .wq-card { background: #fff !important; border: 1px solid var(--hw-line); }
+.hw .wq-g2 .wq-card h4 a { text-decoration: none; }
+.hw .wq-signlist { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+.hw .wq-signlist li { position: relative; padding-left: 18px; font-size: 14.5px; line-height: 1.45; color: var(--hw-body); }
+.hw .wq-signlist li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: #b6863c; }
+.hw .wq-more { margin-top: 2px; }
+.hw .wq-more summary { cursor: pointer; font-weight: 700; font-size: 14.5px; color: var(--hw-blue); list-style: none; }
+.hw .wq-more summary::-webkit-details-marker { display: none; }
+.hw .wq-more summary::after { content: " +"; }
+.hw .wq-more[open] summary::after { content: " −"; }
+.hw .wq-more p { margin-top: 8px; font-size: 15px; line-height: 1.55; }
