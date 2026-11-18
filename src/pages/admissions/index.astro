@@ -47,6 +47,8 @@ const expect = [
   { icon: "compass", t: "A plan built around you", d: "You’ll start at the level that fits, and we adjust the plan as you heal." },
 ];
 // Verify Insurance brief: plans list matches the form's carrier list (LeadForm.astro).
+// Logos for the plans list (user 2026-11-18: "logos instead of names"); plans without a logo file show their name in the same tile.
+const PLAN_LOGOS = { "Aetna": "/Assets/Insurance/AETNA.webp", "Anthem": "/Assets/Insurance/Anthem.webp", "Blue Cross Blue Shield": "/Assets/home-b/insurance/bcbs.svg", "Cigna": "/Assets/Insurance/CIGNA.webp", "ConnectiCare": "/Assets/home-b/insurance/connecticare.svg", "Harvard Pilgrim": "/Assets/home-b/insurance/harvard-pilgrim.svg", "Magellan": "/Assets/Insurance/Magellan%20Health.webp", "Optum": "/Assets/home-b/insurance/optum.svg", "TRICARE": "/Assets/Insurance/TRICARE.webp", "UMR": "/Assets/home-b/insurance/umr.svg", "UnitedHealthcare": "/Assets/home-b/insurance/unitedhealthcare.svg", "VA Community Care": "/Assets/Insurance/VA%20Community%20Care.webp" };
 const plans = ["Aetna", "Anthem", "Blue Cross Blue Shield", "Cigna", "ConnectiCare", "Evernorth", "Harvard Pilgrim", "Magellan", "Meritain", "Optum", "TRICARE", "UMR", "UnitedHealthcare", "VA Community Care"];
 const next = [
   ["We check your benefits", "Our admissions team contacts your insurer for you, free and with no obligation."],
@@ -167,7 +169,7 @@ const faqs = [
         </div>
         <div>
           <h3 class="ax-h3" style="margin-top:6px">Plans we work with</h3>
-          <ul class="ax-plans">{plans.map((p) => <li><Icon name="check" class="h-4 w-4" />{p}</li>)}</ul>
+          <ul class="ax-logos">{plans.map((p) => <li>{PLAN_LOGOS[p] ? <img src={PLAN_LOGOS[p]} alt={p} width="160" height="64" loading="lazy" /> : <span>{p}</span>}</li>)}</ul>
           <p class="ax-no"><Icon name="alert" class="h-5 w-5" /><span><strong>Not accepted: Medicare and Medicaid (HUSKY).</strong> If that’s your coverage, our admissions team can suggest other options.</span></p>
           <p class="ax-fine"><Icon name="clipboard" class="h-4 w-4" /><span>Plan not listed? Choose “Other / Not sure” on the form and we’ll check. A benefits check isn’t a guarantee of coverage; some plans need prior authorization, which we handle with your insurer.</span></p>
         </div>

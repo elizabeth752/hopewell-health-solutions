@@ -261,3 +261,10 @@
 .hw .ax-car-dot.is-on { width: 28px; border-radius: 6px; background: var(--hw-navy); }
 .hw .is-navy .ax-car-dot { background: rgba(255,255,255,.3); } .hw .is-navy .ax-car-dot.is-on { background: #fff; }
 .hw .ad-split.ax-top { align-items: start; }
+
+/* Plans we work with as logo tiles (2026-11-18). */
+.hw .ax-logos { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.hw .ax-logos li { height: 72px; border-radius: 14px; background: #fff; display: grid; place-items: center; padding: 10px 14px; }
+.hw .ax-logos img { max-width: 100%; max-height: 44px; width: auto; height: auto; object-fit: contain; }
+.hw .ax-logos span { font-family: var(--hw-head); font-weight: 800; font-size: 16px; color: var(--hw-navy); text-align: center; }
+@media (max-width: 520px) { .hw .ax-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .ax-logos li { height: 64px; } }
