@@ -13,6 +13,7 @@ import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import PhotoSlider from "../../components/hw/PhotoSlider.astro";
 import PhoneVideo from "../../components/hw/PhoneVideo.astro";
+import VideoDialog from "../../components/hw/VideoDialog.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
@@ -21,7 +22,7 @@ import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import { STORIES, VIDEOS, videoSchema } from "../../data/videos.js";
 
 const canonical = "https://www.hopewellhealthsolutions.com/locations/";
-const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
+const tour = VIDEOS.find((v) => v.yt === "I8nk1SYhFig"); // homepage welcome video + house thumbnail (user 2026-11-18)
 const L = "/Assets/locations/";
 const heroHouses = [
   { src: L + "glastonbury/exterior.webp", alt: "The Hopewell house at 33 Pratt Street, Glastonbury", cap: "Glastonbury · Pratt St", href: "/location/glastonbury-ct/", w: 1536, h: 1536 },
@@ -202,12 +203,20 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
         </aside>
         <div class="ab-copy">
           <h2>Mental health &amp; psychiatry, close to home across Connecticut</h2>
-          <div style="margin-top:20px">
+          {/* Long intro (user 2026-11-18: "a lot of text"): 4 key points, the full text folds behind "Read more". */}
+          <ul class="lh-keys">
+            <li><Icon name="pin" class="h-5 w-5" /><span><strong>Six offices</strong> across Hartford County and the shoreline, plus <a class="inl" href="#telehealth">telehealth</a></span></li>
+            <li><Icon name="shield" class="h-5 w-5" /><span><strong>Since 2013</strong>, a <a class="inl" href="/about-us/">Joint Commission–accredited</a> practice rated 4.8 on Google</span></li>
+            <li><Icon name="users" class="h-5 w-5" /><span><a class="inl" href="/programs/counseling/">Therapy</a>, <a class="inl" href="/programs/medication-management/">medication management</a>, <a class="inl" href="/programs/intensive-outpatient-program/">IOP</a> and <a class="inl" href="/programs/partial-hospitalization-program/">PHP</a> under one roof</span></li>
+            <li><Icon name="refresh" class="h-5 w-5" /><span>Step up or down in care without starting over with a new practice</span></li>
+          </ul>
+          <div class="sp-fold lh-fold" id="lh-more">
             <p>Hopewell Health Solutions has grown into an accessible outpatient mental health and psychiatry practice, with <strong>six offices</strong> spanning Hartford County and the shoreline, three in Glastonbury, plus West Hartford, East Hampton, and Westbrook. Wherever you are in the state, compassionate, evidence-based care is close to home, and when getting to an office isn’t practical, secure telehealth brings the same trusted team to you.</p>
             <p>Since 2013, we’ve built our reputation on a simple idea: change is a practice, not a concept. Our clinicians fuse psychology, psychiatry, and whole-person wellness into care that’s active, collaborative, and tailored to each person. Across every location you’ll find the same standard of care, a <a href="/about-us/" class="inl">Joint Commission–accredited practice</a> with a 4.8-star reputation and a team of <a href="/about-us/team/" class="inl">psychiatrists, board-certified nurse practitioners, psychologists, and licensed therapists</a> who genuinely listen.</p>
-            <p>Each office offers the support most people need most often<a href="/programs/counseling/" class="inl">individual, couples, and family therapy</a> and <a href="/programs/medication-management/" class="inl">medication management</a>. Across the practice we also provide our <a href="/programs/intensive-outpatient-program/" class="inl">Intensive Outpatient Program (IOP)</a> and <a href="/programs/partial-hospitalization-program/" class="inl">Partial Hospitalization Program (PHP)</a>, plus specialized treatments such as <a href="/treatment-methods/tms/" class="inl">TMS</a> and <a href="/treatment-methods/neuropsychological-testing/" class="inl">neuropsychological and ADHD testing</a>. Because all of it lives under one roof, you can step up or down between levels of care, or add a service, without ever having to start over with a new practice.</p>
+            <p>Each office offers the support most people need most often: <a href="/programs/counseling/" class="inl">individual, couples, and family therapy</a> and <a href="/programs/medication-management/" class="inl">medication management</a>. Across the practice we also provide our <a href="/programs/intensive-outpatient-program/" class="inl">Intensive Outpatient Program (IOP)</a> and <a href="/programs/partial-hospitalization-program/" class="inl">Partial Hospitalization Program (PHP)</a>, plus specialized treatments such as <a href="/treatment-methods/tms/" class="inl">TMS</a> and <a href="/treatment-methods/neuropsychological-testing/" class="inl">neuropsychological and ADHD testing</a>. Because all of it lives under one roof, you can step up or down between levels of care, or add a service, without ever having to start over with a new practice.</p>
             <p>We treat the <a href="/what-we-treat/" class="inl">full range of mental health and behavioral concerns</a>: depression, anxiety, trauma and PTSD, ADHD, OCD, and bipolar disorder, with <a href="/what-we-treat/substance-use-disorder/" class="inl">addiction</a> and co-occurring care at our Downtown Glastonbury and Westbrook offices. We welcome individuals of every age, background, and identity, and we work hard to make starting easy, we accept all major insurance providers, and our team <a href="/rates-and-insurance-coverage/" class="inl">verifies your benefits for free</a> before your first visit. Choose the office nearest you below, or call <a href="tel:8607351448" class="inl">(860) 735-1448</a> and we’ll help you find the right location, provider, and level of care.</p>
           </div>
+          <button type="button" class="sp-more" aria-expanded="false" aria-controls="lh-more">Read more</button>
         </div>
       </div>
     </section>
@@ -276,8 +285,14 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       <div class="container">
         <div class="lh-visit-top">
           <div class="sec-head" style="margin:0"><h2>What to expect when you visit</h2><p class="lede">Comfortable, private offices that feel more like a living room than a clinic, and a team that walks you through every step. Read more about <a class="inl" href="/admissions/#what-to-expect">what to expect at your first visit</a>.</p>
-            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />A 16-second look inside our Glastonbury spaces. Tap the phone for sound.</p></div>
-          {tour && <PhoneVideo yt={tour.yt} title={tour.title} poster={`/Assets/videos/${tour.img}.webp`} />}
+            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />Watch our welcome video.</p></div>
+          {tour && (
+            <button type="button" class="vc-card ip-video lh-video" data-yt={tour.yt} data-title={tour.title} aria-label={`Play: ${tour.title}`}>
+              <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+              <span class="vc-body"><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
+            </button>
+          )}
+          <VideoDialog />
         </div>
         <ol class="step-grid">
           {visit.map(([icon, t, d], i) => <li class="step"><span class="step-dot"><Icon name={icon} /></span><span class="step-num">Step {i + 1}</span><h3>{t}</h3><p>{d}</p>{i < visit.length - 1 && <span class="step-arrow" aria-hidden="true"><Icon name="arrow" class="h-4 w-4" /></span>}</li>)}
@@ -380,4 +395,10 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
   }
 </script>
   <Footer />
+<script>
+  document.querySelectorAll<HTMLButtonElement>("#lh-more + .sp-more, .sp-more[aria-controls='lh-more']").forEach((b) => b.addEventListener("click", () => {
+    const box = document.getElementById("lh-more")!; const open = box.classList.toggle("is-open");
+    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : "Read more";
+  }));
+</script>
 </Base>

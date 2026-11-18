@@ -297,3 +297,14 @@
 .hw .lh-region-photo { margin: 0; position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
 .hw .lh-region-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hw .lh-region-photo figcaption { position: absolute; right: 8px; bottom: 6px; font-size: 10.5px; color: rgba(255,255,255,.85); text-shadow: 0 1px 3px rgba(0,0,0,.6); }
+
+.hw .lh-video { width: 100%; max-width: 560px; justify-self: end; }
+@media (max-width: 899px) { .hw .lh-video { max-width: none; justify-self: stretch; } }
+
+.hw .lh-keys { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+.hw .lh-keys li { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; background: var(--hw-stone); font-size: 16px; line-height: 1.5; color: var(--hw-body); }
+.hw .lh-keys svg { flex: none; margin-top: 3px; color: var(--hw-blue); }
+.hw .lh-keys strong { color: var(--hw-navy); }
+.hw .lh-fold { display: none; margin-top: 16px; } .hw .lh-fold.is-open { display: block; } .hw .lh-fold p + p { margin-top: 14px; }
+.hw .sp-more { display: inline-flex; align-items: center; margin-top: 14px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--hw-navy); background: transparent; color: var(--hw-navy); font-weight: 700; font-size: 15px; cursor: pointer; }
+.hw .sp-more:hover { background: var(--hw-navy); color: #fff; }
