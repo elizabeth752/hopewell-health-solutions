@@ -459,7 +459,7 @@ const barFor = (c) => ["#2f76c4", "#b6863c", "#5c7c6b", "#0b2f55", "#265489"][(c
             {photoUrl(author) ? <img src={photoUrl(author)} alt={author.name} width="96" height="96" loading="lazy" /> : <span class="bp-ini">{initials(author.name)}</span>}
             <div>
               <small>Written by</small>
-              <h3>{author.name}</h3>
+              <p class="bp-author-name">{author.name}</p>
               <p class="bp-role">{author.role}</p>
               {authorExcerpt && <p>{authorExcerpt}</p>}
               <a class="inl" href={`/provider/${author.slug}/`}>Read {author.name.split(",")[0]}’s full bio</a>
