@@ -31,8 +31,8 @@ const P = "/Assets/hhs-2026/";
 
 // 1. Hero (user pick 2026-11-18): like the old site. A full-width slider of the old site's banner photos (recovered via
 // the Wayback Machine: couple, man, teen, woman, young woman) under ONE fixed text block: H1 (primary keyword), H2,
-// H3 tagline and one button. The text never changes between slides; the photos lead. The coverage form sits right
-// under the hero (#verify).
+// H3 tagline, one button and the accreditation logos. The text never changes between slides; the photos lead. The
+// photo runs behind the coverage form too (user 2026-11-18); phones get the form further down.
 const heroSlides = [
   { img: P + "hero-slide-couple.webp", pos: "30% 35%", alt: "A smiling couple embracing outdoors" },
   { img: P + "hero-slide-man.webp", pos: "35% 30%", alt: "A smiling man outdoors" },
@@ -201,21 +201,12 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         <h2 class="ho-h2">Outpatient Programs, Therapy &amp; Psychiatry in Glastonbury, Westbrook and Across CT</h2>
         <h3 class="ho-h3">There is <em>hope</em> to <em>heal</em></h3>
         <a href="#verify" class="btn btn-blue ho-cta">Start today <span aria-hidden="true">&rarr;</span></a>
+        <HeroCreds />
       </div>
+      <div class="hero-form ho-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
     </div>
     <div class="ho-dots" role="group" aria-label="Choose a photo">
       {heroSlides.map((x, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo ${i + 1}`}></button>)}
-    </div>
-  </section>
-
-  <!-- 1b. Coverage form right under the hero (user pick 2026-11-18) -->
-  <section class="ho-verify" id="verify">
-    <div class="container ho-v-grid">
-      <div class="ho-v-copy">
-        <h2>Check Your Insurance Coverage for Free</h2>
-        <p>We accept all major insurance providers. Send your details and our admissions team will check your benefits and call you back, confidentially.</p>
-      </div>
-      <LeadForm variant="card" formId="hhs-hero" />
     </div>
   </section>
 
