@@ -1,4 +1,5 @@
 ---
+import TraumaGraphic from "./TraumaGraphic.astro";
 import OcdGraphic from "./OcdGraphic.astro";
 import ServicesDirectory from "../hw/ServicesDirectory.astro";
 import AnxietyGraphic from "./AnxietyGraphic.astro";
@@ -76,7 +77,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
       if (b.type === "whatis") return (
         <section class="section is-white cd-what">
           <div class="container split">
-            {b.graphic === "anxiety" ? <AnxietyGraphic /> : (
+            {b.graphic === "anxiety" ? <AnxietyGraphic /> : b.graphic === "trauma" ? <TraumaGraphic /> : (
             <figure class="cd-what-media">
               <img src={b.img} alt={b.alt} width="1200" height="900" loading="lazy" />
               {b.list && (
