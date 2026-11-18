@@ -67,9 +67,23 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
           <h2>{addiction ? `${short} Treatment for Adults in Connecticut` : `Who We Help With ${short}`}</h2>
           <p class="lede" set:html={addiction ? `Addiction and substance use treatment at our Downtown Glastonbury (300 Hebron Ave) and Westbrook (70 Essex Road) offices, with the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, and step-down care after rehab.` : "Care at Hopewell is built around who you are, at every age and stage of life, with programs for adults, women, teens and first responders."} />
         </div>
-        <ul class="cd-hl">
-          {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={unself(h.d)} /></li>)}
-        </ul>
+        {addiction ? (
+          <ul class="cd-hl">
+            {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={unself(h.d)} /></li>)}
+          </ul>
+        ) : (
+          /* Who we help (user 2026-11-18: "design it better"): one navy panel, four audiences joined by a line. */
+          <ol class="wh2">
+            {highlights.map((h, i) => (
+              <li class={`wh2-n is-${i}`}>
+                <span class="wh2-dot"><Icon name={h.icon} class="h-7 w-7" /></span>
+                <span class="wh2-tag">{h.tag}</span>
+                <strong>{h.t}</strong>
+                <span class="wh2-d" set:html={unself(h.d)} />
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
     </section>
 

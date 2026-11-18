@@ -46,8 +46,8 @@ export const ADDICTION_HIGHLIGHTS = [
   { icon: "link", t: "Addiction and mental health, together", d: `Co-occurring depression, anxiety or trauma is treated alongside substance use by one team. Learn about <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a>.` },
 ];
 export const WHO_WE_HELP = [
-  { icon: "users", t: "Adults", d: `Day and evening <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a>, therapy and <a class="inl" href="/programs/medication-management/">medication management</a> that fit around work and family.` },
-  { icon: "heart", t: "Women’s mental health", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, plus care for postpartum depression and anxiety.` },
-  { icon: "sparkles", t: "Teens & tweens", d: `After-school <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> for ages 8–17, with the family woven into the work.` },
-  { icon: "shield", t: "First responders", d: `A <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> for police, fire, EMS and dispatch, with clinicians who understand the job.` },
+  { icon: "users", t: "Adults", tag: "Ages 18+", href: "/programs/adult-mental-health-iop/", d: `Day and evening <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a>, therapy and <a class="inl" href="/programs/medication-management/">medication management</a> that fit around work and family.` },
+  { icon: "heart", t: "Women’s mental health", tag: "Women 18+", href: "/programs/womens-wellness-iop/", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, plus care for postpartum depression and anxiety.` },
+  { icon: "sparkles", t: "Teens & tweens", tag: "Ages 8–17", href: "/programs/teen-iop/", d: `After-school <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> for ages 8–17, with the family woven into the work.` },
+  { icon: "shield", t: "First responders", tag: "Police · fire · EMS", href: "/programs/first-responder-iop/", d: `A <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> for police, fire, EMS and dispatch, with clinicians who understand the job.` },
 ];

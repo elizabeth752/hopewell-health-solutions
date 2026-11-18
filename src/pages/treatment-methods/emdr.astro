@@ -161,7 +161,7 @@ const schema = {
       .hw .er-ring strong em { font-style: normal; color: #e0b56a; font-size: .6em; }
       .hw .er-sess { margin-top: 6px; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #9cc3ea; font-size: 13px; font-weight: 700; }
       .hw .er-d { color: #dce6f1; font-size: 14.5px; line-height: 1.45; max-width: 26ch; }
-      @media (max-width: 640px) { .hw .er-rings { grid-template-columns: 1fr; } .hw .er-dial { width: 150px; } }
+      @media (max-width: 640px) { .hw .er-rings { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .hw .er-ring { padding: 10px 6px 12px; border-radius: 16px; background: rgba(255,255,255,.06); gap: 6px; } .hw .er-dial { width: min(84px, 100%); } .hw .er-ring strong { font-size: 15px; } .hw .er-sess { margin-top: 2px; padding: 3px 7px; font-size: 10.5px; line-height: 1.25; } .hw .er-d { font-size: 11.5px; line-height: 1.35; } }
       .hw .er-facts { list-style: none; margin: clamp(32px, 4vw, 48px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
       .hw .er-facts li { display: flex; flex-direction: column; gap: 8px; padding: 22px 20px 24px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-top: 3px solid #e0b56a; }
       .hw .er-fi { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(224,181,106,.14); color: #e0b56a; }
