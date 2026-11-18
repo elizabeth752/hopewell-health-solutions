@@ -17,8 +17,17 @@ const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" ar
   <ul class="ps-mq-track">
     {[0, 1].map((k) => photos.map((p) => (
       <li class="ps-mq-slide" aria-hidden={k === 1 ? "true" : undefined}>
-        <img src={p.src} alt={k === 0 ? p.alt : ""} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
-        {p.cap && <span class="ps-cap">{p.cap}</span>}
+        {p.href ? (
+          <a class="ps-mq-link" href={p.href} tabindex={k === 1 ? -1 : undefined}>
+            <img src={p.src} alt={k === 0 ? p.alt : ""} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
+            {p.cap && <span class="ps-cap">{p.cap}</span>}
+          </a>
+        ) : (
+          <Fragment>
+            <img src={p.src} alt={k === 0 ? p.alt : ""} width={p.w ?? 1200} height={p.h ?? 900} loading="lazy" decoding="async" />
+            {p.cap && <span class="ps-cap">{p.cap}</span>}
+          </Fragment>
+        )}
       </li>
     )))}
   </ul>
@@ -67,6 +76,9 @@ const arrow = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" ar
   .ps-marquee:hover .ps-mq-track, .ps-marquee:focus-within .ps-mq-track { animation-play-state: paused; }
   .ps-mq-slide { position: relative; flex: none; height: clamp(240px, 26vw, 340px); border-radius: 20px; overflow: hidden; }
   .ps-mq-slide img { display: block; height: 100%; width: auto; }
+  .ps-mq-link { display: block; height: 100%; color: inherit; text-decoration: none; }
+  .ps-mq-link .ps-cap { right: 14px; max-width: calc(100% - 28px); line-height: 1.3; }
+  .ps-mq-link:hover .ps-cap, .ps-mq-link:focus-visible .ps-cap { background: var(--hw-blue, #265489); }
   @keyframes ps-mq { to { transform: translateX(calc(-50% - 7px)); } }
   @media (prefers-reduced-motion: reduce) { .ps-mq-track { animation: none; } .ps-marquee { overflow-x: auto; } }
 

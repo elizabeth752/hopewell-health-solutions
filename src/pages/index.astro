@@ -109,8 +109,11 @@ const visit = [
 // + the live "Advanced Treatments" cards: TMS, EMDR, GeneSight.
 const advanced = ["/treatment-methods/tms/", "/treatment-methods/emdr/", "/treatment-methods/genesight-testing/"].map((h) => TREATMENTS.find((t) => t.href === h)).filter(Boolean);
 const TT = "/treatment-methods/therapeutic-treatments/";
-// From the Hopewell Blog (restored from the live homepage, 2026-11-18): the 3 latest posts + the handouts link.
-const latestPosts = posts.slice(0, 3);
+// From the Hopewell Blog (user 2026-11-18): a self-moving carousel of key articles (no postpartum posts), each card links
+// to the post. Order mixes levels of care, addiction, anxiety/depression, teens and TMS.
+const blogPicks = ["what-is-iop", "addiction-iop-treatment-what-it-is-and-why-it-works", "anxiety-coping-strategies-expert-tips-for-finding-calm", "php-vs-iop-which-level-of-care-is-right-for-you", "are-you-a-high-functioning-alcoholic", "signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step", "iop-for-depression-in-connecticut-when-outpatient-treatment-is-enough", "tms-what-is-it"]
+  .map((slug) => posts.find((p) => p.slug === slug)).filter((p) => p && p.heroImage)
+  .map((p) => ({ src: p.heroImage, alt: "", w: 1200, h: 750, cap: p.title, href: `/post/${p.slug}/` }));
 const tour = VIDEOS.find((v) => v.yt === "I8nk1SYhFig"); // the old homepage welcome video, 2022 (user 2026-11-18)
 const teenTour = VIDEOS.find((v) => v.yt === "loSaQbRc-oE");
 
@@ -374,12 +377,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <section class="section is-stone" id="blog">
     <div class="container">
       <div class="sec-head"><h2>From the Hopewell Blog</h2><p class="lede">Practical, evidence-based articles written and clinically reviewed by our Connecticut team. See <a class="inl" href="/blog/">all articles</a>, or download our <a class="inl" href="/handouts/">free handouts</a>.</p></div>
-      <div class="pk-grid">
-        {latestPosts.map((p) => (
-          <div class="pk" style="--bar-c:#2f76c4"><span class="pk-icon"><Icon name="chat" class="h-[22px] w-[22px]" /></span><div><h3><a href={`/post/${p.slug}/`}>{p.title}</a></h3><p>{p.excerpt}</p></div></div>
-        ))}
-      </div>
     </div>
+    <PhotoSlider photos={blogPicks} mode="marquee" label="Articles from the Hopewell blog" />
   </section>
 
   <!-- Google reviews (last, above the FAQ) -->

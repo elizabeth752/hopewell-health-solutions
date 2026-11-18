@@ -18,7 +18,7 @@ const id = `sc-${quiz}`;
   <div class="sc-head">
     <span class="sc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1H9z"/><path d="m9 12 2 2 4-4"/></svg></span>
     <div>
-      <strong id={`${id}-h`}>{qz.title}</strong>
+      <strong id={`${id}-h`}>{qz.title.replace(/-(?=\d)/g, "\u2011")}</strong>
       <span class="sc-note">{items.length} questions, about a minute. This isn't a diagnosis, and your answers stay on this page.</span>
     </div>
   </div>

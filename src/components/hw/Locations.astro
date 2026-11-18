@@ -20,6 +20,17 @@ const list = locations.map((l, i) => ({ ...l, n: i + 1 }));
 const ordered = current ? [...list.filter((l) => l.slug === current), ...list.filter((l) => l.slug !== current)] : list;
 const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${l.street}, ${l.city}, CT ${l.zip}`)}`;
 const nAdd = list.filter((l) => l.addiction).length;
+// Every card shows exactly 4 service lines so the cards line up (user 2026-11-18). Offices with more than 4 show their
+// first 3 + "N more programs" (to the office page); therapy-and-medication offices add two true extras.
+const SVC_N = 4;
+const svcLines = (l) => {
+  // Addiction care moves up so it is always visible where it is offered (client doc: make addiction visible).
+  const order = ["addiction", ...OFFER_ORDER.filter((k) => k !== "addiction")];
+  const all = order.filter((k) => l.offers?.includes(k)).map((k) => ({ t: OFFERS[k].t, href: OFFERS[k].href }));
+  if (all.length > SVC_N) return [...all.slice(0, SVC_N - 1), { t: `${all.length - (SVC_N - 1)} more programs here`, href: `/location/${l.slug}/` }];
+  const extras = [{ t: "Psychiatric evaluations", href: "/programs/medication-management/" }, { t: "In person or telehealth", href: `/location/${l.slug}/` }];
+  return [...all, ...extras].slice(0, SVC_N);
+};
 ---
 <section class={`section is-${tone}`} id="locations">
   <div class="container">
@@ -42,7 +53,7 @@ const nAdd = list.filter((l) => l.addiction).length;
             <span class:list={["lc-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health care"}</span>
             <h3><a href={`/location/${l.slug}/`}>{l.name}</a></h3>
             <p class="lc-addr">{l.street}, {l.city}, CT {l.zip}</p>
-            <ul class="lc-svc">{OFFER_ORDER.filter((k) => l.offers?.includes(k)).map((k) => <li><a href={OFFERS[k].href}>{OFFERS[k].t}</a></li>)}</ul>
+            <ul class="lc-svc">{svcLines(l).map((x) => <li><a href={x.href}>{x.t}</a></li>)}</ul>
             <div class="lc-ctas">
               <a class="btn btn-navy" href={mapsHref(l)} target="_blank" rel="noopener"><Icon name="compass" />Get directions</a>
               <a class="btn btn-outline" href={`/location/${l.slug}/`}>Office details</a>
