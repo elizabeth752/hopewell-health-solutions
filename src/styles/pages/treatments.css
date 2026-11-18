@@ -219,3 +219,9 @@
 .hw .tx-split-photo { align-items: center; }
 .hw .tx-photo-tall img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 @media (max-width: 999px) { .hw .tx-photo-tall img { aspect-ratio: 16 / 10; } .hw .tx-split-photo .tx-photo { order: -1; } }
+
+/* Feature with the photo on top (Walk-Talk, user 2026-11-18: "too long, photo at the top"): a wide, short banner photo
+   above the text instead of a tall photo beside it. */
+.hw .tx-feature.is-top { display: block; }
+.hw .tx-feature.is-top > img { width: 100%; height: clamp(220px, 26vw, 340px); object-fit: cover; display: block; }
+.hw .tx-feature.is-top > div { padding: clamp(22px, 3vw, 34px); }
