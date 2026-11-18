@@ -106,7 +106,18 @@ const schema = {
             <p class="lede" style="margin-top:16px">DBT is a type of psychotherapy (talk therapy) that uses a cognitive-behavioral approach and emphasizes the psychosocial aspects of treatment. <a class="inl" href="/treatment-methods/dbt/">Learn how DBT works at Hopewell</a>.</p>
             <p class="tx-card" style="margin-top:18px;flex-direction:row;align-items:center;--bar:#b6863c"><span class="icon-badge"><Icon name="sparkles" /></span><strong style="font-family:var(--hw-head);color:var(--hw-navy)">SPACE Training with <a class="inl" href="/provider/eric-schwartz-psy-d-abpp/">Dr. Schwartz</a></strong></p>
           </div>
-          <figure class="tx-photo"><img src="/Assets/service/dbt.webp" alt="Dialectical Behavior Therapy at Hopewell Health Solutions" width="1200" height="900" loading="lazy" /><figcaption>Talk therapy<span>DBT, CBT &amp; solutions-focused</span></figcaption></figure>
+          {/* DBT skills graphic (user 2026-11-18: "create a graphic"): the four core DBT skill sets around acceptance + change. */}
+          <figure class="dbg" aria-label="The four core DBT skills, balancing acceptance and change">
+            <p class="dbg-h">The four DBT skills</p>
+            <div class="dbg-grid">
+              <div class="dbg-sk" style="--c:#2f76c4"><span><Icon name="cloud" /></span><b>Mindfulness</b><small>Stay present, without judgment</small></div>
+              <div class="dbg-sk" style="--c:#b6863c"><span><Icon name="shield" /></span><b>Distress tolerance</b><small>Get through a crisis without making it worse</small></div>
+              <div class="dbg-mid"><b>Acceptance</b><i>+</i><b>Change</b></div>
+              <div class="dbg-sk" style="--c:#5c7c6b"><span><Icon name="heart" /></span><b>Emotion regulation</b><small>Understand and steady big feelings</small></div>
+              <div class="dbg-sk" style="--c:#265489"><span><Icon name="users" /></span><b>Interpersonal effectiveness</b><small>Ask for what you need, keep relationships</small></div>
+            </div>
+            <figcaption>The core curriculum in our <a href="/programs/intensive-outpatient-program/">IOP programs</a></figcaption>
+          </figure>
         </div>
         <div class="tx-cards" style="margin-top:36px">
           {talk.map((c) => <div class="tx-card" style={`--bar:${c.bar}`}><span class="icon-badge"><Icon name={c.icon} /></span><h3>{c.t}</h3><p style="font-family:var(--hw-head);font-weight:700;font-size:13.5px;color:var(--hw-slate)">{c.sub}</p><p>{c.d}</p></div>)}

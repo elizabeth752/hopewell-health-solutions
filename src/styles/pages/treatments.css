@@ -246,3 +246,20 @@
 .hw .tx-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
 .hw .tx-pair .tx-feature { height: 100%; }
 @media (max-width: 860px) { .hw .tx-pair { grid-template-columns: minmax(0, 1fr); } }
+
+/* DBT skills graphic (therapeutic treatments, 2026-11-18). */
+.hw .dbg { margin: 0; padding: clamp(22px, 3vw, 30px); border-radius: 28px; background: linear-gradient(160deg, #0b2f55, #12406f); color: #fff; box-shadow: 0 26px 60px rgba(0,29,55,.18); }
+.hw .dbg-h { margin: 0 0 14px; text-align: center; font-family: var(--hw-head); font-weight: 800; font-size: 18px; color: #9cc3ea; }
+.hw .dbg-grid { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.hw .dbg-sk { display: grid; gap: 6px; justify-items: start; padding: 18px 16px; border-radius: 18px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); }
+.hw .dbg-sk span { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--c); color: #fff; }
+.hw .dbg-sk b { font-family: var(--hw-head); font-size: 16px; line-height: 1.25; }
+.hw .dbg-sk small { font-size: 13.5px; line-height: 1.4; color: #c9d6e4; }
+.hw .dbg-mid { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; width: 112px; height: 112px; border-radius: 50%; display: grid; place-content: center; text-align: center; background: #fff; color: var(--hw-navy); box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+.hw .dbg-mid b { font-family: var(--hw-head); font-size: 14px; line-height: 1.1; }
+.hw .dbg-mid i { font-style: normal; font-weight: 800; color: #b6863c; font-size: 18px; line-height: 1; }
+.hw .dbg-grid > .dbg-sk:nth-child(1) { padding-right: 60px; } .hw .dbg-grid > .dbg-sk:nth-child(2) { padding-left: 60px; }
+.hw .dbg-grid > .dbg-sk:nth-child(4) { padding-right: 60px; } .hw .dbg-grid > .dbg-sk:nth-child(5) { padding-left: 60px; }
+.hw .dbg figcaption { margin-top: 14px; text-align: center; font-size: 14px; color: #dce6f1; }
+.hw .dbg figcaption a { color: #9cc3ea; font-weight: 700; text-decoration: none; }
+@media (max-width: 520px) { .hw .dbg-grid { grid-template-columns: minmax(0, 1fr); } .hw .dbg-mid { position: static; transform: none; width: auto; height: auto; border-radius: 14px; padding: 10px; display: flex; gap: 8px; justify-content: center; order: -1; } .hw .dbg-grid > .dbg-sk { padding: 16px !important; } }
