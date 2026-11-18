@@ -3,7 +3,7 @@
 // (optional H3 sub-sections) beside a visual aside — a photo, an icon key-points card, numbered steps or a mini table.
 // Blocks alternate side and background. Paragraphs are HTML strings so interlinks sit inline (class "inl").
 import Icon from "../Icon.astro";
-interface Aside { type: "img" | "points" | "steps" | "table" | "iopfit" | "serve"; age?: string; ageLabel?: string; exp?: [string, string]; concerns?: { icon: string; t: string; note?: string; tone?: string }[]; inclusive?: string; licensed?: string; src?: string; alt?: string; cap?: string; title?: string; items?: any[]; head?: string[]; rows?: string[][] }
+interface Aside { wide?: boolean; type: "img" | "points" | "steps" | "table" | "iopfit" | "serve"; age?: string; ageLabel?: string; exp?: [string, string]; concerns?: { icon: string; t: string; note?: string; tone?: string }[]; inclusive?: string; licensed?: string; src?: string; alt?: string; cap?: string; title?: string; items?: any[]; head?: string[]; rows?: string[][] }
 interface Block { id?: string; h2: string; paras: string[]; h3s?: { h3: string; paras: string[] }[]; aside?: Aside; tone?: "white" | "stone" | "mist" }
 interface Props { blocks: Block[]; startTone?: number }
 const { blocks, startTone = 0 } = Astro.props;
@@ -45,7 +45,7 @@ const tones = ["white", "stone"];
       </div>
       {b.aside && (
         <aside class={`sp-aside sp-${b.aside.type}`}>
-          {b.aside.type === "img" && (<figure><img src={b.aside.src} alt={b.aside.alt ?? ""} width="1200" height="900" loading="lazy" />{b.aside.cap && <figcaption>{b.aside.cap}</figcaption>}</figure>)}
+          {b.aside.type === "img" && (<figure class:list={[b.aside.wide && "is-wide"]}><img src={b.aside.src} alt={b.aside.alt ?? ""} width="1200" height="900" loading="lazy" />{b.aside.cap && <figcaption>{b.aside.cap}</figcaption>}</figure>)}
           {b.aside.type === "points" && (<div class="sp-card">{b.aside.title && <p class="sp-card-h">{b.aside.title}</p>}<ul>{b.aside.items.map(([icon, t]) => <li><span class="icon-badge"><Icon name={icon} /></span><span set:html={t} /></li>)}</ul></div>)}
           {b.aside.type === "steps" && (<div class="sp-card">{b.aside.title && <p class="sp-card-h">{b.aside.title}</p>}<ol>{b.aside.items.map(([t, d], k) => <li><span class="sp-n">{k + 1}</span><span><strong set:html={t} /><span set:html={d} /></span></li>)}</ol></div>)}
           {b.aside.type === "iopfit" && (

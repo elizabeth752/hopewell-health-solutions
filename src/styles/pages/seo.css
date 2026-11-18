@@ -160,3 +160,6 @@
 .hw .if-weekcard .if-day b { font-size: 13px; color: var(--hw-navy); } .hw .if-weekcard .if-day i { font-style: normal; font-size: 12.5px; color: var(--hw-slate); }
 .hw .if-weekcard .if-day.is-on i { color: #0b2f55; }
 .hw .if-weekcard .if-tracks { list-style: none; padding: 0; }
+
+/* Wide (16:9) covers, e.g. podcast episodes: show the whole image, no crop (2026-11-18). */
+.hw .sp-aside figure.is-wide img { aspect-ratio: 16 / 9; object-fit: contain; background: #0b2f55; height: auto; }

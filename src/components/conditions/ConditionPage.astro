@@ -4,6 +4,7 @@ import OcdGraphic from "./OcdGraphic.astro";
 import ServicesDirectory from "../hw/ServicesDirectory.astro";
 import AnxietyGraphic from "./AnxietyGraphic.astro";
 import CooccurGraphic from "./CooccurGraphic.astro";
+import BipolarGraphic from "./BipolarGraphic.astro";
 import ConsentMap from "../ConsentMap.astro";
 // What We Treat page renderer (2026 redesign, Corner Canyon layout system). Each condition page passes its own copy,
 // verbatim from the previous page, as data: hero, content blocks (in page order), FAQs, insurance/locations/CTA text.
@@ -228,7 +229,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
       if (b.type === "checks") return (
         <section class="section is-white cd-checks-sec">
           <div class="container cd-checks">
-            {b.graphic === "ocd" ? <OcdGraphic /> : <img src={nextPhoto()} alt="" width="1200" height="900" loading="lazy" />}
+            {b.graphic === "ocd" ? <OcdGraphic /> : b.graphic === "bipolar" ? <BipolarGraphic /> : <img src={nextPhoto()} alt="" width="1200" height="900" loading="lazy" />}
             <div>
               <h2>{b.h2}</h2>
               {b.lede && <p class="lede" style="margin-top:14px" set:html={b.lede} />}

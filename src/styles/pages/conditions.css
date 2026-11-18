@@ -265,3 +265,14 @@
 .hw .cd-what-fold summary::after { content: " +"; } .hw .cd-what-fold[open] summary::after { content: " −"; }
 .hw .cd-what-fold p { margin-top: 12px; font-size: 16px; line-height: 1.6; }
 @media (min-width: 1000px) { .hw .cd-what .split > .cog { order: 2; } }
+
+/* Bipolar "mood swings vs. bipolar" graphic (2026-11-18): two mood lines on a light card. */
+.hw .bpg { margin: 0; padding: clamp(22px, 3vw, 32px); border-radius: 28px; background: var(--hw-stone); border: 1px solid var(--hw-line); display: grid; gap: 22px; }
+.hw .bpg-row { padding: 18px 20px; border-radius: 20px; background: #fff; box-shadow: 0 10px 26px rgba(0,29,55,.06); }
+.hw .bpg-h { margin: 0 0 8px; display: flex; align-items: center; gap: 10px; font-family: var(--hw-head); font-weight: 800; font-size: 17px; color: var(--hw-navy); }
+.hw .bpg-h span { width: 14px; height: 14px; border-radius: 50%; }
+.hw .bpg svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hw .bpg svg path { fill: none; stroke-width: 5; stroke-linecap: round; }
+.hw .bpg-base { stroke: #d9dee5; stroke-width: 2; stroke-dasharray: 5 6; }
+.hw .bpg-lab { font-family: var(--hw-head); font-weight: 800; font-size: 15px; fill: #0b2f55; }
+.hw .bpg-note { margin: 8px 0 0; font-size: 14.5px; color: var(--hw-slate); }
