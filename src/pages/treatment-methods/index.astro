@@ -152,12 +152,11 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
 
     <section class="section is-stone" id="treatments">
       <div class="container">
-        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own, evidence-based options that help the brain and body heal. Below, each treatment explained: what it is, who it helps, and where to learn more.</p></div>
+        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own, evidence-based options that help the brain and body heal. Grouped by what they do. Each has its own page with how it works and who it helps.</p></div>
         <div class="wq-groups">
           {briefGroups.map((g) => (
             <section class={`wq-group t-${g.tone}`} id={g.key} aria-labelledby={`h-${g.key}`}>
-              <div class:list={["wq-group-head", g.img && "has-photo"]}>
-                {g.img && <img class="wq-group-photo" src={g.img} alt={g.alt} width="1200" height="900" loading="lazy" decoding="async" />}
+              <div class="wq-group-head">
                 <span class="wq-group-icon"><Icon name={g.icon} /></span>
                 <div><h3 id={`h-${g.key}`}>{g.name}</h3><span>{g.note}</span></div>
               </div>
@@ -165,9 +164,7 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
                 {g.items.map((c) => (
                   <article class="wq-card">
                     <h4><a href={c.href}>{c.t}</a></h4>
-                    <p class="wq-line">{c.d}</p>
-                    {c.more && <p set:html={c.more} />}
-                    {c.helps && <p class="wq-signs"><strong>Often helps with:</strong> {c.helps.join(" · ")}</p>}
+                    <p>{c.d}</p>
                   </article>
                 ))}
               </div>
