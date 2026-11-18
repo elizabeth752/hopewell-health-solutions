@@ -6,7 +6,12 @@ import LeadForm from "../LeadForm.astro";
 import Icon from "../Icon.astro";
 import { PHONE } from "../../data/site.js";
 interface Props { heading?: string; lede?: string; mobileForm?: boolean; tone?: "stone" | "white"; form?: boolean }
-const { heading = "Comprehensive Coverage Options", lede = "We’re in-network with most major plans, and licensed in CT, Massachusetts, New York &amp; Florida. Not sure about your coverage? We’ll check it for you, free, in minutes.", mobileForm = true, tone = "stone", form = true } = Astro.props;
+// Reviewer feedback 2026-11-18: one simple, conversion-focused message sitewide. The heading is always
+// "We Accept All Major Insurance Providers" and the lede is fixed: no plan-type or TRICARE/PPO details here.
+// Pages still pass heading/lede props (kept in Props so they compile); they are deliberately ignored.
+const { mobileForm = true, tone = "stone", form = true } = Astro.props;
+const heading = "We Accept All Major Insurance Providers";
+const lede = "Not sure what your plan covers? Our team checks your benefits for free, usually within minutes, so you know your costs before you start. No pressure, no commitment.";
 const insurers = [
   ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
   ["Blue Cross Blue Shield","/Assets/home-b/insurance/bcbs.svg"],["Cigna","/Assets/Insurance/CIGNA.webp"],
@@ -26,11 +31,11 @@ const steps = [
   <div class="container ins-grid">
     <div class="ins-copy">
       <h2>{heading}</h2>
-      <p class="lede" set:html={lede} />
+      <p class="lede">{lede}</p>
       <div class="plan-table">
-        <div class="plan-row"><span>Commercial plans (Aetna, Anthem, BCBS, Cigna &amp; more)</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />In-network</span></div>
-        <div class="plan-row"><span>TRICARE &amp; VA Community Care</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />Accepted</span></div>
-        <div class="plan-row"><span>Not sure what your plan covers?</span><span class="plan-status is-info"><Icon name="shield" class="h-4 w-4" />Free check</span></div>
+        <div class="plan-row"><span>All major insurance providers</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />Accepted</span></div>
+        <div class="plan-row"><span>Free, confidential benefits check</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />In minutes</span></div>
+        <div class="plan-row"><span>Questions about your plan? <a class="inl" href={PHONE.href}>{PHONE.display}</a></span><span class="plan-status is-info"><Icon name="phone" class="h-4 w-4" />Call us</span></div>
       </div>
       {form && <ol class="ins-mini">{steps.map(([icon, t], i) => <li><span><Icon name={icon} class="h-4 w-4" /></span>{t}</li>)}</ol>}
       <p>See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>, or call <a class="inl" href={PHONE.href}>{PHONE.display}</a>.</p>
@@ -53,3 +58,15 @@ const steps = [
     </div>
   </div>
 </section>
+
+<style is:global>
+  /* Phones: payer logos as a 2-per-row grid of large tiles instead of the small moving strip (reviewer 2026-11-18).
+     The same rule ships in LeadForm.astro for the homepage, which builds its own insurance section. */
+  @media (max-width: 640px) {
+    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; }
+    .hw .payers .marquee-track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: auto; animation: none; }
+    .hw .payers .marquee .payer[aria-hidden="true"] { display: none; }
+    .hw .payers .marquee .payer { height: 88px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
+    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 150px; max-height: 50px; object-fit: contain; }
+  }
+</style>
