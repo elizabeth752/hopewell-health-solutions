@@ -47,7 +47,7 @@ const listText = (a) => a.length > 1 ? a.slice(0, -1).join(", ") + " & " + a[a.l
 const heroUsps = [
   "Joint Commission accredited",
   "In person or telehealth",
-  "Most major PPOs accepted",
+  "All major insurance accepted",
 ];
 
 // ---- Per-office content from the briefs ----------------------------------------------------------------------------
@@ -137,7 +137,7 @@ const PAGE = {
     reviewsFirst: ["Therapy", "Medication management"],
   },
   "westbrook-ct": {
-    title: "Westbrook, CT IOP & Addiction Treatment | Hopewell",
+    title: "Therapist, IOP & Addiction Care in Westbrook, CT | Hopewell",
     meta: "Hopewell Westbrook offers women's, addiction and co-occurring IOPs, therapy and psychiatry for Old Saybrook, Clinton, Madison, Guilford and Niantic.",
     h1: "IOP &amp; Addiction Treatment in Westbrook, CT",
     lead: "IOP in Westbrook, CT, plus addiction treatment, therapists in Westbrook for weekly sessions, and psychiatry at Hopewell’s shoreline office on Essex Road.",
@@ -161,7 +161,7 @@ const PAGE = {
 // Card copy kept from the earlier page; brief names used for the IOPs.
 const card = {
   php: { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", bar: "#265489", icon: "sun", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
-  iop: { t: "Adult Co-Occurring IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", bar: "#2f76c4", icon: "users", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
+  iop: { t: "Adult Mental Health IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", bar: "#2f76c4", icon: "users", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
   womens: { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", bar: "#b6863c", icon: "heart", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : "Adult women"]] },
   trauma: { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", d: "A women-only, trauma-informed program for healing from past trauma, in the evening.", bar: "#8a5a2b", icon: "shield", facts: [["clock", "Mon–Thu, 5–8 PM"], ["heart", "Women-only groups"]] },
   responder: { t: "First Responder IOP", href: "/programs/first-responder-iop/", d: "A confidential IOP for police, firefighters, EMS and dispatchers, with peers who understand the job.", bar: "#0b2f55", icon: "shield", facts: [["clock", "Mon–Thu, 9 AM–12 PM"], ["users", "First responders"]] },
@@ -212,9 +212,11 @@ const credsOf = (n) => n.split(",").slice(1).map((c) => c.trim()).filter(Boolean
 const shortRole = (r) => r.replace(/^Board-Certified /, "").replace(/ · .*/, "").replace(/ & Licensed Clinical Social Worker/, "");
 const isGlast = rosterByLocation[l.slug] === "glastonbury";
 const teamHeading = isGlast ? "Clinicians at our Glastonbury offices" : `Clinicians at our ${l.city} office`;
+// One-team sentence restored from the live location pages (2026-11-18 content gap fix).
+const oneTeam = "Our psychiatrists, nurse practitioners, psychologists, and licensed therapists work as one team across all of our Connecticut offices.";
 const teamLede = isGlast
-  ? `The psychologists, counselors, social workers and therapists who see clients across our three Glastonbury offices. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`
-  : `The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`;
+  ? `${oneTeam} The psychologists, counselors, social workers and therapists who see clients across our three Glastonbury offices. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`
+  : `${oneTeam} The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`;
 
 // ---- Nearest other offices (straight-line distance from locations.js coordinates) ----------------------------------
 const dist = (a, b) => Math.hypot(a.lat - b.lat, (a.lng - b.lng) * Math.cos((a.lat * Math.PI) / 180));
@@ -241,7 +243,7 @@ const a = (href, t) => `<a class="inl" href="${href}">${t}</a>`;
 const servicesAnswer = `At our ${l.name} office we offer ${listText(offers.map((k) => a(OFFERS[k].href, OFFERS[k].t)))}${l.addiction ? "" : `. Addiction treatment is offered at our ${a("/location/glastonbury-ct-2/", "Downtown Glastonbury")} and ${a("/location/westbrook-ct/", "Westbrook")} offices`}. Providers vary by office, call us and we’ll match you to the right care and location.`;
 const faqWhere = [`Where is the ${l.name} office?`, `We’re located at ${fullAddress}. You can reach us at <a class="inl" href="tel:8607351448">(860) 735-1448</a> or request an appointment online.`];
 const faqTele = ["Do you offer in-person and telehealth appointments?", "Yes, you can be seen in person at this office or by secure video telehealth across Connecticut, with daytime and evening availability."];
-const faqIns = ["Do you take my insurance?", `We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). We’ll verify your benefits for free before your first visit. See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>. Most commercial plans cover care here; Hopewell doesn’t accept Medicare either.`];
+const faqIns = ["Do you take my insurance?", `We accept all major insurance providers, and we’ll check your benefits for free before your first visit. We don’t accept Medicare or Medicaid (HUSKY). See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>.`];
 const faqBook = ["How do I book my first appointment?", `Call <a class="inl" href="tel:8607351448">(860) 735-1448</a> or <a class="inl" href="/admissions/">request an appointment online</a>. Our team will help you choose the right provider, service, and location. We’ll check your insurance first.`];
 const faqHours = ["What are the office hours?", `${l.hours.replace(" · ", "; ")}. Appointments are available during the day and into the evening.`];
 const faqCrisis = ["What if I’m in crisis?", `Call or text <a class="inl" href="tel:988">988</a>, call 911, or go to the nearest emergency room.`];
@@ -253,9 +255,9 @@ const FAQS = {
     faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
   ],
   "glastonbury-ct-2": [
-    ["What programs are at the Hebron Ave office?", `${a("/programs/partial-hospitalization-program/", "PHP")}, the ${a("/programs/adult-mental-health-iop/", "Adult Co-Occurring IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")}, ${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/womens-trauma-iop/", "Women’s Trauma IOP")} and ${a("/programs/first-responder-iop/", "First Responder IOP")}, plus counseling and medication management. ${servicesAnswer}`],
+    ["What programs are at the Hebron Ave office?", `${a("/programs/partial-hospitalization-program/", "PHP")}, the ${a("/programs/adult-mental-health-iop/", "Adult Mental Health IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")}, ${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/womens-trauma-iop/", "Women’s Trauma IOP")} and ${a("/programs/first-responder-iop/", "First Responder IOP")}, plus counseling and medication management. ${servicesAnswer}`],
     ["Is this where the PHP meets?", `Yes. Our ${a("/programs/partial-hospitalization-program/", "partial hospitalization program (PHP)")} meets here, Monday through Friday, about six hours a day.`],
-    ["Do you treat addiction at this office?", `Yes, through the Addiction IOP and Adult Co-Occurring IOP, with ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment")} available.`],
+    ["Do you treat addiction at this office?", `Yes, through the Addiction IOP and the Adult Mental Health IOP, which treats co-occurring mental health and substance use together, with ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment")} available.`],
     ["Where is the teen program?", `At our ${a("/location/glastonbury-ct-3/", "South Glastonbury office, 1420 Main St")}.`],
     faqWhere, faqHours,
     ["How soon can I start?", "It depends on the program. Call or send the form, and admissions will check your insurance and give you a start date."],
@@ -282,9 +284,9 @@ const FAQS = {
     faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,
   ],
   "westbrook-ct": [
-    ["What programs are offered at the Westbrook office?", `${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")} and ${a("/programs/adult-mental-health-iop/", "Adult Co-Occurring IOP")}, plus counseling and medication management. ${servicesAnswer}`],
+    ["What programs are offered at the Westbrook office?", `${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")} and ${a("/programs/adult-mental-health-iop/", "Adult Mental Health IOP")}, plus counseling and medication management. ${servicesAnswer}`],
     ["When did the Westbrook office open?", "On September 28, 2026."],
-    ["Do you treat addiction in Westbrook?", `Yes, through the Addiction IOP and Adult Co-Occurring IOP. Medication management here includes ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment (MAT)")}.`],
+    ["Do you treat addiction in Westbrook?", `Yes, through the Addiction IOP and the Adult Mental Health IOP, which treats co-occurring mental health and substance use together. Medication management here includes ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment (MAT)")}.`],
     ["Is there a women’s program on the shoreline?", "Yes. Our Women’s Wellness IOP meets here, and a second group is planned."],
     ["What towns does the Westbrook office serve?", "Shoreline towns including Old Saybrook, Clinton, Madison, Guilford, Branford and Niantic."],
     ["Is there teen care in Westbrook?", `Our ${a("/programs/teen-iop/", "Teen")} and ${a("/programs/tween-iop/", "Tween IOPs")} meet in ${a("/location/glastonbury-ct-3/", "South Glastonbury")}.`],
@@ -398,7 +400,7 @@ const eventSchema = ev && {
           <div class="ab-copy">
             <h2>Mental health &amp; addiction care on the Connecticut shoreline</h2>
             <div style="margin-top:18px">
-              <p>Hopewell Westbrook opened on September 28, 2026, bringing the same team-based care our Glastonbury offices are known for to the shoreline. We started with our <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, <a class="inl" href="/programs/medication-management/">psychiatric medication management</a> and <a class="inl" href="/programs/counseling/">1:1 therapy</a>, and added a co-ed <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a> in October.</p>
+              <p>Hopewell Westbrook opened on September 28, 2026, bringing the same team-based care our Glastonbury offices are known for to the shoreline. We started with our <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a>, <a class="inl" href="/programs/medication-management/">psychiatric medication management</a> and <a class="inl" href="/programs/counseling/">1:1 therapy</a>, and added a co-ed <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a> in October.</p>
               <p>Westbrook is one of two Hopewell offices that offer <a class="inl" href="/programs/addiction-iop/">addiction treatment</a>, with mental health care alongside it, so people on the shoreline no longer have to drive to Hartford County for an intensive program. Medication management here includes <a class="inl" href="/treatment-methods/medication-assisted-treatment/">medication-assisted treatment (MAT)</a>.</p>
               <p>The office sits on Essex Road, minutes from I-95, and serves Westbrook, Old Saybrook, Clinton, Essex, Madison, Deep River, Old Lyme and Killingworth, with clients also coming from Guilford, Branford and Niantic. The local clinical team is led by <a class="inl" href="/provider/kaitlyn-czapiga-lmsw/">Kaitlyn Czapiga, LMSW</a>, Clinical Team Lead for Westbrook.</p>
             </div>
@@ -467,7 +469,7 @@ const eventSchema = ev && {
                 <thead><tr><th scope="col">Program</th><th scope="col">Days</th><th scope="col">Times</th></tr></thead>
                 <tbody>
                   <tr><th scope="row"><a href="/programs/partial-hospitalization-program/">Partial Hospitalization (PHP)</a></th><td>Mon–Fri</td><td>About 6 hours a day</td></tr>
-                  <tr><th scope="row"><a href="/programs/adult-mental-health-iop/">Adult Co-Occurring IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM or 5–8 PM</td></tr>
+                  <tr><th scope="row"><a href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM or 5–8 PM</td></tr>
                   <tr><th scope="row"><a href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM or 5–8 PM</td></tr>
                   <tr><th scope="row"><a href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a></th><td>Mon–Thu</td><td>5–8 PM</td></tr>
                   <tr><th scope="row"><a href="/programs/first-responder-iop/">First Responder IOP</a></th><td>Mon–Thu</td><td>9 AM–12 PM</td></tr>

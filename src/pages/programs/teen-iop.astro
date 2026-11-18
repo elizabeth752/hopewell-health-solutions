@@ -26,7 +26,9 @@ import NewsVideos from "../../components/programs/NewsVideos.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
 import { VIDEOS } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
 import "../../styles/pages/programs.css";
+import "../../styles/pages/seo.css";
 
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
@@ -79,12 +81,25 @@ const family = [
   { n: "A.Y.", t: "Teen IOP parent", q: "I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family." },
   { n: "J.L.", t: "Teen IOP student", q: "I just completed Teen IOP at Hopewell and I feel I received the tools I need to go to college with less worry and anxiety. I really liked the groups and the other kids and the therapists. At first I did not always like going, and then I started looking forward to it, because it was making me better." },
 ];
+// "An experienced team that works as one" + who the program serves (restored from the live Teen & Tween page,
+// 2026-11-18 content gap fix), adapted to this page's age band.
+const whoBlocks = [
+  { id: "who-we-serve", tone: "stone", h2: "Who the Teen IOP Serves",
+    paras: [
+      "We work with adolescents ages 13–17 struggling with self-injury, school refusal, suicidal ideation, and significant mood and anxiety disorders. Younger children ages 8–12 attend our <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>. We are fully inclusive and welcome all genders and the <a class='inl' href='/post/lgbtq-inclusivity-in-behavioral-health-treatment/'>LGBTQA+ community</a>, because every child is unique, and every treatment plan is, too.",
+    ],
+    h3s: [{ h3: "An experienced team that works as one", paras: [
+      "Our clinicians and medical staff are fully licensed and deeply experienced, a full medical team and a full therapeutic team working together to create customized strategies that drive real, positive change for each child and family. Each IOP staff member has 10–30 years of experience working with adolescents, and the program is licensed by the State of Connecticut.",
+    ] }],
+    aside: { type: "points", title: "Who we serve", items: [["users", "Teens ages 13–17"], ["alert", "Self-injury and suicidal ideation (in a crisis, call or text <a class='inl' href='tel:988'>988</a>)"], ["calendar", "School refusal"], ["cloud", "Significant mood and anxiety disorders"], ["heart", "All genders and the LGBTQA+ community welcome"], ["shield", "Licensed by the State of Connecticut"]] } },
+];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
 const stories = ["awy7nfDgC0k", "loSaQbRc-oE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
 const news = [{ id: "P3cmQMf3WoM", t: "Teen Mental Health Crisis", outlet: "Interview" }];
 const faqs: [string, string][] = [
   ["What is a teen IOP?", "A teen intensive outpatient program is a structured program where teens attend therapy several afternoons or evenings a week and keep living at home and going to school. It’s more support than weekly therapy, without an overnight stay."],
-  ["What ages is it for?", "Ages 13–17. Younger children ages 8–12 attend our <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>, and adults 18 and up can join our <a class='inl' href='/programs/adult-mental-health-iop/'>adult IOP</a>."],
+  ["What ages is it for?", "Ages 13–17. Younger children ages 8–12 attend our <a class='inl' href='/programs/tween-iop/'>Tween IOP</a>, and adults 18 and up can join our <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Mental Health IOP</a>."],
+  ["What does the program treat?", "We support adolescents ages 13–17 struggling with self-injury, school refusal, suicidal ideation, and significant mood and anxiety disorders. Every teen receives an individualized treatment plan."],
   ["Will my teen miss school?", "No. Teen groups meet Monday–Thursday from 5:00 to 8:00 PM, after the school day, so most teens stay in school. We can <a class='inl' href='/post/secrets-from-a-504-insider-a-parents-guide-to-academic-accommodations/'>coordinate with the school</a> when it helps."],
   ["What does my teen work on?", "Coping and emotional skills (including DBT), managing anxiety and low mood, communication, and family relationships. Every teen has an individualized treatment plan."],
   ["How are parents involved?", "Parent involvement is required. Parents attend once to twice a week to learn the <a class='inl' href='/treatment-methods/dbt/'>DBT skills</a> being taught, so they carry into the home, and get regular updates from the care team. We also host a Parent Support Group on Tuesdays and Parent Night on Thursdays."],
@@ -92,7 +107,7 @@ const faqs: [string, string][] = [
   ["What if my teen is in crisis?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room. IOP is not an emergency service."],
   ["Does my teen need a diagnosis?", "No. Our assessment looks at what’s going on and recommends next steps."],
   ["Where is the Teen IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>, 1420 Main St, Suite 124, Glastonbury."],
-  ["Does insurance cover teen IOP?", "Most commercial plans do when medically necessary, and TRICARE East is accepted as a PPO plan. We <a class='inl' href='/rates-and-insurance-coverage/'>verify benefits for free</a>. We don’t accept Medicare or Medicaid (HUSKY). Many families also qualify for <a class='inl' href='/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/'>Connecticut Paid Leave or FMLA</a>."],
+  ["Does insurance cover teen IOP?", "We accept all major insurance providers, and we <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits for free</a> before you start. We don’t accept Medicare or Medicaid (HUSKY). Many families also qualify for <a class='inl' href='/post/what-programs-at-hopewell-are-eligible-for-ct-paid-leave-or-fmla/'>Connecticut Paid Leave or FMLA</a>."],
   ["Is it in person or online?", "In person, which helps teens connect with peers and clinicians. Telehealth is available for some services. Read <a class='inl' href='/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/'>virtual vs in-person IOP for teens</a>."],
 ];
 const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Teen IOP (ages 13–17)", url: SITE + "/programs/teen-iop/",
@@ -135,6 +150,8 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
 
+    <Prose blocks={whoBlocks} />
+
     <section class="section is-white" id="program">
       <div class="container">
         <div class="sec-head"><h2>What the teen IOP includes</h2><p class="lede">Teen mental health treatment works best when it reaches every part of a teen’s life. Our program combines teen-only <a class="inl" href="/treatment-methods/group-therapy/">groups</a>, individual therapy and psychiatric care with family sessions, so the skills your teen learns in group show up at home and at school.</p></div>
@@ -158,7 +175,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
         <div class="ty-age">
           <div class="ty-age-card" style="--bar:#5c7c6b"><strong>8–12</strong><h3>Tween IOP</h3><p>Age-matched after-school groups with parents built into the plan. Learn about our <a class="inl" href="/programs/tween-iop/">tween IOP</a>.</p></div>
           <div class="ty-age-card is-here"><strong>13–17</strong><h3>Teen IOP</h3><p>You’re here: teen-only groups, Mon–Thu, 5:00–8:00 PM, with weekly family involvement.</p></div>
-          <div class="ty-age-card" style="--bar:#2f76c4"><strong>18+</strong><h3>Adult IOP</h3><p>Day and evening tracks for adults, including college students. See our <a class="inl" href="/programs/intensive-outpatient-program/">IOP overview</a>.</p></div>
+          <div class="ty-age-card" style="--bar:#2f76c4"><strong>18+</strong><h3>Adult Mental Health IOP</h3><p>Day and evening tracks for adults, including college students. See our <a class="inl" href="/programs/intensive-outpatient-program/">IOP overview</a>.</p></div>
         </div>
       </div>
     </section>
@@ -166,6 +183,21 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Hear From Teens &amp; Families" lede="A former Teen IOP client and his mom share what changed at home and at school, and our clinicians show the teen and tween space. More stories on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
 
     <NewsVideos heading="Teen mental health, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on the teen mental health crisis and <a class='inl' href='/post/how-to-help-your-kids-during-a-mental-health-crisis/'>what parents can do</a>." videos={news} tone="white" />
+
+    <section class="section is-mist" id="family-stories">
+      <div class="container">
+        <div class="sec-head"><h2>What Teen IOP Families Say</h2><p class="lede">In their own words, from Teen IOP parents and a Teen IOP student. Initials only.</p></div>
+        <div class="pg-testi">
+          {family.map((r) => (
+            <figure class="rv">
+              <svg class="rv-quote" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
+              <blockquote class="rv-text">“{r.q}”</blockquote>
+              <figcaption class="rv-who"><span class="rv-avatar">{ini(r.n)}</span><span class="rv-name"><strong>{r.n}</strong>{r.t}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
 
     <ModalitiesOutcomes modalities={modalities} oHeading="Skills your teen will build" oLede="During the 8–12 week group IOP, your teen collaborates with a board-certified, multidisciplinary team, psychologists, psychiatric providers, and therapists, to strengthen:" outcomes={outcomes} note="Plus <a class='inl' href='/programs/medication-management/'>medication management</a>, <a class='inl' href='/programs/counseling/'>individual counseling</a> &amp; additional <a class='inl' href='/treatment-methods/therapeutic-treatments/'>therapeutic treatments</a>." tone="stone" />
 
@@ -187,7 +219,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     </section>
 
     <Team heading="Your Teen’s Care Team" lede="Psychologists, psychiatric providers and therapists with 10–30 years of experience with adolescents. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["eric-schwartz-psy-d-abpp", "linda-scillia-pmhnp-bc-aprn", "jackie-plagesse-lmfta", "kate-henneberry-lmfta", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d", "viviana-alvarado-lpc-a"]} tone="white" />
-    <Insurance heading="Does insurance cover teen IOP?" lede="Most commercial plans cover teen IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicare or Medicaid (HUSKY)." />
+    <Insurance heading="Does insurance cover teen IOP?" lede="We accept all major insurance providers. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicare or Medicaid (HUSKY)." />
     <Locations heading="Where the Teen IOP Meets" lede="The teen IOP is held at 1420 Main St, Suite 124, Glastonbury, our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
     <Reviews tone="stone" heading="What Our Clients Say on Google" first={["IOP"]} />
     <Faq faqs={faqs} heading="Teen IOP: common questions" tone="white" />

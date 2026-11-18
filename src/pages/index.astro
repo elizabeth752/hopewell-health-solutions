@@ -20,6 +20,9 @@ import Team from "../components/hw/Team.astro";
 import ClosingCta from "../components/hw/ClosingCta.astro";
 import Locations from "../components/hw/Locations.astro";
 import PhotoSlider from "../components/hw/PhotoSlider.astro";
+import ProgramCards from "../components/hw/ProgramCards.astro";
+import { TREATMENTS } from "../components/tx/treatments.js";
+import { posts } from "../data/posts.js";
 import NewsVideos from "../components/programs/NewsVideos.astro";
 import { VIDEOS, PODCAST, videoSchema } from "../data/videos.js";
 import { providers } from "../data/providers.js";
@@ -56,14 +59,14 @@ const teamPhotos = [
   ["iop-clinicians-group-room", "Hopewell IOP clinicians in a group room"],
 ];
 const wheel = [
-  ["Depression", "/what-we-treat/depression/", "#2f76c4", "Low mood, no energy, losing interest in things you used to enjoy.", [["Counseling", "/programs/counseling/"], ["Medication management", "/programs/medication-management/"], ["Adult IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"], ["TMS", "/treatment-methods/tms/"]]],
-  ["Anxiety", "/what-we-treat/anxiety/", "#265489", "Constant worry, panic or avoiding things because of fear.", [["Counseling", "/programs/counseling/"], ["Adult IOP", "/programs/adult-mental-health-iop/"], ["Teen & Tween IOP", "/programs/teen-iop/"]]],
+  ["Depression", "/what-we-treat/depression/", "#2f76c4", "Low mood, no energy, losing interest in things you used to enjoy.", [["Counseling", "/programs/counseling/"], ["Medication management", "/programs/medication-management/"], ["Adult Mental Health IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"], ["TMS", "/treatment-methods/tms/"]]],
+  ["Anxiety", "/what-we-treat/anxiety/", "#265489", "Constant worry, panic or avoiding things because of fear.", [["Counseling", "/programs/counseling/"], ["Adult Mental Health IOP", "/programs/adult-mental-health-iop/"], ["Teen & Tween IOP", "/programs/teen-iop/"]]],
   ["Trauma", "/what-we-treat/trauma-ptsd/", "#5c7c6b", "Past events still showing up in nightmares, fear or numbness.", [["Women’s Trauma IOP", "/programs/womens-trauma-iop/"], ["First Responder IOP", "/programs/first-responder-iop/"], ["Counseling", "/programs/counseling/"]]],
   ["Addiction", "/what-we-treat/substance-use-disorder/", "#0b2f55", "When alcohol or drug use is hard to control.", [["Addiction IOP", "/programs/addiction-iop/"], ["MAT", "/treatment-methods/medication-assisted-treatment/"], ["Counseling", "/programs/counseling/"]]],
   ["ADHD", "/what-we-treat/adhd/", "#b6863c", "Trouble focusing, staying organized or sitting still.", [["ADHD testing", "/treatment-methods/adhd-testing/"], ["Medication management", "/programs/medication-management/"], ["Counseling", "/programs/counseling/"]]],
-  ["Bipolar", "/what-we-treat/bipolar/", "#2f76c4", "Highs and lows in mood, energy and sleep.", [["Medication management", "/programs/medication-management/"], ["PHP", "/programs/partial-hospitalization-program/"], ["Adult IOP", "/programs/adult-mental-health-iop/"]]],
+  ["Bipolar", "/what-we-treat/bipolar/", "#2f76c4", "Highs and lows in mood, energy and sleep.", [["Medication management", "/programs/medication-management/"], ["PHP", "/programs/partial-hospitalization-program/"], ["Adult Mental Health IOP", "/programs/adult-mental-health-iop/"]]],
   ["OCD", "/what-we-treat/ocd/", "#265489", "Unwanted thoughts and rituals that are hard to stop.", [["Counseling", "/programs/counseling/"], ["Medication management", "/programs/medication-management/"], ["IOP", "/programs/intensive-outpatient-program/"]]],
-  ["Co-occurring", "/what-we-treat/co-occurring/", "#5c7c6b", "Mental health and substance use, treated together.", [["Adult Co-Occurring IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"]]],
+  ["Co-occurring", "/what-we-treat/co-occurring/", "#5c7c6b", "Mental health and substance use, treated together.", [["Adult Mental Health IOP", "/programs/adult-mental-health-iop/"], ["PHP", "/programs/partial-hospitalization-program/"]]],
 ];
 const R = 150, r = 82, C = 170;
 const pt = (a, rad) => [C + rad * Math.cos(a), C + rad * Math.sin(a)];
@@ -74,7 +77,7 @@ const seg = (i, n) => {
   return { d: `M${x0},${y0} A${R},${R} 0 0 1 ${x1},${y1} L${x2},${y2} A${r},${r} 0 0 0 ${x3},${y3} Z`, lx, ly };
 };
 const helps = [
-  { q: "“Weekly therapy isn’t enough anymore.”", t: "Adult IOP & PHP", img: "/Assets/service/what-is-adhd.webp", icon: "users", bar: "#2f76c4",
+  { q: "“Weekly therapy isn’t enough anymore.”", t: "Adult Mental Health IOP & PHP", img: "/Assets/service/what-is-adhd.webp", icon: "users", bar: "#2f76c4",
     html: `Structured care while you live at home: our <a class="inl" href="/programs/adult-mental-health-iop/">adult mental health IOP</a> meets a few hours a day, and our <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> adds full days when you need more.` },
   { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction & Substance Use IOP", img: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp", icon: "link", bar: "#0b2f55",
     html: `Our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> treats addiction with <a class="inl" href="/what-we-treat/co-occurring/">co-occurring mental health and addiction</a> care alongside it, including step-down care after rehab, at 300 Hebron Ave and Westbrook.` },
@@ -102,6 +105,12 @@ const visit = [
   [P + "sg-waiting-room.webp", "The waiting room at our South Glastonbury office", "home", "A calm place to wait", "Comfortable, private waiting rooms, more like a living room than a clinic."],
   [P + "group-room-bright.webp", "A Hopewell group therapy room", "users", "Shown around", "Your clinician welcomes you and shows you the rooms and group spaces where you’ll meet."],
 ];
+// Our mission (restored from the live homepage "Our Mission" block, 2026-11-18 content gap fix; "superior" dropped)
+// + the live "Advanced Treatments" cards: TMS, EMDR, GeneSight.
+const advanced = ["/treatment-methods/tms/", "/treatment-methods/emdr/", "/treatment-methods/genesight-testing/"].map((h) => TREATMENTS.find((t) => t.href === h)).filter(Boolean);
+const TT = "/treatment-methods/therapeutic-treatments/";
+// From the Hopewell Blog (restored from the live homepage, 2026-11-18): the 3 latest posts + the handouts link.
+const latestPosts = posts.slice(0, 3);
 const tour = VIDEOS.find((v) => v.yt === "I8nk1SYhFig"); // the old homepage welcome video, 2022 (user 2026-11-18)
 const teenTour = VIDEOS.find((v) => v.yt === "loSaQbRc-oE");
 
@@ -168,7 +177,7 @@ const orgSchema = {
   telephone: offices.find((l) => l.slug === "glastonbury-ct-2").phone,
   email: "hhs4help@gmail.com",
   foundingDate: "2013",
-  areaServed: ["Glastonbury CT", "South Glastonbury CT", "West Hartford CT", "East Hampton CT", "Westbrook CT", "Hartford County CT", "Middlesex County CT", "Niantic CT", "Branford CT", "Madison CT", "Guilford CT"],
+  areaServed: ["Glastonbury CT", "South Glastonbury CT", "West Hartford CT", "East Hampton CT", "Westbrook CT", "Hartford County CT", "Middlesex County CT", "South Windsor CT", "Wethersfield CT", "Rocky Hill CT", "Newington CT", "Berlin CT", "Colchester CT", "Old Saybrook CT", "Clinton CT", "Niantic CT", "Branford CT", "Madison CT", "Guilford CT"],
   sameAs: [...socials.map((s) => s.href), "https://www.psychologytoday.com/us/treatment-rehab/hopewell-health-solutions-iop-glastonbury-ct/1084012", "https://www.bbb.org/us/ct/glastonbury/profile/psychologist/hopewell-health-solutions-llc-0111-87124396"],
   subOrganization: offices.map((l) => ({
     "@type": "MedicalClinic", "@id": `${SITE}/location/${l.slug}/#clinic`, name: `Hopewell Health Solutions, ${l.name}`, url: `${SITE}/location/${l.slug}/`,
@@ -181,7 +190,7 @@ const orgSchema = {
 const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SITE));
 ---
 
-<Base title="Mental Health & Addiction Treatment in CT | Hopewell" description="In-person mental health, addiction and psychiatry care in Glastonbury, West Hartford, East Hampton and Westbrook, CT. IOP, PHP and more. Check coverage." canonical={SITE + "/"} image={heroSlides[0].img}>
+<Base title="Hopewell Health Solutions | Therapy & IOP in Glastonbury, CT" description="In-person mental health, addiction and psychiatry care in Glastonbury, West Hartford, East Hampton and Westbrook, CT. IOP, PHP and more. Check coverage." canonical={SITE + "/"} image={heroSlides[0].img}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -256,7 +265,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         </figure>
       </div>
       <div class="wh-feel">
-        <div class="wh-feel-head"><h3>Or start with how you feel</h3><p><a class="inl" href="/programs/">All programs</a></p></div>
+        <div class="wh-feel-head"><h3>Or start with how you feel</h3><p><a class="inl" href="/admissions/for-families/">Helping someone you love?</a> · <a class="inl" href="/programs/">All programs</a></p></div>
         <ul class="wh-feel-list">
           {helps.map((h) => (
             <li style={`--bar-c:${h.bar}`}><img class="wh-feel-img" src={h.img} alt={`${h.t} at Hopewell`} width="1200" height="900" loading="lazy" decoding="async" /><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
@@ -300,8 +309,20 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
     </div>
   </section>
 
+  <!-- Our mission + therapies offered (restored from the live homepage, 2026-11-18) -->
+  <section class="section is-white" id="about">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Our Mission: Helping You Live Well</h2>
+        <p class="lede">Hopewell Health Solutions is a mental health practice rooted in Glastonbury and West Hartford, Connecticut. Our board-certified specialists take an innovative, multidisciplinary approach to care for clients aged 4 and older, in a compassionate, safe environment, whether in person or by telehealth. While others go all-virtual, our IOP, PHP, therapy and medication management happen face to face, with telehealth when you need it.</p>
+        <p class="lede" style="margin-top:12px">We offer <a class="inl" href="/treatment-methods/dbt/">dialectical behavior therapy (DBT)</a>, <a class="inl" href={`${TT}#talk-therapies`}>cognitive behavioral therapy (CBT)</a>, <a class="inl" href={`${TT}#mind-body`}>play therapy</a>, <a class="inl" href="/treatment-methods/emdr/">EMDR</a> and <a class="inl" href={`${TT}#trauma-therapies`}>accelerated resolution therapy (ART)</a>, the <a class="inl" href={`${TT}#gottman-method`}>Gottman Method</a> for couples, trauma treatments, and mind-body approaches like <a class="inl" href={`${TT}#mindfulness`}>mindfulness</a> and <a class="inl" href={`${TT}#mind-body`}>yoga therapy</a>. When medication is part of the plan, our prescribers build personalized psychiatric plans, never one-size-fits-all, alongside advanced options like <a class="inl" href="/treatment-methods/tms/">TMS</a> for treatment-resistant depression.</p>
+      </div>
+      <ProgramCards items={advanced} />
+    </div>
+  </section>
+
   <!-- 6. Locations -->
-  <Locations heading="Outpatient Treatment Offices in Glastonbury, Westbrook and Across CT" lede={`Each office offers different programs, so check the services on each card. Addiction care is at our 300 Hebron Ave (Glastonbury) and Westbrook offices. We also serve families along the shoreline, including Niantic, Branford, Madison and Guilford, and see clients by telehealth across New England.`} />
+  <Locations heading="Outpatient Treatment Offices in Glastonbury, Westbrook and Across CT" lede={`Each office offers different programs, so check the services on each card. Addiction care is at our 300 Hebron Ave (Glastonbury) and Westbrook offices. Our offices serve Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook and Clinton. We also serve families along the shoreline, including Niantic, Branford, Madison and Guilford, and see clients by telehealth across New England.`} />
 
   <!-- Podcast (restored 2026-11-16) -->
   <VideoCarousel videos={PODCAST} mode="grid" tone="white" id="podcast" heading="Hope, Health &amp; Healing: The Hopewell Podcast" lede="Real conversations about recovery, mental health and asking for help, hosted by Hopewell’s TJ Aitken, CPSRP. Each episode shares an honest story from someone who has been through treatment. <a class='inl' href='/podcast/'>See all episodes</a>." link={null} />
@@ -345,6 +366,18 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
       <div class="sec-head"><h2>Our Connecticut Therapists and Psychiatric Providers</h2><p class="lede">Real people, real offices. Our clinicians, prescribers and support staff across Connecticut. <a class="inl" href="/about-us/team/">Meet the full team</a>.</p></div>
       <div class="tp-grid">
         {teamPhotos.map(([f, alt], i) => <figure class:list={["tp-cell", i === 0 && "is-big"]}><img src={`/Assets/hhs-2026/${f}.webp`} alt={alt} width="1200" height="900" loading="lazy" /></figure>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- From the Hopewell Blog (restored from the live homepage, 2026-11-18): program-card markup, 3 latest posts -->
+  <section class="section is-stone" id="blog">
+    <div class="container">
+      <div class="sec-head"><h2>From the Hopewell Blog</h2><p class="lede">Practical, evidence-based articles written and clinically reviewed by our Connecticut team. See <a class="inl" href="/blog/">all articles</a>, or download our <a class="inl" href="/handouts/">free handouts</a>.</p></div>
+      <div class="pk-grid">
+        {latestPosts.map((p) => (
+          <div class="pk" style="--bar-c:#2f76c4"><span class="pk-icon"><Icon name="chat" class="h-[22px] w-[22px]" /></span><div><h3><a href={`/post/${p.slug}/`}>{p.title}</a></h3><p>{p.excerpt}</p></div></div>
+        ))}
       </div>
     </div>
   </section>

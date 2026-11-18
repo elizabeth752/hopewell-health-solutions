@@ -196,7 +196,7 @@ export const locations = [
       // The flyer says "Adult IOP, Coming November 2025", a typo for a date the client has not confirmed.
       services: [
         { label: "Women’s Wellness IOP", note: "A trauma-informed, skills-based program for adult women", href: "/programs/womens-wellness-iop/" },
-        { label: "Adult IOP", note: "Coming soon", href: "/programs/adult-mental-health-iop/" },
+        { label: "Adult Mental Health IOP", note: "Coming soon", href: "/programs/adult-mental-health-iop/" },
         { label: "Psychiatric Medication Management", note: "Including MAT", href: "/programs/medication-management/" },
         { label: "Individual Counseling", note: "Support for your unique journey", href: "/programs/counseling/" },
       ],
@@ -207,7 +207,7 @@ export const locations = [
 // Service keys used by `offers` above → label + program page. Addiction treatment only at 300 Hebron + Westbrook.
 export const OFFERS = {
   php: { t: "Partial Hospitalization (PHP)", href: "/programs/partial-hospitalization-program/", icon: "sun" },
-  iop: { t: "Adult IOP", href: "/programs/adult-mental-health-iop/", icon: "calendar" },
+  iop: { t: "Adult Mental Health IOP", href: "/programs/adult-mental-health-iop/", icon: "calendar" },
   womens: { t: "Women’s Wellness IOP", href: "/programs/womens-wellness-iop/", icon: "heart" },
   "teen-tween": { t: "Tween & Teen IOP", href: "/programs/teen-iop/", icon: "sparkles" },
   therapy: { t: "1:1 Therapy", href: "/programs/counseling/", icon: "chat" },

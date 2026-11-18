@@ -30,6 +30,7 @@ import "../../styles/pages/seo.css";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
+  "A program for women, focused on trauma recovery",
   "Women-only groups",
   "8 weeks, extendable",
   "Most major insurance accepted",
@@ -95,11 +96,11 @@ const faqs: [string, string][] = [
 ];
 const stories = ["eX6WO-MRdPs", "x6R6XOZmxUQ", "S_CyYMDqEio"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
 const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Women’s Trauma Intensive Outpatient Program (IOP)", url: SITE + "/programs/womens-trauma-iop/",
-  description: "A women-only, trauma-informed intensive outpatient program in Glastonbury, CT for healing from past trauma and PTSD symptoms.",
+  description: "A women-only, trauma-informed intensive outpatient program and trauma recovery program for women in Glastonbury, CT, for healing from past trauma and PTSD symptoms.",
   provider: { "@id": SITE + "/#organization" }, availableAtOrFrom: { "@id": SITE + "/location/glastonbury-ct-2/#clinic" } };
 ---
 
-<Base title="Women's Trauma IOP in Connecticut | Hopewell" description="A women-only, trauma-informed intensive outpatient program in Connecticut. Heal from past trauma and PTSD with a team you meet in person. Check coverage." image={P + "iop-group-room-lights.webp"}>
+<Base title="Women's Trauma IOP in Connecticut | Hopewell" description="A trauma recovery program for women, by women: a trauma-informed IOP in Connecticut. Heal from past trauma and PTSD with a team you meet in person." image={P + "iop-group-room-lights.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(svc)} />
   <main class="hw" data-pgx>
@@ -107,7 +108,7 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <ServiceHero
       crumbs={[{ label: "Programs", href: "/programs/" }, { label: "IOP", href: "/programs/intensive-outpatient-program/" }, { label: "Women's Trauma" }]}
       title="Women's Trauma IOP in Connecticut"
-      lede="A women-only, trauma-informed intensive outpatient program. Heal from trauma and PTSD with a team you meet in person, in a supportive community of women."
+      lede="A trauma recovery program for women, by women: a women-only, trauma-informed intensive outpatient program. Heal from trauma and PTSD with a team you meet in person, in a supportive community of women."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "clock", text: "Mon–Thu · 5–8 PM" }]}
       image={P + "womens-trauma-iop-group-room.webp"}
@@ -132,7 +133,8 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
     <section class="section is-stone">
       <div class="container pg-two">
         <div>
-          <h2>A supportive space to heal from trauma</h2>
+          <h2>A Trauma Program for Women, by Women</h2>
+          <p class="lede"><strong>Begin your healing journey.</strong> A supportive space to heal from trauma, and a trauma recovery program built around the strength of women who understand.</p>
           <p class="lede"><strong>Welcome.</strong> Our Women’s Trauma IOP, Monday through Thursday, 5:00–8:00 PM, helps women balance life’s responsibilities with their healing journey. It’s a meaningful act of self-care: an opportunity to invest in your well-being while managing daily commitments.</p>
           <p class="lede">Over this 8-week program (extendable based on your needs and progress), you’ll be part of a supportive community focused on recovery from trauma, a proactive approach designed to manage symptoms and help prevent the need for hospitalization or a <a class="inl" href="/programs/partial-hospitalization-program/">higher level of care</a>.</p>
         </div>

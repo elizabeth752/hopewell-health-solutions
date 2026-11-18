@@ -1,7 +1,7 @@
 // Program cards and team picks for the What We Treat pages (copy matches the homepage cards).
 const P = "/Assets/hhs-2026/";
 export const PROGRAMS = {
-  adultIop: { t: "Adult IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: "/Assets/service/what-is-adhd.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"], ["users", "Adults 18+"]] },
+  adultIop: { t: "Adult Mental Health IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", href: "/programs/adult-mental-health-iop/", img: "/Assets/service/what-is-adhd.webp", bar: "#2f76c4", facts: [["calendar", "Mon–Thu · day or evening"], ["users", "Adults 18+"]] },
   womens: { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp", bar: "#b6863c", facts: [["heart", "Women-only groups"], ["pin", "Glastonbury & Westbrook"]] },
   womensTrauma: { t: "Women’s Trauma IOP", d: "A women-only intensive outpatient program focused on healing from trauma, with EMDR and trauma-informed groups.", href: "/programs/womens-trauma-iop/", img: P + "womens-trauma-iop-group-room.webp", bar: "#b6863c", facts: [["heart", "Women-only groups"], ["shield", "Trauma-informed care"]] },
   teen: { t: "Teen & Tween IOP", d: "After-school support for ages 8–18, with the family woven into the work.", href: "/programs/teen-iop/", img: P + "tween-group-room.webp", bar: "#5c7c6b", facts: [["calendar", "After school"], ["users", "Tweens 8–12 · teens 13–17"]] },
@@ -46,7 +46,7 @@ export const ADDICTION_HIGHLIGHTS = [
   { icon: "link", t: "Addiction and mental health, together", d: `Co-occurring depression, anxiety or trauma is treated alongside substance use by one team. Learn about <a class="inl" href="/what-we-treat/co-occurring/">co-occurring disorders</a>.` },
 ];
 export const WHO_WE_HELP = [
-  { icon: "users", t: "Adults", d: `Day and evening <a class="inl" href="/programs/adult-mental-health-iop/">adult IOP</a>, therapy and <a class="inl" href="/programs/medication-management/">medication management</a> that fit around work and family.` },
+  { icon: "users", t: "Adults", d: `Day and evening <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a>, therapy and <a class="inl" href="/programs/medication-management/">medication management</a> that fit around work and family.` },
   { icon: "heart", t: "Women’s mental health", d: `The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>, plus care for postpartum depression and anxiety.` },
   { icon: "sparkles", t: "Teens & tweens", d: `After-school <a class="inl" href="/programs/teen-iop/">Teen &amp; Tween IOP</a> for ages 8–17, with the family woven into the work.` },
   { icon: "shield", t: "First responders", d: `A <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> for police, fire, EMS and dispatch, with clinicians who understand the job.` },

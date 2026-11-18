@@ -28,7 +28,9 @@ import NewsVideos from "../../components/programs/NewsVideos.astro";
 import Schedule from "../../components/programs/Schedule.astro";
 import OtherPrograms from "../../components/programs/OtherPrograms.astro";
 import { VIDEOS } from "../../data/videos.js";
+import Prose from "../../components/seo/Prose.astro";
 import "../../styles/pages/programs.css";
+import "../../styles/pages/seo.css";
 
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
@@ -75,10 +77,26 @@ const modalities = [
   { t: "Mindfulness", icon: "cloud" },
   { t: "Trauma-Informed Care", icon: "shield" },
 ];
-// Verbatim tween-track testimonials from the former Teen & Tween page.
+// Verbatim parent & student testimonials from the former Teen & Tween page: the tween-track quotes, plus the teen-track
+// parent quotes (restored 2026-11-18 content gap fix; labelled as Teen IOP parents, as on the live page).
 const family = [
+  { n: "J&D", t: "Teen IOP parents", q: "Thank you for all the time, energy and support you and the IOP staff have poured into A. over the past three months. Her light is starting to shine brightly again. There is more work to be done, but it is amazing to see her on this healing journey. We will forever be grateful." },
+  { n: "N.E.", t: "Teen IOP parent", q: "I really like the weekly emails and having the clinician’s phone number to check in or get help when needed. That was a lifesaver." },
+  { n: "A.Y.", t: "Teen IOP parent", q: "I was so worried about my child and what they were doing, but from the first intake meeting with Dr. K, I knew we were in good hands and that this program was the right fit for our family." },
   { n: "M.L.", t: "Parent (and therapist)", q: "Our daughter attends Hopewell IOP (tween group) and I am truly impressed. Jackie and Kate are fantastic clinicians who always have the children’s best interest in mind. I myself am a therapist and have worked in IOP/PHP for years, I’ve found this organization’s IOP to be the best in CT." },
   { n: "S.R.", t: "Tween IOP student", q: "I really like the staff members and I feel safe when I sit with them and comfortable telling them things. I really like Kate, she brings good energy to IOP. IOP has helped me learn how to deal with my anxiety and what to do when I feel upset." },
+];
+// "An experienced team that works as one" + who the program serves (restored from the live Teen & Tween page,
+// 2026-11-18 content gap fix), adapted to this page's age band.
+const whoBlocks = [
+  { id: "who-we-serve", tone: "stone", h2: "Who the Tween IOP Serves",
+    paras: [
+      "We work with children ages 8–12 struggling with self-injury, school refusal, suicidal ideation, and significant mood and anxiety disorders. Teens ages 13–17 attend our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a>. We are fully inclusive and welcome all genders and the <a class='inl' href='/post/lgbtq-inclusivity-in-behavioral-health-treatment/'>LGBTQA+ community</a>, because every child is unique, and every treatment plan is, too.",
+    ],
+    h3s: [{ h3: "An experienced team that works as one", paras: [
+      "Our clinicians and medical staff are fully licensed and deeply experienced, a full medical team and a full therapeutic team working together to create customized strategies that drive real, positive change for each child and family. Each IOP staff member has 10–30 years of experience working with adolescents, and the program is licensed by the State of Connecticut.",
+    ] }],
+    aside: { type: "points", title: "Who we serve", items: [["users", "Children ages 8–12"], ["alert", "Self-injury and suicidal ideation (in a crisis, call or text <a class='inl' href='tel:988'>988</a>)"], ["calendar", "School refusal"], ["cloud", "Significant mood and anxiety disorders"], ["heart", "All genders and the LGBTQA+ community welcome"], ["shield", "Licensed by the State of Connecticut"]] } },
 ];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
 const tours = ["loSaQbRc-oE", "awy7nfDgC0k"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
@@ -88,11 +106,12 @@ const faqs: [string, string][] = [
   ["Isn’t my child too young for IOP?", "Some children <a class='inl' href='/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/'>need more than weekly therapy</a>. Our tween groups are designed for this age, with activities and language that fit younger kids, and parents are part of the work."],
   ["How are parents involved?", "Parent involvement is required. Parents attend once to twice a week to learn the skills being taught and get regular updates from the care team. We also host a Parent Support Group on Tuesdays and Parent Night on Thursdays. Your support at home is part of the plan."],
   ["What does my child work on?", "Naming and managing feelings, coping skills, handling anxiety and frustration, and getting along at school and home. Read how <a class='inl' href='/post/how-tween-anxiety-is-treated-in-an-intensive-outpatient-program-iop/'>tween anxiety is treated in an IOP</a>."],
+  ["What does the program treat?", "We support children ages 8–12 struggling with self-injury, school refusal, suicidal ideation, and significant mood and anxiety disorders. Every child receives an individualized treatment plan."],
   ["Will my child miss school?", "No. Tween groups meet Monday–Thursday from 4:30 to 7:30 PM, after the school day, so most children don’t miss class."],
   ["Where is the Tween IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>, 1420 Main St, Suite 114, Glastonbury."],
   ["What if my child is older than 12?", "Our <a class='inl' href='/programs/teen-iop/'>Teen IOP</a> serves ages 13–17."],
   ["What if my child is younger than 8?", "We offer <a class='inl' href='/programs/counseling/'>counseling</a>, play therapy and <a class='inl' href='/programs/medication-management/'>medication management</a> for younger children."],
-  ["Does insurance cover a tween IOP?", "Most commercial plans do when medically necessary, and TRICARE East is accepted as a PPO plan. We <a class='inl' href='/rates-and-insurance-coverage/'>verify benefits for free</a>. We don’t accept Medicaid (HUSKY)."],
+  ["Does insurance cover a tween IOP?", "We accept all major insurance providers, and we <a class='inl' href='/rates-and-insurance-coverage/'>check your benefits for free</a> before you start. We don’t accept Medicare or Medicaid (HUSKY)."],
   ["What if my child is in crisis?", "Call or text <a class='inl' href='tel:988'>988</a>, call 911, or go to the nearest emergency room. IOP is not an emergency service."],
 ];
 const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy", name: "Tween IOP (ages 8–12)", url: SITE + "/programs/tween-iop/",
@@ -124,6 +143,8 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     </Split>
 
     <IconCards heading="What makes a child IOP different" lede="An IOP for kids works only if it’s built for kids. Here’s how our tween program is designed around children ages 8–12." items={why} cols={3} tone="mist" />
+
+    <Prose blocks={whoBlocks} />
 
     <section class="section is-white" id="signs">
       <div class="container pg-two">
@@ -167,7 +188,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
 
     <section class="section is-white">
       <div class="container">
-        <div class="sec-head"><h2>What Tween IOP Families Say</h2><p class="lede">In their own words, from a parent and a tween. Initials only.</p></div>
+        <div class="sec-head"><h2>What Teen &amp; Tween IOP Families Say</h2><p class="lede">In their own words, from parents in our Teen &amp; Tween IOP and a tween. Initials only.</p></div>
         <div class="pg-testi">
           {family.map((r) => (
             <figure class="rv">
@@ -198,7 +219,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     </section>
 
     <Team heading="Your Child’s Care Team" lede="Psychologists, psychiatric providers and therapists with 10–30 years of experience with children and adolescents. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["jackie-plagesse-lmfta", "kate-henneberry-lmfta", "viviana-alvarado-lpc-a", "eric-schwartz-psy-d-abpp", "linda-scillia-pmhnp-bc-aprn", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d"]} tone="white" />
-    <Insurance heading="Does insurance cover a tween IOP?" lede="Most commercial plans cover a tween IOP when medically necessary, and TRICARE East is accepted as a PPO plan. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicaid (HUSKY)." />
+    <Insurance heading="Does insurance cover a tween IOP?" lede="We accept all major insurance providers. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicaid (HUSKY)." />
     <Locations heading="Where the Tween IOP Meets" lede="The tween IOP is held at 1420 Main St, Suite 114, Glastonbury, our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
     <Reviews tone="stone" heading="What Our Clients Say on Google" first={["IOP"]} />
     <Faq faqs={faqs} heading="Tween IOP: common questions" tone="white" />
