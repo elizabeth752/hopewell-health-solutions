@@ -14,8 +14,23 @@ const tones = ["white", "stone"];
     <div class:list={["container sp-grid", !b.aside && "is-solo", i % 2 === 1 && "is-flip"]}>
       <div class="sp-copy">
         <h2 set:html={b.h2} />
-        {b.paras.map((p) => <p set:html={p} />)}
-        {b.h3s?.map((s) => (<div class="sp-sub"><h3 set:html={s.h3} />{s.paras.map((p) => <p set:html={p} />)}</div>))}
+        {/* Long blocks (user 2026-11-18: "a lot of text"): the first paragraph shows, the rest folds behind "Read more".
+            All copy stays in the page for SEO; nothing is cut. A block folds when its text runs past ~650 characters. */}
+        {(() => { const len = [...b.paras, ...(b.h3s ?? []).flatMap((x) => x.paras)].join(" ").replace(/<[^>]+>/g, "").length; return len > 650; })() ? (
+          <Fragment>
+            <p set:html={b.paras[0]} />
+            <div class="sp-fold" id={`fold-${b.id ?? i}`}>
+              {b.paras.slice(1).map((p) => <p set:html={p} />)}
+              {b.h3s?.map((s) => (<div class="sp-sub"><h3 set:html={s.h3} />{s.paras.map((p) => <p set:html={p} />)}</div>))}
+            </div>
+            <button type="button" class="sp-more" aria-expanded="false" aria-controls={`fold-${b.id ?? i}`}>Read more</button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            {b.paras.map((p) => <p set:html={p} />)}
+            {b.h3s?.map((s) => (<div class="sp-sub"><h3 set:html={s.h3} />{s.paras.map((p) => <p set:html={p} />)}</div>))}
+          </Fragment>
+        )}
       </div>
       {b.aside && (
         <aside class={`sp-aside sp-${b.aside.type}`}>
@@ -75,3 +90,11 @@ const tones = ["white", "stone"];
 ))}
 
 <!-- iopfit + serve aside styles live in src/styles/pages/seo.css (moved 2026-11-18 so they load as plain CSS). -->
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".sp-more").forEach((b) => b.addEventListener("click", () => {
+    const box = document.getElementById(b.getAttribute("aria-controls")!);
+    const open = box!.classList.toggle("is-open");
+    b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Show less" : "Read more";
+  }));
+</script>

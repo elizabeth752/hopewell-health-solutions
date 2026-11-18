@@ -137,3 +137,11 @@
 .hw .ppg .ppg-time { color: #fff; }
 .hw .ppg .ppg-foot { color: #dce6f1; }
 .hw .ppg .ppg-foot a { color: #9cc3ea; }
+
+/* Folded long text blocks (Prose, 2026-11-18). */
+.hw .sp-fold { display: none; }
+.hw .sp-fold.is-open { display: block; }
+.hw .sp-fold > * + * , .hw .sp-fold > p:first-child { margin-top: 14px; }
+.hw .sp-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--hw-navy); background: transparent; color: var(--hw-navy); font-weight: 700; font-size: 15px; cursor: pointer; }
+.hw .sp-more:hover { background: var(--hw-navy); color: #fff; }
+.hw .is-navy .sp-more { border-color: #fff; color: #fff; }
