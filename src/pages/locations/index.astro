@@ -300,8 +300,8 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
       <div class="container">
         <div class="lh-tele">
           <div class="lh-tele-copy">
-            <span class="lh-tele-tag"><Icon name="compass" class="h-4 w-4" />Telehealth across Connecticut</span>
-            <h2>The same team, from wherever you are</h2>
+            {/* "Telehealth across Connecticut" pill kicker merged into the H2 (no eyebrows, 2026-11-18). */}
+            <h2>Telehealth across Connecticut: the same team, wherever you are</h2>
             <p class="lede">Can’t make it to an office, or prefer to meet from home? Our secure video telehealth brings the same clinicians and the same quality of care to anywhere in Connecticut. It’s ideal for busy schedules, transportation challenges, or simply the comfort of your own space, and you can move between in-person and virtual visits whenever it suits your life.</p>
             <ul class="lh-tele-list">
               {teleWhy.map(([icon, t]) => <li><span><Icon name={icon} class="h-5 w-5" /></span>{t}</li>)}

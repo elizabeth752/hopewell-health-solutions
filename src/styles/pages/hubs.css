@@ -250,7 +250,7 @@
 .hw .lh-tele-arcs { position: absolute; width: 560px; right: -220px; top: -240px; fill: none; stroke: rgba(156,195,234,.18); stroke-width: 2; pointer-events: none; }
 .hw .lh-tele-copy, .hw .lh-tele-art, .hw .lh-tele-steps { position: relative; }
 .hw .lh-tele-tag { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.1); font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: #fff; }
-.hw .lh-tele h2 { margin-top: 16px; color: #fff; }
+.hw .lh-tele h2 { margin-top: 0; color: #fff; }
 .hw .lh-tele .lede { margin-top: 14px; color: #dce6f1; }
 .hw .lh-tele-list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
 .hw .lh-tele-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15.5px; line-height: 1.45; color: #fff; }

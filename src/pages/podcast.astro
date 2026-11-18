@@ -110,8 +110,8 @@ const faqs = [
           <a class="tm-feature" href={`/provider/${tj.slug}/`} style="max-width:460px;justify-self:end">
             <img src={`/Assets/Team%20Members/${tj.photo}.webp`} alt={tj.name} width="600" height="750" loading="lazy" />
             <div class="tm-feature-copy">
-              <span class="tm-role">Your host · {tj.role}</span>
               <h3>{tj.name}</h3>
+              <span class="tm-role">Your host · {tj.role}</span>
               <p>{tj.bio.split("\n\n")[0].split(/(?<=\.)\s/).slice(0, 2).join(" ")}</p>
               <span class="tm-link">Read TJ’s profile <Icon name="arrow" class="h-4 w-4" /></span>
             </div>

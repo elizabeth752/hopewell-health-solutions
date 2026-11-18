@@ -591,7 +591,8 @@
 .hw .tm-feature { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 26px; background: var(--hw-navy); color: #dce6f1; text-decoration: none; }
 .hw .tm-feature img { width: 100%; aspect-ratio: 4 / 4.2; object-fit: cover; object-position: top; border-bottom-right-radius: 90px; }
 .hw .tm-feature-copy { padding: 22px 26px 26px; display: grid; gap: 8px; }
-.hw .tm-role { font-family: var(--hw-head); font-size: 13px; font-weight: 800; color: var(--hw-gold); text-transform: uppercase; letter-spacing: .06em; }
+/* Role line sits under the name, sentence case (no eyebrows above headings, 2026-11-18). */
+.hw .tm-role { display: block; margin-top: -4px; font-family: var(--hw-head); font-size: 14.5px; font-weight: 700; color: var(--hw-gold); }
 .hw .tm-feature h3 { color: #fff; font-size: 24px; }
 .hw .tm-feature p { font-size: 15.5px; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .hw .tm-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; font-family: var(--hw-head); font-weight: 700; color: var(--hw-sky); }

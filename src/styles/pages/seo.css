@@ -56,3 +56,56 @@
 @media (max-width: 599px) { .hw .sp-steps .sp-card ol { grid-template-columns: minmax(0, 1fr); } }
 /* Phones/tablets (mobile QA 2026-11-18): aside photos and episode covers show whole, at their own shape. */
 @media (max-width: 999px) { .hw .sp-aside figure img { aspect-ratio: auto; height: auto; } }
+
+/* Prose asides: iopfit (IOP "middle step of care") and serve (Teen/Tween "Who we serve"), moved from Prose.astro 2026-11-18. */
+/* iopfit aside (2026-11-18): designed for the navy card (white sections); light-card overrides for stone/mist sections below. */
+  .hw .sp-card.iopfit .if-ladder { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column-reverse; gap: 8px; }
+  .hw .sp-card.iopfit .if-ladder li { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px 10px 16px; border-radius: 12px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-left: 4px solid rgba(156,195,234,.45); font-size: 15px; line-height: 1.35; }
+  .hw .sp-card.iopfit .if-ladder li:nth-child(1) { margin-right: 30%; } .hw .sp-card.iopfit .if-ladder li:nth-child(2) { margin-right: 15%; } .hw .sp-card.iopfit .if-ladder li:nth-child(3) { margin-right: 6%; }
+  .hw .sp-card.iopfit .if-ladder li span { font-weight: 800; color: #fff; font-size: 15px; padding: 0; }
+  .hw .sp-card.iopfit .if-ladder li small { font-size: 13px; color: #b9cbe0; }
+  .hw .sp-card.iopfit .if-ladder li.is-on { background: #fff; border-color: #fff; border-left-color: #e0b56a; box-shadow: 0 10px 24px rgba(0,0,0,.22); }
+  .hw .sp-card.iopfit .if-ladder li.is-on span { color: var(--hw-navy, #0b2f55); } .hw .sp-card.iopfit .if-ladder li.is-on small { color: var(--hw-slate, #55657a); }
+  .hw .sp-card.iopfit .if-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+  .hw .sp-card.iopfit .if-day { display: grid; justify-items: center; gap: 2px; padding: 8px 0; border-radius: 10px; background: rgba(255,255,255,.07); }
+  .hw .sp-card.iopfit .if-day b { font-size: 12px; color: #dce6f1; } .hw .sp-card.iopfit .if-day i { font-style: normal; font-size: 12px; color: #9fb4cc; }
+  .hw .sp-card.iopfit .if-day.is-on { background: #e0b56a; } .hw .sp-card.iopfit .if-day.is-on b, .hw .sp-card.iopfit .if-day.is-on i { color: var(--hw-navy, #0b2f55); }
+  .hw .sp-card.iopfit .if-tracks { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+  .hw .sp-card.iopfit .if-tracks li { display: flex; gap: 8px; align-items: baseline; font-size: 14.5px; line-height: 1.4; color: #dce6f1; }
+  .hw .sp-card.iopfit .if-tracks b { min-width: 9.5em; color: #e0b56a; font-weight: 800; }
+  .hw .is-stone .sp-card.iopfit .if-ladder li, .hw .is-mist .sp-card.iopfit .if-ladder li { background: var(--hw-stone, #f3f1ec); border-color: var(--hw-line, #d5dfe9); }
+  .hw .is-stone .sp-card.iopfit .if-ladder li span, .hw .is-mist .sp-card.iopfit .if-ladder li span { color: var(--hw-navy, #0b2f55); }
+  .hw .is-stone .sp-card.iopfit .if-ladder li small, .hw .is-mist .sp-card.iopfit .if-ladder li small { color: var(--hw-slate, #55657a); }
+  .hw .is-stone .sp-card.iopfit .if-ladder li.is-on, .hw .is-mist .sp-card.iopfit .if-ladder li.is-on { background: var(--hw-navy, #0b2f55); border-left-color: #e0b56a; }
+  .hw .is-stone .sp-card.iopfit .if-ladder li.is-on span, .hw .is-mist .sp-card.iopfit .if-ladder li.is-on span, .hw .is-stone .sp-card.iopfit .if-ladder li.is-on small, .hw .is-mist .sp-card.iopfit .if-ladder li.is-on small { color: #fff; }
+  .hw .is-stone .sp-card.iopfit .if-day, .hw .is-mist .sp-card.iopfit .if-day { background: var(--hw-stone, #f3f1ec); }
+  .hw .is-stone .sp-card.iopfit .if-day b, .hw .is-mist .sp-card.iopfit .if-day b { color: var(--hw-navy, #0b2f55); }
+  .hw .is-stone .sp-card.iopfit .if-tracks li, .hw .is-mist .sp-card.iopfit .if-tracks li { color: var(--hw-body, #22303f); }
+  .hw .is-stone .sp-card.iopfit .if-tracks b, .hw .is-mist .sp-card.iopfit .if-tracks b { color: var(--hw-navy, #0b2f55); }
+  @media (max-width: 480px) { .hw .sp-card.iopfit .if-ladder li:nth-child(1) { margin-right: 18%; } .hw .sp-card.iopfit .if-ladder li:nth-child(2) { margin-right: 9%; } .hw .sp-card.iopfit .if-ladder li:nth-child(3) { margin-right: 4%; } .hw .sp-card.iopfit .if-tracks b { min-width: 8.5em; } }
+  /* serve aside (Teen / Tween IOP "Who we serve", 2026-11-18): age badge, experience stat, coloured concern tiles,
+     inclusive row and a seal-style licence badge. Built for the white card (stone sections). */
+  .hw .sv-top { display: flex; align-items: center; gap: 18px; }
+  .hw .sv-age { flex: none; display: grid; place-items: center; align-content: center; width: 124px; height: 124px; border-radius: 50%; background: var(--hw-navy, #0b2f55); box-shadow: 0 0 0 6px #fff, 0 0 0 8px #e0b56a; text-align: center; }
+  .hw .sv-age-n { font-family: var(--hw-head); font-weight: 800; font-size: 32px; line-height: 1; color: #e0b56a; }
+  .hw .sv-age-l { margin-top: 4px; font-size: 13px; font-weight: 700; color: #fff; }
+  .hw .sv-exp { display: grid; gap: 4px; }
+  .hw .sv-exp strong { font-family: var(--hw-head); font-weight: 800; font-size: 28px; line-height: 1; color: var(--hw-navy, #0b2f55); }
+  .hw .sv-exp span { font-size: 14px; line-height: 1.4; color: var(--hw-slate, #55657a); }
+  .hw .sp-card ul.sv-tiles { margin-top: 20px; gap: 10px; }
+  .hw .sp-card .sv-tiles li.sv-t { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; border-left: 4px solid var(--c); background: var(--bg); font-size: 15px; }
+  .hw .sp-card .sv-tiles li > span:last-child { padding-top: 0; }
+  .hw .sv-t.is-rose { --c: #c4566b; --bg: #fbecef; } .hw .sv-t.is-amber { --c: #c58a2c; --bg: #fbf2e1; } .hw .sv-t.is-sky { --c: #265489; --bg: #e7f0fa; } .hw .sv-t.is-sage { --c: #3f7a5f; --bg: #e6f1eb; }
+  .hw .sv-i { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: #fff; color: var(--c, #3f7a5f); }
+  .hw .sv-tx { display: grid; gap: 3px; padding-top: 7px; }
+  .hw .sv-tx b { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy, #0b2f55); line-height: 1.3; }
+  .hw .sv-tx small { font-size: 13px; color: var(--hw-slate, #55657a); }
+  .hw .sv-tx small a { color: #c4566b; font-weight: 800; }
+  .hw .sv-inc { --c: #3f7a5f; display: flex; gap: 12px; align-items: center; margin-top: 10px; padding: 12px 14px; border-radius: 14px; background: #e6f1eb; font-size: 15px; font-weight: 700; color: var(--hw-navy, #0b2f55); line-height: 1.35; }
+  .hw .sv-inc a { color: #2f6a50; }
+  .hw .sv-seal { display: flex; gap: 14px; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--hw-line, #d5dfe9); font-family: var(--hw-head); font-weight: 800; font-size: 15px; color: var(--hw-navy, #0b2f55); }
+  .hw .sv-seal-r { flex: none; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: #fbf2e1; color: #a8742a; border: 2px dashed #e0b56a; box-shadow: inset 0 0 0 4px #fff; }
+  @media (max-width: 480px) { .hw .sv-age { width: 104px; height: 104px; } .hw .sv-age-n { font-size: 27px; } .hw .sv-exp strong { font-size: 24px; } }
+.hw .sp-card .sv-tiles li.sv-t { align-items: center; }
+.hw .sp-card .sv-tiles li.sv-t > .sv-tx { padding-top: 0; }
+.hw .sv-top { padding-left: 8px; }

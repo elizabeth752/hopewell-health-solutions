@@ -44,12 +44,12 @@ const tones = ["white", "stone"];
             <div class="sp-card sv-card">
               <p class="sp-card-h">{b.aside.title ?? "Who we serve"}</p>
               <div class="sv-top">
-                <div class="sv-age"><span class="sv-age-n">{b.aside.age}</span><span class="sv-age-l">{b.aside.ageLabel}</span></div>
-                {b.aside.exp && <div class="sv-exp"><strong>{b.aside.exp[0]}</strong><span>{b.aside.exp[1]}</span></div>}
+                <div class="sv-age"><span class="sv-age-n">{b.aside.age}</span>{" "}<span class="sv-age-l">{b.aside.ageLabel}</span></div>
+                {b.aside.exp && <div class="sv-exp"><strong>{b.aside.exp[0]}</strong>{" "}<span>{b.aside.exp[1]}</span></div>}
               </div>
               <ul class="sv-tiles">
                 {b.aside.concerns.map((c) => (
-                  <li class={`sv-t is-${c.tone ?? "sky"}`}><span class="sv-i"><Icon name={c.icon} class="h-5 w-5" /></span><span class="sv-tx"><b set:html={c.t} />{c.note && <small set:html={c.note} />}</span></li>
+                  <li class={`sv-t is-${c.tone ?? "sky"}`}><span class="sv-i"><Icon name={c.icon} class="h-5 w-5" /></span><span class="sv-tx"><b set:html={c.t} />{c.note && " "}{c.note && <small set:html={c.note} />}</span></li>
                 ))}
               </ul>
               {b.aside.inclusive && <p class="sv-inc"><span class="sv-i"><Icon name="heart" class="h-5 w-5" /></span><span set:html={b.aside.inclusive} /></p>}
@@ -63,53 +63,4 @@ const tones = ["white", "stone"];
   </section>
 ))}
 
-<style>
-  /* iopfit aside (2026-11-18): designed for the navy card (white sections); light-card overrides for stone/mist sections below. */
-  .sp-card.iopfit .if-ladder { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column-reverse; gap: 8px; }
-  .sp-card.iopfit .if-ladder li { position: relative; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px 10px 16px; border-radius: 12px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-left: 4px solid rgba(156,195,234,.45); font-size: 15px; line-height: 1.35; }
-  .sp-card.iopfit .if-ladder li:nth-child(1) { margin-right: 30%; } .sp-card.iopfit .if-ladder li:nth-child(2) { margin-right: 15%; } .sp-card.iopfit .if-ladder li:nth-child(3) { margin-right: 6%; }
-  .sp-card.iopfit .if-ladder li span { font-weight: 800; color: #fff; font-size: 15px; padding: 0; }
-  .sp-card.iopfit .if-ladder li small { font-size: 13px; color: #b9cbe0; }
-  .sp-card.iopfit .if-ladder li.is-on { background: #fff; border-color: #fff; border-left-color: #e0b56a; box-shadow: 0 10px 24px rgba(0,0,0,.22); }
-  .sp-card.iopfit .if-ladder li.is-on span { color: var(--hw-navy, #0b2f55); } .sp-card.iopfit .if-ladder li.is-on small { color: var(--hw-slate, #55657a); }
-  .sp-card.iopfit .if-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
-  .sp-card.iopfit .if-day { display: grid; justify-items: center; gap: 2px; padding: 8px 0; border-radius: 10px; background: rgba(255,255,255,.07); }
-  .sp-card.iopfit .if-day b { font-size: 12px; color: #dce6f1; } .sp-card.iopfit .if-day i { font-style: normal; font-size: 12px; color: #9fb4cc; }
-  .sp-card.iopfit .if-day.is-on { background: #e0b56a; } .sp-card.iopfit .if-day.is-on b, .sp-card.iopfit .if-day.is-on i { color: var(--hw-navy, #0b2f55); }
-  .sp-card.iopfit .if-tracks { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
-  .sp-card.iopfit .if-tracks li { display: flex; gap: 8px; align-items: baseline; font-size: 14.5px; line-height: 1.4; color: #dce6f1; }
-  .sp-card.iopfit .if-tracks b { min-width: 9.5em; color: #e0b56a; font-weight: 800; }
-  .is-stone .sp-card.iopfit .if-ladder li, .is-mist .sp-card.iopfit .if-ladder li { background: var(--hw-stone, #f3f1ec); border-color: var(--hw-line, #d5dfe9); }
-  .is-stone .sp-card.iopfit .if-ladder li span, .is-mist .sp-card.iopfit .if-ladder li span { color: var(--hw-navy, #0b2f55); }
-  .is-stone .sp-card.iopfit .if-ladder li small, .is-mist .sp-card.iopfit .if-ladder li small { color: var(--hw-slate, #55657a); }
-  .is-stone .sp-card.iopfit .if-ladder li.is-on, .is-mist .sp-card.iopfit .if-ladder li.is-on { background: var(--hw-navy, #0b2f55); border-left-color: #e0b56a; }
-  .is-stone .sp-card.iopfit .if-ladder li.is-on span, .is-mist .sp-card.iopfit .if-ladder li.is-on span, .is-stone .sp-card.iopfit .if-ladder li.is-on small, .is-mist .sp-card.iopfit .if-ladder li.is-on small { color: #fff; }
-  .is-stone .sp-card.iopfit .if-day, .is-mist .sp-card.iopfit .if-day { background: var(--hw-stone, #f3f1ec); }
-  .is-stone .sp-card.iopfit .if-day b, .is-mist .sp-card.iopfit .if-day b { color: var(--hw-navy, #0b2f55); }
-  .is-stone .sp-card.iopfit .if-tracks li, .is-mist .sp-card.iopfit .if-tracks li { color: var(--hw-body, #22303f); }
-  .is-stone .sp-card.iopfit .if-tracks b, .is-mist .sp-card.iopfit .if-tracks b { color: var(--hw-navy, #0b2f55); }
-  @media (max-width: 480px) { .sp-card.iopfit .if-ladder li:nth-child(1) { margin-right: 18%; } .sp-card.iopfit .if-ladder li:nth-child(2) { margin-right: 9%; } .sp-card.iopfit .if-ladder li:nth-child(3) { margin-right: 4%; } .sp-card.iopfit .if-tracks b { min-width: 8.5em; } }
-  /* serve aside (Teen / Tween IOP "Who we serve", 2026-11-18): age badge, experience stat, coloured concern tiles,
-     inclusive row and a seal-style licence badge. Built for the white card (stone sections). */
-  .sv-top { display: flex; align-items: center; gap: 18px; }
-  .sv-age { flex: none; display: grid; place-items: center; align-content: center; width: 124px; height: 124px; border-radius: 50%; background: var(--hw-navy, #0b2f55); box-shadow: 0 0 0 6px #fff, 0 0 0 8px #e0b56a; text-align: center; }
-  .sv-age-n { font-family: var(--hw-head); font-weight: 800; font-size: 32px; line-height: 1; color: #e0b56a; }
-  .sv-age-l { margin-top: 4px; font-size: 13px; font-weight: 700; color: #fff; }
-  .sv-exp { display: grid; gap: 4px; }
-  .sv-exp strong { font-family: var(--hw-head); font-weight: 800; font-size: 28px; line-height: 1; color: var(--hw-navy, #0b2f55); }
-  .sv-exp span { font-size: 14px; line-height: 1.4; color: var(--hw-slate, #55657a); }
-  .sp-card ul.sv-tiles { margin-top: 20px; gap: 10px; }
-  .sp-card .sv-tiles li.sv-t { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border-radius: 14px; border-left: 4px solid var(--c); background: var(--bg); font-size: 15px; }
-  .sp-card .sv-tiles li > span:last-child { padding-top: 0; }
-  .sv-t.is-rose { --c: #c4566b; --bg: #fbecef; } .sv-t.is-amber { --c: #c58a2c; --bg: #fbf2e1; } .sv-t.is-sky { --c: #265489; --bg: #e7f0fa; } .sv-t.is-sage { --c: #3f7a5f; --bg: #e6f1eb; }
-  .sv-i { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: #fff; color: var(--c, #3f7a5f); }
-  .sv-tx { display: grid; gap: 3px; padding-top: 7px; }
-  .sv-tx b { font-family: var(--hw-head); font-weight: 800; color: var(--hw-navy, #0b2f55); line-height: 1.3; }
-  .sv-tx small { font-size: 13px; color: var(--hw-slate, #55657a); }
-  .sv-tx small a { color: #c4566b; font-weight: 800; }
-  .sv-inc { --c: #3f7a5f; display: flex; gap: 12px; align-items: center; margin-top: 10px; padding: 12px 14px; border-radius: 14px; background: #e6f1eb; font-size: 15px; font-weight: 700; color: var(--hw-navy, #0b2f55); line-height: 1.35; }
-  .sv-inc a { color: #2f6a50; }
-  .sv-seal { display: flex; gap: 14px; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--hw-line, #d5dfe9); font-family: var(--hw-head); font-weight: 800; font-size: 15px; color: var(--hw-navy, #0b2f55); }
-  .sv-seal-r { flex: none; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: #fbf2e1; color: #a8742a; border: 2px dashed #e0b56a; box-shadow: inset 0 0 0 4px #fff; }
-  @media (max-width: 480px) { .sv-age { width: 104px; height: 104px; } .sv-age-n { font-size: 27px; } .sv-exp strong { font-size: 24px; } }
-</style>
+<!-- iopfit + serve aside styles live in src/styles/pages/seo.css (moved 2026-11-18 so they load as plain CSS). -->
