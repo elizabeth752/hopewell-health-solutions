@@ -1094,27 +1094,25 @@ main.hw .wq-more { display: none; }
   main.hw .rv-gbps li > a { flex: 1; align-content: start; }
 }
 
-/* Homepage hero: photo-led rotating slider with the form beside it on desktop (client doc Task 1, 2026-11-18). */
-.hw .hero-has-slider { background: var(--hw-night); min-height: 0; display: block; }
-.hw .hero-top { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 16px clamp(28px, 4vw, 56px); align-items: end; }
-.hw .hero-top .hero-rating { margin-top: 0; }
-.hw .hero-top .lede { margin-top: 12px; }
-.hw .hero-has-slider .hero-grid { margin-top: clamp(26px, 3vw, 38px); grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); align-items: center; }
-.hw .hero-slider .ps-single .ps-track { box-shadow: 0 30px 80px rgba(0,0,0,.45); background: #0d2f52; }
-.hw .hero-slider .ps-cap { font-size: 15px; padding: 9px 15px; background: rgba(255,255,255,.95); color: var(--hw-navy); }
-.hw .hero-slider a.ps-cap:hover { background: var(--hw-sky-soft); color: var(--hw-navy); }
-.hw .hero-slider a.ps-cap::after { content: " \2192"; }
-.hw .hero-slider .ps-btn { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); color: #fff; }
-.hw .hero-slider .ps-btn:hover, .hw .hero-slider .ps-btn:focus-visible { background: #fff; color: var(--hw-navy); }
-.hw .hero-slider .ps-dots button { background: rgba(255,255,255,.35); }
-.hw .hero-slider .ps-dots button.is-on { background: var(--hw-sky); }
-.hw .hero-has-slider .hero-bullets { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: none; margin-top: 30px; }
-.hw .hero-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-top: 26px; }
-.hw .hero-foot .hero-ctas { margin-top: 0; }
-.hw .hero-foot .hc { margin: 0; padding: 0; border: 0; }
-.hw .hero-has-slider .hero-where { margin-top: 24px; }
-@media (max-width: 999px) {
-  .hw .hero-top, .hw .hero-has-slider .hero-grid { grid-template-columns: 1fr; }
-  .hw .hero-has-slider .hero-bullets { grid-template-columns: 1fr 1fr; }
+/* Homepage hero: full-width rotating photo banner (client doc Task 1, user pick 2026-11-18). Photos stay bright; the
+   overlay only darkens the left side behind the text. Arrows on the sides, dots centred at the bottom. */
+@media (min-width: 1000px) {
+  .hw .hero-banner .hero-scrim { background: linear-gradient(90deg, rgba(0,29,55,.82) 0%, rgba(0,29,55,.6) 38%, rgba(0,29,55,0) 62%), linear-gradient(0deg, rgba(0,29,55,.45) 0%, rgba(0,29,55,0) 18%); }
+  .hw .hero-banner { min-height: 760px; padding-bottom: 96px; }
+  .hw .hero-banner h1, .hw .hero-banner .hero-tag, .hw .hero-banner .lede { text-shadow: 0 2px 18px rgba(0,20,40,.5); }
 }
-@media (max-width: 640px) { .hw .hero-has-slider .hero-bullets { grid-template-columns: 1fr; } }
+.hw .hb-arrow { position: absolute; top: 50%; z-index: 2; width: 52px; height: 52px; margin-top: -26px; border-radius: 999px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.55); background: rgba(0,29,55,.35); color: #fff; cursor: pointer; backdrop-filter: blur(4px); transition: background .2s, color .2s; }
+.hw .hb-arrow:hover, .hw .hb-arrow:focus-visible { background: #fff; color: var(--hw-navy); }
+.hw .hb-prev { left: 18px; }
+.hw .hb-next { right: 18px; }
+.hw .hb-dots { position: absolute; z-index: 2; left: 50%; bottom: 30px; transform: translateX(-50%); margin: 0; gap: 10px; }
+.hw .hb-dots button { width: 11px; height: 11px; background: rgba(255,255,255,.6); box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.hw .hb-dots button.is-on { width: 34px; background: #fff; }
+.hw .hero-slide { transition: opacity 1s ease, transform 6s ease; }
+@media (max-width: 1240px) and (min-width: 1000px) { .hw .hb-arrow { width: 42px; height: 42px; margin-top: -21px; } .hw .hb-prev { left: 8px; } .hw .hb-next { right: 8px; } }
+@media (max-width: 999px) {
+  .hw .hb-arrow { top: auto; bottom: 18px; margin: 0; width: 40px; height: 40px; }
+  .hw .hb-prev { left: 16px; } .hw .hb-next { right: 16px; }
+  .hw .hb-dots { bottom: 32px; }
+  .hw .hero-banner { padding-bottom: 86px; }
+}
