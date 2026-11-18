@@ -40,15 +40,15 @@ const officeGallery = [
   { src: L + "east-hampton/sitting-area.webp", alt: "The sitting area at the East Hampton office", cap: "East Hampton · sitting area" },
   { src: L + "westbrook/waiting-room.webp", alt: "The waiting room at the Westbrook office", cap: "Westbrook · waiting room" },
 ];
-// Region cards: drawn scenes (no photos repeated from the hero), towns served, office links.
+// Region cards: real photos of each region (user 2026-11-18, Wikimedia Commons, credited), drawn scenes as fallback (no photos repeated from the hero), towns served, office links.
 const regions = [
-  { t: "Greater Hartford", c: "#2f76c4", d: "Close to Hartford, Manchester, Wethersfield, Rocky Hill, South Windsor and Newington.",
+  { photo: "/Assets/regions/greater-hartford.webp", photoAlt: "Downtown Hartford, Connecticut", credit: "Photo: Wobbanight, CC0, via Wikimedia Commons", t: "Greater Hartford", c: "#2f76c4", d: "Close to Hartford, Manchester, Wethersfield, Rocky Hill, South Windsor and Newington.",
     offices: [["Glastonbury · 33 Pratt St", "/location/glastonbury-ct/"], ["Downtown Glastonbury · 300 Hebron Ave", "/location/glastonbury-ct-2/"], ["South Glastonbury · 1420 Main St", "/location/glastonbury-ct-3/"], ["West Hartford · 1216 Farmington Ave", "/location/west-hartford-ct/"]],
     art: '<svg viewBox="0 0 320 130" aria-hidden="true"><rect width="320" height="130" fill="#dbe8f6"/><circle cx="262" cy="34" r="16" fill="#f4e6d0"/><path d="M0 104h320v26H0z" fill="#9cc3ea"/><g fill="#265489"><rect x="40" y="58" width="26" height="46"/><rect x="70" y="40" width="22" height="64"/><rect x="96" y="66" width="30" height="38"/><rect x="130" y="28" width="20" height="76"/><path d="M130 28l10-14 10 14z"/><rect x="154" y="52" width="28" height="52"/><rect x="186" y="70" width="34" height="34"/></g><g fill="#dbe8f6"><rect x="75" y="48" width="4" height="6"/><rect x="83" y="48" width="4" height="6"/><rect x="75" y="62" width="4" height="6"/><rect x="83" y="62" width="4" height="6"/><rect x="135" y="40" width="4" height="6"/><rect x="141" y="40" width="4" height="6"/><rect x="135" y="56" width="4" height="6"/><rect x="141" y="56" width="4" height="6"/></g><path d="M224 104v-26l18-14 18 14v26z" fill="#fff"/><rect x="236" y="88" width="10" height="16" fill="#b6863c"/><path d="M220 80l22-18 22 18" fill="none" stroke="#0b2f55" stroke-width="4" stroke-linejoin="round"/></svg>' },
-  { t: "The Connecticut River Valley", c: "#5c7c6b", d: "Serving Middletown, Portland, Colchester, Marlborough and the rest of Middlesex County.",
+  { photo: "/Assets/regions/river-valley-middletown.webp", photoAlt: "Middletown on the Connecticut River", credit: "Photo: Bflood, CC BY 3.0, via Wikimedia Commons", t: "The Connecticut River Valley", c: "#5c7c6b", d: "Serving Middletown, Portland, Colchester, Marlborough and the rest of Middlesex County.",
     offices: [["East Hampton · 151 E. High St", "/location/east-hampton-ct/"]],
     art: '<svg viewBox="0 0 320 130" aria-hidden="true"><rect width="320" height="130" fill="#e4eee6"/><circle cx="60" cy="32" r="14" fill="#f4e6d0"/><path d="M0 84c40-34 80-40 120-22s70 10 110-14 70-14 90-6v88H0z" fill="#8fb19a"/><path d="M0 100c50-20 100-22 150-8s110 6 170-14v52H0z" fill="#5c7c6b"/><path d="M150 130c10-18 40-26 70-30s60-10 100-22" fill="none" stroke="#9cc3ea" stroke-width="12" stroke-linecap="round"/><g fill="#3f5c4b"><path d="M40 96l8-20 8 20z"/><path d="M58 98l7-16 7 16z"/><path d="M250 74l8-20 8 20z"/><path d="M268 72l7-16 7 16z"/></g><path d="M118 96v-18l14-10 14 10v18z" fill="#fff"/><rect x="128" y="84" width="8" height="12" fill="#b6863c"/></svg>' },
-  { t: "The shoreline", c: "#b6863c", d: "Serving Old Saybrook, Clinton, Madison, Guilford, Branford, Essex and Niantic.",
+  { photo: "/Assets/regions/shoreline-saybrook-light.webp", photoAlt: "Saybrook Breakwater Lighthouse in Old Saybrook", credit: "Photo: Juliejules, CC BY 3.0, via Wikimedia Commons", t: "The shoreline", c: "#b6863c", d: "Serving Old Saybrook, Clinton, Madison, Guilford, Branford, Essex and Niantic.",
     offices: [["Westbrook · 70 Essex Rd", "/location/westbrook-ct/"]],
     art: '<svg viewBox="0 0 320 130" aria-hidden="true"><rect width="320" height="130" fill="#f6ecdc"/><circle cx="240" cy="44" r="18" fill="#e0b56a"/><path d="M0 92h320v38H0z" fill="#2f76c4"/><path d="M0 98c20-6 40 6 60 0s40-6 60 0 40 6 60 0 40-6 60 0 40 6 80 0" fill="none" stroke="#9cc3ea" stroke-width="3"/><path d="M0 112c20-6 40 6 60 0s40-6 60 0 40 6 60 0 40-6 60 0 40 6 80 0" fill="none" stroke="#9cc3ea" stroke-width="3"/><path d="M0 92c30-10 60-12 90-4v4H0z" fill="#e8d3ad"/><g transform="translate(60 30)"><path d="M6 62l4-48h12l4 48z" fill="#fff"/><path d="M8 40h16M7 52h18" stroke="#c0392b" stroke-width="5"/><rect x="9" y="6" width="14" height="10" fill="#0b2f55"/><path d="M6 6l10-8 10 8z" fill="#c0392b"/></g><path d="M170 86l20-24v24z" fill="#fff"/><path d="M164 88h34l-6 6h-22z" fill="#0b2f55"/></svg>' },
 ];
@@ -222,7 +222,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
         <div class="lh-regions">
           {regions.map((r) => (
             <article class="lh-region" style={`--c:${r.c}`}>
-              <div class="lh-region-art" set:html={r.art} />
+              {r.photo ? <figure class="lh-region-art lh-region-photo"><img src={r.photo} alt={r.photoAlt} width="1200" height="675" loading="lazy" /><figcaption>{r.credit}</figcaption></figure> : <div class="lh-region-art" set:html={r.art} />}
               <div class="lh-region-body">
                 <h3>{r.t}</h3>
                 <p>{r.d}</p>

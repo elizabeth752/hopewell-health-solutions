@@ -292,3 +292,8 @@
 .hw .wq-card { gap: 6px; }
 .hw .wq-card p { font-size: 16px; line-height: 1.5; }
 .hw .t-navy .wq-card:first-child { background: #e7edf5; }
+
+/* Region cards with real photos (2026-11-18). */
+.hw .lh-region-photo { margin: 0; position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+.hw .lh-region-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hw .lh-region-photo figcaption { position: absolute; right: 8px; bottom: 6px; font-size: 10.5px; color: rgba(255,255,255,.85); text-shadow: 0 1px 3px rgba(0,0,0,.6); }

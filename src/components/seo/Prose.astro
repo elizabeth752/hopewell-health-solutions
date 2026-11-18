@@ -56,6 +56,17 @@ const tones = ["white", "stone"];
               {b.aside.licensed && <p class="sv-seal"><span class="sv-seal-r"><Icon name="shield" class="h-6 w-6" /></span><span set:html={b.aside.licensed} /></p>}
             </div>
           )}
+          {b.aside.type === "postpartum" && (
+            <div class="sp-card ppg" aria-label="Baby blues compared with postpartum depression and anxiety">
+              <p class="sp-card-h">Baby blues or something more?</p>
+              <div class="ppg-cols">
+                <div class="ppg-col"><span class="ppg-tag">Baby blues</span><b>Up to 2 weeks</b><ul><li>Weepy, moody, tired</li><li>Comes and goes</li><li>Eases on its own</li></ul></div>
+                <div class="ppg-col is-more"><span class="ppg-tag">Postpartum depression or anxiety</span><b>2 weeks or longer</b><ul><li>Anxious, numb, tearful or angry</li><li>Can’t sleep even when baby sleeps</li><li>Frightening intrusive thoughts</li></ul></div>
+              </div>
+              <p class="ppg-time"><span>Pregnancy</span><span>Birth</span><span>First year</span></p>
+              <p class="ppg-foot">Common and treatable, with group and individual therapy and medication when needed. In a crisis, call or text <a href="tel:988">988</a>.</p>
+            </div>
+          )}
           {b.aside.type === "table" && (<div class="sp-card sp-tbl">{b.aside.title && <p class="sp-card-h">{b.aside.title}</p>}<table><thead><tr>{b.aside.head.map((h) => <th scope="col">{h}</th>)}</tr></thead><tbody>{b.aside.rows.map((r) => <tr>{r.map((c, k) => k === 0 ? <th scope="row" set:html={c} /> : <td set:html={c} />)}</tr>)}</tbody></table></div>)}
         </aside>
       )}

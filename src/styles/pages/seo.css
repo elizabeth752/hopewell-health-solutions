@@ -109,3 +109,31 @@
 .hw .sp-card .sv-tiles li.sv-t { align-items: center; }
 .hw .sp-card .sv-tiles li.sv-t > .sv-tx { padding-top: 0; }
 .hw .sv-top { padding-left: 8px; }
+
+/* Postpartum graphic (Women's Wellness, user 2026-11-18). */
+.hw .ppg-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.hw .ppg-col { padding: 14px; border-radius: 16px; background: var(--hw-stone); display: grid; gap: 6px; align-content: start; }
+.hw .ppg-col.is-more { background: var(--hw-navy); color: #fff; }
+.hw .ppg-tag { justify-self: start; padding: 3px 10px; border-radius: 999px; background: #fff; color: var(--hw-navy); font-size: 12.5px; font-weight: 700; }
+.hw .ppg-col.is-more .ppg-tag { background: #e0b56a; color: #0b2f55; }
+.hw .ppg-col b { font-family: var(--hw-head); font-size: 17px; color: var(--hw-navy); }
+.hw .ppg-col.is-more b { color: #fff; }
+.hw .ppg-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 14px; line-height: 1.4; }
+.hw .ppg-col li::before { content: "•"; margin-right: 7px; color: #b6863c; }
+.hw .ppg-col.is-more li::before { color: #e0b56a; }
+.hw .ppg-time { margin: 14px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; text-align: center; font-size: 13px; font-weight: 700; color: var(--hw-navy); }
+.hw .ppg-time::before { content: ""; position: absolute; left: 16%; right: 16%; top: -6px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #9cc3ea, #b6863c); }
+.hw .ppg-foot { margin: 12px 0 0; font-size: 14px; line-height: 1.5; color: var(--hw-body); }
+.hw .ppg-foot a { color: var(--hw-blue); font-weight: 700; }
+@media (max-width: 460px) { .hw .ppg-cols { grid-template-columns: minmax(0, 1fr); } }
+/* Postpartum card sits on the navy aside card: light-on-dark version. */
+.hw .ppg .ppg-col { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #dce6f1; }
+.hw .ppg .ppg-col b { color: #fff; }
+.hw .ppg .ppg-col.is-more { background: #fff; color: var(--hw-body); border-color: #fff; }
+.hw .ppg .ppg-col.is-more b { color: var(--hw-navy); }
+.hw .ppg .ppg-col.is-more li::before { color: #b6863c; }
+.hw .ppg .ppg-tag { background: rgba(255,255,255,.16); color: #fff; }
+.hw .ppg .ppg-col.is-more .ppg-tag { background: #e0b56a; color: #0b2f55; }
+.hw .ppg .ppg-time { color: #fff; }
+.hw .ppg .ppg-foot { color: #dce6f1; }
+.hw .ppg .ppg-foot a { color: #9cc3ea; }
