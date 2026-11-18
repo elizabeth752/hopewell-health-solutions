@@ -2226,3 +2226,9 @@ main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
 @media (min-width: 1000px) and (max-width: 1240px) { .hw .tt-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 /* Phones: Google "G" sits in the bottom-right corner (user 2026-11-18); "Check coverage" moves left of it. */
 @media (max-width: 767px) { .hw-sticky-cta { right: 72px !important; } }
+
+/* Two-office row (addiction pages, user 2026-11-18): static and centred, no loop, no duplicate cards. */
+.hw .lc-wrap.is-static { overflow: visible; -webkit-mask-image: none; mask-image: none; }
+.hw .lc-wrap.is-static .lc-track { animation: none !important; transform: none !important; display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); justify-content: center; gap: 20px; width: auto; overflow: visible; padding: 0 16px; }
+.hw .lc-wrap.is-static .lc[aria-hidden="true"] { display: none; }
+@media (max-width: 760px) { .hw .lc-wrap.is-static .lc-track { grid-template-columns: minmax(0, 1fr); } }

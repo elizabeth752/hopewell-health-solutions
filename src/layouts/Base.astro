@@ -96,6 +96,7 @@ const ogUrl = canonicalHref;
     // These marquees already render their list twice (second half aria-hidden), so they loop without extra clones.
     const PRE = ".lc-track, .rv-loop-track, .vc-track, .ps-mq-track, .payers .marquee-track";
     document.querySelectorAll<HTMLElement>(SEL).forEach((row) => {
+      if (row.closest(".is-static")) return;
       const pre = row.matches(PRE);
       const items = (pre ? [...row.children].slice(0, row.children.length / 2) : [...row.children]) as HTMLElement[];
       if (items.length < 2) return;

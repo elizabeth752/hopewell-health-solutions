@@ -44,7 +44,7 @@ const svcLines = (l) => {
       </div>}
     </div>
   </div>
-  <div class="lc-wrap" data-lc>
+  <div class:list={["lc-wrap", Astro.props.addictionOnly && "is-static"]} data-lc={Astro.props.addictionOnly ? undefined : true}>
     <ul class="lc-track" aria-label="Hopewell offices">
       {[...ordered, ...ordered].map((l, k) => (
         <li class="lc" data-add={l.addiction ? "1" : "0"} aria-hidden={k >= ordered.length ? "true" : undefined}>
