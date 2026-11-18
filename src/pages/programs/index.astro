@@ -186,7 +186,7 @@ const medicalWebPage = {
 };
 const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Mental health and addiction treatment programs at Hopewell Health Solutions", itemListElement: allItems.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.t, url: SITE + c.href })) };
 ---
-<Base title="IOP, PHP & Addiction Programs in Connecticut | Hopewell" description="Compare in-person IOP, PHP and outpatient programs for adults, teens and women in Glastonbury, Westbrook, East Hampton and West Hartford, CT. Check coverage." canonical={canonical} image={P + "iop-group-session.webp"}>
+<Base title="IOP, PHP & Mental Health Treatment Programs in CT | Hopewell" description="Compare in-person IOP, PHP and outpatient programs for adults, teens and women in Glastonbury, Westbrook, East Hampton and West Hartford, CT. Check coverage." canonical={canonical} image={P + "iop-group-session.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(medicalWebPage)} />
   <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
@@ -194,8 +194,8 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
     <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs" }]}
-      title="IOP, PHP &amp; Addiction Programs in Connecticut"
-      lede="In-person IOP, PHP and outpatient care for adults, teens and children, with programs in Glastonbury, Westbrook, East Hampton and West Hartford."
+      title="IOP, PHP &amp; Mental Health Treatment Programs in Connecticut"
+      lede="In-person IOP, PHP, addiction treatment programs and outpatient mental health services for adults, teens and children in Glastonbury, Westbrook, East Hampton and West Hartford."
       bullets={["<a class='inl' href='/programs/intensive-outpatient-program/'>IOP</a> for every age", "<a class='inl' href='/programs/partial-hospitalization-program/'>PHP</a> full-day care", "<a class='inl' href='/programs/addiction-iop/'>Addiction IOP</a> for adults"]}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "pin", text: "Six Connecticut offices" }]}
       image="/Assets/service/what-is-adhd.webp"

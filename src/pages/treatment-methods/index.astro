@@ -115,7 +115,7 @@ faqs.push(...faqTail);
 const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: briefGroups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---
 
-<Base title="Mental Health Treatments in CT: TMS, EMDR, DBT | Hopewell" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices." canonical={canonical} image={P + "sg-family-room.webp"}>
+<Base title="Types of Therapy & Treatment in CT: TMS, EMDR, DBT" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices." canonical={canonical} image={P + "sg-family-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(list)} />
   <main class="hw">
@@ -126,7 +126,7 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
       <div class="container wq-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Treatments</span></nav>
-          <h1>Therapies, Treatments &amp; Testing in Connecticut</h1>
+          <h1>Types of Therapy, Treatment &amp; Testing in Connecticut</h1>
           <p class="lede">Beyond talk therapy, Hopewell Health Solutions offers advanced, research-backed treatments most outpatient practices can’t, from FDA-cleared TMS to EMDR and comprehensive testing, all coordinated by one team, in person across Connecticut and by telehealth.</p>
           <ul class="wq-facts">
             <li><Icon name="sparkles" class="h-[18px] w-[18px]" />Advanced &amp; evidence-based</li>
@@ -152,7 +152,7 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
 
     <section class="section is-stone" id="treatments">
       <div class="container">
-        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own, evidence-based options that help the brain and body heal. Grouped by what they do. Each has its own page with how it works and who it helps.</p></div>
+        <div class="sec-head"><h2>Treatments beyond talk therapy</h2><p class="lede">For when medication and therapy aren’t enough on their own, evidence-based options that help the brain and body heal. Grouped by what they do, from talk-therapy modalities to brain-based treatments. Each has its own page with how it works and who it helps.</p></div>
         <div class="wq-groups">
           {briefGroups.map((g) => (
             <section class={`wq-group t-${g.tone}`} id={g.key} aria-labelledby={`h-${g.key}`}>
@@ -202,7 +202,7 @@ const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Tre
 
     <section class="section is-navy">
       <div class="container">
-        <div class="sec-head"><h2>Which treatment fits what you’re facing?</h2><p class="lede">A quick guide. Your clinician will help you decide, many plans combine more than one.</p></div>
+        <div class="sec-head"><h2>Which types of mental health treatment fit what you’re facing?</h2><p class="lede">A quick guide. Your clinician will help you decide, many plans combine more than one.</p></div>
         <ul class="tx-phases">
           {compare.map(([icon, t, d, href]) => <li class="tx-phase"><b><Icon name={icon} class="h-5 w-5" /></b><span><strong><a href={href} style="color:#fff;text-decoration:underline;text-decoration-color:rgba(156,195,234,.6);text-underline-offset:3px">{t}</a></strong><span>{d}</span></span></li>)}
         </ul>

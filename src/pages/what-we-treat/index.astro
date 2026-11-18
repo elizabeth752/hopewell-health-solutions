@@ -158,7 +158,7 @@ const faqs = [
 const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: "Conditions treated at Hopewell Health Solutions", itemListElement: allConditions.map((c, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "MedicalCondition", name: c.t, url: SITE + c.href } })) };
 const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", name: "Mental Health & Addiction Conditions We Treat in Connecticut", url: canonical, about: allConditions.map((c) => ({ "@type": "MedicalCondition", name: c.t })), publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions", url: SITE } };
 ---
-<Base title="Conditions We Treat: Mental Health &amp; Addiction in CT" description="Hopewell treats depression, anxiety, trauma, ADHD, OCD, bipolar disorder and alcohol and drug addiction for all ages in Connecticut. Find the right care." canonical={canonical} image={P + "iop-clinicians-group-room.webp"}>
+<Base title="Mental Health Disorders &amp; Addiction We Treat in CT" description="Hopewell treats depression, anxiety, trauma, ADHD, OCD, bipolar disorder and alcohol and drug addiction for all ages in Connecticut. Find the right care." canonical={canonical} image={P + "iop-clinicians-group-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
   <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
@@ -168,7 +168,7 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
       <div class="container wq-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>What We Treat</span></nav>
-          <h1>Mental Health &amp; Addiction Conditions We Treat in Connecticut</h1>
+          <h1>Mental Health Disorders &amp; Addictions We Treat in Connecticut</h1>
           <p class="lede">From depression and anxiety to alcohol and drug addiction, our Connecticut team treats children, teens and adults in person.</p>
           <ul class="wq-facts">
             <li><Icon name="users" class="h-[18px] w-[18px]" />Ages 4 and up</li>
@@ -194,7 +194,7 @@ const webPage = { "@context": "https://schema.org", "@type": "MedicalWebPage", n
     <!-- 2. Areas of expertise (Corner Canyon cd-groups): coloured group panel + condition cards. Brief card line, ages and programs + every sentence of the previous hub. -->
     <section class="section is-stone" id="conditions">
       <div class="container">
-        <div class="sec-head"><h2>Areas of expertise: what we treat</h2><p class="lede">From depression and anxiety to trauma, ADHD, and substance use, the board-certified team at <a class="inl" href="/about-us/">Hopewell Health Solutions</a> treats the full range of mental health and co-occurring conditions, for children, teens, and adults, in person across Connecticut and by telehealth.</p></div>
+        <div class="sec-head"><h2>Conditions we treat: our areas of expertise</h2><p class="lede">From depression and anxiety to trauma, ADHD, and substance use, the board-certified team at <a class="inl" href="/about-us/">Hopewell Health Solutions</a> treats the full range of mental health and co-occurring conditions, for children, teens, and adults, in person across Connecticut and by telehealth.</p></div>
         <div class="wq-groups">
           {grid.map((g) => (
             <section class={`wq-group t-${g.tone}`} id={g.id} aria-labelledby={`h-${g.id}`}>
