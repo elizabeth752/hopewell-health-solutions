@@ -5,6 +5,7 @@ import EventPopup from "../components/EventPopup.astro";
 import WestbrookLauncher from "../components/WestbrookLauncher.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import GoogleBadge from "../components/hw/GoogleBadge.astro";
+import AccessibilityPanel from "../components/AccessibilityPanel.astro";
 
 interface Props {
   title?: string;
@@ -159,5 +160,6 @@ const ogUrl = canonicalHref;
   });
 </script>
   <CookieConsent prefix="hopewell" primary="#265489" primaryDark="#1b3e63" text="#001d37" tint="#e7eef5" titleFont="'Baskervville', Georgia, serif" cookieDomain=".hopewellhealthsolutions.com" />
+    <AccessibilityPanel />
   </body>
 </html>
