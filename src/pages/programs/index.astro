@@ -45,7 +45,7 @@ const groups = [
   ] },
   { id: "addiction", t: "Addiction", icon: "link", img: "/Assets/AdobeStock_542909901.webp", alt: "Adults in an addiction recovery group",
     intro: "Addiction treatment for alcohol and drug use, with mental health care built in. Offered at 300 Hebron Ave in Glastonbury and in Westbrook.", items: [
-    { t: "Addiction and Substance Use IOP", href: "/programs/addiction-iop/", img: "/Assets/AdobeStock_404268940.webp", who: "Adults with alcohol or drug use", sched: "Several days a week", where: "300 Hebron Ave & Westbrook",
+    { t: "Addiction and Substance Use IOP", href: "/programs/addiction-iop/", img: "/Assets/AdobeStock_404268940.webp", who: "Adults with alcohol or drug use", sched: "9 AM–12 PM or 5–8 PM, Mon–Thu", where: "300 Hebron Ave & Westbrook",
       d: `SUD groups, dual-diagnosis care and a step-down after rehab. See the <a class="inl" href="/programs/addiction-iop/">Addiction IOP</a>.` },
     { t: "Medication-Assisted Treatment (MAT)", href: "/treatment-methods/medication-assisted-treatment/", img: "/Assets/Blogs/suboxone-a-cornerstone-of-mat-at-hopewell-health-solutions-hero.webp", who: "Medication plus counseling for opioid and alcohol use", sched: "Alongside your program", where: "300 Hebron Ave & Westbrook",
       d: `<a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment</a>, managed by our psychiatric team when it fits.` },
@@ -58,7 +58,7 @@ const groups = [
       d: `EMDR, somatic approaches and trauma-focused CBT in our <a class="inl" href="/programs/womens-trauma-iop/">women’s trauma IOP</a>.` },
   ] },
   { id: "teens", t: "Teens & tweens", icon: "sparkles", img: P + "teen-iop-outside.webp", alt: "Teen IOP group outside Hopewell's South Glastonbury office",
-    intro: "After-school programs with family involvement and school coordination, at our South Glastonbury office. Counseling, play therapy and medication management for children 4 and up at every office.", items: [
+    intro: "After-school programs with family involvement and school coordination, at our South Glastonbury office. Counseling and medication management for children 4 and up, plus play therapy for young children at select offices.", items: [
     { t: "Teen IOP (13–17)", href: "/programs/teen-iop/", img: "/Assets/tweens-1729660767703.webp", who: "Anxiety, depression, school refusal, self-harm", sched: "5–8 PM, Mon–Thu", where: "1420 Main St, South Glastonbury",
       d: `After-school groups with family sessions. Read about the <a class="inl" href="/programs/teen-iop/">Teen IOP</a>.` },
     { t: "Tween IOP (8–12)", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", who: "Play, skills and parent coaching", sched: "4:30–7:30 PM, Mon–Thu", where: "1420 Main St, South Glastonbury",
@@ -83,10 +83,10 @@ const groups = [
 ];
 const allItems = groups.flatMap((g) => g.items);
 
-// Level-of-care timetable (site copy: PHP ~9 AM–3:30 PM Mon–Fri; IOP 3 h Mon–Thu day/evening; teen/tween after school).
+// Level-of-care timetable (PHP 9 AM–3 PM Mon–Fri, settled 2026-11-18 from admissions calls; IOP 3 h Mon–Thu day/evening; teen/tween after school).
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const tt = [
-  { t: "PHP", sub: "Partial hospitalization", hrs: "About 30 h a week", tone: "navy", days: 5, time: "9 AM–3:30 PM", href: "/programs/partial-hospitalization-program/" },
+  { t: "PHP", sub: "Partial hospitalization", hrs: "About 30 h a week", tone: "navy", days: 5, time: "9 AM–3 PM", href: "/programs/partial-hospitalization-program/" },
   { t: "IOP · day", sub: "Adults & first responders", hrs: "About 12 h a week", tone: "blue", days: 4, time: "9 AM–12 PM", href: "/programs/intensive-outpatient-program/" },
   { t: "IOP · evening", sub: "Adults & women", hrs: "About 12 h a week", tone: "blue", days: 4, time: "5–8 PM", href: "/programs/intensive-outpatient-program/" },
   { t: "IOP · after school", sub: "Teens & tweens", hrs: "About 12 h a week", tone: "sky", days: 4, time: "4:30–8 PM", href: "/programs/teen-iop/" },
@@ -167,7 +167,7 @@ const faqs: [string, string][] = [
   ["What if I’m not sure which program is right for me?", "You don’t have to choose before you call. Tell us what’s going on, and our assessment will recommend a program and location. If a different level of care fits better, we’ll help you find it."],
   ["Can I move between programs?", "Yes. Many people step down from PHP to IOP, then to counseling and medication management as they progress. Your care team plans each step with you, without ever switching teams."],
   ["Do you have programs for addiction?", `Yes. Our <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a> treats alcohol and drug use, and our <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a> treats mental health and substance use together. <a class="inl" href="/treatment-methods/medication-assisted-treatment/">Medication-assisted treatment (MAT)</a> is available. Addiction care is offered at our 300 Hebron Ave (Glastonbury) and Westbrook offices.`],
-  ["Do you have programs for teens and children?", `Yes. Our <a class="inl" href="/programs/teen-iop/">Teen IOP</a> serves ages 13–17 and our <a class="inl" href="/programs/tween-iop/">Tween IOP</a> serves ages 8–12, both with family involvement. We also offer counseling, <a class="inl" href="/treatment-methods/therapeutic-treatments/">play therapy</a> and medication management for younger children, ages 4 and up.`],
+  ["Do you have programs for teens and children?", `Yes. Our <a class="inl" href="/programs/teen-iop/">Teen IOP</a> serves ages 13–17 and our <a class="inl" href="/programs/tween-iop/">Tween IOP</a> serves ages 8–12, both with family involvement. We also offer counseling and medication management for younger children, ages 4 and up, and <a class="inl" href="/treatment-methods/therapeutic-treatments/">play therapy</a> for young children at select offices.`],
   ["Are there programs just for women?", `Yes. The <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> supports women facing anxiety, depression, postpartum challenges and life transitions. The <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a> focuses on healing from trauma in a women-only group.`],
   ["Do you have a program for first responders?", `Yes. Our <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a> is built for police, firefighters, EMS, dispatchers and others facing job-related stress and trauma, in a group with peers who understand the work.`],
   ["Can I keep working or going to school during treatment?", "With IOP, usually yes. Morning and evening tracks, and after-school groups for tweens and teens, let many people keep working or attending school. PHP takes most of the day, so most people take time off."],

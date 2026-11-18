@@ -25,7 +25,7 @@ import "../styles/pages/admissions.css";
 
 const canonical = "https://www.hopewellhealthsolutions.com/rates-and-insurance-coverage/";
 
-// In-network carriers (verbatim from the live page) + the two named plans with no logo on file, shown as wordmarks,
+// Plans we accept (in-network list verbatim from the live page; TRICARE is accepted but not listed as in network, settled 2026-11-18) + the two named plans with no logo on file, shown as wordmarks,
 // so the grid matches the form's carrier list (14 plans, two even rows).
 const inNetwork = [
   ["Aetna", "/Assets/Insurance/AETNA.webp"],
@@ -93,7 +93,8 @@ const blocks = [
     aside: { type: "points", title: "Questions to ask your plan", items: [["clipboard", "What is my behavioral health deductible?"], ["calendar", "Is prior authorization needed for IOP or PHP?"], ["shield", "Is Hopewell in network for my plan?"], ["refresh", "How many visits are covered per year?"]] } },
   { id: "tricare-va", h2: "TRICARE, VA Community Care and out-of-state plans",
     paras: [
-      `We accept TRICARE and VA Community Care, which matters to many of the veterans, service members and military families we serve, as well as first responders in our <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>. We are also in network with many plans that are issued outside Connecticut, which helps students and families who carry coverage from another state.`,
+      `We accept TRICARE and VA Community Care, which matters to many of the veterans, service members and military families we serve, as well as first responders in our <a class="inl" href="/programs/first-responder-iop/">First Responder IOP</a>. Not every clinician takes TRICARE, and TRICARE Prime members need a referral from their primary care provider, so we check your plan first. We are also in network with many plans that are issued outside Connecticut, which helps students and families who carry coverage from another state.`,
+      `Our IOP and PHP programs are licensed in Connecticut. Some of our prescribers are also licensed in other states, so telehealth medication management may be possible if you live outside Connecticut; ask us when you call.`,
       `If your carrier isn’t listed, please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans. Our team can check your benefits and, if needed, point you to programs that accept your plan.`,
     ] },
   { id: "time-off", h2: "Paying for care while you take time off",
@@ -107,9 +108,10 @@ const blocks = [
 const faqs = [
   ["How much does IOP cost?", `It depends on your insurance plan’s deductible, copay and coinsurance. We check your benefits for free and tell you what to expect before you start. Read <a class="inl" href="/post/how-much-does-iop-cost-in-connecticut-what-to-expect-with-insurance/">how much IOP costs in Connecticut</a>.`],
   ["Does insurance cover IOP in Connecticut?", `Most commercial plans include behavioral health benefits that cover intensive outpatient programs. Coverage, copays and authorization rules vary by plan, so we verify your benefits for free before you start. Most commercial plans cover IOP and PHP when medically necessary. Some require prior authorization, which we handle.`],
-  ["Is Hopewell Health Solutions in-network with my insurance?", `We are in network with most insurances, including plans that are out of state: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans.`],
+  ["Is Hopewell Health Solutions in-network with my insurance?", `We are in network with most insurances, including plans that are out of state: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. We also accept TRICARE. Please call <a class="inl" href="tel:8607351448">860-735-1448</a> to inquire about other insurance plans.`],
   ["Do you accept Medicare or Medicaid?", "No. Hopewell doesn’t accept Medicare or Medicaid (HUSKY)."],
-  ["Do you accept TRICARE and VA Community Care?", "Yes. We accept TRICARE and VA Community Care, along with most major commercial carriers."],
+  ["Do you accept TRICARE and VA Community Care?", "Yes. We accept TRICARE and VA Community Care, along with most major commercial carriers. Not every clinician takes TRICARE, and TRICARE Prime members need a referral from their primary care provider, so we check your plan and match you to a clinician who accepts it before you start."],
+  ["Can I use telehealth if I live outside Connecticut?", `Our IOP and PHP programs are licensed in Connecticut. Some of our prescribers are also licensed in other states, so telehealth medication management may be possible if you live outside Connecticut. Call <a class="inl" href="tel:8607351448">860-735-1448</a> and we’ll check which clinicians can see you where you live.`],
   ["How much do sessions cost?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. We’ll verify your benefits for free so you know your coverage before you start.`],
   ["What if I don’t have insurance?", `Please call the office for rates: <a class="inl" href="tel:8607351448">860-735-1448</a>. Uninsured and self-pay clients can request a Good Faith Estimate of expected costs before care.`],
   ["What is prior authorization?", "Some plans must approve a level of care before it starts. Our team works with your insurer on this."],
@@ -176,13 +178,13 @@ const [bIop, bService, bCosts, bTricare, bTime] = blocks;
     <section class="section is-stone" id="insurance">
       <div class="container">
         <div class="sec-head">
-          <h2>We’re in-network with most major carriers</h2>
+          <h2>We Accept All Major Insurance Providers</h2>
           <p class="lede">We accept most insurance carriers, please check your insurance coverage carefully. We are in network with most insurances, including plans that are out of state.</p>
         </div>
         <div class="ax-logos">
           {inNetwork.map(([name, src]) => src ? <img src={src} alt={name} width="160" height="46" loading="lazy" /> : <span class="ax-word">{name}</span>)}
         </div>
-        <p class="lede" style="margin-top:22px">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Tricare, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. Please call <a href="tel:8607351448" class="inl">860-735-1448</a> to inquire about other insurance plans, or <a class="inl" href="#verify">check your insurance with our form</a>.</p>
+        <p class="lede" style="margin-top:22px">In network with: Anthem, Blue Cross/Blue Shield, Optum, United, Meritain, Aetna, Cigna, Evernorth, Magellan, Harvard Pilgrim, ConnectiCare, UMR, and VA Care. We also accept TRICARE. Please call <a href="tel:8607351448" class="inl">860-735-1448</a> to inquire about other insurance plans, or <a class="inl" href="#verify">check your insurance with our form</a>.</p>
         <p class="ax-noline"><Icon name="alert" class="h-5 w-5" /><span><strong>Not accepted: Medicare and Medicaid (HUSKY).</strong> Hopewell doesn’t accept Medicare or Medicaid at this time. Our admissions team can suggest other options.</span></p>
       </div>
     </section>

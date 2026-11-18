@@ -54,9 +54,9 @@ const heroUsps = [
 // title/meta/h1 = brief; lead = the brief's hero line, placed before the page's existing lede.
 const PAGE = {
   "glastonbury-ct": {
-    title: "Psychiatrist & Therapists at 33 Pratt St, Glastonbury, CT",
+    title: "Glastonbury Mental Health Care at 33 Pratt St | Hopewell",
     meta: "Individual, family and group therapy plus medication management at Hopewell's Pratt St office in Glastonbury, CT. Real clinicians, in person. Check coverage.",
-    h1: "Psychiatrist &amp; Therapy in Glastonbury, CT: Pratt St Office",
+    h1: "Glastonbury Mental Health Care at Our Pratt St Office",
     lead: "Glastonbury mental health care in a house on Pratt Street: therapy, plus psychiatric medication management with a Hopewell prescriber.",
     hero: [L + "glastonbury/exterior.webp", "center 55%"],
     pics: [[L + "glastonbury/exterior.webp", "The Hopewell Health Solutions house at 33 Pratt St, Glastonbury"], [L + "glastonbury/therapy-space.webp", "A living-room-style therapy space at the Pratt St office"]],
@@ -105,9 +105,9 @@ const PAGE = {
     reviewsFirst: ["Therapy", "IOP"],
   },
   "west-hartford-ct": {
-    title: "Therapy & Psychiatrists in West Hartford, CT | Hopewell",
+    title: "Therapy & Psychiatric Care in West Hartford, CT | Hopewell",
     meta: "Therapy and medication management at Hopewell's Farmington Ave office in West Hartford, CT, with intensive programs nearby in Glastonbury. Check coverage.",
-    h1: "Therapy &amp; Psychiatry in West Hartford, CT",
+    h1: "Therapy &amp; Psychiatric Care in West Hartford, CT",
     lead: "Therapy and medication management on Farmington Avenue, with intensive programs nearby in Glastonbury.",
     hero: [L + "west-hartford/exterior.webp", "center 50%"],
     pics: [[P + "west-hartford-office.webp", "The West Hartford office on Farmington Avenue"], [L + "west-hartford/entrance.webp", "Entrance to the West Hartford office"]],
@@ -120,9 +120,9 @@ const PAGE = {
     reviewsFirst: ["Therapy", "Medication management"],
   },
   "east-hampton-ct": {
-    title: "Therapist & Psychiatrist in East Hampton, CT | Hopewell",
+    title: "Therapist & Psychiatric Care in East Hampton, CT | Hopewell",
     meta: "Therapy and medication management at Hopewell's E. High St office in East Hampton, CT, serving the Middletown area. Teen IOP is nearby in South Glastonbury.",
-    h1: "Therapists &amp; Psychiatry in East Hampton, CT",
+    h1: "Therapists &amp; Psychiatric Care in East Hampton, CT",
     lead: "Therapy in East Hampton, CT, plus medication management on East High Street, serving East Hampton and the Middletown area.",
     hero: [L + "east-hampton/exterior.webp", "center 55%"],
     pics: [[L + "east-hampton/lobby.webp", "Lobby of the East Hampton office at 151 E. High St"], [L + "east-hampton/sign.webp", "Hopewell Health Solutions sign outside the East Hampton office"]],
@@ -162,7 +162,7 @@ const PAGE = {
 const card = {
   php: { t: "Partial Hospitalization (PHP)", d: "Full-day treatment for when weekly therapy simply isn’t enough.", bar: "#265489", icon: "sun", facts: [["clock", "About 6 hours a day"], ["calendar", "Monday through Friday"]] },
   iop: { t: "Adult Mental Health IOP", d: "Structured therapy 3–4 days a week, while you live at home, work, and parent.", bar: "#2f76c4", icon: "users", facts: [["calendar", "Mon–Thu"], ["users", "Adults 18+"]] },
-  womens: { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", bar: "#b6863c", icon: "heart", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : "Adult women"]] },
+  womens: { t: "Women’s Wellness IOP", d: "Trauma-informed, DBT-based care in a women-only group where it’s safe to be seen.", bar: "#b6863c", icon: "heart", facts: [["heart", "Women-only groups"], ["clock", l.slug === "glastonbury-ct-2" ? "Morning and evening groups" : l.slug === "westbrook-ct" ? "Mornings, Mon–Thu" : "Adult women"]] },
   trauma: { t: "Women’s Trauma IOP", href: "/programs/womens-trauma-iop/", d: "A women-only, trauma-informed program for healing from past trauma, in the evening.", bar: "#8a5a2b", icon: "shield", facts: [["clock", "Mon–Thu, 5–8 PM"], ["heart", "Women-only groups"]] },
   responder: { t: "First Responder IOP", href: "/programs/first-responder-iop/", d: "A confidential IOP for police, firefighters, EMS and dispatchers, with peers who understand the job.", bar: "#0b2f55", icon: "shield", facts: [["clock", "Mon–Thu, 9 AM–12 PM"], ["users", "First responders"]] },
   teen: { t: "Teen IOP", href: "/programs/teen-iop/", d: "After-school DBT skills groups for teens, with parents involved every week.", bar: "#5c7c6b", icon: "sparkles", facts: [["users", "Teens 13–17"], ["clock", "Mon–Thu, 5–8 PM"]] },
@@ -195,7 +195,7 @@ const intro = {
   "glastonbury-ct-3": "Our 1420 Main Street office is home to the Tween & Teen IOP, plus 1:1 therapy and medication management. After-school support for ages 8–18, with the family woven into the work.",
   "west-hartford-ct": "Our West Hartford office offers 1:1 therapy and medication management.",
   "east-hampton-ct": "Our East Hampton office offers 1:1 therapy and medication management.",
-  "westbrook-ct": "Our Westbrook office offers an adult IOP with an evening group and our Women’s Wellness IOP, plus 1:1 therapy and medication management, and addiction treatment.",
+  "westbrook-ct": "Our Westbrook office offers an adult IOP with an evening group (which includes addiction care) and our Women’s Wellness IOP morning group, plus 1:1 therapy and medication management, and addiction treatment.",
 };
 
 // ---- Clinicians (client PDF roster; no medical staff). Glastonbury's three offices share one roster group. ----------
@@ -213,7 +213,8 @@ const shortRole = (r) => r.replace(/^Board-Certified /, "").replace(/ · .*/, ""
 const isGlast = rosterByLocation[l.slug] === "glastonbury";
 const teamHeading = isGlast ? "Clinicians at our Glastonbury offices" : `Clinicians at our ${l.city} office`;
 // One-team sentence restored from the live location pages (2026-11-18 content gap fix).
-const oneTeam = "Our psychiatrists, nurse practitioners, psychologists, and licensed therapists work as one team across all of our Connecticut offices.";
+// Settled 2026-11-18: Hopewell's prescribers are psychiatric nurse practitioners (APRN) and physician assistants (providers.js); no MD/DO.
+const oneTeam = "Our psychiatric nurse practitioners, physician assistants, psychologists, and licensed therapists work as one team across all of our Connecticut offices.";
 const teamLede = isGlast
   ? `${oneTeam} The psychologists, counselors, social workers and therapists who see clients across our three Glastonbury offices. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`
   : `${oneTeam} The psychologists, counselors, social workers and therapists who see clients in ${l.city}. Our <a class="inl" href="/about-us/team/#medical-staff">medical staff</a> provide medication management, and we’ll match you to the clinician who best fits your needs and goals.`;
@@ -286,8 +287,8 @@ const FAQS = {
   "westbrook-ct": [
     ["What programs are offered at the Westbrook office?", `${a("/programs/womens-wellness-iop/", "Women’s Wellness IOP")}, ${a("/programs/addiction-iop/", "Addiction IOP")} and ${a("/programs/adult-mental-health-iop/", "Adult Mental Health IOP")}, plus counseling and medication management. ${servicesAnswer}`],
     ["When did the Westbrook office open?", "On September 28, 2026."],
-    ["Do you treat addiction in Westbrook?", `Yes, through the Addiction IOP and the Adult Mental Health IOP, which treats co-occurring mental health and substance use together. Medication management here includes ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment (MAT)")}.`],
-    ["Is there a women’s program on the shoreline?", "Yes. Our Women’s Wellness IOP meets here, and a second group is planned."],
+    ["Do you treat addiction in Westbrook?", `Yes. Addiction care here is part of the adult co-ed IOP, which meets Monday through Thursday evenings, 5–8 PM, and treats mental health and substance use together (see the ${a("/programs/addiction-iop/", "Addiction IOP")} and ${a("/programs/adult-mental-health-iop/", "Adult Mental Health IOP")}). Medication management here includes ${a("/treatment-methods/medication-assisted-treatment/", "medication-assisted treatment (MAT)")}.`],
+    ["Is there a women’s program on the shoreline?", "Yes. Our Women’s Wellness IOP meets here Monday through Thursday mornings, 9 AM–12 PM, and a second group is planned."],
     ["What towns does the Westbrook office serve?", "Shoreline towns including Old Saybrook, Clinton, Madison, Guilford, Branford and Niantic."],
     ["Is there teen care in Westbrook?", `Our ${a("/programs/teen-iop/", "Teen")} and ${a("/programs/tween-iop/", "Tween IOPs")} meet in ${a("/location/glastonbury-ct-3/", "South Glastonbury")}.`],
     faqWhere, faqHours, faqTele, faqIns, faqBook, faqCrisis,

@@ -34,7 +34,7 @@ import "../../styles/pages/programs.css";
 const P = "/Assets/hhs-2026/";
 const heroUsps = [
   "<a class='inl' href='/what-we-treat/alcohol/'>Alcohol</a>, opioids &amp; stimulants",
-  "3–5 sessions a week",
+  "Mon–Thu, 3 hours a day",
   "<a class='inl' href='/treatment-methods/medication-assisted-treatment/'>MAT</a> when appropriate",
 ];
 const substances = ["<a class='inl' href='/what-we-treat/alcohol/'>Alcohol</a>", "<a class='inl' href='/what-we-treat/prescription-drugs/'>Prescription medications</a>", "Opioids", "Stimulants", "Other illicit substances (see <a class='inl' href='/what-we-treat/drug/'>drug addiction</a>)"];
@@ -99,7 +99,7 @@ const behaviors = [
 const shoreline = ["Westbrook", "Old Saybrook", "Clinton", "Madison", "Guilford", "Branford", "Niantic"];
 const faqs: [string, string][] = [
   ["What is an addiction IOP?", "An addiction intensive outpatient program is a structured yet flexible program for addiction and substance use disorders, a higher level of care than weekly outpatient therapy, but without an overnight stay. You receive intensive support several times a week while living at home and keeping up with work, school, and family."],
-  ["How often will I attend, and for how long?", "Typically three to five sessions a week, each lasting a few hours. The program generally spans six to eight weeks, adjusted to your needs. Your plan is reviewed regularly, and care continues with <a class='inl' href='/programs/counseling/'>outpatient counseling</a> after the IOP. Compare levels of care on our <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
+  ["How often will I attend, and for how long?", "Four days a week, Monday through Thursday, three hours a day. At 300 Hebron Ave in Glastonbury you can choose a morning (9 AM–12 PM) or evening (5–8 PM) group; in Westbrook the group currently meets in the evening (5–8 PM). Most people attend 8–12 weeks, adjusted to your needs. Your plan is reviewed regularly, and care continues with <a class='inl' href='/programs/counseling/'>outpatient counseling</a> after the IOP. Compare levels of care on our <a class='inl' href='/programs/intensive-outpatient-program/'>IOP overview</a>."],
   ["Can I step down to the addiction IOP after rehab?", "Yes. Many clients join the addiction IOP right after inpatient rehab or detox, or step down from our <a class='inl' href='/programs/partial-hospitalization-program/'>addiction PHP</a> as they stabilize. It keeps the structure and support in place while you return to daily life, and our team coordinates the handoff with your previous provider."],
   ["Where is the addiction IOP held?", "In person at our <a class='inl' href='/location/glastonbury-ct-2/'>Downtown Glastonbury office</a> (300 Hebron Avenue) and our <a class='inl' href='/location/westbrook-ct/'>Westbrook office</a> (70 Essex Road), with telehealth available."],
   ["Is IOP right for me, or do I need inpatient?", "IOP is ideal if you’re ready to commit to recovery but don’t need 24/7 supervision. If you’re experiencing severe withdrawal, need medical detox, or require round-the-clock care, an inpatient program may fit better, our specialists assess to recommend the right level."],
@@ -107,7 +107,7 @@ const faqs: [string, string][] = [
   ["Do I need detox first?", "If you need medical detox, our team will help you find it and plan your next step with us. Our assessment looks at withdrawal risk so you start at the safe level of care."],
   ["Do you offer medication-assisted treatment (MAT)?", "Yes. <a class='inl' href='/treatment-methods/medication-assisted-treatment/'>Medication-assisted treatment (MAT)</a> is available when appropriate, combined with counseling, through our psychiatric providers and <a class='inl' href='/programs/medication-management/'>medication management</a>."],
   ["What if I also have depression or anxiety?", "Our <a class='inl' href='/programs/adult-mental-health-iop/'>Adult Mental Health IOP</a> treats mental health and addiction together, and the addiction IOP team works with you on both. Learn more about <a class='inl' href='/what-we-treat/co-occurring/'>co-occurring disorders</a>."],
-  ["Can I keep working during treatment?", "Yes. The addiction IOP is built to fit around work and family, with groups a few hours at a time several days a week."],
+  ["Can I keep working during treatment?", "Yes. The addiction IOP is built to fit around work and family, with three-hour morning or evening groups, Monday through Thursday."],
   ["Is treatment confidential?", "Yes. Substance use treatment records are protected by strict federal privacy rules, and everything you share with our team stays confidential."],
   ["Does insurance cover addiction treatment?", "We accept all major insurance providers, and we check your benefits for free before you start. We don’t accept Medicare or Medicaid (HUSKY); if that’s your coverage, our team can point you to programs that take it. See <a class='inl' href='/rates-and-insurance-coverage/'>rates and insurance</a>."],
   ["Do you offer housing during treatment?", "We can connect you with supportive accommodations near our offices while you attend treatment. Ask our admissions team about current options."],
@@ -178,7 +178,7 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
           <ul class="pg-mods" style="grid-template-columns:1fr">
             {components.map((c) => <li><span class="pg-mod-icon"><Icon name={c.icon} class="h-5 w-5" /></span><span><Fragment set:html={c.t} /><span style="font-weight:500;color:var(--hw-body)" set:html={c.d} /></span></li>)}
           </ul>
-          <p class="lede">Most participants attend <strong>3–5 times a week</strong>, a few hours per session, generally for <strong>6–8 weeks</strong>.</p>
+          <p class="lede">Groups meet <strong>Monday–Thursday, three hours a day</strong>: mornings (9 AM–12 PM) or evenings (5–8 PM) in Glastonbury, evenings in Westbrook. Most participants attend for <strong>8–12 weeks</strong>.</p>
         </div>
         <div class="pg-media"><img src="/Assets/AdobeStock_413328337-1747245457937.webp" alt="Adults talking together in a substance use group session" width="1200" height="900" loading="lazy" /></div>
       </div>
@@ -214,7 +214,7 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
       <div class="container pg-two">
         <div>
           <h2>Addiction treatment in Westbrook and along the shoreline</h2>
-          <p class="lede" style="margin-top:16px">Our Westbrook office at 70 Essex Road opened in September 2026 to bring in-person care closer to shoreline families. Alongside the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and an <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a>, Westbrook is one of the two Hopewell offices that offer addiction treatment, so people living along the shoreline don’t have to drive to Hartford County for an IOP. Ask our admissions team which addiction services are running in Westbrook when you call.</p>
+          <p class="lede" style="margin-top:16px">Our Westbrook office at 70 Essex Road opened in September 2026 to bring in-person care closer to shoreline families. Alongside the <a class="inl" href="/programs/womens-wellness-iop/">Women’s Wellness IOP</a> and an <a class="inl" href="/programs/adult-mental-health-iop/">Adult Mental Health IOP</a>, Westbrook is one of the two Hopewell offices that offer addiction treatment, so people living along the shoreline don’t have to drive to Hartford County for an IOP. In Westbrook, addiction care is part of the adult co-ed IOP, which meets Monday–Thursday evenings, 5–8 PM, and treats mental health and substance use together; ask our admissions team about daytime options when you call.</p>
           <p class="lede">Clients come to Westbrook from Old Saybrook, Clinton, Madison, Guilford, Branford and Niantic. Our other addiction IOP location is <a class="inl" href="/location/glastonbury-ct-2/">300 Hebron Ave in Glastonbury</a>, our main hub for adult IOP and PHP, which serves Hartford County. See the <a class="inl" href="/location/westbrook-ct/">Westbrook office</a> page for hours, photos and directions.</p>
         </div>
         <div class="ad-shore">
@@ -245,7 +245,7 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
 
     <Team heading="Your Addiction Treatment Team" lede="Licensed addiction counselors, MAT prescribers and peer recovery professionals who know recovery firsthand. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "sherrie-gaudet-lcsw", "katherine-salvador-pa-c", "tj-aitken-cpsrp", "kelvin-young-cpsrp", "sheryll-waring-lpc-ldac", "kaitlyn-czapiga-lmsw"]} tone="white" />
 
-    <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans, and TRICARE East is accepted as a PPO plan. Our admissions team verifies your benefits at no cost, before you commit to anything." />
+    <Insurance />
     <Locations heading="Our Locations" lede="The addiction IOP is held at <a class='inl' href='/location/glastonbury-ct-2/'>300 Hebron Ave in Glastonbury</a> and <a class='inl' href='/location/westbrook-ct/'>70 Essex Road in Westbrook</a>, plus virtual visits statewide. Addiction services are offered only at these two offices. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." current="glastonbury-ct-2" />
     <Reviews tone="stone" heading="What Our IOP Clients Say" first={["IOP"]} />
     <Faq faqs={faqs} heading="Addiction IOP: common questions" tone="white" />
