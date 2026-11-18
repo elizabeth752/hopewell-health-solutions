@@ -76,6 +76,9 @@ const schema = {
   about: { "@type": "MedicalTherapy", name: "Transcranial Magnetic Stimulation (TMS)", alternateName: "NeuroStar Advanced TMS", relevantSpecialty: "Psychiatric" },
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["uIlSCS7clwE", "S_CyYMDqEio", "x6R6XOZmxUQ"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="TMS Therapy for Depression &amp; OCD in Glastonbury, CT" description="TMS is a non-medication, FDA-cleared treatment for depression that hasn't improved with antidepressants, and for OCD. Offered at Hopewell in Glastonbury, CT." canonical={canonical} image={P + "tms-chair.webp"}>
@@ -251,6 +254,7 @@ const schema = {
     <Team tone="white" />
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost, before you commit to anything." />
     <Locations heading="Our locations" lede="TMS is delivered at our Glastonbury office, with care across Connecticut. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Client Stories, in Their Own Words" lede="Clients share what care at Hopewell was like, in their own words." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" />
     <Faq faqs={faqs} heading="TMS: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/tms/" />

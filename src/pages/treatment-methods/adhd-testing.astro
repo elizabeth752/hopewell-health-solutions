@@ -85,6 +85,8 @@ const schema = {
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
 const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt));
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxUQ"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="ADHD Testing in Connecticut for Kids & Adults | Hopewell" description="ADHD evaluations for children, teens and adults at Hopewell in Connecticut: what's involved, how long it takes and what happens next. Check your coverage." canonical={canonical} image="/Assets/AdobeStock_279998099%20(1).webp">
@@ -195,10 +197,11 @@ const tips = VIDEOS.filter((v) => ["LInMQYyZSmY", "cb3SsebwGiA"].includes(v.yt))
       </div>
     </section>
 
-    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Tips for Families" lede="Viviana, one of our clinicians, on supporting neurodivergent tweens and a grounding skill for stressful moments." link={{ href: "/podcast/", label: "More videos" }} />
+    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Tips for Families" lede="Viviana, one of our clinicians, on supporting neurodivergent tweens and a grounding skill for stressful moments." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Team heading="Your ADHD Evaluation Team" lede="Licensed PAs and NPs who lead our ADHD evaluations, with therapists who support ADHD care. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["christina-lindsay-pmhnp-bc-aprn", "katrin-moskowitz-dnp-pmhnp-bc-fnp", "chris-patenaude-pa", "katherine-salvador-pa-c", "chelsey-micciche-lpc", "viviana-alvarado-lpc-a", "madeline-blinderman-lpc-a"]} feature={null} tone="white" />
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and will let you know what your evaluation coverage looks like before you commit. (The computerized portion is a $99 cost to the patient.)" tone="white" />
     <Locations heading="Our locations" lede="In person at <a class='inl' href='/locations/'>six Connecticut offices</a>, plus virtual visits statewide. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Client Stories, in Their Own Words" lede="Clients and families share what getting care at Hopewell was like." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" />
     <Faq faqs={faqs} heading="ADHD testing: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/adhd-testing/" />

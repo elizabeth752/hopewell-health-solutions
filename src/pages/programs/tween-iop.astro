@@ -128,6 +128,8 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
   description: "In-person intensive outpatient program for children 8–12 in Glastonbury, CT, with parent sessions and after-school hours.",
   audience: { "@type": "PeopleAudience", suggestedMinAge: 8, suggestedMaxAge: 12 }, provider: { "@id": SITE + "/#organization" },
   availableAtOrFrom: { "@id": SITE + "/location/glastonbury-ct-3/#clinic" } };
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["awy7nfDgC0k", "x6R6XOZmxUQ", "uIlSCS7clwE"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="Tween IOP for Children Ages 8–12 in CT | Hopewell" description="An in-person intensive outpatient program for children 8–12 in Glastonbury, CT, with parent sessions built in. After-school hours. Check coverage." image="/Assets/Blogs/the-counterintuitive-magic-of-group-therapy-for-social-anxiety.webp">
@@ -262,6 +264,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     <Team heading="Your Child’s Care Team" lede="Psychologists, psychiatric providers and therapists with 10–30 years of experience with children and adolescents. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["jackie-plagesse-lmfta", "kate-henneberry-lmfta", "viviana-alvarado-lpc-a", "eric-schwartz-psy-d-abpp", "linda-scillia-pmhnp-bc-aprn", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d"]} tone="white" />
     <Insurance heading="Does insurance cover a tween IOP?" lede="We accept all major insurance providers. Many families also qualify for <strong>Connecticut Paid Leave or FMLA</strong>, and our team can help. We verify your benefits at no cost, before you commit to anything. We don’t accept Medicaid (HUSKY)." />
     <Locations heading="Where the Tween IOP Meets" lede="The tween IOP is held at 1420 Main St, Suite 114, Glastonbury, our <a class='inl' href='/location/glastonbury-ct-3/'>South Glastonbury office</a>. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a>." current="glastonbury-ct-3" />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Hear From Families" lede="Clients and families share what treatment at Hopewell was like, in their own words." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" heading="What Our Clients Say on Google" first={["IOP"]} />
     <Faq faqs={faqs} heading="Tween IOP: common questions" tone="white" />
     <OtherPrograms current="/programs/tween-iop/" />

@@ -64,6 +64,8 @@ const schema = {
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
 const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].includes(v.yt));
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["x6R6XOZmxUQ", "awy7nfDgC0k", "uIlSCS7clwE"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="DBT Therapy for Teens & Adults in Connecticut | Hopewell" description="Dialectical behavior therapy teaches skills for strong emotions, stress and relationships. DBT groups and therapy for teens and adults in Connecticut." canonical={canonical} image={P + "tx-group-room-2.webp"}>
@@ -161,9 +163,10 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
       </div>
     </section>
 
-    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Skills From Our Clinicians" lede="Short videos from the Hopewell team on grounding, emotional regulation and connection." link={{ href: "/podcast/", label: "More videos & the podcast" }} />
+    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Skills From Our Clinicians" lede="Short videos from the Hopewell team on grounding, emotional regulation and connection." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Team heading="Clinicians Who Use DBT" lede="Team members who list DBT among their focus areas. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["kaitlyn-czapiga-lmsw", "madeline-blinderman-lpc-a", "jackie-plagesse-lmfta", "christina-coelho-lmsw", "ashley-singh-psy-d", "eric-schwartz-psy-d-abpp", "chelsey-micciche-lpc"]} feature={null} tone="stone" />
     <Insurance heading="DBT is often covered by insurance" lede="In-network with most major plans. We'll verify your benefits before you start." />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Client Stories, in Their Own Words" lede="Clients share what learning these skills in our programs was like." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" />
     <Faq faqs={faq} heading="Frequently asked questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/dbt/" />

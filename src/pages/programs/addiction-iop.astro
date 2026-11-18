@@ -118,7 +118,7 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
   description: "In-person addiction IOP for alcohol and drug use in Glastonbury and Westbrook, CT, with group therapy, individual counseling, relapse prevention, psychiatric care and MAT when appropriate.",
   relevantSpecialty: "Addiction", provider: { "@id": "https://www.hopewellhealthsolutions.com/#organization" },
   availableAtOrFrom: [{ "@id": "https://www.hopewellhealthsolutions.com/location/glastonbury-ct-2/#clinic" }, { "@id": "https://www.hopewellhealthsolutions.com/location/westbrook-ct/#clinic" }] };
-const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clwE"].includes(v.yt)).sort((a, b) => (a.yt === "7ISgjKEBoZo" ? -1 : b.yt === "7ISgjKEBoZo" ? 1 : 0));
+const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "uIlSCS7clwE"].includes(v.yt)).sort((a, b) => (a.yt === "7ISgjKEBoZo" ? -1 : b.yt === "7ISgjKEBoZo" ? 1 : 0));
 ---
 
 <Base title="Addiction IOP in Glastonbury & Westbrook, CT | Hopewell" description="In-person addiction IOP in Glastonbury and Westbrook, CT for alcohol and drug use, with therapy, psychiatry and MAT. Keep working while you recover." image={P + "iop-group-room-lights.webp"}>
@@ -254,7 +254,7 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
 
     <Quote text="Recovery is possible, and you don’t have to do it alone. There is hope to heal." img={P + "php-group-room.webp"} />
 
-    <VideoCarousel videos={stories} heading="Stories of Recovery, in Their Own Words" lede="Luke shares his story of recovery on Episode 2 of the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." />
+    <VideoCarousel videos={stories} heading="Stories of Recovery, in Their Own Words" lede="Clients share what recovery looked like, in their own words." />
 
     <Team heading="Your Addiction Treatment Team" lede="Licensed addiction counselors, MAT prescribers and peer recovery professionals who know recovery firsthand. <a class='inl' href='/about-us/team/'>Meet our full team</a>." slugs={["teesha-huertas-lcsw", "sherrie-gaudet-lcsw", "katherine-salvador-pa-c", "tj-aitken-cpsrp", "kelvin-young-cpsrp", "sheryll-waring-lpc-ldac", "kaitlyn-czapiga-lmsw"]} tone="white" />
 

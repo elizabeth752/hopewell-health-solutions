@@ -73,6 +73,9 @@ const schema = {
   reviewedBy: { "@type": "Person", name: "Laura Miller, PhD", url: "https://www.hopewellhealthsolutions.com/provider/laura-miller-ph-d/" },
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
+import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxUQ"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="Neuropsychological Testing in Connecticut | Hopewell" description="In-depth testing of memory, attention, learning and thinking for children, teens and adults in Connecticut, with a clear report and next steps. Check coverage." canonical={canonical} image="/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp">
@@ -188,6 +191,7 @@ const schema = {
     <Team tone="white" />
     <Insurance heading="Most major PPO plans accepted" lede="We’re in-network with most major PPO plans (we don’t accept Medicaid / HUSKY). Our team verifies your benefits at no cost and will let you know what testing coverage looks like before you commit." tone="white" />
     <Locations heading="Our locations" lede="Testing is led from our Glastonbury offices, with care across Connecticut. Reach us at <a class='inl' href='tel:8607351448'>(860) 735-1448</a> · <a class='inl' href='mailto:hhs4help@gmail.com'>hhs4help@gmail.com</a>." />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Client Stories, in Their Own Words" lede="Clients and families share what getting care at Hopewell was like." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" />
     <Faq faqs={faqs} heading="Testing: common questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/neuropsychological-testing/" />

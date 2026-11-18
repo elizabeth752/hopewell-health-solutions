@@ -75,7 +75,7 @@ const schema = {
   about: { "@type": "MedicalTherapy", name: "Group Therapy" },
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
-const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].includes(v.yt));
+const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "x6R6XOZmxUQ"].includes(v.yt));
 ---
 
 <Base title="In-Person Group Therapy in Connecticut | Hopewell" description="In-person therapy groups for adults, teens, women and first responders at Hopewell's Connecticut offices, led by licensed clinicians. Check coverage." canonical={canonical} image={P + "group-room-feelings-wheel.webp"}>
@@ -174,7 +174,7 @@ const vids = VIDEOS.filter((v) => ["aff5Xfy9CfE", "vlKx8J6hykA", "x6R6XOZmxUQ"].
       </div>
     </section>
 
-    <VideoCarousel videos={vids} mode="grid" tone="navy" heading="Hear Why Groups Help" lede="Dr. Kristine Schlichting on why group therapy reduces isolation, plus clients on the connection they found in our groups." link={{ href: "/podcast/", label: "Watch the podcast" }} />
+    <VideoCarousel videos={vids} mode="grid" tone="navy" heading="Hear Why Groups Help" lede="Dr. Kristine Schlichting on why group therapy reduces isolation, plus clients on the connection they found in our groups." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Team heading="Meet Some of Our Group Clinicians" lede="Licensed clinicians who lead groups across our programs. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["jeff-rapp-lmsw", "nathan-truong-lmft-a", "erica-schwartz-lcat", "bido-aguessy-psy-d-lpc-a", "kaitlyn-czapiga-lmsw", "viviana-alvarado-lpc-a", "teesha-huertas-lcsw"]} tone="white" />
     <Insurance heading="Group therapy is often covered by insurance" lede="In-network with most major plans. We'll verify your benefits before you start." tone="white" />
     <Reviews tone="white" first={["IOP", "Women’s Wellness IOP"]} />

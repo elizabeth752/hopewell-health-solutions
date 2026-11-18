@@ -68,6 +68,8 @@ const schema = {
   about: ["Dialectical Behavior Therapy", "Cognitive Behavioral Therapy", "Solutions-Focused Therapy", "Video Self-Modeling", "Pet-Assisted Therapy", "Accelerated Resolution Therapy", "Walk-Talk Therapy", "Outdoor Nature-Assisted Therapy", "Play Therapy", "Telehealth", "Meditation", "Mindfulness", "Yoga Therapy", "Exposure Therapy", "Biofeedback", "Systematic Desensitization", "Gottman Method", "Trauma-Informed Individual Therapy", "Trauma Focus Group Therapy"].map((name) => ({ "@type": "MedicalTherapy", name })),
   publisher: { "@type": "MedicalOrganization", name: "Hopewell Health Solutions" },
 };
+import { STORIES } from "../../data/videos.js";
+const clientStories = ["x6R6XOZmxUQ", "awy7nfDgC0k", "uIlSCS7clwE"].map((id) => STORIES.find((v) => v.yt === id)).filter(Boolean); // client stories only, no podcast (user 2026-11-18)
 ---
 
 <Base title="Therapy Approaches: CBT, Play Therapy &amp; More in CT" description="The therapy approaches Hopewell clinicians use in Connecticut, from CBT and family therapy to play therapy and holistic approaches. Check coverage." canonical={canonical} image="/Assets/therapeutic-treatments/walk.webp">
@@ -238,9 +240,10 @@ const schema = {
       </div>
     </section>
 
-    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Try a Skill From Our Clinicians" lede="Short videos from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={{ href: "/podcast/", label: "More videos & the podcast" }} />
+    <VideoCarousel videos={tips} mode="grid" tone="navy" heading="Try a Skill From Our Clinicians" lede="Short videos from the Hopewell team: grounding, supporting neurodivergent tweens, and why group therapy helps." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Team heading="Therapists Behind These Treatments" lede="Clinicians who list play, art, couples, mindfulness and yoga-based work among their focus areas. <a class='inl' href='/about-us/team/'>Meet the full team</a>." slugs={["eric-schwartz-psy-d-abpp", "traci-schneider-maatc-lpc-a-atr-p", "dori-bessette-crail-lmft", "meagan-carr-ph-d", "erica-schwartz-lcat", "madeline-blinderman-lpc-a", "kelvin-young-cpsrp"]} tone="stone" />
     <Insurance tone="white" />
+    <VideoCarousel videos={clientStories} mode="grid" tone="navy" heading="Client Stories, in Their Own Words" lede="Clients share what therapy and our programs were like, in their own words." link={{ href: "/testimonials/", label: "Read more patient stories" }} />
     <Reviews tone="stone" />
     <Faq faqs={faq} heading="Frequently asked questions" tone="white" />
     <RelatedTreatments current="/treatment-methods/therapeutic-treatments/" />
