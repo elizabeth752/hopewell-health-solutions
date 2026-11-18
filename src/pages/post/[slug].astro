@@ -93,7 +93,8 @@ if (bodyHtml) {
 // already include infographics are left as they are. The same pool is rotated by
 // slug so articles in one category don't all show the identical pair.
 const clinicPhotos = {
-  women: { src: "/Assets/service/womens-wellness.webp", alt: "Women supporting each other in Hopewell's Women's Wellness IOP" },
+  // Old service/womens-wellness photo retired (client: shows former employees) — current room photo, no people.
+  women: { src: "/Assets/hhs-2026/group-room-bright.webp", alt: "A bright, welcoming group room for Hopewell's Women's Wellness IOP in Connecticut" },
   feelings: { src: "/Assets/service/trauma-informed-group.webp", alt: "Trauma-informed group therapy at Hopewell Health Solutions" },
   room: { src: "/Assets/service/therapy-room.webp", alt: "A calming counseling room at Hopewell Health Solutions, Glastonbury CT" },
   chairs: { src: "/Assets/service/trauma-informed-individual.webp", alt: "Trauma-informed individual therapy at Hopewell Health Solutions" },
@@ -139,16 +140,18 @@ const paragraphCount = bodyHtml
   ? (bodyHtml.match(/<p[\s>]/gi) || []).length
   : (post.sections || []).reduce((n, s) => n + (s.blocks || []).filter((b) => b.p).length, 0);
 // Task 16 (client doc "Hopewell Website Updates"): posts can list their own in-body images —
-//   bodyImages: [{ src: "/Assets/Blogs/...", alt: "..." }, ...]  (2–3 recommended)
-// They are spread evenly through the article. Without bodyImages, posts with no pictures in the body get 1–2 approved
-// clinic photos as before.
+//   bodyImages: [{ src: "/Assets/hhs-2026/...", alt: "...", afterHeading: "Key Components" }, ...]  (2–3 recommended)
+// `afterHeading` (optional) places the photo after the first paragraph of the section whose H2 contains that
+// text (case-insensitive), so each photo sits beside the part of the article it illustrates; images without it
+// are spread evenly. Posts set bodyImages in their own file or in BODY_IMAGES in src/data/posts.js.
+// Without bodyImages, posts with no pictures in the body get 1–2 approved clinic photos as before.
 const inlineTarget = existingInline > 0 ? 0 : paragraphCount < 4 ? 1 : 2;
 const photoPool = (photosByCategory[post.category] || ["room", "iop", "groupRoom", "team"])
   .map((key) => clinicPhotos[key])
   .filter((img) => img && img.src !== post.heroImage);
 const poolStart = photoPool.length ? slugHash(post.slug) % photoPool.length : 0;
 const inlineImages = Array.isArray(post.bodyImages) && post.bodyImages.length
-  ? post.bodyImages.filter((b) => b && b.src).slice(0, 3).map((b) => ({ src: b.src, alt: b.alt || "" }))
+  ? post.bodyImages.filter((b) => b && b.src).slice(0, 3).map((b) => ({ src: b.src, alt: b.alt || "", afterHeading: b.afterHeading || "" }))
   : photoPool.length
     ? Array.from({ length: Math.min(inlineTarget, photoPool.length) }, (_, i) => photoPool[(poolStart + i) % photoPool.length])
     : [];
@@ -163,12 +166,24 @@ if (bodyHtml && inlineImages.length) {
     bodyHtml += inlineImages.map(figureMarkup).join("");
   } else {
     const slots = spread(inlineImages.length, matches.length);
-    const unique = [];
-    for (const slot of slots) if (!unique.includes(slot)) unique.push(slot);
-    const chosen = inlineImages.slice(0, unique.length);
-    for (let i = unique.length - 1; i >= 0; i--) {
-      const at = matches[unique[i]].index + matches[unique[i]][0].length;
-      bodyHtml = bodyHtml.slice(0, at) + figureMarkup(chosen[i]) + bodyHtml.slice(at);
+    // Default: spread evenly, just after a paragraph. Images that name a heading go after the first
+    // paragraph of that H2's section — or at the end of the section if it has no paragraph (lists only).
+    const end = (m) => m.index + m[0].length;
+    const positions = slots.map((slot) => (slot === undefined ? undefined : end(matches[slot])));
+    const h2s = [...bodyHtml.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)].map((m) => ({ at: m.index, text: m[1].replace(/<[^>]+>/g, "").toLowerCase() }));
+    inlineImages.forEach((img, i) => {
+      if (!img.afterHeading) return;
+      const hi = h2s.findIndex((x) => x.text.includes(img.afterHeading.toLowerCase()));
+      if (hi < 0) return;
+      const nextAt = hi + 1 < h2s.length ? h2s[hi + 1].at : bodyHtml.length;
+      const firstP = matches.find((m) => m.index > h2s[hi].at);
+      positions[i] = firstP && firstP.index < nextAt ? end(firstP) : nextAt;
+    });
+    const placed = [];
+    inlineImages.forEach((img, i) => { if (positions[i] !== undefined && !placed.some((p) => p.at === positions[i])) placed.push({ at: positions[i], img }); });
+    placed.sort((x, y) => y.at - x.at);
+    for (const { at, img } of placed) {
+      bodyHtml = bodyHtml.slice(0, at) + figureMarkup(img) + bodyHtml.slice(at);
     }
   }
 }
@@ -176,10 +191,10 @@ const inlineAfter = {};
 if (!bodyHtml && inlineImages.length && post.sections?.length) {
   const n = post.sections.length;
   const slots = spread(inlineImages.length, n);
-  const unique = [];
-  for (const slot of slots) if (!unique.includes(slot)) unique.push(slot);
-  unique.forEach((idx, i) => {
-    inlineAfter[idx] = inlineImages[i];
+  inlineImages.forEach((img, i) => {
+    let idx = img.afterHeading ? post.sections.findIndex((sec) => String(sec.h2 || "").toLowerCase().includes(img.afterHeading.toLowerCase())) : -1;
+    if (idx < 0) idx = slots[i];
+    if (idx !== undefined && !inlineAfter[idx]) inlineAfter[idx] = img;
   });
 }
 
