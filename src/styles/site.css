@@ -2232,3 +2232,24 @@ main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
 .hw .lc-wrap.is-static .lc-track { animation: none !important; transform: none !important; display: grid; grid-template-columns: repeat(2, minmax(0, 380px)); justify-content: center; gap: 20px; width: auto; overflow: visible; padding: 0 16px; }
 .hw .lc-wrap.is-static .lc[aria-hidden="true"] { display: none; }
 @media (max-width: 760px) { .hw .lc-wrap.is-static .lc-track { grid-template-columns: minmax(0, 1fr); } }
+
+/* Room-tour section (teen + tween IOP pages, 2026-11-18). */
+      .hw .ti-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+      .hw .ti-feats { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+      .hw .ti-feats li { display: flex; gap: 12px; align-items: center; font-size: 16.5px; color: var(--hw-navy); font-weight: 600; }
+      .hw .ti-feats svg { flex: none; color: #5c7c6b; }
+      .hw .ti-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+      .hw .ti-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; }
+      .hw .ti-video { width: 100%; }
+      @media (max-width: 999px) { .hw .ti-grid { grid-template-columns: minmax(0, 1fr); } }
+/* One video in a stories section (e.g. Teen IOP, 2026-11-18): a wide feature card, poster left and text right,
+   instead of one small card stuck on the left. */
+@media (min-width: 760px) {
+  .hw .vc-grid.is-1 { display: block; }
+  .hw .vc-grid.is-1 > li { max-width: none; }
+  .hw .vc-grid.is-1 .vc-card { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; text-align: left; }
+  .hw .vc-grid.is-1 .vc-poster { aspect-ratio: 16 / 9; height: 100%; }
+  .hw .vc-grid.is-1 .vc-body { padding: clamp(24px, 3vw, 40px); }
+  .hw .vc-grid.is-1 .vc-name { font-size: clamp(22px, 2vw, 28px); }
+  .hw .vc-grid.is-1 .vc-desc { font-size: 16.5px; }
+}

@@ -101,7 +101,8 @@ const whoBlocks = [
       licensed: "Licensed by the State of Connecticut" } },
 ];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
-const stories = ["awy7nfDgC0k", "loSaQbRc-oE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const stories = ["awy7nfDgC0k"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const tour = VIDEOS.find((v) => v.yt === "loSaQbRc-oE");
 const news = [{ id: "P3cmQMf3WoM", t: "Teen Mental Health Crisis", outlet: "Interview" }];
 const faqs: [string, string][] = [
   ["What is a teen IOP?", "A teen intensive outpatient program is a structured program where teens attend therapy several afternoons or evenings a week and keep living at home and going to school. It’s more support than weekly therapy, without an overnight stay."],
@@ -187,7 +188,28 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
 
-    <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Hear From Teens &amp; Families" lede="A former Teen IOP client and his mom share what changed at home and at school, and our clinicians show the teen and tween space. More stories on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
+    <VideoCarousel videos={stories} mode="grid" tone="navy" heading="Hear From Teens &amp; Families" lede="A former Teen IOP client and his mom share what changed at home and at school. More stories on the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
+
+    {/* The room tour is its own section, not part of the client stories (user 2026-11-18), same layout as the Tween IOP page. */}
+    {tour && (
+      <section class="section is-white ti-tour">
+        <div class="container ti-grid">
+          <div>
+            <h2>Take a Look Inside</h2>
+            <p class="lede" style="margin-top:14px">Our clinicians show the comfy chairs, cozy blankets and thoughtful touches that make the teen and tween IOP space at our South Glastonbury office feel safe for teens.</p>
+            <ul class="ti-feats">
+              <li><Icon name="home" class="h-5 w-5" />A calm, comfortable group room</li>
+              <li><Icon name="users" class="h-5 w-5" />Small groups of teens the same age</li>
+              <li><Icon name="shield" class="h-5 w-5" />A safe space at 1420 Main St, South Glastonbury</li>
+            </ul>
+          </div>
+          <button type="button" class="vc-card ti-video" data-yt={tour.yt} data-title={tour.title} data-vertical={tour.vertical ? "1" : undefined} aria-label={`Play: ${tour.title}`}>
+            <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+            <span class="vc-body"><span class="vc-name">Room tour · {tour.len}</span><span class="vc-desc">{tour.desc}</span></span>
+          </button>
+        </div>
+      </section>
+    )}
 
     <NewsVideos heading="Teen mental health, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on the teen mental health crisis and <a class='inl' href='/post/how-to-help-your-kids-during-a-mental-health-crisis/'>what parents can do</a>." videos={news} tone="white" />
 

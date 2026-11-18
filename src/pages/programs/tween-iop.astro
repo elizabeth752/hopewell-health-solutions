@@ -210,16 +210,6 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
     <VideoDialog />
-    <style>
-      .hw .ti-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
-      .hw .ti-feats { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
-      .hw .ti-feats li { display: flex; gap: 12px; align-items: center; font-size: 16.5px; color: var(--hw-navy); font-weight: 600; }
-      .hw .ti-feats svg { flex: none; color: #5c7c6b; }
-      .hw .ti-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
-      .hw .ti-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; }
-      .hw .ti-video { width: 100%; }
-      @media (max-width: 999px) { .hw .ti-grid { grid-template-columns: minmax(0, 1fr); } }
-    </style>
 
     <NewsVideos heading="Helping children, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on children’s mental health and <a class='inl' href='/post/how-to-help-your-kids-during-a-mental-health-crisis/'>what parents can do at home</a>." videos={news} tone="white" />
 
