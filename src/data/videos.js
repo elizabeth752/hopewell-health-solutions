@@ -2,8 +2,9 @@
 // video's thumbnail (public/Assets/videos/). Descriptions summarise the YouTube description; never put words in a
 // speaker's mouth.
 export const VIDEOS = [
-  // The original homepage welcome video (old site 2020–2021, restored on the homepage 2026-11-18).
-  { yt: "s0sEv1hIrfk", img: "tour-welcome-house", name: "Welcome to Hopewell", type: "Welcome video", program: "tour", date: "2020-08-11", duration: "PT1M50S", len: "1:50",
+  // The old homepage welcome video (old site Jul 2022 – Feb 2023, the newer of its two welcome videos; restored on the
+  // homepage 2026-11-18, user picked it over the 2020 one, s0sEv1hIrfk).
+  { yt: "I8nk1SYhFig", img: "tour-welcome-house", name: "Welcome to Hopewell", type: "Welcome video", program: "tour", date: "2022-06-22", duration: "PT2M36S", len: "2:36",
     title: "Welcome to Hopewell Health Solutions",
     desc: "A welcome from Hopewell Health Solutions and a look at the care we offer in Connecticut." },
   { yt: "7ISgjKEBoZo", vertical: true, img: "story-138-days", name: "138 days sober", type: "IOP client story", program: "addiction", date: "2026-08-04", duration: "PT2M52S", len: "2:52",
