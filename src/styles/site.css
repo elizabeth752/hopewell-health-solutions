@@ -2079,3 +2079,112 @@ main.hw .bc-meta > span:nth-child(2) { white-space: normal; overflow: visible; t
   main.hw .lc-track, main.hw .rv-loop-track { align-items: flex-start; }
   main.hw .lc-track > *, main.hw .rv-loop-track > *, main.hw .vc-track > *, main.hw .ps-mq-track > * { flex-shrink: 0; }
 }
+
+/* ===== Mobile QA pass 2 (2026-11-18): proportions, floating controls, carousels ===== */
+/* Small print never under 12px */
+main.hw .ts-axis span, main.hw .ph-tt-cell, main.hw .tx-wheel-core small { font-size: 12px; }
+@media (max-width: 640px) {
+  main.hw .ab-office-care { font-size: 12px; }
+  /* Video / podcast cards: card titles sized for the card, not as section headings */
+  main.hw .vc-grid .vc-name, main.hw .vc-grid.is-2 .vc-name, main.hw .vc-track .vc-name { font-size: 18px; line-height: 1.25; }
+  main.hw .vc-feature .vc-name { font-size: 21px; }
+  main.hw .vc-desc { font-size: 14.5px; }
+  /* Reviews row: every card the same height (no ragged row with a gap under it); text one step smaller */
+  main.hw .rv-loop-track, main.hw .rv-loop-track.m-drift, main.hw .rv-track { align-items: stretch; }
+  main.hw .rv { padding: 20px 20px 18px; gap: 10px; border-radius: 18px; }
+  main.hw .rv-text { font-size: 15.5px; line-height: 1.55; }
+  main.hw .rv-quote { width: 32px; top: 18px; right: 18px; }
+  /* Google office links: one tidy row each (name left, rating/“Read reviews” right) instead of three cramped tiles */
+  main.hw .rv-gbps { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  main.hw .rv-gbps a { grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 9px 12px; }
+  main.hw .rv-gbps small { grid-column: 2; grid-row: 1; font-size: 12.5px; white-space: nowrap; }
+  /* Floating controls (sticky "Check coverage" right, accessibility button left) share one bottom band: keep the
+     last footer lines clear of them */
+  .hw-footer { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+@media (max-width: 640px) {
+  /* Two-up tile grids with an odd count: the last tile spans the row instead of leaving a hole */
+  main.hw .cd-tiles > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  /* Team photo cards: deeper shade under the caption so names and credentials read on light photos */
+  main.hw .tm-card::after { background: linear-gradient(180deg, rgba(0,29,55,0) 38%, rgba(0,29,55,.6) 62%, rgba(0,29,55,.95) 100%); }
+  main.hw .tm-cap .tm-creds { color: #f2c46b; }
+}
+@media (max-width: 640px) {
+  /* "All six locations" office cards: photo + name/address on top, then description, services and buttons use the
+     card's full width (they were squeezed into a ~230px column beside the photo) */
+  main.hw .ab-offices:not(.m-drift) > .ab-office { grid-template-columns: 84px minmax(0, 1fr); column-gap: 14px; row-gap: 6px; padding: 18px 16px 16px; }
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-media { margin: 0; grid-column: 1; grid-row: 1 / span 3; align-self: start; }
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body { display: contents; }
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body > * { grid-column: 2; margin: 0; }
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body > p:not([class]),
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body > .ab-office-offers,
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body > .ab-office-ctas { grid-column: 1 / -1; }
+  main.hw .ab-offices:not(.m-drift) > .ab-office > .ab-office-body > p:not([class]) { margin-top: 6px; }
+}
+/* Location pages: "Getting here by car, bus or train" sat flush under the Google Maps button (the container's
+   margin reset won over .lp-go) */
+main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
+@media (max-width: 640px) { main.hw .lp-route { padding: 16px; gap: 8px 10px; } main.hw .lp-route-from { flex-basis: 100%; margin: 0; } }
+/* Inner heroes on phones (agency checklist): H1, one short lede, at most three bullets and ONE button.
+   The extra lede, fourth bullet and second button stay in the page for tablets/desktop. */
+@media (max-width: 640px) {
+  main.hw .ab-lede2 { display: none; }
+  main.hw .ab-hero-list > li:nth-child(n+4) { display: none; }
+  main.hw .ba-ctas > a[href^="tel:"] { display: none; }
+  main.hw .wq-ctas > a[href="#press-contact"] { display: none; }
+}
+@media (max-width: 640px) { main.hw .wq-hero .wq-facts > li:nth-child(n+4) { display: none; } }
+@media (max-width: 640px) {
+  /* Blog posts: the article text lines up with the page gutter (a card rule named .post-body added a 20px inset) and
+     reads at 17px / 1.7 instead of 17.5px / 1.8 */
+  main.hw .bp-content > .post-body { padding: 0; font-size: 17px; line-height: 1.7; }
+  main.hw .bp-content > .post-body h2 { font-size: 24px; line-height: 1.25; margin-top: 2.2rem; }
+  main.hw .bp-content > .post-body h3 { font-size: 19px; }
+}
+@media (max-width: 640px) {
+  /* Rates page "coverage by level of care" table: one stacked card per level on phones (the 3-column table was cut
+     off on the right and needed sideways scrolling) */
+  main.hw .ax-table-wrap { overflow: visible; border: 0; background: none; border-radius: 0; }
+  main.hw .ax-table { min-width: 0; font-size: 15px; }
+  main.hw .ax-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  main.hw .ax-table, main.hw .ax-table tbody, main.hw .ax-table tr, main.hw .ax-table th, main.hw .ax-table td { display: block; width: auto; }
+  main.hw .ax-table tbody { display: grid; gap: 10px; }
+  main.hw .ax-table tbody tr, main.hw .ax-table tbody tr:nth-child(even) { background: #fff; border: 1px solid var(--hw-line); border-radius: 16px; padding: 14px 16px; }
+  main.hw .ax-table tbody th { padding: 0 0 8px; border: 0; font-size: 17px; }
+  main.hw .ax-table tbody td { padding: 8px 0 0; border: 0; border-top: 1px solid var(--hw-line); line-height: 1.5; }
+  main.hw .ax-table tbody td + td { margin-top: 8px; }
+  main.hw .ax-table tbody td::before { content: attr(data-label); display: block; margin-bottom: 2px; font-family: var(--hw-head); font-size: 12.5px; font-weight: 800; letter-spacing: .02em; color: var(--hw-slate); }
+}
+/* Phones: card rows (offices, reviews, video cards) rest on a whole card, aligned with the section's side padding,
+   and step one card at a time (Base.astro .m-step). Cards in a row share one height with their buttons at the bottom. */
+@media (max-width: 640px) {
+  main.hw .m-drift.m-step { scroll-snap-type: x mandatory !important; scroll-padding-inline: var(--hw-gutter, 16px); scroll-behavior: auto !important; }
+  main.hw .m-drift.m-step > * { scroll-snap-align: start; scroll-snap-stop: always; }
+  main.hw .lc-track.m-step, main.hw .rv-loop-track.m-step, main.hw .vc-grid.m-step, main.hw .vc-track.m-step { align-items: stretch; }
+  main.hw .lc-track > .lc { display: flex; flex-direction: column; height: auto; }
+  main.hw .lc-track .lc-body { flex: 1; display: flex; flex-direction: column; }
+  main.hw .lc-track .lc-ctas { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 12px; }
+  main.hw .lc-track .lc-ctas .btn { width: 100%; min-width: 0; justify-content: center; padding: 0 8px; white-space: nowrap; font-size: 13.5px; }
+  main.hw .vc-grid.m-step > li, main.hw .vc-track.m-step > li { display: flex; }
+  main.hw .vc-grid.m-step .vc-card, main.hw .vc-track.m-step .vc-card { flex: 1; }
+}
+@media (max-width: 340px) { main.hw .lc-track .lc-ctas { grid-template-columns: 1fr; } }
+
+/* Location cards: 4 service lines each, one per line, so every card is even (user 2026-11-18). */
+.hw .lc-svc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.hw .lc-svc li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Phone menu open: the floating "Check coverage" and accessibility buttons step aside so they don't sit on menu links */
+@media (max-width: 1280px) { body:has(#hwNav[data-open="true"]) .hw-sticky-cta, body:has(#hwNav[data-open="true"]) .a11y-btn { display: none !important; } }
+/* Phones/tablets (user 2026-11-18): the hero photos move in the BACKGROUND behind the text, like desktop. A darker
+   overlay keeps the H1/H2/H3 readable; dots sit at the bottom. */
+@media (max-width: 999px) {
+  .hw .hero-old { display: flex; align-items: flex-end; min-height: min(92svh, 720px); }
+  .hw .ho-media { position: absolute; inset: 0; aspect-ratio: auto; }
+  .hw .ho-slide { object-position: 35% 25%; }
+  .hw .hero-old::before { display: block; background: linear-gradient(180deg, rgba(0,22,44,.15) 0%, rgba(0,22,44,.45) 35%, rgba(0,22,44,.88) 70%, rgba(0,22,44,.95) 100%); }
+  .hw .ho-grid { background: transparent; padding-top: 140px; padding-bottom: 64px; width: 100%; }
+  .hw .ho-text h1, .hw .ho-h2, .hw .ho-h3s, .hw .ho-h3 { text-shadow: 0 2px 14px rgba(0,0,0,.45); }
+  .hw .ho-dots { top: auto; bottom: 22px; }
+}

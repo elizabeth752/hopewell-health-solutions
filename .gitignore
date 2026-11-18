@@ -27,3 +27,4 @@ pnpm-debug.log*
 
 # client source media (Drive downloads) — never commit
 private/
+public/__m.html
