@@ -333,3 +333,20 @@
 @media (max-width: 460px) { .hw .db-list { grid-template-columns: minmax(0, 1fr); } }
 
 .hw .db-list li span { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #fff; font-size: 13px; font-weight: 800; }
+
+/* Experiential & mind-body therapies as white icon cards (2026-11-18). */
+.hw .mb-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hw .mb-grid li { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 24px 22px 22px; border-radius: 20px; background: #fff; border: 1px solid var(--hw-line); box-shadow: 0 10px 26px rgba(0,29,55,.05); }
+.hw .mb-grid li::before { content: ""; position: absolute; left: 22px; right: 22px; top: 0; height: 4px; border-radius: 0 0 4px 4px; background: var(--c); }
+.hw .mb-ico { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; background: var(--c); color: #fff; }
+.hw .mb-grid h3 { margin: 0; font-size: 18px; color: var(--hw-navy); }
+.hw .mb-grid p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--hw-body); }
+@media (max-width: 999px) { .hw .mb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .hw .mb-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .hw .mb-grid li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px 14px; padding: 16px; }
+  .hw .mb-grid li::before { display: none; }
+  .hw .mb-ico { width: 40px; height: 40px; grid-row: span 2; }
+  .hw .mb-grid h3 { font-size: 16.5px; }
+  .hw .mb-grid p { font-size: 14.5px; }
+}

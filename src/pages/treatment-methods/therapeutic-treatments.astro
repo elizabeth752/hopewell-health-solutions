@@ -184,9 +184,16 @@ const schema = {
     <section class="section is-white" id="mind-body">
       <div class="container">
         <div class="sec-head"><h2>Experiential, mind-body &amp; behavioral therapies</h2><p class="lede">From play therapy for young children to biofeedback and exposure work for anxiety, matched to what each person needs.</p></div>
-        <div class="tx-mods" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-          {mods.map(([t, d]) => <div class="tx-mod"><h3>{t}</h3><p set:html={d} /></div>)}
-        </div>
+        {/* Mind-body tiles (user 2026-11-18: "really bad" on phones): white cards with a coloured icon, 3 → 2 → 1 columns. */}
+        <ul class="mb-grid">
+          {mods.map(([t, d], i) => (
+            <li style={`--c:${["#2f76c4", "#b6863c", "#5c7c6b", "#265489", "#b6863c", "#5c7c6b"][i % 6]}`}>
+              <span class="mb-ico"><Icon name={["sun", "sparkles", "heart", "shield", "bolt", "refresh"][i % 6]} class="h-5 w-5" /></span>
+              <h3>{t}</h3>
+              <p set:html={d} />
+            </li>
+          ))}
+        </ul>
         <div class="tx-split" style="margin-top:36px">
           <figure class="tx-photo"><img src={P + "tx-east-hampton-play-room.webp"} alt="A child-friendly therapy room at our East Hampton office" width="1400" height="1400" loading="lazy" /><figcaption>A child-friendly therapy room<span>East Hampton office</span></figcaption></figure>
           <div class="tx-copy">
