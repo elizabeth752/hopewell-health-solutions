@@ -1,0 +1,21 @@
+---
+// Adult Mental Health IOP, "What is an Adult IOP?" (2026-11-18, replaces the photo carousel). Two ways in that
+// converge on the IOP, the conditions it supports, and the life it fits around.
+import Icon from "../../Icon.astro";
+const conds = [["cloud", "Depression", "/what-we-treat/depression/", "i-b"], ["bolt", "Anxiety", "/what-we-treat/anxiety/", "i-g"], ["shield", "Trauma", "/what-we-treat/trauma-ptsd/", "i-s"], ["refresh", "Mood disorders", "", "i-n"]];
+---
+<figure class="gx on-dark" aria-label="Adults come to the IOP stepping down from inpatient care or needing more than weekly therapy. It supports depression, anxiety, trauma, mood disorders and co-occurring substance use, with no hospital stay, while you keep up with work, school and family.">
+  <div class="gx-conv">
+    <div class="gx-box"><Icon name="arrow" class="h-5 w-5 dn" /><b>Stepping down from inpatient care</b></div>
+    <div class="gx-box"><Icon name="arrow" class="h-5 w-5 up" /><b>Needing more than weekly therapy</b></div>
+  </div>
+  <div class="gx-hub">
+    <span class="gx-hub-i"><Icon name="home" class="h-7 w-7" /></span>
+    <p><strong>Adult IOP, no hospital stay</strong><span>A higher level of care around work, school &amp; family</span></p>
+  </div>
+  <p class="gx-t">Support for</p>
+  <ul class="gx-tiles is-4">
+    {conds.map(([i, t, h, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{h ? <a class="inl" href={h}>{t}</a> : t}</li>)}
+  </ul>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Plus support for co-occurring substance use</figcaption>
+</figure>

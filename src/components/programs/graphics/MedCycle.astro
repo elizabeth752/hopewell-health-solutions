@@ -1,0 +1,23 @@
+---
+// Medication management, "What is medication management?" (2026-11-18, replaces the photo carousel).
+// The care cycle the copy describes: evaluation, diagnosis, personalized plan, regular follow-ups.
+import Icon from "../../Icon.astro";
+const steps = [["clipboard", "Thorough evaluation", "i-b"], ["brain", "Accurate diagnosis", "i-s"], ["refresh", "Regular follow-ups to fine-tune", "i-n"], ["pill", "Personalized medication plan", "i-g"]];
+---
+<figure class="gx on-dark" aria-label="Medication management is a cycle: a thorough evaluation, an accurate diagnosis, a personalized medication plan, and regular follow-ups to fine-tune it as you go. Keep your current therapist, work with one of ours, or skip therapy.">
+  <p class="gx-t">Ongoing psychiatric care, built around you</p>
+  <div class="gx-cycle">
+    <svg class="gx-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="72" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(45 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(135 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(225 100 100)" /><path d="M100 28 l7 -5 M100 28 l7 5" transform="rotate(315 100 100)" /></svg>
+    <ol>
+      {steps.map(([i, t, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{t}</li>)}
+    </ol>
+    <p class="gx-cycle-c"><Icon name="heart-even" class="h-6 w-6" /><span>As you go</span></p>
+  </div>
+  <p class="gx-t">Therapy is your call</p>
+  <ul class="gx-call">
+    <li><Icon name="check" class="h-4 w-4" />Keep your current therapist</li>
+    <li><Icon name="check" class="h-4 w-4" /><a class="inl" href="/programs/counseling/">Work with one of ours</a></li>
+    <li><Icon name="check" class="h-4 w-4" />Or skip therapy</li>
+  </ul>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Providers trained in psychiatric diagnoses, treatments &amp; medications</figcaption>
+</figure>

@@ -23,6 +23,7 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import AddictionLevel from "../../components/programs/graphics/AddictionLevel.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import CheckList from "../../components/programs/CheckList.astro";
@@ -137,7 +138,8 @@ const stories = STORIES.filter((v) => ["7ISgjKEBoZo", "1NnnRKONzhg", "vlKx8J6hyk
     </ServiceHero>
     <Creds />
 
-    <Split heading="What is the addiction IOP?" img={P + "iop-group-room-lights.webp"} alt="A group room for Hopewell's addiction IOP in Connecticut" img2="/Assets/Blogs/the-path-to-sobriety-how-substance-use-disorder-therapy-programs-can-help-save-lives.webp" alt2="A man in addiction recovery, supported by someone close to him">
+    <Split heading="What is the addiction IOP?">
+      <AddictionLevel slot="media" />
       <p><strong>Structured support, real independence.</strong> The Addiction and Substance Use IOP is a structured yet flexible addiction treatment program for people struggling with alcohol, drugs, or prescription medications. It offers a <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">higher level of care than traditional outpatient therapy</a> while letting you live at home and continue your daily life.</p>
       <p>Unlike inpatient rehab, IOP delivers structured care multiple times a week while you maintain work, school, and family, providing intensive support while building independence and accountability. We support recovery from:</p>
       <CheckList items={substances} cols={2} icon="shield" />

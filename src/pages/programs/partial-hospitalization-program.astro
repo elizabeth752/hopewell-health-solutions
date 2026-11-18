@@ -16,6 +16,9 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import PhpPath from "../../components/programs/graphics/PhpPath.astro";
+import PhpGoals from "../../components/programs/graphics/PhpGoals.astro";
+import PhpWhat from "../../components/programs/graphics/PhpWhat.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import CheckList from "../../components/programs/CheckList.astro";
@@ -127,13 +130,15 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
     </ServiceHero>
     <Creds />
 
-    <Split heading="What is a Partial Hospitalization Program?" img={P + "php-group-room.webp"} alt="The PHP group room at our Downtown Glastonbury office" img2="/Assets/service/php-what-is.webp" alt2="Partial hospitalization day program in Glastonbury, CT">
+    <Split heading="What is a Partial Hospitalization Program?">
+      <PhpWhat slot="media" />
       <p><strong>A higher level of care, without an overnight stay.</strong> Hopewell Health Solutions’ Partial Hospitalization Program (PHP) provides concierge, customized, comprehensive, structured treatment for several hours daily. It’s an ideal model for those needing more support than outpatient therapy, but not requiring inpatient hospitalization.</p>
       <p>PHP lets you live at home while receiving intensive <a class="inl" href="/treatment-methods/group-therapy/">group therapy</a>, individual therapy, medication management, skill-building, and experiential wellness, including yoga, art therapy, sound healing, weight training, hiking, Reiki, needlework, and meditation.</p>
       <p>Want the full breakdown? Read our guide: <a class="inl" href="/post/what-is-a-partial-hospitalization-program-php/">What is a Partial Hospitalization Program (PHP)?</a></p>
     </Split>
 
-    <Split heading="The benefits of PHP" img="/Assets/Blogs/opt/php-vs-iop-which-level-of-care-is-right-for-you.webp" alt="Adults in a group session at Hopewell's Glastonbury office" reverse tone="stone">
+    <Split heading="The benefits of PHP" reverse tone="stone">
+      <PhpGoals slot="media" />
       <p><strong>A comprehensive approach.</strong> PHP is beneficial for:</p>
       <CheckList items={benefitsFor} />
       <p>This goal-oriented program focuses on <strong>stabilization, enhancing coping skills, and improving overall quality of life.</strong></p>
@@ -188,7 +193,8 @@ const stories = STORIES.filter((v) => ["1NnnRKONzhg", "vlKx8J6hykA", "uIlSCS7clw
       </div>
     </section>
 
-    <Split heading="Who our PHP is designed for" img={P + "iop-group-room-lights.webp"} alt="A Hopewell group room for partial hospitalization" tone="stone">
+    <Split heading="Who our PHP is designed for" tone="stone">
+      <PhpPath slot="media" />
       <p><strong>Support tailored to you.</strong></p>
       <CheckList items={whoFor} />
       <div class="pg-panel">

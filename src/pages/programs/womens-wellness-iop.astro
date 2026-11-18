@@ -19,6 +19,8 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import Prose from "../../components/seo/Prose.astro";
 import Split from "../../components/programs/Split.astro";
+import WomensCheckIn from "../../components/programs/graphics/WomensCheckIn.astro";
+import WomensLoad from "../../components/programs/graphics/WomensLoad.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import CheckList from "../../components/programs/CheckList.astro";
@@ -162,7 +164,8 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
 
     <!-- 4. Who this program is for -->
-    <Split heading="We understand the load women carry" img="/Assets/Blogs/how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing-hero.webp" alt="Women supporting each other in a group therapy session" img2={P + "group-room-bright.webp"} alt2="A bright group room for the Women's Wellness IOP in Glastonbury">
+    <Split heading="We understand the load women carry">
+      <WomensLoad slot="media" />
       <p><strong>A space to pause, process &amp; heal.</strong> Between work, parenting, caregiving, relationships, health concerns, and the constant pressure to “hold it all together,” it’s easy to lose your sense of self. That’s why we created the Women’s Wellness IOP, a supportive, structured space where women can pause, process, and begin to heal.</p>
       <p>This 8–12 week program is for women experiencing emotional burnout, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, stress, life transitions, relationship challenges, low self-esteem, or the lingering effects of <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>. Whether you’re overwhelmed, disconnected, or simply ready to prioritize yourself, you don’t have to do it alone.</p>
     </Split>
@@ -182,7 +185,8 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
       </div>
     </section>
 
-    <Split heading="Is this program right for me?" img={W + "sitting-room.webp"} alt="A quiet sitting room at the Westbrook office" reverse>
+    <Split heading="Is this program right for me?" reverse>
+      <WomensCheckIn slot="media" />
       <p><strong>The space &amp; support you’ve been looking for.</strong> You may be so used to functioning on autopilot that you’ve stopped checking in with yourself. Consider:</p>
       <CheckList items={questions} icon="heart" />
       <p>If any of these resonate, this program may offer the space and support you’ve been looking for. <a class="inl" href="/admissions/">Take our quick screening</a>.</p>

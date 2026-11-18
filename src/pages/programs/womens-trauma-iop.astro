@@ -17,6 +17,7 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import Prose from "../../components/seo/Prose.astro";
 import Split from "../../components/programs/Split.astro";
+import TraumaDefined from "../../components/programs/graphics/TraumaDefined.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import NewsVideos from "../../components/programs/NewsVideos.astro";
@@ -122,7 +123,8 @@ const svc = { "@context": "https://schema.org", "@type": "MedicalTherapy", name:
 
 
     <!-- 4. Who it's for -->
-    <Split heading="What is trauma?" img={P + "iop-group-room-lights.webp"} alt="A calm Hopewell group room for women's trauma recovery" img2={P + "sg-green-room.webp"} alt2="A quiet, plant-filled therapy room for trauma-informed care" reverse tone="white">
+    <Split heading="What is trauma?" reverse tone="white">
+      <TraumaDefined slot="media" />
       <p><strong>Understanding it is the first step.</strong> Trauma can come from a single event, or a series of events or circumstances that feel emotionally or physically harmful or life-threatening, with lasting effects on your functioning and your physical, social, emotional, or spiritual well-being.</p>
       <p>Trauma is deeply personal. Different people react to similar events in very different ways, what one person finds traumatic, another may not. There’s no “right” way to respond, and there’s no shame in needing support. Learn more about <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma &amp; PTSD treatment</a>, and read how <a class="inl" href="/post/how-womens-trauma-differs-from-mens-and-how-group-therapy-supports-healing/">women’s trauma differs from men’s</a>.</p>
     </Split>

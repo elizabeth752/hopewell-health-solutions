@@ -1,0 +1,20 @@
+---
+// Women's Trauma IOP, "What is trauma?" (user 2026-11-18: graphic instead of the photo). Single event vs ongoing
+// circumstances, and the four areas of well-being the copy names. Styles: .gx-* in styles/pages/programs.css.
+import Icon from "../../Icon.astro";
+const areas = [["heart-even", "Physical", "i-b"], ["users", "Social", "i-s"], ["cloud", "Emotional", "i-g"], ["sun", "Spiritual", "i-n"]];
+---
+<figure class="gx on-dark" aria-label="Trauma can come from a single event, or a series of events or circumstances, that feel harmful or life-threatening, with lasting effects on physical, social, emotional or spiritual well-being">
+  <p class="gx-t">Trauma can come from</p>
+  <div class="gx-vs">
+    <div class="gx-box"><span class="gx-i i-g"><Icon name="bolt" class="h-5 w-5" /></span><b>A single event</b></div>
+    <span class="gx-or">or</span>
+    <div class="gx-box"><span class="gx-i i-b"><Icon name="refresh" class="h-5 w-5" /></span><b>A series of events or circumstances</b></div>
+  </div>
+  <p class="gx-note">that feel emotionally or physically harmful or life-threatening</p>
+  <p class="gx-t">With lasting effects on your well-being</p>
+  <ul class="gx-tiles is-4">
+    {areas.map(([i, t, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{t}</li>)}
+  </ul>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />No “right” way to respond, and no shame in needing support</figcaption>
+</figure>

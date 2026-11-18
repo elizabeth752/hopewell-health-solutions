@@ -1,0 +1,22 @@
+---
+// Teen IOP, "Why in-person matters for teens" (2026-11-18, replaces the photo). Screen vs the room, and what
+// happens face to face, from the section copy.
+import Icon from "../../Icon.astro";
+const room = [["users", "Peers who get it", "i-b"], ["heart-even", "Clinicians who know their name", "i-g"], ["chat", "Skills practiced out loud & hard talks role-played", "i-s"], ["sun", "Someone notices a rough day", "i-n"]];
+---
+<figure class="gx on-dark" aria-label="Teens already spend much of the day behind a screen. In the teen IOP they sit in a room with peers who get it and clinicians who know their name, practice skills out loud, role-play hard conversations and notice when someone is having a rough day.">
+  <div class="gx-swap" aria-hidden="true">
+    <span>Behind a screen</span><Icon name="arrow" class="h-5 w-5" /><span class="on">Face to face</span>
+  </div>
+  <div class="gx-room">
+    <svg viewBox="0 0 160 160" aria-hidden="true">
+      <circle cx="80" cy="80" r="46" class="t" />
+      {[0, 60, 120, 180, 240, 300].map((a) => <circle cx={80 + 66 * Math.cos((a - 90) * Math.PI / 180)} cy={80 + 66 * Math.sin((a - 90) * Math.PI / 180)} r="12" class:list={["s", a === 0 && "g"]} />)}
+      <text x="80" y="76" text-anchor="middle">In the</text><text x="80" y="94" text-anchor="middle">room</text>
+    </svg>
+    <ul>
+      {room.map(([i, t, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span>{t}</li>)}
+    </ul>
+  </div>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />Telehealth is still available for some services</figcaption>
+</figure>

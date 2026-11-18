@@ -1,0 +1,22 @@
+---
+// Women's Wellness IOP, "Is this program right for me?" (2026-11-18, replaces the photo). From autopilot to checking
+// in: the six questions in the copy, as six short check-in areas.
+import Icon from "../../Icon.astro";
+const areas = [
+  ["bolt", "Energy", "Drained, even after rest", "i-g"],
+  ["sun", "Joy", "Lost interest in what you loved", "i-s"],
+  ["heart-even", "Support", "Giving more than you get back", "i-b"],
+  ["cloud", "Honesty", "Pretending everything is okay", "i-n"],
+  ["alert", "Health & relationships", "Stress spilling into life & work", "i-g"],
+  ["compass", "Grounding", "Wanting to feel connected again", "i-s"],
+];
+---
+<figure class="gx on-dark" aria-label="A self check-in, from autopilot to checking in: energy, joy, support, honesty, health and relationships, and feeling grounded.">
+  <div class="gx-toggle" aria-hidden="true">
+    <span>Autopilot</span><Icon name="arrow" class="h-5 w-5" /><span class="on">Checking in with yourself</span>
+  </div>
+  <ul class="gx-tiles is-check">
+    {areas.map(([i, t, d, c]) => <li><span class={`gx-i ${c}`}><Icon name={i} class="h-5 w-5" /></span><span><b>{t}</b><small>{d}</small></span></li>)}
+  </ul>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" /><span>Any of these resonate? <a class="inl" href="/admissions/">Take our quick screening</a></span></figcaption>
+</figure>

@@ -19,6 +19,8 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import TeenInPerson from "../../components/programs/graphics/TeenInPerson.astro";
+import TeenFamily from "../../components/programs/graphics/TeenFamily.astro";
 import CheckList from "../../components/programs/CheckList.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import ModalitiesOutcomes from "../../components/programs/ModalitiesOutcomes.astro";
@@ -141,7 +143,8 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
     </ServiceHero>
     <Creds />
 
-    <Split heading="Evidence-based help for struggling teens &amp; families" img="/Assets/tweens-1729660767703.webp" alt="Teenagers laughing together, the age group Hopewell's teen IOP in Glastonbury, CT serves" img2={P + "sg-tween-group-room.webp"} alt2="The adolescent group room at our South Glastonbury office">
+    <Split heading="Evidence-based help for struggling teens &amp; families">
+      <TeenFamily slot="media" />
       <p><strong>Now accepting patients.</strong> Since COVID-19, we’ve seen exponential levels of <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/depression/">depression</a>, self-harm, school refusal, and maladaptive behaviors in adolescents, leaving families stuck and frustrated and kids very vulnerable. Hopewell’s teen IOP was created so parents and teens can receive evidence-based treatment for lifelong mental health and recovery.</p>
       <p>The program runs Monday–Thursday at our <a class="inl" href="/location/glastonbury-ct-3/">1420 Main St, Glastonbury location</a>, for 8–12 weeks. Parents attend once to twice a week to learn the DBT skills being taught, so the skills integrate at home, where they matter most.</p>
       <p>For many families, the teen years are when <a class="inl" href="/post/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step/">weekly therapy stops being enough</a>. A teen who was doing fine in middle school starts missing class, staying up all night on a phone, or shutting their door and refusing to talk. An adolescent IOP gives them several hours of structured support each week, with other teens who understand, while they stay in school and at home.</p>
@@ -172,7 +175,8 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
 
     <IconCards heading="What your teen works on" lede="Groups are small and clinician-led. Over 8–12 weeks, teens build skills they can use the same day, at school, with friends and at home." items={work} tone="stone" />
 
-    <Split heading="Why in-person matters for teens" img="/Assets/Blogs/signs-you-or-your-teen-need-more-than-weekly-therapy-when-iop-is-the-right-step.webp" alt="Teens talking together in a group therapy session" reverse>
+    <Split heading="Why in-person matters for teens" reverse>
+      <TeenInPerson slot="media" />
       <p>Teens spend much of their day behind a screen already. In our teen IOP they sit in a room with peers who get it and clinicians who know their name, and that <a class="inl" href="/post/the-power-of-presence-why-in-person-therapy-remains-crucial/">face-to-face connection</a> is often what helps a withdrawn teen open up. Groups practice skills out loud, role-play hard conversations, and notice when someone is having a rough day.</p>
       <p>Research on adolescent care keeps pointing to the same thing: belonging and real relationships matter. Read <a class="inl" href="/post/virtual-iop-vs-in-person-what-the-research-says-and-why-it-matters-for-teens/">what the research says about virtual vs in-person IOP for teens</a>. Telehealth is still available for some services when coming in isn’t possible.</p>
     </Split>

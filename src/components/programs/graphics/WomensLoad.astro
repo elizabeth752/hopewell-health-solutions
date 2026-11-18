@@ -1,0 +1,25 @@
+---
+// Women's Wellness IOP, "We understand the load women carry" (2026-11-18, replaces the photo carousel).
+// The stacked load the copy lists, then pause, process, heal.
+import Icon from "../../Icon.astro";
+const load = ["Work", "Parenting", "Caregiving", "Relationships", "Health concerns", "“Holding it all together”"];
+---
+<figure class="gx on-dark" aria-label="Work, parenting, caregiving, relationships, health concerns and the pressure to hold it all together add up. The Women's Wellness IOP is an 8 to 12 week space to pause, process and heal.">
+  <div class="gx-load">
+    <div>
+      <p class="gx-t">The load</p>
+      <ul class="gx-stack">{load.map((t) => <li>{t}</li>)}</ul>
+    </div>
+    <span class="gx-load-arrow" aria-hidden="true"><Icon name="arrow" class="h-6 w-6" /></span>
+    <div>
+      <p class="gx-t">A space to</p>
+      <ol class="gx-steps">
+        <li><span class="gx-i i-s"><Icon name="sun" class="h-5 w-5" /></span><b>Pause</b></li>
+        <li><span class="gx-i i-b"><Icon name="chat" class="h-5 w-5" /></span><b>Process</b></li>
+        <li><span class="gx-i i-g"><Icon name="heart-even" class="h-5 w-5" /></span><b>Heal</b></li>
+      </ol>
+      <p class="gx-weeks"><strong>8–12</strong><span>weeks, in a supportive, structured group</span></p>
+    </div>
+  </div>
+  <figcaption class="gx-foot"><Icon name="check" class="h-4 w-4" />You don’t have to do it alone</figcaption>
+</figure>

@@ -13,6 +13,8 @@ import Team from "../../components/hw/Team.astro";
 import Faq from "../../components/hw/Faq.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Split from "../../components/programs/Split.astro";
+import DualRecovery from "../../components/programs/graphics/DualRecovery.astro";
+import AdultIopFit from "../../components/programs/graphics/AdultIopFit.astro";
 import Quote from "../../components/programs/Quote.astro";
 import IconCards from "../../components/programs/IconCards.astro";
 import CheckList from "../../components/programs/CheckList.astro";
@@ -93,7 +95,8 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
     </ServiceHero>
     <Creds />
 
-    <Split heading="What is an Adult Intensive Outpatient Program (IOP)?" img="/Assets/AdobeStock_413328337-1747245457937.webp" alt="Adults in an IOP group therapy circle" img2={P + "iop-group-room-lights.webp"} alt2="An IOP group room at Hopewell">
+    <Split heading="What is an Adult Intensive Outpatient Program (IOP)?">
+      <AdultIopFit slot="media" />
       <p>An Adult Intensive Outpatient Program (IOP) is a structured treatment plan for adults experiencing mental health challenges who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more support than weekly therapy</a> provides. It offers a higher level of care while you continue your daily life, work, school, and family.</p>
       <p>Unlike inpatient programs, an Adult IOP doesn’t require a hospital stay. At Hopewell Health Solutions, our IOP supports adults struggling with <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a>, mood disorders, and co-occurring substance use, and is ideal for those stepping down from inpatient care or seeking more than traditional outpatient therapy.</p>
     </Split>
@@ -117,7 +120,8 @@ const stories = STORIES.filter((v) => ["uIlSCS7clwE", "vlKx8J6hykA", "1NnnRKONzh
       </div>
     </section>
 
-    <Split heading="Supporting both mental health &amp; substance-use recovery" img={P + "iop-clinicians-group-room.webp"} alt="Hopewell clinicians who provide co-occurring mental health and addiction care" reverse>
+    <Split heading="Supporting both mental health &amp; substance-use recovery" reverse>
+      <DualRecovery slot="media" />
       <p><strong>Struggling with unhealthy coping?</strong> While our focus is mental health, we recognize how closely <a class="inl" href="/what-we-treat/substance-use-disorder/">substance use</a> and emotional pain are linked. For clients struggling with unhealthy coping mechanisms, we offer:</p>
       <CheckList items={sudSupport} />
       <div class="pg-panel">
