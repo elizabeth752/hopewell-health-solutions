@@ -350,3 +350,13 @@
   .hw .mb-grid h3 { font-size: 16.5px; }
   .hw .mb-grid p { font-size: 14.5px; }
 }
+
+/* DBT page four skills: wheel + numbered rows (2026-11-18). */
+.hw .dk { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.hw .dk-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.hw .dk-list li { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; border-radius: 18px; background: #fff; border: 1px solid var(--hw-line); border-left: 5px solid var(--c); }
+.hw .dk-n { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #fff; font-weight: 800; }
+.hw .dk-list h3 { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 18px; color: var(--hw-navy); }
+.hw .dk-list h3 svg { color: var(--c); }
+.hw .dk-list p { margin: 4px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--hw-body); }
+@media (max-width: 899px) { .hw .dk { grid-template-columns: minmax(0, 1fr); } .hw .dk .db-wheel { max-width: 360px; margin: 0 auto; } }
