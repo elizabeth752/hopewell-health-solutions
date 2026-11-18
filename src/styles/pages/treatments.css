@@ -296,3 +296,19 @@
 .hw .em-steps li { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--hw-line); font-weight: 600; color: var(--hw-navy); font-size: 16px; line-height: 1.4; }
 .hw .em-steps span { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #e0b56a; color: #0b2f55; font-weight: 800; font-size: 14px; }
 @media (max-width: 760px) { .is-stone .em-more::after { background: linear-gradient(rgba(243,241,236,0), var(--hw-stone)); } }
+
+/* ADHD testing: quiz section + "What you walk away with" graphic (2026-11-18). */
+.hw .ad-quiz { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+.hw .ad-qtabs { display: grid; gap: 10px; margin-top: 22px; }
+.hw .ad-qtab { display: flex; gap: 12px; align-items: center; padding: 14px 16px; border-radius: 16px; border: 1.5px solid var(--hw-line); background: #fff; color: var(--hw-navy); text-align: left; font: inherit; cursor: pointer; }
+.hw .ad-qtab b { display: block; font-family: var(--hw-head); font-size: 16px; } .hw .ad-qtab small { display: block; font-size: 13px; color: var(--hw-slate); }
+.hw .ad-qtab.is-on { background: var(--hw-navy); border-color: var(--hw-navy); color: #fff; } .hw .ad-qtab.is-on small { color: #c9d6e4; }
+.hw .ad-howto { margin-top: 20px; border-top: 1px solid var(--hw-line); padding-top: 14px; }
+.hw .ad-howto summary { cursor: pointer; font-weight: 700; color: var(--hw-blue); }
+.hw .ad-howto .ad-paths { margin-top: 14px; grid-template-columns: minmax(0, 1fr); }
+.hw .ad-qp[hidden] { display: none; }
+.hw .ad-walk { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+.hw .ad-doc { margin: 0; padding: 22px; border-radius: 28px; background: linear-gradient(160deg, #e7eef5, #dbe8f6); }
+.hw .ad-doc svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 30px rgba(0,29,55,.15)); }
+.hw .ad-walk .ad-get { margin-top: 18px; }
+@media (max-width: 999px) { .hw .ad-quiz, .hw .ad-walk { grid-template-columns: minmax(0, 1fr); } .hw .ad-doc { max-width: 360px; } }
