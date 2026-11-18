@@ -12,6 +12,7 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import VideoDialog from "../../components/hw/VideoDialog.astro";
 import PhoneVideo from "../../components/hw/PhoneVideo.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import LegitScriptSeal from "../../components/LegitScriptSeal.astro";
@@ -23,7 +24,9 @@ import Locations from "../../components/hw/Locations.astro";
 import ClosingCta from "../../components/hw/ClosingCta.astro";
 import Faq from "../../components/hw/Faq.astro";
 import { STORIES, VIDEOS, PODCAST } from "../../data/videos.js";
-const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
+const tour = VIDEOS.find((v) => v.yt === "I8nk1SYhFig"); // same welcome video + house thumbnail as the homepage (user 2026-11-18)
+// Hero: the offices themselves, rotating behind the navy overlay (user 2026-11-18: "photos of the houses").
+const houses = ["/Assets/hhs-2026/south-glastonbury-office.webp", "/Assets/locations/glastonbury/exterior.webp", "/Assets/hhs-2026/downtown-glastonbury-entrance.webp", "/Assets/locations/east-hampton/exterior.webp", "/Assets/hhs-2026/west-hartford-office.webp"];
 import { providers } from "../../data/providers.js";
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import { socials } from "../../data/socials.ts";
@@ -157,7 +160,9 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
     <!-- 1. Hero + form (Corner Canyon navy hub hero) -->
-    <section class="wq-hero">
+    <section class="wq-hero has-photo ab-houses">
+      {houses.map((src, i) => <img class:list={["sv-bg ab-house", i === 0 && "is-on"]} src={src} alt="" width="1200" height="900" fetchpriority={i === 0 ? "high" : "low"} loading={i === 0 ? "eager" : "lazy"} />)}
+      <div class="sv-scrim" aria-hidden="true"></div>
       <div class="container wq-hero-grid ab-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>About Us</span></nav>
@@ -185,13 +190,19 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
           <div class="sec-head" style="margin:0">
             <h2>Welcome to Hopewell</h2>
             <p class="lede">Hopewell Health Solutions has cared for Connecticut families since 2013, from children as young as four to adults of every age. Our offices are designed to feel more like a living room than a clinic, with warm light, comfortable seats and rooms built for real conversation. Whether you come in for weekly therapy, medication management or an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>, you’ll be welcomed by a team that knows your name.</p>
-            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />A 16-second look inside our Glastonbury spaces. Tap the phone for sound.</p>
+            <p class="lh-visit-note"><Icon name="play" class="h-5 w-5" />Watch our welcome video.</p>
           </div>
-          {tour && <PhoneVideo yt={tour.yt} title={tour.title} poster={`/Assets/videos/${tour.img}.webp`} />}
+          {tour && (
+            <button type="button" class="vc-card ip-video ab-video" data-yt={tour.yt} data-title={tour.title} aria-label={`Play: ${tour.title}`}>
+              <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+              <span class="vc-body"><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
+            </button>
+          )}
         </div>
       </div>
     </section>
 
+    <VideoDialog />
     <!-- Gallery: real people, groups and offices -->
     <section class="section is-white" id="gallery">
       <div class="container">
@@ -346,10 +357,23 @@ const schema = { "@context": "https://schema.org", "@type": "AboutPage", url: ca
     <ClosingCta heading="Ready to Discover Your Path to Healing?" lede="Schedule an in-person or virtual mental health evaluation today, call our office or get in touch with our experts, confidentially and with no pressure."/>
   </main>
   <Footer />
+<script>
+  (() => {
+    const imgs = [...document.querySelectorAll<HTMLElement>(".ab-house")];
+    if (imgs.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let i = 0;
+    setInterval(() => { if (document.hidden) return; imgs[i].classList.remove("is-on"); i = (i + 1) % imgs.length; imgs[i].classList.add("is-on"); }, 5000);
+  })();
+</script>
 </Base>
 
 <style>
   .ab-hero-grid { align-items: start; }
+  .ab-house { opacity: 0; transition: opacity 1.2s ease; }
+  .ab-house.is-on { opacity: 1; }
+  .ab-video { max-width: 560px; width: 100%; justify-self: end; }
+  #welcome .lh-visit-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+  @media (max-width: 899px) { #welcome .lh-visit-top { grid-template-columns: minmax(0, 1fr); } .ab-video { justify-self: stretch; max-width: none; } }
   .pf-card.is-navy { background: var(--hw-navy); }
   .pf-card.is-navy p + p { color: #dce6f1; }
   .ab-tag { margin-top: 10px; font-family: var(--hw-head); font-weight: 700; font-size: 20px; color: var(--hw-sky); }
