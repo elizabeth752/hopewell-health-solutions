@@ -29,15 +29,16 @@ import { PHONE } from "../data/site.js";
 const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 
-// 1. Hero slider (agency review 2026-11-18): the old site's concept, one slide per type of client Hopewell serves
-// (photos recovered from the previous site via the Wayback Machine). Every slide has the same structure: a short title
-// and one CTA, so the photo leads. The H1 and the coverage form stay fixed beside the slider (client doc Task 1);
-// on phones the form sits further down the page. No couples slide: the client asked to avoid couples imagery.
+// 1. Hero (user pick 2026-11-18): like the old site. A full-width slider of the old site's banner photos (recovered via
+// the Wayback Machine: couple, man, teen, woman, young woman) under ONE fixed text block: H1 (primary keyword), H2,
+// H3 tagline and one button. The text never changes between slides; the photos lead. The coverage form sits right
+// under the hero (#verify).
 const heroSlides = [
-  { img: P + "hero-slide-woman.webp", pos: "62% 30%", alt: "A smiling woman", t: "Care Built Around Women", cta: "Women\u2019s Wellness IOP", href: "/programs/womens-wellness-iop/" },
-  { img: P + "hero-slide-man.webp", pos: "55% 30%", alt: "A smiling man outdoors", t: "Addiction Treatment That Fits Your Life", cta: "Addiction & Substance Use IOP", href: "/programs/addiction-iop/" },
-  { img: P + "hero-slide-teen.webp", pos: "50% 30%", alt: "A smiling teenage boy", t: "Help for Teens and Tweens", cta: "Teen & Tween IOP", href: "/programs/teen-iop/" },
-  { img: P + "hero-slide-young-adult.webp", pos: "70% 35%", alt: "A young woman smiling outdoors", t: "Mental Health Care for Adults", cta: "Intensive Outpatient (IOP)", href: "/programs/intensive-outpatient-program/" },
+  { img: P + "hero-slide-couple.webp", pos: "30% 35%", alt: "A smiling couple embracing outdoors" },
+  { img: P + "hero-slide-man.webp", pos: "35% 30%", alt: "A smiling man outdoors" },
+  { img: P + "hero-slide-teen.webp", pos: "30% 30%", alt: "A smiling teenage boy" },
+  { img: P + "hero-slide-woman.webp", pos: "25% 30%", alt: "A smiling woman" },
+  { img: P + "hero-slide-young-adult.webp", pos: "45% 35%", alt: "A young woman smiling outdoors" },
 ];
 
 // 4. What we help with — conditions wheel (graphic) + program cards written around the visitor's problem.
@@ -101,7 +102,7 @@ const visit = [
   [P + "sg-waiting-room.webp", "The waiting room at our South Glastonbury office", "home", "A calm place to wait", "Comfortable, private waiting rooms, more like a living room than a clinic."],
   [P + "group-room-bright.webp", "A Hopewell group therapy room", "users", "Shown around", "Your clinician welcomes you and shows you the rooms and group spaces where you’ll meet."],
 ];
-const tour = VIDEOS.find((v) => v.yt === "ZsyYzk9epww");
+const tour = VIDEOS.find((v) => v.yt === "s0sEv1hIrfk"); // the old homepage welcome video (user 2026-11-18)
 const teenTour = VIDEOS.find((v) => v.yt === "loSaQbRc-oE");
 
 // 7. Testimonials matched to the page (Evan feature removed, user 2026-11-17): IOP & recovery, a teen (with his mom), Women's Wellness.
@@ -188,29 +189,33 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <main class="hw">
 
   <!-- 1. Hero + form -->
-  <section class="hero hero-hs">
-    <div class="hs-wrap">
-      <div class="hs-stage" role="region" aria-roledescription="carousel" aria-label="Who we help">
-        {heroSlides.map((x, i) => (
-          <div class:list={["hs-slide", i === 0 && "is-on"]} role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${heroSlides.length}: ${x.t}`} aria-hidden={i === 0 ? undefined : "true"}>
-            <img src={x.img} alt={x.alt} width="1536" height="768" style={`object-position:${x.pos}`} fetchpriority={i === 0 ? "high" : "low"} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
-            <div class="hs-cap">
-              <p class="hs-t">{x.t}</p>
-              <a class="btn btn-blue hs-cta" href={x.href} tabindex={i === 0 ? undefined : -1}>{x.cta} <span aria-hidden="true">&rarr;</span></a>
-            </div>
-          </div>
-        ))}
-        <div class="hs-nav">
-          <button type="button" class="hs-arrow" data-dir="-1" aria-label="Previous slide"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <div class="hs-dots">{heroSlides.map((x, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show slide ${i + 1}: ${x.t}`}></button>)}</div>
-          <button type="button" class="hs-arrow" data-dir="1" aria-label="Next slide"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        </div>
-      </div>
-      <div class="hs-side">
+  <section class="hero hero-old" aria-roledescription="carousel" aria-label="Hopewell Health Solutions">
+    <div class="ho-media">
+      {heroSlides.map((x, i) => (
+        <img class:list={["ho-slide", i === 0 && "is-on"]} src={x.img} alt={i === 0 ? x.alt : ""} width="1536" height="768" style={`object-position:${x.pos}`} fetchpriority={i === 0 ? "high" : "low"} loading={i === 0 ? "eager" : "lazy"} decoding="async" />
+      ))}
+    </div>
+    <div class="container ho-grid">
+      <div class="ho-text">
         <h1>Mental Health &amp; Addiction Treatment in Connecticut</h1>
-        <p class="hs-sub">Outpatient programs, therapy and psychiatry for ages 4 and up, in Glastonbury, Westbrook and across CT.</p>
-        <div class="hero-form" id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>
+        <h2 class="ho-h2">Outpatient Programs, Therapy &amp; Psychiatry in Glastonbury, Westbrook and Across CT</h2>
+        <h3 class="ho-h3">There is <em>hope</em> to <em>heal</em></h3>
+        <a href="#verify" class="btn btn-blue ho-cta">Start today <span aria-hidden="true">&rarr;</span></a>
       </div>
+    </div>
+    <div class="ho-dots" role="group" aria-label="Choose a photo">
+      {heroSlides.map((x, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show photo ${i + 1}`}></button>)}
+    </div>
+  </section>
+
+  <!-- 1b. Coverage form right under the hero (user pick 2026-11-18) -->
+  <section class="ho-verify" id="verify">
+    <div class="container ho-v-grid">
+      <div class="ho-v-copy">
+        <h2>Check Your Insurance Coverage for Free</h2>
+        <p>We accept all major insurance providers. Send your details and our admissions team will check your benefits and call you back, confidentially.</p>
+      </div>
+      <LeadForm variant="card" formId="hhs-hero" />
     </div>
   </section>
 
@@ -382,23 +387,12 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
 
 <script>
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const hs = [...document.querySelectorAll<HTMLElement>(".hs-slide")];
-  const hsDots = [...document.querySelectorAll<HTMLButtonElement>(".hs-dots button")];
-  let hsCur = 0, hsHold = false;
-  const hsShow = (n: number) => {
-    hsCur = (n + hs.length) % hs.length;
-    hs.forEach((x, i) => { const on = i === hsCur; x.classList.toggle("is-on", on); on ? x.removeAttribute("aria-hidden") : x.setAttribute("aria-hidden", "true"); x.querySelector("a")?.setAttribute("tabindex", on ? "0" : "-1"); });
-    hsDots.forEach((d, i) => d.classList.toggle("is-on", i === hsCur));
-  };
-  hsDots.forEach((d, i) => d.addEventListener("click", () => hsShow(i)));
-  document.querySelectorAll<HTMLButtonElement>(".hs-arrow").forEach((b) => b.addEventListener("click", () => hsShow(hsCur + Number(b.dataset.dir))));
-  const stage = document.querySelector<HTMLElement>(".hs-stage");
-  stage?.addEventListener("mouseenter", () => (hsHold = true)); stage?.addEventListener("mouseleave", () => (hsHold = false));
-  stage?.addEventListener("focusin", () => (hsHold = true)); stage?.addEventListener("focusout", () => (hsHold = false));
-  let hx = 0;
-  stage?.addEventListener("touchstart", (e) => (hx = e.touches[0].clientX), { passive: true });
-  stage?.addEventListener("touchend", (e) => { const dx = e.changedTouches[0].clientX - hx; if (Math.abs(dx) > 40) hsShow(hsCur + (dx < 0 ? 1 : -1)); }, { passive: true });
-  if (!reduce && hs.length > 1) setInterval(() => { if (!hsHold && !document.hidden) hsShow(hsCur + 1); }, 6000);
+  const ho = [...document.querySelectorAll<HTMLElement>(".ho-slide")];
+  const hoDots = [...document.querySelectorAll<HTMLButtonElement>(".ho-dots button")];
+  let hoCur = 0;
+  const hoShow = (n: number) => { hoCur = (n + ho.length) % ho.length; ho.forEach((x, i) => x.classList.toggle("is-on", i === hoCur)); hoDots.forEach((d, i) => d.classList.toggle("is-on", i === hoCur)); };
+  hoDots.forEach((d, i) => d.addEventListener("click", () => hoShow(i)));
+  if (!reduce && ho.length > 1) setInterval(() => { if (!document.hidden) hoShow(hoCur + 1); }, 5500);
   // Sticky mobile button hides while a form is on screen.
   const sticky = document.querySelector<HTMLElement>(".hw-sticky-cta");
   // Hidden while a form or the hero buttons are on screen (they overlapped on phones).
