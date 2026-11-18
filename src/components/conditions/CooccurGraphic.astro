@@ -1,0 +1,18 @@
+---
+// "What is a co-occurring disorder?" graphic (user 2026-11-18: "remove the photo, add a graphic"). The cycle the copy
+// describes: mental health and substance use feed each other; Hopewell treats both together. Simple, ~20 words.
+import Icon from "../Icon.astro";
+---
+<figure class="cog" aria-label="Mental health and substance use feed each other in a cycle; integrated care treats both together">
+  <div class="cog-loop">
+    <svg class="cog-arrows" viewBox="0 0 400 220" aria-hidden="true">
+      <defs><marker id="cog-a" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#b6863c" /></marker></defs>
+      <path d="M120 52 C170 6 230 6 280 52" marker-end="url(#cog-a)" />
+      <path d="M280 168 C230 214 170 214 120 168" marker-end="url(#cog-a)" />
+    </svg>
+    <div class="cog-node" style="--c:#2f76c4"><span><Icon name="brain" class="h-7 w-7" /></span><b>Mental health</b><small>Depression, anxiety, trauma</small></div>
+    <div class="cog-node" style="--c:#5c7c6b"><span><Icon name="link" class="h-7 w-7" /></span><b>Substance use</b><small>Alcohol, drugs, medication</small></div>
+  </div>
+  <p class="cog-mid">Each one feeds the other</p>
+  <figcaption class="cog-foot"><Icon name="check" class="h-5 w-5" />Treated together, by one team</figcaption>
+</figure>
