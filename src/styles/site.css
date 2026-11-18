@@ -1093,3 +1093,23 @@ main.hw .wq-more { display: none; }
   main.hw .rv-gbps li { display: flex; }
   main.hw .rv-gbps li > a { flex: 1; align-content: start; }
 }
+
+/* Homepage hero message slider (client request 2026-11-18). Slides share one grid cell so the hero keeps the height of
+   the tallest slide and nothing jumps; the active one fades in. */
+.hw .hs-slides { display: grid; }
+.hw .hs-slide { grid-area: 1 / 1; align-self: center; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease, visibility 0s linear .6s; }
+.hw .hs-slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .6s ease, transform .6s ease, visibility 0s; }
+.hw .hs-title { margin: 0; font-family: var(--hw-head); font-weight: 800; color: #fff; font-size: clamp(32px, 3.6vw, 50px); line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+.hw .hs-nav { display: flex; align-items: center; gap: 12px; margin-top: 26px; }
+.hw .hs-nav .hero-dots { margin-top: 0; }
+.hw .hs-btn { flex: none; width: 40px; height: 40px; border-radius: 999px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); color: #fff; cursor: pointer; transition: background .2s, border-color .2s; }
+.hw .hs-btn:hover { background: rgba(255,255,255,.2); border-color: #fff; }
+.hw .hs-btn:focus-visible { outline: 3px solid var(--hw-sky); outline-offset: 2px; }
+.hw .hs-pause { margin-left: 4px; }
+.hw .hs-pause .i-play { display: none; }
+.hw .hs.is-paused .hs-pause .i-play { display: block; }
+.hw .hs.is-paused .hs-pause .i-pause { display: none; }
+.hw .hs-nav .hero-dots button { width: 10px; height: 10px; }
+.hw .hs-nav .hero-dots button.is-on { width: 30px; }
+@media (prefers-reduced-motion: reduce) { .hw .hs-slide, .hw .hs-slide.is-active { transition: none; transform: none; } }
+@media (max-width: 640px) { .hw .hs-btn { width: 36px; height: 36px; } .hw .hs-nav { gap: 8px; } }
