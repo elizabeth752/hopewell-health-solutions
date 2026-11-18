@@ -1944,3 +1944,36 @@ main.hw .wq-more { display: none; }
 .hw .wh-feel-img { flex: 0 0 100%; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; margin-bottom: 4px; }
 .hw .wh-feel-list li > .wh-feel-icon { margin-left: 16px; }
 .hw .wh-feel-list li > span:last-child { flex: 1; min-width: 0; padding-right: 16px; }
+
+/* Homepage hero slider (agency review 2026-11-18): photo-led slides, each a short title + one CTA, same layout on every
+   slide; H1 + coverage form fixed beside it on desktop. Phones: slider, then H1; form further down the page. */
+.hw .hero-hs { padding: 0; min-height: 0; display: block; background: var(--hw-night); }
+.hw .hs-wrap { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(380px, .9fr); min-height: 640px; }
+.hw .hs-stage { position: relative; overflow: hidden; background: #0d2f52; touch-action: pan-y; }
+.hw .hs-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .9s ease, visibility 0s linear .9s; }
+.hw .hs-slide.is-on { opacity: 1; visibility: visible; transition: opacity .9s ease, visibility 0s; }
+.hw .hs-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hw .hs-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,22,44,.78) 0%, rgba(0,22,44,.25) 38%, rgba(0,22,44,0) 60%); pointer-events: none; }
+.hw .hs-cap { position: absolute; z-index: 1; left: clamp(22px, 4vw, 56px); right: 22px; bottom: 96px; }
+.hw .hs-t { margin: 0 0 18px; max-width: 16ch; font-family: var(--hw-head); font-weight: 800; color: #fff; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.08; letter-spacing: -0.01em; text-shadow: 0 2px 16px rgba(0,0,0,.35); }
+.hw .hs-nav { position: absolute; z-index: 2; left: clamp(22px, 4vw, 56px); bottom: 30px; display: flex; align-items: center; gap: 12px; }
+.hw .hs-arrow { width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(255,255,255,.6); background: rgba(0,22,44,.35); color: #fff; cursor: pointer; }
+.hw .hs-arrow:hover, .hw .hs-arrow:focus-visible { background: #fff; color: var(--hw-navy); }
+.hw .hs-dots { display: flex; gap: 8px; }
+.hw .hs-dots button { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: rgba(255,255,255,.55); cursor: pointer; transition: width .25s, background .25s; }
+.hw .hs-dots button.is-on { width: 30px; background: #fff; }
+.hw .hs-side { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 3.5vw, 52px) clamp(24px, 3vw, 48px); }
+.hw .hs-side h1 { color: #fff; font-size: clamp(30px, 2.6vw, 40px); line-height: 1.12; }
+.hw .hs-sub { margin: 12px 0 0; color: #c9d6e4; font-size: 17px; line-height: 1.55; }
+.hw .hs-side .hero-form { margin-top: 22px; }
+@media (min-width: 1600px) { .hw .hs-wrap { grid-template-columns: minmax(0, 1.5fr) minmax(440px, .9fr); } }
+@media (max-width: 999px) {
+  .hw .hs-wrap { grid-template-columns: 1fr; min-height: 0; }
+  .hw .hs-stage { aspect-ratio: 4 / 3.4; }
+  .hw .hs-cap { bottom: 78px; left: 18px; }
+  .hw .hs-t { font-size: clamp(26px, 7vw, 36px); margin-bottom: 14px; }
+  .hw .hs-nav { left: 18px; bottom: 20px; }
+  .hw .hs-side { padding: 26px 18px 34px; }
+  .hw .hs-side h1 { font-size: clamp(26px, 6.6vw, 32px); }
+}
+@media (prefers-reduced-motion: reduce) { .hw .hs-slide, .hw .hs-slide.is-on { transition: none; } }
