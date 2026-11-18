@@ -146,7 +146,8 @@ const schema = {
     <section class="section is-stone">
       <div class="container">
         <div class="sec-head"><h2>Therapy beyond the office chair</h2><p class="lede">Pairing mental and physical health, and the calm that animals and the outdoors bring.</p></div>
-        <div class="tx-feature">
+        <div class="tx-pair">
+        <div class="tx-feature is-top">
           <img src={T + "dog.webp"} alt="Pet-Assisted Therapy at Hopewell Health Solutions" loading="lazy" />
           <div>
             <h3 style="font-size:26px">Pet-Assisted Therapy</h3>
@@ -154,12 +155,13 @@ const schema = {
             <p>Building a bond with an animal can help people develop self-worth and trust, stabilize emotions, and improve communication, self-regulation, and socialization.</p>
           </div>
         </div>
-        <div class="tx-feature is-top" style="margin-top:18px">
+        <div class="tx-feature is-top">
           <img src={P + "westbrook-beach-walk.webp"} alt="Two people walking together on the beach near Hopewell's Westbrook office" width="736" height="982" loading="lazy" style="object-position:center 38%" />
           <div>
             <h3 style="font-size:26px">Walk-Talk Therapy</h3>
             <p>Just like it sounds: the client and therapist are outside walking during therapy instead of sitting in an office. Many clients find it a more relaxed environment than the therapy office, with added mental and physical health benefits.</p>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -199,10 +201,6 @@ const schema = {
             <img src="/Assets/Blogs/anxiety-coping-strategies-expert-tips-for-finding-calm.webp" alt="A woman pausing to breathe and stay present" width="1200" height="675" loading="lazy" />
             <div class="mc-body"><span class="mc-ico" style="--c:#5c7c6b"><Icon name="cloud" /></span><h3>Mindfulness</h3><p>The psychological process of purposely bringing your attention to experiences in the present moment without judgment, developed through the practice of meditation and other training. It’s a core skill in <a class="inl" href="/treatment-methods/dbt/">DBT</a>.</p></div>
           </article>
-        </div>
-        <div class="mc-apps">
-          <p class="mc-apps-h">Apps we recommend</p>
-          <ul>{apps.map(([name, img]) => <li><img src={img} alt="" loading="lazy" /><span>{name}</span></li>)}</ul>
         </div>
       </div>
     </section>
