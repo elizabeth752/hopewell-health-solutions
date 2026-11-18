@@ -1,0 +1,52 @@
+---
+// "What is anxiety?" graphic (user 2026-11-18: "a graphic here instead of the photo"). Built from the section's own copy:
+// how anxiety shows up in the mind and in the body, and the common types. Pure HTML/SVG, no image file.
+import Icon from "../Icon.astro";
+const mind = [["cloud", "Constant worry"], ["alert", "Dread about what’s ahead"], ["brain", "Hard to focus or switch off"]];
+const body = [["heart", "Racing heart"], ["bolt", "Muscle tension"], ["refresh", "Restlessness, poor sleep"]];
+const types = ["Generalized anxiety", "Panic disorder", "Social anxiety", "Phobias"];
+---
+<figure class="ax" aria-label="How anxiety shows up in the mind and the body, and its common types">
+  <div class="ax-core">
+    <svg class="ax-rings" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" /><circle cx="100" cy="100" r="74" /><circle cx="100" cy="100" r="52" /></svg>
+    <span class="ax-core-t">Anxiety</span>
+    <span class="ax-core-s">mind &amp; body</span>
+  </div>
+  <div class="ax-cols">
+    <div class="ax-col">
+      <p class="ax-h">In the mind</p>
+      <ul>{mind.map(([i, t]) => <li><span class="ax-ico"><Icon name={i} class="h-[18px] w-[18px]" /></span>{t}</li>)}</ul>
+    </div>
+    <div class="ax-col">
+      <p class="ax-h">In the body</p>
+      <ul>{body.map(([i, t]) => <li><span class="ax-ico is-warm"><Icon name={i} class="h-[18px] w-[18px]" /></span>{t}</li>)}</ul>
+    </div>
+  </div>
+  <div class="ax-types">
+    <p class="ax-h">Common types</p>
+    <ol>{types.map((t) => <li>{t}</li>)}</ol>
+  </div>
+  <figcaption class="ax-foot"><Icon name="check" class="h-4 w-4" />Highly treatable with therapy, medication and structured programs</figcaption>
+</figure>
+
+<style>
+  .ax { margin: 0; position: relative; overflow: hidden; padding: clamp(22px, 3vw, 32px); border-radius: 28px; background: linear-gradient(160deg, #0b2f55 0%, #12406f 100%); color: #fff; box-shadow: 0 26px 60px rgba(0,29,55,.18); display: grid; gap: 18px; }
+  .ax-core { position: relative; display: grid; place-items: center; justify-self: center; width: 150px; height: 150px; text-align: center; }
+  .ax-rings { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: rgba(156,195,234,.35); stroke-width: 1.5; animation: ax-pulse 4s ease-in-out infinite; }
+  .ax-core-t { position: relative; font-family: var(--hw-head); font-weight: 800; font-size: 24px; line-height: 1; }
+  .ax-core-s { position: absolute; top: 60%; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: #9cc3ea; }
+  .ax-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .ax-col { padding: 16px; border-radius: 18px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); }
+  .ax-h { margin: 0 0 10px; font-family: var(--hw-head); font-weight: 800; font-size: 15px; color: #9cc3ea; }
+  .ax ul, .ax ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .ax li { display: flex; align-items: center; gap: 10px; font-size: 14.5px; line-height: 1.35; }
+  .ax-ico { flex: none; width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(47,118,196,.45); color: #fff; }
+  .ax-ico.is-warm { background: rgba(224,181,106,.35); }
+  .ax-types ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .ax-types li { padding: 10px 12px; border-radius: 12px; background: #fff; color: var(--hw-navy); font-weight: 700; font-size: 14px; justify-content: center; text-align: center; }
+  .ax-foot { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 600; color: #dce6f1; text-align: center; }
+  .ax-foot :global(svg) { color: #7fd3a8; flex: none; }
+  @keyframes ax-pulse { 0%, 100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.05); opacity: .6; } }
+  @media (prefers-reduced-motion: reduce) { .ax-rings { animation: none; } }
+  @media (max-width: 420px) { .ax-cols { grid-template-columns: 1fr; } .ax-core { width: 128px; height: 128px; } }
+</style>

@@ -1,4 +1,5 @@
 ---
+import AnxietyGraphic from "./AnxietyGraphic.astro";
 import ConsentMap from "../ConsentMap.astro";
 // What We Treat page renderer (2026 redesign, Corner Canyon layout system). Each condition page passes its own copy,
 // verbatim from the previous page, as data: hero, content blocks (in page order), FAQs, insurance/locations/CTA text.
@@ -73,6 +74,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
       if (b.type === "whatis") return (
         <section class="section is-white cd-what">
           <div class="container split">
+            {b.graphic === "anxiety" ? <AnxietyGraphic /> : (
             <figure class="cd-what-media">
               <img src={b.img} alt={b.alt} width="1200" height="900" loading="lazy" />
               {b.list && (
@@ -82,6 +84,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
                 </figcaption>
               )}
             </figure>
+            )}
             <div>
               <h2>{b.h2}</h2>
               {b.paras.map((p, i) => <p class="lede" style={i === 0 ? "margin-top:18px" : "margin-top:14px"} set:html={p} />)}
