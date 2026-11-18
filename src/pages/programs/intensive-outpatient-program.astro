@@ -33,8 +33,8 @@ const heroUsps = [
   "8–12 weeks, <a class='inl' href='/treatment-methods/dbt/'>DBT</a>-based",
 ];
 const tracks = [
-  { t: "Adult Mental Health IOP", d: "Mental health and substance use treated together, by one team.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: "/Assets/service/what-is-adhd.webp", bar: "#0b2f55" },
-  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: "/Assets/AdobeStock_542909901.webp", bar: "#265489" },
+  { t: "Adult Mental Health IOP", d: "Mental health and substance use treated together, by one team.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: "/Assets/Blogs/opt/php-vs-iop-which-level-of-care-is-right-for-you.webp", bar: "#0b2f55" },
+  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp", bar: "#265489" },
   { t: "Teen IOP", d: "After-school groups for teens, with family sessions and school coordination.", age: "Ages 13–17", sched: "Mon–Thu · 5:00–8:00 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-iop/", img: P + "teen-iop-outside.webp", bar: "#2f76c4" },
   { t: "Tween IOP", d: "Play, skills and parent coaching for younger kids, after school.", age: "Ages 8–12", sched: "Mon–Thu · 4:30–7:30 PM", loc: "1420 Main St, Glastonbury", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", bar: "#5c7c6b" },
   { t: "Women's Wellness IOP", d: "Women-only, DBT-based care for anxiety, depression and life transitions.", age: "Women 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp", bar: "#b6863c" },
@@ -88,7 +88,7 @@ const faqs: [string, string][] = [
 const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxUQ", "S_CyYMDqEio", "vlKx8J6hykA"].includes(v.yt));
 ---
 
-<Base title="Intensive Outpatient Program (IOP) in CT | Hopewell" description="In-person IOP for adults, teens and women in Glastonbury, South Glastonbury and Westbrook, CT. Structured care that fits around work or school. Check coverage." image={P + "iop-group-room-lights.webp"}>
+<Base title="Intensive Outpatient Program (IOP) in CT | Hopewell" description="In-person IOP for adults, teens and women in Glastonbury, South Glastonbury and Westbrook, CT. Structured care that fits around work or school. Check coverage." image="/Assets/AdobeStock_340805112-1743711281010.webp">
   <Header />
   <main class="hw" data-pgx>
     <ServiceHero
@@ -97,13 +97,32 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
       lede="Structured day and evening care in Glastonbury, South Glastonbury and Westbrook for tweens, teens, women and adults, without an overnight stay."
       bullets={heroUsps}
       facts={[{ icon: "star", text: "4.8 · 368 Google reviews" }, { icon: "calendar", text: "Mon–Thu · 8–12 weeks" }]}
-      image={P + "iop-group-room-lights.webp"}
+      image="/Assets/AdobeStock_340805112-1743711281010.webp"
     >
       <p style="margin-top:18px;font-size:14.5px;color:#b9cbe0">Clinically reviewed by <a class="inl" href="/provider/kristine-a-schlichting-ph-d/">Kristine Schlichting, PhD</a></p>
     </ServiceHero>
     <Creds />
 
-    <Split heading="What is an Intensive Outpatient Program?" img={P + "iop-group-session.webp"} alt="Intensive outpatient program group in Glastonbury, CT" img2={P + "php-group-room.webp"} alt2="A Hopewell group therapy room">
+    <Split heading="What is an Intensive Outpatient Program?">
+      {/* IOP explainer graphic (user 2026-11-18: "use a graphic here", replaces the two-photo carousel): what an IOP
+          combines, the IOP rhythm, and the prevalence figures from the copy. The "middle step" ladder lives lower down (iopfit). */}
+      <div slot="media" class="iw" role="img" aria-label="What an IOP combines: group therapy and skills practice, individual counseling, psychiatric medication management and experiential therapies, about 3 hours a day, 4 days a week, home every night. Mental health conditions affect nearly 23% of adults and 17% of children aged 6 to 17 in the U.S.">
+        <div class="iw-hub">
+          <span class="iw-hub-i"><Icon name="clock" class="h-7 w-7" /></span>
+          <p><strong>3 hours a day · 4 days a week</strong><span>Home every night, no overnight stay</span></p>
+        </div>
+        <ul class="iw-tiles" aria-hidden="true">
+          <li class="c1"><span><Icon name="users" class="h-6 w-6" /></span>Group therapy &amp; skills practice</li>
+          <li class="c2"><span><Icon name="chat" class="h-6 w-6" /></span>Individual counseling</li>
+          <li class="c3"><span><Icon name="pill" class="h-6 w-6" /></span>Psychiatric medication management</li>
+          <li class="c4"><span><Icon name="sparkles" class="h-6 w-6" /></span>Experiential therapies</li>
+        </ul>
+        <div class="iw-stats" aria-hidden="true">
+          <p><strong>23%</strong><span>of U.S. adults</span></p>
+          <p><strong>17%</strong><span>of children aged 6–17</span></p>
+          <small>live with a mental health condition</small>
+        </div>
+      </div>
       <p><strong>A higher level of care, on your schedule.</strong> Mental health conditions are common, affecting nearly 23% of adults and 17% of children aged 6–17 in the United States. An Intensive Outpatient Program (IOP) offers structured therapeutic care for those who need <a class="inl" href="/post/iop-vs-outpatient-therapy-which-option-is-right-for-you/">more than weekly therapy</a>, without an overnight stay.</p>
       <p>At Hopewell Health Solutions, our IOPs combine individual and group counseling, skills-based psychotherapy, psychiatric <a class="inl" href="/programs/medication-management/">medication management</a>, and experiential therapies, so you can keep your routine at home, work, or school while you heal.</p>
     </Split>
@@ -114,9 +133,12 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
           <h2>Choose Your IOP Track</h2>
           <p class="lede">Find your fit. Seven specialty tracks, for adults, addiction, teens, tweens, women and first responders, most meeting Monday–Thursday for 8–12 weeks. Not sure which fits? Our intake team will help you decide.</p>
         </div>
-        <ul class="tk-grid">
-          {tracks.map((tr) => (
-            <li class="tk" style={`--bar:${tr.bar}`}>
+        {/* Tracks carousel (user 2026-11-18): one scroll-snap row on all widths, ~3.5 cards on desktop / ~1.15 on phones,
+            arrows + dots in the PhotoSlider (.ps-btn) look, auto-advance every 5s (paused on hover/focus/touch, off for reduced motion). */}
+        <div class="tk-wrap" data-tk-root role="region" aria-roledescription="carousel" aria-label="IOP tracks">
+        <ul class="tk-grid tk-carousel" data-tk tabindex="0">
+          {tracks.map((tr, i) => (
+            <li class="tk" style={`--bar:${tr.bar}`} aria-roledescription="slide" aria-label={`${i + 1} of ${tracks.length}`}>
               <a class="tk-media" href={tr.href} tabindex="-1" aria-hidden="true"><img src={tr.img} alt="" width="1200" height="900" loading="lazy" /></a>
               <div class="tk-body">
                 <h3><a href={tr.href}>{tr.t}</a></h3>
@@ -131,9 +153,57 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
             </li>
           ))}
         </ul>
+        <div class="tk-nav">
+          <button type="button" class="tk-btn" data-tk-dir="-1" aria-label="Previous track"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+          <div class="tk-dots">{tracks.map((tr, i) => <button type="button" class:list={[i === 0 && "is-on"]} aria-label={`Show track ${i + 1}: ${tr.t}`} />)}</div>
+          <button type="button" class="tk-btn" data-tk-dir="1" aria-label="Next track"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+        </div>
         </div>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll<HTMLElement>("[data-tk-root]").forEach((root) => {
+        const track = root.querySelector<HTMLElement>("[data-tk]")!;
+        const cards = [...track.children] as HTMLElement[];
+        const dots = [...root.querySelectorAll<HTMLButtonElement>(".tk-dots button")];
+        const step = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : track.clientWidth);
+        const maxLeft = () => track.scrollWidth - track.clientWidth;
+        const current = () => (track.scrollLeft >= maxLeft() - 4 ? cards.length - 1 : Math.round(track.scrollLeft / step()));
+        const go = (i: number) => {
+          const n = (i + cards.length) % cards.length;
+          track.scrollTo({ left: Math.min(n * step(), maxLeft()), behavior: "smooth" });
+        };
+        const sync = () => { const c = current(); dots.forEach((d, i) => { d.classList.toggle("is-on", i === c); d.setAttribute("aria-current", i === c ? "true" : "false"); }); };
+        track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+        root.querySelectorAll<HTMLButtonElement>("[data-tk-dir]").forEach((b) => b.addEventListener("click", () => {
+          const dir = Number(b.dataset.tkDir);
+          const atEnd = track.scrollLeft >= maxLeft() - 4;
+          go(dir > 0 && atEnd ? 0 : dir < 0 && track.scrollLeft <= 4 ? cards.length - 1 : current() + dir);
+        }));
+        dots.forEach((d, i) => d.addEventListener("click", () => go(i)));
+        track.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") { e.preventDefault(); go(current() + 1); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); go(current() - 1); }
+        });
+        sync();
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let paused = false, visible = false, resume = 0;
+        const pause = () => { paused = true; clearTimeout(resume); };
+        const unpause = (ms = 0) => { clearTimeout(resume); resume = window.setTimeout(() => (paused = false), ms); };
+        root.addEventListener("mouseenter", pause);
+        root.addEventListener("mouseleave", () => unpause());
+        root.addEventListener("focusin", pause);
+        root.addEventListener("focusout", () => { if (!root.contains(document.activeElement)) unpause(); });
+        root.addEventListener("touchstart", pause, { passive: true });
+        root.addEventListener("touchend", () => unpause(4000), { passive: true });
+        new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 }).observe(root);
+        setInterval(() => {
+          if (paused || !visible || document.hidden) return;
+          go(track.scrollLeft >= maxLeft() - 4 ? 0 : current() + 1);
+        }, 5000);
+      });
+    </script>
 
     <Prose startTone={0} blocks={[
       { id: "who-iop-is-for", h2: "Who an Intensive Outpatient Program Is For",
@@ -142,7 +212,7 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
           "At Hopewell, IOP is built for real schedules. Adults can choose a morning (9 AM–12 PM) or evening (5–8 PM) track, <a class='inl' href='/programs/teen-iop/'>teens</a> and <a class='inl' href='/programs/tween-iop/'>tweens</a> meet after school, and the program runs Monday through Thursday so Fridays and weekends stay open for work, family and rest. Most people keep their job or stay in school throughout treatment.",
           "If you’re not sure IOP is the right level, that’s what the assessment is for. Our admissions team looks at your symptoms, safety, schedule and goals, then recommends a starting point, which might be IOP, PHP or weekly <a class='inl' href='/programs/counseling/'>counseling</a>. You can compare every option on our <a class='inl' href='/programs/'>programs page</a>.",
         ],
-        aside: { type: "points", title: "IOP is often a fit when…", items: [["refresh", "Weekly therapy isn’t enough anymore"], ["alert", "Symptoms affect work, school or relationships"], ["home", "You’re stepping down from a hospital stay or PHP"], ["calendar", "You need care that fits around daily life"]] } },
+        aside: { type: "iopfit" } },
       { id: "iop-for-depression", h2: "IOP for Depression in Connecticut",
         paras: [
           "Depression is one of the most common reasons people join an IOP at Hopewell. When low mood, exhaustion, hopelessness or loss of interest start to crowd out daily life, and <a class='inl' href='/post/iop-for-depression-in-connecticut-when-outpatient-treatment-is-enough/'>weekly therapy hasn’t been enough</a> to turn things around, an intensive outpatient program adds the structure and skills practice that can help you regain momentum.",
@@ -190,3 +260,31 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
   </main>
   <Footer />
 </Base>
+
+<style>
+  /* IOP explainer graphic in the "What is an IOP?" split (2026-11-18). Navy card, arc corner like the split photos. */
+  .iw { width: 100%; align-self: center; display: grid; gap: 16px; padding: clamp(22px, 3vw, 34px); border-radius: 26px; border-top-left-radius: 110px; background: var(--hw-navy, #0b2f55); color: #dce6f1; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
+  .iw-hub { display: flex; align-items: center; gap: 14px; padding: 16px 18px 16px 16px; margin-left: clamp(24px, 5vw, 56px); border-radius: 18px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-left: 4px solid #e0b56a; }
+  .iw-hub-i { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #e0b56a; color: var(--hw-navy, #0b2f55); }
+  .iw-hub p { display: grid; gap: 2px; margin: 0; }
+  .iw-hub strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(17px, 1.6vw, 20px); color: #fff; line-height: 1.25; }
+  .iw-hub span { font-size: 14px; color: #b9cbe0; }
+  .iw-tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .iw-tiles li { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 16px; background: #fff; color: var(--hw-navy, #0b2f55); font-family: var(--hw-head); font-weight: 800; font-size: 15.5px; line-height: 1.3; }
+  .iw-tiles li span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; }
+  .iw-tiles .c1 span { background: #e3eefa; color: #265489; }
+  .iw-tiles .c2 span { background: #fbf0dc; color: #a8742a; }
+  .iw-tiles .c3 span { background: #e4f0ea; color: #3f7a5f; }
+  .iw-tiles .c4 span { background: #efe9f7; color: #6b55a0; }
+  .iw-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
+  .iw-stats p { display: flex; align-items: baseline; gap: 8px; margin: 0; }
+  .iw-stats strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(26px, 2.6vw, 32px); color: #e0b56a; line-height: 1; }
+  .iw-stats span { font-size: 14px; color: #dce6f1; line-height: 1.3; }
+  .iw-stats small { grid-column: 1 / -1; font-size: 13px; color: #9fb4cc; }
+  @media (max-width: 480px) {
+    .iw { border-top-left-radius: 64px; padding: 20px 16px; }
+    .iw-hub { margin-left: 18px; }
+    .iw-tiles { gap: 10px; } .iw-tiles li { padding: 14px 12px; font-size: 14.5px; }
+    .iw-stats { grid-template-columns: 1fr; }
+  }
+</style>

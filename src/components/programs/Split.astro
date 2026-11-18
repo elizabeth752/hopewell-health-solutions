@@ -1,16 +1,17 @@
 ---
 // Text + photo section (Corner Canyon split). Photo gets an arc corner; `reverse` puts the photo on the right.
 // `img2` (and `more`) turn the photo into a carousel that shows each whole photo (user 2026-11-17: no cropped
-// two-photo stacks). Body goes in the default slot.
-interface Props { heading: string; img: string; alt: string; img2?: string; alt2?: string; more?: { src: string; alt: string }[]; reverse?: boolean; tone?: "white" | "stone" | "mist"; id?: string; pos?: string }
+// two-photo stacks). Body goes in the default slot. A `media` slot (2026-11-18) replaces the photo with a graphic.
+interface Props { heading: string; img?: string; alt?: string; img2?: string; alt2?: string; more?: { src: string; alt: string }[]; reverse?: boolean; tone?: "white" | "stone" | "mist"; id?: string; pos?: string }
 const { heading, img, alt, img2, alt2 = "", more = [], reverse = false, tone = "white", id, pos = "center" } = Astro.props;
 import PhotoSlider from "../hw/PhotoSlider.astro";
-const photos = [{ src: img, alt }, ...(img2 ? [{ src: img2, alt: alt2 }] : []), ...more];
+const hasGraphic = Astro.slots.has("media");
+const photos = [...(img ? [{ src: img, alt: alt ?? "" }] : []), ...(img2 ? [{ src: img2, alt: alt2 }] : []), ...more];
 ---
 <section class={`section is-${tone}`} id={id}>
   <div class:list={["container pg-split", reverse && "is-rev"]}>
-    <div class:list={["pg-media", photos.length > 1 && "has-slider"]}>
-      {photos.length > 1
+    <div class:list={["pg-media", !hasGraphic && photos.length > 1 && "has-slider", hasGraphic && "has-graphic"]}>
+      {hasGraphic ? <slot name="media" /> : photos.length > 1
         ? <PhotoSlider photos={photos} arc={reverse ? "right" : "left"} label={`Photos: ${heading.replace(/<[^>]+>/g, "")}`} />
         : <img src={img} alt={alt} width="1200" height="900" loading="lazy" style={`object-position:${pos}`} />}
     </div>

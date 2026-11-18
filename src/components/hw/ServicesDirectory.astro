@@ -1,0 +1,55 @@
+---
+// "Conditions & Treatments" directory (user 2026-11-18: "design this better"): three grouped columns instead of a grid of
+// loose chips. Each column has a coloured header (icon + group name) and a clean list of links; the current page is
+// left out. Shared by condition pages, the team page and provider profiles.
+import Icon from "../Icon.astro";
+interface Props { heading?: string; lede?: string; tone?: "white" | "stone"; exclude?: string }
+const { heading = "Conditions & Treatments", lede, tone = "white", exclude = Astro.url.pathname } = Astro.props;
+const groups = [
+  { t: "Programs", icon: "users", c: "#265489", items: [
+    ["Intensive Outpatient Program (IOP)", "/programs/intensive-outpatient-program/"],
+    ["Partial Hospitalization (PHP)", "/programs/partial-hospitalization-program/"],
+    ["Counseling", "/programs/counseling/"],
+    ["Medication Management", "/programs/medication-management/"],
+  ] },
+  { t: "Treatments & testing", icon: "brain", c: "#5c7c6b", items: [
+    ["TMS Therapy", "/treatment-methods/tms/"],
+    ["HHS Therapeutic Treatments", "/treatment-methods/therapeutic-treatments/"],
+    ["ADHD Testing", "/treatment-methods/adhd-testing/"],
+    ["Neuropsychological Testing", "/treatment-methods/neuropsychological-testing/"],
+  ] },
+  { t: "Addiction care", icon: "link", c: "#b6863c", items: [
+    ["Addiction & Substance Use (S.U.D.)", "/what-we-treat/substance-use-disorder/"],
+    ["Alcohol Addiction", "/what-we-treat/alcohol/"],
+    ["Drug Addiction", "/what-we-treat/drug/"],
+    ["Prescription Drug Addiction", "/what-we-treat/prescription-drugs/"],
+  ] },
+].map((g) => ({ ...g, items: g.items.filter(([, h]) => h !== exclude) }));
+---
+<section class={`section is-${tone} sd`} id="services">
+  <div class="container">
+    <div class="sec-head"><h2 set:html={heading} />{lede && <p class="lede" set:html={lede} />}</div>
+    <div class="sd-grid">
+      {groups.map((g) => (
+        <div class="sd-col" style={`--c:${g.c}`}>
+          <p class="sd-h"><span class="sd-ico"><Icon name={g.icon} class="h-5 w-5" /></span>{g.t}</p>
+          <ul>{g.items.map(([t, h]) => <li><a href={h}><span>{t}</span><Icon name="arrow" class="h-4 w-4" /></a></li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sd-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .sd-col { border-radius: 22px; overflow: hidden; background: #fff; border: 1px solid var(--hw-line); box-shadow: 0 14px 34px rgba(0,29,55,.06); }
+  .sd-h { margin: 0; display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: var(--c); color: #fff; font-family: var(--hw-head); font-weight: 800; font-size: 18px; }
+  .sd-ico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,.18); }
+  .sd-col ul { list-style: none; margin: 0; padding: 6px 8px 10px; }
+  .sd-col li + li { border-top: 1px solid var(--hw-line); }
+  .sd-col a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 12px; color: var(--hw-navy); font-weight: 700; font-size: 16px; text-decoration: none; border-radius: 12px; transition: background .2s, color .2s; }
+  .sd-col a :global(svg) { flex: none; color: var(--c); transition: transform .2s; }
+  .sd-col a:hover { background: var(--hw-stone); color: var(--c); }
+  .sd-col a:hover :global(svg) { transform: translateX(3px); }
+  @media (max-width: 999px) { .sd-grid { grid-template-columns: minmax(0, 1fr); } }
+</style>

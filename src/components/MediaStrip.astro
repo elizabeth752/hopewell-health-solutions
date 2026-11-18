@@ -2,7 +2,8 @@
 // Variation 1: "As featured in & on" press-logo strip — seamless infinite marquee.
 // Props:
 //   bg       — "white" | "crema"
-//   heading  — override the eyebrow label
+//   heading  — override the caption (sentence case, sits beside the logos on desktop and under them on phones;
+//              not an uppercase kicker: the site's no-eyebrow rule, 2026-11-18)
 //   showLink — show the "See all press →" link (false on the Media page itself)
 const { bg = "white", heading = "As featured in & on", showLink = true, compact = false } = Astro.props;
 const logos = [
@@ -19,11 +20,12 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 ---
 <section class:list={[bgClass, compact ? "border-b border-line" : "border-y border-line"]}>
   <div class:list={["mx-auto max-w-6xl px-5", compact ? "py-5" : "py-8"]}>
-    <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
+    <div class="flex flex-col-reverse items-center gap-3 sm:flex-row sm:gap-8">
+    <p class="ms-cap shrink-0 text-center text-sm text-muted sm:text-left">{heading}</p>
 
     {/* Two identical groups; track scrolls exactly one group width → seamless.
         Spacing is driven by margin-right (not flex gap) so the loop seam is gapless. */}
-    <div class:list={["ms-mask overflow-hidden", compact ? "mt-3" : "mt-6"]}>
+    <div class="ms-mask w-full min-w-0 flex-1 overflow-hidden">
       <div class="ms-track flex w-max">
         <ul class="flex shrink-0 items-center">
           {logos.map(([name, src]) => (
@@ -36,6 +38,7 @@ const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
           ))}
         </ul>
       </div>
+    </div>
     </div>
 
     {showLink && (

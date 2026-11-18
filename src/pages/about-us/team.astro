@@ -1,4 +1,5 @@
 ---
+import ServicesDirectory from "../../components/hw/ServicesDirectory.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
@@ -172,14 +173,7 @@ const tones = ["is-white", "is-stone"];
     <Faq faqs={faqs} heading="Our team, common questions" tone="white" />
 
     <!-- Conditions & treatments -->
-    <section class="section is-white" id="services">
-      <div class="container">
-        <div class="sec-head"><h2>Conditions &amp; Treatments</h2><p class="lede">What our clinicians treat and offer across our Connecticut offices.</p></div>
-        <div class="ab-svc">
-          {services.map((s) => <a href={s.href}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-5 w-5" /></a>)}
-        </div>
-      </div>
-    </section>
+    <ServicesDirectory lede="What our clinicians treat and offer across our Connecticut offices." />
 
     <Insurance />
     <ClosingCta heading="Care from people who truly listen" lede="Our team is here to walk alongside you. Reach out to Hopewell Health Solutions today, confidentially, with no pressure, and we’ll match you with the right therapist or psychiatric provider in Connecticut." />

@@ -115,13 +115,13 @@ faqs.push(...faqTail);
 const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: briefGroups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---
 
-<Base title="Types of Therapy & Treatment in CT: TMS, EMDR, DBT" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices." canonical={canonical} image={P + "sg-family-room.webp"}>
+<Base title="Types of Therapy & Treatment in CT: TMS, EMDR, DBT" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices." canonical={canonical} image="/Assets/Blogs/mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(list)} />
   <main class="hw">
     <!-- Hero (Corner Canyon hub pattern, same as What We Treat): navy, H1 + facts, jump links -->
     <section class="wq-hero has-photo">
-      <img class="sv-bg" src={P + "sg-family-room.webp"} alt="" width="1400" height="1050" fetchpriority="high" />
+      <img class="sv-bg" src="/Assets/Blogs/mood-swings-vs-a-mood-disorder-and-what-iop-does-about-it.webp" alt="" width="1024" height="529" fetchpriority="high" />
       <div class="sv-scrim" aria-hidden="true"></div>
       <div class="container wq-hero-grid">
         <div>

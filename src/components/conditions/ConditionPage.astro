@@ -1,4 +1,5 @@
 ---
+import ServicesDirectory from "../hw/ServicesDirectory.astro";
 import AnxietyGraphic from "./AnxietyGraphic.astro";
 import ConsentMap from "../ConsentMap.astro";
 // What We Treat page renderer (2026 redesign, Corner Canyon layout system). Each condition page passes its own copy,
@@ -131,6 +132,27 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
         let v = b.variant ?? ["rows", "strip", "navysplit"][cardN++ % 3];
         if (v === "strip" && b.items.length > 5) v = "rows";
         const title = (c) => c.href ? <a href={c.href}>{c.t}</a> : c.t;
+        // Drug types (user 2026-11-18: "do better here"): three equal cards, colour band, what it is, warning signs as
+        // bullets, then how we treat it with inline links.
+        if (v === "drugs") return (
+          <section class="section is-white cd-drugs-sec">
+            <div class="container">
+              <div class="sec-head"><h2>{b.h2}</h2>{b.lede && <p class="lede" set:html={b.lede} />}</div>
+              <ul class="cd-drugs">
+                {b.items.map((c) => (
+                  <li style={`--c:${c.c}`}>
+                    <div class="cd-drugs-top"><span class="cd-drugs-ico"><Icon name={c.icon} class="h-6 w-6" /></span><h3>{c.t}</h3></div>
+                    <p class="cd-drugs-what">{c.what}</p>
+                    <p class="cd-drugs-h">Signs it may be a problem</p>
+                    <ul class="cd-drugs-signs">{c.signs.map((x) => <li><Icon name="check" class="h-4 w-4" />{x}</li>)}</ul>
+                    <p class="cd-drugs-help" set:html={c.help} />
+                  </li>
+                ))}
+              </ul>
+              {b.foot && <p class="sec-foot cd-foot" set:html={b.foot} />}
+            </div>
+          </section>
+        );
         if (v === "rows") return (
           <section class="section is-white cd-rows-sec">
             <div class="container">
@@ -217,40 +239,12 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     {team.length > 0 && <Team slugs={team} heading={`Clinicians Who Treat ${short}`} lede={`Board-certified prescribers, psychologists and therapists across Connecticut. Real credentials, real names. <a class="inl" href="/about-us/team/">Meet our full team</a>.`} />}
 
     <VideoCarousel videos={vids} heading="Stories of Hope, in Their Own Words" lede="Hopewell clients and their families share what treatment was like. Watch the <a class='inl' href='/podcast/'>Hope, Health &amp; Healing podcast</a> for the full conversations." />
-    {addiction ? (
-      <section class="section is-mist" id="locations">
-        <div class="container">
-          <div class="sec-head"><h2>Where we treat addiction in Connecticut</h2><p class="lede" set:html={locLede} /></div>
-          <div class="cd-offices">
-            {addOffices.map((o) => (
-              <article class="cd-office">
-                <img src={officePhoto[o.slug]} alt={`Hopewell Health Solutions ${o.name} office`} width="1200" height="900" loading="lazy" />
-                <div class="cd-office-body">
-                  <span class="cd-office-tag">Mental health &amp; addiction care</span>
-                  <h3><a href={`/location/${o.slug}/`}>{o.name}</a></h3>
-                  <p class="cd-office-row"><Icon name="pin" class="h-5 w-5" />{o.street}, {o.city}, CT {o.zip}</p>
-                  {o.hours && <p class="cd-office-row"><Icon name="clock" class="h-5 w-5" />{o.hours}</p>}
-                  <p class="cd-office-links"><a class="inl" href={`/location/${o.slug}/`}>Office details</a><a class="inl" href={mapsHref(o)} target="_blank" rel="noopener">Get directions</a></p>
-                </div>
-                <ConsentMap src={o.map} title={`Map of Hopewell Health Solutions, ${o.name}`} address={`${o.street}, ${o.city}, CT ${o.zip}`} class="cd-map-frame" />
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-    ) : <Locations heading="Our locations" lede={locLede} />}
+    {addiction ? <Locations heading="Where we treat addiction in Connecticut" lede={locLede} addictionOnly /> : <Locations heading="Our locations" lede={locLede} />}
     <Insurance heading={insurance.heading} lede={insurance.lede} />
     <Reviews tone="white" />
     <Faq faqs={faqs} heading={faqHeading} schema={false} />
 
-    <section class="section is-white cd-services">
-      <div class="container">
-        <div class="sec-head"><h2>Conditions &amp; Treatments</h2></div>
-        <ul class="cd-svc" style={`--cols:${svcCols}`}>
-          {svcList.map((s) => <li><a href={s.href}><span class="icon-badge"><Icon name={s.icon} /></span>{s.t}<Icon name="arrow" class="h-4 w-4 cd-svc-go" /></a></li>)}
-        </ul>
-      </div>
-    </section>
+    <ServicesDirectory />
 
     <ClosingCta heading={cta.h2} lede={cta.p} />
   </main>

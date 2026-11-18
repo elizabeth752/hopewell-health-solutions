@@ -22,9 +22,9 @@ const heroUsps = [
   "Often heals in less time",
 ];
 const stats = [
-  ["84–90", "%", "of single-trauma victims no longer had PTSD after three 90-minute sessions"],
-  ["100", "%", "of single-trauma victims PTSD-free after six 50-minute sessions (Kaiser Permanente study)"],
-  ["77", "%", "of combat veterans free of PTSD in 12 sessions"],
+  ["84–90", "%", "of single-trauma victims no longer had PTSD", 87, "3 sessions · 90 min"],
+  ["100", "%", "of single-trauma victims PTSD-free (Kaiser Permanente study)", 100, "6 sessions · 50 min"],
+  ["77", "%", "of combat veterans free of PTSD", 77, "12 sessions"],
 ];
 // The standard eight phases of the EMDR protocol (EMDR International Association).
 const phases = [
@@ -38,7 +38,7 @@ const phases = [
   ["Reevaluation", "The next session checks progress and decides what to work on next."],
 ];
 const faqs = [
-  ["What is EMDR therapy?", `A structured therapy that helps you process distressing memories using guided eye movements or tapping, so they feel less intense. EMDR (Eye Movement Desensitization and Reprocessing) is a psychotherapy that enables people to heal from the symptoms and emotional distress that are the result of disturbing life experiences. It is often used in our <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD treatment</a>.`],
+  ["What is EMDR therapy?", `A structured therapy that helps you process distressing memories using guided eye movements or tapping, so they feel less intense. EMDR (Eye Movement Desensitization and Reprocessing) is a <a class="inl" href="/programs/counseling/">psychotherapy</a> that enables people to heal from the symptoms and emotional distress that are the result of disturbing life experiences, including <a class="inl" href="/what-we-treat/anxiety/">anxiety</a> and <a class="inl" href="/what-we-treat/depression/">depression</a> tied to them. It is often used in our <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD treatment</a>.`],
   ["What does EMDR help with?", `It's best known for <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma and PTSD</a>. Clinicians sometimes use it for <a class="inl" href="/what-we-treat/anxiety/">anxiety</a> and other concerns.`],
   ["What happens in a session?", `You recall a memory briefly while following your therapist's hand movements or tapping. Your therapist guides the pace and checks in throughout. EMDR therapy is an eight-phase treatment. Eye movements (or other bilateral stimulation) are used during one part of the session, while you hold a disturbing memory in mind and your brain begins to process it.`],
   ["Do I have to talk about my trauma in detail?", `Not in detail. EMDR focuses on processing the memory, and you stay in control of what you share. No. As a natural outcome of the EMDR therapeutic process, clients reach emotional resolution without speaking in detail or doing homework used in other therapies.`],
@@ -57,7 +57,7 @@ const schema = {
 };
 ---
 
-<Base title="What Is EMDR Therapy? EMDR in Connecticut | Hopewell" description="What is EMDR therapy? A trauma therapy that helps people process trauma and PTSD, with a trained Hopewell clinician in Connecticut. See what sessions are like." canonical={canonical} image={P + "tx-westbrook-office-2.webp"}>
+<Base title="What Is EMDR Therapy? EMDR in Connecticut | Hopewell" description="What is EMDR therapy? A trauma therapy that helps people process trauma and PTSD, with a trained Hopewell clinician in Connecticut. See what sessions are like." canonical={canonical} image="/Assets/Blogs/recovering-from-narcissistic-abuse-when-therapy-alone-isnt-enough-hero.webp">
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <main class="hw">
@@ -67,7 +67,7 @@ const schema = {
       lede="An evidence-based, eight-phase trauma therapy that helps people heal from disturbing life experiences, offered by our clinicians across Connecticut."
       bullets={heroUsps}
       facts={[{ icon: "heart", text: "Trauma therapy" }, { icon: "users", text: "In person across Connecticut" }]}
-      image={P + "tx-westbrook-office-2.webp"}
+      image="/Assets/Blogs/recovering-from-narcissistic-abuse-when-therapy-alone-isnt-enough-hero.webp"
     />
     <Creds />
 
@@ -76,10 +76,10 @@ const schema = {
         <div class="tx-copy">
           <h2>What is EMDR therapy?</h2>
           <p style="margin-top:16px">EMDR (Eye Movement Desensitization and Reprocessing) is a psychotherapy that enables people to heal from the symptoms and emotional distress that are the result of disturbing life experiences. Repeated studies show that by using EMDR therapy people can experience the benefits of psychotherapy that once took years to make a difference. It is widely assumed that severe emotional pain requires a long time to heal. EMDR therapy shows that the mind can in fact heal from <a class="inl" href="/what-we-treat/trauma-ptsd/">psychological trauma</a> much as the body recovers from physical trauma.</p>
-          <p>When you cut your hand, your body works to close the wound. If a foreign object or repeated injury irritates the wound, it festers and causes pain. Once the block is removed, healing resumes. EMDR therapy demonstrates that a similar sequence of events occurs with mental processes. The brain’s information processing system naturally moves toward mental health. If the system is blocked or imbalanced by the impact of a disturbing event, the emotional wound festers and can cause intense suffering. Once the block is removed, healing resumes. Using the detailed protocols and procedures learned in EMDR therapy training sessions, clinicians help clients activate their natural healing processes.</p>
+          <p>When you cut your hand, your body works to close the wound. If a foreign object or repeated injury irritates the wound, it festers and causes pain. Once the block is removed, healing resumes. EMDR therapy demonstrates that a similar sequence of events occurs with mental processes. The brain’s information processing system naturally moves toward mental health. If the system is blocked or imbalanced by the impact of a disturbing event, the emotional wound festers and can cause intense suffering. Once the block is removed, healing resumes. Using the detailed protocols and procedures learned in EMDR therapy training sessions, clinicians help clients activate their natural healing processes. Read <a class="inl" href="/post/emdr-therapy-what-it-is-side-effects-and-what-to-expect/">what to expect from EMDR, including side effects</a>.</p>
         </div>
         <aside>
-          <img src={P + "tx-westbrook-office-3.webp"} alt="A calm therapy office at Hopewell's Westbrook location" width="1400" height="1050" loading="lazy" />
+          <img src="/Assets/Blogs/emdr-therapy-what-it-is-side-effects-and-what-to-expect.webp" alt="A therapist guiding a client's eye movements with two fingers during an EMDR session" width="1200" height="620" loading="lazy" />
           <blockquote class="tx-pull">“I survived it and I am strong.”<small>The kind of belief EMDR helps a person reach</small></blockquote>
         </aside>
       </div>
@@ -112,21 +112,70 @@ const schema = {
     <section class="section is-navy">
       <div class="container">
         <div class="sec-head"><h2>The research</h2></div>
-        <div class="tx-stats">{stats.map(([n, u, d]) => <div class="tx-stat"><strong>{n}<em>{u}</em></strong><span>{d}</span></div>)}</div>
-        <p class="lede" style="margin-top:28px;max-width:none">More than 30 positive controlled outcome studies have been done on EMDR therapy. Some of the studies show that 84%–90% of single-trauma victims no longer have post-traumatic stress disorder after only three 90-minute sessions. Another study, funded by the HMO Kaiser Permanente, found that 100% of the single-trauma victims and 77% of multiple trauma victims no longer were diagnosed with PTSD after only six 50-minute sessions. In another study, 77% of combat veterans were free of PTSD in 12 sessions. There has been so much research on EMDR therapy that it is now recognized as an effective form of treatment for trauma and other disturbing experiences by organizations such as the American Psychiatric Association, the World Health Organization and the Department of Defense. Given the worldwide recognition as an effective treatment of trauma, you can easily see how EMDR therapy would be effective in treating the “everyday” memories that are the reason people have low self-esteem, feelings of powerlessness, and all the myriad problems that bring them in for therapy. Over 100,000 clinicians throughout the world use the therapy. Millions of people have been treated successfully over the past 25 years.</p>
+        {/* Research graphic (user 2026-11-18): ring charts instead of plain stat cards. Ring fill = the study figure
+            (84–90% drawn at the midpoint, 87%). */}
+        <ul class="er-rings" aria-label="EMDR outcome studies">
+          {stats.map(([n, u, d, pct, sess]) => (
+            <li class="er-ring">
+              <div class="er-dial">
+                <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="er-track" cx="60" cy="60" r="50" /><circle class="er-fill" cx="60" cy="60" r="50" pathLength="100" style={`stroke-dasharray:${pct} 100`} /></svg>
+                <strong>{n}<em>{u}</em></strong>
+              </div>
+              <span class="er-sess">{sess}</span>
+              <span class="er-d">{d}</span>
+            </li>
+          ))}
+        </ul>
+        {/* Research facts (user 2026-11-18: "graphics, bullet points and interlinking"). Every fact from the live
+            paragraph is kept: the three ring figures above, these four tiles, and the two bullets below. */}
+        <ul class="er-facts" aria-label="EMDR research at a glance">
+          <li><span class="er-fi"><Icon name="clipboard" class="h-6 w-6" /></span><strong>30+</strong><span>positive controlled outcome studies have been done on EMDR therapy</span></li>
+          <li><span class="er-fi"><Icon name="shield" class="h-6 w-6" /></span><strong>APA · WHO · DoD</strong><span>recognize it as an effective treatment for <a class="inl" href="/what-we-treat/trauma-ptsd/">trauma</a> and other disturbing experiences: the American Psychiatric Association, the World Health Organization and the Department of Defense</span></li>
+          <li><span class="er-fi"><Icon name="users" class="h-6 w-6" /></span><strong>100,000+</strong><span>clinicians throughout the world use the therapy</span></li>
+          <li><span class="er-fi"><Icon name="heart" class="h-6 w-6" /></span><strong>Millions</strong><span>of people treated successfully over the past 25 years</span></li>
+        </ul>
+        <ul class="er-notes">
+          <li><span class="er-ck"><Icon name="check" class="h-4 w-4" /></span><span>The same Kaiser Permanente (HMO) study also found that <b>77% of multiple-trauma victims</b> were no longer diagnosed with <a class="inl" href="/what-we-treat/trauma-ptsd/">PTSD</a> after only six 50-minute sessions.</span></li>
+          <li><span class="er-ck"><Icon name="check" class="h-4 w-4" /></span><span>Given that worldwide recognition, EMDR can also help with the “everyday” memories behind <a class="inl" href="/what-we-treat/depression/">low self-esteem and feelings of powerlessness</a>, and the many other problems that bring people in for <a class="inl" href="/programs/counseling/">therapy</a>. For focused trauma care, see our <a class="inl" href="/programs/womens-trauma-iop/">Women’s Trauma IOP</a>.</span></li>
+        </ul>
         <p class="tx-source">Figures as reported in published EMDR outcome studies, including the Kaiser Permanente study cited above.</p>
       </div>
     </section>
 
+    <style>
+      .hw .er-rings { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px); }
+      .hw .er-ring { display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; }
+      .hw .er-dial { position: relative; width: min(190px, 100%); aspect-ratio: 1; }
+      .hw .er-dial svg { position: absolute; inset: 0; }
+      .hw .er-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+      .hw .er-track { fill: none; stroke: rgba(255,255,255,.12); stroke-width: 10; }
+      .hw .er-fill { fill: none; stroke: #e0b56a; stroke-width: 10; stroke-linecap: round; }
+      .hw .er-ring strong { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; font-family: var(--hw-head); font-weight: 800; font-size: clamp(26px, 2.6vw, 36px); color: #fff; line-height: 1; white-space: nowrap; }
+      .hw .er-ring strong em { font-style: normal; color: #e0b56a; font-size: .6em; }
+      .hw .er-sess { margin-top: 6px; padding: 4px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #9cc3ea; font-size: 13px; font-weight: 700; }
+      .hw .er-d { color: #dce6f1; font-size: 14.5px; line-height: 1.45; max-width: 26ch; }
+      @media (max-width: 640px) { .hw .er-rings { grid-template-columns: 1fr; } .hw .er-dial { width: 150px; } }
+      .hw .er-facts { list-style: none; margin: clamp(32px, 4vw, 48px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+      .hw .er-facts li { display: flex; flex-direction: column; gap: 8px; padding: 22px 20px 24px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-top: 3px solid #e0b56a; }
+      .hw .er-fi { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(224,181,106,.14); color: #e0b56a; }
+      .hw .er-facts strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; color: #fff; margin-top: 4px; }
+      .hw .er-facts li > span:last-child { color: #dce6f1; font-size: 15px; line-height: 1.5; }
+      .hw .er-notes { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; max-width: 920px; }
+      .hw .er-notes li { display: flex; gap: 12px; align-items: flex-start; color: #dce6f1; font-size: 16.5px; line-height: 1.6; }
+      .hw .er-notes b { color: #fff; }
+      .hw .er-facts .inl, .hw .er-notes .inl { color: var(--hw-sky); text-decoration: underline; text-decoration-color: rgba(156,195,234,.45); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+      .hw .er-facts .inl:hover, .hw .er-notes .inl:hover { color: #fff; text-decoration-color: #fff; }
+      .hw .er-ck { flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; margin-top: 2px; border-radius: 50%; background: #e0b56a; color: var(--hw-navy); }
+      @media (max-width: 1023px) { .hw .er-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 560px) { .hw .er-facts { grid-template-columns: 1fr; } }
+    </style>
     <section class="section is-stone">
       <div class="container">
-        <div class="tx-split" style="align-items:start">
+        <div class="tx-split tx-split-photo">
+          <figure class="tx-photo tx-photo-tall"><img src="/Assets/Blogs/how-to-recognize-when-its-time-to-see-a-therapist.webp" alt="A client talking one-on-one with her therapist" width="1200" height="1200" loading="lazy" /><figcaption>One-on-one sessions<span>EMDR is done individually with your clinician</span></figcaption></figure>
           <div class="tx-copy">
             <h2>How EMDR works</h2>
             <p style="margin-top:16px">EMDR therapy is an eight-phase treatment. Eye movements (or other bilateral stimulation) are used during one part of the session. After the clinician has determined which memory to target first, he asks the client to hold different aspects of that event or thought in mind and to use his eyes to track the therapist’s hand as it moves back and forth across the client’s field of vision. As this happens, for reasons believed by a Harvard researcher to be connected with the biological mechanisms involved in Rapid Eye Movement (REM) sleep, internal associations arise and the clients begin to process the memory and disturbing feelings.</p>
-            <figure class="tx-photo" style="margin-top:28px"><img src={P + "east-hampton-counseling-room.webp"} alt="A private therapy room with a sofa and armchair at Hopewell's East Hampton office" width="1200" height="1200" loading="lazy" /><figcaption>One-on-one sessions<span>EMDR is done individually with your clinician</span></figcaption></figure>
-          </div>
-          <div class="tx-copy">
             <p>In successful EMDR therapy, the meaning of painful events is transformed on an emotional level. For instance, a rape victim shifts from feeling horror and self-disgust to holding the firm belief that, “I survived it and I am strong.” Unlike <a class="inl" href="/programs/counseling/">talk therapy</a>, the insights clients gain in EMDR therapy result not so much from clinician interpretation, but from the client’s own accelerated intellectual and emotional processes.</p>
             <p>The net effect is that clients conclude EMDR therapy feeling empowered by the very experiences that once debased them. Their wounds have not just closed, they have transformed. As a natural outcome of the EMDR therapeutic process, the clients’ thoughts, feelings and behavior are all robust indicators of emotional health and resolution, all without speaking in detail or doing homework used in other therapies.</p>
           </div>

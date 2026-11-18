@@ -213,3 +213,9 @@
 .hw .tms-facts .tx-fact > span:last-child > span { font-family: var(--hw-head); font-size: 20px; font-weight: 800; color: var(--hw-navy); line-height: 1.2; }
 .hw .tms-sched .tx-course { max-width: none; width: 100%; }
 @media (max-width: 760px) { .hw .tms-facts { grid-template-columns: minmax(0, 1fr); } }
+
+/* Photo beside a long text column (EMDR "How EMDR works", user 2026-11-18): the photo sits level with the text, in a
+   portrait frame, instead of hanging under one column. */
+.hw .tx-split-photo { align-items: center; }
+.hw .tx-photo-tall img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+@media (max-width: 999px) { .hw .tx-photo-tall img { aspect-ratio: 16 / 10; } .hw .tx-split-photo .tx-photo { order: -1; } }

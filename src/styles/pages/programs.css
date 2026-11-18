@@ -432,24 +432,36 @@
 .hw .ph-level-go { margin-top: 0; align-self: end; }
 @media (max-width: 640px) { .hw .ph-levels { grid-template-rows: none; } .hw .ph-level { grid-row: auto; grid-template-rows: none; } }
 
-/* IOP Overview specialty tracks: 4 + 3 centered, equal-height cards, same photo size, no lift on hover */
-.hw .tk-grid { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
-.hw .tk { flex: 0 0 calc((100% - 54px) / 4); display: flex; flex-direction: column; overflow: hidden; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); border-top: 4px solid var(--bar, var(--hw-navy)); transition: box-shadow .2s, border-color .2s; }
-.hw .tk:hover { box-shadow: 0 16px 36px rgba(0,29,55,.12); }
+/* IOP Overview specialty tracks (user 2026-11-18): a carousel on every width. One scroll-snap row, ~3.5 cards on desktop,
+   ~2.3 on tablets, ~1.15 on phones, equal card heights, arrows + dots in the PhotoSlider (.ps-btn) look. */
+.hw .tk-wrap { position: relative; }
+.hw .tk-grid { list-style: none; margin: 0 -4px; padding: 4px 4px 14px; display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; overscroll-behavior-x: contain; scrollbar-width: none; align-items: stretch; }
+.hw .tk-grid::-webkit-scrollbar { display: none; }
+.hw .tk-grid:focus-visible { outline: 2px solid var(--hw-blue); outline-offset: 4px; border-radius: 22px; }
+.hw .tk { flex: 0 0 calc((100% - 3 * 18px) / 3.5); scroll-snap-align: start; display: flex; flex-direction: column; overflow: hidden; border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); border-top: 4px solid var(--bar, var(--hw-navy)); transition: box-shadow .2s, border-color .2s; }
+.hw .tk:hover { box-shadow: 0 12px 28px rgba(0,29,55,.10); }
 .hw .tk-media { display: block; aspect-ratio: 4 / 3; overflow: hidden; }
 .hw .tk-media img { width: 100%; height: 100%; object-fit: cover; }
 .hw .tk-body { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; }
 .hw .tk-body h3 { font-size: 19px; line-height: 1.25; min-height: 2.5em; }
 .hw .tk-body h3 a { color: var(--hw-navy); text-decoration: none; }
 .hw .tk-body h3 a:hover { color: var(--hw-blue); text-decoration: underline; }
-.hw .tk-d { font-size: 15px; line-height: 1.55; color: var(--hw-body); min-height: 4.65em; }
+.hw .tk-d { font-size: 15px; line-height: 1.55; color: var(--hw-body); }
 .hw .tk-facts { list-style: none; margin: 0; padding: 12px 0 0; border-top: 1px solid var(--hw-line); display: grid; gap: 6px; }
 .hw .tk-facts li { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; font-weight: 700; color: var(--hw-blue); }
 .hw .tk-facts svg { flex: none; margin-top: 2px; }
 .hw .tk-go { margin-top: auto; padding-top: 6px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--hw-head); font-size: 14.5px; font-weight: 800; color: var(--hw-navy); text-decoration: none; }
 .hw .tk-go:hover { color: var(--hw-blue); }
-@media (max-width: 1100px) { .hw .tk { flex-basis: 100%; flex-direction: row; } .hw .tk-media { flex: 0 0 38%; aspect-ratio: auto; } .hw .tk-body h3, .hw .tk-d { min-height: 0; } }
-@media (max-width: 640px) { .hw .tk { flex-direction: column; } .hw .tk-media { flex: none; aspect-ratio: 4 / 3; } }
+.hw .tk-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; }
+.hw .tk-btn { width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; padding: 0; border: 1px solid var(--hw-line, #d5dfe9); background: #fff; color: var(--hw-navy, #0b2f55); cursor: pointer; transition: background .2s, color .2s; }
+.hw .tk-btn:hover, .hw .tk-btn:focus-visible { background: var(--hw-navy, #0b2f55); color: #fff; }
+.hw .tk-dots { display: flex; gap: 8px; }
+.hw .tk-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: var(--hw-line, #c9d6e3); cursor: pointer; transition: width .25s, background .25s; }
+.hw .tk-dots button.is-on { width: 26px; background: var(--hw-blue, #2f6fd0); }
+.hw .tk-dots button:focus-visible, .hw .tk-btn:focus-visible { outline: 2px solid var(--hw-blue); outline-offset: 2px; }
+@media (max-width: 1100px) { .hw .tk { flex-basis: calc((100% - 2 * 18px) / 2.3); } }
+@media (max-width: 640px) { .hw .tk-grid { gap: 14px; } .hw .tk { flex-basis: calc((100% - 14px) / 1.15); } .hw .tk-body h3 { min-height: 0; } }
+@media (prefers-reduced-motion: reduce) { .hw .tk-grid { scroll-behavior: auto; } }
 
 
 /* ===== Program briefs (WW / WT / FR / Med Mgmt / Counseling) — "align everything" (2026-11-16) ===== */
@@ -549,3 +561,12 @@
 }
 .hw .ph-row { align-items: center; }
 .hw .ph-row > img { height: 112px; min-height: 0; aspect-ratio: 1 / 1; }
+/* Family testimonials (user 2026-11-18 "fix this"): equal-height cards, names pinned to the bottom, quote mark kept
+   off the text, and 4 cards = a clean 2×2 grid (no lone card left on its own row). */
+.hw .pg-testi { align-items: stretch; }
+.hw .pg-testi:has(> .rv:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hw .pg-testi .rv { display: flex; flex-direction: column; position: relative; padding-top: 58px; }
+.hw .pg-testi .rv-quote { position: absolute; top: 20px; left: 26px; right: auto; width: 34px; height: 28px; }
+.hw .pg-testi .rv-text { flex: 1; }
+.hw .pg-testi .rv-who { margin-top: auto; }
+@media (max-width: 640px) { .hw .pg-testi:has(> .rv:nth-child(4):last-child) { grid-template-columns: minmax(0, 1fr); } }

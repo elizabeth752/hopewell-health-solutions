@@ -5,7 +5,7 @@
 // arrows, and text tabs to filter All / Mental health / Addiction care. `current` puts that office first.
 import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
 import Icon from "../Icon.astro";
-interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone" }
+interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone"; addictionOnly?: boolean }
 const { heading = "Care Near You, Across Central Connecticut", lede = "Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT, serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.", current, tone = "mist" } = Astro.props;
 const P = "/Assets/hhs-2026/";
 const photo = {
@@ -16,7 +16,8 @@ const photo = {
   "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp",
   "westbrook-ct": P + "westbrook-sign.webp",
 };
-const list = locations.map((l, i) => ({ ...l, n: i + 1 }));
+// addictionOnly (addiction condition pages, 2026-11-18): only the offices that offer addiction care, no filter tabs.
+const list = (Astro.props.addictionOnly ? locations.filter((l) => l.addiction) : locations).map((l, i) => ({ ...l, n: i + 1 }));
 const ordered = current ? [...list.filter((l) => l.slug === current), ...list.filter((l) => l.slug !== current)] : list;
 const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${l.street}, ${l.city}, CT ${l.zip}`)}`;
 const nAdd = list.filter((l) => l.addiction).length;
@@ -36,11 +37,11 @@ const svcLines = (l) => {
   <div class="container">
     <div class="lc-head">
       <div class="sec-head" style="margin:0"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
-      <div class="lc-tabs" role="toolbar" aria-label="Filter offices">
+      {!Astro.props.addictionOnly && <div class="lc-tabs" role="toolbar" aria-label="Filter offices">
         <button type="button" class="lc-tab is-on" data-f="all" aria-pressed="true">All offices <span>{list.length}</span></button>
         <button type="button" class="lc-tab" data-f="mh" aria-pressed="false">Mental health <span>{list.length}</span></button>
         <button type="button" class="lc-tab" data-f="add" aria-pressed="false">Addiction care <span>{nAdd}</span></button>
-      </div>
+      </div>}
     </div>
   </div>
   <div class="lc-wrap" data-lc>
