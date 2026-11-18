@@ -91,7 +91,14 @@ const whoBlocks = [
     h3s: [{ h3: "An experienced team that works as one", paras: [
       "Our clinicians and medical staff are fully licensed and deeply experienced, a full medical team and a full therapeutic team working together to create customized strategies that drive real, positive change for each child and family. Each IOP staff member has 10–30 years of experience working with adolescents, and the program is licensed by the State of Connecticut.",
     ] }],
-    aside: { type: "points", title: "Who we serve", items: [["users", "Teens ages 13–17"], ["alert", "Self-injury and suicidal ideation (in a crisis, call or text <a class='inl' href='tel:988'>988</a>)"], ["calendar", "School refusal"], ["cloud", "Significant mood and anxiety disorders"], ["heart", "All genders and the LGBTQA+ community welcome"], ["shield", "Licensed by the State of Connecticut"]] } },
+    aside: { type: "serve", title: "Who we serve", age: "13–17", ageLabel: "year-old teens", exp: ["10–30 years", "of experience working with adolescents, for each IOP staff member"],
+      concerns: [
+        { icon: "alert", tone: "rose", t: "Self-injury and suicidal ideation", note: "Crisis? Call or text <a href='tel:988'>988</a>" },
+        { icon: "calendar", tone: "amber", t: "School refusal" },
+        { icon: "cloud", tone: "sky", t: "Significant mood and anxiety disorders" },
+      ],
+      inclusive: "All genders and the LGBTQA+ community welcome",
+      licensed: "Licensed by the State of Connecticut" } },
 ];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
 const stories = ["awy7nfDgC0k", "loSaQbRc-oE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);

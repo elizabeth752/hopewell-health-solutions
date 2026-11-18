@@ -14,6 +14,7 @@ import Icon from "../../components/Icon.astro";
 import ServiceHero from "../../components/hw/ServiceHero.astro";
 import Creds from "../../components/hw/Creds.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
+import VideoDialog from "../../components/hw/VideoDialog.astro";
 import Reviews from "../../components/hw/Reviews.astro";
 import Insurance from "../../components/hw/Insurance.astro";
 import Locations from "../../components/hw/Locations.astro";
@@ -96,10 +97,17 @@ const whoBlocks = [
     h3s: [{ h3: "An experienced team that works as one", paras: [
       "Our clinicians and medical staff are fully licensed and deeply experienced, a full medical team and a full therapeutic team working together to create customized strategies that drive real, positive change for each child and family. Each IOP staff member has 10–30 years of experience working with adolescents, and the program is licensed by the State of Connecticut.",
     ] }],
-    aside: { type: "points", title: "Who we serve", items: [["users", "Children ages 8–12"], ["alert", "Self-injury and suicidal ideation (in a crisis, call or text <a class='inl' href='tel:988'>988</a>)"], ["calendar", "School refusal"], ["cloud", "Significant mood and anxiety disorders"], ["heart", "All genders and the LGBTQA+ community welcome"], ["shield", "Licensed by the State of Connecticut"]] } },
+    aside: { type: "serve", title: "Who we serve", age: "8–12", ageLabel: "year-olds", exp: ["10–30 years", "of experience working with adolescents, for each IOP staff member"],
+      concerns: [
+        { icon: "alert", tone: "rose", t: "Self-injury and suicidal ideation", note: "Crisis? Call or text <a href='tel:988'>988</a>" },
+        { icon: "calendar", tone: "amber", t: "School refusal" },
+        { icon: "cloud", tone: "sky", t: "Significant mood and anxiety disorders" },
+      ],
+      inclusive: "All genders and the LGBTQA+ community welcome",
+      licensed: "Licensed by the State of Connecticut" } },
 ];
 const ini = (n) => n.replace(/[^A-Za-z&]/g, "").slice(0, 2).toUpperCase();
-const tours = ["loSaQbRc-oE", "awy7nfDgC0k"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
+const tours = ["loSaQbRc-oE"].map((id) => VIDEOS.find((v) => v.yt === id)).filter(Boolean);
 const news = [{ id: "GJeVqHhooBA", t: "Helping Children & Teens With Mental Health", outlet: "WFSB Channel 3" }];
 const faqs: [string, string][] = [
   ["What is a tween IOP?", "A tween intensive outpatient program is a structured, after-school program for children 8–12 that meets several times a week, while your child lives at home and stays in school."],
@@ -180,7 +188,42 @@ const serviceLd = { "@context": "https://schema.org", "@type": "MedicalTherapy",
       </div>
     </section>
 
-    <VideoCarousel videos={tours} mode="grid" tone="navy" heading="Take a Look Inside" lede="Our clinicians show the comfy chairs, cozy blankets and thoughtful touches that make the teen and tween IOP space feel safe for kids. Read <a class='inl' href='/post/why-is-hopewell-health-solutions-tween-iop-great-for-depression/'>why our tween IOP helps with depression</a>." link={{ href: "/testimonials/", label: "All client stories" }} />
+    {/* Take a look inside (user 2026-11-18: must not look like the testimonials): a room tour, not a story. Split layout,
+        real room photos on the left, the tour video on the right. */}
+    <section class="section is-white ti-tour">
+      <div class="container ti-grid">
+        <div>
+          <h2>Take a Look Inside</h2>
+          <p class="lede" style="margin-top:14px" set:html={`Our clinicians show the comfy chairs, cozy blankets and thoughtful touches that make the teen and tween IOP space feel safe for kids. Read <a class='inl' href='/post/why-is-hopewell-health-solutions-tween-iop-great-for-depression/'>why our tween IOP helps with depression</a>.`} />
+          <ul class="ti-feats">
+            <li><Icon name="home" class="h-5 w-5" />Comfy chairs, cozy blankets and a calm, kid-friendly room</li>
+            <li><Icon name="users" class="h-5 w-5" />Small groups of kids the same age</li>
+            <li><Icon name="shield" class="h-5 w-5" />A safe space, at our South Glastonbury office</li>
+          </ul>
+          <div class="ti-photos">
+            <img src="/Assets/hhs-2026/sg-green-room.webp" alt="A calm room at our South Glastonbury office" width="1200" height="900" loading="lazy" />
+            <img src="/Assets/hhs-2026/tween-group-room.webp" alt="Another view of the tween group room" width="1200" height="900" loading="lazy" />
+          </div>
+        </div>
+        {tours[0] && (
+          <button type="button" class="vc-card ti-video" data-yt={tours[0].yt} data-title={tours[0].title} data-vertical={tours[0].vertical ? "1" : undefined} aria-label={`Play: ${tours[0].title}`}>
+            <span class="vc-poster"><img src={`/Assets/videos/${tours[0].img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+            <span class="vc-body"><span class="vc-name">Room tour · {tours[0].len}</span><span class="vc-desc">{tours[0].desc}</span></span>
+          </button>
+        )}
+      </div>
+    </section>
+    <VideoDialog />
+    <style>
+      .hw .ti-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+      .hw .ti-feats { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 10px; }
+      .hw .ti-feats li { display: flex; gap: 12px; align-items: center; font-size: 16.5px; color: var(--hw-navy); font-weight: 600; }
+      .hw .ti-feats svg { flex: none; color: #5c7c6b; }
+      .hw .ti-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+      .hw .ti-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 16px; }
+      .hw .ti-video { width: 100%; }
+      @media (max-width: 999px) { .hw .ti-grid { grid-template-columns: minmax(0, 1fr); } }
+    </style>
 
     <NewsVideos heading="Helping children, in the news" lede="Connecticut news outlets turn to our clinicians for guidance on children’s mental health and <a class='inl' href='/post/how-to-help-your-kids-during-a-mental-health-crisis/'>what parents can do at home</a>." videos={news} tone="white" />
 

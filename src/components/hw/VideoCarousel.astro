@@ -1,4 +1,5 @@
 ---
+import VideoDialog from "./VideoDialog.astro";
 // Video stories (Red Rock pattern): branded 16:9 posters, a story card under each, privacy-enhanced YouTube player in a
 // dialog. mode "marquee" = self-moving carousel (pauses on hover/focus, still for reduced motion); mode "grid" = a
 // featured first video + a grid. Emits VideoObject schema for every video shown.
@@ -57,29 +58,4 @@ const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"
   )}
 </section>
 
-<dialog class="vc-dialog" aria-label="Video player">
-  <div class="vc-frame"></div>
-  <button type="button" class="vc-close" aria-label="Close video">&times;</button>
-</dialog>
-
-<script>
-  document.querySelectorAll<HTMLDialogElement>(".vc-dialog").forEach((dlg, k) => {
-    if (k > 0 || dlg.dataset.ready) return;
-    dlg.dataset.ready = "1";
-    const frame = dlg.querySelector<HTMLDivElement>(".vc-frame")!;
-    const close = () => { dlg.close(); frame.replaceChildren(); };
-    dlg.querySelector(".vc-close")!.addEventListener("click", close);
-    dlg.addEventListener("click", (e) => { if (e.target === dlg) close(); });
-    dlg.addEventListener("cancel", () => frame.replaceChildren());
-    document.querySelectorAll<HTMLButtonElement>(".vc-card").forEach((btn) => btn.addEventListener("click", () => {
-      const f = document.createElement("iframe");
-      f.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0&playsinline=1&modestbranding=1`;
-      f.title = btn.dataset.title ?? "Hopewell video";
-      f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
-      f.allowFullscreen = true;
-      frame.replaceChildren(f);
-      dlg.classList.toggle("is-vertical", btn.dataset.vertical === "1");
-      dlg.showModal();
-    }));
-  });
-</script>
+<VideoDialog />
