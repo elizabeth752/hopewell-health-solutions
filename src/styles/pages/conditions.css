@@ -225,21 +225,20 @@
 .hw .cd-drugs-help { margin: auto 0 0; padding-top: 12px; border-top: 1px solid var(--hw-line); font-size: 15px; line-height: 1.55; color: var(--hw-body); }
 @media (max-width: 999px) { .hw .cd-drugs { grid-template-columns: minmax(0, 1fr); } }
 
-/* Who we help, redesigned (2026-11-18): one navy panel, four audiences on a connecting line. */
-.hw .wh2 { list-style: none; margin: 0; padding: clamp(28px, 3.5vw, 44px) clamp(20px, 3vw, 36px); border-radius: 28px; background: linear-gradient(160deg, #0b2f55, #12406f); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; position: relative; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
-.hw .wh2::before { content: ""; position: absolute; left: 12%; right: 12%; top: calc(clamp(28px, 3.5vw, 44px) + 34px); border-top: 2px dashed rgba(156,195,234,.4); }
-.hw .wh2-n { position: relative; display: grid; justify-items: center; text-align: center; gap: 8px; color: #dce6f1; }
-.hw .wh2-dot { width: 68px; height: 68px; border-radius: 50%; display: grid; place-items: center; color: #fff; box-shadow: 0 0 0 6px #0f3a66, 0 10px 24px rgba(0,0,0,.3); }
-.hw .wh2-n.is-0 .wh2-dot { background: #2f76c4; } .hw .wh2-n.is-1 .wh2-dot { background: #b6863c; } .hw .wh2-n.is-2 .wh2-dot { background: #5c7c6b; } .hw .wh2-n.is-3 .wh2-dot { background: #265489; }
-.hw .wh2-tag { margin-top: 6px; padding: 3px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #e0b56a; font-size: 12.5px; font-weight: 700; }
-.hw .wh2-n strong { font-family: var(--hw-head); font-size: 19px; color: #fff; }
-.hw .wh2-d { font-size: 15px; line-height: 1.55; }
-.hw .wh2-d .inl { color: #9cc3ea; }
-.hw .wh2-d .inl:hover { color: #fff; }
-@media (max-width: 999px) { .hw .wh2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hw .wh2::before { display: none; } }
-@media (max-width: 560px) {
-  .hw .wh2 { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .hw .wh2-n { grid-template-columns: 56px minmax(0, 1fr); justify-items: start; text-align: left; gap: 2px 14px; }
-  .hw .wh2-dot { width: 56px; height: 56px; grid-row: span 3; box-shadow: none; }
-  .hw .wh2-tag { margin: 0; }
-}
+/* Who we help: split list (user pick 2026-11-18). */
+.hw .wh3 { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.hw .wh3-side .lede { margin-top: 14px; }
+.hw .wh3-art { display: block; width: min(100%, 340px); margin-top: 26px; }
+.hw .wh3-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.hw .wh3-list li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 18px; align-items: center; padding: 20px 4px; border-top: 1px solid var(--hw-line); }
+.hw .wh3-list li:last-child { border-bottom: 1px solid var(--hw-line); }
+.hw .wh3-ico { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; color: #fff; }
+.hw .wh3-list .is-0 .wh3-ico { background: #2f76c4; } .hw .wh3-list .is-1 .wh3-ico { background: #b6863c; } .hw .wh3-list .is-2 .wh3-ico { background: #5c7c6b; } .hw .wh3-list .is-3 .wh3-ico { background: #265489; }
+.hw .wh3-t { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.hw .wh3-t strong { font-family: var(--hw-head); font-size: 19px; color: var(--hw-navy); }
+.hw .wh3-tag { font-size: 13px; font-weight: 700; color: #b6863c; }
+.hw .wh3-d { margin: 4px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--hw-body); }
+.hw .wh3-go { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--hw-line); color: var(--hw-navy); transition: background .2s, color .2s, border-color .2s; }
+.hw .wh3-go:hover { background: var(--hw-navy); border-color: var(--hw-navy); color: #fff; }
+@media (max-width: 999px) { .hw .wh3 { grid-template-columns: minmax(0, 1fr); } .hw .wh3-art { display: none; } }
+@media (max-width: 520px) { .hw .wh3-list li { grid-template-columns: 44px minmax(0, 1fr); gap: 14px; } .hw .wh3-ico { width: 44px; height: 44px; } .hw .wh3-go { display: none; } }

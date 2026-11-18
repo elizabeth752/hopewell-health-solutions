@@ -88,7 +88,16 @@ const schema = {
           <button type="button" class="em-toggle" aria-expanded="false" aria-controls="em-more">Read more</button>
         </div>
         <aside>
-          <img src="/Assets/Blogs/emdr-therapy-what-it-is-side-effects-and-what-to-expect.webp" alt="A therapist guiding a client's eye movements with two fingers during an EMDR session" width="1200" height="620" loading="lazy" />
+          {/* EMDR graphic (user 2026-11-18: no "two fingers" photo): eyes follow a moving point while a memory is held in mind. */}
+          <figure class="emg" aria-label="How EMDR works: a distressing memory is reprocessed with bilateral stimulation">
+            <div class="emg-track" aria-hidden="true"><span class="emg-dot"></span></div>
+            <p class="emg-cap">Eye movements or tapping, left and right</p>
+            <ol class="emg-flow">
+              <li><span><Icon name="cloud" class="h-5 w-5" /></span><b>Distressing memory</b></li>
+              <li><span><Icon name="refresh" class="h-5 w-5" /></span><b>Reprocessed</b></li>
+              <li><span><Icon name="heart" class="h-5 w-5" /></span><b>Less charged</b></li>
+            </ol>
+          </figure>
           <blockquote class="tx-pull">“I survived it and I am strong.”<small>The kind of belief EMDR helps a person reach</small></blockquote>
         </aside>
       </div>
@@ -150,6 +159,17 @@ const schema = {
     </section>
 
     <style>
+      .hw .emg { margin: 0 0 14px; padding: 26px 22px 22px; border-radius: 26px; background: linear-gradient(160deg, #0b2f55, #12406f); color: #fff; box-shadow: 0 26px 60px rgba(0,29,55,.18); }
+      .hw .emg-track { position: relative; height: 46px; margin: 0 10px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px dashed rgba(156,195,234,.45); }
+      .hw .emg-dot { position: absolute; top: 50%; left: 6px; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; background: #e0b56a; box-shadow: 0 0 0 8px rgba(224,181,106,.2); animation: emg-move 2.4s ease-in-out infinite alternate; }
+      @keyframes emg-move { to { left: calc(100% - 40px); } }
+      @media (prefers-reduced-motion: reduce) { .hw .emg-dot { animation: none; left: calc(50% - 17px); } }
+      .hw .emg-cap { margin: 10px 0 0; text-align: center; font-size: 13.5px; color: #9cc3ea; }
+      .hw .emg-flow { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+      .hw .emg-flow li { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 12px 6px; border-radius: 14px; background: rgba(255,255,255,.07); }
+      .hw .emg-flow span { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; background: #2f76c4; }
+      .hw .emg-flow li:nth-child(2) span { background: #5c7c6b; } .hw .emg-flow li:nth-child(3) span { background: #b6863c; }
+      .hw .emg-flow b { font-family: var(--hw-head); font-size: 14px; line-height: 1.25; }
       .hw .er-rings { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px); }
       .hw .er-ring { display: grid; justify-items: center; align-content: start; text-align: center; gap: 6px; }
       .hw .er-dial { position: relative; width: min(190px, 100%); aspect-ratio: 1; }

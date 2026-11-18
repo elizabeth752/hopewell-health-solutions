@@ -62,29 +62,45 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
     <Creds />
 
     <section class="section is-white cd-hl-sec" id="highlights">
+      {addiction ? (
       <div class="container">
         <div class="sec-head">
-          <h2>{addiction ? `${short} Treatment for Adults in Connecticut` : `Who We Help With ${short}`}</h2>
+          <h2>{`${short} Treatment for Adults in Connecticut`}</h2>
           <p class="lede" set:html={addiction ? `Addiction and substance use treatment at our Downtown Glastonbury (300 Hebron Ave) and Westbrook (70 Essex Road) offices, with the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, and step-down care after rehab.` : "Care at Hopewell is built around who you are, at every age and stage of life, with programs for adults, women, teens and first responders."} />
         </div>
-        {addiction ? (
-          <ul class="cd-hl">
-            {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={unself(h.d)} /></li>)}
-          </ul>
-        ) : (
-          /* Who we help (user 2026-11-18: "design it better"): one navy panel, four audiences joined by a line. */
-          <ol class="wh2">
-            {highlights.map((h, i) => (
-              <li class={`wh2-n is-${i}`}>
-                <span class="wh2-dot"><Icon name={h.icon} class="h-7 w-7" /></span>
-                <span class="wh2-tag">{h.tag}</span>
-                <strong>{h.t}</strong>
-                <span class="wh2-d" set:html={unself(h.d)} />
-              </li>
-            ))}
-          </ol>
-        )}
+        <ul class="cd-hl">
+          {highlights.map((h, i) => <li class={`tone-${i}`}><span class="cd-hl-icon"><Icon name={h.icon} class="h-6 w-6" /></span><strong>{h.t}</strong><span set:html={unself(h.d)} /></li>)}
+        </ul>
       </div>
+      ) : (
+      /* Who we help: split list (user pick 2026-11-18). Left: heading, lede, small illustration. Right: four rows. */
+      <div class="container wh3">
+        <div class="wh3-side">
+          <h2>{`Who We Help With ${short}`}</h2>
+          <p class="lede" set:html={addiction ? `Addiction and substance use treatment at our Downtown Glastonbury (300 Hebron Ave) and Westbrook (70 Essex Road) offices, with the <a class="inl" href="/programs/addiction-iop/">Addiction and Substance Use IOP</a>, an addiction PHP, and step-down care after rehab.` : "Care at Hopewell is built around who you are, at every age and stage of life, with programs for adults, women, teens and first responders."} />
+          <svg class="wh3-art" viewBox="0 0 320 170" aria-hidden="true">
+            <path d="M0 150c60-30 110-34 160-20s100 12 160-16v56H0z" fill="#e7eef5"/>
+            <circle cx="70" cy="70" r="22" fill="#2f76c4"/><path d="M40 140c0-22 14-36 30-36s30 14 30 36z" fill="#2f76c4"/>
+            <circle cx="150" cy="62" r="24" fill="#b6863c"/><path d="M118 140c0-26 15-40 32-40s32 14 32 40z" fill="#b6863c"/>
+            <circle cx="222" cy="86" r="16" fill="#5c7c6b"/><path d="M200 140c0-18 10-28 22-28s22 10 22 28z" fill="#5c7c6b"/>
+            <circle cx="276" cy="70" r="20" fill="#265489"/><path d="M250 140c0-24 12-36 26-36s26 12 26 36z" fill="#265489"/>
+            <path d="M262 52h28l-4-8h-20z" fill="#0b2f55"/>
+          </svg>
+        </div>
+        <ol class="wh3-list">
+          {highlights.map((h, i) => (
+            <li class={`is-${i}`}>
+              <span class="wh3-ico"><Icon name={h.icon} class="h-6 w-6" /></span>
+              <div>
+                <p class="wh3-t"><strong>{h.t}</strong><span class="wh3-tag">{h.tag}</span></p>
+                <p class="wh3-d" set:html={unself(h.d)} />
+              </div>
+              {h.href && <a class="wh3-go" href={h.href} aria-label={`See the program for ${h.t}`}><Icon name="arrow" class="h-5 w-5" /></a>}
+            </li>
+          ))}
+        </ol>
+      </div>
+      )}
     </section>
 
     {blocks.map((b, bi) => {
