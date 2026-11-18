@@ -133,6 +133,8 @@
 
 /* What We Treat hub, Corner Canyon conditions-hub pattern (2026-11-16): navy hero + jump chips, grouped areas of expertise. */
 .hw .wq-hero { position: relative; overflow: hidden; padding: clamp(40px, 6vw, 80px) 0 clamp(48px, 6vw, 84px); background: linear-gradient(160deg, var(--hw-navy) 0%, var(--hw-night) 100%); color: #dce6f1; }
+/* Hub hero with a real photo behind the navy scrim (ServiceHero sv-bg/sv-scrim from site.css). */
+.hw .wq-hero.has-photo { isolation: isolate; }
 .hw .wq-hero-arcs { position: absolute; width: 760px; right: -330px; top: -330px; fill: none; stroke: rgba(156,195,234,.2); stroke-width: 2; pointer-events: none; }
 .hw .wq-hero-grid { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hw .wq-crumbs { font-size: 14px; color: #9fb4cb; }

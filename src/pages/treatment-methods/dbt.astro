@@ -153,8 +153,11 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
     <section class="section is-mist">
       <div class="container">
         <div class="sec-head"><h2>What a DBT skills group is like</h2><p class="lede">Practical, structured and small enough that you're never lost in the crowd.</p></div>
-        <div class="dbt-panel">
-          {groupLike.map(([t, d]) => <div><h3>{t}</h3><p set:html={d} /></div>)}
+        <div class="tx-split">
+          <figure class="tx-photo"><img src={P + "group-lounge-feelings-wheel-2.webp"} alt="A Hopewell IOP group lounge with circle seating and a feelings wheel on the wall, where DBT skills groups meet" width="1050" height="1400" loading="lazy" style="object-position:center 60%" /><figcaption>Where groups meet<span>Small, clinician-led skills groups</span></figcaption></figure>
+          <div class="dbt-panel is-stack">
+            {groupLike.map(([t, d]) => <div><h3>{t}</h3><p set:html={d} /></div>)}
+          </div>
         </div>
       </div>
     </section>
@@ -181,6 +184,8 @@ const tips = VIDEOS.filter((v) => ["cb3SsebwGiA", "aff5Xfy9CfE", "LInMQYyZSmY"].
   .dbt-panel > div + div { border-left: 1px solid var(--hw-line); }
   .dbt-panel h3 { font-size: 19px; }
   .dbt-panel p { font-size: 16px; line-height: 1.55; }
+  .dbt-panel.is-stack { grid-template-columns: 1fr; }
+  .dbt-panel.is-stack > div + div { border-left: 0; border-top: 1px solid var(--hw-line); }
   :global(.hw .faq-a p + p) { margin-top: 10px; }
   @media (max-width: 860px) {
     .dbt-where li { grid-template-columns: 1fr; gap: 4px; }

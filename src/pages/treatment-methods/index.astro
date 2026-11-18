@@ -115,12 +115,14 @@ faqs.push(...faqTail);
 const list = { "@context": "https://schema.org", "@type": "ItemList", name: "Treatments & Therapies at Hopewell Health Solutions", itemListElement: briefGroups.flatMap((g) => g.items).map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.t, url: "https://www.hopewellhealthsolutions.com" + t.href })) };
 ---
 
-<Base title="Mental Health &amp; Addiction Treatments in CT: TMS, EMDR, DBT | Hopewell" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices. Check coverage." canonical={canonical} image={P + "group-room-bright.webp"}>
+<Base title="Mental Health &amp; Addiction Treatments in CT: TMS, EMDR, DBT | Hopewell" description="TMS, EMDR, DBT, group therapy, medication-assisted treatment and ADHD, neuropsychological and GeneSight® testing at Hopewell’s Connecticut offices. Check coverage." canonical={canonical} image={P + "sg-family-room.webp"}>
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(list)} />
   <main class="hw">
     <!-- Hero (Corner Canyon hub pattern, same as What We Treat): navy, H1 + facts, jump links -->
-    <section class="wq-hero">
+    <section class="wq-hero has-photo">
+      <img class="sv-bg" src={P + "sg-family-room.webp"} alt="" width="1400" height="1050" fetchpriority="high" />
+      <div class="sv-scrim" aria-hidden="true"></div>
       <div class="container wq-hero-grid">
         <div>
           <nav class="wq-crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span>Treatments</span></nav>

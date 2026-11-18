@@ -146,10 +146,11 @@ const schema = {
           <h2>Who may benefit</h2>
           <p style="margin-top:16px">GeneSight can be especially helpful if you have tried one or more psychiatric medications without the relief you hoped for, if you've experienced unusual or hard-to-tolerate side effects, or if you are starting medication for the first time and want to make the most informed choice possible. It is often considered for people living with treatment-resistant depression, persistent anxiety, ADHD, or other conditions where finding the right medication has been a long road. Because every situation is different, your prescriber will help you decide whether testing is likely to add value for you specifically.</p>
           <p>It’s most often considered for people who’ve had side effects or limited relief from several medications, as part of <a class="inl" href="/programs/medication-management/">medication management</a> for <a class="inl" href="/what-we-treat/depression/">depression</a>, <a class="inl" href="/what-we-treat/anxiety/">anxiety</a>, <a class="inl" href="/what-we-treat/adhd/">ADHD</a> or <a class="inl" href="/what-we-treat/bipolar/">bipolar disorder</a>.</p>
+          <ul class="tx-checks" style="margin-top:22px">
+            {["You’ve tried one or more psychiatric medications without the relief you hoped for", "You’ve had unusual or hard-to-tolerate side effects", "You’re starting medication for the first time and want the most informed choice", "Finding the right medication has been a long road"].map((c) => <li class="tx-card" style="flex-direction:row;align-items:center;padding:16px 18px"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{c}</span></li>)}
+          </ul>
         </div>
-        <ul class="tx-checks">
-          {["You’ve tried one or more psychiatric medications without the relief you hoped for", "You’ve had unusual or hard-to-tolerate side effects", "You’re starting medication for the first time and want the most informed choice", "Finding the right medication has been a long road"].map((c) => <li class="tx-card" style="flex-direction:row;align-items:center;padding:16px 18px"><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span>{c}</span></li>)}
-        </ul>
+        <figure class="tx-photo"><img src={P + "south-glastonbury-med-waiting-room.webp"} alt="The waiting area for medication management visits at Hopewell's South Glastonbury office" width="1200" height="900" loading="lazy" /><figcaption>Medication visits<span>Your prescriber orders and reviews the test</span></figcaption></figure>
       </div>
     </section>
 
