@@ -325,9 +325,10 @@
 .hw .bc-meta img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: top; }
 .hw .bc-dot { color: var(--hw-bright); }
 @media (max-width: 679px) {
-  .hw .bc { flex-direction: row; }
-  .hw .bc-art { aspect-ratio: auto; width: 96px; flex: none; overflow: hidden; }
-  .hw .bc-art img { border-radius: 0; }
+  /* Phones: whole photo on top (user 2026-11-18: thin side strip cropped every image). */
+  .hw .bc { flex-direction: column; }
+  .hw .bc-art { aspect-ratio: 16 / 9; width: 100%; flex: none; overflow: hidden; }
+  .hw .bc-art img { border-radius: 20px 20px 0 0; }
   .hw .bc-ico { display: none; }
   .hw .bc-body { padding: 14px 16px; gap: 5px; }
   .hw .bc-title { font-size: 16.5px; }
