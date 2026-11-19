@@ -35,7 +35,7 @@ const heroUsps = [
 ];
 const tracks = [
   { t: "Adult Mental Health IOP", d: "Mental health and substance use treated together, by one team.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/adult-mental-health-iop/", img: "/Assets/Blogs/opt/php-vs-iop-which-level-of-care-is-right-for-you.webp", bar: "#0b2f55" },
-  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp", bar: "#265489" },
+  { t: "Addiction and Substance Use IOP", d: "Addiction treatment for alcohol and drug use, with MAT when it fits.", age: "Adults 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/addiction-iop/", img: "/Assets/hhs-2026/iop-group-session.webp", bar: "#265489" },
   { t: "Teen IOP", d: "After-school groups for teens, with family sessions and school coordination.", age: "Ages 13–17", sched: "Mon–Thu · 5:00–8:00 PM", loc: "1420 Main St, Glastonbury", href: "/programs/teen-iop/", img: P + "teen-iop-outside.webp", bar: "#2f76c4" },
   { t: "Tween IOP", d: "Play, skills and parent coaching for younger kids, after school.", age: "Ages 8–12", sched: "Mon–Thu · 4:30–7:30 PM", loc: "1420 Main St, Glastonbury", href: "/programs/tween-iop/", img: P + "sg-tween-group-room.webp", bar: "#5c7c6b" },
   { t: "Women's Wellness IOP", d: "Women-only, DBT-based care for anxiety, depression and life transitions.", age: "Women 18+", sched: "Mon–Thu · 9 AM–12 PM or 5–8 PM", loc: "300 Hebron Ave, Glastonbury & Westbrook", href: "/programs/womens-wellness-iop/", img: "/Assets/women%20looking%20at%20me.webp", bar: "#b6863c" },
@@ -268,25 +268,25 @@ const stories = STORIES.filter((v) => ["awy7nfDgC0k", "uIlSCS7clwE", "x6R6XOZmxU
 
 <style>
   /* IOP explainer graphic in the "What is an IOP?" split (2026-11-18). Navy card, arc corner like the split photos. */
-  .iw { width: 100%; align-self: center; display: grid; gap: 16px; padding: clamp(22px, 3vw, 34px); border-radius: 26px; border-top-left-radius: 110px; background: var(--hw-navy, #0b2f55); color: #dce6f1; box-shadow: 0 26px 60px rgba(0,29,55,.16); }
-  .iw-hub { display: flex; align-items: center; gap: 14px; padding: 16px 18px 16px 16px; margin-left: clamp(24px, 5vw, 56px); border-radius: 18px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-left: 4px solid #e0b56a; }
+  .iw { width: 100%; align-self: center; display: grid; gap: 16px; padding: clamp(22px, 3vw, 34px); border-radius: 26px; border-top-left-radius: 110px; background: var(--hw-mist, #e7eef5); color: var(--hw-body); box-shadow: 0 26px 60px rgba(0,29,55,.10); } /* light panel (user 2026-11-19: didn't like the navy blue) */
+  .iw-hub { display: flex; align-items: center; gap: 14px; padding: 16px 18px 16px 16px; margin-left: clamp(24px, 5vw, 56px); border-radius: 18px; background: #fff; border: 1px solid #d6e2ee; border-left: 4px solid #e0b56a; }
   .iw-hub-i { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: #e0b56a; color: var(--hw-navy, #0b2f55); }
   .iw-hub-i :global(svg) { color: #0b2f55; stroke: #0b2f55; }
   .iw-hub p { display: grid; gap: 2px; margin: 0; }
-  .iw-hub strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(17px, 1.6vw, 20px); color: #fff; line-height: 1.25; }
-  .iw-hub span { font-size: 14px; color: #b9cbe0; }
+  .iw-hub strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(17px, 1.6vw, 20px); color: var(--hw-navy, #0b2f55); line-height: 1.25; }
+  .iw-hub span { font-size: 14px; color: var(--hw-slate, #5a6b7a); }
   .iw-tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .iw-tiles li { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 16px; background: #fff; color: var(--hw-navy, #0b2f55); font-family: var(--hw-head); font-weight: 800; font-size: 15.5px; line-height: 1.3; }
+  .iw-tiles li { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 16px; background: #fff; border: 1px solid #d6e2ee; color: var(--hw-navy, #0b2f55); font-family: var(--hw-head); font-weight: 800; font-size: 15.5px; line-height: 1.3; }
   .iw-tiles li span { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; }
   .iw-tiles .c1 span { background: #e3eefa; color: #265489; }
   .iw-tiles .c2 span { background: #fbf0dc; color: #a8742a; }
   .iw-tiles .c3 span { background: #e4f0ea; color: #3f7a5f; }
   .iw-tiles .c4 span { background: #efe9f7; color: #6b55a0; }
-  .iw-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
+  .iw-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; padding-top: 14px; border-top: 1px solid #cddbe9; }
   .iw-stats p { display: flex; align-items: baseline; gap: 8px; margin: 0; }
-  .iw-stats strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(26px, 2.6vw, 32px); color: #e0b56a; line-height: 1; }
-  .iw-stats span { font-size: 14px; color: #dce6f1; line-height: 1.3; }
-  .iw-stats small { grid-column: 1 / -1; font-size: 13px; color: #9fb4cc; }
+  .iw-stats strong { font-family: var(--hw-head); font-weight: 800; font-size: clamp(26px, 2.6vw, 32px); color: var(--hw-gold, #b6863c); line-height: 1; }
+  .iw-stats span { font-size: 14px; color: var(--hw-body, #22303f); line-height: 1.3; }
+  .iw-stats small { grid-column: 1 / -1; font-size: 13px; color: var(--hw-slate, #5a6b7a); }
   @media (max-width: 480px) {
     .iw { border-top-left-radius: 64px; padding: 20px 16px; }
     .iw-hub { margin-left: 18px; }

@@ -11,7 +11,7 @@ export default {
   category: "Addiction & Recovery",
   excerpt:
     "You go to work, pay the bills, keep up appearances, but alcohol plays a bigger role than people know. The signs of high functioning alcoholism.",
-  heroImage: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp",
+  heroImage: "/Assets/hhs-2026/iop-group-session.webp",
   authorSlug: "teesha-huertas-lcsw",
   reviewerSlug: null,
   datePublished: "2025-07-28",
