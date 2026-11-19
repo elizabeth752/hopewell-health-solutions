@@ -4,7 +4,7 @@
 export const VIDEOS = [
   // The old homepage welcome video (old site Jul 2022 – Feb 2023, the newer of its two welcome videos; restored on the
   // homepage 2026-11-18, user picked it over the 2020 one, s0sEv1hIrfk).
-  { yt: "I8nk1SYhFig", img: "tour-welcome-house", name: "Welcome to Hopewell", type: "Welcome video", program: "tour", date: "2022-06-22", duration: "PT2M36S", len: "2:36",
+  { yt: "I8nk1SYhFig", img: "tour-welcome-poster", name: "Welcome to Hopewell", type: "Welcome video", program: "tour", date: "2022-06-22", duration: "PT2M36S", len: "2:36",
     title: "Welcome to Hopewell Health Solutions",
     desc: "A welcome from Hopewell Health Solutions and a look at the care we offer in Connecticut." },
   { yt: "7ISgjKEBoZo", vertical: true, img: "story-138-days", name: "138 days sober", type: "IOP client story", program: "addiction", date: "2026-08-04", duration: "PT2M52S", len: "2:52",
@@ -13,7 +13,7 @@ export const VIDEOS = [
   { yt: "eX6WO-MRdPs", vertical: true, img: "story-sisterhood", name: "“I found my sisterhood”", type: "Women’s Wellness IOP client story", program: "womens", date: "2026-08-04", duration: "PT0M59S", len: "0:59",
     title: "\"I Found My Sisterhood\" | Women's Wellness IOP Testimonial",
     desc: "A Women’s Wellness IOP participant on finding healing and a sense of sisterhood with other women." },
-  { yt: "ZsyYzk9epww", vertical: true, img: "tour-welcome-team", name: "Welcome to Hopewell", type: "Tour", program: "tour", date: "2026-04-01", duration: "PT0M16S", len: "0:16",
+  { yt: "ZsyYzk9epww", vertical: true, img: "tour-welcome-poster", name: "Welcome to Hopewell", type: "Tour", program: "tour", date: "2026-04-01", duration: "PT0M16S", len: "0:16",
     title: "Welcome to Hopewell Health Solutions",
     desc: "A quick tour of our Glastonbury spaces, designed with comfort, safety and healing in mind." },
   { yt: "loSaQbRc-oE", vertical: true, img: "tour-teen-tween", name: "Teen & Tween IOP tour", type: "Tour", program: "tour", date: "2026-03-06", duration: "PT0M34S", len: "0:34",

@@ -285,7 +285,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         </div>
         {tour && (
           <button type="button" class="vc-card ip-video" data-yt={tour.yt} data-title={tour.title} data-vertical={tour.vertical ? "1" : undefined} aria-label={`Play: ${tour.title}`}>
-            <span class="vc-poster"><img src="/Assets/videos/tour-welcome-poster.webp?v=2" alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+            <span class="vc-poster"><img src={`/Assets/videos/${tour.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
             <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
           </button>
         )}
