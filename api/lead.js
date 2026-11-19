@@ -5,9 +5,11 @@
 // would credit as SEO. The reactor id and key live in Vercel env vars and never
 // reach the browser. Fields are rebuilt from an allowlist, never passed through.
 //
-// ENVIRONMENT (Vercel, never committed):
-//   CTM_FORMREACTOR_ID    the reactor to post to (FRT...)
-//   CTM_FORMREACTOR_KEY   the reactor key, sent as ?key=
+// ENVIRONMENT (Vercel, never committed, never sent to the browser):
+//   CTM_FORMREACTOR_KEY        the reactor key, sent as ?key=
+//   CTM_FORMREACTOR_ID         the reactor to post to (FRT...), used when no endpoint is set
+//   CTM_FORMREACTOR_ENDPOINT   optional full https://api.calltrackingmetrics.com/... URL
+//                              (the key is still added from CTM_FORMREACTOR_KEY)
 //
 // RESPONSE. Always JSON { ok }. ok:false makes the form show the call-us message.
 
@@ -27,6 +29,9 @@ const ALLOWED = [
   'custom_fields[insurance_carrier]',
   'custom_fields[membership_policy_id]',
   'paid_attribution[gclid]',
+  'paid_attribution[gbraid]',
+  'paid_attribution[wbraid]',
+  'paid_attribution[msclkid]',
   'paid_attribution[campaign_id]',
   'paid_attribution[adgroup_id]',
   'paid_attribution[creative_id]',
@@ -72,8 +77,11 @@ function buildPayload(fields) {
   const phone = toE164(fields.get('phone_number'));
   if (!phone) return null;
   const out = new URLSearchParams();
+  // E.164 only. Never send country_code alongside phone_number.
   out.set('phone_number', phone);
+  out.delete('country_code');
   for (const name of ALLOWED) {
+    if (name === 'country_code') continue;
     const value = (fields.get(name) || '').trim();
     if (!value) continue;
     if ((name === 'sid' || name === 'visitor_sid') && !SID_RE.test(value)) continue;
@@ -117,25 +125,24 @@ export default async function handler(req, res) {
     return reply(false, 405);
   }
 
-  const reactor = (process.env.CTM_FORMREACTOR_ID || '').trim();
-  const key = (process.env.CTM_FORMREACTOR_KEY || '').trim();
-  if (!REACTOR_RE.test(reactor) || !key) {
-    console.error('[lead] CTM is not configured: set CTM_FORMREACTOR_ID and CTM_FORMREACTOR_KEY');
+  const upstreamUrl = resolveUpstream();
+  if (!upstreamUrl) {
+    console.error('[lead] CTM is not configured');
     return reply(false, 500);
   }
 
   let fields;
   try {
     fields = new URLSearchParams(await readBody(req));
-  } catch (err) {
-    console.error('[lead] body read failed', { message: err?.message });
+  } catch {
+    console.error('[lead] body read failed');
     return reply(false, 400);
   }
 
-  // Bots get a normal success so they learn nothing.
+  // Bots get a normal success so they learn nothing. Do not log the request.
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.headers['x-real-ip'] || '';
   if (fields.get('company_website') || rateLimited(ip)) {
-    console.log('[lead] discarded as spam');
+    console.error('[lead] request discarded');
     return reply(true);
   }
 
@@ -146,27 +153,48 @@ export default async function handler(req, res) {
   }
 
   let ctm;
+  let upstreamStatus = 0;
   try {
     // Never log this URL: it carries the reactor key.
-    const upstream = await fetch(`${CTM_ENDPOINT}/${reactor}?key=${encodeURIComponent(key)}`, {
+    const upstream = await fetch(upstreamUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: payload.toString(),
       signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
     });
+    upstreamStatus = upstream.status;
     ctm = await upstream.json().catch(() => ({}));
-    if (!upstream.ok) throw new Error(`HTTP ${upstream.status}`);
-  } catch (err) {
-    console.error('[lead] upstream request failed', { name: err?.name, message: err?.message });
+    if (!upstream.ok) {
+      console.error('[lead] upstream request failed', { status: upstreamStatus });
+      return reply(false, 502);
+    }
+  } catch {
+    console.error('[lead] upstream request failed', { status: upstreamStatus });
     return reply(false, 502);
   }
 
-  // CTM can answer HTTP 200 with status:"error" for a missing required field.
+  // CTM can answer HTTP 200 with status:"error". That is a failure.
+  // Do not log the body, the response, or any submitted field.
   if (ctm.status && ctm.status !== 'success') {
-    console.error('[lead] CTM rejected the submission', { text: String(ctm.text || '').replace(/\d{5,}/g, '#') });
+    console.error('[lead] CTM rejected the submission', { status: upstreamStatus });
     return reply(false, 502);
   }
 
-  console.log('[lead] accepted', { trackback: ctm.trackback_id, sid: Boolean(payload.get('visitor_sid')) });
   return reply(true);
+}
+
+function resolveUpstream() {
+  const key = (process.env.CTM_FORMREACTOR_KEY || '').trim();
+  if (!key) return null;
+  const explicit = (process.env.CTM_FORMREACTOR_ENDPOINT || '').trim();
+  if (explicit) {
+    let url;
+    try { url = new URL(explicit); } catch { return null; }
+    if (url.protocol !== 'https:' || url.hostname !== 'api.calltrackingmetrics.com') return null;
+    if (!url.searchParams.has('key')) url.searchParams.set('key', key);
+    return url.toString();
+  }
+  const reactor = (process.env.CTM_FORMREACTOR_ID || '').trim();
+  if (!REACTOR_RE.test(reactor)) return null;
+  return `${CTM_ENDPOINT}/${reactor}?key=${encodeURIComponent(key)}`;
 }

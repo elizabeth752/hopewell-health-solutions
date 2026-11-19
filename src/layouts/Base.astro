@@ -75,7 +75,30 @@ const ogUrl = canonicalHref;
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHKPJ2RF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <a href="#main" class="skip-link">Skip to content</a>
     <slot />
+    <style is:global>
+      .skip-link {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        z-index: 2147483001;
+        transform: translateY(-150%);
+        background: #fff;
+        color: #001d37;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: underline;
+        box-shadow: 0 8px 24px rgb(0 0 0 / .2);
+      }
+      .skip-link:focus {
+        transform: none;
+        outline: 3px solid #265489;
+        outline-offset: 2px;
+      }
+      #main:focus { outline: none; }
+    </style>
     <EventPopup />
     <WestbrookLauncher />
     <CookieConsent prefix="hopewell" primary="#265489" primaryDark="#1b3e63" text="#001d37" tint="#e7eef5" titleFont="'Baskervville', Georgia, serif" cookieDomain=".hopewellhealthsolutions.com" />
