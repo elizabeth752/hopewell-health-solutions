@@ -54,7 +54,7 @@ const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encod
 <Base title={meta.title} description={meta.description} canonical={meta.canonical} image={hero.image}>
   <Header />
   {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
     <ServiceHero crumbs={[{ label: "What We Treat", href: "/what-we-treat/" }, { label: hero.crumb }]} title={hero.h1} lede={hero.tagline} bullets={hero.bullets} facts={kickFacts} image={hero.image} imagePos={hero.imagePos ?? "center"}>
       <p class="cd-hero-meta">
         <a href="#reviews" class="cd-hero-rating"><span class="g"><img src="/Assets/home-b/google-g.svg" alt="" width="16" height="16" /></span><span class="stars" aria-hidden="true">★★★★★</span>{GOOGLE.rating} · {GOOGLE.count} Google reviews</a>

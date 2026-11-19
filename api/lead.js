@@ -26,9 +26,11 @@
 // the Authorization box is ticked AND the hand-off is configured, to elev8's benefits check (sendVob below).
 // Nothing is stored, and nothing submitted is logged (no PHI in logs).
 //
-// ENVIRONMENT (Vercel, never committed):
-//   CTM_FORMREACTOR_ID    the reactor to post to (FRT...)
-//   CTM_FORMREACTOR_KEY   the reactor key, sent as ?key=
+// ENVIRONMENT (Vercel, never committed, never sent to the browser):
+//   CTM_FORMREACTOR_KEY        the reactor key, sent as ?key=
+//   CTM_FORMREACTOR_ID         the reactor to post to (FRT...), used when no endpoint is set
+//   CTM_FORMREACTOR_ENDPOINT   optional full https://api.calltrackingmetrics.com/... URL
+//                              (the key is still added from CTM_FORMREACTOR_KEY)
 //   VOB_FACILITY_ID, VOB_DEFAULT_LOCATION_CODE (optional; benefits-check hand-off is OFF until both are set)
 //   VOB_ENDPOINT (optional, defaults to elev8's public-check URL)
 //
@@ -50,6 +52,9 @@ const REACTOR_RE = /^FRT[0-9A-F]{20,80}$/i;
 // Passed through as is (attribution/session). Everything else is mapped explicitly below.
 const PASSTHROUGH = [
   'paid_attribution[gclid]',
+  'paid_attribution[gbraid]',
+  'paid_attribution[wbraid]',
+  'paid_attribution[msclkid]',
   'paid_attribution[campaign_id]',
   'paid_attribution[adgroup_id]',
   'paid_attribution[creative_id]',
@@ -194,10 +199,9 @@ export default async function handler(req, res) {
     return reply(false, 413, 'Those card photos are too large to send. Please try smaller photos, or leave them out.');
   }
 
-  const reactor = (process.env.CTM_FORMREACTOR_ID || '').trim();
-  const key = (process.env.CTM_FORMREACTOR_KEY || '').trim();
-  if (!REACTOR_RE.test(reactor) || !key) {
-    console.error('[lead] CTM is not configured: set CTM_FORMREACTOR_ID and CTM_FORMREACTOR_KEY');
+  const upstreamUrl = resolveUpstream();
+  if (!upstreamUrl) {
+    console.error('[lead] CTM is not configured');
     return reply(false, 500);
   }
 
@@ -206,15 +210,15 @@ export default async function handler(req, res) {
     d = await parseFields(req);
   } catch (err) {
     if (err?.message === 'TOO_LARGE') return reply(false, 413, 'Those card photos are too large to send. Please try smaller photos, or leave them out.');
-    console.error('[lead] body read failed', { name: err?.name });
+    console.error('[lead] body read failed');
     return reply(false, 400);
   }
   const get = (k, max) => str(d.get(k), max);
 
-  // Bots get a normal success so they learn nothing.
+  // Bots get a normal success so they learn nothing. Do not log the request.
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.headers['x-real-ip'] || '';
   if (get('company_website') || rateLimited(ip)) {
-    console.log('[lead] discarded as spam');
+    console.error('[lead] request discarded');
     return reply(true);
   }
 
@@ -270,7 +274,7 @@ export default async function handler(req, res) {
   let ctm = {};
   try {
     // Never log this URL: it carries the reactor key.
-    const upstream = await fetch(`${CTM_ENDPOINT}/${reactor}?key=${encodeURIComponent(key)}`, {
+    const upstream = await fetch(upstreamUrl, {
       method: 'POST',
       body: f,
       signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
@@ -279,15 +283,14 @@ export default async function handler(req, res) {
     try { ctm = JSON.parse(text); } catch { /* non-JSON body */ }
     // HTTP 200 is not success: CTM rejects with 200 and {"status":"error"}.
     if (!upstream.ok || ctm.status === 'error' || (ctm.status && ctm.status !== 'success')) {
-      console.error('[lead] CTM rejected the submission', { http: upstream.status, text: String(ctm.text || 'no error text').replace(/\d{5,}/g, '#') });
+      // Do not log the body, the response, or any submitted field.
+      console.error('[lead] CTM rejected the submission', { status: upstream.status });
       return reply(false, 502);
     }
   } catch (err) {
-    console.error('[lead] upstream request failed', { name: err?.name, message: err?.message });
+    console.error('[lead] upstream request failed', { name: err?.name });
     return reply(false, 502);
   }
-
-  console.log('[lead] accepted', { trackback: ctm.trackback_id, sid: Boolean(sid), photos: Boolean(front || back), sms });
 
   // Benefits check, after CTM accepted (it never turns a delivered lead into a failure).
   await sendVob({
@@ -296,4 +299,20 @@ export default async function handler(req, res) {
     ctm_call_id: ctm.trackback_id || '',
   }, { front, back });
   return reply(true);
+}
+
+function resolveUpstream() {
+  const key = (process.env.CTM_FORMREACTOR_KEY || '').trim();
+  if (!key) return null;
+  const explicit = (process.env.CTM_FORMREACTOR_ENDPOINT || '').trim();
+  if (explicit) {
+    let url;
+    try { url = new URL(explicit); } catch { return null; }
+    if (url.protocol !== 'https:' || url.hostname !== 'api.calltrackingmetrics.com') return null;
+    if (!url.searchParams.has('key')) url.searchParams.set('key', key);
+    return url.toString();
+  }
+  const reactor = (process.env.CTM_FORMREACTOR_ID || '').trim();
+  if (!REACTOR_RE.test(reactor)) return null;
+  return `${CTM_ENDPOINT}/${reactor}?key=${encodeURIComponent(key)}`;
 }

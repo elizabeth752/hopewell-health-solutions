@@ -92,7 +92,7 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
     <button type="submit" class="lc-btn">Verify my insurance, free</button>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
-  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. Not for emergencies: call or text <a href="tel:988">988</a>. See our <a href="/privacy/">Privacy Policy</a>.</p>
+  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. Not for emergencies: call or text <a href="tel:988">988</a>. See our <a href="/privacy/">Privacy Policy</a> and <a href="/hipaa-notice/">Notice of Privacy Practices</a>.</p>
 </div>
 
 <style is:global>
@@ -149,7 +149,8 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
 <script>
   const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise
   const FORM_ID = "hopewell-website-lead";
-  const ATTR_KEYS = ["gclid","gbraid","wbraid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
+  const CLICK_IDS = ["gclid","gbraid","wbraid","msclkid"];
+  const ATTR_KEYS = ["gclid","gbraid","wbraid","msclkid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
 
   // Capture ad attribution from the landing URL and persist it across the visit.
   (function captureAttribution() {
@@ -171,12 +172,14 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
   })();
   function getAttr() { try { return JSON.parse(localStorage.getItem("hhs_attr") || "{}"); } catch (e) { return {}; } }
 
-  // CTM's tracking script sets a first-party session cookie holding the real source; read it at submit time.
+  // Read CTM's session id at submit time. Prefer the live script; fall back to its cookie.
+  // If neither is there, the lead still sends — without visitor_sid.
   function getCtmSid() {
     try {
+      const live = window.__ctm && window.__ctm.config && window.__ctm.config.sid;
+      if (live) return String(live);
       const m = document.cookie.match(/(?:^|;\s*)(?:__ctmid|__ctm_sid|ctm_sid)=([^;]+)/i);
       if (m) return decodeURIComponent(m[1]);
-      if (window.__ctm && window.__ctm.config && window.__ctm.config.sid) return String(window.__ctm.config.sid);
     } catch (e) {}
     return "";
   }
@@ -185,7 +188,7 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
     const d = (raw || "").replace(/\D/g, "");
     if (d.length === 10) return "+1" + d;
     if (d.length === 11 && d[0] === "1") return "+" + d;
-    return d ? "+" + d : "";
+    return "";
   }
 
   // Phone photos are often 3–6 MB and the function accepts ~4 MB in total, so large images are re-encoded as JPEG
@@ -262,7 +265,7 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
       body.set("page", window.location.pathname);
 
       const a = getAttr();
-      if (a.gclid) body.set("paid_attribution[gclid]", a.gclid);
+      CLICK_IDS.forEach((k) => { if (a[k]) body.set("paid_attribution[" + k + "]", a[k]); });
       if (a.campaignid) body.set("paid_attribution[campaign_id]", a.campaignid);
       if (a.adgroupid) body.set("paid_attribution[adgroup_id]", a.adgroupid);
       if (a.creative) body.set("paid_attribution[creative_id]", a.creative);
@@ -284,14 +287,8 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
         if (!res.ok || !data.ok) {
           const e2 = new Error("Bad status " + res.status); e2.userText = [400, 413, 429].includes(res.status) && data.error ? data.error : ""; throw e2;
         }
-        form.reset();
-        form.querySelectorAll(".lc-file").forEach((i) => i.dispatchEvent(new Event("change")));
-        show("Thank you, we’ve got your info and will reach out shortly.", true);
-        btn.disabled = false;
-        btn.textContent = original;
-        // GA4/GTM conversion event
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "generate_lead", form_id: FORM_ID });
+        // The conversion fires on /thank-you/ (live PR #99).
+        window.location.assign("/thank-you/?sent=1");
       } catch (err) {
         show((err && err.userText ? err.userText + " " : "Something went wrong. ") + "Please call us at (860) 735-1448 and we’ll help right away.", false);
         btn.disabled = false;

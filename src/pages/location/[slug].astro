@@ -354,7 +354,7 @@ const eventSchema = ev && {
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
     <!-- 1. Hero: the real building, address, hours, coverage form -->
     <div class="lp-hero">
       <ServiceHero

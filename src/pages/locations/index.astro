@@ -159,7 +159,7 @@ const faqsHtml = faqs.map(([q, a]) => [q, a
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: "Hopewell Health Solutions locations", itemListElement: locations.map((l, i) => ({ "@type": "ListItem", position: i + 1, name: `Hopewell Health Solutions ${l.name}`, url: `https://www.hopewellhealthsolutions.com/location/${l.slug}/` })) })} />
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
     <!-- Hero: the office buildings rotate as the banner background (user 2026-11-17), then a self-moving whole-photo gallery under it -->
     <section class="wq-hero lh-hero">
       <div class="hero-media" aria-hidden="true">

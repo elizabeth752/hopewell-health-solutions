@@ -190,7 +190,7 @@ const itemList = { "@context": "https://schema.org", "@type": "ItemList", name: 
   <Header />
   <script type="application/ld+json" set:html={JSON.stringify(medicalWebPage)} />
   <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
     <!-- 1. Hero + form -->
     <ServiceHero
       crumbs={[{ label: "Programs" }]}

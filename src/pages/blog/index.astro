@@ -69,7 +69,7 @@ const ld = [
 <Base title={TITLE} description={DESCRIPTION} canonical={URL} image={featured.heroImage}>
   <Header />
   {ld.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
     <section class="ba-hero">
       <div class="container ba-hero-grid">
         <div class="ba-hero-copy">

@@ -193,7 +193,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(videoLd)} />
-  <main class="hw">
+  <main id="main" tabindex="-1" class="hw">
 
   <!-- 1. Hero + form -->
   <section class="hero hero-old" aria-roledescription="carousel" aria-label="Hopewell Health Solutions">
