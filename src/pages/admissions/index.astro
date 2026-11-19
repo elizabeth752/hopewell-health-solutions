@@ -8,6 +8,7 @@ import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Icon from "../../components/Icon.astro";
+import LeadForm from "../../components/LeadForm.astro";
 import Creds from "../../components/hw/Creds.astro";
 import VideoCarousel from "../../components/hw/VideoCarousel.astro";
 import Team from "../../components/hw/Team.astro";
@@ -165,13 +166,20 @@ const faqs = [
           <h3 class="ax-h3">What happens next</h3>
           <ol class="ax-olist">{next.map(([t, d]) => <li><div><strong>{t}</strong><span>{d}</span></div></li>)}</ol>
           <p class="ax-fine"><Icon name="shield" class="h-4 w-4" /><span>Your information is encrypted and only used to check your coverage. See our <a class="inl" href="/privacy/">privacy policy</a>.</span></p>
-          <div class="ax-ctas"><a href="#verify" class="btn btn-blue">Check my coverage</a><a href="tel:8607351448" class="btn btn-ghost-l"><Icon name="phone" />(860) 735-1448</a></div>
-        </div>
-        <div>
-          <h3 class="ax-h3" style="margin-top:6px">Plans we work with</h3>
-          <ul class="ax-logos">{plans.map((p) => <li>{PLAN_LOGOS[p] ? <img src={PLAN_LOGOS[p]} alt={p} width="160" height="64" loading="lazy" /> : <span>{p}</span>}</li>)}</ul>
+          <div class="ax-ctas"><a href="#verify" class="btn btn-blue only-m">Check my coverage</a><a href="tel:8607351448" class="btn btn-ghost-l"><Icon name="phone" />(860) 735-1448</a></div>
           <p class="ax-no"><Icon name="alert" class="h-5 w-5" /><span><strong>Not accepted: Medicare and Medicaid (HUSKY).</strong> If that’s your coverage, our admissions team can suggest other options.</span></p>
           <p class="ax-fine"><Icon name="clipboard" class="h-4 w-4" /><span>Plan not listed? Choose “Other / Not sure” on the form and we’ll check. A benefits check isn’t a guarantee of coverage; some plans need prior authorization, which we handle with your insurer.</span></p>
+        </div>
+        <!-- Eli 2026-11-19: the form goes here (desktop; phones use the hero form, one form per page) -->
+        <div class="ax-ins-form only-d" id="verify-ins"><LeadForm variant="card" formId="hhs-adm-ins" /></div>
+      </div>
+      <!-- Plans we work with: logo carousel, no white tiles (Eli 2026-11-19) -->
+      <div class="container payers ax-payers">
+        <h3 class="ax-h3">Plans we work with</h3>
+        <div class="marquee" aria-label="Insurance plans we work with">
+          <div class="marquee-track">
+            {[0, 1].map((k) => plans.map((p) => <span class="payer" aria-hidden={k === 1 ? "true" : undefined}>{PLAN_LOGOS[p] ? <img src={PLAN_LOGOS[p]} alt={k === 0 ? p : ""} width="160" height="40" loading="lazy" /> : <span class="payer-txt">{p}</span>}</span>))}
+          </div>
         </div>
       </div>
     </section>
@@ -185,7 +193,7 @@ const faqs = [
             <p class="lede" style="margin-top:14px">From the first call to your first session, here’s what working with us looks like. For the full picture, read <a class="inl" href="/admissions/what-to-expect/">what to expect when you start at Hopewell</a>.</p>
             <p class="wx-promise"><span><Icon name="heart" class="h-5 w-5" /></span><span><strong>No surprises.</strong> You’ll know your coverage, your clinician and your plan before you commit to anything.</span></p>
           </div>
-          <figure class="wx-photo"><img src={P + "south-glastonbury-waiting-room.webp"} alt="The waiting room at our South Glastonbury office" width="1200" height="900" loading="lazy" /></figure>
+          <figure class="wx-photo"><img src={P + "iop-team-hallway.webp"} alt="Members of the Hopewell Health Solutions team" width="1680" height="1260" loading="lazy" /></figure>
         </div>
         <ol class="wx-steps">
           {expect.map((e, i) => (
