@@ -1,0 +1,72 @@
+---
+// Insurance: copy + plan table on the left, how-it-works steps on the right, payer logo marquee below.
+// Subpages (default form=true): the callback form sits in the right column on desktop (user, 2026-11-16) and the
+// how-it-works steps move under the plan table. On phones the page's one form sits right above this section (mobileForm).
+import LeadForm from "../LeadForm.astro";
+import Icon from "../Icon.astro";
+import { PHONE } from "../../data/site.js";
+interface Props { heading?: string; lede?: string; mobileForm?: boolean; tone?: "stone" | "white"; form?: boolean }
+// Reviewer feedback 2026-11-18: one simple, conversion-focused message sitewide. The heading is always
+// "We Accept All Major Insurance Providers" and the lede is fixed: no plan-type or TRICARE/PPO details here.
+// Pages still pass heading/lede props (kept in Props so they compile); they are deliberately ignored.
+const { mobileForm = true, tone = "stone", form = true } = Astro.props;
+const heading = "We Accept All Major Insurance Providers";
+const lede = "Not sure what your plan covers? Our team checks your benefits for free, usually within minutes, so you know your costs before you start. No pressure, no commitment.";
+const insurers = [
+  ["Aetna","/Assets/Insurance/AETNA.webp"],["Anthem","/Assets/Insurance/Anthem.webp"],
+  ["Blue Cross Blue Shield","/Assets/home-b/insurance/bcbs.svg"],["Cigna","/Assets/Insurance/CIGNA.webp"],
+  ["ConnectiCare","/Assets/home-b/insurance/connecticare.svg"],["Harvard Pilgrim","/Assets/home-b/insurance/harvard-pilgrim.svg"],
+  ["Magellan","/Assets/Insurance/Magellan%20Health.webp"],["Optum","/Assets/home-b/insurance/optum.svg"],
+  ["TRICARE","/Assets/Insurance/TRICARE.webp"],["UMR","/Assets/home-b/insurance/umr.svg"],
+  ["UnitedHealthcare","/Assets/home-b/insurance/unitedhealthcare.svg"],["VA Community Care","/Assets/Insurance/VA%20Community%20Care.webp"],
+];
+const steps = [
+  ["phone", "Share your plan", "Request a callback or call us with your insurance card handy."],
+  ["shield", "We verify your benefits", "Free and confidential, usually within minutes."],
+  ["check", "You know your costs", "Before you start, with no pressure to commit."],
+];
+---
+{mobileForm && <div class="mobile-verify is-white" id="verify-m"><div class="container"><LeadForm variant="card" formId="hhs-mobile" /></div></div>}
+<section class={`section ${tone === "white" ? "is-white" : "is-stone"}`} id="insurance">
+  <div class="container ins-grid">
+    <div class="ins-copy">
+      <h2>{heading}</h2>
+      <p class="lede">{lede}</p>
+      <div class="plan-table">
+        <div class="plan-row"><span>All major insurance providers</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />Accepted</span></div>
+        <div class="plan-row"><span>Free, confidential benefits check</span><span class="plan-status"><Icon name="check" class="h-4 w-4" />In minutes</span></div>
+        <div class="plan-row"><span>Questions about your plan? <a class="inl" href={PHONE.href}>{PHONE.display}</a></span><span class="plan-status is-info"><Icon name="phone" class="h-4 w-4" />Call us</span></div>
+      </div>
+      {form && <ol class="ins-mini">{steps.map(([icon, t], i) => <li><span><Icon name={icon} class="h-4 w-4" /></span>{t}</li>)}</ol>}
+      <p>See <a class="inl" href="/rates-and-insurance-coverage/">rates &amp; insurance</a>, or call <a class="inl" href={PHONE.href}>{PHONE.display}</a>.</p>
+    </div>
+    {form ? (
+      <div class="ins-form" id="verify-ins"><LeadForm variant="card" formId="hhs-ins" /></div>
+    ) : (
+      <ol class="ins-steps">
+      {steps.map(([icon, t, d], i) => (
+        <li><span class="ins-step-dot"><Icon name={icon} class="h-6 w-6" /></span><span><span class="step-num">Step {i + 1}</span><strong>{t}</strong><span>{d}</span></span></li>
+      ))}
+      </ol>
+    )}
+  </div>
+  <div class="container payers">
+    <div class="marquee" aria-label="Insurance plans we accept">
+      <div class="marquee-track">
+        {[0, 1].map((k) => insurers.map(([name, img]) => <span class="payer" aria-hidden={k === 1 ? "true" : undefined}><img src={img} alt={k === 0 ? name : ""} width="160" height="40" loading="lazy" /></span>))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* Phones: payer logos as a self-moving row of large tiles (user 2026-11-18; was a 2-per-row grid). Base.astro
+     drifts it by scrollLeft, so it pauses on touch and stays swipeable. Same rule ships in LeadForm.astro for the homepage. */
+  @media (max-width: 640px) {
+    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; overflow: visible; }
+    .hw .payers .marquee-track { display: flex; gap: 12px; width: auto; animation: none; transform: none; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding: 2px var(--hw-gutter, 16px) 6px; }
+    .hw .payers .marquee-track::-webkit-scrollbar { display: none; }
+    .hw .payers .marquee .payer { flex: 0 0 150px; height: 84px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
+    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 118px; max-height: 48px; object-fit: contain; }
+  }
+</style>

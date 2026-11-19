@@ -1,8 +1,11 @@
 ---
 import "../styles/global.css";
+import "../styles/site.css";
 import EventPopup from "../components/EventPopup.astro";
 import WestbrookLauncher from "../components/WestbrookLauncher.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import GoogleBadge from "../components/hw/GoogleBadge.astro";
+import AccessibilityPanel from "../components/AccessibilityPanel.astro";
 
 interface Props {
   title?: string;
@@ -42,7 +45,7 @@ const ogUrl = canonicalHref;
     <link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/baskervville-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- Consent Mode v2 defaults (everything optional denied) + a saved choice re-applied; must run BEFORE GTM -->
+    <!-- Consent Mode v2 defaults (everything optional denied) + a saved choice re-applied; must run BEFORE GTM (live PR #96) -->
     <CookieConsent part="head" prefix="hopewell" />
     <!-- Google Tag Manager — loads immediately (async) so CTM swaps the number before anyone can call the default one -->
     <script is:inline>
@@ -101,6 +104,113 @@ const ogUrl = canonicalHref;
     </style>
     <EventPopup />
     <WestbrookLauncher />
-    <CookieConsent prefix="hopewell" primary="#265489" primaryDark="#1b3e63" text="#001d37" tint="#e7eef5" titleFont="'Baskervville', Georgia, serif" cookieDomain=".hopewellhealthsolutions.com" />
+    <GoogleBadge />
+  <script>
+  // Phones (user 2026-11-17: "all the galleries should be always moving on mobile"): every gallery/carousel/marquee becomes a
+  // row of whole photos (or video cards) that glides continuously (~30px/s) and loops via cloned items. Stops while
+  // touched/hovered/focused (resumes 3s later), while a video is open and off-screen. Reduced motion: plain swipe row.
+  (() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const phone = matchMedia("(max-width: 640px)").matches;
+    // Touch tablets: only the self-moving marquees switch to the swipeable drift (galleries keep their tablet grid).
+    if (!phone && !matchMedia("(hover: none) and (pointer: coarse)").matches) return;
+    const MARQUEES = ".lc-track, .rv-loop-track, .vc-marquee .vc-track, .ps-mq-track";
+    const SEL = phone ? `.ps-strip .ps-track, .ps-single .ps-track, .tp-grid, .ab-gal, #offices-gallery .ab-offices, .vc-grid, .payers .marquee-track, ${MARQUEES}` : MARQUEES;
+    // These marquees already render their list twice (second half aria-hidden), so they loop without extra clones.
+    const PRE = ".lc-track, .rv-loop-track, .vc-track, .ps-mq-track, .payers .marquee-track";
+    document.querySelectorAll<HTMLElement>(SEL).forEach((row) => {
+      if (row.closest(".is-static")) return;
+      const pre = row.matches(PRE);
+      const items = (pre ? [...row.children].slice(0, row.children.length / 2) : [...row.children]) as HTMLElement[];
+      if (items.length < 2) return;
+      row.classList.add("m-drift");
+      row.closest(".ps")?.classList.add("m-drift-host");
+      if (!pre) items.forEach((it, i) => {
+        const c = it.cloneNode(true) as HTMLElement;
+        c.classList.add("m-clone"); c.setAttribute("aria-hidden", "true");
+        c.querySelectorAll("img").forEach((im) => im.setAttribute("alt", ""));
+        c.querySelectorAll<HTMLElement>("a, button").forEach((el) => el.setAttribute("tabindex", "-1"));
+        // Cloned video buttons have no player handler, so they forward the tap to the original card.
+        c.querySelectorAll<HTMLElement>("button").forEach((b) => b.addEventListener("click", () => items[i].querySelector<HTMLElement>("button")?.click()));
+        row.append(c);
+      });
+      let hold = false, seen = false, resume = 0, pos = 0, last = 0;
+      // Card rows on phones (offices, reviews, video cards; QA 2026-11-18): no continuous glide that can stop mid-card.
+      // The row snaps to card starts and auto-advances ONE whole card every 4.5s (smooth), looping through the clones.
+      if (phone && row.matches(".lc-track, .rv-loop-track, .vc-track, .vc-grid")) {
+        row.classList.add("m-step");
+        const halfW = () => {
+          const kids = [...row.children] as HTMLElement[];
+          const a = kids.slice(0, items.length).find((k) => !k.hidden), b = kids.slice(items.length).find((k) => !k.hidden);
+          return a && b ? b.offsetLeft - a.offsetLeft : 0;
+        };
+        const wrap = () => { const h = halfW(); if (h > 0 && row.scrollLeft >= h - 2) row.scrollTo({ left: row.scrollLeft - h, behavior: "instant" as ScrollBehavior }); };
+        let t = 0;
+        row.addEventListener("scroll", () => { clearTimeout(t); t = window.setTimeout(wrap, 160); }, { passive: true });
+        const pauseS = () => { hold = true; clearTimeout(resume); };
+        const laterS = () => { clearTimeout(resume); resume = window.setTimeout(() => { hold = false; }, 3000); };
+        row.addEventListener("touchstart", pauseS, { passive: true }); row.addEventListener("touchend", laterS, { passive: true });
+        row.addEventListener("focusin", pauseS); row.addEventListener("focusout", laterS);
+        new IntersectionObserver(([e]) => (seen = e.isIntersecting), { threshold: 0.2 }).observe(row);
+        setInterval(() => {
+          if (hold || !seen || document.hidden || document.querySelector("dialog[open]")) return;
+          wrap();
+          const pad = parseFloat(getComputedStyle(row).scrollPaddingLeft) || 0;
+          const base = row.getBoundingClientRect().left + pad;
+          const next = ([...row.children] as HTMLElement[]).filter((k) => !k.hidden).map((k) => k.getBoundingClientRect().left - base).find((d) => d > 4);
+          if (next !== undefined) row.scrollBy({ left: next, behavior: "smooth" });
+        }, 4500);
+        return;
+      }
+      const pause = () => { hold = true; clearTimeout(resume); };
+      const later = () => { clearTimeout(resume); resume = window.setTimeout(() => { pos = row.scrollLeft; hold = false; }, 3000); };
+      row.addEventListener("touchstart", pause, { passive: true }); row.addEventListener("touchend", later, { passive: true });
+      row.addEventListener("mouseenter", pause); row.addEventListener("mouseleave", later);
+      row.addEventListener("focusin", pause); row.addEventListener("focusout", later);
+      new IntersectionObserver(([e]) => (seen = e.isIntersecting), { threshold: 0.2 }).observe(row);
+      const frame = (t: number) => {
+        const dt = last ? Math.min(t - last, 64) : 0; last = t;
+        // first visible item of each half (office tabs can hide cards)
+        const kids = [...row.children] as HTMLElement[];
+        const a = kids.slice(0, items.length).find((k) => !k.hidden), b = kids.slice(items.length).find((k) => !k.hidden);
+        const half = a && b ? b.offsetLeft - a.offsetLeft : 0;
+        if (half > 0 && !hold && seen && !document.hidden && !document.querySelector("dialog[open]")) {
+          pos += dt * 0.03;
+          if (pos >= half) pos -= half;
+          row.scrollLeft = pos;
+        } else if (hold && half > 0 && row.scrollLeft >= half) row.scrollLeft -= half;
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    });
+  })();
+</script>
+<script>
+  // Phones: condition/treatment cards show the summary first, the rest opens with "Read more" (text stays in the HTML).
+  document.querySelectorAll<HTMLElement>(".wq-card").forEach((card) => {
+    if (!card.querySelector(":scope > p:not(.wq-line):not(.wq-meta)")) return;
+    card.classList.add("has-more");
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "wq-more"; b.textContent = "Read more"; b.setAttribute("aria-expanded", "false");
+    b.addEventListener("click", () => { const open = card.classList.toggle("is-open"); b.textContent = open ? "Show less" : "Read more"; b.setAttribute("aria-expanded", String(open)); });
+    const meta = card.querySelector(":scope > .wq-meta");
+    meta ? card.insertBefore(b, meta) : card.append(b);
+  });
+</script>
+<script>
+  // Phones hide the hero form (one form sits above insurance), so "#verify" links jump to whichever form is visible.
+  document.addEventListener("click", (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#verify"], a[href$="/#verify"]');
+    if (!a || (a.pathname !== location.pathname && !a.getAttribute("href")!.startsWith("#"))) return;
+    const t = document.getElementById("verify");
+    if (t && t.offsetParent) return;
+    const alt = [...document.querySelectorAll<HTMLElement>(".lead-card")].find((el) => el.offsetParent);
+    if (!alt) return;
+    e.preventDefault();
+    alt.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+</script>
+  <CookieConsent prefix="hopewell" primary="#265489" primaryDark="#1b3e63" text="#001d37" tint="#e7eef5" titleFont="'Baskervville', Georgia, serif" cookieDomain=".hopewellhealthsolutions.com" />
+    <AccessibilityPanel />
   </body>
 </html>

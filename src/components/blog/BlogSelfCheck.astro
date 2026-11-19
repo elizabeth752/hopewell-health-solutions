@@ -1,0 +1,90 @@
+---
+// Topic self-check inside a blog post (Corner Canyon blog quiz pattern, Hopewell brand). One question at a time,
+// scored in the browser; nothing is stored or sent. Always labelled non-diagnostic, with the source cited, a result
+// band, inline program links, and call / insurance buttons. Depression, postpartum, trauma and teen checks add a crisis
+// line, and a "yes" on a self-harm item shows it first.
+import { QUIZZES, quizItems } from "../../data/quizzes.js";
+import "../../styles/components/self-check.css";
+import { PHONE } from "../../data/site.js";
+interface Props { quiz: string }
+const { quiz } = Astro.props;
+const qz = QUIZZES[quiz];
+const items = qz ? quizItems(qz) : [];
+const crisisIdx = qz ? [...(qz.crisisItems || []), ...(qz.crisisItem !== undefined ? [qz.crisisItem] : [])] : [];
+const id = `sc-${quiz}`;
+---
+{qz && (
+<aside class="sc" data-sc data-no-tts aria-labelledby={`${id}-h`} data-bands={JSON.stringify(qz.bands)} data-crisis={JSON.stringify(crisisIdx)}>
+  <div class="sc-head">
+    <span class="sc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1H9z"/><path d="m9 12 2 2 4-4"/></svg></span>
+    <strong id={`${id}-h`}>{qz.title.replace(/-(?=\d)/g, "\u2011")}</strong>
+  </div>
+  <p class="sc-note">{items.length} questions, about a minute. This isn't a diagnosis, and your answers stay on this page.</p>
+  <p class="sc-intro">{qz.intro}</p>
+  <div class="sc-bar" aria-hidden="true"><span data-sc-bar></span></div>
+  {items.map((it, i) => (
+    <fieldset class="sc-step" data-step={i} hidden={i > 0}>
+      <legend><span class="sc-n">Question {i + 1} of {items.length}</span>{it.q}</legend>
+      <div class="sc-opts">
+        {it.opts.map(([label, score]) => (
+          <label class="sc-opt"><input type="radio" name={`${id}-${i}`} value={score} /><span>{label}</span></label>
+        ))}
+      </div>
+      {i > 0 && <button type="button" class="sc-back" data-back>&larr; Back</button>}
+    </fieldset>
+  ))}
+  <div class="sc-result" data-result hidden aria-live="polite">
+    <p class="sc-crisis" data-crisis-msg hidden><strong>If you’re thinking about harming yourself, please reach out now.</strong> Call or text <a href="tel:988">988</a> (Suicide &amp; Crisis Lifeline) any time, or call 911 in an emergency.</p>
+    <p class="sc-score"><span data-score></span></p>
+    <p class="sc-label" data-label></p>
+    <p class="sc-text" data-text></p>
+    <div class="sc-ctas">
+      <a href={PHONE.href} class="btn btn-blue">Call {PHONE.display}</a>
+      <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>
+    </div>
+    {qz.crisis && <p class="sc-988">In a crisis? Call or text <a href="tel:988">988</a>, or call 911.</p>}
+    <button type="button" class="sc-back" data-restart>Start over</button>
+  </div>
+  <p class="sc-src">{qz.source} Results are for education only and don’t replace an assessment by a licensed clinician.</p>
+</aside>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-sc]").forEach((root) => {
+    const steps = [...root.querySelectorAll<HTMLFieldSetElement>("[data-step]")];
+    const result = root.querySelector<HTMLElement>("[data-result]")!;
+    const bar = root.querySelector<HTMLElement>("[data-sc-bar]")!;
+    const bands: [number, string, string][] = JSON.parse(root.dataset.bands || "[]");
+    const crisis: number[] = JSON.parse(root.dataset.crisis || "[]");
+    const ans: number[] = [];
+    let at = 0;
+    const show = (i: number) => {
+      steps.forEach((s, j) => (s.hidden = j !== i));
+      result.hidden = i < steps.length;
+      bar.style.width = `${(Math.min(i, steps.length) / steps.length) * 100}%`;
+    };
+    steps.forEach((s, i) => s.querySelectorAll<HTMLInputElement>("input").forEach((inp) => inp.addEventListener("change", () => {
+      ans[i] = Number(inp.value);
+      at = i + 1;
+      if (at === steps.length) render();
+      show(at);
+      (at < steps.length ? steps[at].querySelector("input") : result.querySelector("h3"))?.focus?.({ preventScroll: true });
+    })));
+    root.querySelectorAll("[data-back]").forEach((b) => b.addEventListener("click", () => { at = Math.max(0, at - 1); show(at); }));
+    root.querySelector("[data-restart]")!.addEventListener("click", () => {
+      at = 0; ans.length = 0;
+      root.querySelectorAll<HTMLInputElement>("input").forEach((i) => (i.checked = false));
+      show(0);
+      root.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    function render() {
+      const total = ans.reduce((a, b) => a + (b || 0), 0);
+      const max = bands[bands.length - 1][0];
+      const band = bands.find(([hi]) => total <= hi) || bands[bands.length - 1];
+      root.querySelector("[data-score]")!.textContent = `Your score: ${total} of ${max}`;
+      root.querySelector("[data-label]")!.textContent = band[1];
+      root.querySelector("[data-text]")!.innerHTML = band[2];
+      (root.querySelector("[data-crisis-msg]") as HTMLElement).hidden = !crisis.some((i) => (ans[i] || 0) > 0);
+    }
+  });
+</script>

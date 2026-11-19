@@ -1,0 +1,59 @@
+---
+// Program explorer (homepage): a list of programs on the left; hovering or clicking one shows its big photo panel on
+// the right (description, quick facts, buttons). Every panel is in the HTML (SEO); phones see compact photo rows.
+import Icon from "../Icon.astro";
+import { PHONE } from "../../data/site.js";
+interface Prog { t: string; d: string; href: string; img: string; bar?: string; icon?: string; facts?: [string, string][]; group?: string }
+interface Props { items: Prog[] }
+const { items } = Astro.props;
+const groups = [...new Set(items.map((p) => p.group ?? ""))];
+---
+<div class="px" data-px>
+  <div class="px-list" role="tablist" aria-label="Programs">
+    {groups.map((g) => (
+      <div class="px-group">
+        {g && <p class="px-group-h">{g}</p>}
+        {items.map((p, i) => (p.group ?? "") === g && (
+          <button type="button" role="tab" id={`px-tab-${i}`} aria-controls={`px-panel-${i}`} aria-selected={i === 0 ? "true" : "false"} class:list={["px-tab", i === 0 && "is-on"]} style={`--bar:${p.bar ?? "#2f76c4"}`}>
+            <span class="px-ico"><Icon name={p.icon ?? "heart"} class="h-5 w-5" /></span>
+            <span class="px-tab-t"><strong>{p.t}</strong>{p.facts?.[0] && <small>{p.facts[0][1]}</small>}</span>
+            <Icon name="arrow" class="px-arrow h-4 w-4" />
+          </button>
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="px-stage">
+    {items.map((p, i) => (
+      <article role="tabpanel" id={`px-panel-${i}`} aria-labelledby={`px-tab-${i}`} class:list={["px-panel", i === 0 && "is-on"]} style={`--bar:${p.bar ?? "#2f76c4"}`}>
+        <img src={p.img} alt={p.t} width="1200" height="900" loading={i === 0 ? "eager" : "lazy"} />
+        <div class="px-copy">
+          <h3><a href={p.href}>{p.t}</a></h3>
+          <p>{p.d}</p>
+          {p.facts && <ul class="px-facts">{p.facts.map(([icon, t]) => <li><Icon name={icon} class="h-[18px] w-[18px]" />{t}</li>)}</ul>}
+          <div class="px-ctas">
+            <a href={p.href} class="btn btn-blue">Explore {p.t.replace(/ \(.*\)/, "")}<Icon name="arrow" /></a>
+            <a href={PHONE.href} class="btn btn-ghost px-call"><Icon name="phone" />{PHONE.display}</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-px]").forEach((px) => {
+    const tabs = [...px.querySelectorAll<HTMLButtonElement>(".px-tab")];
+    const panels = [...px.querySelectorAll<HTMLElement>(".px-panel")];
+    const show = (t: HTMLButtonElement) => {
+      tabs.forEach((x) => { x.classList.toggle("is-on", x === t); x.setAttribute("aria-selected", String(x === t)); });
+      const id = t.getAttribute("aria-controls");
+      panels.forEach((p) => p.classList.toggle("is-on", p.id === id));
+    };
+    tabs.forEach((t) => {
+      t.addEventListener("click", () => show(t));
+      t.addEventListener("mouseenter", () => { if (window.matchMedia("(hover: hover)").matches) show(t); });
+      t.addEventListener("focus", () => show(t));
+    });
+  });
+</script>

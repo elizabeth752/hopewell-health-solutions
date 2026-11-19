@@ -1,0 +1,82 @@
+---
+// Homepage self-assessment (user 2026-11-17: "add a self assessment quiz to the homepage"). Pick a topic on the left,
+// take the check on the right. Reuses the blog self-check (BlogSelfCheck.astro + data/quizzes.js): validated,
+// free-to-use screeners where they exist (PHQ-9, GAD-7, AUDIT-C, PC-PTSD-5, ASRS), scored in the browser only.
+// Nothing is stored or sent, results are labelled non-diagnostic, and the depression/trauma/teen checks carry 988.
+import BlogSelfCheck from "../blog/BlogSelfCheck.astro";
+import Icon from "../Icon.astro";
+import { QUIZZES, quizItems } from "../../data/quizzes.js";
+const topics = [
+  { key: "depression", t: "Depression", icon: "cloud", tool: "PHQ-9" },
+  { key: "anxiety", t: "Anxiety", icon: "brain", tool: "GAD-7" },
+  { key: "alcohol", t: "Alcohol use", icon: "alert", tool: "AUDIT-C" },
+  { key: "trauma", t: "Trauma & PTSD", icon: "shield", tool: "PC-PTSD-5" },
+  { key: "adhd", t: "Adult ADHD", icon: "bolt", tool: "ASRS" },
+  { key: "teen", t: "My child or teen", icon: "users", tool: "Parent checklist" },
+].filter((x) => QUIZZES[x.key]).map((x) => ({ ...x, n: quizItems(QUIZZES[x.key]).length }));
+---
+<section class="section is-navy" id="self-check">
+  <div class="container hsc">
+    <div class="hsc-side">
+      <h2>Not Sure Where to Start? Take a 1-Minute Self-Check</h2>
+      <div class="hsc-topics" role="tablist" aria-label="Choose a self-check">
+        {topics.map((x, i) => (
+          <button type="button" role="tab" class:list={["hsc-topic", i === 0 && "is-on"]} id={`hsc-tab-${x.key}`} aria-controls={`hsc-${x.key}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-hsc={x.key}>
+            <span class="hsc-ico"><Icon name={x.icon} class="h-5 w-5" /></span>
+            <span><strong>{x.t}</strong><small>{x.tool} · {x.n} questions</small></span>
+          </button>
+        ))}
+      </div>
+      <p class="hsc-private"><Icon name="shield" class="h-5 w-5" /><span>Private: your answers stay on this page and aren’t saved or sent. A self-check isn’t a diagnosis.</span></p>
+    </div>
+    <div class="hsc-panels">
+      {topics.map((x, i) => (
+        <div class="hsc-panel" id={`hsc-${x.key}`} role="tabpanel" aria-labelledby={`hsc-tab-${x.key}`} hidden={i > 0}>
+          <BlogSelfCheck quiz={x.key} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hsc { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .hsc-side .lede { margin-top: 14px; }
+  .hsc-side .lede :global(a.inl) { color: #fff; }
+  .hsc-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
+  .hsc-topic { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); color: #fff; text-align: left; font: inherit; cursor: pointer; transition: background .2s, border-color .2s; }
+  .hsc-topic:hover { background: rgba(255,255,255,.12); }
+  .hsc-topic.is-on { background: #fff; border-color: #fff; color: var(--hw-navy); }
+  .hsc-topic strong { display: block; font-family: var(--hw-head); font-weight: 800; font-size: 16px; line-height: 1.25; }
+  .hsc-topic small { display: block; margin-top: 2px; font-size: 12.5px; opacity: .8; }
+  .hsc-ico { flex: none; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: rgba(47,118,196,.4); color: #fff; }
+  .hsc-topic.is-on .hsc-ico { background: var(--hw-bright); }
+  .hsc-private { display: flex; gap: 10px; align-items: flex-start; margin-top: 20px; font-size: 14px; line-height: 1.5; color: #c9d6e4; }
+  .hsc-private :global(svg) { flex: none; margin-top: 1px; color: #e0b56a; }
+  .hsc-panels :global(.sc) { margin: 0; box-shadow: 0 30px 70px rgba(0,0,0,.3); border: 0; }
+  .hsc-panel[hidden] { display: none; }
+  /* Less text (Eli 2026-11-19: "esta seccion esta muy saturada"): on the homepage the card drops the "9 questions,
+     about a minute" note and the source line; the private/not-a-diagnosis line on the left still says it. */
+  .hsc-panels :global(.sc-note), .hsc-panels :global(.sc-src) { display: none; }
+  /* The section is navy, which turns headings and links white: keep the quiz card in its own light colours. */
+  .hsc-panels :global(.sc h3), .hsc-panels :global(.sc strong) { color: var(--hw-navy); }
+  .hsc-panels :global(.sc a.inl) { color: var(--hw-blue); }
+  .hsc-panels :global(.sc .sc-intro), .hsc-panels :global(.sc .sc-text) { color: var(--hw-body); }
+  @media (max-width: 999px) { .hsc { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 520px) { .hsc-topics { gap: 8px; } .hsc-topic { padding: 10px; gap: 8px; } .hsc-ico { width: 32px; height: 32px; } .hsc-topic strong { font-size: 14.5px; } .hsc-topic small { font-size: 12px; } }
+</style>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>(".hsc-topic")];
+  const pick = (t: HTMLButtonElement, focus = false) => {
+    tabs.forEach((x) => { const on = x === t; x.classList.toggle("is-on", on); x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
+    document.querySelectorAll<HTMLElement>(".hsc-panel").forEach((p) => (p.hidden = p.id !== `hsc-${t.dataset.hsc}`));
+    if (focus) t.focus();
+    // On phones the quiz sits under the topic list, so bring it into view after a choice.
+    if (matchMedia("(max-width: 999px)").matches) document.getElementById(`hsc-${t.dataset.hsc}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => pick(t));
+    t.addEventListener("keydown", (e) => { const d = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0; if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); } });
+  });
+</script>

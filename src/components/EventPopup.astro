@@ -1,6 +1,6 @@
 ---
 /*
-  Bottom event strip — temporary, self-expiring promo bar pinned to the viewport.
+  Bottom event strip, temporary, self-expiring promo bar pinned to the viewport.
 
   Deliberately a slim full-width strip rather than a corner card: a card large
   enough to read was overlapping the hero lead form on desktop. The strip only
@@ -8,12 +8,12 @@
   own height so it never sits on top of the footer either.
 
   Colours are solid on purpose. The first pass used white/70-style alpha over
-  navy and washed out badly — everything here is a fixed hex with a checked
+  navy and washed out badly, everything here is a fixed hex with a checked
   contrast ratio against the navy (all >= 8:1).
 
   Two layers of expiry so this can never outlive the event:
-    1. Build-time  — past EXPIRES, the markup is not emitted at all.
-    2. Runtime     — the site is a static build, so if nothing rebuilds after
+    1. Build-time, past EXPIRES, the markup is not emitted at all.
+    2. Runtime, the site is a static build, so if nothing rebuilds after
                      the event the baked HTML would linger. The inline script
                      re-checks the date in the visitor's browser and removes
                      the strip. Belt and braces; delete the component after Sept.
@@ -57,7 +57,7 @@ const BODY = "#c9d6e2"; // 10.8:1 on navy
 {show && (
   <aside
     id="eventPopup"
-    aria-label={`${EVENT.eyebrow} — ${EVENT.when}`}
+    aria-label={`${EVENT.eyebrow}, ${EVENT.when}`}
     data-expires={EXPIRES.toISOString()}
     data-rsvp-deadline={RSVP_DEADLINE.toISOString()}
     data-rsvp-late={EVENT.rsvpLate}
@@ -73,7 +73,7 @@ const BODY = "#c9d6e2"; // 10.8:1 on navy
             <span class="hidden h-px w-4 sm:block" style={`background:${GOLD}`}></span>{EVENT.eyebrow}
           </p>
           <p class="mt-0.5 text-sm leading-snug sm:mt-1 sm:text-[0.95rem]">
-            <span class="hidden font-display text-white sm:inline">{EVENT.title} — </span>
+            <span class="hidden font-display text-white sm:inline">{EVENT.title}</span>
             <span style={`color:${BODY}`}>
               {EVENT.when}<span class="hidden sm:inline"> · <a href={EVENT.directions} class="hover:text-white hover:underline underline-offset-4 transition">{EVENT.place}</a></span>
             </span>
