@@ -1,0 +1,62 @@
+---
+import HeroCreds from "./HeroCreds.astro";
+// Hero for every inner page (Corner Canyon ServiceHero): breadcrumbs, H1, lede, bullet points with check icons, quick
+// facts, call button; the callback form on the right (desktop). A real photo sits behind a navy scrim (the client likes
+// photos). Emits BreadcrumbList schema. On phones the form hides; pages put <Insurance mobileForm> lower down
+// (or pass keepFormMobile when they have no insurance section).
+import Icon from "../Icon.astro";
+import LeadForm from "../LeadForm.astro";
+import { PHONE, SITE } from "../../data/site.js";
+interface Crumb { label: string; href?: string }
+interface Props { crumbs: Crumb[]; title: string; lede: string; bullets?: string[]; facts?: { icon: string; text: string }[]; image?: string; imagePos?: string; form?: boolean; keepFormMobile?: boolean }
+const { crumbs, title, lede, bullets = [], facts = [], image = "/Assets/hhs-2026/iop-clinicians-group-room.webp", imagePos = "center", form = true, keepFormMobile = false } = Astro.props;
+const all = [{ label: "Home", href: "/" }, ...crumbs];
+// Hero copy rule (QA 2026-11-18): short keyword H1, lede of about 25 words, at most 3 short bullets. The cap is
+// enforced here so no page can overload the hero again.
+const points = bullets.slice(0, 3);
+// PREVIEW ONLY (user 2026-11-18: "show how it would look with the banner"): on the dev server, ?hero=banner renders the
+// old site's inner-page banner (full-width photo, H1 page name, one H2 line, nothing else) for comparison.
+const bannerPreview = import.meta.env.DEV; // the banner is rendered hidden in dev and switched on by ?hero=banner (script below)
+const ld = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: all.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, ...(c.href ? { item: SITE + c.href } : { item: SITE + Astro.url.pathname }) })) };
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+{bannerPreview && (
+<section class="sv-banner" hidden>
+  <img src={image} alt="" width="1680" height="1260" style={`object-position:${imagePos}`} fetchpriority="high" />
+  <div class="container sv-banner-in">
+    <h1 set:html={title} />
+    <p class="sv-banner-sub">Mental Health, Addiction &amp; Psychiatry in Glastonbury, Westbrook and Across CT</p>
+  </div>
+</section>
+)}
+<section class:list={["sv-hero", !form && "is-solo"]}>
+  <img class="sv-bg" src={image} alt="" width="1680" height="1260" style={`object-position:${imagePos}`} fetchpriority="high" />
+  <div class="sv-scrim" aria-hidden="true"></div>
+  <div class="container sv-grid">
+    <div class="sv-copy">
+      <nav class="sv-crumbs" aria-label="Breadcrumb"><ol>{all.map((c, i) => <li>{c.href && i < all.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}</ol></nav>
+      <h1 set:html={title} />
+      <p class="lede" set:html={lede} />
+      {points.length > 0 && <ul class="sv-bullets">{points.map((b) => <li><span class="sv-tick"><Icon name="check" class="h-4 w-4" /></span><span set:html={b} /></li>)}</ul>}
+      {facts.length > 0 && <ul class="sv-facts">{facts.map((f) => <li><Icon name={f.icon} class="h-[18px] w-[18px]" />{f.text}</li>)}</ul>}
+      <div class="sv-ctas">
+        {/* One CTA on phones: the header already carries the call button, so under 1000px only "Verify my insurance" shows. */}
+        <a href={PHONE.href} class="btn btn-blue only-d"><Icon name="phone" />Call {PHONE.display}</a>
+        {form ? <a href={keepFormMobile ? "#verify" : "#verify-m"} class="btn btn-blue only-m">Verify my insurance</a> : <a href="/admissions/#verify" class="btn btn-ghost">Verify my insurance</a>}
+      </div>
+      <slot />
+      <HeroCreds />
+    </div>
+    {form && <div class:list={["sv-form", keepFormMobile && "is-keep"]} id="verify"><LeadForm variant="card" formId="hhs-hero" /></div>}
+  </div>
+</section>
+{bannerPreview && <script is:inline>if (new URLSearchParams(location.search).get("hero") === "banner") { var b = document.querySelector(".sv-banner"), h = document.querySelector(".sv-hero"); if (b && h) { b.hidden = false; h.style.display = "none"; } }</script>}
+<style>
+  .sv-banner[hidden] { display: none; }
+  .sv-banner { position: relative; isolation: isolate; min-height: clamp(320px, 38vw, 480px); display: flex; align-items: flex-end; overflow: hidden; }
+  .sv-banner img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+  .sv-banner::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(0,22,44,.82) 0%, rgba(0,22,44,.35) 45%, rgba(0,22,44,0) 75%); }
+  .sv-banner-in { padding-top: 120px; padding-bottom: clamp(36px, 4vw, 56px); width: 100%; }
+  .sv-banner h1 { color: #fff; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.08; max-width: 22ch; text-shadow: 0 2px 16px rgba(0,0,0,.35); }
+  .sv-banner-sub { margin: 14px 0 0; color: #e7eef5; font-size: clamp(16px, 1.3vw, 19px); font-weight: 600; letter-spacing: .02em; text-shadow: 0 1px 10px rgba(0,0,0,.4); }
+</style>

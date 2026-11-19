@@ -1,0 +1,61 @@
+---
+import VideoDialog from "./VideoDialog.astro";
+// Video stories (Red Rock pattern): branded 16:9 posters, a story card under each, privacy-enhanced YouTube player in a
+// dialog. mode "marquee" = self-moving carousel (pauses on hover/focus, still for reduced motion); mode "grid" = a
+// featured first video + a grid. Emits VideoObject schema for every video shown.
+import { VIDEOS, videoSchema } from "../../data/videos.js";
+import { SITE } from "../../data/site.js";
+interface Props { videos?: typeof VIDEOS; heading?: string; lede?: string; mode?: "marquee" | "grid"; tone?: "navy" | "white" | "stone"; link?: { href: string; label: string } | null; id?: string }
+const { videos = VIDEOS, heading = "Stories of hope, in their own words", lede, mode = "marquee", tone = "navy", link = { href: "/testimonials/", label: "All client stories" }, id } = Astro.props;
+const schema = videos.map((v) => videoSchema(v, SITE));
+const few = mode === "grid" && videos.length <= 3; // 2–3 videos: equal cards side by side, no featured row
+const loop = mode === "marquee" ? [...videos, ...videos] : few ? videos : videos.slice(1);
+const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg>';
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<section class={`section vc vc-${tone}${tone === "navy" ? " is-navy" : tone === "stone" ? " is-stone" : " is-white"}`} id={id}>
+  <div class="container">
+    <div class="vc-head">
+      <div class="sec-head" style="margin:0">
+        <h2 set:html={heading} />
+        {lede && <p class="lede" set:html={lede} />}
+      </div>
+      {link && <a href={link.href} class="vc-all">{link.label} <span aria-hidden="true">&rarr;</span></a>}
+    </div>
+  </div>
+
+  {mode === "grid" && !few && (
+    <div class="container">
+      <button type="button" class="vc-card vc-feature" data-yt={videos[0].yt} data-title={videos[0].title} data-vertical={videos[0].vertical ? "1" : undefined} aria-label={`Play: ${videos[0].title}`}>
+        <span class="vc-poster"><img src={`/Assets/videos/${videos[0].img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{videos[0].len}</span></span>
+        <span class="vc-body"><span class="vc-type">{videos[0].type}</span><span class="vc-name">{videos[0].name}</span><span class="vc-desc">{videos[0].desc}</span></span>
+      </button>
+    </div>
+  )}
+
+  {mode === "marquee" ? (
+    <div class="vc-marquee" role="region" aria-label="Client video stories" tabindex="0">
+      <ul class="vc-track">
+        {loop.map((v, i) => (
+          <li aria-hidden={i >= videos.length ? "true" : undefined}>
+            <button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} data-vertical={v.vertical ? "1" : undefined} aria-label={`Play: ${v.title}`} tabindex={i >= videos.length ? -1 : undefined}>
+              <span class="vc-poster"><img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{v.len}</span></span>
+              <span class="vc-body"><span class="vc-type">{v.type}</span><span class="vc-name">{v.name}</span><span class="vc-desc">{v.desc}</span></span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : (
+    <div class="container"><ul class:list={["vc-grid", few && `is-${videos.length}`]}>
+      {loop.map((v) => (
+        <li><button type="button" class="vc-card" data-yt={v.yt} data-title={v.title} data-vertical={v.vertical ? "1" : undefined} aria-label={`Play: ${v.title}`}>
+          <span class="vc-poster"><img src={`/Assets/videos/${v.img}.webp`} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /><span class="vc-len">{v.len}</span></span>
+          <span class="vc-body"><span class="vc-type">{v.type}</span><span class="vc-name">{v.name}</span><span class="vc-desc">{v.desc}</span></span>
+        </button></li>
+      ))}
+    </ul></div>
+  )}
+</section>
+
+<VideoDialog />

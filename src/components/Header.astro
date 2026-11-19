@@ -2,14 +2,12 @@
 import Icon from "./Icon.astro";
 import { socials } from "../data/socials";
 
-// Full ideal IA. Live pages resolve; unbuilt ones 404 until shipped (intentional
-// — lets us navigate/visualize the whole sitemap as we build it out).
+// Corner Canyon header pattern in Hopewell colours. Every menu link is unchanged from the live site.
 const menu = [
   { label: "Programs", href: "/programs/", children: [
     { label: "IOP Overview", href: "/programs/intensive-outpatient-program/" },
-    { label: "Adult Co-Occurring IOP", href: "/programs/adult-mental-health-iop/" },
-    { label: "Teen IOP (13–17)", href: "/programs/teen-tween-iop/#teen" },
-    { label: "Tween IOP (8–12)", href: "/programs/teen-tween-iop/#tween" },
+    { label: "Adult Mental Health IOP", href: "/programs/adult-mental-health-iop/" },
+    { label: "Teen & Tween IOP (8–17)", href: "/programs/teen-tween-iop/" },
     { label: "Women's Wellness IOP", href: "/programs/womens-wellness-iop/" },
     { label: "Women's Trauma IOP", href: "/programs/womens-trauma-iop/" },
     { label: "First Responder IOP", href: "/programs/first-responder-iop/" },
@@ -43,9 +41,9 @@ const menu = [
     { label: "ADHD Testing", href: "/treatment-methods/adhd-testing/" },
   ]},
   { label: "Locations", href: "/locations/", children: [
-    { label: "Glastonbury — Pratt St", href: "/location/glastonbury-ct/" },
-    { label: "Downtown Glastonbury — Hebron Ave", href: "/location/glastonbury-ct-2/" },
-    { label: "South Glastonbury — Main St", href: "/location/glastonbury-ct-3/" },
+    { label: "Glastonbury, Pratt St", href: "/location/glastonbury-ct/" },
+    { label: "Downtown Glastonbury, Hebron Ave", href: "/location/glastonbury-ct-2/" },
+    { label: "South Glastonbury, Main St", href: "/location/glastonbury-ct-3/" },
     { label: "West Hartford", href: "/location/west-hartford-ct/" },
     { label: "East Hampton", href: "/location/east-hampton-ct/" },
     { label: "Westbrook", href: "/location/westbrook-ct/" },
@@ -64,89 +62,136 @@ const menu = [
   { label: "Admissions", href: "/admissions/", align: "right", children: [
     { label: "Verify Insurance", href: "/admissions/#verify" },
     { label: "Rates & Insurance", href: "/rates-and-insurance-coverage/" },
-    { label: "What to Expect", href: "/admissions/#what-to-expect" },
-    { label: "For Families", href: "/admissions/#for-families" },
   ]},
 ];
-
+const path = Astro.url.pathname;
+const isActive = (m) => (path !== "/" && path.startsWith(m.href)) || m.children.some((c) => path === c.href.split("#")[0]);
+// Homepage-only go-live (2026-11-19): the inner pages are still the old design and have no <main> of their own, so
+// the header opens <main id="main"> for them and Footer.astro closes it. Redesigned pages render their own <main> and
+// pass ownMain. Drop this once every page is redesigned (the redesign branch has no wrapper).
+const { ownMain = false } = Astro.props;
 ---
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-line">
-  <!-- top bar -->
-  <div class="bg-ink text-white text-xs">
-    <!-- optional page override: <div slot="topbar">…</div>; default = social links -->
-    <slot name="topbar">
-    <div class="mx-auto max-w-6xl px-5 py-1.5 flex items-center justify-end gap-4">
-      <div class="flex items-center gap-2">
-        <span class="hidden sm:inline text-white/55 mr-1">Follow us</span>
+<header class="hw-header">
+  <div class="hw-top">
+    <div class="hw-top-in">
+      <p><em class="hw-top-motto">Therapy first. Medication second. Transformation third.</em> · In crisis? Call or text <a href="tel:988">988</a></p>
+      <ul class="hw-top-social">
         {socials.map((s) => (
-          <a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label} class:list={["grid h-6 w-6 place-items-center rounded-full border border-white/40 text-white hover:bg-white hover:text-ink hover:border-white transition", s.small ? "[&>svg]:h-[11px] [&>svg]:w-[11px]" : "[&>svg]:h-3 [&>svg]:w-3"]}><Fragment set:html={s.svg} /></a>
+          <li><a href={s.href} target="_blank" rel="noopener" aria-label={s.label} title={s.label}><Fragment set:html={s.svg} /></a></li>
         ))}
-      </div>
-    </div>
-    </slot>
-  </div>
-
-  <!-- main nav -->
-  <div class="mx-auto max-w-6xl px-5">
-    <div class="flex items-center justify-between py-3.5 gap-4">
-      <a href="/" class="shrink-0" aria-label="Hopewell Health Solutions — home">
-        <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" class="h-12 sm:h-14 w-auto" />
-      </a>
-
-      <!-- desktop nav -->
-      <nav class="hidden lg:flex items-center gap-x-5">
-        {menu.map((m) => (
-          <div class="relative group">
-            <a href={m.href} class="flex items-center gap-1 text-sm font-semibold text-ink hover:text-azul transition py-2">
-              {m.label}<Icon name="arrow" class="h-3 w-3 rotate-90 opacity-60 transition group-hover:translate-y-0.5" />
-            </a>
-            <div class={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition duration-150 absolute ${m.align === "right" ? "right-0" : "left-0"} top-full pt-3 z-50`}>
-              <div class="w-64 rounded-2xl border border-line bg-white shadow-xl p-2">
-                <ul>
-                  {m.children.map((c) => (
-                    <li><a href={c.href} class="block rounded-lg px-3 py-2 text-sm font-medium text-ink hover:bg-crema hover:text-azul transition">{c.label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </nav>
-
-      <div class="flex items-center gap-2 shrink-0">
-        <a href="tel:8607351448" class="hidden xl:inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-5 h-[45px] text-sm font-semibold text-white shadow-sm hover:bg-azul transition"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
-        <!-- mobile/tablet call icon (full button shows from xl up) -->
-        <a href="tel:8607351448" class="xl:hidden grid h-[45px] w-[45px] place-items-center rounded-lg bg-azul-bright text-white" aria-label="Call us"><Icon name="phone" class="h-5 w-5" /></a>
-        <!-- mobile toggle -->
-        <button id="mobileToggle" class="lg:hidden grid h-[45px] w-[45px] place-items-center rounded-lg border border-line text-ink" aria-label="Open menu" aria-expanded="false">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-        </button>
-      </div>
+      </ul>
     </div>
   </div>
-
-  <!-- mobile panel -->
-  <div id="mobilePanel" class="hidden lg:hidden border-t border-line bg-white max-h-[80vh] overflow-y-auto">
-    <div class="mx-auto max-w-6xl px-5 py-5 space-y-5">
+  <div class="hw-bar">
+    <a href="/" class="hw-logo" aria-label="Hopewell Health Solutions, home">
+      <img src="/Assets/logo/hopewell-wave-logo-color.svg" alt="Hopewell Health Solutions" width="990" height="444" decoding="async" fetchpriority="high" />
+    </a>
+    <nav class="hw-nav" id="hwNav" aria-label="Main" data-open="false">
       {menu.map((m) => (
-        <div>
-          <a href={m.href} class="block text-[11px] font-semibold uppercase tracking-[0.14em] text-gold mb-2">{m.label}</a>
-          <ul class="space-y-0.5">
-            {m.children.map((c) => <li><a href={c.href} class="block py-1.5 text-sm font-semibold text-ink">{c.label}</a></li>)}
-          </ul>
+        <div class:list={["hw-drop", m.align === "right" && "is-right"]} data-expanded="false">
+          <a href={m.href} class:list={["hw-nav-top", isActive(m) && "is-active"]}>{m.label}<Icon name="chevron" class="hw-caret" /></a>
+          <div class:list={["hw-panel", m.children.length > 6 && "is-cols"]}>
+            {m.children.map((c) => <a href={c.href}>{c.label}</a>)}
+            <a href={m.href} class="hw-panel-all">All {m.label.toLowerCase()}</a>
+          </div>
         </div>
       ))}
-      <a href="tel:8607351448" class="inline-flex justify-center items-center gap-2 rounded-lg bg-azul-bright px-5 h-[45px] text-sm font-semibold text-white"><Icon name="phone" class="h-4 w-4" />(860) 735-1448</a>
+      <div class="hw-nav-actions">
+        <a href="tel:8607351448" class="hw-call"><Icon name="phone" class="h-[18px] w-[18px]" /><span>(860) 735-1448</span></a>
+        <a href="/admissions/#verify" class="btn btn-navy hw-verify">Verify my insurance</a>
+      </div>
+    </nav>
+    <div class="hw-mobile-actions">
+      <a href="tel:8607351448" class="hw-mcall" aria-label="Call (860) 735-1448"><Icon name="phone" class="h-5 w-5" /></a>
+      <button class="hw-menu-btn" id="hwMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="hwNav"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
-<main id="main" tabindex="-1">
+{!ownMain && <Fragment set:html={`<main id="main" tabindex="-1">`} />}
+
+<style>
+  .hw-header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--hw-line); font-family: var(--hw-head); }
+  .hw-top { background: var(--hw-night); color: #c3d2e2; font-size: 13.5px; }
+  .hw-top-in, .hw-bar { max-width: 1240px; margin: 0 auto; padding: 0 var(--hw-gutter); }
+  .hw-top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 36px; }
+  .hw-top a { color: #fff; font-weight: 700; }
+  .hw-top-motto { font-style: normal; font-weight: 600; color: #fff; letter-spacing: .01em; }
+  @media (max-width: 640px) { .hw-top-motto { display: none; } }
+  .hw-top-social { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
+  .hw-top-social a { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #c3d2e2; }
+  .hw-top-social a:hover { background: #fff; color: var(--hw-night); }
+  .hw-top-social :global(svg) { width: 12px; height: 12px; }
+  .hw-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+  .hw-logo { flex: none; }
+  .hw-logo img { width: 164px; min-width: 164px; height: auto; display: block; }
+  .hw-nav { display: flex; align-items: center; gap: 10px; font-size: 14.5px; font-weight: 600; min-width: 0; }
+  .hw-nav-top { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; color: var(--hw-navy); text-decoration: none; white-space: nowrap; }
+  .hw-nav-top:hover, .hw-nav-top.is-active { color: var(--hw-bright); }
+  .hw-nav-top :global(.hw-caret) { width: 15px; height: 15px; transition: transform .16s ease; }
+  .hw-drop { position: relative; }
+  .hw-panel { display: none; }
+  .hw-panel a { display: block; padding: 9px 14px; border-radius: 10px; color: var(--hw-navy); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .hw-panel a:hover { background: var(--hw-stone); color: var(--hw-blue); }
+  .hw-panel .hw-panel-all { font-weight: 700; color: var(--hw-blue); text-decoration: underline; text-decoration-color: var(--hw-sky); text-underline-offset: 3px; }
+  .hw-nav-actions { display: flex; align-items: center; gap: 12px; margin-left: 2px; }
+  .hw-call { display: inline-flex; align-items: center; gap: 8px; color: var(--hw-navy); font-weight: 800; text-decoration: none; white-space: nowrap; }
+  .hw-verify { min-height: 46px !important; padding: 0 20px !important; font-size: 14.5px !important; }
+  .hw-mobile-actions { display: none; }
+
+  @media (min-width: 1281px) {
+    .hw-drop:hover .hw-panel, .hw-drop:focus-within .hw-panel {
+      display: block; position: absolute; top: 100%; left: -14px; min-width: 270px; padding: 8px;
+      background: #fff; border: 1px solid var(--hw-line); border-radius: 16px; box-shadow: 0 18px 40px rgba(0,29,55,.14);
+    }
+    .hw-drop.is-right:hover .hw-panel, .hw-drop.is-right:focus-within .hw-panel { left: auto; right: -14px; }
+    /* Two real columns (each flows on its own), so a long label that wraps never leaves a gap in the other column (2026-11-17). */
+    .hw-drop:hover .hw-panel.is-cols, .hw-drop:focus-within .hw-panel.is-cols { display: block; columns: 2; column-gap: 4px; width: 540px; }
+    .hw-panel.is-cols a { break-inside: avoid; }
+    .hw-panel.is-cols .hw-panel-all { column-span: all; margin-top: 4px; border-top: 1px solid var(--hw-line); border-radius: 0; padding-top: 12px; }
+    .hw-drop:hover :global(.hw-caret) { transform: rotate(180deg); }
+  }
+  @media (min-width: 1281px) and (max-width: 1680px) {
+    .hw-nav { gap: 10px; font-size: 14px; }
+    .hw-logo img { width: 150px; min-width: 150px; }
+    .hw-call span { display: none; }
+  }
+  @media (max-width: 1280px) {
+    .hw-top-in p { font-size: 12.5px; }
+    .hw-top-social { display: none; }
+    .hw-logo img { width: 150px; min-width: 150px; }
+    .hw-mobile-actions { display: flex; align-items: center; gap: 10px; }
+    .hw-mcall { width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: var(--hw-bright); color: #fff; }
+    .hw-menu-btn { width: 44px; height: 44px; border-radius: 12px; border: 1.5px solid var(--hw-navy); background: transparent; display: grid; place-content: center; gap: 4px; cursor: pointer; }
+    .hw-menu-btn span { display: block; width: 18px; height: 2px; background: var(--hw-navy); border-radius: 2px; transition: transform .2s, opacity .2s; }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hw-menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .hw-nav { display: none; }
+    .hw-nav[data-open="true"] { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: absolute; left: 0; right: 0; top: 100%; max-height: calc(100vh - 120px); overflow-y: auto; background: #fff; border-bottom: 1px solid var(--hw-line); padding: 8px var(--hw-gutter) 24px; font-size: 17px; }
+    .hw-nav[data-open="true"] .hw-nav-top { display: flex; width: 100%; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--hw-line); }
+    /* open menu fills the screen below the bar (QA 2026-11-18) */
+    .hw-nav[data-open="true"] { max-height: calc(100dvh - 124px); box-shadow: 0 18px 30px rgba(0,29,55,.12); }
+    .hw-drop[data-expanded="true"] .hw-panel { display: block; padding: 6px 0 10px 12px; }
+    .hw-drop[data-expanded="true"] :global(.hw-caret) { transform: rotate(180deg); }
+    .hw-nav-actions { flex-direction: column; align-items: stretch; margin: 18px 0 0; gap: 12px; }
+    .hw-call { justify-content: center; min-height: 52px; border: 2px solid var(--hw-navy); border-radius: 999px; }
+    .hw-bar { position: relative; }
+  }
+</style>
 
 <script>
-  const btn = document.getElementById("mobileToggle");
-  const panel = document.getElementById("mobilePanel");
+  const btn = document.getElementById("hwMenuBtn");
+  const nav = document.getElementById("hwNav");
   btn?.addEventListener("click", () => {
-    const open = panel?.classList.toggle("hidden") === false;
+    const open = nav?.dataset.open !== "true";
+    if (nav) nav.dataset.open = String(open);
     btn.setAttribute("aria-expanded", String(open));
+  });
+  // Phone menu: the first tap on a top item opens its list; a second tap follows the link.
+  document.querySelectorAll<HTMLElement>(".hw-drop").forEach((d) => {
+    d.querySelector(".hw-nav-top")?.addEventListener("click", (e) => {
+      if (window.matchMedia("(min-width: 1281px)").matches) return;
+      if (d.dataset.expanded !== "true") { e.preventDefault(); d.dataset.expanded = "true"; }
+    });
   });
 </script>

@@ -1,0 +1,106 @@
+---
+// Accessibility button + panel (Hopewell, user 2026-11-18: "add the accessibility button" (same build as Colorado; Hopewell navy), modelled on the Ally
+// button on elevatepoint.org, which is a WordPress plugin). Built in, no third-party script or licence: bigger text,
+// high contrast, underlined links, readable font, more line spacing, stop animations, reset. Choices are kept in this
+// browser only (localStorage "a11y") and applied before paint by the inline script at the top of <body>, so pages don't
+// flicker. It's an aid on top of an accessible site, not a substitute for one.
+const opts = [
+  { k: "contrast", label: "High contrast" },
+  { k: "links", label: "Underline links" },
+  { k: "font", label: "Readable font" },
+  { k: "spacing", label: "More line spacing" },
+  { k: "motion", label: "Stop animations" },
+];
+---
+<script is:inline>
+  (function () {
+    try {
+      var s = JSON.parse(localStorage.getItem("a11y") || "{}"), h = document.documentElement;
+      if (s.size) h.setAttribute("data-a11y-size", String(s.size));
+      ["contrast", "links", "font", "spacing", "motion"].forEach(function (k) { if (s[k]) h.classList.add("a11y-" + k); });
+    } catch (e) {}
+  })();
+</script>
+
+<button type="button" class="a11y-btn" aria-label="Accessibility options" aria-expanded="false" aria-controls="a11y-panel">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8" fill="currentColor" stroke="none"/><path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M12 14.5l-3.5 6M12 14.5l3.5 6"/></svg>
+</button>
+<div id="a11y-panel" class="a11y-panel" role="dialog" aria-label="Accessibility options" hidden>
+  <div class="a11y-head">
+    <p class="a11y-title">Accessibility</p>
+    <button type="button" class="a11y-close" aria-label="Close accessibility options">×</button>
+  </div>
+  <div class="a11y-size" role="group" aria-label="Text size">
+    <span>Text size</span>
+    <button type="button" data-size="-" aria-label="Smaller text">A−</button>
+    <button type="button" data-size="+" aria-label="Bigger text">A+</button>
+  </div>
+  {opts.map((o) => (
+    <label class="a11y-opt"><input type="checkbox" data-opt={o.k} /> <span>{o.label}</span></label>
+  ))}
+  <button type="button" class="a11y-reset">Reset all</button>
+</div>
+
+<script is:inline>
+  (function () {
+    var btn = document.querySelector(".a11y-btn"), panel = document.getElementById("a11y-panel");
+    if (!btn || !panel) return;
+    var h = document.documentElement, s = {};
+    try { s = JSON.parse(localStorage.getItem("a11y") || "{}"); } catch (e) {}
+    var store = function () { try { localStorage.setItem("a11y", JSON.stringify(s)); } catch (e) {} };
+    var apply = function () {
+      if (s.size) h.setAttribute("data-a11y-size", String(s.size)); else h.removeAttribute("data-a11y-size");
+      panel.querySelectorAll("[data-opt]").forEach(function (i) { var k = i.getAttribute("data-opt"); i.checked = !!s[k]; h.classList.toggle("a11y-" + k, !!s[k]); });
+      store();
+    };
+    var open = function (on) { panel.hidden = !on; btn.setAttribute("aria-expanded", String(on)); if (on) panel.querySelector("button, input").focus(); };
+    btn.addEventListener("click", function () { open(panel.hidden); });
+    panel.querySelector(".a11y-close").addEventListener("click", function () { open(false); btn.focus(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { open(false); btn.focus(); } });
+    panel.querySelectorAll("[data-size]").forEach(function (b) {
+      b.addEventListener("click", function () { var n = (s.size || 0) + (b.getAttribute("data-size") === "+" ? 1 : -1); s.size = Math.max(0, Math.min(3, n)); apply(); });
+    });
+    panel.querySelectorAll("[data-opt]").forEach(function (i) { i.addEventListener("change", function () { s[i.getAttribute("data-opt")] = i.checked; apply(); }); });
+    panel.querySelector(".a11y-reset").addEventListener("click", function () { s = {}; apply(); });
+    apply();
+  })();
+</script>
+
+<style is:global>
+  .a11y-btn {
+    position: fixed; left: 0; top: 50%; transform: translateY(-50%); z-index: 2147482000;
+    width: 48px; height: 48px; padding: 0; border: 0; border-radius: 0 999px 999px 0; display: grid; place-items: center;
+    background: #0B2F55; color: #fff; cursor: pointer; box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+  }
+  .a11y-btn:hover { background: #000; }
+  .a11y-btn:focus-visible, .a11y-panel button:focus-visible, .a11y-panel input:focus-visible { outline: 3px solid #2F76C4; outline-offset: 2px; }
+  .a11y-panel[hidden] { display: none; }
+  .a11y-panel {
+    position: fixed; left: 56px; top: 50%; transform: translateY(-50%); z-index: 2147482001; width: 260px; max-height: calc(100vh - 32px); overflow-y: auto;
+    padding: 16px; background: #fff; color: #0B2F55; border: 1px solid #D5DFE9; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, .22);
+    font: 15px/1.4 "Montserrat", Arial, sans-serif;
+  }
+  .a11y-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .a11y-title { margin: 0; font-weight: 700; font-size: 17px; }
+  .a11y-close { width: 32px; height: 32px; border: 0; background: none; font-size: 24px; line-height: 1; cursor: pointer; color: #0B2F55; }
+  .a11y-size { display: flex; align-items: center; gap: 8px; padding: 8px 0 10px; border-bottom: 1px solid #D5DFE9; margin-bottom: 4px; }
+  .a11y-size span { flex: 1; font-weight: 600; }
+  .a11y-size button { min-width: 44px; height: 36px; border: 1.5px solid #0B2F55; border-radius: 6px; background: #fff; color: #0B2F55; font-weight: 700; cursor: pointer; }
+  .a11y-opt { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; }
+  .a11y-opt input { width: 18px; height: 18px; accent-color: #0B2F55; }
+  .a11y-reset { width: 100%; margin-top: 10px; height: 40px; border: 1.5px solid #0B2F55; border-radius: 6px; background: #0B2F55; color: #fff; font-weight: 700; cursor: pointer; }
+  /* Phones (mobile QA 2026-11-18): the button sits in the same bottom band as the sticky "Check coverage" button (one
+     floating row instead of two), so it no longer lands on hero buttons and card text mid-screen. */
+  @media (max-width: 767px) { .a11y-btn { width: 44px; height: 44px; top: auto; bottom: calc(17px + env(safe-area-inset-bottom, 0px)); transform: none; } .a11y-panel { left: 12px; right: auto; width: min(340px, calc(100vw - 24px)); top: auto; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); max-height: calc(100vh - 160px); transform: none; } }
+
+  /* Effects */
+  html[data-a11y-size="1"] body { zoom: 1.1; }
+  html[data-a11y-size="2"] body { zoom: 1.2; }
+  html[data-a11y-size="3"] body { zoom: 1.3; }
+  html.a11y-contrast { filter: contrast(1.35); }
+  html.a11y-contrast body { background: #fff; }
+  html.a11y-links a { text-decoration: underline !important; text-underline-offset: 3px; }
+  html.a11y-font body, html.a11y-font body * { font-family: Verdana, Arial, sans-serif !important; letter-spacing: .02em; }
+  html.a11y-spacing body p, html.a11y-spacing body li { line-height: 1.9 !important; }
+  html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+</style>

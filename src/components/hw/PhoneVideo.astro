@@ -1,0 +1,64 @@
+---
+// Vertical video in a drawn phone frame (user 2026-11-17: the tour card looked too small; "everytime someone's
+// looking at this section, the video starts"). The YouTube player loads when the phone first scrolls into view,
+// plays muted from the start every time it comes back into view, and pauses when it leaves. Tap to unmute.
+// Reduced-motion visitors get the poster with a play button instead of autoplay.
+interface Props { yt: string; title: string; poster: string }
+const { yt, title, poster } = Astro.props;
+---
+<figure class="pv" data-pv={yt} data-title={title}>
+  <div class="pv-phone">
+    <span class="pv-notch" aria-hidden="true"></span>
+    <div class="pv-screen">
+      <img class="pv-poster" src={poster} alt="" width="720" height="1280" loading="lazy" />
+      <button type="button" class="pv-sound" aria-label="Turn sound on" hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Tap for sound</span>
+      </button>
+    </div>
+  </div>
+  <figcaption class="sr-only">{title}</figcaption>
+</figure>
+
+<style>
+  .pv { margin: 0 auto; width: min(100%, 300px); }
+  .pv-phone { position: relative; padding: 12px; border-radius: 44px; background: #0d1b2a; box-shadow: 0 0 0 2px #2a3b4f inset, 0 34px 70px rgba(0,29,55,.3); }
+  .pv-notch { position: absolute; z-index: 3; top: 20px; left: 50%; width: 84px; height: 22px; transform: translateX(-50%); border-radius: 999px; background: #0d1b2a; }
+  .pv-screen { position: relative; overflow: hidden; aspect-ratio: 9 / 19.5; border-radius: 33px; background: #001d37; }
+  .pv-poster, .pv-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .pv-poster { object-fit: cover; }
+  .pv-screen iframe { z-index: 1; transform: scale(1.02); }
+  .pv-sound { position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 0; border-radius: 999px; background: rgba(0,29,55,.82); color: #fff; font: 700 13.5px/1 var(--hw-head, inherit); cursor: pointer; white-space: nowrap; }
+  .pv-sound:hover { background: var(--hw-blue, #265489); }
+  .pv-sound[hidden] { display: none; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-pv]").forEach((fig) => {
+    const id = fig.dataset.pv!;
+    const screen = fig.querySelector<HTMLElement>(".pv-screen")!;
+    const sound = fig.querySelector<HTMLButtonElement>(".pv-sound")!;
+    let frame: HTMLIFrameElement | null = null;
+    const cmd = (func: string, args: unknown[] = []) => frame?.contentWindow?.postMessage(JSON.stringify({ event: "command", func, args }), "*");
+    const build = (autoplay: boolean) => {
+      frame = document.createElement("iframe");
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=${autoplay ? 1 : 0}&mute=1&loop=1&playlist=${id}&controls=0&playsinline=1&modestbranding=1&rel=0&enablejsapi=1`;
+      frame.title = fig.dataset.title ?? "Video";
+      frame.allow = "autoplay; encrypted-media; picture-in-picture";
+      screen.prepend(frame);
+      sound.hidden = false;
+    };
+    sound.addEventListener("click", () => { cmd("unMute"); cmd("setVolume", [80]); cmd("playVideo"); sound.hidden = true; });
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // No autoplay: tap the phone to start.
+      fig.addEventListener("click", () => { if (!frame) { build(true); } }, { once: true });
+      return;
+    }
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!frame) build(true);
+        else { cmd("seekTo", [0, true]); cmd("playVideo"); }
+      } else if (frame) cmd("pauseVideo");
+    }, { threshold: 0.55 }).observe(fig);
+  });
+</script>

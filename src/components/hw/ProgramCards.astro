@@ -1,0 +1,29 @@
+---
+// Program cards — Corner Canyon pattern (fr-prog): straight colour band on top, icon badge, program name, short
+// description and an inline "Learn about our …" link on the phrase. No photo. Used sitewide (condition pages,
+// "Explore our other programs", treatments, locations).
+import Icon from "../Icon.astro";
+interface Prog { t: string; d: string; href: string; img?: string; bar?: string; icon?: string; facts?: [string, string][] }
+interface Props { items: Prog[]; cols?: 3 | 4 }
+const { items } = Astro.props;
+const ICONS = [
+  [/adult-mental-health-iop/, "users"], [/womens-wellness/, "heart"], [/womens-trauma/, "shield"], [/teen-tween/, "sparkles"],
+  [/first-responder/, "shield"], [/addiction-iop/, "link"], [/partial-hospitalization/, "sun"], [/intensive-outpatient/, "calendar"],
+  [/medication-management/, "pill"], [/counseling/, "chat"], [/tms/, "brain"], [/emdr/, "refresh"], [/dbt/, "compass"],
+  [/genesight/, "dna"], [/testing/, "clipboard"], [/group-therapy/, "users"], [/medication-assisted/, "pill"], [/therapeutic/, "heart"],
+];
+const iconFor = (p) => p.icon ?? ICONS.find(([re]) => re.test(p.href))?.[1] ?? "heart";
+const anchor = (t) => t.replace(/\s*\(.*?\)/, "");
+---
+<div class="pk-grid">
+  {items.map((p) => (
+    <div class="pk" style={`--bar-c:${p.bar ?? "#2f76c4"}`}>
+      <span class="pk-icon"><Icon name={iconFor(p)} class="h-[22px] w-[22px]" /></span>
+      <div>
+        <h3><a href={p.href}>{p.t}</a></h3>
+        <p>{p.d} Learn about our <a class="inl" href={p.href}>{anchor(p.t)}</a>.</p>
+        {p.facts && <ul class="pk-facts">{p.facts.map(([icon, t]) => <li><Icon name={icon} class="h-4 w-4" />{t}</li>)}</ul>}
+      </div>
+    </div>
+  ))}
+</div>

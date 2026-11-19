@@ -2,9 +2,10 @@
 // Variation 1: "As featured in & on" press-logo strip — seamless infinite marquee.
 // Props:
 //   bg       — "white" | "crema"
-//   heading  — override the eyebrow label
+//   heading  — override the caption (sentence case, sits beside the logos on desktop and under them on phones;
+//              not an uppercase kicker: the site's no-eyebrow rule, 2026-11-18)
 //   showLink — show the "See all press →" link (false on the Media page itself)
-const { bg = "white", heading = "As featured in & on", showLink = true } = Astro.props;
+const { bg = "white", heading = "As featured in & on", showLink = true, compact = false } = Astro.props;
 const logos = [
   ["Hartford Courant", "/Assets/Media%20Appearances/hartford.webp"],
   ["Hartford Business Journal", "/Assets/Media%20Appearances/hbj-logo-v3.webp"],
@@ -17,29 +18,31 @@ const logos = [
 // Avoid 3× duplication — that used to emit 36 <img> requests on every page.
 const bgClass = bg === "crema" ? "bg-crema" : "bg-white";
 ---
-<section class={`${bgClass} border-y border-line`}>
-  <div class="mx-auto max-w-6xl px-5 py-8">
-    <p class="text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted">{heading}</p>
+<section class:list={[bgClass, compact ? "border-b border-line" : "border-y border-line"]}>
+  <div class:list={["mx-auto max-w-6xl px-5", compact ? "py-5" : "py-8"]}>
+    <div class="flex flex-col-reverse items-center gap-3 sm:flex-row sm:gap-8">
+    <p class="ms-cap shrink-0 text-center text-sm text-muted sm:text-left">{heading}</p>
 
     {/* Two identical groups; track scrolls exactly one group width → seamless.
         Spacing is driven by margin-right (not flex gap) so the loop seam is gapless. */}
-    <div class="ms-mask mt-6 overflow-hidden">
+    <div class="ms-mask w-full min-w-0 flex-1 overflow-hidden">
       <div class="ms-track flex w-max">
         <ul class="flex shrink-0 items-center">
           {logos.map(([name, src]) => (
-            <li class="shrink-0"><img src={src} alt={name} width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+            <li class="shrink-0"><img src={src} alt={name} width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-10 lg:h-12 w-auto object-contain" /></li>
           ))}
         </ul>
         <ul class="flex shrink-0 items-center" aria-hidden="true">
           {logos.map(([, src]) => (
-            <li class="shrink-0"><img src={src} alt="" width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-9 lg:h-10 w-auto object-contain opacity-70 grayscale" /></li>
+            <li class="shrink-0"><img src={src} alt="" width="160" height="40" loading="lazy" decoding="async" class="mr-10 lg:mr-14 h-10 lg:h-12 w-auto object-contain" /></li>
           ))}
         </ul>
       </div>
     </div>
+    </div>
 
     {showLink && (
-      <div class="mt-6 text-center">
+      <div class:list={["text-center", compact ? "mt-3" : "mt-6"]}>
         <a href="/media/" class="text-sm font-semibold text-azul hover:text-azul-dark transition">See all press &rarr;</a>
       </div>
     )}

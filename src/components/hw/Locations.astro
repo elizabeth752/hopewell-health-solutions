@@ -1,0 +1,84 @@
+---
+// Locations — "map per office" carousel (user mockup, 2026-11-16): one card per office with its photo + number badge,
+// the office's Google Map (lazy iframe from locations.js), care type, name, address, Get directions + Office details.
+// Self-moving carousel (scroll-snap, autoplay every 4.5 s, pauses on hover/focus/touch, off for reduced motion) with
+// arrows, and text tabs to filter All / Mental health / Addiction care. `current` puts that office first.
+import { locations, OFFERS, OFFER_ORDER } from "../../data/locations.js";
+import Icon from "../Icon.astro";
+interface Props { heading?: string; lede?: string; current?: string; tone?: "mist" | "white" | "stone"; addictionOnly?: boolean }
+const { heading = "Care Near You, Across Central Connecticut", lede = "Hopewell Health Solutions provides expert mental-health and psychiatric care from offices in Glastonbury, South Glastonbury, West Hartford, East Hampton, and Westbrook, CT, serving Hartford and Middlesex Counties, including South Windsor, Wethersfield, Rocky Hill, Newington, Berlin, Colchester, Old Saybrook, and Clinton. Our compassionate team also sees clients virtually across New England, so trusted psychiatric support is always within reach.", current, tone = "mist" } = Astro.props;
+const P = "/Assets/hhs-2026/";
+const photo = {
+  "glastonbury-ct": "/Assets/locations/glastonbury/exterior.webp",
+  "glastonbury-ct-2": P + "downtown-glastonbury-sign.webp",
+  "glastonbury-ct-3": P + "sg-front-desk.webp",
+  "west-hartford-ct": P + "west-hartford-office.webp",
+  "east-hampton-ct": "/Assets/locations/east-hampton/exterior.webp",
+  "westbrook-ct": P + "westbrook-sign.webp",
+};
+// addictionOnly (addiction condition pages, 2026-11-18): only the offices that offer addiction care, no filter tabs.
+const list = (Astro.props.addictionOnly ? locations.filter((l) => l.addiction) : locations).map((l, i) => ({ ...l, n: i + 1 }));
+const ordered = current ? [...list.filter((l) => l.slug === current), ...list.filter((l) => l.slug !== current)] : list;
+const mapsHref = (l) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`Hopewell Health Solutions, ${l.street}, ${l.city}, CT ${l.zip}`)}`;
+const nAdd = list.filter((l) => l.addiction).length;
+// Every card shows exactly 4 service lines so the cards line up (user 2026-11-18). Offices with more than 4 show their
+// first 3 + "N more programs" (to the office page); therapy-and-medication offices add two true extras.
+const SVC_N = 4;
+const svcLines = (l) => {
+  // Addiction care moves up so it is always visible where it is offered (client doc: make addiction visible).
+  const order = ["addiction", ...OFFER_ORDER.filter((k) => k !== "addiction")];
+  const all = order.filter((k) => l.offers?.includes(k)).map((k) => ({ t: OFFERS[k].t, href: OFFERS[k].href }));
+  if (all.length > SVC_N) return [...all.slice(0, SVC_N - 1), { t: `${all.length - (SVC_N - 1)} more programs here`, href: `/location/${l.slug}/` }];
+  const extras = [{ t: "Psychiatric evaluations", href: "/programs/medication-management/" }, { t: "In person or telehealth", href: `/location/${l.slug}/` }];
+  return [...all, ...extras].slice(0, SVC_N);
+};
+---
+<section class={`section is-${tone}`} id="locations">
+  <div class="container">
+    <div class="lc-head">
+      <div class="sec-head" style="margin:0"><h2>{heading}</h2><p class="lede" set:html={lede} /></div>
+      {!Astro.props.addictionOnly && <div class="lc-tabs" role="toolbar" aria-label="Filter offices">
+        <button type="button" class="lc-tab is-on" data-f="all" aria-pressed="true">All offices <span>{list.length}</span></button>
+        <button type="button" class="lc-tab" data-f="mh" aria-pressed="false">Mental health <span>{list.length}</span></button>
+        <button type="button" class="lc-tab" data-f="add" aria-pressed="false">Addiction care <span>{nAdd}</span></button>
+      </div>}
+    </div>
+  </div>
+  <div class:list={["lc-wrap", Astro.props.addictionOnly && "is-static"]} data-lc={Astro.props.addictionOnly ? undefined : true}>
+    <ul class="lc-track" aria-label="Hopewell offices">
+      {[...ordered, ...ordered].map((l, k) => (
+        <li class="lc" data-add={l.addiction ? "1" : "0"} aria-hidden={k >= ordered.length ? "true" : undefined}>
+          <div class="lc-photo"><img src={photo[l.slug]} alt={`Hopewell Health Solutions ${l.name} office`} width="1200" height="900" loading="lazy" /></div>
+
+          <div class="lc-body">
+            <span class:list={["lc-care", l.addiction && "is-add"]}>{l.addiction ? "Mental health & addiction care" : "Mental health care"}</span>
+            <h3><a href={`/location/${l.slug}/`}>{l.name}</a></h3>
+            <p class="lc-addr">{l.street}, {l.city}, CT {l.zip}</p>
+            <ul class="lc-svc">{svcLines(l).map((x) => <li><a href={x.href}>{x.t}</a></li>)}</ul>
+            <div class="lc-ctas">
+              <a class="btn btn-navy" href={mapsHref(l)} target="_blank" rel="noopener"><Icon name="compass" />Get directions</a>
+              <a class="btn btn-outline" href={`/location/${l.slug}/`}>Office details</a>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+    <div class="container lc-nav"><a class="inl" href="/locations/">Compare all offices</a></div>
+  </div>
+</section>
+
+<script>
+  // Continuous self-moving loop (CSS animation on a doubled list); pauses on hover/focus via CSS. Tabs filter both halves.
+  document.querySelectorAll<HTMLElement>("[data-lc]").forEach((w) => {
+    const sec = w.closest("section")!;
+    const track = w.querySelector<HTMLElement>(".lc-track")!;
+    const n = track.children.length / 2;
+    const setSpeed = () => { const vis = [...track.children].filter((c) => !(c as HTMLElement).hidden).length / 2; track.style.animationDuration = `${Math.max(vis, 2) * 9}s`; };
+    setSpeed();
+    sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((t) => t.addEventListener("click", () => {
+      sec.querySelectorAll<HTMLButtonElement>(".lc-tab").forEach((x) => { x.classList.toggle("is-on", x === t); x.setAttribute("aria-pressed", String(x === t)); });
+      [...track.children].forEach((c) => { (c as HTMLElement).hidden = t.dataset.f === "add" && (c as HTMLElement).dataset.add !== "1"; });
+      setSpeed(); track.style.animation = "none"; void track.offsetWidth; track.style.animation = "";
+    }));
+  });
+</script>

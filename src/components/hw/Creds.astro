@@ -1,0 +1,8 @@
+---
+// Under-hero band (user 2026-11-17): the accreditation logos moved into the heroes (HeroCreds), so this band is now
+// only the "As featured in" press strip. Kept as one component so every page stays consistent.
+import MediaStrip from "../MediaStrip.astro";
+// "As featured in" sits right under the accreditations on every page (user 2026-11-17).
+const { media = true } = Astro.props;
+---
+{media && <MediaStrip bg="white" compact />}

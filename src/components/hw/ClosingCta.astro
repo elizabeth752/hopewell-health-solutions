@@ -1,0 +1,22 @@
+---
+// Closing call to action (Corner Canyon pattern): stone band, heading + lede + crisis line on the left, call and
+// insurance buttons on the right. `image`/`imageAlt` are accepted for older callers but no longer shown.
+import Icon from "../Icon.astro";
+import { PHONE } from "../../data/site.js";
+interface Props { heading?: string; lede?: string; image?: string; imageAlt?: string; verifyHref?: string }
+const { heading = "You Don’t Have to Do This Alone.", lede = "Reach out today and a real person will help you figure out the next step, confidentially, with no pressure. There is hope to heal, and it can start right now.", verifyHref = "#verify" } = Astro.props;
+---
+<section class="section is-stone closing">
+  <div class="container closing-grid">
+    <div>
+      <h2>{heading}</h2>
+      <p class="lede" set:html={lede} />
+      <p class="closing-crisis">In crisis? Call or text <a href="tel:988">988</a> or call <a href="tel:911">911</a>.</p>
+    </div>
+    <div class="closing-ctas">
+      <a href={PHONE.href} class="btn btn-navy"><Icon name="phone" />Call {PHONE.display}</a>
+      <a href={verifyHref} class="btn btn-outline only-d">Verify my insurance</a>
+      <a href={verifyHref === "#verify" ? "#verify-m" : verifyHref} class="btn btn-outline only-m">Verify my insurance</a>
+    </div>
+  </div>
+</section>

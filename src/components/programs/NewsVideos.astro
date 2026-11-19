@@ -1,0 +1,31 @@
+---
+// "In the news" interview videos with branded posters (public/Assets/videos/news-*.webp). One video = a wide feature
+// card (poster left, copy right); several = a grid. Opens the shared .vc-dialog player.
+interface V { id: string; t: string; outlet: string }
+interface Props { heading: string; lede?: string; videos: V[]; tone?: "white" | "stone" | "mist"; link?: boolean }
+const { heading, lede, videos, tone = "white", link = true } = Astro.props;
+const POSTERS = { "uDy-K1dO0Fw": "news-ct-live-trauma-in-women", "GJeVqHhooBA": "news-wfsb-helping-children", "P3cmQMf3WoM": "news-teen-mental-health", "aff5Xfy9CfE": "loneliness-crisis" };
+const poster = (id) => (POSTERS[id] ? `/Assets/videos/${POSTERS[id]}.webp` : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg>';
+const one = videos.length === 1;
+---
+<section class={`section is-${tone}`}>
+  <div class="container">
+    <div class="vc-head"><div class="sec-head" style="margin:0"><h2 set:html={heading} />{!one && lede && <p class="lede" set:html={lede} />}</div>{link && <a href="/media/" class="vc-all">See all press &amp; interviews <span aria-hidden="true">&rarr;</span></a>}</div>
+    {one ? (
+      <button type="button" class="vc-card vc-feature" data-yt={videos[0].id} data-title={videos[0].t} aria-label={`Play: ${videos[0].t}`}>
+        <span class="vc-poster"><img src={poster(videos[0].id)} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /></span>
+        <span class="vc-body"><span class="vc-type">{videos[0].outlet}</span><span class="vc-name">{videos[0].t}</span>{lede && <span class="vc-desc" set:html={lede} />}</span>
+      </button>
+    ) : (
+      <ul class={`vc-grid pg-news n-${videos.length}`}>
+        {videos.map((v) => (
+          <li><button type="button" class="vc-card" data-yt={v.id} data-title={v.t} aria-label={`Play: ${v.t}`}>
+            <span class="vc-poster"><img src={poster(v.id)} alt="" width="1280" height="720" loading="lazy" /><span class="vc-play" set:html={play} /></span>
+            <span class="vc-body"><span class="vc-type">{v.outlet}</span><span class="vc-name">{v.t}</span></span>
+          </button></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+// Team section — ONE design sitewide, the homepage teaser (user, 2026-11-16: "the team section should be the same in
+// all the pages, as the homepage"). Heading + lede with "Meet our full team" link on the right, then a single full row
+// of 6 portrait tiles (name and role over the photo). Pages pass `slugs` (providers.js) for who shows; extra slugs are
+// trimmed to 6, missing photos are skipped. `feature` is accepted for old callers and ignored.
+import { providers } from "../../data/providers.js";
+interface Props { heading?: string; lede?: string; slugs?: string[]; feature?: string | null; tone?: "white" | "stone" }
+const { heading = "Meet the People Who’ll Walk Beside You", lede = "Prescribers, psychologists and therapists across six Connecticut offices. <a class='inl' href='/about-us/team/'>Meet our clinicians</a>.", slugs = ["teesha-huertas-lcsw", "kaitlyn-czapiga-lmsw", "tracy-sibley-pmhnp-bc-aprn", "christina-lindsay-pmhnp-bc-aprn", "chris-patenaude-pa", "laura-miller-ph-d"], tone = "white" } = Astro.props;
+const fallback = ["teesha-huertas-lcsw", "kaitlyn-czapiga-lmsw", "tracy-sibley-pmhnp-bc-aprn", "christina-lindsay-pmhnp-bc-aprn", "chris-patenaude-pa", "laura-miller-ph-d", "eric-schwartz-psy-d-abpp", "ashley-singh-psy-d"];
+const by = (s) => providers.find((p) => p.slug === s);
+const ok = (p) => p && p.photo && !p.photoPlaceholder && !p.removed && !p.hideFromTeam; // never link a provider who has left (no profile page)
+// Always a full row of 6: the page's picks first, then fill from the default set.
+const picked = [...new Set([...slugs, ...fallback])].map(by).filter(ok).slice(0, 6);
+// Name on one line, credentials under it; hyphens non-breaking so "ATR-P" never splits (2026-11-16).
+const nameOf = (n) => n.split(",")[0].trim();
+const credsOf = (n) => n.split(",").slice(1).map((c) => c.trim()).filter(Boolean).join(", ").replace(/-/g, "\u2011");
+const shortRole = (r) => r.replace(/^Board-Certified /, "").replace(/ · .*/, "").replace(/ & Licensed Clinical Social Worker/, "");
+---
+<section class={`section is-${tone}`} id="team">
+  <div class="container">
+    <div class="vc-head">
+      <div class="sec-head" style="margin:0"><h2 set:html={heading} /><p class="lede" set:html={lede} /></div>
+      <a class="vc-all" href="/about-us/team/">Meet our full team <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    <ul class="tt-grid">
+      {picked.map((p) => (
+        <li><a class="tm-card" href={`/provider/${p.slug}/`}><img src={`/Assets/Team%20Members/${encodeURIComponent(p.photo)}.webp`} alt={p.name} width="600" height="750" loading="lazy" /><span class="tm-cap"><strong>{nameOf(p.name)}</strong>{credsOf(p.name) && <em class="tm-creds">{credsOf(p.name)}</em>}<span>{shortRole(p.role)}</span></span></a></li>
+      ))}
+    </ul>
+  </div>
+</section>

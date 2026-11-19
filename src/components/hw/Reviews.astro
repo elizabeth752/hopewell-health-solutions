@@ -1,0 +1,40 @@
+---
+// Google reviews: navy score panel (links to each Hopewell Google Business Profile) + a self-moving review carousel.
+// Verbatim text, initials only. `heading` defaults to the homepage wording.
+import { REVIEWS, initials } from "../../data/reviews.js";
+import { GOOGLE, GBPS } from "../../data/site.js";
+interface Props { heading?: string; tone?: "white" | "stone"; first?: string[] }
+const { heading = "What Our Clients Say", tone = "white", first = [] } = Astro.props;
+const list = [...REVIEWS].sort((a, b) => (first.includes(b.tag) ? 1 : 0) - (first.includes(a.tag) ? 1 : 0));
+---
+<section class={`section ${tone === "stone" ? "is-stone" : "is-white"}`} id="reviews">
+  <div class="container">
+    <div class="sec-head"><h2>{heading}</h2></div>
+    <div class="rv-layout">
+      <div class="rv-score">
+        <svg class="rv-score-arc" viewBox="0 0 320 320" aria-hidden="true"><circle cx="160" cy="160" r="150" /><circle cx="160" cy="160" r="110" /></svg>
+        <span class="rv-score-g"><img src="/Assets/home-b/google-g.svg" alt="Google" width="30" height="30" /></span>
+        <p class="rv-score-num">{GOOGLE.rating}<span>/5</span></p>
+        <p class="rv-score-stars" aria-label={`${GOOGLE.rating} out of 5 stars`}>★★★★★</p>
+        <p class="rv-score-count">{GOOGLE.count} Google reviews · As featured on Eyewitness News 3</p>
+        <ul class="rv-gbps" aria-label="Read our reviews on Google">
+          {GBPS.map((g) => <li><a href={g.url} target="_blank" rel="noopener noreferrer"><span>{g.loc}</span><small>{g.num ? `${g.num} ★ · ${g.meta}` : g.meta}</small><b aria-hidden="true">&rarr;</b></a></li>)}
+        </ul>
+      </div>
+      <div class="rv-loop" data-reviews>
+        <div class="rv-loop-track">
+          {[...list, ...list].map((r, k) => (
+            <figure class="rv" aria-hidden={k >= list.length ? "true" : undefined}>
+              <svg class="rv-quote" viewBox="0 0 40 32" aria-hidden="true"><path d="M0 32V19C0 8 6 2 16 0l2 5c-6 2-9 6-9 11h7v16Zm22 0V19c0-11 6-17 16-19l2 5c-6 2-9 6-9 11h7v16Z" /></svg>
+              <span class="rv-stars" aria-label="5 stars">★★★★★</span>
+              <blockquote class="rv-text">“{r.text}”</blockquote>
+              <figcaption class="rv-who"><span class="rv-avatar">{initials(r.name).replace(/\./g, "")}</span><span class="rv-name"><strong>{initials(r.name)}</strong>{r.tag} · {r.meta}</span><img class="rv-g" src="/Assets/home-b/google-g.svg" alt="" width="20" height="20" /></figcaption>
+            </figure>
+          ))}
+        </div>
+        <a class="inl rv-more" href="/testimonials/">Read more testimonials</a>
+      </div>
+    </div>
+  </div>
+</section>
+

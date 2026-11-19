@@ -1,0 +1,89 @@
+---
+// Job application form (careers page, 2026-11-16): details + CV upload, emailed to the hiring inbox via /api/careers
+// (Resend). The CV is read in the browser and sent as base64; PDF, DOC or DOCX up to 3 MB.
+import Icon from "../Icon.astro";
+import { locations } from "../../data/locations.js";
+---
+<section class="section is-stone" id="apply">
+  <div class="container cf-grid">
+    <div class="cf-copy">
+      <h2>Apply to join our team</h2>
+      <p class="lede">Send us your CV and a few details. Our team reads every application and will reach out if there is a fit, even if your exact role isn’t listed.</p>
+      <ul class="cf-points">
+        <li><Icon name="clipboard" class="h-5 w-5" /><span>PDF, DOC or DOCX, up to 3 MB</span></li>
+        <li><Icon name="shield" class="h-5 w-5" /><span>Your application goes only to our hiring team</span></li>
+        <li><Icon name="phone" class="h-5 w-5" /><span>Prefer to talk? Call <a class="inl" href="tel:8607351448">(860) 735-1448</a></span></li>
+      </ul>
+    </div>
+    <form class="cf-form" novalidate>
+      <div class="cf-row">
+        <label>Full name <span aria-hidden="true">*</span><input name="name" autocomplete="name" required /></label>
+        <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required /></label>
+      </div>
+      <div class="cf-row">
+        <label>Phone<input name="phone" type="tel" autocomplete="tel" /></label>
+        <label>Role you’re interested in <span aria-hidden="true">*</span><input name="role" required placeholder="e.g. LCSW therapist, APRN, front desk" /></label>
+      </div>
+      <div class="cf-row">
+        <label>License or credentials<input name="license" placeholder="e.g. LPC, LMSW, PMHNP-BC" /></label>
+        <label>Preferred office
+          <select name="office"><option value="">Any office</option>{locations.map((l) => <option>{l.name}</option>)}</select>
+        </label>
+      </div>
+      <label>Anything you’d like us to know<textarea name="note" rows="4"></textarea></label>
+      <label class="cf-file">Upload your CV <span aria-hidden="true">*</span>
+        <input name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required />
+      </label>
+      <input class="cf-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <button type="submit" class="btn btn-blue cf-submit">Send my application</button>
+      <p class="cf-msg" role="status" aria-live="polite" hidden></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>(".cf-form");
+  const msg = form?.querySelector<HTMLElement>(".cf-msg");
+  const say = (t: string, ok = false) => { if (!msg) return; msg.hidden = false; msg.textContent = t; msg.classList.toggle("is-ok", ok); };
+  const TYPES = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const file = fd.get("cv") as File | null;
+    if (!String(fd.get("name") || "").trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(fd.get("email") || "")) || !String(fd.get("role") || "").trim()) return say("Please add your name, a valid email and the role you’re interested in.");
+    if (!file || !file.size) return say("Please attach your CV.");
+    if (!TYPES.includes(file.type)) return say("Please upload a PDF, DOC or DOCX file.");
+    if (file.size > 3 * 1024 * 1024) return say("That file is over 3 MB. Please upload a smaller version.");
+    const btn = form.querySelector<HTMLButtonElement>(".cf-submit");
+    if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+    const data = await new Promise<string>((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1] || ""); r.onerror = rej; r.readAsDataURL(file); });
+    const body = { ...Object.fromEntries([...fd.entries()].filter(([k]) => k !== "cv").map(([k, v]) => [k, String(v)])), fileName: file.name, fileType: file.type, fileData: data };
+    try {
+      const r = await fetch("/api/careers/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      const j = await r.json().catch(() => ({ ok: false }));
+      if (j.ok) { form.reset(); say("Thank you. Your application was sent to our hiring team.", true); }
+      else say("Sorry, we couldn’t send that. Please call (860) 735-1448 or email hhs4help@gmail.com with your CV.");
+    } catch { say("Sorry, we couldn’t send that. Please call (860) 735-1448 or email hhs4help@gmail.com with your CV."); }
+    if (btn) { btn.disabled = false; btn.textContent = "Send my application"; }
+  });
+</script>
+
+<style>
+  .cf-grid { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .cf-points { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+  .cf-points li { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; color: var(--hw-body); }
+  .cf-points svg { flex: none; color: var(--hw-blue); margin-top: 2px; }
+  .cf-form { display: grid; gap: 14px; padding: clamp(20px, 3vw, 30px); border-radius: 22px; background: #fff; border: 1px solid var(--hw-line); }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .cf-form label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 4px; font-family: var(--hw-head); font-weight: 700; font-size: 14px; color: var(--hw-navy); }
+  .cf-form label span { color: #b42318; }
+  .cf-form label > input, .cf-form label > select, .cf-form label > textarea, .cf-form label > div { flex: 1 0 100%; }
+  .cf-form input, .cf-form select, .cf-form textarea { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #cfd8e3; border-radius: 12px; font: inherit; font-weight: 400; font-size: 15.5px; color: var(--hw-body); background: #fff; }
+  .cf-form textarea { min-height: 96px; resize: vertical; }
+  .cf-file input { padding: 10px; background: var(--hw-mist); }
+  .cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .cf-submit { justify-self: start; }
+  .cf-msg { margin: 0; padding: 10px 14px; border-radius: 12px; background: #fdecea; color: #8a1c12; font-size: 15px; }
+  .cf-msg.is-ok { background: var(--hw-sage-soft); color: #234334; }
+  @media (max-width: 899px) { .cf-grid, .cf-row { grid-template-columns: minmax(0, 1fr); } }
+</style>

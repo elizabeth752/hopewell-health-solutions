@@ -1,102 +1,156 @@
 ---
-// Reusable CTM lead form — posts to /api/lead (api/lead.js), which adds the
-// FormReactor key server-side so it never ships in the page.
-// Field map → CTM:
-//   Full name        → caller_name
-//   Phone            → phone_number (normalized to E.164, +1…)
-//   Email (optional) → email  (CTM's built-in contact field, sent top-level —
-//                      NOT custom_fields[]. CTM silently drops misnamed keys.)
-//   Insurance carrier→ custom_fields[insurance_carrier]
-//   Member/Policy ID → custom_fields[membership_policy_id]
-//   gclid + ValueTrack from the landing URL → paid_attribution[…]
-// variant="card": labeled two-column card with HIPAA badge (same fields, names and submit logic).
-const { heading = "Request a confidential callback", sub = "Free insurance check. No pressure.", compact = false, variant = "default", formId = "hhs-lead" } = Astro.props;
-const lbl = "mb-1.5 block text-[13px] leading-snug text-muted";
-const field = "h-[45px] w-full min-w-0 rounded-lg border border-muted/50 bg-white px-[13px] text-[15px] text-ink focus:border-azul focus:outline-none focus:ring-2 focus:ring-azul/25";
+// Verify-insurance lead form, one component sitewide. Posts multipart to /api/lead/ (api/lead.js), which adds
+// the FormReactor key server-side so it never ships in the page.
+//
+// v3 (reviewer feedback 2026-11-18): fields follow the agency's standard insurance form (Virtue Recovery Center's,
+// as ported to Red Rock: ~/Red-Rock-Recovery/src/components/VerifyForm.astro): full name, phone, email, date of
+// birth, carrier, member/policy ID, insurance card photos front/back, "Text me too" SMS opt-in (optional) and the
+// benefits Authorization (required). The old "Contact consent" checkbox is gone (not a standard field).
+// Reveal (Hopewell rule): at rest only name, phone, email and carrier show; the rest opens on hover or focus,
+// stays open once someone is in the form, opens on the first tap on touch screens, and is forced open on submit.
+//
+// Field map → /api/lead/ → CTM (see api/lead.js for the CTM keys):
+//   caller_name, phone_number, email, insurance_carrier, membership_policy_id, date_of_birth,
+//   card_front / card_back (images), sms_opt_in=yes, vob_consent=yes, + the consent wording the visitor saw.
+// variant="default" (FinalCta) renders the same card with its own heading/sub.
+const { heading = "Check my insurance coverage", sub = "100% confidential · No commitment required", variant = "default", formId = "hhs-lead" } = Astro.props;
+const title = variant === "card" ? "Check my insurance coverage" : heading;
+const subline = variant === "card" ? "100% confidential · No commitment required" : sub;
 const carriers = ["Aetna","Anthem","Blue Cross Blue Shield","Cigna","ConnectiCare","Evernorth","Harvard Pilgrim","Magellan","Meritain","Optum","TRICARE","UMR","UnitedHealthcare","VA Community Care","Other / Not sure"];
-const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
+// Consent wording: Virtue/Red Rock's approved text with only the business name changed. The same string is shown
+// and sent (hidden fields) so the consent record quotes exactly what the visitor read.
+const SMS_CONSENT_TEXT = "I agree to receive recurring marketing texts from Hopewell Health Solutions at the number above, about programs, services and events. Consent is not a condition of treatment. Message and data rates may apply. Reply STOP to opt out, HELP for help. See our Privacy Policy.";
+const VOB_CONSENT_TEXT = "I authorize Hopewell Health Solutions to verify my insurance benefits with my insurance provider. I understand this involves sharing the information above with a third-party clearinghouse for that purpose.";
+const [smsBefore, smsAfter] = SMS_CONSENT_TEXT.split("Privacy Policy");
+const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key: "back", name: "card_back", text: "Card back" }];
 ---
-{variant === "card" ? (
-<div class="lead-card w-full rounded-2xl bg-white p-5 text-ink shadow-[0_2px_6px_rgba(0,0,0,0.18),0_20px_44px_rgba(0,0,0,0.18)]">
-  <div class="mb-4 flex items-center gap-3">
-    <img src="/Assets/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="block h-10 w-auto flex-none" />
-    <span class="text-lg font-bold tracking-[-0.015em]">Talk to an Admissions Specialist</span>
+<div class="lead-card w-full rounded-2xl bg-white text-ink">
+  <div class="lc-head">
+    <div>
+      <p class="lc-title">{title}</p>
+      <p class="lc-sub">{subline}</p>
+    </div>
+    <img src="/Assets/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="lc-hipaa" />
   </div>
-  <form class="ctm-lead-form grid grid-cols-1 gap-3 sm:grid-cols-2" novalidate>
-    <div>
-      <label class={lbl} for={`${formId}-name`}>What’s your name? <span aria-hidden="true" class="text-red-700">*</span></label>
-      <input id={`${formId}-name`} class={field} type="text" name="caller_name" autocomplete="name" required maxlength="80" />
-    </div>
-    <div>
-      <label class={lbl} for={`${formId}-phone`}>What’s your number? <span aria-hidden="true" class="text-red-700">*</span></label>
-      <div class="flex gap-2">
-        <span aria-hidden="true" class="flex h-[45px] flex-none items-center gap-[5px] rounded-lg border border-muted/50 bg-crema px-2.5 text-sm text-ink">
-          <svg viewBox="0 0 19 10" width="19" height="10" class="block rounded-[2px]" aria-hidden="true"><rect width="19" height="10" fill="#B22234" /><path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77" /><rect width="7.6" height="5.38" fill="#3C3B6E" /></svg>
-          US +1
-        </span>
-        <input id={`${formId}-phone`} class={field} type="tel" name="phone_number" autocomplete="tel-national" inputmode="tel" required />
+  <form class="ctm-lead-form lc-form" novalidate>
+    <div class="lc-grid">
+      <div>
+        <label class="lc-lbl" for={`${formId}-name`}>Full name</label>
+        <input id={`${formId}-name`} class="lc-field" type="text" name="caller_name" autocomplete="name" required maxlength="80" />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-phone`}>Phone number</label>
+        <input id={`${formId}-phone`} class="lc-field" type="tel" name="phone_number" autocomplete="tel-national" inputmode="tel" required />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-email`}>Email <span class="lc-opt">(optional)</span></label>
+        <input id={`${formId}-email`} class="lc-field" type="email" name="email" autocomplete="email" maxlength="120" />
+      </div>
+      <div>
+        <label class="lc-lbl" for={`${formId}-carrier`}>Insurance carrier</label>
+        <div class="lc-select">
+          <select id={`${formId}-carrier`} class="lc-field" name="insurance_carrier" required>
+            <option value="" selected>Select carrier…</option>
+            {carriers.map((c) => <option value={c}>{c}</option>)}
+          </select>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </div>
       </div>
     </div>
-    <div>
-      <label class:list={[lbl, "whitespace-nowrap"]} for={`${formId}-policy`}>Membership Policy ID (optional)</label>
-      <input id={`${formId}-policy`} class={field} type="text" name="membership_policy_id" maxlength="40" autocomplete="off" />
-    </div>
-    <div>
-      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier (optional)</label>
-      <div class="relative">
-        <select id={`${formId}-carrier`} class:list={[field, "appearance-none pr-10"]} name="insurance_carrier">
-          <option value="" selected></option>
-          {carriers.map((c) => <option value={c}>{c}</option>)}
-        </select>
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted"><path d="m6 9 6 6 6-6" /></svg>
+    <!-- Revealed on hover / focus / first tap (Hopewell: show 4 fields, the rest opens on hover) -->
+    <div class="lc-more"><div class="lc-more-in">
+      <div class="lc-grid">
+        <div>
+          <label class="lc-lbl" for={`${formId}-dob`}>Date of birth <span class="lc-opt">(optional)</span></label>
+          <input id={`${formId}-dob`} class="lc-field" type="date" name="date_of_birth" autocomplete="bday" min="1900-01-01" />
+        </div>
+        <div>
+          <label class="lc-lbl" for={`${formId}-policy`}>Member / policy ID <span class="lc-opt">(optional)</span></label>
+          <input id={`${formId}-policy`} class="lc-field" type="text" name="membership_policy_id" maxlength="60" autocomplete="off" />
+        </div>
       </div>
-    </div>
-    <div class="sm:col-span-2">
-      <label class={lbl} for={`${formId}-email`}>Email (optional)</label>
-      <input id={`${formId}-email`} class={field} type="email" name="email" autocomplete="email" maxlength="120" />
-    </div>
-    <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <label class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2"><input type="checkbox" name="consent" class="mt-0.5 h-4 w-4 flex-none accent-azul" required /><span>I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</span></label>
-    <button type="submit" class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-lg bg-azul-bright px-[30px] text-[15px] font-bold text-white transition hover:bg-azul disabled:cursor-wait disabled:opacity-60 sm:col-span-2">Check Your Coverage</button>
-    <nav aria-label="Privacy" class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-center text-[11px] leading-normal text-muted sm:col-span-2">
-      <a href="/privacy/" class="rounded-sm underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul">Privacy Policy</a>
-      <a href="/hipaa-notice/" class="rounded-sm underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul">Notice of Privacy Practices</a>
-    </nav>
-    <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2 sm:col-span-2" role="status" aria-live="polite"></p>
-  </form>
-  <p class="mt-3.5 text-center text-[11px] leading-relaxed text-muted">Or call us at <a href="tel:8607351448" class="font-bold text-azul">(860) 735-1448</a>. Everything you share is confidential.</p>
-</div>
-) : (
-<div class="rounded-2xl bg-white shadow-xl border border-line p-6">
-  <h2 class="font-display text-2xl text-ink">{heading}</h2>
-  <p class="text-sm text-muted mt-1">{sub}</p>
-  <form class="ctm-lead-form mt-4 space-y-3" novalidate>
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="caller_name" placeholder="Full name" autocomplete="name" required />
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="tel" name="phone_number" placeholder="Phone" autocomplete="tel" required />
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="email" name="email" placeholder="Email (optional)" autocomplete="email" />
-    <select class={`w-full rounded-lg border border-line px-4 ${pad} text-sm text-muted`} name="insurance_carrier" required>
-      <option value="">Insurance carrier</option>
-      {carriers.map((c) => <option value={c}>{c}</option>)}
-    </select>
-    <input class={`w-full rounded-lg border border-line px-4 ${pad} text-sm`} type="text" name="membership_policy_id" placeholder="Member / Policy ID" />
+      <div class="lc-cards">
+        <p class="lc-lbl">Insurance card photos <span class="lc-opt">(optional, speeds verification up)</span></p>
+        <div class="lc-cards-grid">
+          {uploads.map((c) => (
+            <label class="lc-drop" for={`${formId}-${c.key}`}>
+              <input id={`${formId}-${c.key}`} name={c.name} type="file" accept="image/jpeg,image/png,image/*" class="lc-file" />
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" /></svg>
+              <span class="lc-drop-name" data-default={c.text}>{c.text}</span>
+              <span class="lc-drop-hint">JPG or PNG</span>
+            </label>
+          ))}
+        </div>
+      </div>
+      <label class="lc-check"><input type="checkbox" name="sms_opt_in" value="yes" /><span><strong>Text me too</strong> <span class="lc-opt">(optional)</span><br />{smsBefore}<a href="/privacy/">Privacy Policy</a>{smsAfter}</span></label>
+      <label class="lc-check"><input type="checkbox" name="vob_consent" value="yes" required /><span><strong>Authorization</strong> <span class="lc-opt">(required)</span><br />{VOB_CONSENT_TEXT}</span></label>
+    </div></div>
+    <input type="hidden" name="sms_consent_text" value={SMS_CONSENT_TEXT} />
+    <input type="hidden" name="vob_consent_text" value={VOB_CONSENT_TEXT} />
     <!-- honeypot: bots fill this; humans never see it -->
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="consent" class="mt-0.5" required /> I agree to be contacted by Hopewell Health Solutions (msg/data rates may apply). Not for emergencies — call 988 if in crisis.</label>
-    <button type="submit" class="flex items-center justify-center w-full rounded-lg bg-azul h-[45px] font-semibold text-white hover:bg-azul-dark transition disabled:opacity-60">Verify My Insurance →</button>
-    <nav aria-label="Privacy" class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-center text-[11px] leading-normal text-muted">
-      <a href="/privacy/" class="rounded-sm underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul">Privacy Policy</a>
-      <a href="/hipaa-notice/" class="rounded-sm underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-azul">Notice of Privacy Practices</a>
-    </nav>
+    <button type="submit" class="lc-btn">Verify my insurance, free</button>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
+  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. Not for emergencies: call or text <a href="tel:988">988</a>. See our <a href="/privacy/">Privacy Policy</a> and <a href="/hipaa-notice/">Notice of Privacy Practices</a>.</p>
 </div>
-)}
+
+<style is:global>
+  /* Card form, modelled on the Virtue verify form: 4 fields show, the rest opens on hover/focus/first tap. */
+  .lead-card { padding: 26px 26px 20px; box-shadow: 0 2px 6px rgba(0,0,0,.12), 0 20px 44px rgba(0,0,0,.16); }
+  .lead-card .lc-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+  .lead-card .lc-title { margin: 0; font-family: var(--hw-head, inherit); font-weight: 800; font-size: 23px; line-height: 1.2; letter-spacing: -0.01em; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-sub { margin: 6px 0 0; font-size: 14px; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-hipaa { display: block; height: 42px; width: auto; flex: none; }
+  .lead-card .lc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+  .lead-card .lc-lbl { display: block; margin: 0 0 7px; font-size: 14px; font-weight: 700; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-opt { font-weight: 500; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-field { display: block; width: 100%; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid #cfd8e3; border-radius: 9px; background: #fff; font-size: 15px; color: var(--hw-ink, #10233a); transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none; }
+  .lead-card input[type="date"].lc-field { line-height: 46px; }
+  .lead-card .lc-field:focus { outline: none; border-color: var(--hw-blue, #2f6fd0); box-shadow: 0 0 0 3px rgba(47,111,208,.2); }
+  .lead-card .lc-select { position: relative; }
+  .lead-card .lc-select select { padding-right: 38px; }
+  .lead-card .lc-select svg { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--hw-slate, #55657a); }
+  /* Reveal: grid rows 0fr → 1fr. Closed = out of the tab order and away from screen readers. */
+  .lead-card .lc-more { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .35s ease, opacity .25s ease, margin .35s ease, visibility .35s; }
+  .lead-card .lc-more-in { overflow: hidden; min-height: 0; display: flex; flex-direction: column; gap: 14px; }
+  .lead-card:hover .lc-more, .lead-card:focus-within .lc-more, .lead-card.is-open .lc-more { grid-template-rows: 1fr; opacity: 1; visibility: visible; margin-top: 14px; }
+  .lead-card .lc-cards-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .lead-card .lc-drop { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 12px 10px; border: 2px dashed #cfd8e3; border-radius: 12px; cursor: pointer; color: var(--hw-slate, #55657a); transition: border-color .2s, color .2s; }
+  .lead-card .lc-drop:hover, .lead-card .lc-drop:focus-within, .lead-card .lc-drop.has-file { border-color: var(--hw-blue, #2f6fd0); color: var(--hw-blue, #2f6fd0); }
+  .lead-card .lc-drop:focus-within { box-shadow: 0 0 0 3px rgba(47,111,208,.2); }
+  .lead-card .lc-drop svg { margin-bottom: 4px; }
+  .lead-card .lc-drop-name { font-size: 13px; font-weight: 700; color: var(--hw-navy, #0b2f55); overflow-wrap: anywhere; }
+  .lead-card .lc-drop-hint { font-size: 12px; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); border: 0; opacity: 0; }
+  .lead-card .lc-check { display: flex; align-items: flex-start; gap: 12px; font-size: 12.5px; line-height: 1.5; color: var(--hw-slate, #55657a); cursor: pointer; }
+  .lead-card .lc-check strong { font-size: 13.5px; color: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-check a { color: var(--hw-blue, #2f6fd0); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+  .lead-card .lc-check input { flex: none; width: 18px; height: 18px; margin-top: 2px; accent-color: var(--hw-blue, #2f6fd0); }
+  .lead-card .lc-btn { display: flex; align-items: center; justify-content: center; width: 100%; height: 54px; margin-top: 18px; border: 0; border-radius: 10px; background: var(--hw-blue, #2f6fd0); color: #fff; font-size: 16.5px; font-weight: 700; cursor: pointer; transition: background .2s; }
+  .lead-card .lc-btn:hover { background: var(--hw-navy, #0b2f55); }
+  .lead-card .lc-btn:disabled { opacity: .6; cursor: wait; }
+  .lead-card .ctm-form-msg { margin-top: 10px; }
+  .lead-card .lc-foot { margin: 12px 0 0; text-align: center; font-size: 11.5px; line-height: 1.5; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-foot a { font-weight: 700; color: var(--hw-blue, #2f6fd0); text-decoration: underline; text-underline-offset: 2px; }
+  @media (max-width: 520px) { .lead-card { padding: 22px 18px 18px; } .lead-card .lc-grid { grid-template-columns: 1fr; } .lead-card .lc-hipaa { height: 34px; } }
+  @media (prefers-reduced-motion: reduce) { .lead-card .lc-more { transition: none; } }
+  /* Phones: payer logos as a self-moving row of large tiles (same rule as hw/Insurance.astro; the homepage builds its
+     own insurance section next to this form). Base.astro drifts it by scrollLeft: pauses on touch, swipeable. */
+  @media (max-width: 640px) {
+    .hw .payers .marquee { mask-image: none; -webkit-mask-image: none; overflow: visible; }
+    .hw .payers .marquee-track { display: flex; gap: 12px; width: auto; animation: none; transform: none; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; margin-inline: calc(var(--hw-gutter, 16px) * -1); padding: 2px var(--hw-gutter, 16px) 6px; }
+    .hw .payers .marquee-track::-webkit-scrollbar { display: none; }
+    .hw .payers .marquee .payer { flex: 0 0 150px; height: 84px; padding: 14px 16px; background: #fff; border: 1px solid var(--hw-line, #dfe6ee); border-radius: 14px; }
+    .hw .payers .marquee .payer img { width: 100%; height: 100%; max-width: 118px; max-height: 48px; object-fit: contain; }
+  }
+</style>
 
 <script>
   const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise
   const FORM_ID = "hopewell-website-lead";
-  const ATTR_KEYS = ["gclid","gbraid","wbraid","msclkid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
   const CLICK_IDS = ["gclid","gbraid","wbraid","msclkid"];
+  const ATTR_KEYS = ["gclid","gbraid","wbraid","msclkid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
 
   // Capture ad attribution from the landing URL and persist it across the visit.
   (function captureAttribution() {
@@ -105,8 +159,7 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
       const stored = JSON.parse(localStorage.getItem("hhs_attr") || "{}");
       let changed = false;
       ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) { stored[k] = v; changed = true; } });
-      // First-touch session signals so CTM can classify the true source (direct/organic/referral),
-      // not a default. Captured once and kept for the whole visit.
+      // First-touch session signals so CTM can classify the true source (direct/organic/referral).
       if (!("landing_url" in stored)) { stored.landing_url = window.location.href; changed = true; }
       if (!("referrer" in stored)) {
         const ref = document.referrer || "";
@@ -138,49 +191,85 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
     return "";
   }
 
+  // Phone photos are often 3–6 MB and the function accepts ~4 MB in total, so large images are re-encoded as JPEG
+  // (longest side 2000px) before sending. If the browser can't decode one (e.g. HEIC outside Safari), it goes as is.
+  async function shrink(file) {
+    if (!file || !file.size || file.size < 1500000 || !window.createImageBitmap) return file;
+    try {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      const blob = await new Promise((r) => c.toBlob(r, "image/jpeg", 0.85));
+      return blob ? new File([blob], file.name.replace(/\.[^.]+$/, "") + ".jpg", { type: "image/jpeg" }) : file;
+    } catch (e) { return file; }
+  }
+
   function bind(form) {
+    const card = form.closest(".lead-card");
     const msg = form.querySelector(".ctm-form-msg");
     const btn = form.querySelector('button[type="submit"]');
+    const open = () => card && card.classList.add("is-open");
+    // Keep the extra fields open once someone is in the form (a tap on a checkbox or upload box moves focus and
+    // would otherwise fold the panel mid-tap). Touch screens have no hover, so the first tap anywhere on the card
+    // opens it too: phone users never see a half form.
+    form.addEventListener("focusin", open);
+    // (click, not touchstart: a finger scrolling past the card must not open it).
+    card && card.addEventListener("click", open);
+    const dob = form.querySelector('[name="date_of_birth"]');
+    if (dob) dob.max = new Date().toISOString().slice(0, 10);
+    form.querySelectorAll(".lc-file").forEach((input) => {
+      input.addEventListener("change", () => {
+        const drop = input.closest(".lc-drop");
+        const nameEl = drop && drop.querySelector(".lc-drop-name");
+        const file = input.files && input.files[0];
+        if (!nameEl) return;
+        nameEl.textContent = file ? (file.name.length > 22 ? file.name.slice(0, 19) + "…" : file.name) : nameEl.dataset.default;
+        drop.classList.toggle("has-file", Boolean(file));
+      });
+    });
     const show = (text, ok) => {
       msg.textContent = text;
       msg.className = "ctm-form-msg text-sm rounded-lg px-3 py-2 " + (ok ? "bg-sage-light text-sage" : "bg-gold-light text-ink");
     };
-    const showCallUs = () => {
-      msg.replaceChildren();
-      msg.append("We couldn't send that. Please call ");
-      const link = document.createElement("a");
-      link.href = "tel:8607351448";
-      link.textContent = "(860) 735-1448";
-      link.className = "font-bold underline";
-      msg.append(link);
-      msg.append(" and we'll help right away.");
-      msg.className = "ctm-form-msg text-sm rounded-lg px-3 py-2 bg-gold-light text-ink";
-    };
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const get = (n) => (form.querySelector(`[name="${n}"]`) || {}).value || "";
-      // honeypot + consent guards
-      if (get("company_website")) return;
-      if (!form.querySelector('[name="consent"]').checked) { show("Please agree to be contacted so we can reach you.", false); return; }
+      const el = (n) => form.querySelector(`[name="${n}"]`);
+      const get = (n) => ((el(n) || {}).value || "").trim();
+      if (get("company_website")) return; // honeypot
+      open(); // show the hidden fields (authorization) once they try to submit
+      const bad = (n, text) => { show(text, false); el(n) && el(n).focus(); };
+      if (!get("caller_name")) return bad("caller_name", "Please enter your full name.");
       const phone = toE164(get("phone_number"));
-      if (phone.length < 12) { show("Please enter a valid phone number.", false); return; }
-      const email = get("email").trim();
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { show("Please enter a valid email address, or leave it blank.", false); return; }
+      if (phone.length < 12) return bad("phone_number", "Please enter a valid phone number.");
+      const email = get("email");
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return bad("email", "Please enter a valid email address, or leave it blank.");
+      if (!get("insurance_carrier")) return bad("insurance_carrier", "Please choose your insurance carrier (or “Other / Not sure”).");
+      if (!el("vob_consent").checked) return bad("vob_consent", "Please tick the authorization box so we can check your benefits.");
 
-      const body = new URLSearchParams();
+      const body = new FormData();
       body.set("phone_number", phone);
-      if (get("caller_name")) body.set("caller_name", get("caller_name"));
+      body.set("caller_name", get("caller_name"));
       if (email) body.set("email", email);
-      if (get("insurance_carrier")) body.set("custom_fields[insurance_carrier]", get("insurance_carrier"));
-      if (get("membership_policy_id")) body.set("custom_fields[membership_policy_id]", get("membership_policy_id"));
+      body.set("insurance_carrier", get("insurance_carrier"));
+      if (get("membership_policy_id")) body.set("membership_policy_id", get("membership_policy_id"));
+      if (/^\d{4}-\d{2}-\d{2}$/.test(get("date_of_birth"))) body.set("date_of_birth", get("date_of_birth"));
+      for (const k of ["card_front", "card_back"]) {
+        const f = el(k) && el(k).files && el(k).files[0];
+        if (f && f.size) body.set(k, await shrink(f));
+      }
+      body.set("vob_consent", "yes");
+      body.set("vob_consent_text", get("vob_consent_text"));
+      if (el("sms_opt_in").checked) { body.set("sms_opt_in", "yes"); body.set("sms_consent_text", get("sms_consent_text")); }
+      body.set("page", window.location.pathname);
+
       const a = getAttr();
       CLICK_IDS.forEach((k) => { if (a[k]) body.set("paid_attribution[" + k + "]", a[k]); });
       if (a.campaignid) body.set("paid_attribution[campaign_id]", a.campaignid);
       if (a.adgroupid) body.set("paid_attribution[adgroup_id]", a.adgroupid);
       if (a.creative) body.set("paid_attribution[creative_id]", a.creative);
       body.set("paid_attribution[form_id]", FORM_ID);
-
-      // --- Real session/source so CTM attributes the true origin (not a forced default) ---
       ["utm_source","utm_medium","utm_campaign","utm_term","utm_content"].forEach((k) => { if (a[k]) body.set(k, a[k]); });
       if (a.keyword) body.set("keyword", a.keyword);
       body.set("referrer", typeof a.referrer === "string" ? a.referrer : (document.referrer || ""));
@@ -188,18 +277,20 @@ const pad = "h-[45px]"; // every form field is 45px tall (compact or not)
       body.set("url", window.location.href);
       const sid = getCtmSid();
       if (sid) { body.set("sid", sid); body.set("visitor_sid", sid); }
-      body.delete("country_code");
 
       btn.disabled = true;
       const original = btn.textContent;
       btn.textContent = "Sending…";
       try {
-        const res = await fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString() });
+        const res = await fetch(ENDPOINT, { method: "POST", body });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok || !data.ok) throw new Error("rejected");
+        if (!res.ok || !data.ok) {
+          const e2 = new Error("Bad status " + res.status); e2.userText = [400, 413, 429].includes(res.status) && data.error ? data.error : ""; throw e2;
+        }
+        // The conversion fires on /thank-you/ (live PR #99).
         window.location.assign("/thank-you/?sent=1");
       } catch (err) {
-        showCallUs();
+        show((err && err.userText ? err.userText + " " : "Something went wrong. ") + "Please call us at (860) 735-1448 and we’ll help right away.", false);
         btn.disabled = false;
         btn.textContent = original;
       }
