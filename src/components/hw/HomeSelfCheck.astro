@@ -19,7 +19,6 @@ const topics = [
   <div class="container hsc">
     <div class="hsc-side">
       <h2>Not Sure Where to Start? Take a 1-Minute Self-Check</h2>
-      <p class="lede">Answer a few quick questions about how you’ve been feeling. You’ll see what your answers suggest and which kind of care usually helps, from <a class="inl" href="/programs/counseling/">weekly therapy</a> to an <a class="inl" href="/programs/intensive-outpatient-program/">intensive outpatient program</a>.</p>
       <div class="hsc-topics" role="tablist" aria-label="Choose a self-check">
         {topics.map((x, i) => (
           <button type="button" role="tab" class:list={["hsc-topic", i === 0 && "is-on"]} id={`hsc-tab-${x.key}`} aria-controls={`hsc-${x.key}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} data-hsc={x.key}>
@@ -44,7 +43,7 @@ const topics = [
   .hsc { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
   .hsc-side .lede { margin-top: 14px; }
   .hsc-side .lede :global(a.inl) { color: #fff; }
-  .hsc-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 24px; }
+  .hsc-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 28px; }
   .hsc-topic { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); color: #fff; text-align: left; font: inherit; cursor: pointer; transition: background .2s, border-color .2s; }
   .hsc-topic:hover { background: rgba(255,255,255,.12); }
   .hsc-topic.is-on { background: #fff; border-color: #fff; color: var(--hw-navy); }
@@ -56,6 +55,9 @@ const topics = [
   .hsc-private :global(svg) { flex: none; margin-top: 1px; color: #e0b56a; }
   .hsc-panels :global(.sc) { margin: 0; box-shadow: 0 30px 70px rgba(0,0,0,.3); border: 0; }
   .hsc-panel[hidden] { display: none; }
+  /* Less text (Eli 2026-11-19: "esta seccion esta muy saturada"): on the homepage the card drops the "9 questions,
+     about a minute" note and the source line; the private/not-a-diagnosis line on the left still says it. */
+  .hsc-panels :global(.sc-note), .hsc-panels :global(.sc-src) { display: none; }
   /* The section is navy, which turns headings and links white: keep the quiz card in its own light colours. */
   .hsc-panels :global(.sc h3), .hsc-panels :global(.sc strong) { color: var(--hw-navy); }
   .hsc-panels :global(.sc a.inl) { color: var(--hw-blue); }

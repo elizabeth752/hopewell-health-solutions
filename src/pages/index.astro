@@ -33,11 +33,10 @@ const SITE = "https://www.hopewellhealthsolutions.com";
 const P = "/Assets/hhs-2026/";
 
 // 1. Hero (user pick 2026-11-18): like the old site. A full-width slider of the old site's banner photos (recovered via
-// the Wayback Machine: couple, man, teen, woman, young woman) under ONE fixed text block: H1 (primary keyword), H2,
+// the Wayback Machine: man, teen, woman, young woman) under ONE fixed text block: H1 (primary keyword), H2,
 // H3 tagline, one button and the accreditation logos. The text never changes between slides; the photos lead. The
 // form was removed from the hero (user 2026-11-18): "Start today" jumps to the coverage form in the insurance section.
 const heroSlides = [
-  { img: P + "hero-slide-couple.webp", pos: "30% 35%", alt: "A smiling couple embracing outdoors" },
   { img: P + "hero-slide-man.webp", pos: "35% 30%", alt: "A smiling man outdoors" },
   { img: P + "hero-slide-teen.webp", pos: "30% 30%", alt: "A smiling teenage boy" },
   { img: P + "hero-slide-woman.webp", pos: "25% 30%", alt: "A smiling woman" },
@@ -45,11 +44,12 @@ const heroSlides = [
 ];
 
 // 4. What we help with — conditions wheel (graphic) + program cards written around the visitor's problem.
-// Group room gallery: the client's own iPhone photos (2026-11-17). Office not confirmed yet, so no office name in the alt text.
+// Group room gallery: the newer group-room photos the client sent (Heather + Eli 2026-11-19: replace the old iPhone
+// shots, more variety, open with a waiting-room photo). Office not confirmed, so no office name in the alt text.
 const roomPhotos = [
-  { src: P + "group-lounge-feelings-wheel.webp", alt: "A Hopewell group room with a circle of chairs and an \u201cIt\u2019s okay to feel this way\u201d feelings wheel", w: 1050, h: 1400 },
-  { src: P + "group-lounge-beach-mural.webp", alt: "A Hopewell group room with a beach mural, a screen and seating around a low table", w: 1050, h: 1400 },
-  { src: P + "iop-room-group-photo.webp", alt: "A small group talking together in a Hopewell group room, with a feelings wheel and whiteboard on the wall", w: 1200, h: 1600 },
+  { src: P + "group-waiting-room-tropical.webp", alt: "A bright Hopewell waiting area with a tropical-leaf border, lamps and comfortable chairs", w: 1086, h: 1448 },
+  { src: P + "group-lounge-feelings-wheel-staged.webp", alt: "A Hopewell group room with a circle of chairs and an \u201cIt\u2019s okay to feel this way\u201d feelings wheel", w: 984, h: 1312 },
+  { src: P + "group-room-tropical.webp", alt: "A Hopewell group therapy room with a jungle mural, string lights and seating around a low table", w: 1086, h: 1448 },
 ];
 const teamPhotos = [
   ["team-celebrating-outside", "The Hopewell Health Solutions team celebrating together outside the office"],
@@ -79,7 +79,7 @@ const seg = (i, n) => {
 const helps = [
   { q: "“Weekly therapy isn’t enough anymore.”", t: "Adult Mental Health IOP & PHP", img: "/Assets/Blogs/opt/php-vs-iop-which-level-of-care-is-right-for-you.webp", icon: "users", bar: "#2f76c4",
     html: `Structured care while you live at home: our <a class="inl" href="/programs/adult-mental-health-iop/">adult mental health IOP</a> meets a few hours a day, and our <a class="inl" href="/programs/partial-hospitalization-program/">partial hospitalization program (PHP)</a> adds full days when you need more.` },
-  { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction & Substance Use IOP", img: "/Assets/Blogs/are-you-a-high-functioning-alcoholic.webp", icon: "link", bar: "#0b2f55",
+  { q: "“Drinking or drug use is getting harder to control.”", t: "Addiction & Substance Use IOP", img: P + "iop-group-session.webp", icon: "link", bar: "#0b2f55",
     html: `Our <a class="inl" href="/programs/addiction-iop/">addiction IOP</a> treats addiction with <a class="inl" href="/what-we-treat/co-occurring/">co-occurring mental health and addiction</a> care alongside it, including step-down care after rehab, at 300 Hebron Ave and Westbrook.` },
   { q: "“My teen or tween is struggling.”", t: "Teen & Tween IOP", img: P + "teen-iop-outside.webp", icon: "sparkles", bar: "#5c7c6b",
     html: `After-school groups for ages 8–17, with the family part of the work. Learn about our <a class="inl" href="/programs/teen-iop/">teen and tween IOP</a>.` },
@@ -89,7 +89,7 @@ const helps = [
     html: `For police, fire, EMS and dispatch, with clinicians who understand the work. Explore the <a class="inl" href="/programs/first-responder-iop/">first responder IOP</a>.` },
   { q: "“I need the right medication, managed well.”", t: "Psychiatry & medication", img: "/Assets/evaluation-session.webp", icon: "pill", bar: "#5c7c6b",
     html: `Evaluations and follow-up with our psychiatric providers for ages 4 and up. Read about <a class="inl" href="/programs/medication-management/">psychiatry and medication management</a>.` },
-  { q: "“Medication and therapy haven’t been enough.”", t: "TMS", img: P + "tms-neurostar-device.webp", icon: "brain", bar: "#2f76c4",
+  { q: "“Medication and therapy haven’t been enough.”", t: "TMS", img: P + "tms-neurostar-room.webp", pos: "50% 62%", icon: "brain", bar: "#2f76c4",
     html: `FDA-cleared, drug-free treatment for depression that hasn’t responded to other care. Learn about <a class="inl" href="/treatment-methods/tms/">TMS</a>.` },
   { q: "“I want answers about attention, learning or memory.”", t: "ADHD & neuropsychological testing", img: "/Assets/Blogs/inpatient-vs-intensive-outpatient-programs-understanding-the-right-fit-for-your-child.webp", icon: "clipboard", bar: "#b6863c",
     html: `Thorough evaluations for children, teens and adults: <a class="inl" href="/treatment-methods/adhd-testing/">ADHD testing</a> and <a class="inl" href="/treatment-methods/neuropsychological-testing/">neuropsychological testing</a>.` },
@@ -204,8 +204,8 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
     </div>
     <div class="container ho-grid">
       <div class="ho-text">
-        <h1>Mental Health &amp; Addiction Treatment in Connecticut</h1>
-        <h2 class="ho-h2">Intensive Outpatient Programs (IOP), PHP &amp; Psychiatry in Glastonbury, Westbrook and Across CT</h2>
+        <h1><span class="ho-l">Mental Health &amp; Addiction</span> <span class="ho-l">Treatment in Connecticut</span></h1>
+        <h2 class="ho-h2"><span class="ho-l">Intensive Outpatient Programs (IOP), PHP &amp; Psychiatry</span> <span class="ho-l">in Glastonbury, Westbrook and Across CT</span></h2>
         <h3 class="ho-h3s">Outpatient Therapy for Adults, Teens &amp; Children</h3>
         <p class="ho-h3">There is <em>hope</em> to <em>heal</em></p>
         <a href="#verify" class="btn btn-blue ho-cta">Start today <span aria-hidden="true">&rarr;</span></a>
@@ -265,7 +265,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         <div class="wh-feel-head"><h3>Or start with how you feel</h3><p><a class="inl" href="/admissions/for-families/">Helping someone you love?</a> · <a class="inl" href="/programs/">All programs</a></p></div>
         <ul class="wh-feel-list">
           {helps.map((h) => (
-            <li style={`--bar-c:${h.bar}`}><img class="wh-feel-img" src={h.img} alt={`${h.t} at Hopewell`} width="1200" height="900" loading="lazy" decoding="async" /><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
+            <li style={`--bar-c:${h.bar}`}><img class="wh-feel-img" src={h.img} alt={`${h.t} at Hopewell`} width="1200" height="900" loading="lazy" decoding="async" style={h.pos ? `object-position:${h.pos}` : undefined} /><span class="wh-feel-icon"><Icon name={h.icon} class="h-4 w-4" /></span><span><span class="wh-feel-q">{h.q.replace(/^“|”$/g, "")}</span><a class="wh-feel-p" href={h.href}>{h.t}</a></span></li>
           ))}
         </ul>
       </div>
@@ -285,7 +285,7 @@ const videoLd = [tour, ...matched].filter(Boolean).map((v) => videoSchema(v, SIT
         </div>
         {tour && (
           <button type="button" class="vc-card ip-video" data-yt={tour.yt} data-title={tour.title} data-vertical={tour.vertical ? "1" : undefined} aria-label={`Play: ${tour.title}`}>
-            <span class="vc-poster"><img src="/Assets/videos/tour-welcome-house.webp" alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
+            <span class="vc-poster"><img src="/Assets/videos/tour-welcome-poster.webp" alt="" width="1280" height="720" loading="lazy" /><span class="vc-play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg></span></span>
             <span class="vc-body"><span class="vc-type">Take a look inside</span><span class="vc-name">Welcome to Hopewell</span><span class="vc-desc">{tour.desc}</span></span>
           </button>
         )}

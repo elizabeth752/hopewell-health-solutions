@@ -2254,3 +2254,13 @@ main.hw .container.lp-go { margin-top: clamp(36px, 5vw, 56px); }
   .hw .vc-grid.is-1 .vc-name { font-size: clamp(22px, 2vw, 28px); }
   .hw .vc-grid.is-1 .vc-desc { font-size: 16.5px; }
 }
+
+/* Homepage hero lines (Eli 2026-11-19): H1 and H2 on two lines each on desktop, broken by phrase:
+   "Mental Health & Addiction / Treatment in Connecticut" and "Intensive Outpatient Programs (IOP), PHP & Psychiatry /
+   in Glastonbury, Westbrook and Across CT". Phones wrap naturally. */
+@media (min-width: 1000px) {
+  .hw .ho-text { width: auto; max-width: 100%; }
+  .hw .ho-text .ho-l { display: block; white-space: nowrap; }
+  .hw .ho-text h1 { font-size: clamp(36px, 3.6vw, 56px); text-wrap: initial; }
+  .hw .ho-h2 { max-width: none; font-size: clamp(16px, 1.3vw, 20px); }
+}

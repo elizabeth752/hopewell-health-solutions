@@ -256,25 +256,26 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
 
 <style is:global>
   .cc[hidden], .cc [hidden], [data-consent-placeholder][hidden] { display: none !important; }
-  .cc { position: fixed; right: 20px; bottom: 20px; z-index: 2147483000; width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 40px);
+  /* Bottom-left and compact (Eli 2026-11-19: "put the cookie banner on the left side, and make it smaller") */
+  .cc { position: fixed; left: 20px; right: auto; bottom: 20px; z-index: 2147483000; width: min(340px, calc(100vw - 32px)); max-height: calc(100vh - 40px);
     overflow-y: auto; box-sizing: border-box; background: #fff; color: var(--cc-text); border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, .22); padding: 22px 22px 18px; font-size: 14px; line-height: 1.55; text-align: left; }
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .22); padding: 16px 16px 14px; font-size: 12.5px; line-height: 1.5; text-align: left; }
   .cc *, .cc *::before, .cc *::after { box-sizing: border-box; }
-  .cc__title { font-family: var(--cc-title-font); font-size: 20px; font-weight: 700; line-height: 1.25; margin: 0 0 10px; color: var(--cc-text); }
-  .cc__body p { margin: 0 0 10px; }
-  .cc details { margin: 0 0 12px; }
+  .cc__title { font-family: var(--cc-title-font); font-size: 17px; font-weight: 700; line-height: 1.25; margin: 0 0 8px; color: var(--cc-text); }
+  .cc__body p { margin: 0 0 8px; }
+  .cc details { margin: 0 0 10px; }
   .cc summary { cursor: pointer; color: var(--cc-primary); font-weight: 700; margin-bottom: 8px; }
   .cc a, .cc__inline { color: var(--cc-primary); text-decoration: underline; }
   .cc__inline { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; cursor: pointer; text-align: left; }
-  .cc__note { margin: 0 0 12px; padding: 10px 12px; border-radius: 8px; background: var(--cc-tint); font-weight: 600; }
+  .cc__note { margin: 0 0 10px; padding: 8px 10px; border-radius: 8px; background: var(--cc-tint); font-weight: 600; }
   .cc__prefs { border: 1px solid #d9e1e6; border-radius: 8px; padding: 10px 12px; margin: 0 0 14px; }
   .cc__prefs legend { font-weight: 700; padding: 0 4px; }
   .cc__prefs label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; cursor: pointer; }
   .cc__prefs input { margin-top: 4px; accent-color: var(--cc-primary); }
   .cc__prefs strong { display: block; }
-  .cc__actions { display: flex; flex-wrap: wrap; gap: 8px; }
-  .cc__btn { flex: 1 1 0; min-width: 110px; min-height: 45px; height: 45px; padding: 0 14px; border-radius: 6px; border: 2px solid var(--cc-primary);
-    background: var(--cc-primary); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+  .cc__actions { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cc__btn { flex: 1 1 0; min-width: 0; min-height: 38px; height: 38px; padding: 0 10px; font-size: 13.5px; border-radius: 6px; border: 2px solid var(--cc-primary);
+    background: var(--cc-primary); color: #fff; font-family: inherit; font-weight: 700; cursor: pointer; }
   .cc__btn:hover { background: var(--cc-primary-dark); border-color: var(--cc-primary-dark); color: #fff; }
   .cc__btn--ghost { flex-basis: 100%; background: transparent; color: var(--cc-primary); }
   .cc__btn--ghost:hover { background: var(--cc-tint); color: var(--cc-primary-dark); }
@@ -286,12 +287,12 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
   }
   @media (max-width: 600px) {
     /* Phones (mobile QA 2026-11-18): compact card, three buttons on one row, so it covers less of the first screen */
-    .cc { right: 12px; bottom: 12px; width: calc(100vw - 24px); padding: 16px 16px 14px; font-size: 13.5px; line-height: 1.5; max-height: calc(100vh - 24px); }
-    .cc__title { font-size: 18px; margin-bottom: 8px; }
+    .cc { left: 12px; right: auto; bottom: 12px; width: calc(100vw - 24px); padding: 14px 14px 12px; font-size: 13px; line-height: 1.5; max-height: calc(100vh - 24px); }
+    .cc__title { font-size: 16px; margin-bottom: 6px; }
     .cc__body p { margin-bottom: 8px; }
     .cc details { margin-bottom: 10px; }
     .cc__actions { flex-wrap: nowrap; gap: 6px; }
-    .cc__actions .cc__btn { flex: 1 1 0; min-width: 0; height: 44px; min-height: 44px; padding: 0 6px; font-size: 14px; }
+    .cc__actions .cc__btn { flex: 1 1 0; min-width: 0; height: 40px; min-height: 40px; padding: 0 6px; font-size: 13.5px; }
     .cc__actions .cc__btn--ghost { flex-basis: 0; }
     .cc__prefs:not([hidden]) ~ .cc__actions { flex-wrap: wrap; }
     .cc__prefs:not([hidden]) ~ .cc__actions .cc__btn--ghost { flex-basis: 100%; }
