@@ -1,0 +1,27 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const canonical = "https://www.hopewellhealthsolutions.com/thank-you/";
+---
+
+<Base title="Thank you | Hopewell Health Solutions" description="We received your request and will be in touch." canonical={canonical} robots="noindex, nofollow">
+  <Header />
+  <section class="bg-crema">
+    <div class="mx-auto max-w-3xl px-5 py-20">
+      <h1 class="font-display text-4xl sm:text-5xl text-ink leading-[1.08]">Thank you</h1>
+      <div class="mt-5 h-px w-16 bg-gold"></div>
+      <p class="mt-6 text-lg text-ink leading-relaxed">We’ve received your request and will reach out shortly.</p>
+      <p class="mt-4 text-ink leading-relaxed">If you need us sooner, call <a href="tel:8607351448" class="font-semibold text-azul underline">(860) 735-1448</a>.</p>
+    </div>
+  </section>
+  <script is:inline>
+    if (new URLSearchParams(location.search).get("sent") === "1" && !window.__hhsLeadAccepted) {
+      window.__hhsLeadAccepted = true;
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "lead_accepted" });
+    }
+  </script>
+  <Footer />
+</Base>
