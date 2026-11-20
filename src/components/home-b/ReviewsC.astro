@@ -15,8 +15,8 @@ const stories = [
   { id: "uIlSCS7clwE", title: "“You Have to Take That Step”", sub: "Evan · IOP", thumb: "/Assets/testimonials/evan-iop-experience.webp" },
 ];
 const press = [
-  { id: "P3cmQMf3WoM", title: "Kara’s Cures: Teen Mental Health Crisis", sub: "WFSB Eyewitness News 3" },
-  { id: "uDy-K1dO0Fw", title: "CT LIVE!: Trauma in Women", sub: "NBC Connecticut" },
+  { id: "P3cmQMf3WoM", title: "Kara’s Cures: Teen Mental Health Crisis", sub: "WFSB Eyewitness News 3", thumb: "/Assets/videos/news-teen-mental-health.webp" },
+  { id: "uDy-K1dO0Fw", title: "CT LIVE!: Trauma in Women", sub: "NBC Connecticut", thumb: "/Assets/videos/news-ct-live-trauma-in-women.webp" },
 ];
 ---
 
@@ -93,7 +93,7 @@ const press = [
           {press.map((v) => (
             <li class="overflow-hidden rounded-[20px] bg-white shadow-[0_10px_28px_rgba(0,29,55,.08)]">
               <button type="button" class="hb-reviews-c-yt !rounded-none" data-yt={v.id} aria-label={`Play video: ${v.title} — ${v.sub}`}>
-                <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" />
+                <img src={v.thumb} alt="" width="1280" height="720" loading="lazy" decoding="async" />
                 <span class="hb-reviews-c-yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" class="h-5 w-5 ml-0.5" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span>
               </button>
               <div class="px-6 py-5">

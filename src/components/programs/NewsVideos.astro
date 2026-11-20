@@ -5,7 +5,10 @@ interface V { id: string; t: string; outlet: string }
 interface Props { heading: string; lede?: string; videos: V[]; tone?: "white" | "stone" | "mist"; link?: boolean }
 const { heading, lede, videos, tone = "white", link = true } = Astro.props;
 const POSTERS = { "uDy-K1dO0Fw": "news-ct-live-trauma-in-women", "GJeVqHhooBA": "news-wfsb-helping-children", "P3cmQMf3WoM": "news-teen-mental-health", "aff5Xfy9CfE": "loneliness-crisis" };
-const poster = (id) => (POSTERS[id] ? `/Assets/videos/${POSTERS[id]}.webp` : `https://i.ytimg.com/vi/${id}/hqdefault.jpg`);
+const poster = (id) => {
+  if (!POSTERS[id]) throw new Error(`NewsVideos: add a local poster for ${id} to public/Assets/videos/ and POSTERS`);
+  return `/Assets/videos/${POSTERS[id]}.webp`;
+};
 const play = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#fff"/></svg>';
 const one = videos.length === 1;
 ---
