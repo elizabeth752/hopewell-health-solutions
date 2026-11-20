@@ -29,9 +29,8 @@
 // `tracy-sibley-pmhnp-bc-aprn`. No reviewer named in the docx, so kept as the standing clinical reviewer,
 // Kristine Schlichting, PhD.
 //
-// Hero image: NO sourced photo exists yet for this topic (checked ~/Downloads, the source docx's embedded
-// media — none — and public/Assets/Blogs). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before this goes fully live.
+// Hero image: licensed stock photo now in place at /Assets/Blogs/opt/{slug}.webp (also reused inline near the
+// assessment section), replacing the earlier abstract brand-color placeholder SVG.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (an ascending bar "stack" for the
 // six triggers, an anatomical callout diagram for early physical warning signs, and a duration/timeline-lane
@@ -51,7 +50,7 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Snapping at everyone since you had a baby? Postpartum rage is common, it has real triggers, and it is treatable — here is what it feels like, what causes it, and when to call for help.",
-  heroImage: "/Assets/Blogs/opt/postpartum-rage-why-it-happens-and-when-to-get-help-PLACEHOLDER.svg",
+  heroImage: "/Assets/Blogs/opt/postpartum-rage-why-it-happens-and-when-to-get-help.webp",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-06",
@@ -215,6 +214,10 @@ export default {
       blocks: [
         {
           p: "Care starts with an assessment. A clinician will ask about your mood, anger, sleep, support at home, birth experience, past mental health, and any substance use. Your OB-GYN or primary care provider may also check your thyroid and other physical causes.",
+        },
+        {
+          img: "/Assets/Blogs/opt/postpartum-rage-why-it-happens-and-when-to-get-help.webp",
+          alt: "Two women having a warm, supportive conversation — talking to a provider or a trusted person is part of treatment for postpartum rage.",
         },
         {
           p: "At Hopewell Health Solutions, next steps may include <a href=\"/programs/counseling/\">individual therapy</a> to understand your anger, build coping skills, and work through stress, anxiety, or depression. <a href=\"/programs/medication-management/\">Psychiatric medication management</a> is also available. A prescriber can review options with you, including medicines that you can take while breastfeeding.",

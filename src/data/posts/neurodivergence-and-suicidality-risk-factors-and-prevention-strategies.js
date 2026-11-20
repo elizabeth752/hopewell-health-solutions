@@ -34,10 +34,9 @@
 // and Crisis Lifeline + 911) and did not add anything beyond it. Category: "Inclusive Care" (matches the
 // existing LGBTQ+ inclusivity post — identity/accessibility-focused mental health content).
 //
-// Hero image: NO sourced photo exists yet for this topic (checked ~/Downloads and public/Assets/Blogs — nothing
-// matches). Placeholder is a plain abstract brand-color graphic (not a stock photo standing in as real
-// photography) at /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before publishing,
-// per the site's real-photography-only rule.
+// Hero image: licensed stock photo now in place at /Assets/Blogs/opt/{slug}.webp (also reused inline at the
+// end of the prevention-strategies section), replacing the earlier abstract brand-color placeholder SVG, per
+// the site's real-photography-only rule.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (a two-panel risk-stat snapshot, an
 // iceberg diagram for the cost of masking, and a five-part card strip for the adapted safety plan) — none reuse
@@ -59,7 +58,7 @@ export default {
   category: "Inclusive Care",
   excerpt:
     "Autistic and ADHD adults report suicidal thoughts at rates well above the general population, and the reasons are specific: exhaustion from masking, untreated depression, and support built for a different kind of mind.",
-  heroImage: "/Assets/Blogs/opt/neurodivergence-and-suicidality-risk-factors-and-prevention-strategies-PLACEHOLDER.svg",
+  heroImage: "/Assets/Blogs/opt/neurodivergence-and-suicidality-risk-factors-and-prevention-strategies.webp",
   authorSlug: "tracy-sibley-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-09-26",
@@ -205,6 +204,10 @@ export default {
             "Put accommodations in writing at work or school before exhaustion turns into a crisis.",
             "Keep sleep and routine steady, since unpredictability costs a neurodivergent person more.",
           ],
+        },
+        {
+          img: "/Assets/Blogs/opt/neurodivergence-and-suicidality-risk-factors-and-prevention-strategies.webp",
+          alt: "A woman sitting quietly outdoors — protected, unmasked recovery time is one of the daily habits that guards against the next crisis.",
         },
       ],
     },

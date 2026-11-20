@@ -35,10 +35,8 @@
 // `christina-lindsay-pmhnp-bc-aprn` (her focus list already includes postpartum depression). No reviewer named
 // in the docx, so kept as the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: no sourced photo exists for this topic (checked ~/Downloads and the source docx — no embedded
-// media). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg, matching the pattern used on the postpartum-rage and baby-blues
-// posts — swap for a real, licensed photo before this goes fully live.
+// Hero image: licensed stock photo now in place at /Assets/Blogs/opt/{slug}.webp (also reused inline near the
+// end of the article), replacing the earlier abstract brand-color placeholder SVG.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language — a rectangular flowchart loop for
 // the obsession/compulsion cycle, a branching triage diagram contrasting OCD with psychosis, and a 100-icon
@@ -63,7 +61,7 @@ export default {
   excerpt:
     "Having unwanted thoughts about something bad happening to your baby? They are common after birth, they do not mean you will act on them, and postpartum OCD is treatable — here is what to know.",
   heroImage:
-    "/Assets/Blogs/opt/postpartum-ocd-and-intrusive-thoughts-what-they-mean-and-how-theyre-treated-PLACEHOLDER.svg",
+    "/Assets/Blogs/opt/postpartum-ocd-and-intrusive-thoughts-what-they-mean-and-how-theyre-treated.webp",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-12",
@@ -211,6 +209,10 @@ export default {
         { h3: "Support at Home" },
         {
           p: "Telling a partner or trusted person what is happening can ease the shame and share the work of caring for the baby. Protecting sleep, asking for practical help, and joining a support group are among the care options that Postpartum Support International lists for perinatal OCD.",
+        },
+        {
+          img: "/Assets/Blogs/opt/postpartum-ocd-and-intrusive-thoughts-what-they-mean-and-how-theyre-treated.webp",
+          alt: "A woman relaxing outdoors in the sun, at ease — the kind of relief postpartum OCD treatment can bring.",
         },
       ],
     },

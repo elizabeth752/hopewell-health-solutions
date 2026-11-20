@@ -33,9 +33,8 @@
 // `christina-lindsay-pmhnp-bc-aprn` ("Christina (Tina) Lindsay"). No reviewer named in the docx, so kept as
 // the standing clinical reviewer, Kristine Schlichting, PhD.
 //
-// Hero image: NO sourced photo exists yet for this topic (checked ~/Downloads, the source docx's embedded
-// media — none — and public/Assets/Blogs). Placeholder is a plain abstract brand-color graphic at
-// /Assets/Blogs/opt/{slug}-PLACEHOLDER.svg — swap for a real, licensed photo before this goes fully live.
+// Hero image: licensed stock photo now in place at /Assets/Blogs/opt/{slug}.webp (also reused inline in the
+// treatment section), replacing the earlier abstract brand-color placeholder SVG.
 //
 // Infographics: three section-adjacent SVGs, each its own visual language (two side-by-side comparison cards
 // replacing the docx's table — the `sections` block model has no table type — a feather/stone "weight" pair,
@@ -55,7 +54,7 @@ export default {
   category: "Women's Mental Health",
   excerpt:
     "Still crying every day three weeks after giving birth? That's longer than the baby blues usually last. Here is how the baby blues and postpartum depression compare, and when to call for help.",
-  heroImage: "/Assets/Blogs/opt/baby-blues-vs-postpartum-depression-how-to-tell-the-difference-PLACEHOLDER.svg",
+  heroImage: "/Assets/Blogs/opt/baby-blues-vs-postpartum-depression-how-to-tell-the-difference.webp",
   authorSlug: "christina-lindsay-pmhnp-bc-aprn",
   reviewerSlug: "kristine-a-schlichting-ph-d",
   datePublished: "2026-10-06",
@@ -255,6 +254,10 @@ export default {
       blocks: [
         {
           p: "Treatment for postpartum depression usually includes <a href=\"/programs/counseling/\">talk therapy</a>, medicine, or both. Therapy helps you understand what you are feeling, can help change thoughts and habits that keep depression going, and build support around you. Some medicines for depression can be taken while breastfeeding. Your prescriber will go over the benefits and risks with you.",
+        },
+        {
+          img: "/Assets/Blogs/opt/baby-blues-vs-postpartum-depression-how-to-tell-the-difference.webp",
+          alt: "A mother talking with her healthcare provider to find out whether her symptoms are the baby blues or postpartum depression.",
         },
         {
           p: "At Hopewell Health Solutions, care starts with an assessment to understand your symptoms, your history, and what support you have at home. Depending on what it shows, next steps may include individual therapy, <a href=\"/programs/medication-management/\">psychiatric medication management</a>, or a combined treatment plan.",
