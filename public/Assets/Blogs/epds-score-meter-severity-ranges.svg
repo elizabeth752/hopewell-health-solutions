@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 370" role="img" aria-labelledby="epdstitle epdsdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="epdstitle">What does your EPDS score mean?</title>
+  <desc id="epdsdesc">A 0 to 30 point scale showing four EPDS ranges: 0 to 9 is a negative screen, 10 to 14 is often mild, 15 to 19 is often moderate, and above 19 is often severe with a higher chance of bipolar disorder. A marker shows an example score of 12 falling in the mild range.</desc>
+  <rect width="1100" height="370" fill="#ffffff"/>
+
+  <text x="70" y="40" font-size="20" font-weight="700" fill="#001d37">What does your EPDS score mean?</text>
+  <text x="70" y="64" font-size="14" fill="#5a6b7a">Total score is out of 30 points, added across all 10 answers</text>
+
+  <!-- example marker: score of 12 -->
+  <path d="M444,112 L464,112 L454,138 Z" fill="#1b3e63"/>
+  <text x="454" y="84" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Example: a score of 12</text>
+  <text x="454" y="100" text-anchor="middle" font-size="13" fill="#5a6b7a">falls in the mild range</text>
+
+  <!-- segmented bar, score 0-30 mapped to x=70..1030 (32px per point) -->
+  <rect x="70" y="140" width="320" height="56" fill="#e4ece6" stroke="#5c7c6b" stroke-width="2"/>
+  <rect x="390" y="140" width="160" height="56" fill="#e7eef5" stroke="#265489" stroke-width="2"/>
+  <rect x="550" y="140" width="160" height="56" fill="#f3e8d2" stroke="#b6863c" stroke-width="2"/>
+  <rect x="710" y="140" width="320" height="56" fill="#b6863c" stroke="#1b3e63" stroke-width="2"/>
+
+  <!-- tick labels -->
+  <text x="70" y="216" text-anchor="start" font-size="12" fill="#5a6b7a">0</text>
+  <text x="390" y="216" text-anchor="middle" font-size="12" fill="#5a6b7a">10</text>
+  <text x="550" y="216" text-anchor="middle" font-size="12" fill="#5a6b7a">15</text>
+  <text x="710" y="216" text-anchor="middle" font-size="12" fill="#5a6b7a">20</text>
+  <text x="1030" y="216" text-anchor="end" font-size="12" fill="#5a6b7a">30</text>
+
+  <!-- segment labels -->
+  <text x="230" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#3f5a4e">0–9</text>
+  <text x="230" y="256" text-anchor="middle" font-size="12" fill="#5a6b7a">Negative screen</text>
+
+  <text x="470" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#265489">10–14</text>
+  <text x="470" y="256" text-anchor="middle" font-size="12" fill="#5a6b7a">Mild</text>
+
+  <text x="630" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#8a632c">15–19</text>
+  <text x="630" y="256" text-anchor="middle" font-size="12" fill="#5a6b7a">Moderate</text>
+
+  <text x="870" y="238" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">20–30</text>
+  <text x="870" y="256" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.92">Severe · higher bipolar-</text>
+  <text x="870" y="270" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.92">disorder likelihood</text>
+
+  <!-- anxiety subscale note -->
+  <rect x="70" y="285" width="960" height="70" rx="14" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <circle cx="100" cy="312" r="10" fill="#f3e8d2" stroke="#b6863c" stroke-width="1.5"/>
+  <text x="100" y="317" text-anchor="middle" font-size="13" font-weight="700" fill="#b6863c">+</text>
+  <text x="124" y="308" font-size="14" font-weight="700" fill="#001d37">Anxiety check, built into the same 10 questions</text>
+  <text x="124" y="330" font-size="13" fill="#5a6b7a">Questions 3, 4 &amp; 5 alone adding to 5 or more lines up with a positive GAD-7</text>
+  <text x="124" y="347" font-size="13" fill="#5a6b7a">anxiety screen — even when the total score is under 10.</text>
+</svg>

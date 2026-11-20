@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 410" role="img" aria-labelledby="txtitle txdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="txtitle">How postpartum depression is treated</title>
+  <desc id="txdesc">Psychotherapy is the first-line treatment at every severity level. Medication, such as an SSRI, is layered on top for moderate-to-severe symptoms, by patient preference, or prior response, after a bipolar-disorder screen.</desc>
+  <rect width="1100" height="410" fill="#ffffff"/>
+
+  <text x="70" y="40" font-size="20" font-weight="700" fill="#001d37">How postpartum depression is treated</text>
+  <text x="70" y="64" font-size="14" fill="#5a6b7a">Medication is added on top of therapy, not used instead of it</text>
+
+  <!-- Step 2: medication, raised + narrower, layered over the right portion of Step 1 -->
+  <rect x="560" y="110" width="460" height="104" rx="16" fill="#f3e8d2" stroke="#b6863c" stroke-width="2"/>
+  <rect x="584" y="136" width="48" height="22" rx="11" fill="#b6863c"/>
+  <line x1="608" y1="136" x2="608" y2="158" stroke="#ffffff" stroke-width="2"/>
+  <text x="660" y="150" font-size="18" font-weight="700" fill="#001d37">Step 2 — + Medication</text>
+  <text x="660" y="174" font-size="13" fill="#5a6b7a">SSRIs, often added for moderate-to-</text>
+  <text x="660" y="192" font-size="13" fill="#5a6b7a">severe symptoms or by request</text>
+
+  <!-- add-on connector badge -->
+  <circle cx="560" cy="227" r="13" fill="#ffffff" stroke="#b6863c" stroke-width="2"/>
+  <line x1="553" y1="227" x2="567" y2="227" stroke="#b6863c" stroke-width="3"/>
+  <line x1="560" y1="220" x2="560" y2="234" stroke="#b6863c" stroke-width="3"/>
+
+  <!-- Step 1: therapy, full width, base -->
+  <rect x="80" y="240" width="940" height="90" rx="16" fill="#e7eef5" stroke="#265489" stroke-width="2"/>
+  <rect x="104" y="262" width="56" height="40" rx="10" fill="#265489"/>
+  <path d="M118,302 L108,318 L132,302 Z" fill="#265489"/>
+  <circle cx="120" cy="282" r="3" fill="#ffffff"/>
+  <circle cx="132" cy="282" r="3" fill="#ffffff"/>
+  <circle cx="144" cy="282" r="3" fill="#ffffff"/>
+  <text x="200" y="280" font-size="18" font-weight="700" fill="#001d37">Step 1 — Psychotherapy</text>
+  <text x="200" y="304" font-size="13" fill="#5a6b7a">CBT and exposure-based therapy — first-line at every severity level</text>
+
+  <!-- bipolar-screen callout, connected up to the medication step -->
+  <line x1="790" y1="350" x2="790" y2="214" stroke="#b6863c" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <path d="M783,222 L797,222 L790,210 Z" fill="#b6863c"/>
+  <rect x="80" y="350" width="940" height="42" rx="12" fill="#ffffff" stroke="#e4ddd0" stroke-width="1.5"/>
+  <circle cx="106" cy="371" r="10" fill="#f3e8d2" stroke="#b6863c" stroke-width="1.5"/>
+  <text x="106" y="376" text-anchor="middle" font-size="12" font-weight="700" fill="#b6863c">i</text>
+  <text x="130" y="376" font-size="14" font-weight="700" fill="#001d37">Before prescribing, ACOG recommends a bipolar-disorder screen.</text>
+</svg>

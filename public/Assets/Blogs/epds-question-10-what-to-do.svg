@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 470" role="img" aria-labelledby="q10title q10desc" font-family="Arial, Helvetica, sans-serif">
+  <title id="q10title">What to do about Question 10</title>
+  <desc id="q10desc">A decision path for any answer other than "never" on EPDS Question 10, branching into three outcomes: call 911 or 988 now if you feel unsafe, tell the clinician or call the same day if you feel safe right now, and call or text the National Maternal Mental Health Hotline or Postpartum Support International for ongoing support.</desc>
+  <rect width="1100" height="470" fill="#ffffff"/>
+
+  <text x="70" y="40" font-size="20" font-weight="700" fill="#001d37">What to do about Question 10</text>
+  <text x="70" y="64" font-size="14" fill="#5a6b7a">The self-harm question is checked on its own, no matter your total score</text>
+
+  <!-- gate box -->
+  <rect x="350" y="86" width="400" height="60" rx="14" fill="#265489"/>
+  <text x="550" y="111" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Any answer other than "never"</text>
+  <text x="550" y="131" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">on Question 10</text>
+
+  <!-- trunk -->
+  <line x1="550" y1="146" x2="550" y2="180" stroke="#265489" stroke-width="2.5"/>
+
+  <!-- branches -->
+  <line x1="550" y1="180" x2="180" y2="196" stroke="#1b3e63" stroke-width="2"/>
+  <line x1="550" y1="180" x2="550" y2="196" stroke="#b6863c" stroke-width="2"/>
+  <line x1="550" y1="180" x2="920" y2="196" stroke="#5c7c6b" stroke-width="2"/>
+
+  <path d="M172,196 L188,196 L180,210 Z" fill="#1b3e63"/>
+  <path d="M542,196 L558,196 L550,210 Z" fill="#b6863c"/>
+  <path d="M912,196 L928,196 L920,210 Z" fill="#5c7c6b"/>
+
+  <!-- left box: unsafe now -->
+  <rect x="30" y="210" width="300" height="240" rx="14" fill="#ffffff" stroke="#1b3e63" stroke-width="2"/>
+  <rect x="30" y="210" width="300" height="8" fill="#1b3e63"/>
+  <text x="180" y="238" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">If you feel unsafe</text>
+  <text x="180" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">right now</text>
+  <text x="180" y="286" text-anchor="middle" font-size="13" fill="#5a6b7a">Thoughts of harming yourself</text>
+  <text x="180" y="305" text-anchor="middle" font-size="13" fill="#5a6b7a">or your baby, confusion, or</text>
+  <text x="180" y="324" text-anchor="middle" font-size="13" fill="#5a6b7a">seeing or hearing things</text>
+  <text x="180" y="343" text-anchor="middle" font-size="13" fill="#5a6b7a">that are not there.</text>
+  <text x="180" y="402" text-anchor="middle" font-size="19" font-weight="700" fill="#1b3e63">Call 911 or 988</text>
+  <text x="180" y="426" text-anchor="middle" font-size="19" font-weight="700" fill="#1b3e63">now</text>
+
+  <!-- middle box: safe now -->
+  <rect x="400" y="210" width="300" height="240" rx="14" fill="#ffffff" stroke="#b6863c" stroke-width="2"/>
+  <rect x="400" y="210" width="300" height="8" fill="#b6863c"/>
+  <text x="550" y="238" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">If you answered yes</text>
+  <text x="550" y="258" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">but feel safe right now</text>
+  <text x="550" y="290" text-anchor="middle" font-size="13" fill="#5a6b7a">Tell the clinician before</text>
+  <text x="550" y="309" text-anchor="middle" font-size="13" fill="#5a6b7a">you leave, or call your OB</text>
+  <text x="550" y="328" text-anchor="middle" font-size="13" fill="#5a6b7a">or primary care provider</text>
+  <text x="550" y="347" text-anchor="middle" font-size="13" fill="#5a6b7a">the same day.</text>
+  <text x="550" y="410" text-anchor="middle" font-size="18" font-weight="700" fill="#8a632c">Call the same day</text>
+
+  <!-- right box: ongoing support -->
+  <rect x="770" y="210" width="300" height="240" rx="14" fill="#ffffff" stroke="#5c7c6b" stroke-width="2"/>
+  <rect x="770" y="210" width="300" height="8" fill="#5c7c6b"/>
+  <text x="920" y="240" text-anchor="middle" font-size="16" font-weight="700" fill="#001d37">For support, any time</text>
+  <text x="920" y="266" text-anchor="middle" font-size="13" fill="#5a6b7a">National Maternal Mental</text>
+  <text x="920" y="283" text-anchor="middle" font-size="13" fill="#5a6b7a">Health Hotline</text>
+  <text x="920" y="310" text-anchor="middle" font-size="17" font-weight="700" fill="#265489">1-833-852-6262</text>
+  <text x="920" y="336" text-anchor="middle" font-size="13" fill="#5a6b7a">Postpartum Support</text>
+  <text x="920" y="353" text-anchor="middle" font-size="13" fill="#5a6b7a">International HelpLine</text>
+  <text x="920" y="380" text-anchor="middle" font-size="17" font-weight="700" fill="#265489">1-800-944-4773</text>
+  <text x="920" y="404" text-anchor="middle" font-size="12" fill="#5a6b7a">or text "HELP" to the</text>
+  <text x="920" y="420" text-anchor="middle" font-size="12" fill="#5a6b7a">same number</text>
+</svg>
