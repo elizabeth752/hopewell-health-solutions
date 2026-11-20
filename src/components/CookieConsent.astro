@@ -77,7 +77,7 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
       var a = saved.analytics ? 'granted' : 'denied';
       var ad = saved.ads && !gpc ? 'granted' : 'denied';
       window.__consent = { functional: !!saved.functional, analytics: !!saved.analytics, ads: ad === 'granted', gpc: gpc };
-      gtag('consent', 'update', { analytics_storage: a, ad_storage: ad, ad_user_data: ad, ad_personalization: ad });
+      gtag('consent', 'update', { analytics_storage: a, ad_storage: ad, ad_user_data: ad, ad_personalization: 'denied' });
       var ev = { event: prefix + '_consent_update' };
       ev[prefix + '_consent_method'] = 'return_visit';
       ev[prefix + '_consent_version'] = saved.version;
@@ -161,6 +161,10 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
 
         // Third-party embeds: load them only with Functional consent
         function loadEmbeds() {
+          document.querySelectorAll('img[data-consent-src]').forEach(function (img) {
+            img.src = img.getAttribute('data-consent-src');
+            img.removeAttribute('data-consent-src');
+          });
           document.querySelectorAll('iframe[data-consent-src]').forEach(function (f) {
             f.src = f.getAttribute('data-consent-src');
             f.removeAttribute('data-consent-src');
@@ -183,7 +187,7 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
           var a = rec.analytics ? 'granted' : 'denied';
           var ad = rec.ads ? 'granted' : 'denied';
           window.__consent = { functional: rec.functional, analytics: rec.analytics, ads: rec.ads, gpc: gpc };
-          gtag('consent', 'update', { analytics_storage: a, ad_storage: ad, ad_user_data: ad, ad_personalization: ad });
+          gtag('consent', 'update', { analytics_storage: a, ad_storage: ad, ad_user_data: ad, ad_personalization: 'denied' });
           var ev = { event: prefix + '_consent_update' };
           ev[prefix + '_consent_method'] = method;
           ev[prefix + '_consent_version'] = VERSION;
@@ -195,6 +199,7 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
           write(rec);
           purge(rec.analytics, rec.ads);
           if (rec.functional) loadEmbeds();
+          document.dispatchEvent(new CustomEvent('consent:change', { detail: window.__consent }));
           return rec;
         }
 
@@ -255,7 +260,7 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
 )}
 
 <style is:global>
-  .cc[hidden], .cc [hidden], [data-consent-placeholder][hidden] { display: none !important; }
+  .cc[hidden], .cc [hidden], [data-consent-placeholder][hidden], img[data-consent-src] { display: none !important; }
   /* Bottom-left and compact (Eli 2026-11-19: "put the cookie banner on the left side, and make it smaller") */
   .cc { position: fixed; left: 20px; right: auto; bottom: 20px; z-index: 2147483000; width: min(340px, calc(100vw - 32px)); max-height: calc(100vh - 40px);
     overflow-y: auto; box-sizing: border-box; background: #fff; color: var(--cc-text); border-radius: 10px;

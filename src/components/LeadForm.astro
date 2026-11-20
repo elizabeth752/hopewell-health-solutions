@@ -90,9 +90,10 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
     <!-- honeypot: bots fill this; humans never see it -->
     <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
     <button type="submit" class="lc-btn">Verify my insurance, free</button>
+    <p class="lc-legal">See our <a href="/privacy/">Privacy Policy</a> and <a href="/hipaa-notice/">Notice of Privacy Practices</a>.</p>
     <p class="ctm-form-msg hidden text-sm rounded-lg px-3 py-2" role="status" aria-live="polite"></p>
   </form>
-  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. Not for emergencies: call or text <a href="tel:988">988</a>. See our <a href="/privacy/">Privacy Policy</a> and <a href="/hipaa-notice/">Notice of Privacy Practices</a>.</p>
+  <p class="lc-foot">Or call <a href="tel:8607351448">(860) 735-1448</a>. Not for emergencies: call or text <a href="tel:988">988</a>.</p>
 </div>
 
 <style is:global>
@@ -130,6 +131,8 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
   .lead-card .lc-btn { display: flex; align-items: center; justify-content: center; width: 100%; height: 54px; margin-top: 18px; border: 0; border-radius: 10px; background: var(--hw-blue, #2f6fd0); color: #fff; font-size: 16.5px; font-weight: 700; cursor: pointer; transition: background .2s; }
   .lead-card .lc-btn:hover { background: var(--hw-navy, #0b2f55); }
   .lead-card .lc-btn:disabled { opacity: .6; cursor: wait; }
+  .lead-card .lc-legal { margin: 10px 0 0; text-align: center; font-size: 12.5px; line-height: 1.5; color: var(--hw-slate, #55657a); }
+  .lead-card .lc-legal a { font-weight: 700; color: var(--hw-blue, #2f6fd0); text-decoration: underline; text-underline-offset: 2px; }
   .lead-card .ctm-form-msg { margin-top: 10px; }
   .lead-card .lc-foot { margin: 12px 0 0; text-align: center; font-size: 11.5px; line-height: 1.5; color: var(--hw-slate, #55657a); }
   .lead-card .lc-foot a { font-weight: 700; color: var(--hw-blue, #2f6fd0); text-decoration: underline; text-underline-offset: 2px; }
@@ -150,27 +153,41 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
   const ENDPOINT = "/api/lead/"; // trailing slash: vercel.json trailingSlash would 308 otherwise
   const FORM_ID = "hopewell-website-lead";
   const CLICK_IDS = ["gclid","gbraid","wbraid","msclkid"];
-  const ATTR_KEYS = ["gclid","gbraid","wbraid","msclkid","utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
+  const ATTR_KEYS = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","campaignid","adgroupid","creative","keyword"];
+
+  const pendingClicks = {};
+  const adsGranted = () => Boolean(window.__consent && window.__consent.ads);
+  function withoutClickIds(href) {
+    try { const u = new URL(href); CLICK_IDS.forEach((k) => u.searchParams.delete(k)); return u.toString(); } catch (e) { return ""; }
+  }
+  function getAttr() { try { return JSON.parse(localStorage.getItem("hhs_attr") || "{}"); } catch (e) { return {}; } }
+  function saveAttr(a) { try { localStorage.setItem("hhs_attr", JSON.stringify(a)); } catch (e) {} }
+  function syncClickIds() {
+    const a = getAttr();
+    if (adsGranted()) Object.assign(a, pendingClicks);
+    else CLICK_IDS.forEach((k) => delete a[k]);
+    saveAttr(a);
+  }
 
   // Capture ad attribution from the landing URL and persist it across the visit.
   (function captureAttribution() {
     try {
       const p = new URLSearchParams(window.location.search);
-      const stored = JSON.parse(localStorage.getItem("hhs_attr") || "{}");
-      let changed = false;
-      ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) { stored[k] = v; changed = true; } });
+      const stored = getAttr();
+      ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) stored[k] = v; });
+      CLICK_IDS.forEach((k) => { const v = p.get(k); if (v) pendingClicks[k] = v; });
       // First-touch session signals so CTM can classify the true source (direct/organic/referral).
-      if (!("landing_url" in stored)) { stored.landing_url = window.location.href; changed = true; }
+      stored.landing_url = withoutClickIds(stored.landing_url || window.location.href);
       if (!("referrer" in stored)) {
         const ref = document.referrer || "";
         // Ignore our own pages so internal navigation never overwrites the real (external) referrer.
         stored.referrer = (ref && ref.indexOf(window.location.hostname) === -1) ? ref : "";
-        changed = true;
       }
-      if (changed) localStorage.setItem("hhs_attr", JSON.stringify(stored));
+      saveAttr(stored);
+      syncClickIds();
     } catch (e) {}
   })();
-  function getAttr() { try { return JSON.parse(localStorage.getItem("hhs_attr") || "{}"); } catch (e) { return {}; } }
+  document.addEventListener("consent:change", syncClickIds);
 
   // Read CTM's session id at submit time. Prefer the live script; fall back to its cookie.
   // If neither is there, the lead still sends — without visitor_sid.
@@ -265,7 +282,7 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
       body.set("page", window.location.pathname);
 
       const a = getAttr();
-      CLICK_IDS.forEach((k) => { if (a[k]) body.set("paid_attribution[" + k + "]", a[k]); });
+      if (adsGranted()) CLICK_IDS.forEach((k) => { const v = a[k] || pendingClicks[k]; if (v) body.set("paid_attribution[" + k + "]", v); });
       if (a.campaignid) body.set("paid_attribution[campaign_id]", a.campaignid);
       if (a.adgroupid) body.set("paid_attribution[adgroup_id]", a.adgroupid);
       if (a.creative) body.set("paid_attribution[creative_id]", a.creative);
@@ -274,7 +291,7 @@ const uploads = [{ key: "front", name: "card_front", text: "Card front" }, { key
       if (a.keyword) body.set("keyword", a.keyword);
       body.set("referrer", typeof a.referrer === "string" ? a.referrer : (document.referrer || ""));
       if (a.landing_url) body.set("landing_url", a.landing_url);
-      body.set("url", window.location.href);
+      body.set("url", withoutClickIds(window.location.href));
       const sid = getCtmSid();
       if (sid) { body.set("sid", sid); body.set("visitor_sid", sid); }
 
