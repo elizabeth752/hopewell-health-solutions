@@ -4,13 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const canonical = "https://www.hopewellhealthsolutions.com/privacy/";
-const updated = "June 20, 2026";
-
-const collected = [
-  { label: "Information you give us", body: "Personally identifiable information such as your name, e-mail address, home or work address, and telephone number — typically when you contact us or submit a form." },
-  { label: "Anonymous demographic information", body: "Information that is not unique to you, such as your ZIP code, age, gender, preferences, and interests." },
-  { label: "Information collected automatically", body: "Technical information about your device, including your IP address, browser type, domain names, access times, and referring website addresses. We use this to operate and maintain the quality of the site and to compile general usage statistics." },
-];
+const updated = "November 22, 2026";
 ---
 
 <Base title="Privacy Policy | Hopewell Health Solutions" description="How Hopewell Health Solutions collects, uses, and protects information submitted through this website — and how it differs from the protected health information covered by our HIPAA Notice of Privacy Practices." canonical={canonical}>
@@ -28,62 +22,113 @@ const collected = [
   </section>
 
   <!-- BODY -->
+  <!-- Rewritten 2026-11-22 to describe the tools actually on the site (HHS | Website Data & Tracking Record, Nov 2026;
+       DMC Law guidance: tailor it, say what is really there, don't over-promise, keep it current, keep prior versions).
+       Update this page whenever a tool is added or removed, and keep the previous version in git history. -->
   <section class="bg-white">
     <div class="mx-auto max-w-3xl px-5 py-16 space-y-10 text-ink leading-relaxed text-[17px]">
 
-      <p>Hopewell Health Solutions (“we,” “us,” or “our”) is committed to protecting your privacy. This Privacy Policy applies to this website and governs the data we collect and how we use it. By using this website, you consent to the data practices described here.</p>
+      <p>Hopewell Health Solutions (“we,” “us,” or “our”) operates this website, hopewellhealthsolutions.com. This Privacy Policy explains what information the website collects, which tools collect it, who receives it, and the choices you have. We have written it to describe the tools that are actually on this website today.</p>
 
-      <!-- BH-critical: website privacy vs. HIPAA PHI -->
       <div class="rounded-2xl bg-azul-light/40 border border-azul/30 p-6 space-y-3">
-        <h2 class="font-display text-xl sm:text-2xl text-ink">This policy covers the website — not your health records</h2>
-        <p class="text-[16px]">This Privacy Policy applies to information collected through our website. It is <strong>separate</strong> from the protected health information (PHI) you share as a patient during care, which is governed by our <a href="/hipaa-notice/" class="text-azul font-semibold underline">HIPAA Notice of Privacy Practices</a> and protected under federal law, including 42 CFR Part 2 for substance use records.</p>
-        <p class="text-[16px]">Please <strong>do not include health details or other sensitive personal information</strong> in website forms, e-mails, or messages. If you are an existing or prospective patient, contact us directly so we can protect your information appropriately.</p>
-      </div>
-
-      <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">Information we collect</h2>
-        <p>This website may collect the following types of information:</p>
-        <ul class="space-y-4 pl-1">
-          {collected.map((c) => (
-            <li class="flex gap-3">
-              <span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span>
-              <span><strong>{c.label}.</strong> {c.body}</span>
-            </li>
-          ))}
+        <h2 class="font-display text-xl sm:text-2xl text-ink">In short</h2>
+        <ul class="space-y-2 pl-1 text-[16px]">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>We do not use the Meta (Facebook) pixel or any other advertising or remarketing pixel on this website.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>We do not sell your information, and we do not share it for advertising.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>Google Analytics runs only if you accept analytics cookies, and it is not used for advertising.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>Calls and website forms go to CallTrackingMetrics, our call and lead system, which protects them under a Business Associate Agreement as HIPAA requires.</span></li>
         </ul>
-        <p>Please keep in mind that if you voluntarily disclose personal information in a public space — such as a review or message board — that information may be collected and used by others.</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">How we use your information</h2>
-        <p>We use the information we collect to operate this website and deliver the services you request. We may also use your information to tell you about other services we offer, or to contact you through surveys to learn your opinion of current or potential services.</p>
-        <p><strong>We do not sell, rent, or lease our contact lists to third parties.</strong> We may share information with trusted partners who help us operate the site or communicate with you — for example, to perform statistical analysis, send e-mail or postal mail, or provide support. These partners are prohibited from using your information for anything other than providing those services and are required to keep it confidential.</p>
-        <p>We do not use or disclose sensitive personal information — such as race, religion, or political affiliation — without your explicit consent. We will disclose personal information without notice only if required to do so by law.</p>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">This policy and your health records</h2>
+        <p>This Privacy Policy covers information collected through this website. Once you are a patient, your protected health information is governed by our <a href="/hipaa-notice/" class="text-azul font-semibold">HIPAA Notice of Privacy Practices</a> and protected under federal law, including 42 CFR Part 2 for substance use disorder records.</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">Cookies</h2>
-        <p>This website uses “cookies” to help personalize your online experience. A cookie is a small text file placed on your device by a web page server. Cookies cannot run programs or deliver viruses to your computer, are uniquely assigned to you, and can only be read by a web server in the domain that issued them. You can adjust your browser settings to decline cookies, though some parts of the site may not function as intended if you do.</p>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Information you give us</h2>
+        <p>When you fill in a form on this website, such as the insurance verification form, you may give us:</p>
+        <ul class="space-y-3 pl-1">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>Your name, phone number and email address.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>Your insurance company, member or policy ID and date of birth, and photos of your insurance card if you choose to upload them.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>Whether you agree to receive text messages from us.</span></li>
+        </ul>
+        <p>The form also sends how you reached the website: the page you first landed on, the referring website, and campaign labels in the link you followed (such as utm_source). We use these to know which of our listings and outreach efforts help people find us.</p>
+        <p>If you apply for a job through our careers page, your details and CV are sent to our hiring team by email and used only to review your application.</p>
+        <p>When you call one of the phone numbers on this website, the call is handled by CallTrackingMetrics (see below), which records the call details and may record the call.</p>
+        <p>We use this information to respond to you, check your insurance benefits, talk with you about admission and, if you opt in, send you text messages. Form submissions go directly to CallTrackingMetrics over an encrypted connection. They are not stored on the website, and their contents are not written to the website’s logs.</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">How we protect your information</h2>
-        <p>We secure your personal information from unauthorized access, use, or disclosure, and store it in a controlled environment. When sensitive information is transmitted online, it is protected through encryption, such as the Secure Sockets Layer (SSL) protocol. No method of transmission over the Internet is completely secure, however, and we cannot guarantee absolute security.</p>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Information collected automatically</h2>
+        <p>Like most websites, the servers that host this site receive basic technical information when you visit: your IP address, browser and device type, the page requested, and the time of the request. Our hosting provider uses this to deliver the site and keep it secure.</p>
+        <p>Other information is collected only by the tools described in the next section, and only as described there.</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">Links to third-party sites</h2>
-        <p>This website may link to other websites that are not under our control. We are not responsible for the privacy practices or content of those sites. We encourage you to review the privacy statement of any website you visit so you understand how it collects and uses your information.</p>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Tools on this website</h2>
+        <p>These are the third-party tools on this website, what each one receives and who receives it.</p>
+        <ul class="space-y-3 pl-1">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>CallTrackingMetrics (call tracking and lead management).</strong> Shows a tracking phone number so we can tell which page or listing led to a call, and receives the calls and form submissions described above, along with the pages you visited and your browser and device information. CallTrackingMetrics works for Hopewell under a signed Business Associate Agreement, which requires it to protect this information as HIPAA requires. It runs on every page because it is how your calls and forms reach us.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Google Tag Manager.</strong> Loads the other tools on the site. It does not build a profile of you on its own.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Google Analytics.</strong> Runs only if you accept analytics cookies. It receives the pages you view, the page address, and site events such as clicking a phone number or email link, scrolling, or submitting a form. It does not receive anything you type into a form, such as your name, phone number, email or insurance information. Google signals and ad personalization are turned off, our Google Analytics account is not linked to any advertising account, and the data is kept for 2 months. The recipient is Google.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Embedded content.</strong> Google Maps, YouTube videos (in YouTube’s privacy-enhanced mode) and accreditation seals load only if you accept functional cookies or choose to load them. Once loaded, Google or the seal provider receives your visit to that page and may set its own cookies.</span></li>
+        </ul>
+        <p>We do not use the Meta (Facebook) pixel, other advertising or remarketing pixels, or session recording tools on this website, and we do not send information from this website to Google for advertising.</p>
       </div>
 
       <div class="space-y-3">
-        <h2 class="font-display text-2xl sm:text-3xl text-ink">Children’s privacy</h2>
-        <p>This website is intended for adults. We do not knowingly collect personal information from children under 13 through this site. If you believe a child has provided us information through this website, please contact us so we can remove it.</p>
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Cookies and information stored in your browser</h2>
+        <p>A cookie is a small file a website saves in your browser. This website uses:</p>
+        <ul class="space-y-3 pl-1">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Necessary:</strong> a cookie that remembers your cookie choices for 12 months, and settings saved in your browser for the accessibility panel and for announcements you have closed. These stay on your device.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Functional:</strong> cookies set by embedded maps and videos, only after you allow them.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Analytics:</strong> Google Analytics cookies, only after you allow them. If you later turn analytics off, these cookies are deleted.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Call tracking:</strong> CallTrackingMetrics cookies that connect your visit to your call or form, as described above.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span><strong>Campaign details:</strong> the landing page, referring website and campaign labels described above are saved in your browser during your visit so they can be sent with a form.</span></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Your choices</h2>
+        <ul class="space-y-3 pl-1">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>When you first visit, a cookie banner asks for your choice. Optional cookies stay off until you choose, and you can reject them all with one click.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>You can change your choice at any time with “Cookie Preferences” at the bottom of every page.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>If your browser sends a Global Privacy Control signal, we treat it as a request to opt out of advertising cookies.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>“Do Not Sell or Share My Personal Information” at the bottom of every page turns advertising cookies off. We do not sell or share personal information for advertising.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>You can also block or delete cookies in your browser settings. Some parts of the site, such as maps and videos, may not load if you do.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>To stop text messages, reply STOP to any message.</span></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">How we share information</h2>
+        <p>We do not sell, rent or trade your information. We share it only:</p>
+        <ul class="space-y-3 pl-1">
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>With the service providers named above, so they can run these tools for us.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>With your insurance company or a benefits verification service when you ask us to check your benefits.</span></li>
+          <li class="flex gap-3"><span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-azul"></span><span>When the law requires it, or to protect the safety of you or others.</span></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">How we protect information</h2>
+        <p>The website uses encrypted connections (HTTPS) on every page, and forms are sent over an encrypted connection to CallTrackingMetrics. We limit the tools on the site to the ones described here and review them when we make changes. No website or transmission is completely secure, so we cannot guarantee absolute security.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Teens and children</h2>
+        <p>Hopewell offers programs for teens and adults. When a teen is seeking care, the website forms are usually completed by a parent or guardian. This website is not directed to children under 13, and we do not knowingly collect personal information from a child under 13 through it. If you believe a child has given us information through this website, please contact us so we can delete it.</p>
+      </div>
+
+      <div class="space-y-3">
+        <h2 class="font-display text-2xl sm:text-3xl text-ink">Links to other websites</h2>
+        <p>This website links to other websites, such as news articles, research and our social media pages. Those sites have their own privacy practices, which we do not control.</p>
       </div>
 
       <div class="space-y-3">
         <h2 class="font-display text-2xl sm:text-3xl text-ink">Changes to this policy</h2>
-        <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We encourage you to review this page periodically. Your continued use of the website after changes are posted constitutes your acceptance of the updated policy.</p>
+        <p>We update this policy when we add or remove a tool on the website, and we review it at least once a year. The date at the top shows the latest update, and we keep copies of previous versions.</p>
       </div>
 
       <div class="space-y-3 border-t border-line pt-8">
