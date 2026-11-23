@@ -93,12 +93,12 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
     <div id="cc-banner" class="cc" style={theme} role="dialog" aria-modal="false" aria-labelledby="cc-title" hidden>
       <p id="cc-title" class="cc__title">Cookies and Tracking Technologies</p>
       <div class="cc__body">
-        <p>We use cookies and similar technologies to support the functionality and security of our website, understand website usage, and evaluate the effectiveness of our outreach and marketing efforts. Nothing optional runs until you choose. See our <a href={privacyHref}>{privacyLabel}</a>.</p>
+        <p>We use cookies and similar technologies to support the functionality and security of our website, understand how the site is used, and connect calls and forms to the page or ad that led to them. Optional cookies stay off until you choose. See our <a href={privacyHref}>{privacyLabel}</a>.</p>
         <p><button type="button" class="cc__inline" data-cookie-dns>Do Not Sell or Share My Personal Information</button></p>
         <details>
           <summary>Read full cookie notice</summary>
-          <p>These technologies may collect information such as your IP address, browser and device information, pages visited, and interactions with our website. We may use third-party analytics and advertising services to help us understand website traffic and measure advertising performance.</p>
-          <p>Because we provide behavioral health services, we take privacy seriously. We do not intend to use this website to collect or disclose information about an individual's health or treatment needs through advertising technologies. We take steps to manage tracking technologies in accordance with applicable privacy requirements.</p>
+          <p>These technologies may collect information such as your IP address, browser and device information, pages visited, and interactions with our website. If you allow it, Google Analytics helps us understand website traffic, and we save ad click details so we know which ad led to a call or form. Our call tracking runs on every page so your calls and forms reach us. This website does not use advertising pixels and does not send your information to advertising platforms.</p>
+          <p>Because we provide behavioral health services, we take privacy seriously. We do not use this website to share information about an individual's health or treatment needs with advertising platforms.</p>
           <p>You can change your choice at any time from "Cookie Preferences" at the bottom of every page. California residents may have additional privacy rights, including the right to opt out of the sale or sharing of personal information. If your browser sends a Global Privacy Control signal, we treat it as that opt-out.</p>
         </details>
       </div>
@@ -109,7 +109,7 @@ const theme = `--cc-primary:${primary};--cc-primary-dark:${primaryDark};--cc-tex
         <label><input type="checkbox" checked disabled /> <span><strong>Necessary</strong> Needed for the site to work and to remember this choice. Always on.</span></label>
         <label><input type="checkbox" name="functional" /> <span><strong>Functional</strong> {functionalText}</span></label>
         <label><input type="checkbox" name="analytics" /> <span><strong>Analytics</strong> Helps us understand how visitors use the site.</span></label>
-        <label><input type="checkbox" name="ads" /> <span><strong>Advertising</strong> Measures the performance of our advertising.</span></label>
+        <label><input type="checkbox" name="ads" /> <span><strong>Advertising</strong> Saves ad click details so we know which ad led to your call or form.</span></label>
       </fieldset>
       <div class="cc__actions">
         <button type="button" class="cc__btn cc__btn--ghost" data-cc="customize">Customize</button>
