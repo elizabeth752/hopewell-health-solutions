@@ -6,7 +6,7 @@ export const clinicalRoster = {
   // Julia Goncalves first: new to the team and has availability (live PR #97).
   glastonbury: ["julia-goncalves-lmsw", "jonathan-ficara-lcsw", "madeline-blinderman-lpc-a", "amenah-thomas-lpc-a", "eunice-rivera-miranda-ph-d", "meagan-carr-ph-d", "jeff-rapp-lmsw", "dashelle-barco-lpc", "cassie-gittens-lpc-a", "kelly-fluckiger-lmsw", "karmen-hayensworth-lmsw", "viviana-alvarado-lpc-a", "traci-schneider-maatc-lpc-a-atr-p", "kayla-orozco-lcsw", "natalia-de-lonardo-lpca", "dori-bessette-crail-lmft", "joanne-malinka-lcsw", "angela-pierce-lmsw", "eleni-fatsis-lmsw", "nathan-truong-lmft-a", "savannah-henault-lmsw", "madison-anderson-lmsw", "kris-feller-lmsw", "william-telemaque-lpca", "christina-coelho-lmsw", "jessenia-medina-lpc-ncc", "stacy-piscottano-lmsw", "sheryll-waring-lpc-ldac", "erica-schwartz-lcat", "chris-barclay-ph-d-bcba-ncsp", "laura-miller-ph-d", "bido-aguessy-psy-d-lpc-a", "kelvin-young-cpsrp", "sherrie-gaudet-lcsw", "patricia-nogelo-ph-d-lcsw", "eric-schwartz-psy-d-abpp"],
   westbrook: ["jackie-plagesse-lmfta", "noah-mccarter-lpc-a", "jeff-rapp-lmsw", "kate-henneberry-lmfta", "kaitlyn-czapiga-lmsw"],
-  eastHampton: ["erin-kruse-lmsw", "kate-henneberry-lmfta", "mariah-thomas-lmsw", "ashley-singh-psy-d"],
+  eastHampton: ["erin-kruse-lmsw", "kate-henneberry-lmfta", "ashley-singh-psy-d"],
   westHartford: ["kimberly-devine-lcsw", "eric-schwartz-psy-d-abpp", "christina-coelho-lmsw", "amenah-thomas-lpc-a"],
 };
 
