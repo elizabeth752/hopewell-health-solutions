@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <style>.serif { font-family: Georgia, 'Times New Roman', serif; }</style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="628" fill="#f5f2eb"/>
+
+  <!-- ============ LEFT PANEL ============ -->
+  <rect x="0" y="0" width="460" height="628" fill="#1b3e63"/>
+  <text x="230" y="54" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f3e8d2">HOPEWELL HEALTH SOLUTIONS</text>
+
+  <text x="230" y="160" text-anchor="middle" class="serif" font-size="25" font-weight="700" fill="#ffffff">What Your EPDS</text>
+  <text x="230" y="196" text-anchor="middle" class="serif" font-size="25" font-weight="700" fill="#ffffff">Score Means</text>
+
+  <line x1="190" y1="240" x2="270" y2="240" stroke="#b6863c" stroke-width="2"/>
+  <text x="230" y="266" text-anchor="middle" font-size="13" letter-spacing="0.5" fill="#e7eef5">Women's Mental Health</text>
+
+  <text x="230" y="562" text-anchor="middle" font-size="25" font-weight="700" fill="#ffffff">(860) 735-1448</text>
+  <text x="230" y="594" text-anchor="middle" font-size="13" fill="#9fb6ce">hopewellhealthsolutions.com</text>
+
+  <!-- ============ RIGHT: HERO STAT ============ -->
+  <text x="500" y="76" font-size="13" font-weight="700" letter-spacing="1.8" fill="#b6863c">BY THE NUMBERS</text>
+
+  <text x="830" y="220" text-anchor="middle" font-size="110" font-weight="700" fill="#b6863c">10+</text>
+  <text x="830" y="260" text-anchor="middle" font-size="18" fill="#001d37">EPDS score that counts as</text>
+  <text x="830" y="284" text-anchor="middle" font-size="18" fill="#001d37">a positive screen</text>
+  <text x="830" y="310" text-anchor="middle" font-size="12" font-style="italic" fill="#5a6b7a">Source: ACOG Clinical Practice Guideline No. 4, 2023</text>
+
+  <!-- ============ RIGHT: SCORE-BAND STRIP ============ -->
+  <line x1="500" y1="344" x2="1160" y2="344" stroke="#e4ddd0" stroke-width="1.5"/>
+  <text x="500" y="370" font-size="12" font-weight="700" letter-spacing="1.2" fill="#b6863c">WHAT EACH SCORE RANGE MEANS</text>
+
+  <!-- Mild: one bar lit -->
+  <circle cx="610" cy="434" r="32" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(610,434)">
+    <rect x="-13" y="2" width="6" height="10" fill="#265489"/>
+    <rect x="-3" y="-4" width="6" height="16" fill="#cfd6dc"/>
+    <rect x="7" y="-10" width="6" height="22" fill="#cfd6dc"/>
+  </g>
+  <text x="610" y="482" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">Mild</text>
+
+  <!-- Moderate: two bars lit -->
+  <circle cx="720" cy="434" r="32" fill="#ffffff" stroke="#b6863c" stroke-width="2"/>
+  <g transform="translate(720,434)">
+    <rect x="-13" y="2" width="6" height="10" fill="#b6863c"/>
+    <rect x="-3" y="-4" width="6" height="16" fill="#b6863c"/>
+    <rect x="7" y="-10" width="6" height="22" fill="#cfd6dc"/>
+  </g>
+  <text x="720" y="482" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">Moderate</text>
+
+  <!-- Severe: three bars lit -->
+  <circle cx="830" cy="434" r="32" fill="#ffffff" stroke="#5c7c6b" stroke-width="2"/>
+  <g transform="translate(830,434)">
+    <rect x="-13" y="2" width="6" height="10" fill="#5c7c6b"/>
+    <rect x="-3" y="-4" width="6" height="16" fill="#5c7c6b"/>
+    <rect x="7" y="-10" width="6" height="22" fill="#5c7c6b"/>
+  </g>
+  <text x="830" y="482" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">Severe</text>
+
+  <!-- Question 10: flag icon -->
+  <circle cx="940" cy="434" r="32" fill="#ffffff" stroke="#265489" stroke-width="2"/>
+  <g transform="translate(940,434)">
+    <line x1="-10" y1="13" x2="-10" y2="-13" stroke="#265489" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M-10,-13 L10,-7 L-10,-1 Z" fill="#265489"/>
+  </g>
+  <text x="940" y="482" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">Question 10</text>
+
+  <text x="830" y="538" text-anchor="middle" font-size="13" fill="#5a6b7a">How EPDS scoring works, and what happens after a positive screen.</text>
+
+  <rect x="500" y="570" width="660" height="1" fill="#e4ddd0"/>
+  <text x="500" y="602" font-size="11" fill="#5a6b7a">Individual therapy &#183; Medication management &#183; Women's Wellness IOP &#183; 6 CT locations</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 400" role="img" aria-labelledby="cptitle cpdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="cptitle">From a positive screen to treatment</title>
+  <desc id="cpdesc">Five steps: screening with the EPDS, a positive score of 10 or more, a follow-up evaluation, therapy with medication added for moderate or severe symptoms, and repeat screening to track how treatment is working.</desc>
+  <rect width="1100" height="400" fill="#ffffff"/>
+
+  <text x="50" y="48" font-size="20" font-weight="700" fill="#001d37">From a positive screen to treatment</text>
+  <text x="50" y="72" font-size="14" fill="#5a6b7a">A positive screen starts a process &#8212; it is never the end of the conversation</text>
+
+  <!-- connecting spine -->
+  <line x1="130" y1="190" x2="970" y2="190" stroke="#e4ddd0" stroke-width="4"/>
+
+  <!-- Step 1 -->
+  <circle cx="130" cy="190" r="34" fill="#e7eef5" stroke="#265489" stroke-width="2"/>
+  <text x="130" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">1</text>
+  <text x="130" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Screening</text>
+  <text x="130" y="270" text-anchor="middle" font-size="12" fill="#5a6b7a">EPDS at a prenatal</text>
+  <text x="130" y="286" text-anchor="middle" font-size="12" fill="#5a6b7a">or well-child visit</text>
+
+  <!-- Step 2 -->
+  <circle cx="340" cy="190" r="34" fill="#e7eef5" stroke="#265489" stroke-width="2"/>
+  <text x="340" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">2</text>
+  <text x="340" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Positive score</text>
+  <text x="340" y="270" text-anchor="middle" font-size="12" fill="#5a6b7a">10 or more, or any</text>
+  <text x="340" y="286" text-anchor="middle" font-size="12" fill="#5a6b7a">answer but &#8220;never&#8221; on Q10</text>
+
+  <!-- Step 3 -->
+  <circle cx="550" cy="190" r="34" fill="#e7eef5" stroke="#265489" stroke-width="2"/>
+  <text x="550" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#265489">3</text>
+  <text x="550" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Follow-up visit</text>
+  <text x="550" y="270" text-anchor="middle" font-size="12" fill="#5a6b7a">Clinician asks about</text>
+  <text x="550" y="286" text-anchor="middle" font-size="12" fill="#5a6b7a">symptoms, history, support</text>
+
+  <!-- Step 4 -->
+  <circle cx="760" cy="190" r="34" fill="#b6863c" stroke="#b6863c" stroke-width="2"/>
+  <text x="760" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">4</text>
+  <text x="760" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Treatment</text>
+  <text x="760" y="270" text-anchor="middle" font-size="12" fill="#5a6b7a">Therapy first; medication</text>
+  <text x="760" y="286" text-anchor="middle" font-size="12" fill="#5a6b7a">added for more severe symptoms</text>
+
+  <!-- Step 5 -->
+  <circle cx="970" cy="190" r="34" fill="#1b3e63" stroke="#1b3e63" stroke-width="2"/>
+  <text x="970" y="197" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">5</text>
+  <text x="970" y="250" text-anchor="middle" font-size="13.5" font-weight="700" fill="#001d37">Re-screening</text>
+  <text x="970" y="270" text-anchor="middle" font-size="12" fill="#5a6b7a">EPDS repeated to see</text>
+  <text x="970" y="286" text-anchor="middle" font-size="12" fill="#5a6b7a">how treatment is working</text>
+
+  <!-- arrowheads along the spine, centered between each pair of circles -->
+  <polygon points="241,190 229,183 229,197" fill="#5a6b7a"/>
+  <polygon points="451,190 439,183 439,197" fill="#5a6b7a"/>
+  <polygon points="661,190 649,183 649,197" fill="#5a6b7a"/>
+  <polygon points="871,190 859,183 859,197" fill="#5a6b7a"/>
+
+  <text x="50" y="358" font-size="13" fill="#5a6b7a">ACOG recommends screening for bipolar disorder before starting any medication.</text>
+</svg>
