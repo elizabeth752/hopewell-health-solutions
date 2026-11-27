@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="estitle esdesc" font-family="Arial, Helvetica, sans-serif">
+  <title id="estitle">What an EPDS score means</title>
+  <desc id="esdesc">The EPDS totals 0 to 30. Scores of 10 to 14 often reflect mild symptoms, 15 to 19 moderate symptoms, and above 19 severe symptoms with a higher chance of bipolar disorder. A score of 10 or more is a positive screen. A score of 12 falls in the mild range.</desc>
+  <rect width="1100" height="420" fill="#ffffff"/>
+
+  <text x="50" y="52" font-size="20" font-weight="700" fill="#001d37">What an EPDS score means</text>
+  <text x="50" y="78" font-size="14" fill="#5a6b7a">Ten questions, each worth 0 to 3 points &#8212; totals range from 0 to 30</text>
+
+  <!-- Score bar: 0-9 negative, 10-14 mild, 15-19 moderate, 20-30 severe -->
+  <rect x="80" y="170" width="280" height="56" fill="#e7eef5"/>
+  <rect x="360" y="170" width="155" height="56" fill="#cfe0c8"/>
+  <rect x="515" y="170" width="155" height="56" fill="#b6863c"/>
+  <rect x="670" y="170" width="310" height="56" fill="#1b3e63"/>
+  <rect x="80" y="170" width="900" height="56" fill="none" stroke="#001d37" stroke-width="2"/>
+  <line x1="360" y1="170" x2="360" y2="226" stroke="#ffffff" stroke-width="2"/>
+  <line x1="515" y1="170" x2="515" y2="226" stroke="#ffffff" stroke-width="2"/>
+  <line x1="670" y1="170" x2="670" y2="226" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Segment labels -->
+  <text x="220" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#265489">Negative screen</text>
+  <text x="437" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Mild</text>
+  <text x="592" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Moderate</text>
+  <text x="825" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Severe</text>
+
+  <!-- Score ticks below bar -->
+  <text x="80" y="250" font-size="12" fill="#5a6b7a">0</text>
+  <text x="360" y="250" text-anchor="middle" font-size="12" fill="#5a6b7a">10</text>
+  <text x="515" y="250" text-anchor="middle" font-size="12" fill="#5a6b7a">15</text>
+  <text x="670" y="250" text-anchor="middle" font-size="12" fill="#5a6b7a">20</text>
+  <text x="980" y="250" text-anchor="end" font-size="12" fill="#5a6b7a">30</text>
+
+  <!-- Positive-screen threshold flag at 10 -->
+  <line x1="360" y1="150" x2="360" y2="170" stroke="#001d37" stroke-width="2"/>
+  <text x="360" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="#001d37">10+ is a positive screen</text>
+
+  <!-- Example marker at score 12 -->
+  <path d="M422,286 L438,310 L406,310 Z" fill="#b6863c"/>
+  <line x1="422" y1="286" x2="422" y2="226" stroke="#b6863c" stroke-width="2" stroke-dasharray="3,4"/>
+  <text x="422" y="332" text-anchor="middle" font-size="13" font-weight="700" fill="#001d37">Example: a score of 12</text>
+  <text x="422" y="350" text-anchor="middle" font-size="12" fill="#5a6b7a">falls in the mild range</text>
+
+  <text x="50" y="394" font-size="13" fill="#5a6b7a">A positive screen is not a diagnosis &#8212; only a clinician's evaluation confirms what is going on.</text>
+</svg>

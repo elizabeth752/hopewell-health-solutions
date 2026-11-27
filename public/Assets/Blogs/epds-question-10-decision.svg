@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" role="img" aria-labelledby="q10title q10desc" font-family="Arial, Helvetica, sans-serif">
+  <title id="q10title">What to do about question 10, whatever the total score</title>
+  <desc id="q10desc">Question 10 asks about thoughts of harming yourself. If you answered "never," no same-day follow-up is needed for this question. Any other answer, whether "hardly ever," "sometimes," or "yes, quite often," calls for a conversation with a clinician the same day. If you feel safe right now, tell the clinician before you leave the office or call your provider the same day. If you have thoughts of harming yourself or your baby, feel confused, or see or hear things that are not there, call 911 or 988 now.</desc>
+  <rect width="1100" height="560" fill="#ffffff"/>
+
+  <text x="550" y="42" text-anchor="middle" font-size="20" font-weight="700" fill="#001d37">Question 10 always gets its own check</text>
+  <text x="550" y="66" text-anchor="middle" font-size="14" fill="#5a6b7a">&#8220;The thought of harming myself has occurred to me&#8221; &#8212; this matters whatever the total score</text>
+
+  <!-- Top node: the question -->
+  <rect x="300" y="92" width="500" height="58" rx="14" fill="#e7eef5"/>
+  <text x="550" y="127" text-anchor="middle" font-size="15" font-weight="700" fill="#001d37">Your answer to question 10</text>
+
+  <!-- Left aside: "Never" -->
+  <line x1="300" y1="121" x2="150" y2="170" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="138,178 149,165 160,178" fill="#5a6b7a"/>
+  <rect x="50" y="180" width="200" height="70" rx="12" fill="#f5f2eb" stroke="#c9cfd6" stroke-width="1.5"/>
+  <text x="150" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#001d37">&#8220;Never&#8221;</text>
+  <text x="150" y="228" text-anchor="middle" font-size="12" fill="#5a6b7a">No same-day follow-up</text>
+  <text x="150" y="243" text-anchor="middle" font-size="12" fill="#5a6b7a">needed for this question</text>
+
+  <!-- Right: any other answer -->
+  <line x1="700" y1="121" x2="825" y2="170" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="813,178 824,165 835,178" fill="#5a6b7a"/>
+  <rect x="650" y="180" width="350" height="70" rx="12" fill="#b6863c"/>
+  <text x="825" y="208" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">&#8220;Hardly ever,&#8221; &#8220;sometimes,&#8221;</text>
+  <text x="825" y="228" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">or &#8220;yes, quite often&#8221;</text>
+  <text x="825" y="243" text-anchor="middle" font-size="12" fill="#f3e8d2">Talk with a clinician the same day</text>
+
+  <!-- Fork from the "any other answer" box down to two outcomes -->
+  <line x1="825" y1="250" x2="825" y2="300" stroke="#5a6b7a" stroke-width="2"/>
+  <line x1="825" y1="300" x2="520" y2="300" stroke="#5a6b7a" stroke-width="2"/>
+  <line x1="825" y1="300" x2="910" y2="300" stroke="#5a6b7a" stroke-width="2"/>
+  <line x1="520" y1="300" x2="520" y2="340" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="508,348 519,335 530,348" fill="#5a6b7a"/>
+  <line x1="910" y1="300" x2="910" y2="340" stroke="#5a6b7a" stroke-width="2"/>
+  <polygon points="898,348 909,335 920,348" fill="#5a6b7a"/>
+
+  <!-- Outcome: feel safe right now -->
+  <rect x="290" y="350" width="460" height="150" rx="16" fill="#e7eef5"/>
+  <text x="520" y="384" text-anchor="middle" font-size="16" font-weight="700" fill="#265489">You feel safe right now</text>
+  <text x="520" y="414" text-anchor="middle" font-size="13.5" fill="#001d37">Tell the clinician before you leave the office,</text>
+  <text x="520" y="436" text-anchor="middle" font-size="13.5" fill="#001d37">or call your obstetric or primary care</text>
+  <text x="520" y="458" text-anchor="middle" font-size="13.5" fill="#001d37">provider the same day.</text>
+  <text x="520" y="484" text-anchor="middle" font-size="12.5" fill="#5a6b7a">A yes does not always mean an emergency.</text>
+
+  <!-- Outcome: emergency -->
+  <rect x="770" y="350" width="280" height="150" rx="16" fill="#1b3e63"/>
+  <text x="910" y="384" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">Act now</text>
+  <text x="910" y="412" text-anchor="middle" font-size="13" fill="#f3e8d2">Thoughts of harming yourself</text>
+  <text x="910" y="430" text-anchor="middle" font-size="13" fill="#f3e8d2">or your baby, confusion, or</text>
+  <text x="910" y="448" text-anchor="middle" font-size="13" fill="#f3e8d2">seeing or hearing things</text>
+  <text x="910" y="466" text-anchor="middle" font-size="13" fill="#f3e8d2">that are not there</text>
+  <text x="910" y="490" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Call 911 or 988 now</text>
+</svg>
